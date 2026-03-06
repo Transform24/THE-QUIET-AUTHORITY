@@ -1,0 +1,1792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Quiet Authority | Sanctuary Grace</title>
+  <meta name="description" content="Discover what silence is teaching you.">
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body{font-family:'Inter',sans-serif;background-color:#fcfaf7;color:#2d2d2d;-webkit-font-smoothing:antialiased}
+    h1,h2,h3,h4,.serif{font-family:'Cormorant Garamond',serif}
+    .bg-sage{background-color:#7d8471}.text-sage{color:#7d8471}.border-sage{border-color:#7d8471}
+    .hover\:bg-sage:hover{background-color:#7d8471}
+    .fade-in{animation:fadeIn .8s ease-out forwards}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+    @keyframes ping{0%{transform:scale(1);opacity:1}75%,100%{transform:scale(2);opacity:0}}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+    @keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+    .animate-spin{animation:spin 1s linear infinite}
+    .animate-ping{animation:ping 1.5s cubic-bezier(0,0,.2,1) infinite}
+    .animate-pulse{animation:pulse 2s ease infinite}
+    .border-t-sage{border-top-color:#7d8471}
+    .bg-sage\/5{background-color:rgba(125,132,113,.05)}.bg-sage\/8{background-color:rgba(125,132,113,.08)}
+    .bg-sage\/10{background-color:rgba(125,132,113,.10)}.bg-sage\/20{background-color:rgba(125,132,113,.20)}
+    .border-sage\/10{border-color:rgba(125,132,113,.10)}.border-sage\/15{border-color:rgba(125,132,113,.15)}
+    .border-sage\/20{border-color:rgba(125,132,113,.20)}.border-sage\/30{border-color:rgba(125,132,113,.30)}
+    .border-sage\/40{border-color:rgba(125,132,113,.40)}
+    .text-sage\/50{color:rgba(125,132,113,.5)}.text-sage\/60{color:rgba(125,132,113,.6)}
+    .opacity-55{opacity:.55}.opacity-60{opacity:.6}.opacity-70{opacity:.7}.opacity-80{opacity:.8}
+    ::-webkit-scrollbar{width:8px}::-webkit-scrollbar-track{background:#fcfaf7}
+    ::-webkit-scrollbar-thumb{background:#e5e0d8;border-radius:10px}
+    ::-webkit-scrollbar-thumb:hover{background:#7d8471}
+    #splash{position:fixed;inset:0;background:#fcfaf7;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;transition:opacity 1s ease}
+    #splash.gone{opacity:0;pointer-events:none}
+  </style>
+</head>
+<body>
+  <!-- Sacred loading splash -->
+  <div id="splash">
+    <div style="width:80px;height:80px;border-radius:50%;border:1px solid rgba(125,132,113,.15);display:flex;align-items:center;justify-content:center;margin-bottom:2rem">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7d8471" stroke-width="1">
+        <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/>
+      </svg>
+    </div>
+    <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:2rem;color:#44403c;margin-bottom:0.5rem">The Quiet Authority</p>
+    <p style="font-size:.6rem;letter-spacing:.5em;text-transform:uppercase;color:#a8a29e;font-weight:bold;margin-bottom:2rem">A Sanctuary Grace Experience</p>
+    <div style="width:36px;height:36px;border-radius:50%;border:2px solid rgba(125,132,113,.2);border-top-color:#7d8471;animation:spin 1s linear infinite"></div>
+    <p style="font-size:.55rem;letter-spacing:.4em;text-transform:uppercase;color:#c4b9aa;margin-top:1.5rem;font-weight:bold;font-style:italic">Be still and know...</p>
+  </div>
+  <div id="root"></div>
+<script type="text/babel" data-presets="react,typescript">
+
+// ═══ REACT GLOBALS ═══
+const { useState, useEffect, useRef, useCallback } = React;
+
+// ═══ TYPES ═══
+const ProfileType = { STRIVING_ACHIEVER: 'A', DEPLETED_SURVIVOR: 'B', GUILTY_GIVER: 'C', LOST_WANDERER: 'D' };
+
+[];
+}
+
+;
+  breakthroughPath;
+  lessons;
+  transformationSteps: {           // NEW — her personal roadmap inside the app
+    step;
+    title;
+    description;
+    action;
+    duration;
+  }[];
+  nextStep: { text; duration; prompt; };
+}
+
+
+
+
+// ═══ CONSTANTS ═══
+
+const QUESTIONS = [
+  {
+    id: 1,
+    text: "When an unexpected free moment appears in your day, your first instinct is to...",
+    reveals: "Your relationship with stillness",
+    options: [
+      { label: "A", type.STRIVING_ACHIEVER, text: "Fill it immediately — check the phone, find something productive, keep moving" },
+      { label: "B", type.DEPLETED_SURVIVOR,  text: "Feel guilty or anxious, like you should be doing something but can't find the will" },
+      { label: "C", type.GUILTY_GIVER,       text: "Immediately think of someone else who needs you" },
+      { label: "D", type.LOST_WANDERER,      text: "Feel strangely empty — like you don't know who you are without the doing" }
+    ]
+  },
+  {
+    id: 2,
+    text: "If you sat in complete silence for 10 minutes right now, it would feel...",
+    reveals: "Your primary barrier to rest",
+    options: [
+      { label: "A", type.STRIVING_ACHIEVER, text: "Impossible — my mind would race through everything I'm not doing" },
+      { label: "B", type.DEPLETED_SURVIVOR,  text: "Exhausting — I'm too tired even to be still" },
+      { label: "C", type.GUILTY_GIVER,       text: "Selfish — too many people need me right now" },
+      { label: "D", type.LOST_WANDERER,      text: "Terrifying — I don't know what would surface in the quiet" }
+    ]
+  },
+  {
+    id: 3,
+    text: "When you imagine hearing God's voice clearly, you feel...",
+    reveals: "Your spiritual obstacle to listening",
+    options: [
+      { label: "A", type.STRIVING_ACHIEVER, text: "Doubtful — I'm too distracted and busy for God to get through to me" },
+      { label: "B", type.DEPLETED_SURVIVOR,  text: "Uncertain — I'm not sure I'd recognize His voice anymore" },
+      { label: "C", type.GUILTY_GIVER,       text: "Ashamed — I suspect He's disappointed I haven't done more" },
+      { label: "D", type.LOST_WANDERER,      text: "Distant — I'm not sure He speaks to someone" }
+    ]
+  },
+  {
+    id: 4,
+    text: "Honestly, what brought you here today most closely feels like...",
+    reveals: "The nature of your depletion",
+    options: [
+      { label: "A", type.STRIVING_ACHIEVER, text: "Everything is moving so fast and I can't keep up no matter how hard I try" },
+      { label: "B", type.DEPLETED_SURVIVOR,  text: "I am completely empty. There is nothing left in me to give" },
+      { label: "C", type.GUILTY_GIVER,       text: "I keep saying yes when everything in me is screaming no" },
+      { label: "D", type.LOST_WANDERER,      text: "I have lost myself somewhere in all of this and I don't know how to find her again" }
+    ]
+  },
+  {
+    id: 5,
+    text: "If you are completely honest, your deepest fear about becoming still is...",
+    reveals: "What you are carrying in silence",
+    options: [
+      { label: "A", type.STRIVING_ACHIEVER, text: "That everything will fall apart the moment I stop holding it together" },
+      { label: "B", type.DEPLETED_SURVIVOR,  text: "That I will finally feel how empty I truly am and not be able to come back from it" },
+      { label: "C", type.GUILTY_GIVER,       text: "That the people I love will be hurt or disappointed if I take space for myself" },
+      { label: "D", type.LOST_WANDERER,      text: "That I will discover I don't know who I am without my roles" }
+    ]
+  },
+  {
+    id: 6,
+    text: "When you read 'Be still and know that I am God' — Psalm 46:10 — something in you...",
+    reveals: "Your obedience barrier",
+    options: [
+      { label: "A", type.STRIVING_ACHIEVER, text: "Agrees completely — but immediately thinks 'as soon finish this list'" },
+      { label: "B", type.DEPLETED_SURVIVOR,  text: "Feels more exhausted — like one more thing you're supposed to do but can't" },
+      { label: "C", type.GUILTY_GIVER,       text: "Wonders if being still means letting the people who need you down" },
+      { label: "D", type.LOST_WANDERER,      text: "Aches with longing — but doesn't know how to get there anymore" }
+    ]
+  },
+  {
+    id: 7,
+    text: "When you think about God's faithfulness in hard seasons, you...",
+    reveals: "Your trust and surrender posture",
+    options: [
+      { label: "A", type.STRIVING_ACHIEVER, text: "See it — but quickly worry it won't be enough for what is coming next" },
+      { label: "B", type.DEPLETED_SURVIVOR,  text: "Struggle to feel it — the depletion has made it hard to sense anything at all" },
+      { label: "C", type.GUILTY_GIVER,       text: "Feel unworthy of it — like you haven't earned the right to receive" },
+      { label: "D", type.LOST_WANDERER,      text: "Question it quietly — wondering if He truly sees someone this lost" }
+    ]
+  },
+  {
+    id: 8,
+    text: "If God could give you one thing right now, what you truly need is...",
+    reveals: "Your transformation desire",
+    options: [
+      { label: "A", type.STRIVING_ACHIEVER, text: "Permission — to stop performing, stop proving, and simply rest in who He says I am" },
+      { label: "B", type.DEPLETED_SURVIVOR,  text: "Restoration — to feel alive again, to remember what peace actually feels like in my body" },
+      { label: "C", type.GUILTY_GIVER,       text: "Freedom — to say no without guilt and yes to the things that truly matter to God" },
+      { label: "D", type.LOST_WANDERER,      text: "Identity — to rediscover the woman God created before the world told me who to be" }
+    ]
+  }
+];
+
+const PROFILES: Record<ProfileType, ProfileContent> = {
+  [ProfileType.STRIVING_ACHIEVER]: {
+    id.STRIVING_ACHIEVER,
+    title: "The Striving Achiever",
+    subtitle: "Avoids silence because stopping feels like failing",
+    propheticDeclaration: "You are not what you produce. You never were.",
+    diagnosis: "You've built your identity on accomplishment, and silence threatens everything you've constructed. You equate stillness with laziness, rest with irresponsibility. But God is inviting you to discover that your worth isn't in your output — it's in His love. The breakthrough you're seeking? It's waiting in the stillness you're avoiding.",
+    mirror: "Here is what is true, spoken in love: You have been performing for an audience that was never God. The doing has become your hiding place — if you stay busy enough, you don't have to feel the fear underneath. The fear that without the achievement, you might not be enough. But beloved, you were enough before you ever did a single thing. The striving is exhausting you. And God has been waiting — patiently, tenderly — for you to come home to rest.",
+    scripture: { text: "Come to me, all who are weary and burdened, and I will give you rest.", reference: "Matthew 11:28" },
+    breakthroughPath: "Your transformation begins when you stop proving and start receiving. Start with just 5 minutes of silence — not to accomplish anything, but to practice being loved apart from performing.",
+    lessons: [
+      "You are enough without the achievement",
+      "Rest is obedience, not laziness",
+      "God's provision doesn't require your perfection"
+    ],
+    transformationSteps: [
+      { step: 1, title: "The Stillness Practice", description: "5 minutes daily. No agenda. No prayer list. Just breathe and let God love you without you doing anything.", action: "Begin your silence session now", duration: "Days 1–7" },
+      { step: 2, title: "The Honest Journal", description: "Ask yourself daily: 'What am I afraid will happen if I stop?' Write without editing. Let the truth surface.", action: "Journal your answer tonight", duration: "Days 3–10" },
+      { step: 3, title: "The Identity Anchor", description: "Find one scripture that speaks to your worth apart from performance. Return to it every morning before the doing begins.", action: "Start with Matthew 11:28", duration: "Days 7–14" },
+      { step: 4, title: "The Community", description: "Join women who understand this journey. You were not designed to find your way out of performance alone.", action: "Join the Circle of Silence", duration: "Spring 2026" }
+    ],
+    nextStep: { text: "Practice 5 minutes of silence daily for 7 days.", duration: "7 Days", prompt: "Journal: 'What am I afraid will happen if I stop?'" }
+  },
+
+  [ProfileType.DEPLETED_SURVIVOR]: {
+    id.DEPLETED_SURVIVOR,
+    title: "The Depleted Survivor",
+    subtitle: "Running on empty with nothing left to give",
+    propheticDeclaration: "Your emptiness is not your failure. It is your invitation.",
+    diagnosis: "You're not just tired — you're empty. The well has run dry and you're operating on fumes. Silence feels like one more thing you don't have energy for. But here's the truth: God never asked you to be the source. You were meant to be the vessel. Your depletion is sacred ground — the place where self-reliance dies and dependence on Him becomes your only option.",
+    mirror: "Here is what is true, spoken in love: You have been giving from a well that no one was refilling. Somewhere along the way, caring for yourself became the last thing on the list — or it fell off the list entirely. You have been surviving, not living. You have been maintaining, not thriving. And the exhaustion you feel right now? It is your body, your spirit, and your God all saying the same thing: this is not sustainable, and I was never designed for it to be. He is not asking you to do more. He is asking you to receive.",
+    scripture: { text: "He restores my soul. He leads me beside quiet waters.", reference: "Psalm 23:2-3" },
+    breakthroughPath: "Your transformation begins with radical permission to stop. Not to work on yourself in the silence — but to simply rest in His presence. Let Him carry what you have been forcing yourself to hold.",
+    lessons: [
+      "You don't have to generate your own strength",
+      "Being empty makes room for Him to fill",
+      "His sustaining power shows up when you stop striving"
+    ],
+    transformationSteps: [
+      { step: 1, title: "Permission to Rest", description: "For 7 days, sit in silence for 10 minutes. Don't pray. Don't journal. Don't perform rest. Just breathe and let Him be God.", action: "Begin your silence session now", duration: "Days 1–7" },
+      { step: 2, title: "One Thing Removed", description: "Identify one obligation you are carrying that God did not give you. Lay it down this week.", action: "Write it down and release it", duration: "Days 3–10" },
+      { step: 3, title: "The Restoration Scripture", description: "Psalm 23 was written for you in this season. Read it slowly every morning. Let it wash over the depletion.", action: "Start with Psalm 23:2-3", duration: "Days 7–14" },
+      { step: 4, title: "The Community", description: "Restoration happens in community. Women who see you, carry you when you have nothing left.", action: "Join the Circle of Silence", duration: "Spring 2026" }
+    ],
+    nextStep: { text: "For 7 days, sit in silence for 10 minutes.", duration: "7 Days", prompt: "Don't pray. Don't journal. Just breathe and let Him be God." }
+  },
+
+  [ProfileType.GUILTY_GIVER]: {
+    id.GUILTY_GIVER,
+    title: "The Guilty Giver",
+    subtitle: "Pours into everyone until there is nothing left for God — or herself",
+    propheticDeclaration: "Boundaries are not walls. They are the place where love becomes sustainable.",
+    diagnosis: "Your heart to serve others is beautiful — but it has become your prison. You have confused love with self-abandonment. Silence feels selfish because you have made everyone else's needs more important than the voice of God. But boundaries are not selfish — they are sacred. Saying no to some things is actually saying yes to His highest purposes for you.",
+    mirror: "Here is what is true, spoken in love: You have been performing love rather than living it. Somewhere, you learned that your value comes from what you give — and so you keep giving even when you have nothing left, even when it is costing you your peace, your health, your relationship with God. You are not loving people by abandoning yourself. You are modeling a kind of love that is not sustainable and is not what God asked of you. He said love your neighbor — not instead of yourself. The 'as yourself' matters. You matter.",
+    scripture: { text: "It is for freedom that Christ has set us free.", reference: "Galatians 5:1" },
+    breakthroughPath: "Your transformation begins when you realize: disappointing people is not the same God. Silence teaches you to serve from overflow, not obligation. To give from fullness, not emptiness.",
+    lessons: [
+      "God's voice matters more than people's expectations",
+      "You can love others without losing yourself",
+      "Boundaries protect what God is building in you"
+    ],
+    transformationSteps: [
+      { step: 1, title: "The Silence Boundary", description: "Give yourself 10 minutes daily that belong entirely to God — not to anyone's need, request, or expectation.", action: "Begin your silence session now", duration: "Days 1–7" },
+      { step: 2, title: "The No Practice", description: "Each day, identify one yes that should be a no. Practice saying it — gently, firmly, without apology.", action: "Ask God: what needs to be a no this week?", duration: "Days 3–10" },
+      { step: 3, title: "The Freedom Scripture", description: "Galatians 5:1 is your anchor. You were set free to be free — not to become someone else's prisoner.", action: "Return to Galatians 5:1 daily", duration: "Days 7–14" },
+      { step: 4, title: "The Community", description: "Women who will hold you accountable to your own needs else's.", action: "Join the Circle of Silence", duration: "Spring 2026" }
+    ],
+    nextStep: { text: "Practice 10 minutes of daily silence.", duration: "7 Days", prompt: "Each day, identify one yes that should be a no. Ask God: 'What am I protecting by saying yes?'" }
+  },
+
+  [ProfileType.LOST_WANDERER]: {
+    id.LOST_WANDERER,
+    title: "The Lost Wanderer",
+    subtitle: "Searching for herself beneath all the roles she plays",
+    propheticDeclaration: "You are not lost to God. He has known exactly where you are.",
+    diagnosis: "You have been running so long, you have forgotten where you were going. The roles, the expectations, the endless demands — they have obscured the woman God created you to be. Silence feels frightening because you are not sure who you will find there. But this disorientation is not the end — it is the beginning. God is inviting you into the wilderness to rediscover your true identity — the one He gave you before the world told you who to be.",
+    mirror: "Here is what is true, spoken in love: You have been so many things to so many people for so long that the woman underneath all of it has become a stranger to you. And that grief is real. But hear this — the fact that you can feel the lostness means the real you is still there, still longing, still reaching for something true. You have not disappeared. You have been buried. And God is not distant from you in this — He is the one digging. The wilderness you are in is not punishment. It is preparation. He has been speaking to you there all along.",
+    scripture: { text: "Be still, and know that I am God.", reference: "Psalm 46:10" },
+    breakthroughPath: "Your transformation begins in the sacred pause. Silence is not where you lose yourself — it is where you remember. Beneath all the roles and responsibilities, there is a woman God knows by name. She is waiting for you in the stillness.",
+    lessons: [
+      "Who you are in Christ versus who the world says you should be",
+      "Your identity is found in stillness, not striving",
+      "God has been speaking — you just couldn't hear Him through the noise"
+    ],
+    transformationSteps: [
+      { step: 1, title: "The Sacred Pause", description: "10 minutes of silence daily. This is not about finding answers — it is about becoming quiet enough to remember who you were before the noise.", action: "Begin your silence session now", duration: "Days 1–7" },
+      { step: 2, title: "The Identity Journal", description: "After each silence session, write: 'Who am I when no one needs anything from me?' Let God answer through what surfaces.", action: "Journal after your first session", duration: "Days 3–14" },
+      { step: 3, title: "The Anchor Scripture", description: "Psalm 46:10 — Be still and know that I am God. When you do not know who you are, start with who He is.", action: "Sit with Psalm 46:10 daily", duration: "Days 7–21" },
+      { step: 4, title: "The Community", description: "You were not designed to find yourself alone. Come into a circle of women who will witness your becoming.", action: "Join the Circle of Silence", duration: "Spring 2026" }
+    ],
+    nextStep: { text: "Commit to 10 minutes of silence daily for 14 days.", duration: "14 Days", prompt: "Journal after: 'Who am I when no one needs anything from me?'" }
+  }
+};
+
+
+// ═══ LANDING ═══
+
+
+
+
+const Landing = ({ onStart }) => {
+  return (
+    <div className="flex flex-col items-center text-center py-20 px-4 fade-in">
+      <div className="w-20 h-20 bg-sage/5 rounded-full flex items-center justify-center mb-12 border border-sage/10 shadow-inner">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="text-sage">
+          <path d="M12 2L2 7l10 5 10-5-10-5z" />
+          <path d="m2 17 10 5 10-5" />
+          <path d="m2 12 10 5 10-5" />
+        </svg>
+      </div>
+      
+      <h1 className="text-6xl md:text-8xl font-medium mb-10 leading-tight text-stone-800 tracking-tight">
+        What Is Silence <br /><span className="serif italic text-sage">Teaching You?</span>
+      </h1>
+      
+      <p className="text-xl md:text-2xl text-stone-400 max-w-3xl mb-20 font-light leading-relaxed serif italic">
+        "God broke my ankle to still me. Now I invite you to find your stillness <br className="hidden md:block" /> before life forces you to."
+      </p>
+
+      <div className="grid md:grid-cols-3 gap-8 max-w-6xl mb-24">
+        <div className="bg-white p-12 rounded-[3rem] shadow-sm border border-stone-100 hover:shadow-xl hover:-translate-y-2 transition-all">
+          <span className="text-sage text-2xl serif italic mb-4 block">01</span>
+          <h4 className="text-[11px] uppercase tracking-[0.3em] font-bold mb-6 text-stone-400">Diagnosis</h4>
+          <p className="text-stone-600 font-light leading-relaxed">Shift from measuring burnout to understanding your deep relationship with divine silence.</p>
+        </div>
+        <div className="bg-white p-12 rounded-[3rem] shadow-sm border border-stone-100 hover:shadow-xl hover:-translate-y-2 transition-all">
+          <span className="text-sage text-2xl serif italic mb-4 block">02</span>
+          <h4 className="text-[11px] uppercase tracking-[0.3em] font-bold mb-6 text-stone-400">Clarity</h4>
+          <p className="text-stone-600 font-light leading-relaxed">Uncover the specific spiritual barriers that are keeping you from hearing the Father's whisper.</p>
+        </div>
+        <div className="bg-white p-12 rounded-[3rem] shadow-sm border border-stone-100 hover:shadow-xl hover:-translate-y-2 transition-all">
+          <span className="text-sage text-2xl serif italic mb-4 block">03</span>
+          <h4 className="text-[11px] uppercase tracking-[0.3em] font-bold mb-6 text-stone-400">Roadmap</h4>
+          <p className="text-stone-600 font-light leading-relaxed">Receive a custom transformation path designed specifically for your unique soul profile.</p>
+        </div>
+      </div>
+
+      <button 
+        onClick={onStart}
+        className="bg-stone-900 text-white px-16 py-7 rounded-full text-[12px] tracking-[0.4em] uppercase hover:bg-sage transition-all transform hover:scale-105 shadow-[0_20px_50px_rgba(0,0,0,0.15)] font-bold mb-10"
+      >
+        Discover Your Profile
+      </button>
+
+      <div className="mt-12">
+        <p className="text-[10px] uppercase tracking-[0.5em] font-bold text-stone-300">"Be still, and know that I am God"</p>
+      </div>
+    </div>
+  );
+};
+
+
+
+// ═══ ASSESSMENT ═══
+
+
+
+const Assessment = ({ questions, onComplete }) => {
+  const [currentIdx, setCurrentIdx] = useState(0);
+  const [answers, setAnswers] = useState([]);
+  const [visible, setVisible] = useState(true);
+  const lockedRef = useRef(false);
+  const topRef = useRef(null);
+
+  useEffect(() => {
+    topRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, [currentIdx]);
+
+  const handleSelect = (type) => {
+    if (lockedRef.current) return;
+    lockedRef.current = true;
+
+    // Fade out
+    setVisible(false);
+
+    setTimeout(() => {
+      const newAnswers = [...answers, type];
+      setAnswers(newAnswers);
+
+      if (currentIdx < questions.length - 1) {
+        setCurrentIdx(i => i + 1);
+        // Small delay then fade in
+        setTimeout(() => {
+          setVisible(true);
+          lockedRef.current = false;
+        }, 80);
+      } else {
+        onComplete(newAnswers);
+      }
+    }, 300);
+  };
+
+  const progress = ((currentIdx + 1) / questions.length) * 100;
+  const q = questions[currentIdx];
+
+  return (
+    <div className="w-full max-w-3xl mx-auto py-16 px-4">
+      <div ref={topRef} style={{ scrollMarginTop: '20px' }} />
+
+      {/* Progress Bar */}
+      <div className="mb-16">
+        <div className="flex justify-between items-end text-[11px] uppercase tracking-[0.4em] text-stone-400 mb-6 font-bold">
+          <span className="text-sage">Soul Layer {currentIdx + 1} / {questions.length}</span>
+          <span className="opacity-50 italic serif lowercase tracking-normal text-lg">Reflection in progress...</span>
+        </div>
+        <div className="w-full h-[3px] bg-stone-100 rounded-full overflow-hidden">
+          <div
+            className="h-full bg-sage"
+            style={{ width: `${progress}%`, transition: 'width 0.5s ease' }}
+          />
+        </div>
+      </div>
+
+      {/* Question Card — simple fade only, no translate */}
+      <div
+        style={{
+          opacity: visible ? 1 : 0,
+          transition: visible ? 'opacity 0.3s ease' : 'opacity 0.25s ease',
+          willChange: 'opacity',
+        }}
+        className="bg-white rounded-[4rem] p-12 md:p-24 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.05)] border border-stone-100 mb-12 min-h-[500px] flex flex-col relative overflow-hidden"
+      >
+        <div className="absolute top-0 right-0 p-12 opacity-5 pointer-events-none">
+          <svg width="180" height="180" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="0.5">
+            <circle cx="12" cy="12" r="10"/>
+          </svg>
+        </div>
+
+        <div className="relative z-10 flex-1">
+          <span className="text-sage text-[11px] uppercase tracking-[0.4em] mb-10 block font-bold">
+            Investigation: {q.reveals}
+          </span>
+          <h2 className="text-4xl md:text-5xl font-medium leading-tight text-stone-800 mb-16 serif italic">
+            {q.text}
+          </h2>
+
+          <div className="grid gap-5">
+            {q.options.map((opt) => (
+              <button
+                key={opt.label}
+                type="button"
+                onClick={() => handleSelect(opt.type)}
+                className="w-full text-left p-8 rounded-[2rem] border-2 border-stone-50 hover:border-sage/20 hover:bg-stone-50/50 transition-colors group flex items-start gap-8 shadow-sm hover:shadow-xl"
+              >
+                <div className="w-8 h-8 rounded-full border border-stone-200 flex items-center justify-center flex-shrink-0 group-hover:border-sage group-hover:bg-sage group-hover:text-white text-[10px] font-bold transition-all mt-1">
+                  {opt.label}
+                </div>
+                <span className="text-stone-500 group-hover:text-stone-900 leading-relaxed font-light text-xl">
+                  {opt.text}
+                </span>
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <p className="text-center text-stone-300 text-[10px] font-bold uppercase tracking-[0.5em] mt-12 animate-pulse">
+        Trust the first whisper of your heart.
+      </p>
+    </div>
+  );
+};
+
+
+
+// ═══ EMAIL CAPTURE ═══
+
+
+
+const TEASER: Record<ProfileType, { title; hint }> = {
+  [ProfileType.STRIVING_ACHIEVER]: {
+    title: "Your profile is ready.",
+    hint: "What we found in your answers may be the most honest thing anyone has said to you in a long time."
+  },
+  [ProfileType.DEPLETED_SURVIVOR]: {
+    title: "Your profile is ready.",
+    hint: "What is waiting for you on the other side of this page is not another thing to do. It is permission to stop."
+  },
+  [ProfileType.GUILTY_GIVER]: {
+    title: "Your profile is ready.",
+    hint: "What God wants to say to you through your results is not condemnation. It is the most loving truth you may ever receive."
+  },
+  [ProfileType.LOST_WANDERER]: {
+    title: "Your profile is ready.",
+    hint: "The woman you are looking for — she is on the other side of this page. And she has been waiting for you."
+  },
+};
+
+// Determine likely profile from answers for personalized teaser
+const getLeadProfile = (answers) => {
+  const counts: Record<ProfileType, number> = {
+    [ProfileType.STRIVING_ACHIEVER]: 0,
+    [ProfileType.DEPLETED_SURVIVOR]: 0,
+    [ProfileType.GUILTY_GIVER]: 0,
+    [ProfileType.LOST_WANDERER]: 0,
+  };
+  answers.forEach(a => counts[a]++);
+  let max = -1, winner = ProfileType.STRIVING_ACHIEVER;
+  Object.entries(counts).forEach(([t, c]) => { if (c > max) { max = c; winner = t; } });
+  return winner;
+};
+
+const EmailCapture = ({ answers, onContinue, onSkip }) => {
+  const [email, setEmail]     = useState('');
+  const [name, setName]       = useState('');
+  const [error, setError]     = useState('');
+  const [focused, setFocused] = useState(null);
+  const profile = getLeadProfile(answers);
+  const teaser  = TEASER[profile];
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email.trim() || !email.includes('@')) {
+      setError('Please enter a valid email address.');
+      return;
+    }
+    onContinue(email.trim());
+  };
+
+  return (
+    <div className="w-full max-w-2xl mx-auto py-20 px-6 fade-in">
+
+      {/* Sacred pause visual */}
+      <div className="flex justify-center mb-16">
+        <div className="relative">
+          <div className="w-20 h-20 rounded-full border border-sage/20 flex items-center justify-center">
+            <div className="w-14 h-14 rounded-full border border-sage/30 flex items-center justify-center">
+              <div className="w-8 h-8 rounded-full bg-sage/10 border border-sage/40" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Teaser text */}
+      <div className="text-center mb-16">
+        <p className="text-[11px] uppercase tracking-[0.6em] text-sage font-bold mb-6 opacity-70">
+          Your Soul Profile
+        </p>
+        <h2 className="text-5xl md:text-6xl serif italic text-stone-800 leading-tight mb-8">
+          {teaser.title}
+        </h2>
+        <p className="text-stone-500 text-xl leading-relaxed font-light max-w-lg mx-auto serif italic">
+          "{teaser.hint}"
+        </p>
+      </div>
+
+      {/* Divider */}
+      <div className="flex items-center gap-6 mb-14">
+        <div className="flex-1 h-px bg-stone-100" />
+        <span className="text-[10px] uppercase tracking-[0.5em] text-stone-300 font-bold">Before you continue</span>
+        <div className="flex-1 h-px bg-stone-100" />
+      </div>
+
+      {/* Form */}
+      <form onSubmit={handleSubmit} className="space-y-5">
+        <div className="relative">
+          <input
+            type="text"
+            value={name}
+            onChange={e => setName(e.target.value)}
+            onFocus={() => setFocused('name')}
+            onBlur={() => setFocused(null)}
+            placeholder="Your first name"
+            className={`w-full bg-white border-2 rounded-[2rem] px-8 py-5 text-lg text-stone-700 serif italic focus:outline-none transition-all placeholder:text-stone-300 ${focused === 'name' ? 'border-sage/40 shadow-[0_0_0_4px_rgba(125,132,113,0.08)]' : 'border-stone-100'}`}
+          />
+          {name && (
+            <div className="absolute right-6 top-1/2 -translate-y-1/2 text-sage text-sm">✓</div>
+          )}
+        </div>
+
+        <div className="relative">
+          <input
+            type="email"
+            value={email}
+            onChange={e => { setEmail(e.target.value); setError(''); }}
+            onFocus={() => setFocused('email')}
+            onBlur={() => setFocused(null)}
+            placeholder="Your email address"
+            required
+            className={`w-full bg-white border-2 rounded-[2rem] px-8 py-5 text-lg text-stone-700 focus:outline-none transition-all placeholder:text-stone-300 ${error ? 'border-red-200' : focused === 'email' ? 'border-sage/40 shadow-[0_0_0_4px_rgba(125,132,113,0.08)]' : 'border-stone-100'}`}
+          />
+          {error && <p className="text-red-400 text-[11px] uppercase tracking-widest mt-2 ml-4 font-bold">{error}</p>}
+        </div>
+
+        <button
+          type="submit"
+          className="w-full py-7 bg-stone-900 text-white rounded-full font-bold uppercase tracking-[0.4em] text-[13px] shadow-2xl hover:bg-sage transition-all active:scale-95 mt-4"
+        >
+          Reveal My Profile
+        </button>
+      </form>
+
+      {/* What she receives */}
+      <div className="mt-12 bg-stone-50/80 rounded-[3rem] p-10 border border-stone-100">
+        <p className="text-[10px] uppercase tracking-[0.5em] text-stone-400 font-bold mb-6 text-center">When you continue, you will receive</p>
+        <div className="space-y-4">
+          {[
+            "Your complete spiritual profile with a personal prophetic declaration",
+            "A mirror — an honest, loving truth about what your answers reveal",
+            "A 4-step transformation roadmap specific to your profile",
+            "Access to the free silence practice inside The Quiet Authority",
+            "An invitation into the Circle of Silence community (Spring 2026)",
+          ].map((item, i) => (
+            <div key={i} className="flex items-start gap-4">
+              <span className="text-sage font-bold mt-0.5 flex-shrink-0">✦</span>
+              <span className="text-stone-500 text-sm leading-relaxed font-light">{item}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Privacy + skip */}
+      <div className="text-center mt-10 space-y-4">
+        <p className="text-[10px] text-stone-300 font-light tracking-wide">
+          Your email is sacred. We never share, sell, or spam. Unsubscribe anytime.
+        </p>
+        <button
+          type="button"
+          onClick={onSkip}
+          className="text-stone-300 hover:text-stone-500 transition-colors text-[10px] uppercase tracking-[0.4em] font-bold"
+        >
+          Continue without email →
+        </button>
+      </div>
+    </div>
+  );
+};
+
+
+
+// ═══ SILENCE SESSION ═══
+
+
+
+const TICKER = "That if thou shalt confess with thy mouth the Lord Jesus, and shalt believe in thine heart that God hath raised him from the dead, thou shalt be saved.   ✦   For with the heart man believeth unto righteousness; and with the mouth confession is made unto salvation.   ✦   Romans 10:9-10 (KJV)   ✦   ";
+
+const SCRIPTURES = [
+  { text: "Be still, and know that I am God.",                                                      ref: "Psalm 46:10"       },
+  { text: "He restores my soul. He leads me beside still waters.",                                  ref: "Psalm 23:2-3"     },
+  { text: "In quietness and trust is your strength.",                                               ref: "Isaiah 30:15"     },
+  { text: "The Lord will fight for you. You need only to be still.",                               ref: "Exodus 14:14"     },
+  { text: "My soul finds rest in God alone.",                                                       ref: "Psalm 62:1"       },
+  { text: "She is clothed with strength and dignity, and laughs without fear of the future.",      ref: "Proverbs 31:25"   },
+  { text: "The Lord your God is with you. He is mighty to save. He will quiet you with His love.", ref: "Zephaniah 3:17"   },
+  { text: "Return to your rest, O my soul, for the Lord has dealt bountifully with you.",          ref: "Psalm 116:7"      },
+  { text: "I have learned, in whatever state I am, therewith to be content.",                      ref: "Philippians 4:11" },
+  { text: "Come to me, all who are weary and burdened, and I will give you rest.",                 ref: "Matthew 11:28"    },
+];
+
+const getSalvations = () => { try { return parseInt(localStorage.getItem('tqa_salvations') || '0'); } catch { return 0; } };
+
+const SilenceSession = ({ onBack, customMusicUrl, intentions, onAddIntention, onSaveJournal, selectedVoice, selectedLang }) => {
+
+  // ── TIMER: use Date.now() — immune to React re-renders ───────────────────
+  // endTime = the timestamp when current phase ends
+  // If paused, pausedAt stores when we paused
+  const endTimeRef   = useRef(null);   // ms timestamp of phase end
+  const pausedAtRef  = useRef(null);   // ms timestamp of pause start
+  const phaseRef     = useRef('prep');
+  const ivlRef       = useRef | null>(null);
+
+  const PREP_MS    = 5 * 60 * 1000;   // 5 minutes
+  const SILENCE_MS = 10 * 60 * 1000; // 10 minutes
+
+  const [dispSec,     setDispSec]     = useState(5 * 60);
+  const [dispPhase,   setDispPhase]   = useState('prep');
+  const [running,     setRunning]     = useState(false);
+
+  // ── Other UI state ────────────────────────────────────────────────────────
+  const [intention,    setIntention]   = useState('');
+  const [reflection,   setReflection]  = useState('');
+  const [saved,        setSaved]       = useState(false);
+  const [breath,       setBreath]      = useState('in');
+  const [scrIdx,       setScrIdx]      = useState(0);
+  const [scrShow,      setScrShow]     = useState(true);
+  const [salvations,   setSalvations]  = useState(getSalvations);
+  const [celebrate,    setCelebrate]   = useState(false);
+  const [voicePlaying, setVoicePlaying]= useState(false);
+
+  // ── Audio ─────────────────────────────────────────────────────────────────
+  const musicRef = useRef(null);
+  const fadeRef  = useRef | null>(null);
+  const voiceRef = useRef(null);
+
+  useEffect(() => {
+    const m = new Audio(customMusicUrl || '/music1.mp3'); m.loop = true; m.volume = 0;
+    musicRef.current = m;
+    const v = new Audio('/voiceover.mp3');
+    v.onplay  = () => setVoicePlaying(true);
+    v.onended = () => setVoicePlaying(false);
+    v.onerror = () => setVoicePlaying(false);
+    voiceRef.current = v;
+    return () => { m.pause(); v.pause(); };
+  }, []); // eslint-disable-line
+
+  const fadeVol = useCallback((to) => {
+    const a = musicRef.current; if (!a) return;
+    if (fadeRef.current) clearInterval(fadeRef.current);
+    const from = a.volume, step = (to - from) / 60; let i = 0;
+    fadeRef.current = setInterval(() => {
+      i++; a.volume = Math.max(0, Math.min(1, from + step * i));
+      if (i >= 60) { a.volume = to; if (!to) a.pause(); clearInterval(fadeRef.current!); }
+    }, 50);
+  }, []);
+
+  // ── START: set endTime based on current time + remaining duration ─────────
+  const startTimer = useCallback(() => {
+    const now = Date.now();
+    const remaining = dispSec * 1000; // current displayed seconds → ms
+    endTimeRef.current  = now + remaining;
+    pausedAtRef.current = null;
+
+    if (ivlRef.current) clearInterval(ivlRef.current);
+
+    ivlRef.current = setInterval(() => {
+      const now2  = Date.now();
+      const left  = Math.max(0, Math.ceil((endTimeRef.current! - now2) / 1000));
+
+      setDispSec(left);
+
+      if (left <= 0) {
+        clearInterval(ivlRef.current!);
+        if (phaseRef.current === 'prep') {
+          phaseRef.current = 'silence';
+          setDispPhase('silence');
+          // Start 10-minute silence immediately
+          endTimeRef.current = Date.now() + SILENCE_MS;
+          setDispSec(10 * 60);
+          ivlRef.current = setInterval(() => {
+            const n = Date.now();
+            const l = Math.max(0, Math.ceil((endTimeRef.current! - n) / 1000));
+            setDispSec(l);
+            if (l <= 0) {
+              clearInterval(ivlRef.current!);
+              phaseRef.current = 'done';
+              setDispPhase('done');
+              setRunning(false);
+            }
+          }, 500);
+        } else {
+          phaseRef.current = 'done';
+          setDispPhase('done');
+          setRunning(false);
+        }
+      }
+    }, 500); // tick every 500ms for accuracy
+  }, [dispSec]); // eslint-disable-line
+
+  // ── PAUSE ─────────────────────────────────────────────────────────────────
+  const pauseTimer = useCallback(() => {
+    if (ivlRef.current) clearInterval(ivlRef.current);
+    pausedAtRef.current = Date.now();
+  }, []);
+
+  // ── TOGGLE ────────────────────────────────────────────────────────────────
+  const toggle = () => {
+    if (!running) {
+      // Resume: adjust endTime by pause duration
+      if (pausedAtRef.current && endTimeRef.current) {
+        const pauseDuration = Date.now() - pausedAtRef.current;
+        endTimeRef.current += pauseDuration;
+      }
+      startTimer();
+      setRunning(true);
+    } else {
+      pauseTimer();
+      setRunning(false);
+    }
+  };
+
+  const resetTimer = () => {
+    if (ivlRef.current) clearInterval(ivlRef.current);
+    endTimeRef.current  = null;
+    pausedAtRef.current = null;
+    phaseRef.current    = 'prep';
+    setRunning(false);
+    setDispSec(5 * 60);
+    setDispPhase('prep');
+  };
+
+  useEffect(() => () => { if (ivlRef.current) clearInterval(ivlRef.current); }, []);
+
+  // ── Music & breathing ─────────────────────────────────────────────────────
+  useEffect(() => {
+    if (running && dispPhase === 'prep') { musicRef.current?.play().catch(()=>{}); fadeVol(0.4); }
+    else fadeVol(0);
+  }, [running, dispPhase, fadeVol]);
+
+  useEffect(() => {
+    if (!running) return;
+    setBreath('in');
+    let t1, t2;
+    const cycle = () => { setBreath('in'); t1=setTimeout(()=>setBreath('hold'),4000); t2=setTimeout(()=>setBreath('out'),8000); };
+    cycle(); const id = setInterval(cycle, 14000);
+    return () => { clearInterval(id); clearTimeout(t1); clearTimeout(t2); };
+  }, [running]);
+
+  useEffect(() => {
+    if (!running || dispPhase !== 'silence') return;
+    const id = setInterval(() => {
+      setScrShow(false);
+      setTimeout(() => { setScrIdx(i=>(i+1)%SCRIPTURES.length); setScrShow(true); }, 2000);
+    }, 11000);
+    return () => clearInterval(id);
+  }, [running, dispPhase]);
+
+  // ── Voice ─────────────────────────────────────────────────────────────────
+  const playVoice = (fallback) => {
+    const v = voiceRef.current;
+    if (v) { v.currentTime=0; v.play().catch(()=>speakTTS(fallback)); }
+    else speakTTS(fallback);
+  };
+  const stopVoice = () => { voiceRef.current?.pause(); window.speechSynthesis?.cancel(); setVoicePlaying(false); };
+  const speakTTS  = (text) => {
+    if (!('speechSynthesis' in window)) return;
+    window.speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(text); u.rate=0.82;
+    if (selectedVoice) u.voice=selectedVoice;
+    if (selectedLang)  u.lang=selectedLang;
+    u.onstart=()=>setVoicePlaying(true); u.onend=()=>setVoicePlaying(false);
+    window.speechSynthesis.speak(u);
+  };
+
+  // ── Salvation ─────────────────────────────────────────────────────────────
+  const confirmSalvation = () => {
+    try { const n=getSalvations()+1; localStorage.setItem('tqa_salvations',String(n)); setSalvations(n); } catch { setSalvations(s=>s+1); }
+    setCelebrate(true); setTimeout(()=>setCelebrate(false),4000);
+  };
+
+  // ── Helpers ───────────────────────────────────────────────────────────────
+  const addInt = (e: React.FormEvent) => { e.preventDefault(); if (intention.trim()) { onAddIntention(intention); setIntention(''); } };
+  const mm = Math.floor(dispSec/60);
+  const ss = (dispSec%60).toString().padStart(2,'0');
+  const breathLabel = breath==='in'?'Breathe In':breath==='hold'?'Hold':'Release';
+  const outerScale  = running?(breath==='out'?'scale-100':'scale-[1.22]'):'scale-100';
+  const innerScale  = running?(breath==='out'?'scale-95':'scale-105'):'scale-100';
+
+  const S = {
+    navDark:  {display:'inline-flex',alignItems:'center',gap:'0.5rem',padding:'0.65rem 1.4rem',borderRadius:'999px',background:'#1c1917',color:'white',fontSize:'0.65rem',letterSpacing:'0.35em',textTransform:'uppercase' ,fontWeight:'bold',border:'none',cursor:'pointer'} ,
+    navLight: {display:'inline-flex',alignItems:'center',gap:'0.5rem',padding:'0.65rem 1.4rem',borderRadius:'999px',background:'transparent',color:'#44403c',fontSize:'0.65rem',letterSpacing:'0.35em',textTransform:'uppercase' ,fontWeight:'bold',border:'1px solid #d6d3d1',cursor:'pointer'} ,
+    voiceBtn: {display:'inline-flex',alignItems:'center',gap:'0.5rem',padding:'0.5rem 1.4rem',borderRadius:'999px',background:voicePlaying?'#7d8471':'#f5f5f4',color:voicePlaying?'white':'#44403c',fontSize:'0.62rem',letterSpacing:'0.3em',textTransform:'uppercase' ,fontWeight:'bold',border:'none',cursor:'pointer'} ,
+  };
+
+  // ── COMPLETE SCREEN ───────────────────────────────────────────────────────
+  if (dispPhase === 'done') return (
+    <div style={{display:'flex',flexDirection:'column',alignItems:'center',padding:'5rem 1rem'}} className="fade-in">
+      <div style={{width:'100%',maxWidth:'56rem',display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:'1.5rem'}}>
+        <button type="button" onClick={onBack} style={S.navLight}>← Back to My Results</button>
+        <span style={{fontSize:'0.6rem',letterSpacing:'0.5em',textTransform:'uppercase',color:'#a8a29e',fontWeight:'bold'}}>Session Complete</span>
+        <div style={{width:'8rem'}}/>
+      </div>
+      <div className="w-full max-w-4xl bg-white rounded-[6rem] shadow-2xl border border-stone-100 text-center" style={{padding:'4rem'}}>
+        <h2 className="text-6xl serif italic mb-6 text-stone-800">Return with Clarity</h2>
+        <p className="text-stone-600 mb-8 font-light text-xl leading-relaxed max-w-xl mx-auto serif italic">
+          What did the Father speak into your stillness? Record it while your heart is still soft.
+        </p>
+        <div style={{display:'flex',justifyContent:'center',marginBottom:'1.5rem'}}>
+          <button type="button" style={S.voiceBtn} onClick={()=>voicePlaying?stopVoice():playVoice("What did the Father speak into your stillness?")}>
+            {voicePlaying?'▐▐  Stop':'▶  Hear Grace\'s Voice'}
+          </button>
+        </div>
+        {!saved ? (
+          <div style={{display:'flex',flexDirection:'column',gap:'1rem'}}>
+            <textarea value={reflection} onChange={e=>setReflection(e.target.value)}
+              placeholder="Record your soul breakthrough..."
+              className="w-full h-56 bg-stone-50 border-2 border-stone-100 rounded-[3rem] p-10 text-stone-700 serif text-xl focus:outline-none focus:ring-2 focus:ring-sage/20 placeholder:opacity-30 leading-relaxed italic" />
+            <button type="button" style={{...S.navDark,width:'100%',justifyContent:'center',padding:'1.5rem'}}
+              onClick={()=>{if(reflection.trim()){onSaveJournal(reflection);setSaved(true);}}}>
+              Save My Breakthrough
+            </button>
+          </div>
+        ) : (
+          <div style={{padding:'2rem 0'}}>
+            <p className="text-sage text-lg serif italic mb-8">✦ Your reflection has been preserved.</p>
+            <button type="button" style={S.navDark} onClick={onBack}>Return to My Results →</button>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+
+  // ── MAIN SESSION ──────────────────────────────────────────────────────────
+  return (
+    <div style={{display:'flex',flexDirection:'column',alignItems:'center',padding:'2rem 1rem',minHeight:'90vh'}} className="fade-in">
+
+      {/* TOP NAV — always visible, dark text */}
+      <div style={{width:'100%',maxWidth:'56rem',display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:'1.5rem',flexWrap:'wrap',gap:'0.75rem'}}>
+        <button type="button" onClick={onBack} style={S.navLight}>← Back to My Results</button>
+        <span style={{fontSize:'0.6rem',letterSpacing:'0.5em',textTransform:'uppercase',color:'#7d8471',fontWeight:'bold'}}>
+          {dispPhase==='prep'?'Part I · Sacred Silence · 5 Min':'Part II · Holy Stillness · 10 Min'}
+        </span>
+        <button type="button" onClick={onBack} style={S.navLight}>My Profile →</button>
+      </div>
+
+      <div className="w-full max-w-4xl bg-white rounded-[6rem] border border-stone-100 relative overflow-hidden"
+        style={{padding:'2.5rem 2rem',boxShadow:'0 60px 120px -30px rgba(0,0,0,0.10)'}}>
+
+        <div className={`absolute top-0 right-0 w-[500px] h-[500px] bg-sage/5 rounded-full -translate-y-1/2 translate-x-1/2 transition-transform duration-[15000ms] ${running?'scale-150 rotate-90':'scale-100'}`}/>
+        <div className={`absolute bottom-0 left-0 w-[400px] h-[400px] bg-stone-50 rounded-full translate-y-1/2 -translate-x-1/2 transition-transform duration-[12000ms] ${running?'scale-125 -rotate-45':'scale-100'}`}/>
+
+        <div className="relative z-10 text-center">
+
+          {/* Sacred Deposit */}
+          {!running && dispPhase==='prep' && (
+            <div style={{marginBottom:'2rem',maxWidth:'36rem',margin:'0 auto 2rem'}} className="fade-in">
+              <h3 className="text-4xl serif italic mb-3 text-stone-800">The Sacred Deposit</h3>
+              <p style={{color:'#44403c',fontStyle:'italic',fontFamily:'Georgia,serif',fontSize:'1.1rem',marginBottom:'1rem',fontWeight:300}}>
+                "Cast all your anxiety on Him, because He cares for you."
+              </p>
+              <div style={{display:'flex',justifyContent:'center',marginBottom:'1rem'}}>
+                <button type="button" style={S.voiceBtn} onClick={()=>voicePlaying?stopVoice():playVoice("Cast all your anxiety on Him.")}>
+                  {voicePlaying?'▐▐  Stop':'▶  Hear Grace\'s Voice'}
+                </button>
+              </div>
+              <form onSubmit={addInt} style={{position:'relative',marginBottom:'0.75rem'}}>
+                <input type="text" value={intention} onChange={e=>setIntention(e.target.value)}
+                  placeholder="Leave a worry or prayer request..."
+                  style={{width:'100%',background:'#fafaf9',border:'2px solid #f5f5f4',borderRadius:'2.5rem',padding:'1.1rem 10rem 1.1rem 2rem',fontSize:'1rem',textAlign:'center',fontStyle:'italic',fontFamily:'Georgia,serif',color:'#44403c',boxSizing:'border-box' ,outline:'none'}}/>
+                <button type="submit"
+                  style={{position:'absolute',right:'0.5rem',top:'50%',transform:'translateY(-50%)',background:'#1c1917',color:'white',padding:'0.5rem 1.25rem',borderRadius:'999px',fontSize:'0.6rem',letterSpacing:'0.2em',textTransform:'uppercase' ,fontWeight:'bold',border:'none',cursor:'pointer'}}>
+                  Deposit
+                </button>
+              </form>
+              <div style={{display:'flex',flexWrap:'wrap',justifyContent:'center',gap:'0.5rem'}}>
+                {intentions.slice(0,4).map((item,i)=>(
+                  <span key={i} style={{padding:'0.4rem 1rem',background:'#fafaf9',color:'#44403c',fontSize:'0.7rem',borderRadius:'999px',border:'1px solid #e7e5e4',fontStyle:'italic'}}>"{item}"</span>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Breathing Circle */}
+          <div style={{position:'relative',display:'flex',alignItems:'center',justifyContent:'center',margin:'2rem auto'}}>
+            <div className={`absolute rounded-full border-2 border-sage/10 transition-all ${running?'duration-[4000ms]':'duration-700'} ${outerScale}`} style={{width:340,height:340}}/>
+            <div className={`absolute rounded-full border border-stone-200 transition-all ${running?'duration-[4000ms]':'duration-700'} ${running?(breath==='out'?'scale-90':'scale-110'):'scale-90'}`} style={{width:275,height:275}}/>
+            <div className={`relative rounded-full bg-white border border-stone-100 flex flex-col items-center justify-center transition-all ${running?'duration-[4000ms]':'duration-700'} ${innerScale}`}
+              style={{width:220,height:220,boxShadow:'0 4px 40px rgba(0,0,0,0.06)'}}>
+              <p style={{fontSize:'0.55rem',letterSpacing:'0.5em',textTransform:'uppercase',color:'#7d8471',fontWeight:'bold',marginBottom:'0.2rem'}}>Be Still</p>
+              <p style={{fontSize:'0.48rem',letterSpacing:'0.3em',textTransform:'uppercase',color:'rgba(125,132,113,0.5)',fontWeight:'bold',marginBottom:'0.6rem'}}>and Know</p>
+              <div style={{fontSize:'3.25rem',fontWeight:300,color:'#1c1917',fontFamily:'Georgia,serif',lineHeight:1,letterSpacing:'-0.02em',fontVariantNumeric:'tabular-nums'}}>
+                {mm}:{ss}
+              </div>
+              <p style={{fontSize:'0.52rem',letterSpacing:'0.4em',textTransform:'uppercase',color:'#57534e',fontWeight:'bold',marginTop:'0.6rem',minHeight:'0.9rem'}}>
+                {running?breathLabel:'Psalm 46:10'}
+              </p>
+            </div>
+          </div>
+
+          {/* Controls */}
+          <div style={{display:'flex',flexDirection:'column',gap:'0.75rem',alignItems:'center',marginBottom:'1.5rem'}}>
+            <button type="button" onClick={toggle}
+              style={running
+                ? {...S.navLight,padding:'1rem 4rem',fontSize:'0.68rem'}
+                : {...S.navDark, padding:'1rem 4rem',fontSize:'0.68rem'}}>
+              {running?'Pause Reflection':'Enter the Silence'}
+            </button>
+            <button type="button" onClick={resetTimer}
+              style={{background:'transparent',border:'none',cursor:'pointer',color:'#a8a29e',fontSize:'0.58rem',letterSpacing:'0.4em',textTransform:'uppercase' ,fontWeight:'bold',padding:'0.25rem 1rem'}}>
+              Reset Timer
+            </button>
+          </div>
+
+          {/* Scriptures — silence phase */}
+          {dispPhase==='silence' && (
+            <div style={{minHeight:'3.5rem',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',marginBottom:'0.75rem',
+              opacity:scrShow?0.8:0,transition:'opacity 2s ease',padding:'0 1rem'}}>
+              <p style={{fontFamily:'Georgia,serif',fontStyle:'italic',fontSize:'0.95rem',color:'#44403c',textAlign:'center',lineHeight:1.6}}>
+                "{SCRIPTURES[scrIdx].text}"
+              </p>
+              <p style={{fontSize:'0.52rem',letterSpacing:'0.4em',textTransform:'uppercase',color:'#7d8471',fontWeight:'bold',marginTop:'0.3rem'}}>
+                — {SCRIPTURES[scrIdx].ref}
+              </p>
+            </div>
+          )}
+
+          {/* Ticker + Salvation */}
+          <div style={{borderTop:'1px solid #f5f5f4',paddingTop:'0.75rem',display:'flex',alignItems:'center',gap:'0.75rem'}}>
+            <div style={{flex:1,overflow:'hidden'}}>
+              <div style={{fontSize:'0.55rem',letterSpacing:'0.12em',textTransform:'uppercase',color:'#57534e',fontWeight:'500',whiteSpace:'nowrap',display:'inline-block',animation:'marquee 50s linear infinite'}}>
+                {TICKER}{TICKER}
+              </div>
+            </div>
+            <button type="button" onClick={confirmSalvation}
+              style={{flexShrink:0,display:'inline-flex',alignItems:'center',gap:'0.3rem',background:'#7d8471',color:'white',
+                padding:'0.45rem 0.85rem',borderRadius:'999px',fontSize:'0.52rem',letterSpacing:'0.18em',
+                textTransform:'uppercase' ,fontWeight:'bold',border:'none',cursor:'pointer',whiteSpace:'nowrap' }}>
+              ✦ I Accept Jesus · {salvations}
+            </button>
+          </div>
+
+          {celebrate && (
+            <p style={{color:'#7d8471',fontSize:'0.7rem',fontStyle:'italic',fontFamily:'Georgia,serif',textAlign:'center',marginTop:'0.75rem'}}>
+              "There is joy in the presence of the angels of God over one sinner who repents." — Luke 15:10
+            </p>
+          )}
+        </div>
+      </div>
+
+      {/* BOTTOM NAV */}
+      <div style={{display:'flex',gap:'1rem',marginTop:'1.5rem',flexWrap:'wrap',justifyContent:'center'}}>
+        <button type="button" onClick={onBack} style={S.navLight}>← Return to My Results</button>
+        <button type="button" onClick={resetTimer} style={{...S.navLight,color:'#a8a29e',borderColor:'#e7e5e4'}}>↺ Start Over</button>
+      </div>
+
+      <style>{`@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}`}</style>
+    </div>
+  );
+};
+
+
+
+// ═══ RESULT VIEW ═══
+
+[];
+  intentions;
+  userName?;
+  selectedVoice?
+  selectedLang?;
+  onRetakeAssessment?: () => void;
+}
+
+const ResultView = ({
+  profile, onStartSession, authorImageUrl, journalEntries, intentions, userName, selectedVoice, selectedLang, onRetakeAssessment
+}) => {
+  const [journalText, setJournalText]     = useState('');
+  const [salvationCount, setSalvationCount] = useState(() => {
+    try { return parseInt(localStorage.getItem('qa_salvations') || '0'); } catch { return 0; }
+  });
+  const [salvationCelebrate, setSalvationCelebrate] = useState(false);
+  const [completedSteps, setCompletedSteps] = useState(() => {
+    try { return JSON.parse(localStorage.getItem('qa_steps_' + profile.id) || '[]'); } catch { return []; }
+  });
+
+  const confirmSalvation = () => {
+    const next = salvationCount + 1;
+    setSalvationCount(next);
+    setSalvationCelebrate(true);
+    try { localStorage.setItem('qa_salvations', String(next)); } catch {}
+    setTimeout(() => setSalvationCelebrate(false), 3000);
+  };
+
+  const completeStep = (stepNum) => {
+    if (completedSteps.includes(stepNum)) return;
+    const next = [...completedSteps, stepNum];
+    setCompletedSteps(next);
+    try { localStorage.setItem('qa_steps_' + profile.id, JSON.stringify(next)); } catch {}
+  };
+
+  const isStepUnlocked = (stepNum) => {
+    if (stepNum === 1) return true;
+    return completedSteps.includes(stepNum - 1);
+  };
+  const [journalSaved, setJournalSaved]   = useState(false);
+  const [activeTab, setActiveTab]         = useState('journal');
+  const [mirrorRevealed, setMirrorRevealed] = useState(false);
+
+  const exportData = () => {
+    const data = { profile: profile.title, journalEntries, intentions, exportedAt: new Date().toISOString() };
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement('a'); a.href = url;
+    a.download = `quiet-authority-${profile.id}.json`; a.click();
+  };
+
+  const greeting = userName ? `, ${userName}` : '';
+
+  // Speak helper — plays Grace's recorded voice, falls back to TTS
+  const [isPlaying, setIsPlaying] = React.useState(false);
+  const voiceRef = React.useRef(null);
+
+  React.useEffect(() => {
+    const a = new Audio('/voiceover.mp3');
+    a.onplay  = () => setIsPlaying(true);
+    a.onended = () => setIsPlaying(false);
+    a.onerror = () => setIsPlaying(false);
+    voiceRef.current = a;
+    return () => { a.pause(); };
+  }, []);
+
+  const speak = (text) => {
+    const a = voiceRef.current;
+    if (a) {
+      a.currentTime = 0;
+      a.play().then(() => setIsPlaying(true)).catch(() => {
+        if (!('speechSynthesis' in window)) return;
+        window.speechSynthesis.cancel();
+        const utt = new SpeechSynthesisUtterance(text);
+        utt.rate = 0.82; utt.pitch = 1;
+        if (selectedVoice) utt.voice = selectedVoice;
+        if (selectedLang)  utt.lang  = selectedLang;
+        window.speechSynthesis.speak(utt);
+      });
+    }
+  };
+
+  const stopSpeak = () => { voiceRef.current?.pause(); window.speechSynthesis?.cancel(); setIsPlaying(false); };
+
+  return (
+    <div className="w-full max-w-5xl mx-auto py-12 px-4 space-y-10 fade-in">
+
+      {/* Navigation bar — resume journey or retake */}
+      <div className="flex items-center justify-between bg-stone-50 rounded-[2rem] px-8 py-4 border border-stone-100">
+        <div className="flex items-center gap-3">
+          <div className="w-2 h-2 rounded-full bg-sage animate-pulse"/>
+          <span className="text-[10px] uppercase tracking-[0.4em] font-bold text-stone-400">Your Journey · {profile.title}</span>
+        </div>
+        <div className="flex items-center gap-4">
+          <a href="#roadmap" className="text-[10px] uppercase tracking-[0.3em] font-bold text-sage hover:text-stone-800 transition-colors">
+            My Roadmap ↓
+          </a>
+          {onRetakeAssessment && (
+            <button type="button" onClick={onRetakeAssessment}
+              className="text-[10px] uppercase tracking-[0.3em] font-bold text-stone-400 hover:text-stone-600 transition-colors border-l border-stone-200 pl-4">
+              Retake Assessment
+            </button>
+          )}
+        </div>
+      </div>
+
+      {/* 1 ── PROPHETIC DECLARATION ─────────────────────────── */}
+      <section className="text-center py-20 px-8">
+        <p className="text-[11px] uppercase tracking-[0.6em] text-sage font-bold mb-8 opacity-70">
+          Your Soul Profile{greeting}
+        </p>
+        <div className="inline-block bg-sage/8 border border-sage/15 rounded-[3rem] px-10 py-6 mb-10">
+          <p className="text-sage text-lg md:text-xl font-light italic serif tracking-wide">
+            "{profile.propheticDeclaration}"
+          </p>
+        </div>
+        <h1 className="text-6xl md:text-8xl serif italic text-stone-800 leading-none mb-4">
+          {profile.title}
+        </h1>
+        <p className="text-stone-400 font-light tracking-[0.3em] uppercase text-sm mb-12">
+          {profile.subtitle}
+        </p>
+        <div className="w-16 h-px bg-sage/30 mx-auto" />
+      </section>
+
+      {/* 2 ── THE DIAGNOSIS ──────────────────────────────────── */}
+      <section className="bg-white rounded-[4rem] p-12 md:p-20 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.06)] border border-stone-100">
+        <p className="text-[10px] uppercase tracking-[0.5em] text-sage font-bold mb-8 opacity-70">The Diagnosis</p>
+        <div className="flex items-center justify-between mb-4">
+          <span/>
+          <button type="button"
+            onClick={() => isPlaying ? stopSpeak() : speak(profile.diagnosis)}
+            style={{display:'inline-flex', alignItems:'center', gap:'0.4rem',
+              padding:'0.4rem 1.2rem', borderRadius:'999px',
+              background: isPlaying ? '#7d8471' : '#f5f5f4',
+              color: isPlaying ? 'white' : '#a8a29e',
+              fontSize:'0.6rem', letterSpacing:'0.25em', textTransform:'uppercase',
+              fontWeight:'bold', border:'none', cursor:'pointer'}}>
+            {isPlaying ? '▐▐ Stop' : '▶ Listen'}
+          </button>
+        </div>
+        <p className="text-stone-600 text-xl md:text-2xl leading-relaxed font-light serif italic">
+          "{profile.diagnosis}"
+        </p>
+      </section>
+
+      {/* 3 ── THE MIRROR ─────────────────────────────────────── */}
+      <section className="bg-stone-900 text-white rounded-[4rem] p-12 md:p-20 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-sage/10 to-transparent pointer-events-none" />
+        <div className="relative z-10">
+          <p className="text-[10px] uppercase tracking-[0.5em] text-sage font-bold mb-6 opacity-80">
+            The Mirror — An Honest Word, Spoken in Love
+          </p>
+          {!mirrorRevealed ? (
+            <div className="text-center py-10">
+              <p className="text-stone-400 font-light text-lg mb-10 leading-relaxed max-w-lg mx-auto">
+                What follows is the most loving truth we can speak over your answers.
+                It is not condemnation. It is the voice of someone who has been exactly where you are.
+              </p>
+              <button
+                type="button"
+                onClick={() => setMirrorRevealed(true)}
+                className="px-14 py-6 bg-white/10 border border-white/20 text-white rounded-full font-bold uppercase tracking-[0.4em] text-[12px] hover:bg-white/20 transition-all"
+              >
+                I am ready to see clearly
+              </button>
+            </div>
+          ) : (
+            <div>
+              <div className="flex justify-end mb-4">
+                <button type="button"
+                  onClick={() => isPlaying ? stopSpeak() : speak(profile.mirror)}
+                  style={{display:'inline-flex', alignItems:'center', gap:'0.4rem',
+                    padding:'0.4rem 1.2rem', borderRadius:'999px',
+                    background: isPlaying ? '#7d8471' : 'rgba(255,255,255,0.12)',
+                    color:'white', fontSize:'0.6rem', letterSpacing:'0.25em',
+                    textTransform:'uppercase', fontWeight:'bold', border:'none', cursor:'pointer'}}>
+                  {isPlaying ? '▐▐ Stop' : '▶ Listen'}
+                </button>
+              </div>
+              <p className="text-stone-200 text-xl md:text-2xl leading-relaxed font-light serif italic fade-in">
+              "{profile.mirror}"
+              </p>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* 4 ── SCRIPTURE ──────────────────────────────────────── */}
+      <section className="bg-stone-50 rounded-[4rem] py-20 px-12 text-center">
+        <p className="text-[10px] uppercase tracking-[0.5em] text-stone-400 font-bold mb-10">The Word He Gives You</p>
+        <blockquote className="text-4xl md:text-6xl serif italic text-stone-800 leading-tight mb-8 max-w-4xl mx-auto">
+          "{profile.scripture.text}"
+        </blockquote>
+        <cite className="block text-sm uppercase tracking-[0.5em] font-bold text-sage">
+          — {profile.scripture.reference}
+        </cite>
+      </section>
+
+      {/* 5 ── BREAKTHROUGH PATH ──────────────────────────────── */}
+      <section className="bg-white rounded-[4rem] p-12 md:p-20 border border-stone-100 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.04)]">
+        <p className="text-[10px] uppercase tracking-[0.5em] text-sage font-bold mb-6 opacity-70">Your Breakthrough Path</p>
+        <p className="text-stone-600 text-xl leading-relaxed font-light serif italic mb-10">
+          "{profile.breakthroughPath}"
+        </p>
+        <div className="grid md:grid-cols-3 gap-6">
+          {profile.lessons.map((lesson, i) => (
+            <div key={i} className="bg-stone-50 rounded-[2rem] p-8 border border-stone-100 text-center">
+              <div className="w-8 h-8 rounded-full bg-sage/10 flex items-center justify-center mx-auto mb-4">
+                <span className="text-sage text-xs font-bold">{i + 1}</span>
+              </div>
+              <p className="text-stone-600 font-light text-sm leading-relaxed">{lesson}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* 6 ── TRANSFORMATION ROADMAP with lock/unlock ──────── */}
+      <section className="bg-white rounded-[4rem] p-12 md:p-20 border border-stone-100 shadow-[0_30px_80px_-20px_rgba(0,0,0,0.04)]" id="roadmap">
+        <p className="text-[10px] uppercase tracking-[0.5em] text-sage font-bold mb-4 opacity-70">Your Personal Transformation Roadmap</p>
+        <h3 className="text-4xl serif italic text-stone-800 mb-12">Four Steps That Will Change Everything</h3>
+        <div className="space-y-6">
+          {profile.transformationSteps.map((step) => {
+            const unlocked  = isStepUnlocked(step.step);
+            const completed = completedSteps.includes(step.step);
+            return (
+              <div key={step.step}
+                className={`rounded-[3rem] border-2 p-8 md:p-10 transition-all duration-500 ${completed ? 'border-sage/20 bg-sage/5' : unlocked ? 'border-stone-100 bg-white' : 'border-stone-50 bg-stone-50/50 opacity-60'}`}>
+                <div className="flex gap-6 items-start">
+                  {/* Step indicator */}
+                  <div className={`flex-shrink-0 w-14 h-14 rounded-full flex items-center justify-center border-2 transition-all ${completed ? 'bg-sage border-sage' : unlocked ? 'border-sage/30 bg-white' : 'border-stone-200 bg-stone-100'}`}>
+                    {completed
+                      ? <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3"><polyline points="20 6 9 17 4 12"/></svg>
+                      : unlocked
+                        ? <span className="text-sage font-bold text-lg">{step.step}</span>
+                        : <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ccc" strokeWidth="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                    }
+                  </div>
+                  {/* Content */}
+                  <div className="flex-1">
+                    <div className="flex flex-wrap items-center gap-3 mb-2">
+                      <h4 className={`text-xl font-bold serif ${unlocked ? 'text-stone-800' : 'text-stone-400'}`}>{step.title}</h4>
+                      <span className={`text-[9px] uppercase tracking-[0.4em] font-bold px-3 py-1 rounded-full ${completed ? 'bg-sage text-white' : 'bg-sage/10 text-sage'}`}>
+                        {completed ? '✓ Complete' : step.duration}
+                      </span>
+                    </div>
+                    {unlocked && (
+                      <>
+                        <p className="text-stone-500 font-light leading-relaxed mb-5 text-sm">{step.description}</p>
+                        <div className="flex flex-wrap items-center gap-4">
+                          {step.step < 4 ? (
+                            <button type="button"
+                              onClick={() => { if (step.step === 1) onStartSession(); completeStep(step.step); }}
+                              className="text-[11px] uppercase tracking-[0.4em] font-bold text-sage hover:text-stone-800 transition-colors border-b border-sage/30 pb-1">
+                              {step.action} →
+                            </button>
+                          ) : (
+                            <a href="https://buy.stripe.com/4gMeVd5oYaWlgDqgr8cQU09" target="_blank"
+                              onClick={() => completeStep(step.step)}
+                              className="text-[11px] uppercase tracking-[0.4em] font-bold text-sage hover:text-stone-800 transition-colors border-b border-sage/30 pb-1">
+                              {step.action} →
+                            </a>
+                          )}
+                          {!completed && (
+                            <button type="button" onClick={() => completeStep(step.step)}
+                              className="text-[10px] uppercase tracking-[0.3em] text-stone-300 hover:text-sage transition-colors font-bold">
+                              Mark complete ✓
+                            </button>
+                          )}
+                        </div>
+                      </>
+                    )}
+                    {!unlocked && (
+                      <p className="text-stone-300 text-sm font-light italic">Complete Step {step.step - 1} to unlock this stage of your journey.</p>
+                    )}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* 7 ── PRACTICE STILLNESS CTA ─────────────────────────── */}
+      <div className="flex justify-center py-8">
+        <button
+          type="button"
+          onClick={onStartSession}
+          className="px-16 py-7 bg-stone-900 text-white rounded-full font-bold uppercase tracking-[0.4em] text-[13px] shadow-2xl hover:bg-sage transition-all active:scale-95"
+        >
+          Begin Your Silence Practice Now
+        </button>
+      </div>
+
+      {/* 7.5 ── SALVATION COUNTER ──────────────────────────── */}
+      <section className="bg-stone-900 rounded-[4rem] p-10 md:p-16 text-center relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-sage/10 to-transparent pointer-events-none"/>
+        <div className="relative z-10">
+          <p className="text-[10px] uppercase tracking-[0.5em] text-sage font-bold mb-4 opacity-80">Kingdom Impact</p>
+          <div className="text-7xl md:text-8xl font-light text-white serif mb-4 tabular-nums">
+            {salvationCount.toLocaleString()}
+          </div>
+          <p className="text-stone-400 font-light mb-8 text-sm tracking-widest uppercase">
+            {salvationCount === 1 ? 'Soul confirmed' : 'Souls confirmed'}
+          </p>
+          {salvationCelebrate && (
+            <div className="mb-6 fade-in">
+              <p className="text-sage text-lg serif italic font-light">"There is joy in the presence of the angels of God over one sinner who repents." — Luke 15:10</p>
+            </div>
+          )}
+          <button type="button" onClick={confirmSalvation}
+            className="px-10 py-5 bg-sage text-white rounded-full font-bold uppercase tracking-[0.4em] text-[12px] hover:scale-105 transition-all shadow-2xl active:scale-95">
+            ✦ I Confess Jesus As My Savior
+          </button>
+          <p className="text-stone-600 text-[10px] uppercase tracking-widest mt-5 font-bold">
+            Romans 10:9 · Click to confirm your salvation
+          </p>
+        </div>
+      </section>
+
+      {/* 8 ── CIRCLE OF SILENCE ──────────────────────────────── */}
+      <section>
+        <div className="bg-stone-900 text-white p-16 md:p-24 rounded-[4rem] text-center relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-sage/10 to-transparent pointer-events-none" />
+          <div className="relative z-10">
+            <h3 className="text-sage uppercase tracking-[0.5em] text-[12px] font-bold mb-8">Sacred Gathering</h3>
+            <h2 className="text-5xl md:text-7xl serif italic mb-8 leading-none">Circle of Silence</h2>
+            <p className="text-stone-400 text-lg md:text-xl mb-16 max-w-2xl mx-auto font-light leading-relaxed">
+              Don't walk the quiet path alone. Join a founding circle of women dedicated to daily stillness and monthly live prayer gatherings.
+            </p>
+            <div className="flex flex-col md:flex-row items-center justify-center gap-6">
+              <a href="https://buy.stripe.com/4gMeVd5oYaWlgDqgr8cQU09" target="_blank"
+                className="flex flex-col items-center gap-2 bg-white text-stone-900 px-10 py-7 rounded-[2rem] shadow-2xl hover:scale-105 transition-all text-center min-w-[200px]">
+                <span className="text-[10px] uppercase tracking-[0.4em] font-bold text-stone-400">Inner Court</span>
+                <span className="text-3xl font-light serif">$9 / month</span>
+                <span className="text-[10px] text-stone-400 font-light leading-relaxed max-w-[170px]">Daily devotionals, guided silence & community access</span>
+              </a>
+              <a href="https://buy.stripe.com/3cI14n4kU3tTbj63EmcQU0c" target="_blank"
+                className="flex flex-col items-center gap-2 bg-sage text-white px-10 py-7 rounded-[2rem] shadow-2xl hover:scale-105 transition-all text-center min-w-[200px] relative">
+                <span className="absolute -top-3 right-4 bg-white text-sage text-[9px] uppercase tracking-widest font-bold px-4 py-1 rounded-full shadow">Best Value</span>
+                <span className="text-[10px] uppercase tracking-[0.4em] font-bold text-white/70">The Sanctuary</span>
+                <span className="text-3xl font-light serif">$27 / month</span>
+                <span className="text-[10px] text-white/70 font-light leading-relaxed max-w-[170px]">Everything in Inner Court plus live monthly prayer & full devotional library</span>
+              </a>
+            </div>
+            <p className="text-stone-600 text-[11px] uppercase tracking-widest font-bold mt-10">Spring 2026 · Limited Founding Members</p>
+            <a href="https://links.sanctuarygrace.store" target="_blank"
+              className="text-stone-500 text-[10px] uppercase tracking-widest font-bold hover:text-white transition-colors underline underline-offset-4 block mt-4">
+              Learn More About The Circle
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* 9 ── SOUL SANCTUARY (journal) ───────────────────────── */}
+      <section className="bg-white rounded-[4rem] p-12 md:p-20 border border-stone-100">
+        <h2 className="text-5xl serif italic text-stone-800 mb-4 text-center">Soul Sanctuary</h2>
+        <p className="text-stone-400 text-center font-light mb-12 text-sm tracking-wide">Your private space to document the journey</p>
+
+        <div className="flex bg-stone-50 p-1.5 rounded-full mb-10 max-w-sm mx-auto border border-stone-100">
+          {(['journal', 'intentions', 'past'] ).map(tab => (
+            <button key={tab} type="button" onClick={() => setActiveTab(tab)}
+              className={`flex-1 py-3 rounded-full text-[10px] uppercase tracking-[0.3em] font-bold transition-all ${activeTab === tab ? 'bg-white text-stone-800 shadow-sm' : 'text-stone-400'}`}>
+              {tab === 'past' ? 'History' : tab}
+            </button>
+          ))}
+        </div>
+
+        {activeTab === 'journal' && (
+          <div className="fade-in">
+            <p className="text-stone-400 text-center font-light mb-8 text-sm italic serif">
+              "{profile.nextStep.prompt}"
+            </p>
+            {!journalSaved ? (
+              <div className="space-y-5">
+                <textarea value={journalText} onChange={e => setJournalText(e.target.value)}
+                  placeholder="Write what is on your heart..."
+                  className="w-full h-48 bg-stone-50 border-2 border-stone-100 rounded-[3rem] p-10 text-stone-700 text-lg font-light focus:outline-none focus:ring-2 focus:ring-sage/20 resize-none leading-relaxed" />
+                <button type="button"
+                  onClick={() => { if (journalText.trim()) setJournalSaved(true); }}
+                  className="w-full py-6 bg-stone-900 text-white rounded-full font-bold uppercase tracking-[0.3em] text-[12px] hover:bg-sage transition-all">
+                  Preserve My Reflection
+                </button>
+              </div>
+            ) : (
+              <div className="text-center py-10 fade-in">
+                <div className="text-sage text-4xl mb-4">✦</div>
+                <p className="text-stone-500 serif italic text-lg">Your reflection has been preserved.</p>
+              </div>
+            )}
+          </div>
+        )}
+
+        {activeTab === 'intentions' && (
+          <div className="fade-in">
+            <p className="text-stone-400 text-center font-light mb-8 text-sm">What are you believing God for?</p>
+            <div className="flex flex-wrap justify-center gap-3">
+              {intentions.length === 0
+                ? <p className="text-stone-300 text-sm italic">Your deposits will appear here after your silence session.</p>
+                : intentions.map((item, i) => (
+                    <span key={i} className="px-6 py-3 bg-stone-50 text-stone-500 text-sm rounded-full border border-stone-100 font-light italic">"{item}"</span>
+                  ))
+              }
+            </div>
+          </div>
+        )}
+
+        {activeTab === 'past' && (
+          <div className="fade-in space-y-4">
+            {journalEntries.length === 0
+              ? <p className="text-stone-300 text-sm italic text-center py-8">Your soul journal entries will appear here.</p>
+              : journalEntries.map((entry, i) => (
+                  <div key={i} className="bg-stone-50 rounded-[2rem] p-8 border border-stone-100">
+                    <p className="text-[10px] uppercase tracking-widest text-stone-300 font-bold mb-3">{entry.date}</p>
+                    <p className="text-stone-500 font-light leading-relaxed italic serif">"{entry.text}"</p>
+                  </div>
+                ))
+            }
+          </div>
+        )}
+
+        {(journalEntries.length > 0 || intentions.length > 0) && (
+          <div className="mt-10 text-center">
+            <button type="button" onClick={exportData}
+              className="px-10 py-4 bg-stone-100 text-stone-500 rounded-full font-bold uppercase tracking-[0.3em] text-[10px] hover:bg-stone-200 transition-all">
+              Download My Soul Reflections
+            </button>
+          </div>
+        )}
+      </section>
+
+      {/* 10 ── AUTHOR BIO ─────────────────────────────────────── */}
+      <section className="py-10">
+        <div className="flex flex-col md:flex-row items-center gap-14 max-w-4xl mx-auto">
+          {authorImageUrl && (
+            <div className="w-52 h-52 rounded-[3rem] overflow-hidden flex-shrink-0 shadow-2xl border border-stone-100">
+              <img src={authorImageUrl} alt="Grace Turner" className="w-full h-full object-cover" />
+            </div>
+          )}
+          <div className="text-center md:text-left">
+            <p className="text-[10px] uppercase tracking-[0.5em] text-stone-400 font-bold mb-4">The Guide Behind The Silence</p>
+            <h3 className="text-5xl md:text-6xl serif italic text-stone-800 mb-6">Grace Sanctuary</h3>
+            <p className="text-stone-500 font-light leading-relaxed text-lg max-w-lg serif italic mb-10">
+              "Sanctuary Grace Ministry is a teaching center of stillness and God created me to make noise from a place of silence. On November 4th, He placed the call on a broken body. I became a poor gift."
+            </p>
+            <div className="flex flex-wrap gap-5 justify-center md:justify-start">
+              <a href="https://sanctuarygrace.store" target="_blank" className="text-[11px] uppercase tracking-widest font-bold text-stone-900 hover:text-sage transition-all border-b-2 border-stone-200 pb-2">The Sanctuary Store</a>
+              <a href="https://pinterest.com/sanctuarygracefaith" target="_blank" className="text-[11px] uppercase tracking-widest font-bold text-stone-900 hover:text-sage transition-all border-b-2 border-stone-200 pb-2">Pinterest</a>
+              <a href="https://youtube.com/@sanctuarygrace" target="_blank" className="text-[11px] uppercase tracking-widest font-bold text-stone-900 hover:text-sage transition-all border-b-2 border-stone-200 pb-2">YouTube</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  );
+};
+
+
+
+// ═══ APP ═══
+
+const MUSIC_OPTIONS = [
+  { label: 'Violin & Cello I',   value: '/music1.mp3' },
+  { label: 'Violin & Cello II',  value: '/music2.mp3' },
+  { label: 'Violin & Cello III', value: '/music3.mp3' },
+  { label: 'Violin & Cello IV',  value: '/music4.mp3' },
+];
+
+
+const SACRED_PHRASES = [
+  "Listening for the whisper beneath your answers...",
+  "Holding what you have shared with care...",
+  "Preparing a word spoken in love...",
+  "The Father sees exactly where you are...",
+  "Your transformation path is being revealed...",
+];
+
+const CalculatingScreen = () => {
+  const [phraseIdx, setPhraseIdx] = React.useState(0);
+  const [visible, setVisible]     = React.useState(true);
+
+  React.useEffect(() => {
+    const id = setInterval(() => {
+      setVisible(false);
+      setTimeout(() => { setPhraseIdx(i => (i + 1) % SACRED_PHRASES.length); setVisible(true); }, 700);
+    }, 2600);
+    return () => clearInterval(id);
+  }, []);
+
+  // Soft audio during calculating
+  React.useEffect(() => {
+    const audio = new Audio('/music1.mp3');
+    audio.volume = 0;
+    audio.loop   = true;
+    audio.play().catch(() => {});
+    let vol = 0;
+    const fade = setInterval(() => {
+      vol = Math.min(0.25, vol + 0.01);
+      audio.volume = vol;
+      if (vol >= 0.25) clearInterval(fade);
+    }, 80);
+    return () => {
+      clearInterval(fade);
+      // Fade out on unmount
+      let v = audio.volume;
+      const out = setInterval(() => {
+        v = Math.max(0, v - 0.03);
+        audio.volume = v;
+        if (v <= 0) { audio.pause(); clearInterval(out); }
+      }, 50);
+    };
+  }, []);
+
+  return (
+    <div style={{minHeight:'60vh', display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', textAlign:'center', padding:'10rem 1rem'}} className="fade-in">
+      {/* Rings — all inline styles, no Tailwind dependency */}
+      <div style={{position:'relative', display:'flex', alignItems:'center', justifyContent:'center', marginBottom:'5rem', width:'160px', height:'160px'}}>
+        <div style={{
+          position:'absolute', width:'160px', height:'160px', borderRadius:'50%',
+          border:'1px solid rgba(125,132,113,0.15)',
+          animation:'ping 3s cubic-bezier(0,0,0.2,1) infinite'
+        }}/>
+        <div style={{
+          position:'absolute', width:'120px', height:'120px', borderRadius:'50%',
+          border:'1px solid rgba(125,132,113,0.20)',
+          animation:'ping 2.4s cubic-bezier(0,0,0.2,1) infinite',
+          animationDelay:'0.4s'
+        }}/>
+        <div style={{
+          width:'56px', height:'56px', borderRadius:'50%',
+          border:'2px solid rgba(125,132,113,0.20)',
+          borderTopColor:'#7d8471',
+          animation:'spin 1s linear infinite'
+        }}/>
+      </div>
+      {/* Phrase */}
+      <div style={{opacity: visible ? 1 : 0, transition:'opacity 0.7s ease', minHeight:'5rem', maxWidth:'600px', padding:'0 2rem'}}>
+        <h2 style={{fontFamily:'Georgia,serif', fontSize:'clamp(1.5rem,4vw,2.25rem)', fontStyle:'italic', color:'#57534e', lineHeight:1.4}}>
+          {SACRED_PHRASES[phraseIdx]}
+        </h2>
+      </div>
+      <p style={{color:'#d6d3d1', fontSize:'0.625rem', letterSpacing:'0.5em', textTransform:'uppercase', marginTop:'2rem', animation:'pulse 2s ease infinite'}}>
+        Be still. Your profile is being prepared.
+      </p>
+      <p style={{color:'#e7e5e4', fontSize:'0.6rem', letterSpacing:'0.3em', textTransform:'uppercase', marginTop:'1rem', fontStyle:'italic', fontFamily:'Georgia,serif'}}>
+        "For I know the plans I have for you" — Jeremiah 29:11
+      </p>
+    </div>
+  );
+};
+
+const App = () => {
+  const [view, setView]               = useState('landing');
+  const [answers, setAnswers]         = useState([]);
+  const [resultProfile, setResultProfile] = useState(() => {
+    try {
+      const saved = localStorage.getItem('tqa_profile');
+      if (saved) return JSON.parse(saved);
+    } catch {}
+    return null;
+  });
+  const [bannerUrl, setBannerUrl]         = useState('/banner.png');
+  const [authorImageUrl, setAuthorImageUrl] = useState('/bio.png');
+  const [customMusicUrl, setCustomMusicUrl] = useState('/music1.mp3');
+  const [userEmail, setUserEmail]         = useState('');
+  const [selectedVoice, setSelectedVoice] = useState(null);
+  const [selectedLang, setSelectedLang]   = useState('en-US');
+  const [showVoiceModal, setShowVoiceModal] = useState(false);
+  const [userName, setUserName] = useState('');
+  const [journalEntries, setJournalEntries] = useState([]);
+  const [intentions, setIntentions]         = useState([]);
+  const [showAtmosphereModal, setShowAtmosphereModal] = useState(false);
+
+
+  useEffect(() => {
+    try {
+      const b = localStorage.getItem('qa_banner');
+      const a = localStorage.getItem('qa_bio');
+      const m = localStorage.getItem('qa_music');
+      const j = localStorage.getItem('qa_journal');
+      const i = localStorage.getItem('qa_intentions');
+      if (b) setBannerUrl(b);
+      if (a) setAuthorImageUrl(a);
+      if (m) setCustomMusicUrl(m);
+      if (j) setJournalEntries(JSON.parse(j));
+      if (i) setIntentions(JSON.parse(i));
+    } catch {}
+  }, []);
+
+  const saveJournal = (text) => {
+    const e = [{ date: new Date().toLocaleDateString(), text }, ...journalEntries];
+    setJournalEntries(e);
+    localStorage.setItem('qa_journal', JSON.stringify(e));
+  };
+
+  const addIntention = (text) => {
+    const i = [text, ...intentions];
+    setIntentions(i);
+    localStorage.setItem('qa_intentions', JSON.stringify(i));
+  };
+
+  const handleImg = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    setter: (v) => void,
+    key,
+    close: () => void
+  ) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      const b64 = reader.result;
+      setter(b64);
+      try { localStorage.setItem(key, b64); } catch {}
+      close();
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const selectMusic = (v) => {
+    setCustomMusicUrl(v);
+    localStorage.setItem('qa_music', v);
+    setShowAtmosphereModal(false);
+  };
+
+  const doCalculate = useCallback((userAnswers) => {
+    setView('calculating');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setTimeout(() => {
+      const counts: Record<ProfileType, number> = {
+        [ProfileType.STRIVING_ACHIEVER]: 0,
+        [ProfileType.DEPLETED_SURVIVOR]: 0,
+        [ProfileType.GUILTY_GIVER]: 0,
+        [ProfileType.LOST_WANDERER]: 0,
+      };
+      userAnswers.forEach(a => counts[a]++);
+      let max = -1, winner = ProfileType.STRIVING_ACHIEVER;
+      Object.entries(counts).forEach(([t, c]) => { if (c > max) { max = c; winner = t; } });
+      setResultProfile(PROFILES[winner]);
+      try { localStorage.setItem('tqa_profile', JSON.stringify(PROFILES[winner])); } catch {}
+      navigateTo('result');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 3600);
+  }, []);
+
+  const calculateResult = useCallback((userAnswers) => {
+    setAnswers(userAnswers);
+    setView('email');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
+
+  return (
+    <div className="min-h-screen flex flex-col items-center justify-start bg-cream text-stone-800">
+
+      {/* ── BANNER ── */}
+      <div className="w-full h-[420px] overflow-hidden relative border-b border-stone-100 shadow-sm">
+        <img src={bannerUrl} alt="Sanctuary Banner" className="w-full h-full object-cover object-top" />
+        {/* Dark gradient fade */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/20 to-transparent pointer-events-none" />
+        {/* THE QUIET AUTHORITY — bottom center */}
+        <div className="absolute bottom-0 left-0 right-0 flex flex-col items-center pb-12 px-8 text-center pointer-events-none">
+          <h1
+            className="text-white text-5xl md:text-7xl tracking-[0.45em] font-light uppercase leading-none mb-2"
+            style={{ textShadow: '0 2px 30px rgba(0,0,0,0.6)' }}
+          >
+            The Quiet Authority
+          </h1>
+          <p className="text-white/50 text-[9px] tracking-[0.5em] uppercase font-bold">A Sanctuary Grace Experience</p>
+        </div>
+
+      </div>
+
+      {/* ── HEADER ── */}
+      <header className="w-full py-12 px-8 flex flex-col lg:flex-row justify-between items-center max-w-7xl gap-10">
+        <div className="flex items-center gap-5 cursor-pointer group" onClick={() => navigateTo('landing')}>
+          <div className="w-14 h-14 border-2 border-sage/30 rounded-full flex items-center justify-center group-hover:bg-sage transition-all duration-500 group-hover:scale-110">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" className="text-sage group-hover:text-white transition-colors">
+              <path d="M12 3L20 9V21H4V9L12 3Z"/><path d="M9 21V12H15V21"/>
+            </svg>
+          </div>
+          <div className="flex flex-col">
+            <span className="text-2xl tracking-[0.5em] font-light uppercase text-stone-700 leading-none mb-1">Quiet Authority</span>
+            <span className="text-[10px] tracking-[0.3em] uppercase text-stone-400 font-bold ml-1">Sanctuary Grace Ministry</span>
+          </div>
+        </div>
+        <div className="flex flex-wrap items-center justify-center gap-4">
+          <button type="button" onClick={() => setShowAtmosphereModal(true)}
+            className="text-[9px] uppercase tracking-widest text-stone-500 px-6 py-3 rounded-full font-bold border border-stone-200 hover:bg-stone-50 transition-colors">
+            ♪ Atmosphere
+          </button>
+        </div>
+      </header>
+
+      {/* ── MAIN ── */}
+      <main className="w-full max-w-6xl px-6 pb-32">
+        {view === 'landing' && (
+          <>
+            <Landing onStart={() => { setView('assessment'); window.scrollTo({top:0,behavior:'smooth'}); }} />
+            {resultProfile && (
+              <div style={{textAlign:'center', padding:'0 1rem 4rem'}}>
+                <div style={{display:'inline-flex', flexDirection:'column', alignItems:'center', gap:'0.75rem',
+                  background:'white', border:'1px solid #e7e5e4', borderRadius:'3rem',
+                  padding:'1.5rem 3rem', boxShadow:'0 4px 24px rgba(0,0,0,0.05)'}}>
+                  <p style={{fontSize:'0.6rem', letterSpacing:'0.5em', textTransform:'uppercase', color:'#a8a29e', fontWeight:'bold'}}>
+                    Welcome Back
+                  </p>
+                  <p style={{fontFamily:'Georgia,serif', fontStyle:'italic', fontSize:'1.25rem', color:'#1c1917'}}>
+                    {resultProfile.title}
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => navigateTo('result')}
+                    style={{background:'#1c1917', color:'white', padding:'0.75rem 2rem', borderRadius:'999px',
+                      fontSize:'0.65rem', letterSpacing:'0.4em', textTransform:'uppercase', fontWeight:'bold',
+                      border:'none', cursor:'pointer'}}>
+                    Return to My Journey →
+                  </button>
+                </div>
+              </div>
+            )}
+          </>
+        )}
+        {view === 'assessment' && <Assessment questions={QUESTIONS} onComplete={calculateResult} />}
+        {view === 'email' && <EmailCapture answers={answers} onContinue={(email) => { setUserEmail(email); doCalculate(answers); }} onSkip={() => doCalculate(answers)} />}
+        {view === 'calculating' && <CalculatingScreen />}
+        {view === 'result' && resultProfile && (
+          <ResultView profile={resultProfile} onStartSession={() => setView('session')}
+            authorImageUrl={authorImageUrl} journalEntries={journalEntries} intentions={intentions} userName={userName} selectedVoice={selectedVoice} selectedLang={selectedLang} onRetakeAssessment={() => { navigateTo('landing'); window.scrollTo({top:0,behavior:'smooth'}); }} />
+        )}
+        {view === 'session' && (
+          <SilenceSession onBack={() => navigateTo('result')} customMusicUrl={customMusicUrl}
+            intentions={intentions} onAddIntention={addIntention} onSaveJournal={saveJournal} />
+        )}
+      </main>
+
+      {/* ── FOOTER ── */}
+      <footer className="w-full mt-auto py-24 border-t border-stone-200 bg-white/50 text-center">
+        <div className="max-w-4xl mx-auto flex flex-wrap justify-center gap-12 mb-12">
+          <a href="https://sanctuarygrace.store"         target="_blank" className="text-stone-400 hover:text-sage text-[11px] uppercase tracking-[0.3em] font-bold transition-colors">Beacons Store</a>
+          <a href="https://pinterest.com/sanctuarygracefaith" target="_blank" className="text-stone-400 hover:text-sage text-[11px] uppercase tracking-[0.3em] font-bold transition-colors">Pinterest</a>
+          <a href="https://youtube.com/@sanctuarygrace"  target="_blank" className="text-stone-400 hover:text-sage text-[11px] uppercase tracking-[0.3em] font-bold transition-colors">YouTube Channel</a>
+        </div>
+        <p className="text-[10px] uppercase tracking-[0.6em] text-stone-300 font-medium">
+          &copy; {new Date().getFullYear()} The Quiet Authority. A Sanctuary Grace Experience.
+        </p>
+      </footer>
+
+      {/* ══════════════════ MODALS ══════════════════ */}
+
+      {/* ATMOSPHERE MODAL */}
+      {showAtmosphereModal && (
+        <div className="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center px-6"
+          onClick={() => setShowAtmosphereModal(false)}>
+          <div className="bg-white rounded-[3rem] p-14 max-w-md w-full shadow-2xl text-center"
+            onClick={e => e.stopPropagation()}>
+            <h3 className="text-3xl serif italic text-stone-800 mb-3">Sacred Atmosphere</h3>
+            <p className="text-stone-400 font-light mb-8 text-sm leading-relaxed">Choose the music for your silence practice.</p>
+            <div className="space-y-3 mb-8">
+              {MUSIC_OPTIONS.map(opt => (
+                <button type="button" key={opt.value} onClick={() => selectMusic(opt.value)}
+                  className={`w-full py-5 px-8 rounded-full font-bold uppercase tracking-[0.3em] text-[11px] transition-all border-2 flex items-center justify-between
+                    ${customMusicUrl === opt.value
+                      ? 'bg-sage text-white border-sage'
+                      : 'bg-white text-stone-600 border-stone-100 hover:border-sage/40 hover:bg-stone-50'}`}>
+                  <span>{opt.label}</span>
+                  {customMusicUrl === opt.value && <span className="text-white/80 text-lg">♪</span>}
+                </button>
+              ))}
+            </div>
+
+          </div>
+        </div>
+      )}
+
+    </div>
+  );
+};
+
+
+
+
+// Mount the app
+const _rootEl = document.getElementById('root');
+const _root = ReactDOM.createRoot(_rootEl);
+_root.render(React.createElement(React.StrictMode, null, React.createElement(App)));
+
+</script>
+<script>
+  // Hide splash once app renders
+  (function(){
+    var s=document.getElementById('splash');
+    var obs=new MutationObserver(function(){
+      if(document.getElementById('root').children.length>0){
+        setTimeout(function(){s.classList.add('gone');},300);
+        obs.disconnect();
+      }
+    });
+    obs.observe(document.getElementById('root'),{childList:true,subtree:true});
+    setTimeout(function(){s.classList.add('gone');},12000);
+  })();
+</script>
+</body>
+</html>
