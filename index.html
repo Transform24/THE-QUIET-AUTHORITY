@@ -52,8 +52,9 @@
     <p style="font-size:.5rem;letter-spacing:.4em;text-transform:uppercase;color:#c4b9aa;margin-top:1.5rem;font-weight:700">Be still and know...</p>
   </div>
   <div id="root"></div>
-<script type="text/babel" data-presets="react">
 
+  <!-- Data (no JSX - loads instantly) -->
+  <script>
 // ═══ REACT GLOBALS ═══
 const { useState, useEffect, useRef, useCallback } = React;
 
@@ -264,9 +265,10 @@ const PROFILES: Record<ProfileType, ProfileContent> = {
     ],
     nextStep: { text: "Commit to 10 minutes of silence daily for 14 days.", duration: "14 Days", prompt: "Journal after: 'Who am I when no one needs anything from me?'" }
   }
-};
+};  </script>
 
-
+  <!-- React components (JSX - compiled by Babel) -->
+  <script type="text/babel" data-presets="react">
 // ═══ LANDING ═══
 
 
@@ -1770,21 +1772,20 @@ const App = () => {
 // Mount the app
 const _rootEl = document.getElementById('root');
 const _root = ReactDOM.createRoot(_rootEl);
-_root.render(React.createElement(React.StrictMode, null, React.createElement(App)));
+_root.render(React.createElement(React.StrictMode, null, React.createElement(App)));  </script>
 
-</script>
-<script>
-  (function(){
-    var s=document.getElementById('splash');
-    var obs=new MutationObserver(function(){
-      if(document.getElementById('root').children.length>0){
-        setTimeout(function(){s.classList.add('gone');},500);
-        obs.disconnect();
-      }
-    });
-    obs.observe(document.getElementById('root'),{childList:true,subtree:true});
-    setTimeout(function(){s.classList.add('gone');},15000);
-  })();
-</script>
+  <script>
+    (function(){
+      var s=document.getElementById('splash');
+      var obs=new MutationObserver(function(){
+        if(document.getElementById('root').children.length>0){
+          setTimeout(function(){s.classList.add('gone');},500);
+          obs.disconnect();
+        }
+      });
+      obs.observe(document.getElementById('root'),{childList:true,subtree:true});
+      setTimeout(function(){s.classList.add('gone');},20000);
+    })();
+  </script>
 </body>
 </html>
