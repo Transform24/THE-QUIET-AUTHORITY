@@ -4,14 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Quiet Authority | Sanctuary Grace</title>
-  <meta name="description" content="Discover what silence is teaching you through the Quiet Authority assessment.">
-  <script src="https://cdn.jsdelivr.net/npm/react@18/umd/react.production.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/react-dom@18/umd/react-dom.production.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7/babel.min.js"></script>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <meta name="description" content="Discover what silence is teaching you.">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    body{font-family:'Inter',sans-serif;background-color:#fcfaf7;color:#2d2d2d;-webkit-font-smoothing:antialiased}
+    body{font-family:'Inter',sans-serif;background-color:#fcfaf7;color:#2d2d2d;-webkit-font-smoothing:antialiased;margin:0}
     h1,h2,h3,h4,.serif{font-family:'Cormorant Garamond',serif}
     .bg-sage{background-color:#7d8471}.text-sage{color:#7d8471}.border-sage{border-color:#7d8471}
     .hover\:bg-sage:hover{background-color:#7d8471}
@@ -38,6 +34,10 @@
     #splash{position:fixed;inset:0;background:#fcfaf7;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;transition:opacity 1s ease}
     #splash.gone{opacity:0;pointer-events:none}
   </style>
+  <!-- React loads first, blocking -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
   <div id="splash">
@@ -53,7 +53,7 @@
   </div>
   <div id="root"></div>
 
-  <!-- Data (no JSX - loads instantly) -->
+  <!-- App data - plain JS -->
   <script>
 // ═══ REACT GLOBALS ═══
 const { useState, useEffect, useRef, useCallback } = React;
@@ -267,8 +267,10 @@ const PROFILES: Record<ProfileType, ProfileContent> = {
   }
 };  </script>
 
-  <!-- React components (JSX - compiled by Babel) -->
-  <script type="text/babel" data-presets="react">
+  <!-- Babel loads, then compiles inline JSX string -->
+  <script src="https://unpkg.com/@babel/standalone@7.23.5/babel.min.js" onload="__startApp()" onerror="document.getElementById('splash').querySelector('p:last-child').textContent='Refresh to try again'"></script>
+
+  <script id="app-source" type="text/plain">
 // ═══ LANDING ═══
 
 
@@ -1775,17 +1777,30 @@ const _root = ReactDOM.createRoot(_rootEl);
 _root.render(React.createElement(React.StrictMode, null, React.createElement(App)));  </script>
 
   <script>
-    (function(){
-      var s=document.getElementById('splash');
-      var obs=new MutationObserver(function(){
-        if(document.getElementById('root').children.length>0){
-          setTimeout(function(){s.classList.add('gone');},500);
-          obs.disconnect();
-        }
-      });
-      obs.observe(document.getElementById('root'),{childList:true,subtree:true});
-      setTimeout(function(){s.classList.add('gone');},20000);
-    })();
+  function __startApp() {
+    try {
+      var src = document.getElementById('app-source').textContent;
+      var compiled = Babel.transform(src, { presets: ['react'] }).code;
+      var s = document.createElement('script');
+      s.textContent = compiled;
+      document.body.appendChild(s);
+    } catch(e) {
+      console.error('App failed:', e);
+      document.getElementById('splash').querySelector('p:last-child').textContent = 'Please refresh';
+    }
+  }
+
+  // Hide splash when React mounts
+  (function(){
+    var sp = document.getElementById('splash');
+    var obs = new MutationObserver(function(){
+      if(document.getElementById('root').children.length > 0){
+        setTimeout(function(){ sp.classList.add('gone'); }, 600);
+        obs.disconnect();
+      }
+    });
+    obs.observe(document.getElementById('root'), {childList:true, subtree:true});
+  })();
   </script>
 </body>
 </html>
