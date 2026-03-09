@@ -1238,31 +1238,18 @@ function submitEmail() {
     return;
   }
 
-  // Post to Beacons email capture via hidden form submission
-  const form = document.createElement('form');
-  form.method = 'POST';
-  form.action = 'https://app.beacons.ai/email_capture/958a6824-a1db-4dfe-b1ec-b19db0b3ca7b';
-  form.target = '_blank';
-  form.style.display = 'none';
+  // Open Beacons link in new tab — they see the email capture page directly
+  const beaconsUrl = 'https://website.beacons.ai/sanctuarygrace';
+  window.open(beaconsUrl, '_blank');
 
-  const fields = {email: email, name: name, source: 'TQA Assessment'};
-  Object.entries(fields).forEach(([k,v])=>{
-    const input = document.createElement('input');
-    input.name = k; input.value = v;
-    form.appendChild(input);
-  });
-  document.body.appendChild(form);
-  form.submit();
-  document.body.removeChild(form);
-
-  // Show confirmation regardless — Beacons handles the backend
+  // Show the sacred confirmation — she stays on TQA page
   document.querySelector('.email-inner').innerHTML = `
     <span class="s-label">You Are Received</span>
     <h3 class="email-title">${name}, the circle knows your name</h3>
     <div class="gold-line"></div>
     <p class="email-body">
-      <em>Your sacred profile and a personal letter are on their way.<br><br>
-      Check your inbox — and your spam folder, just in case.<br><br>
+      <em>A tab has opened where you can confirm your place in the circle.<br><br>
+      Your sacred profile and a personal letter are on their way.<br><br>
       <strong style="color:var(--gold);font-style:normal">The silence has been waiting for you.</strong></em>
     </p>
   `;
