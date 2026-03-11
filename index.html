@@ -907,7 +907,7 @@ body::after {
 <!-- SALVATION FLASH -->
 <div class="salvation-flash" id="salvationFlash">
   <strong>Luke 15:10 —</strong><br>
-  "There is joy in the presence of the angels of God over one sinner that repenteth."
+  There is joy in the presence of the angels of God over one sinner that repenteth.
 </div>
 
 <script>
@@ -1077,11 +1077,41 @@ const profiles = {
 };
 
 const roadmapSteps = [
-  {title:"Receive Your Profile", desc:"Begin here. Read your sacred diagnosis slowly. Return to it.", unlocked:true},
-  {title:"Enter the Silence", desc:"One 10-minute silence session. No agenda. Just presence.", unlocked:true},
-  {title:"Journal Your First Truth", desc:"Write one honest sentence about what you discovered today.", unlocked:false},
-  {title:"Read the Soul Letter", desc:"Your personalized letter from The Quiet Authority, sent to your inbox.", unlocked:false},
-  {title:"Begin the Circle of Silence", desc:"30 days. Guided. Sacred. Transformative.", unlocked:false}
+  {
+    title:"Receive Your Profile",
+    desc:"Begin here. Read your sacred diagnosis slowly. She who was seen is now known.",
+    unlocked:true,
+    action: null,
+    actionLabel: null
+  },
+  {
+    title:"Enter the Silence",
+    desc:"One 10-minute silence session. No agenda. No performance. Just presence with the One who assigned you.",
+    unlocked:true,
+    action: null,
+    actionLabel: null
+  },
+  {
+    title:"Journal Your First Truth",
+    desc:"Write one honest sentence about what you discovered today. Not for anyone else. Just between you and God.",
+    unlocked:false,
+    action: 'journal',
+    actionLabel: 'Open Your Journal'
+  },
+  {
+    title:"Receive Your Soul Letter",
+    desc:"A personal letter written for the woman God has always seen — arriving in your inbox from The Quiet Authority.",
+    unlocked:false,
+    action: null,
+    actionLabel: null
+  },
+  {
+    title:"Enter the Circle of Silence",
+    desc:"30 days. Guided. Sacred. Transformative. This is where the profile becomes a practice and the practice becomes a life.",
+    unlocked:false,
+    action: 'circle',
+    actionLabel: 'Enter the Circle of Silence →'
+  }
 ];
 
 // ═══════════════════════════════════
@@ -1176,6 +1206,7 @@ function showResults() {
   const top = Object.entries(scores).sort((a,b)=>b[1]-a[1])[0][0];
   const p = profiles[top];
 
+  window.tqaCurrentProfile = p.name; // carry profile to Circle of Silence
   document.getElementById('resultName').innerHTML = p.name;
   document.getElementById('resultArchetype').textContent = p.archetype;
   document.getElementById('resultEssence').innerHTML = p.essence;
@@ -1190,14 +1221,32 @@ function showResults() {
 
   // Roadmap
   const track = document.getElementById('stepsTrack');
-  track.innerHTML = roadmapSteps.map((step,i)=>`
-    <div class="step ${step.unlocked||i<stepsUnlocked?'unlocked':'locked'}" onclick="unlockStep(${i})">
+  track.innerHTML = roadmapSteps.map((step,i)=>{
+    const isUnlocked = step.unlocked || i < stepsUnlocked;
+    let actionHTML = '';
+    if(isUnlocked && step.action === 'circle'){
+      const profileParam = window.tqaCurrentProfile ? '?profile='+encodeURIComponent(window.tqaCurrentProfile) : '';
+      actionHTML = `<a href="https://transform24.github.io/circle-of-silence/${profileParam}" target="_blank"
+        style="display:inline-block;margin-top:1.2rem;font-family:'Cinzel',serif;font-size:.65rem;
+        letter-spacing:.25em;text-transform:uppercase;color:var(--gold);
+        border:1px solid rgba(196,166,120,.4);padding:.7rem 1.6rem;text-decoration:none;
+        transition:all .3s">${step.actionLabel}</a>`;
+    } else if(isUnlocked && step.action === 'journal'){
+      actionHTML = `<button onclick="openJournalModal()"
+        style="margin-top:1.2rem;font-family:'Cinzel',serif;font-size:.65rem;
+        letter-spacing:.25em;text-transform:uppercase;color:var(--gold);background:none;
+        border:1px solid rgba(196,166,120,.4);padding:.7rem 1.6rem;cursor:pointer;
+        transition:all .3s">${step.actionLabel}</button>`;
+    }
+    return `
+    <div class="step ${isUnlocked?'unlocked':'locked'}" onclick="${isUnlocked&&!step.action?'unlockStep('+i+')':''}">
       <span class="step-num">Step ${i+1}</span>
       <p class="step-title">${step.title}</p>
       <p class="step-desc">${step.desc}</p>
-      ${!step.unlocked && i>=stepsUnlocked ? '<span class="step-lock">◆ Complete previous step to unlock</span>' : ''}
-    </div>
-  `).join('');
+      ${!isUnlocked ? '<span class="step-lock">◆ Complete previous step to unlock</span>' : ''}
+      ${actionHTML}
+    </div>`;
+  }).join('');
 
   showScreen('screen-results');
 
@@ -1238,22 +1287,124 @@ function submitEmail() {
     return;
   }
 
-  // Open Beacons link in new tab — they see the email capture page directly
-  const beaconsUrl = 'https://website.beacons.ai/sanctuarygrace';
-  window.open(beaconsUrl, '_blank');
+  // Store for profile carry-through
+  window.tqaUserName = name;
+  window.tqaUserEmail = email;
 
-  // Show the sacred confirmation — she stays on TQA page
+  // Show sacred confirmation — she stays on page entirely
   document.querySelector('.email-inner').innerHTML = `
     <span class="s-label">You Are Received</span>
-    <h3 class="email-title">${name}, the circle knows your name</h3>
+    <h3 class="email-title" style="font-family:'Cinzel',serif;font-size:clamp(1.2rem,3vw,1.8rem);font-weight:400;color:var(--cream);margin-bottom:1rem">${name}, the circle knows your name</h3>
     <div class="gold-line"></div>
-    <p class="email-body">
-      <em>A tab has opened where you can confirm your place in the circle.<br><br>
-      Your sacred profile and a personal letter are on their way.<br><br>
-      <strong style="color:var(--gold);font-style:normal">The silence has been waiting for you.</strong></em>
-    </p>
+    <p class="email-body"><em>Your sacred profile and a personal letter are on their way to your inbox.<br><br>
+    Check below — your Transformation Roadmap is now fully open.<br><br>
+    <strong style="color:var(--gold);font-style:normal">The silence has been waiting for you.</strong></em></p>
   `;
-  unlockStep(2); unlockStep(3);
+
+  // Unlock roadmap steps
+  unlockStep(2); unlockStep(3); unlockStep(4);
+
+  // Scroll to roadmap
+  setTimeout(()=>{
+    document.getElementById('stepsTrack').scrollIntoView({behavior:'smooth', block:'center'});
+  }, 800);
+}
+</script>
+
+<!-- JOURNAL MODAL -->
+<div id="journalModal" style="display:none;position:fixed;inset:0;background:rgba(14,12,10,.95);
+  z-index:9999;align-items:center;justify-content:center;padding:2rem">
+  <div style="max-width:560px;width:100%;background:var(--dark2);border:1px solid rgba(196,166,120,.2);
+    padding:3rem 2.5rem;position:relative">
+    <button onclick="closeJournalModal()" style="position:absolute;top:1.2rem;right:1.5rem;
+      background:none;border:none;color:var(--muted);font-size:1.2rem;cursor:pointer">✕</button>
+    <span style="font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.4em;
+      text-transform:uppercase;color:var(--terra)">Your First Truth</span>
+    <h3 style="font-family:'Cinzel',serif;font-size:1.3rem;font-weight:400;color:var(--cream);
+      margin:1rem 0 .5rem">Write one honest sentence</h3>
+    <div style="width:2.5rem;height:1px;background:var(--gold);margin-bottom:1.5rem"></div>
+    <p style="font-size:.9rem;color:var(--muted);line-height:1.8;margin-bottom:2rem;font-style:italic">
+      Not for anyone else. Not to be seen. Just between you and the God who already knows.<br><br>
+      What is one true thing you discovered about yourself today?
+    </p>
+    <textarea id="journalEntry" placeholder="Write your truth here..."
+      style="width:100%;min-height:120px;background:rgba(196,166,120,.04);
+      border:1px solid rgba(196,166,120,.2);color:var(--cream);padding:1rem;
+      font-family:'Cormorant Garamond',serif;font-size:1rem;line-height:1.8;
+      resize:vertical;box-sizing:border-box;outline:none"></textarea>
+    <button onclick="saveJournalEntry()"
+      style="margin-top:1.5rem;width:100%;background:var(--gold);color:var(--dark1);
+      border:none;padding:1rem;font-family:'Cinzel',serif;font-size:.7rem;
+      letter-spacing:.25em;text-transform:uppercase;cursor:pointer">
+      Receive This Truth
+    </button>
+    <div id="journalConfirm" style="display:none;margin-top:1.5rem;text-align:center;
+      font-style:italic;color:var(--gold);font-size:.95rem;line-height:1.8">
+      Your truth has been witnessed.<br>
+      <span style="color:var(--muted);font-size:.85rem">Return to it. It will grow.</span>
+    </div>
+  </div>
+</div>
+
+<script>
+function renderRoadmap() {
+  const track = document.getElementById('stepsTrack');
+  if(!track) return;
+  track.innerHTML = roadmapSteps.map((step,i)=>{
+    const isUnlocked = step.unlocked || i < stepsUnlocked;
+    let actionHTML = '';
+    if(isUnlocked && step.action === 'circle'){
+      const profileParam = window.tqaCurrentProfile ? '?profile='+encodeURIComponent(window.tqaCurrentProfile) : '';
+      actionHTML = `<a href="https://transform24.github.io/circle-of-silence/${profileParam}" target="_blank"
+        style="display:inline-block;margin-top:1.2rem;font-family:'Cinzel',serif;font-size:.65rem;
+        letter-spacing:.25em;text-transform:uppercase;color:var(--gold);
+        border:1px solid rgba(196,166,120,.4);padding:.7rem 1.6rem;text-decoration:none;
+        transition:all .3s">${step.actionLabel}</a>`;
+    } else if(isUnlocked && step.action === 'journal'){
+      actionHTML = `<button onclick="openJournalModal()"
+        style="margin-top:1.2rem;font-family:'Cinzel',serif;font-size:.65rem;
+        letter-spacing:.25em;text-transform:uppercase;color:var(--gold);background:none;
+        border:1px solid rgba(196,166,120,.4);padding:.7rem 1.6rem;cursor:pointer;
+        transition:all .3s">${step.actionLabel}</button>`;
+    }
+    return `
+    <div class="step ${isUnlocked?'unlocked':'locked'}">
+      <span class="step-num">Step ${i+1}</span>
+      <p class="step-title">${step.title}</p>
+      <p class="step-desc">${step.desc}</p>
+      ${!isUnlocked ? '<span class="step-lock">◆ Complete previous step to unlock</span>' : ''}
+      ${actionHTML}
+    </div>`;
+  }).join('');
+}
+
+function openJournalModal(){
+  const m = document.getElementById('journalModal');
+  m.style.display='flex';
+  document.body.style.overflow='hidden';
+}
+function closeJournalModal(){
+  document.getElementById('journalModal').style.display='none';
+  document.body.style.overflow='';
+}
+function saveJournalEntry(){
+  const entry = document.getElementById('journalEntry').value.trim();
+  if(!entry) return;
+  // Save to localStorage as backup
+  try{
+    const entries = JSON.parse(localStorage.getItem('tqa_journal')||'[]');
+    entries.push({date: new Date().toISOString(), profile: window.tqaCurrentProfile||'', text: entry});
+    localStorage.setItem('tqa_journal', JSON.stringify(entries));
+  }catch(e){}
+  document.getElementById('journalEntry').style.display='none';
+  document.querySelector('#journalModal button[onclick="saveJournalEntry()"]').style.display='none';
+  document.getElementById('journalConfirm').style.display='block';
+  // Unlock next step
+  unlockStep(3);
+  setTimeout(()=>{
+    closeJournalModal();
+    renderRoadmap();
+  }, 2200);
 }
 </script>
 </body>
