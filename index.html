@@ -1196,7 +1196,7 @@ function nextQuestion() {
 // RESULTS
 // ═══════════════════════════════════
 function calculateResults() {
-  scores = {SA:0, DS:0, GG:0, LW:0};
+  scores = Object.fromEntries(Object.keys(profiles).map(k=>[k,0]));
   answers.forEach((answerIdx, qIdx) => {
     if(answerIdx !== undefined) {
       scores[questions[qIdx].options[answerIdx].profile]++;
@@ -1224,33 +1224,7 @@ function showResults() {
   document.getElementById('breakthroughBody').innerHTML = p.breakthrough.body;
 
   // Roadmap
-  const track = document.getElementById('stepsTrack');
-  track.innerHTML = roadmapSteps.map((step,i)=>{
-    const isUnlocked = step.unlocked || i < stepsUnlocked;
-    let actionHTML = '';
-    if(isUnlocked && step.action === 'circle'){
-      const profileParam = window.tqaCurrentProfile ? '?profile='+encodeURIComponent(window.tqaCurrentProfile) : '';
-      actionHTML = `<a href="https://transform24.github.io/circle-of-silence/${profileParam}" target="_blank"
-        style="display:inline-block;margin-top:1.2rem;font-family:'Cinzel',serif;font-size:.65rem;
-        letter-spacing:.25em;text-transform:uppercase;color:var(--gold);
-        border:1px solid rgba(196,166,120,.4);padding:.7rem 1.6rem;text-decoration:none;
-        transition:all .3s">${step.actionLabel}</a>`;
-    } else if(isUnlocked && step.action === 'journal'){
-      actionHTML = `<button onclick="openJournalModal()"
-        style="margin-top:1.2rem;font-family:'Cinzel',serif;font-size:.65rem;
-        letter-spacing:.25em;text-transform:uppercase;color:var(--gold);background:none;
-        border:1px solid rgba(196,166,120,.4);padding:.7rem 1.6rem;cursor:pointer;
-        transition:all .3s">${step.actionLabel}</button>`;
-    }
-    return `
-    <div class="step ${isUnlocked?'unlocked':'locked'}" onclick="${isUnlocked&&!step.action?'unlockStep('+i+')':''}">
-      <span class="step-num">Step ${i+1}</span>
-      <p class="step-title">${step.title}</p>
-      <p class="step-desc">${step.desc}</p>
-      ${!isUnlocked ? '<span class="step-lock">◆ Complete previous step to unlock</span>' : ''}
-      ${actionHTML}
-    </div>`;
-  }).join('');
+  renderRoadmap();
 
   showScreen('screen-results');
 
@@ -1272,10 +1246,7 @@ function showResults() {
 function unlockStep(i) {
   if(i <= stepsUnlocked) {
     stepsUnlocked = Math.max(stepsUnlocked, i+1);
-    const steps = document.querySelectorAll('.step');
-    steps.forEach((s,idx)=>{
-      if(idx <= stepsUnlocked) { s.classList.add('unlocked'); s.classList.remove('locked'); s.querySelector('.step-lock')&&s.querySelector('.step-lock').remove(); }
-    });
+    renderRoadmap();
   }
 }
 
@@ -1306,7 +1277,7 @@ function submitEmail() {
   `;
 
   // Unlock all remaining roadmap steps
-  stepsUnlocked = 5;
+  stepsUnlocked = roadmapSteps.length;
   renderRoadmap();
 
   // Scroll to roadmap
