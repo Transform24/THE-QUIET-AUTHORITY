@@ -1183,8 +1183,6 @@ function prevQuestion() {
 
 function nextQuestion() {
   if(answers[currentQ] === undefined) return;
-  const profile = questions[currentQ].options[answers[currentQ]].profile;
-  scores[profile]++;
 
   if(currentQ < questions.length - 1){
     currentQ++;
@@ -1198,6 +1196,12 @@ function nextQuestion() {
 // RESULTS
 // ═══════════════════════════════════
 function calculateResults() {
+  scores = {SA:0, DS:0, GG:0, LW:0};
+  answers.forEach((answerIdx, qIdx) => {
+    if(answerIdx !== undefined) {
+      scores[questions[qIdx].options[answerIdx].profile]++;
+    }
+  });
   showScreen('screen-calculating');
   setTimeout(showResults, 3200);
 }
@@ -1301,8 +1305,9 @@ function submitEmail() {
     <strong style="color:var(--gold);font-style:normal">The silence has been waiting for you.</strong></em></p>
   `;
 
-  // Unlock roadmap steps
-  unlockStep(2); unlockStep(3); unlockStep(4);
+  // Unlock all remaining roadmap steps
+  stepsUnlocked = 5;
+  renderRoadmap();
 
   // Scroll to roadmap
   setTimeout(()=>{
@@ -1333,7 +1338,7 @@ function submitEmail() {
       font-family:'Cormorant Garamond',serif;font-size:1rem;line-height:1.8;
       resize:vertical;box-sizing:border-box;outline:none"></textarea>
     <button onclick="saveJournalEntry()"
-      style="margin-top:1.5rem;width:100%;background:var(--gold);color:var(--dark1);
+      style="margin-top:1.5rem;width:100%;background:var(--gold);color:var(--dark);
       border:none;padding:1rem;font-family:'Cinzel',serif;font-size:.7rem;
       letter-spacing:.25em;text-transform:uppercase;cursor:pointer">
       Receive This Truth
@@ -1400,7 +1405,7 @@ function saveJournalEntry(){
   document.querySelector('#journalModal button[onclick="saveJournalEntry()"]').style.display='none';
   document.getElementById('journalConfirm').style.display='block';
   // Unlock next step
-  unlockStep(3);
+  stepsUnlocked = Math.max(stepsUnlocked, 4);
   setTimeout(()=>{
     closeJournalModal();
     renderRoadmap();
