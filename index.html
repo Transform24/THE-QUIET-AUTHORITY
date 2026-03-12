@@ -964,7 +964,7 @@ body::after {
           <p class="tier-price">$0</p>
           <p class="tier-period">/ month</p>
           <p class="tier-desc">Enter the silence. Access the foundational practice and begin your 30-day journey at no cost.</p>
-          <a href="https://transform24.github.io/circle-of-silence" target="_blank" class="tier-btn-free">Begin Your Journey</a>
+          <a href="https://website.beacons.ai/sanctuarygrace" target="_blank" class="tier-btn-free">Begin Your Journey</a>
         </div>
         <div class="tier-card featured">
           <div class="tier-badge">Most Chosen</div>
@@ -998,7 +998,7 @@ body::after {
       <a href="https://pinterest.com/sanctuarygrace" target="_blank">Pinterest</a>
       <a href="https://youtube.com/@sanctuarygrace" target="_blank">YouTube</a>
       <a href="https://website.beacons.ai/sanctuarygrace" target="_blank">Community</a>
-      <a href="https://transform24.github.io/circle-of-silence" target="_blank">Circle of Silence</a>
+      <a href="https://website.beacons.ai/sanctuarygrace" target="_blank">Circle of Silence</a>
     </div>
     <p class="footer-copy">© 2026 The Quiet Authority · Sanctuary Grace Ministry · All rights reserved</p>
   </footer>
@@ -1373,18 +1373,23 @@ function submitEmail() {
     <h3 class="email-title" style="font-family:'Cinzel',serif;font-size:clamp(1.2rem,3vw,1.8rem);font-weight:400;color:var(--cream);margin-bottom:1rem">${name}, the circle knows your name</h3>
     <div class="gold-line"></div>
     <p class="email-body"><em>Your sacred profile and a personal letter are on their way to your inbox.<br><br>
-    Check below — your Transformation Roadmap is now fully open.<br><br>
     <strong style="color:var(--gold);font-style:normal">The silence has been waiting for you.</strong></em></p>
+    <button onclick="document.getElementById('stepsTrack').scrollIntoView({behavior:'smooth',block:'start'})"
+      style="margin-top:1.5rem;font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.3em;
+      text-transform:uppercase;color:var(--dark);background:var(--gold);border:none;
+      padding:1.2rem 2.5rem;cursor:pointer;display:inline-block">
+      View My Sacred Roadmap ↑
+    </button>
   `;
 
   // Unlock all remaining roadmap steps
   stepsUnlocked = roadmapSteps.length;
   renderRoadmap();
 
-  // Scroll to roadmap
+  // Scroll to roadmap automatically
   setTimeout(()=>{
-    document.getElementById('stepsTrack').scrollIntoView({behavior:'smooth', block:'center'});
-  }, 800);
+    document.getElementById('stepsTrack').scrollIntoView({behavior:'smooth', block:'start'});
+  }, 1200);
 }
 </script>
 
