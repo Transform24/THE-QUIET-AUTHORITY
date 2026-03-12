@@ -22,6 +22,7 @@
   --dark3: #2c2520;
   --dark4: #221e1a;
   --muted: rgba(181,196,185,0.6);
+  --dark1: #0e0c0a;
   --glass: rgba(255,255,255,0.03);
 }
 
@@ -1299,10 +1300,16 @@ function submitEmail() {
     <p class="email-body"><em>Your sacred profile and a personal letter are on their way to your inbox.<br><br>
     Check below — your Transformation Roadmap is now fully open.<br><br>
     <strong style="color:var(--gold);font-style:normal">The silence has been waiting for you.</strong></em></p>
+    <div style="margin-top:2rem;text-align:center">
+      <button onclick="document.getElementById('stepsTrack').scrollIntoView({behavior:'smooth',block:'center'})"
+        style="font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;
+        background:var(--gold);color:var(--dark1);border:none;padding:1rem 2.5rem;cursor:pointer;">
+        View My Sacred Roadmap</button>
+    </div>
   `;
 
   // Unlock roadmap steps
-  unlockStep(2); unlockStep(3); unlockStep(4);
+  stepsUnlocked = 5; renderRoadmap();
 
   // Scroll to roadmap
   setTimeout(()=>{
@@ -1400,7 +1407,7 @@ function saveJournalEntry(){
   document.querySelector('#journalModal button[onclick="saveJournalEntry()"]').style.display='none';
   document.getElementById('journalConfirm').style.display='block';
   // Unlock next step
-  unlockStep(3);
+  stepsUnlocked = Math.max(stepsUnlocked, 4);
   setTimeout(()=>{
     closeJournalModal();
     renderRoadmap();
