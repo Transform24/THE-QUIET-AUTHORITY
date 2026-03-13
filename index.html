@@ -3,1239 +3,1435 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Quiet Authority · Discover Your Sacred Profile</title>
-<meta name="description" content="An encounter, not an assessment. Discover the spiritual profile God assigned before you started trying.">
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&display=swap" rel="stylesheet">
+<title>The Quiet Authority | Sanctuary Grace Ministry</title>
+<meta name="description" content="Discover what silence is teaching you. A sacred assessment for burned-out Christian women ready for breakthrough.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
 <style>
-:root {
-  --cream: #f5f1e8;
-  --cream2: #ede7d6;
-  --sage: #8a9a8e;
-  --sage-l: #b5c4b9;
-  --gold: #c4a678;
-  --gold-l: #d9bf9a;
-  --gold-d: #a8884f;
-  --terra: #c07856;
-  --terra-d: #9e5e3a;
-  --dark: #0e0c0a;
-  --dark2: #1a1612;
-  --dark3: #2c2520;
-  --dark4: #221e1a;
-  --muted: rgba(181,196,185,0.6);
-  --dark1: #0e0c0a;
-  --glass: rgba(255,255,255,0.03);
-}
+  :root {
+    --bg: #0e0e0e;
+    --bg2: #141414;
+    --bg3: #1a1a1a;
+    --surface: #1e1e1e;
+    --surface2: #242424;
+    --border: #2a2a2a;
+    --border2: #333;
+    --gold: #c9a96e;
+    --gold-light: #e0c28a;
+    --gold-dim: #8a6e3e;
+    --sage: #7d8c6e;
+    --sage-light: #9aab88;
+    --cream: #f0ead8;
+    --cream-dim: #b8b0a0;
+    --text: #e8e2d6;
+    --text-dim: #888880;
+    --text-muted: #555550;
+    --terra: #c4714a;
+  }
 
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
-body {
-  font-family:'Cormorant Garamond',serif;
-  background:var(--dark);
-  color:var(--cream);
-  overflow-x:hidden;
-  min-height:100vh;
-}
+  html { scroll-behavior: smooth; }
 
-body::after {
-  content:'';position:fixed;inset:0;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
-  pointer-events:none;z-index:9999;opacity:.5;
-}
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    font-weight: 300;
+    letter-spacing: 0.01em;
+    overflow-x: hidden;
+  }
 
-.screen { display:none; min-height:100vh; position:relative; }
-.screen.active { display:flex; flex-direction:column; }
+  .serif { font-family: 'Cormorant Garamond', serif; }
 
-.rings { position:absolute;top:50%;left:50%; pointer-events:none;z-index:0; }
-.ring {
-  position:absolute;border-radius:50%;
-  top:50%;left:50%;
-  transform:translate(-50%,-50%);
-  animation:ringPulse 7s ease-in-out infinite;
-  border:1px solid rgba(196,166,120,0.08);
-}
-.ring:nth-child(1){width:200px;height:200px;border-color:rgba(196,166,120,.2);animation-delay:0s}
-.ring:nth-child(2){width:380px;height:380px;border-color:rgba(196,166,120,.13);animation-delay:1s}
-.ring:nth-child(3){width:560px;height:560px;border-color:rgba(196,166,120,.08);animation-delay:2s}
-.ring:nth-child(4){width:740px;height:740px;border-color:rgba(196,166,120,.04);animation-delay:3s}
-.ring:nth-child(5){width:940px;height:940px;border-color:rgba(196,166,120,.02);animation-delay:4s}
+  /* ─── NOISE OVERLAY ─── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.35;
+  }
 
-@keyframes ringPulse {
-  0%,100%{opacity:.5;transform:translate(-50%,-50%) scale(1)}
-  50%{opacity:1;transform:translate(-50%,-50%) scale(1.025)}
-}
+  /* ─── SCREENS ─── */
+  .screen {
+    display: none;
+    min-height: 100vh;
+    animation: fadeUp 0.8s ease forwards;
+  }
+  .screen.active { display: flex; flex-direction: column; }
 
-.veil {
-  position:absolute;inset:0;
-  background:
-    radial-gradient(ellipse at 50% 30%, rgba(196,166,120,0.06) 0%, transparent 55%),
-    radial-gradient(ellipse at 50% 80%, rgba(192,120,86,0.04) 0%, transparent 50%),
-    linear-gradient(to bottom, rgba(14,12,10,.2) 0%, rgba(14,12,10,.55) 40%, rgba(14,12,10,.9) 80%, var(--dark) 100%);
-  pointer-events:none;
-}
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
 
-.gold-line {
-  width:60px;height:1px;
-  background:linear-gradient(to right,transparent,var(--gold),transparent);
-  margin:2rem auto;
-}
-.gold-line.left { margin:1.5rem 0; }
+  /* ─── LANDING ─── */
+  #screen-landing {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 24px;
+    position: relative;
+    min-height: 100vh;
+  }
 
-.s-label {
-  font-family:'Cinzel',serif;
-  font-size:.58rem;letter-spacing:.6em;
-  color:var(--terra);text-transform:uppercase;
-  display:block;margin-bottom:1.2rem;
-}
+  .landing-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 50% at 50% 0%, rgba(201,169,110,0.07) 0%, transparent 70%),
+      radial-gradient(ellipse 60% 60% at 80% 80%, rgba(125,140,110,0.05) 0%, transparent 60%);
+  }
 
-/* ══ LANDING ══ */
-#screen-landing {
-  align-items:center;justify-content:center;
-  text-align:center;padding:2rem;
-  overflow:hidden;background:var(--dark);
-}
+  .dove-icon {
+    font-size: 2.5rem;
+    margin-bottom: 32px;
+    opacity: 0.7;
+    animation: floatDove 4s ease-in-out infinite;
+  }
 
-.landing-bg {
-  position:absolute;inset:0;
-  background-image:url('banner.png');
-  background-size:cover;background-position:center 25%;
-  opacity:.22;filter:saturate(.5) brightness(.5);
-  transform:scale(1.06);animation:bgBreath 14s ease-in-out infinite;
-}
-@keyframes bgBreath {
-  0%,100%{transform:scale(1.06);opacity:.22}
-  50%{transform:scale(1.09);opacity:.27}
-}
+  @keyframes floatDove {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
 
-.landing-inner { position:relative;z-index:2;max-width:720px; }
+  .ministry-label {
+    font-family: 'Jost', sans-serif;
+    font-weight: 200;
+    font-size: 0.65rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    margin-bottom: 24px;
+  }
 
-.tqa-eyebrow {
-  font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.65em;
-  color:var(--terra);text-transform:uppercase;
-  opacity:0;animation:fadeUp .8s ease .2s forwards;margin-bottom:2.2rem;
-}
-.tqa-title {
-  font-family:'Cinzel',serif;font-size:clamp(2.8rem,8vw,6.5rem);
-  font-weight:400;letter-spacing:.03em;color:var(--cream);line-height:1;
-  margin-bottom:.6rem;opacity:0;animation:fadeUp .8s ease .5s forwards;
-}
-.tqa-subtitle {
-  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;
-  font-size:clamp(1.1rem,2.5vw,1.5rem);letter-spacing:.18em;color:var(--gold);
-  margin-bottom:2.8rem;opacity:0;animation:fadeUp .8s ease .8s forwards;
-}
-.tqa-declaration {
-  font-size:clamp(1rem,2vw,1.2rem);font-weight:300;line-height:2.1;
-  color:var(--sage-l);max-width:580px;margin:0 auto 3.5rem;
-  opacity:0;animation:fadeUp .8s ease 1s forwards;
-}
-.tqa-declaration strong{color:var(--cream);font-weight:400;font-style:italic}
+  .landing-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 300;
+    line-height: 0.9;
+    color: var(--cream);
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
 
-.landing-cta {
-  opacity:0;animation:fadeUp .8s ease 1.3s forwards;
-  display:flex;flex-direction:column;align-items:center;gap:1.2rem;
-}
+  .landing-title span {
+    display: block;
+    font-style: italic;
+    color: var(--gold);
+    font-size: clamp(2.2rem, 6vw, 4.5rem);
+  }
 
-.btn-primary {
-  font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;
-  color:var(--dark);background:var(--gold);border:none;padding:1.2rem 3.2rem;
-  cursor:pointer;transition:all .4s;position:relative;overflow:hidden;
-}
-.btn-primary::after {
-  content:'';position:absolute;inset:0;background:rgba(255,255,255,.18);
-  transform:translateX(-110%);transition:transform .45s;
-}
-.btn-primary:hover::after{transform:translateX(0)}
-.btn-primary:hover{transform:translateY(-3px);box-shadow:0 16px 48px rgba(196,166,120,.4)}
+  .landing-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    font-style: italic;
+    color: var(--cream-dim);
+    margin: 28px 0 48px;
+    max-width: 520px;
+    line-height: 1.5;
+  }
 
-.btn-secondary {
-  font-family:'Cormorant Garamond',serif;font-size:1rem;font-style:italic;
-  letter-spacing:.15em;color:rgba(245,241,232,.45);
-  background:none;border:none;cursor:pointer;transition:color .3s;
-}
-.btn-secondary:hover{color:var(--gold)}
+  .gold-line {
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0 auto 40px;
+  }
 
-.profile-preview {
-  display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;margin-top:1rem;
-}
-.profile-chip {
-  font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.35em;text-transform:uppercase;
-  color:rgba(196,166,120,.4);padding:.4rem .9rem;
-  border:1px solid rgba(196,166,120,.1);transition:all .3s;
-}
-.profile-chip:hover{color:var(--gold);border-color:rgba(196,166,120,.3)}
+  .landing-intro {
+    max-width: 540px;
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    line-height: 1.9;
+    margin-bottom: 52px;
+    font-weight: 300;
+  }
 
-.scroll-hint {
-  position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);
-  display:flex;flex-direction:column;align-items:center;gap:.5rem;
-  opacity:0;animation:fadeUp 1s ease 2.2s forwards;z-index:2;
-}
-.scroll-hint span {
-  font-family:'Cinzel',serif;font-size:.5rem;
-  letter-spacing:.55em;color:rgba(196,166,120,.3);text-transform:uppercase;
-}
-.scroll-bar {
-  width:1px;height:44px;
-  background:linear-gradient(to bottom,rgba(196,166,120,.35),transparent);
-  animation:scrollAnim 2.2s ease-in-out infinite;
-}
-@keyframes scrollAnim{0%,100%{opacity:.4;transform:scaleY(1)}50%{opacity:.9;transform:scaleY(.6)}}
+  .btn-primary {
+    display: inline-block;
+    padding: 16px 48px;
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+  }
 
-/* ══ ASSESSMENT ══ */
-#screen-assessment { padding:0;background:var(--dark); }
+  .btn-primary::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--gold);
+    transform: translateX(-101%);
+    transition: transform 0.4s ease;
+  }
 
-.assessment-header {
-  position:sticky;top:0;z-index:100;padding:1.2rem 2rem;
-  background:linear-gradient(to bottom,var(--dark) 70%,transparent);
-  display:flex;align-items:center;justify-content:space-between;
-  border-bottom:1px solid rgba(196,166,120,.07);backdrop-filter:blur(12px);
-}
-.header-brand {
-  font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.45em;color:var(--gold);text-transform:uppercase;
-}
-.progress-wrap { display:flex;align-items:center;gap:1rem; }
-.progress-track { width:120px;height:1px;background:rgba(196,166,120,.12);position:relative;overflow:hidden; }
-.progress-fill {
-  height:100%;background:linear-gradient(to right,var(--terra),var(--gold));
-  transition:width .6s cubic-bezier(.4,0,.2,1);
-}
-.progress-label { font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.3em;color:rgba(196,166,120,.5); }
+  .btn-primary:hover::before { transform: translateX(0); }
+  .btn-primary:hover { color: var(--bg); }
+  .btn-primary span { position: relative; z-index: 1; }
 
-.question-stage {
-  flex:1;display:flex;align-items:center;justify-content:center;
-  padding:4rem 2rem;min-height:calc(100vh - 65px);
-}
-.question-card { max-width:680px;width:100%;position:relative; }
+  .landing-promise {
+    margin-top: 40px;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+  }
 
-.q-number {
-  font-family:'Cormorant Garamond',serif;font-size:5rem;font-weight:300;
-  color:rgba(196,166,120,.07);position:absolute;top:-2rem;left:-1rem;
-  line-height:1;pointer-events:none;font-style:italic;
-}
-.q-category {
-  font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.55em;color:var(--terra);
-  text-transform:uppercase;margin-bottom:1.5rem;display:block;padding-left:.2rem;
-}
-.q-text {
-  font-family:'Cormorant Garamond',serif;font-size:clamp(1.4rem,3vw,2rem);
-  font-weight:300;line-height:1.6;color:var(--cream);margin-bottom:3rem;padding-left:.2rem;
-}
-.q-options { display:flex;flex-direction:column;gap:.85rem; }
+  /* ─── PROGRESS BAR ─── */
+  .progress-bar-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--border);
+    z-index: 100;
+  }
 
-.q-option {
-  padding:1.4rem 1.8rem;border:1px solid rgba(196,166,120,.1);
-  background:rgba(255,255,255,.02);cursor:pointer;transition:all .3s;
-  display:flex;align-items:flex-start;gap:1.2rem;
-  position:relative;overflow:hidden;text-align:left;width:100%;
-}
-.q-option::before {
-  content:'';position:absolute;left:0;top:0;bottom:0;width:2px;
-  background:linear-gradient(to bottom,transparent,var(--gold),transparent);
-  transform:scaleY(0);transition:transform .35s;
-}
-.q-option:hover{background:rgba(196,166,120,.05);border-color:rgba(196,166,120,.22);}
-.q-option:hover::before{transform:scaleY(1)}
-.q-option.selected{background:rgba(196,166,120,.09);border-color:var(--gold);}
-.q-option.selected::before{transform:scaleY(1)}
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--gold-dim), var(--gold));
+    transition: width 0.5s ease;
+  }
 
-.opt-marker {
-  font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.3em;color:var(--gold);
-  flex-shrink:0;margin-top:.2rem;width:18px;
-}
-.opt-text { font-size:1.05rem;font-weight:300;color:var(--sage-l);line-height:1.65; }
-.q-option.selected .opt-text{color:var(--cream)}
+  /* ─── QUESTION SCREEN ─── */
+  #screen-question {
+    align-items: center;
+    justify-content: center;
+    padding: 80px 24px 60px;
+    min-height: 100vh;
+  }
 
-.q-nav {
-  display:flex;align-items:center;justify-content:space-between;
-  margin-top:2.5rem;padding-top:2rem;border-top:1px solid rgba(196,166,120,.07);
-}
-.btn-back {
-  font-family:'Cormorant Garamond',serif;font-size:.95rem;font-style:italic;
-  letter-spacing:.12em;color:rgba(245,241,232,.3);background:none;border:none;
-  cursor:pointer;transition:color .3s;
-}
-.btn-back:hover{color:var(--gold)}
-.btn-next {
-  font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;
-  color:var(--dark);background:var(--gold);border:none;padding:1rem 2.5rem;
-  cursor:pointer;transition:all .35s;opacity:.35;pointer-events:none;
-}
-.btn-next.enabled{opacity:1;pointer-events:all}
-.btn-next.enabled:hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(196,166,120,.35)}
+  .question-wrap {
+    max-width: 640px;
+    width: 100%;
+  }
 
-/* ══ CALCULATING ══ */
-#screen-calculating {
-  align-items:center;justify-content:center;
-  text-align:center;padding:2rem;background:var(--dark2);overflow:hidden;
-}
-.calc-inner{position:relative;z-index:2;max-width:600px;}
-.sacred-seal { width:120px;height:120px;margin:0 auto 3rem;position:relative; }
-.seal-ring {
-  position:absolute;border-radius:50%;border:1px solid rgba(196,166,120,.2);
-  top:50%;left:50%;transform:translate(-50%,-50%);
-}
-.seal-ring:nth-child(1){width:120px;height:120px;animation:sealPulse 2s ease-in-out infinite}
-.seal-ring:nth-child(2){width:85px;height:85px;animation:sealPulse 2s ease-in-out .4s infinite;border-color:rgba(196,166,120,.35)}
-.seal-ring:nth-child(3){width:50px;height:50px;animation:sealPulse 2s ease-in-out .8s infinite;border-color:rgba(196,166,120,.6)}
-.seal-center {
-  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-  width:18px;height:18px;border-radius:50%;background:var(--gold);
-  animation:sealPulse 2s ease-in-out 1.2s infinite;
-}
-@keyframes sealPulse{0%,100%{opacity:.5;transform:translate(-50%,-50%) scale(1)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.1)}}
+  .question-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 48px;
+  }
 
-.calc-title {
-  font-family:'Cinzel',serif;font-size:clamp(1.5rem,4vw,2.4rem);
-  font-weight:400;color:var(--cream);margin-bottom:1rem;
-  animation:breathe 3s ease-in-out infinite;
-}
-@keyframes breathe{0%,100%{opacity:.7}50%{opacity:1}}
-.calc-verse { font-size:1.1rem;font-style:italic;font-weight:300;color:var(--gold);line-height:1.8;max-width:480px;margin:0 auto 1rem; }
-.calc-ref { font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.45em;color:var(--terra);text-transform:uppercase; }
+  .question-num {
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    color: var(--gold-dim);
+    font-weight: 200;
+  }
 
-/* ══ RESULTS ══ */
-#screen-results { background:var(--dark);align-items:stretch; }
+  .question-dots {
+    display: flex;
+    gap: 6px;
+  }
 
-.results-hero {
-  position:relative;min-height:70vh;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  text-align:center;padding:5rem 2rem 4rem;overflow:hidden;
-}
-.results-bg {
-  position:absolute;inset:0;background-image:url('banner.png');
-  background-size:cover;background-position:center;
-  opacity:.15;filter:saturate(.4) brightness(.4);
-}
+  .dot {
+    width: 20px;
+    height: 2px;
+    background: var(--border2);
+    transition: background 0.3s;
+  }
 
-.profile-reveal-label {
-  font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.65em;color:var(--terra);
-  text-transform:uppercase;margin-bottom:1.5rem;position:relative;z-index:2;
-  opacity:0;animation:fadeUp .7s ease .2s forwards;
-}
-.profile-name {
-  font-family:'Cinzel',serif;font-size:clamp(2.2rem,6vw,5rem);
-  font-weight:400;letter-spacing:.04em;color:var(--cream);line-height:1.05;
-  position:relative;z-index:2;margin-bottom:.5rem;
-  opacity:0;animation:fadeUp .7s ease .5s forwards;
-}
-.profile-archetype {
-  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;
-  font-size:clamp(1rem,2.5vw,1.4rem);letter-spacing:.2em;color:var(--gold);
-  position:relative;z-index:2;margin-bottom:2rem;
-  opacity:0;animation:fadeUp .7s ease .8s forwards;
-}
-.profile-essence {
-  font-size:clamp(1rem,2vw,1.2rem);font-weight:300;line-height:2;
-  color:var(--sage-l);max-width:560px;position:relative;z-index:2;
-  opacity:0;animation:fadeUp .7s ease 1s forwards;
-}
-.profile-essence em{color:var(--cream);font-style:italic}
+  .dot.done { background: var(--gold); }
+  .dot.active { background: var(--gold-light); }
 
-.results-body { padding:5rem 2rem;max-width:860px;margin:0 auto;width:100%; }
+  .question-reveal {
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+    margin-left: auto;
+    font-weight: 200;
+  }
 
-.result-panel {
-  margin-bottom:3.5rem;border:1px solid rgba(196,166,120,.1);
-  background:rgba(255,255,255,.018);position:relative;overflow:hidden;padding:3rem;
-  opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;
-}
-.result-panel.visible{opacity:1;transform:translateY(0)}
-.result-panel::before {
-  content:'';position:absolute;top:0;left:0;right:0;height:1px;
-  background:linear-gradient(to right,transparent,var(--gold),transparent);
-}
-.panel-label { font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.55em;color:var(--terra);text-transform:uppercase;margin-bottom:1rem;display:block; }
-.panel-title { font-family:'Cinzel',serif;font-size:clamp(1.1rem,2.5vw,1.6rem);font-weight:400;color:var(--cream);margin-bottom:1.2rem; }
-.panel-body { font-size:1.05rem;font-weight:300;color:var(--muted);line-height:2; }
-.panel-body em{color:var(--cream);font-style:italic}
-.panel-body strong{color:var(--gold);font-style:normal;font-weight:400}
+  .question-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.6rem, 3.5vw, 2.3rem);
+    font-weight: 400;
+    color: var(--cream);
+    line-height: 1.3;
+    margin-bottom: 10px;
+  }
 
-.scripture-box {
-  border-left:2px solid var(--gold);padding:1.5rem 2rem;
-  background:rgba(196,166,120,.04);margin-top:1.5rem;
-}
-.scripture-text { font-size:1.15rem;font-style:italic;font-weight:300;color:var(--cream);line-height:1.8; }
-.scripture-ref { font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.4em;color:var(--terra);text-transform:uppercase;margin-top:.8rem;display:block; }
+  .question-stem {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+    font-style: italic;
+    color: var(--gold);
+    margin-bottom: 40px;
+    line-height: 1.4;
+  }
 
-/* ══ ROADMAP ══ */
-.roadmap-section {
-  padding:5rem 2rem;background:var(--dark2);position:relative;overflow:hidden;
-}
-.roadmap-section::before {
-  content:'';position:absolute;inset:0;
-  background:radial-gradient(ellipse at center, rgba(196,166,120,.03), transparent 70%);
-}
-.roadmap-inner{max-width:860px;margin:0 auto;position:relative;z-index:2;}
-.roadmap-title{font-family:'Cinzel',serif;font-size:clamp(1.3rem,3vw,2rem);font-weight:400;color:var(--cream);text-align:center;margin-bottom:3rem;}
+  .options-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
 
-.steps-track { position:relative;padding-left:3rem; }
-.steps-track::before {
-  content:'';position:absolute;left:.8rem;top:0;bottom:0;width:1px;
-  background:linear-gradient(to bottom,transparent,var(--gold),var(--gold),transparent);opacity:.2;
-}
+  .option-btn {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 20px 24px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    font-family: 'Jost', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 300;
+    line-height: 1.6;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: left;
+    width: 100%;
+  }
 
-.step {
-  position:relative;margin-bottom:2rem;padding:2rem 2.2rem;
-  border:1px solid rgba(196,166,120,.08);background:var(--glass);transition:all .4s;
-}
-.step::before {
-  content:'';position:absolute;left:-2.3rem;top:50%;transform:translateY(-50%);
-  width:10px;height:10px;border-radius:50%;
-  background:var(--dark3);border:1px solid rgba(196,166,120,.3);
-}
-.step.unlocked { cursor:pointer; }
-.step.unlocked:hover{background:rgba(196,166,120,.05);border-color:rgba(196,166,120,.2);}
-.step.unlocked::before{background:var(--gold);border-color:var(--gold);}
-.step.locked{opacity:.4;cursor:default;}
-.step.locked::before{background:var(--dark3)}
+  .option-letter {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    color: var(--gold-dim);
+    flex-shrink: 0;
+    margin-top: 1px;
+    transition: color 0.3s;
+  }
 
-.step-num { font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.4em;color:var(--terra);text-transform:uppercase;margin-bottom:.5rem;display:block; }
-.step-title { font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:400;color:var(--cream);margin-bottom:.4rem; }
-.step-desc{font-size:.95rem;color:var(--muted);font-weight:300;line-height:1.7;}
-.step-lock { font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.3em;color:rgba(196,166,120,.3);text-transform:uppercase;margin-top:.6rem;display:block; }
+  .option-btn:hover {
+    border-color: var(--gold-dim);
+    color: var(--cream);
+    background: var(--surface2);
+  }
 
-.step-action-btn {
-  display:inline-block;margin-top:1.2rem;font-family:'Cinzel',serif;font-size:.65rem;
-  letter-spacing:.25em;text-transform:uppercase;color:var(--gold);
-  border:1px solid rgba(196,166,120,.4);padding:.7rem 1.6rem;
-  background:none;cursor:pointer;transition:all .3s;text-decoration:none;
-}
-.step-action-btn:hover{background:rgba(196,166,120,.08);border-color:var(--gold);}
+  .option-btn:hover .option-letter { color: var(--gold); }
 
-/* ══ EMAIL ══ */
-.email-section {
-  padding:6rem 2rem;text-align:center;background:var(--dark);position:relative;overflow:hidden;
-}
-.email-section::before {
-  content:'';position:absolute;inset:0;background-image:url('banner.png');
-  background-size:cover;background-position:center;opacity:.07;filter:blur(3px);
-}
-.email-inner{position:relative;z-index:2;max-width:560px;margin:0 auto;}
-.email-title { font-family:'Cinzel',serif;font-size:clamp(1.4rem,3vw,2.2rem);font-weight:400;color:var(--cream);margin-bottom:1rem; }
-.email-body{font-size:1.05rem;font-weight:300;color:var(--muted);line-height:1.9;margin-bottom:2.5rem;}
-.email-body em{color:var(--cream);font-style:italic}
+  .option-btn.selected {
+    border-color: var(--gold);
+    color: var(--cream);
+    background: rgba(201,169,110,0.06);
+  }
 
-.email-form { display:flex;flex-direction:column;gap:1rem;max-width:420px;margin:0 auto; }
-.email-input {
-  font-family:'Cormorant Garamond',serif;font-size:1rem;font-style:italic;
-  padding:1.1rem 1.5rem;background:rgba(255,255,255,.04);
-  border:1px solid rgba(196,166,120,.2);color:var(--cream);
-  outline:none;transition:border-color .3s;letter-spacing:.05em;
-}
-.email-input::placeholder{color:rgba(245,241,232,.3)}
-.email-input:focus{border-color:var(--gold)}
+  .option-btn.selected .option-letter { color: var(--gold); }
 
-.btn-email {
-  font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;
-  color:var(--dark);background:var(--gold);border:none;padding:1.2rem;
-  cursor:pointer;transition:all .35s;position:relative;overflow:hidden;
-}
-.btn-email::after{content:'';position:absolute;inset:0;background:rgba(255,255,255,.18);transform:translateX(-110%);transition:transform .4s;}
-.btn-email:hover::after{transform:translateX(0)}
-.btn-email:hover{transform:translateY(-2px);box-shadow:0 10px 36px rgba(196,166,120,.35)}
-.email-note{font-size:.8rem;color:rgba(196,166,120,.35);font-style:italic;margin-top:.8rem;}
+  .question-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 40px;
+  }
 
-/* ══ CIRCLE CTA ══ */
-.circle-cta {
-  padding:7rem 2rem;background:var(--dark2);text-align:center;position:relative;overflow:hidden;
-}
-.circle-cta::before{
-  content:'';position:absolute;inset:0;
-  background:radial-gradient(ellipse at center, rgba(196,166,120,.05), transparent 65%);
-}
-.circle-inner{position:relative;z-index:2;max-width:640px;margin:0 auto;}
-.circle-title{font-family:'Cinzel',serif;font-size:clamp(1.3rem,3vw,2rem);font-weight:400;color:var(--cream);margin-bottom:1.2rem;}
-.circle-body{font-size:1.1rem;font-weight:300;color:var(--muted);line-height:2;margin-bottom:3rem;}
-.circle-body em{color:var(--cream);font-style:italic}
-.circle-btns{display:flex;gap:1.2rem;justify-content:center;flex-wrap:wrap;}
-.btn-circle {
-  font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;
-  color:var(--dark);background:var(--gold);border:none;padding:1.1rem 2.8rem;
-  cursor:pointer;transition:all .35s;position:relative;overflow:hidden;
-  text-decoration:none;display:inline-block;
-}
-.btn-circle::after{content:'';position:absolute;inset:0;background:rgba(255,255,255,.18);transform:translateX(-110%);transition:transform .4s;}
-.btn-circle:hover::after{transform:translateX(0)}
-.btn-circle:hover{transform:translateY(-3px);box-shadow:0 14px 44px rgba(196,166,120,.4)}
-.btn-circle-ghost {
-  font-family:'Cormorant Garamond',serif;font-size:1rem;font-style:italic;letter-spacing:.15em;
-  color:var(--cream);background:transparent;border:1px solid rgba(245,241,232,.2);
-  padding:1.1rem 2.8rem;cursor:pointer;transition:all .35s;
-  text-decoration:none;display:inline-block;
-}
-.btn-circle-ghost:hover{border-color:var(--gold);color:var(--gold)}
+  .btn-back {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-family: 'Jost', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    cursor: pointer;
+    transition: color 0.3s;
+    font-weight: 300;
+  }
 
-/* ══ FOOTER ══ */
-.tqa-footer { padding:3rem 2rem 2rem;border-top:1px solid rgba(196,166,120,.07);text-align:center; }
-.footer-logo{font-family:'Cinzel',serif;font-size:.9rem;letter-spacing:.35em;color:var(--gold);text-transform:uppercase;margin-bottom:.4rem;}
-.footer-tag{font-style:italic;font-size:.85rem;color:var(--muted);margin-bottom:1.5rem;}
-.footer-links{display:flex;gap:1.8rem;justify-content:center;flex-wrap:wrap;margin-bottom:1.5rem;}
-.footer-links a{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(245,241,232,.25);text-decoration:none;transition:color .3s;cursor:pointer;}
-.footer-links a:hover{color:var(--gold)}
-.footer-copy{font-size:.72rem;color:rgba(245,241,232,.15);letter-spacing:.1em;}
+  .btn-back:hover { color: var(--text-dim); }
 
-/* ══ SALVATION FLASH ══ */
-.salvation-flash {
-  position:fixed;bottom:2rem;right:2rem;background:rgba(14,12,10,.92);
-  border:1px solid rgba(196,166,120,.25);padding:1rem 1.4rem;
-  font-family:'Cormorant Garamond',serif;font-size:.95rem;font-style:italic;color:var(--cream);
-  z-index:800;opacity:0;transform:translateY(10px);transition:all .5s;
-  max-width:280px;text-align:center;line-height:1.6;
-}
-.salvation-flash.show{opacity:1;transform:translateY(0)}
-.salvation-flash strong{color:var(--gold);font-style:normal;}
+  .btn-next {
+    padding: 13px 36px;
+    background: transparent;
+    border: 1px solid var(--gold-dim);
+    color: var(--gold);
+    font-family: 'Jost', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 300;
+    opacity: 0.4;
+    pointer-events: none;
+  }
 
-/* ══ SILENCE MODAL ══ */
-#silenceModal {
-  display:none;position:fixed;inset:0;
-  background:rgba(10,8,6,.97);
-  z-index:9998;align-items:center;justify-content:center;
-  flex-direction:column;padding:2rem;text-align:center;
-}
-#silenceModal.open { display:flex; }
+  .btn-next.enabled {
+    opacity: 1;
+    pointer-events: all;
+  }
 
-.silence-ring-wrap {
-  position:relative;width:240px;height:240px;margin:0 auto 3rem;
-  display:flex;align-items:center;justify-content:center;
-}
-.s-ring {
-  position:absolute;border-radius:50%;border:1px solid rgba(196,166,120,.15);
-  top:50%;left:50%;transform:translate(-50%,-50%);
-  animation:silencePulse 5s ease-in-out infinite;
-}
-.s-ring:nth-child(1){width:240px;height:240px;animation-delay:0s}
-.s-ring:nth-child(2){width:180px;height:180px;animation-delay:.8s;border-color:rgba(196,166,120,.25)}
-.s-ring:nth-child(3){width:120px;height:120px;animation-delay:1.6s;border-color:rgba(196,166,120,.4)}
-@keyframes silencePulse{0%,100%{opacity:.4;transform:translate(-50%,-50%) scale(1)}50%{opacity:1;transform:translate(-50%,-50%) scale(1.04)}}
+  .btn-next.enabled:hover {
+    background: var(--gold);
+    color: var(--bg);
+  }
 
-.silence-timer {
-  font-family:'Cinzel',serif;font-size:3.5rem;font-weight:400;
-  color:var(--cream);letter-spacing:.08em;position:absolute;
-}
-.silence-phase {
-  font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.5em;
-  color:var(--terra);text-transform:uppercase;margin-bottom:1rem;
-}
-.silence-title {
-  font-family:'Cormorant Garamond',serif;font-size:clamp(1.3rem,3vw,1.8rem);
-  font-style:italic;font-weight:300;color:var(--cream);margin-bottom:.5rem;
-}
-.silence-sub { font-size:1rem;color:var(--muted);font-weight:300;margin-bottom:3rem; }
+  /* ─── EMAIL CAPTURE ─── */
+  #screen-email {
+    align-items: center;
+    justify-content: center;
+    padding: 80px 24px;
+    min-height: 100vh;
+    text-align: center;
+  }
 
-.silence-controls { display:flex;gap:1.2rem;justify-content:center;flex-wrap:wrap; }
-.btn-silence {
-  font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;
-  padding:1rem 2.5rem;border:none;cursor:pointer;transition:all .35s;
-}
-.btn-silence.primary{background:var(--gold);color:var(--dark);}
-.btn-silence.primary:hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(196,166,120,.35)}
-.btn-silence.ghost{background:none;color:var(--muted);border:1px solid rgba(196,166,120,.2);}
-.btn-silence.ghost:hover{color:var(--gold);border-color:rgba(196,166,120,.4);}
+  .email-wrap {
+    max-width: 500px;
+    width: 100%;
+  }
 
-.silence-complete { display:none;max-width:500px; }
-.silence-complete.show { display:block; }
+  .email-icon {
+    font-size: 2rem;
+    margin-bottom: 28px;
+    opacity: 0.6;
+  }
 
-@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+  .email-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 400;
+    color: var(--cream);
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
 
-@media(max-width:640px){
-  .q-option{padding:1.1rem 1.3rem}
-  .results-body,.roadmap-inner{padding-left:1rem;padding-right:1rem}
-  .steps-track{padding-left:2rem}
-  .result-panel{padding:2rem 1.5rem}
-}
+  .email-sub {
+    font-size: 0.88rem;
+    color: var(--text-dim);
+    line-height: 1.8;
+    margin-bottom: 40px;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .form-input {
+    padding: 16px 20px;
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    color: var(--cream);
+    font-family: 'Jost', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 300;
+    width: 100%;
+    transition: border-color 0.3s;
+    outline: none;
+  }
+
+  .form-input::placeholder { color: var(--text-muted); }
+  .form-input:focus { border-color: var(--gold-dim); }
+
+  .email-privacy {
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    margin-top: 16px;
+    letter-spacing: 0.05em;
+  }
+
+  /* ─── RESULTS ─── */
+  #screen-results {
+    padding: 0;
+    min-height: 100vh;
+  }
+
+  .results-hero {
+    text-align: center;
+    padding: 80px 24px 60px;
+    position: relative;
+    background: linear-gradient(180deg, rgba(201,169,110,0.05) 0%, transparent 100%);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .profile-badge {
+    display: inline-block;
+    padding: 8px 24px;
+    border: 1px solid var(--gold-dim);
+    font-size: 0.62rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    margin-bottom: 28px;
+    font-weight: 300;
+  }
+
+  .results-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 300;
+    color: var(--cream);
+    line-height: 1.05;
+    margin-bottom: 8px;
+  }
+
+  .results-name em {
+    color: var(--gold);
+    font-style: italic;
+  }
+
+  .results-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    color: var(--cream-dim);
+    margin-top: 12px;
+  }
+
+  .results-section {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 60px 24px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .results-section:last-child { border-bottom: none; }
+
+  .section-label {
+    font-size: 0.6rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold-dim);
+    font-weight: 300;
+    margin-bottom: 24px;
+  }
+
+  .diagnosis-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.15rem, 2.2vw, 1.45rem);
+    font-weight: 400;
+    color: var(--cream);
+    line-height: 1.75;
+  }
+
+  .scripture-card {
+    background: var(--surface);
+    border-left: 2px solid var(--gold);
+    padding: 32px 36px;
+    margin-top: 8px;
+  }
+
+  .scripture-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--cream);
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+
+  .scripture-ref {
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: var(--gold-dim);
+    font-weight: 300;
+  }
+
+  .lessons-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 8px;
+  }
+
+  .lesson-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 20px 24px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+  }
+
+  .lesson-glyph {
+    color: var(--gold);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .lesson-text {
+    font-size: 0.88rem;
+    color: var(--text-dim);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  .breakthrough-box {
+    background: var(--surface);
+    border: 1px solid var(--border2);
+    padding: 36px;
+    margin-top: 8px;
+    position: relative;
+  }
+
+  .breakthrough-box::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .breakthrough-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: var(--cream);
+    margin-bottom: 16px;
+  }
+
+  .breakthrough-body {
+    font-size: 0.88rem;
+    color: var(--text-dim);
+    line-height: 1.85;
+    font-weight: 300;
+  }
+
+  .practice-tag {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 8px 20px;
+    border: 1px solid var(--sage);
+    color: var(--sage-light);
+    font-size: 0.68rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 300;
+  }
+
+  /* ─── TESTIMONY ─── */
+  .testimony-section {
+    background: var(--bg2);
+  }
+
+  .testimony-inner {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 60px 24px;
+  }
+
+  .testimony-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--cream);
+    line-height: 1.8;
+    margin-bottom: 32px;
+  }
+
+  .testimony-body {
+    font-size: 0.88rem;
+    color: var(--text-dim);
+    line-height: 1.9;
+    font-weight: 300;
+  }
+
+  .testimony-sig {
+    margin-top: 32px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--gold-dim);
+  }
+
+  /* ─── NEXT STEPS ─── */
+  .next-steps-section {
+    background: var(--bg);
+  }
+
+  .next-steps-inner {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 60px 24px;
+  }
+
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+    margin-top: 8px;
+  }
+
+  .step-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 32px 28px;
+    position: relative;
+    transition: border-color 0.3s;
+  }
+
+  .step-card:hover { border-color: var(--gold-dim); }
+
+  .step-tier {
+    font-size: 0.58rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+    font-weight: 300;
+  }
+
+  .step-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: var(--cream);
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+
+  .step-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    font-weight: 300;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .step-price span {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+  }
+
+  .step-features {
+    list-style: none;
+    margin-bottom: 24px;
+  }
+
+  .step-features li {
+    font-size: 0.82rem;
+    color: var(--text-dim);
+    padding: 6px 0;
+    border-bottom: 1px solid var(--border);
+    font-weight: 300;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    line-height: 1.5;
+  }
+
+  .step-features li::before {
+    content: '—';
+    color: var(--gold-dim);
+    flex-shrink: 0;
+  }
+
+  .step-btn {
+    display: block;
+    width: 100%;
+    padding: 13px 20px;
+    text-align: center;
+    background: transparent;
+    border: 1px solid var(--gold-dim);
+    color: var(--gold);
+    font-family: 'Jost', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 300;
+    text-decoration: none;
+  }
+
+  .step-btn:hover {
+    background: var(--gold);
+    color: var(--bg);
+    border-color: var(--gold);
+  }
+
+  .step-btn.primary {
+    background: var(--gold);
+    color: var(--bg);
+  }
+
+  .step-btn.primary:hover {
+    background: var(--gold-light);
+    border-color: var(--gold-light);
+  }
+
+  .step-card.featured {
+    border-color: var(--gold-dim);
+  }
+
+  .step-card.featured::before {
+    content: 'Most Sacred';
+    position: absolute;
+    top: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--gold);
+    color: var(--bg);
+    font-size: 0.58rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 4px 16px;
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    white-space: nowrap;
+  }
+
+  .free-session-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-top: 2px solid var(--sage);
+    padding: 36px;
+    margin-bottom: 32px;
+  }
+
+  .free-session-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--cream);
+    margin-bottom: 8px;
+  }
+
+  .free-session-desc {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    line-height: 1.7;
+    margin-bottom: 20px;
+    font-weight: 300;
+  }
+
+  .session-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+
+  .session-step {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.82rem;
+    color: var(--text-dim);
+    font-weight: 300;
+  }
+
+  .session-step-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--sage);
+    flex-shrink: 0;
+  }
+
+  .btn-sage {
+    display: inline-block;
+    padding: 13px 36px;
+    background: transparent;
+    border: 1px solid var(--sage);
+    color: var(--sage-light);
+    font-family: 'Jost', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 300;
+    text-decoration: none;
+  }
+
+  .btn-sage:hover {
+    background: var(--sage);
+    color: var(--bg);
+  }
+
+  /* ─── FOOTER ─── */
+  .results-footer {
+    text-align: center;
+    padding: 48px 24px;
+    border-top: 1px solid var(--border);
+    background: var(--bg2);
+  }
+
+  .footer-ministry {
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+
+  .footer-verse {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.95rem;
+    color: var(--gold-dim);
+  }
+
+  /* ─── CONFIRMATION ─── */
+  .confirmation-banner {
+    background: rgba(125,140,110,0.08);
+    border: 1px solid var(--sage);
+    border-left: 3px solid var(--sage);
+    padding: 20px 24px;
+    max-width: 720px;
+    margin: 0 auto;
+    margin-bottom: 0;
+    text-align: left;
+  }
+
+  .confirmation-banner p {
+    font-size: 0.85rem;
+    color: var(--sage-light);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 600px) {
+    .steps-grid { grid-template-columns: 1fr; }
+    .question-meta { flex-wrap: wrap; }
+    .breakthrough-box { padding: 24px; }
+    .scripture-card { padding: 24px; }
+  }
 </style>
 </head>
 <body>
 
-<!-- ════ SCREEN 1: LANDING ════ -->
-<div id="screen-landing" class="screen active">
+<!-- PROGRESS BAR -->
+<div class="progress-bar-container" id="progressBar" style="display:none;">
+  <div class="progress-bar-fill" id="progressFill" style="width:0%"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- SCREEN 1: LANDING                          -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="screen active" id="screen-landing">
   <div class="landing-bg"></div>
-  <div class="veil"></div>
-  <div class="rings">
-    <div class="ring"></div><div class="ring"></div>
-    <div class="ring"></div><div class="ring"></div><div class="ring"></div>
-  </div>
-
-  <div class="landing-inner">
-    <p class="tqa-eyebrow">Sanctuary Grace Ministry</p>
-    <h1 class="tqa-title">The Quiet<br>Authority</h1>
-    <p class="tqa-subtitle">Discover Your Sacred Profile</p>
+  <div style="position:relative; z-index:1; display:flex; flex-direction:column; align-items:center;">
+    <div class="dove-icon">🕊️</div>
+    <div class="ministry-label">Sanctuary Grace Ministry</div>
+    <h1 class="landing-title serif">
+      The Quiet
+      <span>Authority</span>
+    </h1>
     <div class="gold-line"></div>
-    <p class="tqa-declaration">
-      You were not meant to figure this out by exhausting yourself.<br>
-      <strong>You were assigned before you started trying.</strong><br>
-      Eight questions. Four profiles. One encounter —<br>
-      with the woman God has always seen.
+    <p class="landing-subtitle serif">What Is Silence Teaching You?</p>
+    <p class="landing-intro">
+      You came here because something isn't working. The striving, the exhaustion, the endless noise — and somewhere beneath it all, a voice you've been too busy to hear.<br><br>
+      This 8-question assessment will reveal your Silence Profile and the personalized breakthrough path waiting for you in the stillness.
     </p>
-    <div class="landing-cta">
-      <button class="btn-primary" onclick="startAssessment()">Begin the Encounter</button>
-      <button class="btn-secondary" onclick="startAssessment()">Eight questions · Five minutes · Your assignment awaits</button>
-      <div class="profile-preview">
-        <span class="profile-chip">Striving Achiever</span>
-        <span class="profile-chip">Depleted Survivor</span>
-        <span class="profile-chip">Guilty Giver</span>
-        <span class="profile-chip">Lost Wanderer</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="scroll-hint">
-    <span>Enter</span>
-    <div class="scroll-bar"></div>
-  </div>
-</div>
-
-<!-- ════ SCREEN 2: ASSESSMENT ════ -->
-<div id="screen-assessment" class="screen">
-  <div class="assessment-header">
-    <span class="header-brand">The Quiet Authority</span>
-    <div class="progress-wrap">
-      <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
-      <span class="progress-label" id="progressLabel">1 of 8</span>
-    </div>
-  </div>
-  <div class="question-stage">
-    <div class="question-card" id="questionCard"></div>
-  </div>
-</div>
-
-<!-- ════ SCREEN 3: CALCULATING ════ -->
-<div id="screen-calculating" class="screen">
-  <div class="veil"></div>
-  <div class="rings">
-    <div class="ring"></div><div class="ring"></div><div class="ring"></div>
-  </div>
-  <div class="calc-inner">
-    <div class="sacred-seal">
-      <div class="seal-ring"></div>
-      <div class="seal-ring"></div>
-      <div class="seal-ring"></div>
-      <div class="seal-center"></div>
-    </div>
-    <span class="s-label">Discerning Your Assignment</span>
-    <h2 class="calc-title">The Spirit is speaking<br>over what you answered</h2>
-    <div class="gold-line"></div>
-    <p class="calc-verse">"For I know the thoughts I think toward you, saith the Lord — thoughts of peace, and not of evil, to give you an expected end."</p>
-    <span class="calc-ref">Jeremiah 29:11</span>
-  </div>
-</div>
-
-<!-- ════ SCREEN 4: RESULTS ════ -->
-<div id="screen-results" class="screen">
-
-  <div class="results-hero">
-    <div class="results-bg"></div>
-    <div class="veil"></div>
-    <div class="rings" style="opacity:.6">
-      <div class="ring"></div><div class="ring"></div><div class="ring"></div>
-    </div>
-    <span class="profile-reveal-label">Your Sacred Profile</span>
-    <h2 class="profile-name" id="resultName">—</h2>
-    <p class="profile-archetype" id="resultArchetype">—</p>
-    <div class="gold-line"></div>
-    <p class="profile-essence" id="resultEssence">—</p>
-  </div>
-
-  <div class="results-body">
-    <div class="result-panel" id="panelMirror">
-      <span class="panel-label">Mirror Moment</span>
-      <h3 class="panel-title" id="mirrorTitle">—</h3>
-      <p class="panel-body" id="mirrorBody">—</p>
-    </div>
-    <div class="result-panel" id="panelDiagnosis">
-      <span class="panel-label">The Sacred Diagnosis</span>
-      <h3 class="panel-title" id="diagnosisTitle">—</h3>
-      <p class="panel-body" id="diagnosisBody">—</p>
-      <div class="scripture-box">
-        <p class="scripture-text" id="scriptureText">—</p>
-        <span class="scripture-ref" id="scriptureRef">—</span>
-      </div>
-    </div>
-    <div class="result-panel" id="panelBreakthrough">
-      <span class="panel-label">Your Breakthrough Path</span>
-      <h3 class="panel-title" id="breakthroughTitle">—</h3>
-      <p class="panel-body" id="breakthroughBody">—</p>
-    </div>
-  </div>
-
-  <!-- ROADMAP -->
-  <div class="roadmap-section">
-    <div class="roadmap-inner">
-      <span class="s-label" style="text-align:center;display:block">Your Transformation Journey</span>
-      <h3 class="roadmap-title">The Sacred Roadmap</h3>
-      <div class="gold-line"></div>
-      <div class="steps-track" id="stepsTrack"></div>
-    </div>
-  </div>
-
-  <!-- EMAIL -->
-  <div class="email-section" id="emailSection">
-    <div class="email-inner" id="emailInner">
-      <span class="s-label">Receive Your Full Profile</span>
-      <h3 class="email-title">Enter your name into the circle</h3>
-      <div class="gold-line"></div>
-      <p class="email-body">Your profile will be sent to your inbox along with a personal letter — <em>written for the woman God has been seeing all along.</em></p>
-      <div class="email-form">
-        <input type="text" class="email-input" id="nameInput" placeholder="Your first name">
-        <input type="email" class="email-input" id="emailInput" placeholder="Your email address">
-        <button class="btn-email" onclick="submitEmail()">Receive My Profile</button>
-        <p class="email-note">Your peace is safe with us. No spam. Ever.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- CIRCLE CTA -->
-  <div class="circle-cta">
-    <div class="circle-inner">
-      <div class="rings" style="opacity:.3">
-        <div class="ring"></div><div class="ring"></div><div class="ring"></div>
-      </div>
-      <span class="s-label">The Next Step</span>
-      <h3 class="circle-title">The silence that revealed you<br>is waiting to transform you</h3>
-      <div class="gold-line"></div>
-      <p class="circle-body">Your profile is the beginning. <em>The Circle of Silence is where the becoming happens.</em> A 30 &amp; 90-day guided transformation ministry — built for women who are serious about going inward.</p>
-      <div class="circle-btns">
-        <a href="https://transform24.github.io/circle-of-silence" target="_blank" class="btn-circle">Enter the Circle</a>
-        <button class="btn-circle-ghost" onclick="showScreen('screen-landing')">Begin Again</button>
-      </div>
-    </div>
-  </div>
-
-  <footer class="tqa-footer">
-    <p class="footer-logo">The Quiet Authority</p>
-    <p class="footer-tag">Powered by Sanctuary Grace Ministry</p>
-    <div class="footer-links">
-      <a onclick="showScreen('screen-landing')">Start Over</a>
-      <a href="https://pinterest.com/sanctuarygrace" target="_blank">Pinterest</a>
-      <a href="https://youtube.com/@sanctuarygrace" target="_blank">YouTube</a>
-      <a href="https://website.beacons.ai/sanctuarygrace" target="_blank">Community</a>
-      <a href="https://transform24.github.io/circle-of-silence" target="_blank">Circle of Silence</a>
-    </div>
-    <p class="footer-copy">© 2026 The Quiet Authority · Sanctuary Grace Ministry · All rights reserved</p>
-  </footer>
-</div>
-
-<!-- SALVATION FLASH -->
-<div class="salvation-flash" id="salvationFlash">
-  <strong>Luke 15:10 —</strong><br>
-  There is joy in the presence of the angels of God over one sinner that repenteth.
-</div>
-
-<!-- ════ SILENCE MODAL ════ -->
-<div id="silenceModal">
-  <span class="silence-phase" id="silencePhase">Phase I · The Sacred Deposit</span>
-  <h2 class="silence-title" id="silenceTitle">Prepare to Hear</h2>
-  <p class="silence-sub" id="silenceSub">Quiet the external noise.</p>
-
-  <div class="silence-ring-wrap">
-    <div class="s-ring"></div>
-    <div class="s-ring"></div>
-    <div class="s-ring"></div>
-    <div class="silence-timer" id="silenceTimerDisplay">5:00</div>
-  </div>
-
-  <div class="silence-controls" id="silenceControls">
-    <button class="btn-silence primary" id="silenceToggleBtn" onclick="toggleSilenceTimer()">Enter the Quiet</button>
-    <button class="btn-silence ghost" onclick="resetSilenceTimer()">Reset</button>
-    <button class="btn-silence ghost" onclick="closeSilenceModal()">← Leave Session</button>
-  </div>
-
-  <div class="silence-complete" id="silenceComplete">
-    <div class="gold-line"></div>
-    <span class="s-label" style="text-align:center">Return with Peace</span>
-    <h3 style="font-family:'Cinzel',serif;font-size:1.6rem;font-weight:400;color:var(--cream);margin-bottom:1rem">The stillness has spoken</h3>
-    <p style="font-size:1rem;color:var(--muted);font-weight:300;line-height:1.9;margin-bottom:2rem;">Write what was revealed, or simply carry it. The listening is enough.</p>
-    <button class="btn-silence primary" onclick="closeSilenceModal()" style="margin:0 auto;display:block">Return to My Profile</button>
-  </div>
-</div>
-
-<!-- ════ JOURNAL MODAL ════ -->
-<div id="journalModal" style="display:none;position:fixed;inset:0;background:rgba(14,12,10,.95);
-  z-index:9999;align-items:center;justify-content:center;padding:2rem">
-  <div style="max-width:560px;width:100%;background:var(--dark2);border:1px solid rgba(196,166,120,.2);
-    padding:3rem 2.5rem;position:relative">
-    <button onclick="closeJournalModal()" style="position:absolute;top:1.2rem;right:1.5rem;
-      background:none;border:none;color:var(--muted);font-size:1.2rem;cursor:pointer">✕</button>
-    <span style="font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.4em;
-      text-transform:uppercase;color:var(--terra)">Your First Truth</span>
-    <h3 style="font-family:'Cinzel',serif;font-size:1.3rem;font-weight:400;color:var(--cream);
-      margin:1rem 0 .5rem">Write one honest sentence</h3>
-    <div style="width:2.5rem;height:1px;background:var(--gold);margin-bottom:1.5rem"></div>
-    <p style="font-size:.9rem;color:var(--muted);line-height:1.8;margin-bottom:2rem;font-style:italic">
-      Not for anyone else. Not to be seen. Just between you and the God who already knows.<br><br>
-      What is one true thing you discovered about yourself today?
-    </p>
-    <textarea id="journalEntry" placeholder="Write your truth here..."
-      style="width:100%;min-height:120px;background:rgba(196,166,120,.04);
-      border:1px solid rgba(196,166,120,.2);color:var(--cream);padding:1rem;
-      font-family:'Cormorant Garamond',serif;font-size:1rem;line-height:1.8;
-      resize:vertical;box-sizing:border-box;outline:none"></textarea>
-    <button onclick="saveJournalEntry()"
-      style="margin-top:1.5rem;width:100%;background:var(--gold);color:var(--dark1);
-      border:none;padding:1rem;font-family:'Cinzel',serif;font-size:.7rem;
-      letter-spacing:.25em;text-transform:uppercase;cursor:pointer">
-      Receive This Truth
+    <button class="btn-primary" onclick="startAssessment()">
+      <span>Begin the Assessment</span>
     </button>
-    <div id="journalConfirm" style="display:none;margin-top:1.5rem;text-align:center;
-      font-style:italic;color:var(--gold);font-size:.95rem;line-height:1.8">
-      Your truth has been witnessed.<br>
-      <span style="color:var(--muted);font-size:.85rem">Return to it. It will grow.</span>
+    <p class="landing-promise">8 questions · 3 minutes · Your breakthrough path awaits</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- SCREEN 2: QUESTIONS                        -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="screen" id="screen-question">
+  <div class="question-wrap" id="questionWrap">
+    <div class="question-meta">
+      <span class="question-num" id="qNum">QUESTION 1 OF 8</span>
+      <div class="question-dots" id="qDots"></div>
+      <span class="question-reveal" id="qReveal"></span>
+    </div>
+    <h2 class="question-text" id="qTitle"></h2>
+    <p class="question-stem" id="qStem"></p>
+    <div class="options-grid" id="qOptions"></div>
+    <div class="question-nav">
+      <button class="btn-back" id="btnBack" onclick="goBack()">← Back</button>
+      <button class="btn-next" id="btnNext" onclick="nextQuestion()">
+        <span>Continue</span>
+      </button>
     </div>
   </div>
 </div>
 
+<!-- ═══════════════════════════════════════════ -->
+<!-- SCREEN 3: EMAIL CAPTURE                    -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="screen" id="screen-email">
+  <div class="email-wrap">
+    <div class="email-icon">🕊️</div>
+    <h2 class="email-title serif">Your profile is ready.</h2>
+    <p class="email-sub">Enter your name and email to receive your Silence Profile and personalized breakthrough path — plus your first guided silence practice.</p>
+    <div class="form-group">
+      <input type="text" class="form-input" id="inputName" placeholder="Your first name" autocomplete="given-name">
+      <input type="email" class="form-input" id="inputEmail" placeholder="Your email address" autocomplete="email">
+    </div>
+    <button class="btn-primary" onclick="revealResults()" style="width:100%; display:block; text-align:center;">
+      <span>Reveal My Profile</span>
+    </button>
+    <p class="email-privacy">Your information is sacred. We never share it. You can unsubscribe anytime.</p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- SCREEN 4: RESULTS                          -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="screen" id="screen-results">
+
+  <!-- HERO -->
+  <div class="results-hero">
+    <div class="profile-badge">Your Silence Profile</div>
+    <h1 class="results-name serif" id="rProfileName"></h1>
+    <p class="results-tagline serif" id="rTagline"></p>
+  </div>
+
+  <!-- CONFIRMATION -->
+  <div id="confirmationBanner" style="display:none; background:var(--bg2); padding: 20px 24px;">
+    <div class="confirmation-banner">
+      <p id="confirmationText"></p>
+    </div>
+  </div>
+
+  <!-- SECTION 1: DIAGNOSIS -->
+  <div class="results-section">
+    <div class="section-label">Based on your responses, here's what I see</div>
+    <p class="diagnosis-text" id="rDiagnosis"></p>
+  </div>
+
+  <!-- SECTION 2: SCRIPTURE -->
+  <div class="results-section">
+    <div class="section-label">This is what God wants you to hear right now</div>
+    <div class="scripture-card">
+      <p class="scripture-text" id="rScripture"></p>
+      <p class="scripture-ref" id="rScriptureRef"></p>
+    </div>
+  </div>
+
+  <!-- SECTION 3: LESSONS -->
+  <div class="results-section">
+    <div class="section-label">What Silence Wants to Teach You</div>
+    <div class="lessons-grid" id="rLessons"></div>
+  </div>
+
+  <!-- SECTION 4: BREAKTHROUGH -->
+  <div class="results-section">
+    <div class="section-label">Your Breakthrough Path</div>
+    <div class="breakthrough-box">
+      <h3 class="breakthrough-heading serif">Here's how transformation begins for you</h3>
+      <p class="breakthrough-body" id="rBreakthrough"></p>
+      <div class="practice-tag" id="rPracticeTag"></div>
+    </div>
+  </div>
+
+  <!-- SECTION 5: GRACE'S TESTIMONY -->
+  <div class="testimony-section">
+    <div class="testimony-inner">
+      <div class="section-label">A word from Grace</div>
+      <p class="testimony-quote serif">"I understand what you're going through — because I've been there."</p>
+      <p class="testimony-body">
+        On November 5, 2024, God broke my ankle. Not to punish me — but to still me.<br><br>
+        I was drowning. A small SSA check that barely covered anything. Responsibilities that felt impossible. Noise so loud I couldn't hear His voice. Then He made me unable to run.<br><br>
+        In that forced stillness, I learned what you're about to discover: <em style="color:var(--cream); font-style:italic;">the breakthrough you're seeking is waiting in the silence you're avoiding.</em><br><br>
+        Six years of God's faithfulness. One broken ankle that revealed it all. What He did for me, He wants to do for you.
+      </p>
+      <p class="testimony-sig">— Grace Turner, Sanctuary Grace Ministry</p>
+    </div>
+  </div>
+
+  <!-- SECTION 6: NEXT STEPS -->
+  <div class="next-steps-section">
+    <div class="next-steps-inner">
+      <div class="section-label">Your Next Steps</div>
+
+      <!-- FREE SESSION -->
+      <div class="free-session-box">
+        <p class="step-tier">Option 1 — Free</p>
+        <h3 class="free-session-title serif">Practice With Me</h3>
+        <p class="free-session-desc">Try your first guided 15-minute silence session. No experience required — just you, stillness, and what God is ready to say.</p>
+        <div class="session-steps">
+          <div class="session-step"><div class="session-step-dot"></div>5 minutes of sacred classical music to prepare your mind</div>
+          <div class="session-step"><div class="session-step-dot"></div>10 minutes of guided silence with a countdown timer</div>
+          <div class="session-step"><div class="session-step-dot"></div>A journal prompt specific to your silence profile</div>
+        </div>
+        <button class="btn-sage" onclick="startFreeSession()">Start Free Session →</button>
+      </div>
+
+      <!-- PAID TIERS -->
+      <div class="steps-grid">
+
+        <!-- Tier 1: Initiate -->
+        <div class="step-card">
+          <p class="step-tier">Option 2 — Circle of Silence</p>
+          <h3 class="step-title serif">Initiate</h3>
+          <div class="step-price">$47 <span>/ one time</span></div>
+          <ul class="step-features">
+            <li>Daily 15-minute silence sessions</li>
+            <li>4-week Guided Silence Journey</li>
+            <li>Profile-specific journal prompts</li>
+            <li>Private community access</li>
+          </ul>
+          <a class="step-btn" href="mailto:grace@sanctuarygrace.com?subject=Circle of Silence — Initiate Application" target="_blank">Apply for Access</a>
+        </div>
+
+        <!-- Tier 2: Devoted -->
+        <div class="step-card featured">
+          <p class="step-tier">Option 3 — Circle of Silence</p>
+          <h3 class="step-title serif">Devoted</h3>
+          <div class="step-price">$97 <span>/ one time</span></div>
+          <ul class="step-features">
+            <li>Everything in Initiate</li>
+            <li>Weekly live guided silences with Grace</li>
+            <li>12-week transformation roadmap</li>
+            <li>Monthly group gatherings</li>
+            <li>Prayer support & accountability</li>
+          </ul>
+          <button class="step-btn primary" onclick="alert('Stripe payment link coming soon — thank you for your interest!')">Join Circle of Silence</button>
+        </div>
+
+        <!-- Tier 3: Sacred -->
+        <div class="step-card">
+          <p class="step-tier">Option 4 — Circle of Silence</p>
+          <h3 class="step-title serif">Sacred</h3>
+          <div class="step-price">$297 <span>/ one time</span></div>
+          <ul class="step-features">
+            <li>Everything in Devoted</li>
+            <li>Private 1:1 session with Grace</li>
+            <li>Custom silence prescription</li>
+            <li>Lifetime community access</li>
+            <li>Priority prayer support</li>
+          </ul>
+          <button class="step-btn" onclick="alert('Stripe payment link coming soon — thank you for your interest!')">Begin the Journey</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="results-footer">
+    <p class="footer-ministry">Sanctuary Grace Ministry · Transform24</p>
+    <p class="footer-verse serif">"Be still, and know that I am God." — Psalm 46:10</p>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- JAVASCRIPT                                 -->
+<!-- ═══════════════════════════════════════════ -->
 <script>
-// ═══════════════════
-// DATA
-// ═══════════════════
-const questions = [
-  { num:1, category:"Your Inner World", text:"When you lie still in the quiet, what rises first?",
-    options:[
-      {text:"A running list of everything I haven't finished yet.", profile:"SA"},
-      {text:"An exhaustion so deep I can't name what I even need.", profile:"DS"},
-      {text:"Guilt — someone I let down, something I should have done.", profile:"GG"},
-      {text:"A strange emptiness, like I don't know myself anymore.", profile:"LW"}
-    ]},
-  { num:2, category:"Your Relationship with Rest", text:"When someone tells you to rest, your honest response is:",
-    options:[
-      {text:"I'll rest when it's done. There's too much riding on me.", profile:"SA"},
-      {text:"I don't even know how anymore. My body is tired but my mind won't stop.", profile:"DS"},
-      {text:"I feel guilty resting when others still have needs.", profile:"GG"},
-      {text:"I rest, but I feel nothing. Not restored. Just empty.", profile:"LW"}
-    ]},
-  { num:3, category:"Your Spiritual Life", text:"How would you describe your relationship with God right now?",
-    options:[
-      {text:"I keep doing for Him, hoping He's pleased. But I'm not sure He is.", profile:"SA"},
-      {text:"I know He's there, but I'm too tired to reach. I need Him to reach for me.", profile:"DS"},
-      {text:"I feel like I've failed Him. Like I'm not worthy of what He's calling me to.", profile:"GG"},
-      {text:"I used to feel close. Now I just feel… far. And I don't know the way back.", profile:"LW"}
-    ]},
-  { num:4, category:"What Others See", text:"The people around you would describe you as:",
-    options:[
-      {text:"Capable. Reliable. Always handles everything.", profile:"SA"},
-      {text:"Strong — though they have no idea how close I am to breaking.", profile:"DS"},
-      {text:"Giving. Always available. Never asks for anything.", profile:"GG"},
-      {text:"Quiet. A little distant lately. Hard to read.", profile:"LW"}
-    ]},
-  { num:5, category:"Your Greatest Hunger", text:"What you are most deeply hungry for, if you are honest:",
-    options:[
-      {text:"Permission to stop. To breathe. To not need to earn my place.", profile:"SA"},
-      {text:"Someone to hold the weight with me. Just for a moment.", profile:"DS"},
-      {text:"To feel like who I am is enough — not what I do.", profile:"GG"},
-      {text:"To find myself again. To remember what I care about.", profile:"LW"}
-    ]},
-  { num:6, category:"The Enemy's Weapon", text:"The lie that finds you most easily, the one that feels true:",
-    options:[
-      {text:"If you slow down, everything falls apart. Your worth is your output.", profile:"SA"},
-      {text:"You're too broken for what God is calling you to.", profile:"DS"},
-      {text:"You are responsible for everyone else's peace. Always.", profile:"GG"},
-      {text:"You've drifted too far. God has moved on without you.", profile:"LW"}
-    ]},
-  { num:7, category:"The Invitation", text:"What feels most threatening about going inward in silence?",
-    options:[
-      {text:"That I'll have to stop moving and face what the stillness says about me.", profile:"SA"},
-      {text:"That I'll unravel completely, and there's no one to put me back together.", profile:"DS"},
-      {text:"That God will ask me to let go of the people I'm holding.", profile:"GG"},
-      {text:"That I'll find out I've lost myself and won't know how to return.", profile:"LW"}
-    ]},
-  { num:8, category:"Your True Assignment", text:"If transformation were possible — if everything could shift — what you truly want is:",
-    options:[
-      {text:"To rest in God's love without performing for it.", profile:"SA"},
-      {text:"To be restored from the inside out. Soul-deep healing.", profile:"DS"},
-      {text:"To give freely — from fullness, not from fear of disappointing.", profile:"GG"},
-      {text:"To come home to myself. To God. To my purpose.", profile:"LW"}
-    ]}
+const QUESTIONS = [
+  {
+    title: "When You Have a Free Moment",
+    stem: "When you have an unexpected free moment, your first instinct is to...",
+    reveals: "Relationship with stillness",
+    options: [
+      { letter: "A", text: "Fill it immediately — check phone, turn on TV, find something to do" },
+      { letter: "B", text: "Feel anxious or guilty for not being productive" },
+      { letter: "C", text: "Worry about what you're forgetting or who needs you" },
+      { letter: "D", text: "Wonder who you are without all the doing" }
+    ]
+  },
+  {
+    title: "Silence Feels Like",
+    stem: "If you sat in complete silence for 10 minutes right now, it would feel...",
+    reveals: "Primary barrier to stillness",
+    options: [
+      { letter: "A", text: "Impossible — my mind would race the entire time" },
+      { letter: "B", text: "Exhausting — I'm too tired even for silence" },
+      { letter: "C", text: "Selfish — others need me and I'd feel guilty" },
+      { letter: "D", text: "Scary — I don't know what would surface" }
+    ]
+  },
+  {
+    title: "God's Voice",
+    stem: "When you think about hearing God's voice, you...",
+    reveals: "Spiritual obstacle to listening",
+    options: [
+      { letter: "A", text: "Feel like you're too busy and distracted to hear Him clearly" },
+      { letter: "B", text: "Wonder if you'd recognize it if He spoke" },
+      { letter: "C", text: "Think He's probably disappointed you're not doing more" },
+      { letter: "D", text: "Aren't sure He speaks to people like you" }
+    ]
+  },
+  {
+    title: "The Breaking Point",
+    stem: "The moment that brought you here today feels most like...",
+    reveals: "Type of depletion",
+    options: [
+      { letter: "A", text: "Everything is falling apart and I can't keep up" },
+      { letter: "B", text: "I have nothing left to give — I'm empty" },
+      { letter: "C", text: "I can't keep saying yes when I need to say no" },
+      { letter: "D", text: "I've lost myself and don't know how to find me again" }
+    ]
+  },
+  {
+    title: "Your Deepest Fear",
+    stem: "If you're honest, your biggest fear about being still is...",
+    reveals: "What you're avoiding in silence",
+    options: [
+      { letter: "A", text: "Everything will fall apart if I stop" },
+      { letter: "B", text: "I'll realize how empty I actually am" },
+      { letter: "C", text: "People will be upset with me or disappointed" },
+      { letter: "D", text: "I'll discover I don't know who I am anymore" }
+    ]
+  },
+  {
+    title: "When God Says 'Be Still'",
+    stem: "When you read 'Be still and know that I am God' (Psalm 46:10), you...",
+    reveals: "Obedience barrier",
+    options: [
+      { letter: "A", text: "Think 'I will, as soon as I finish everything on my list'" },
+      { letter: "B", text: "Feel even more tired — like one more thing I'm failing at" },
+      { letter: "C", text: "Wonder if being still means letting people down" },
+      { letter: "D", text: "Don't understand how to do that anymore" }
+    ]
+  },
+  {
+    title: "God's Provision",
+    stem: "When you think about God's provision in tight seasons, you...",
+    reveals: "Trust level",
+    options: [
+      { letter: "A", text: "See it but worry it won't last or won't be enough" },
+      { letter: "B", text: "Struggle to see it because you're too depleted to notice" },
+      { letter: "C", text: "Feel guilty receiving when you think you should earn it" },
+      { letter: "D", text: "Question if He's really there or if it's just coincidence" }
+    ]
+  },
+  {
+    title: "What You're Ready For",
+    stem: "Right now, what you need most is...",
+    reveals: "Desired transformation",
+    options: [
+      { letter: "A", text: "Permission to stop performing and just rest in Him" },
+      { letter: "B", text: "To feel alive again — to remember what peace feels like" },
+      { letter: "C", text: "Freedom to say no without guilt and yes to what matters" },
+      { letter: "D", text: "To rediscover who God created you to be beneath all the roles" }
+    ]
+  }
 ];
 
-const profiles = {
-  SA: {
-    name:"The Striving Achiever", archetype:"Called to Rest in Identity, Not Output",
-    essence:"You are capable, driven, and deeply faithful — but somewhere along the way, <em>your worthiness became tied to your works.</em> God sees someone who has been performing for love they already have.",
-    mirror:{ title:"She Does Everything Right and Still Feels Empty", body:"You show up. You deliver. You hold the standard. But in the quiet moments — when the to-do list is done, the meeting is over, the house is finally still — there is a hollow underneath the accomplishment. <strong>That hollow is not failure.</strong> It is an invitation." },
-    diagnosis:{ title:"Performance Anxiety Dressed as Faithfulness", body:"The enemy has convinced you that your value to God and to others is measured by what you produce. Every achievement becomes a temporary stay of judgment. Every slowdown feels like spiritual failure. But God did not call you to perform. <em>He called you to remain.</em>", scripture:'"Come to me, all you who are weary and burdened, and I will give you rest."', ref:"Matthew 11:28" },
-    breakthrough:{ title:"The Practice of Sacred Ceasing", body:"Your breakthrough begins when you <strong>practice stopping before it's necessary.</strong> Not because you're done — but because you belong to a God whose love is not contingent on your output. The silence is not where you lose ground. It is where you discover the ground was never yours to hold." }
+const PROFILES = {
+  A: {
+    name: "The Striving Achiever",
+    tagline: "Your worth isn't in your output — it's in His love.",
+    diagnosis: "You've built your identity on accomplishment, and silence threatens everything you've constructed. You equate stillness with laziness, rest with irresponsibility. But God is inviting you to discover that your worth isn't in your output — it's in His love. The breakthrough you're seeking? It's waiting in the stillness you're avoiding.",
+    scripture: "Come to me, all who are weary and burdened, and I will give you rest.",
+    scriptureRef: "Matthew 11:28",
+    lessons: [
+      "You are enough without the achievement",
+      "Rest is obedience, not laziness",
+      "God's provision doesn't require your perfection"
+    ],
+    breakthrough: "Your transformation begins when you stop proving and start receiving. Start with just 5 minutes of silence — not to accomplish anything, but to practice being loved apart from performing.",
+    practiceTag: "7-Day Practice: 10 minutes of silence daily"
   },
-  DS: {
-    name:"The Depleted Survivor", archetype:"Called to Receive Before She Can Pour Again",
-    essence:"You have been strong for so long that <em>you have forgotten what it feels like to be held.</em> You are not broken. You are a woman who has been pouring without being poured into — and God is about to change that.",
-    mirror:{ title:"She Keeps Going Because She Doesn't Know How to Stop", body:"Stopping feels like collapse. So you keep moving — not because you want to, but because the alternative feels like unraveling. You are not afraid of the work. <strong>You are afraid of what happens when the work stops</strong> and all that's left is the weight you've been carrying." },
-    diagnosis:{ title:"Soul Exhaustion Wearing the Mask of Strength", body:"The world calls you strong. God calls you His. And right now, His invitation to you is not to be stronger — it is to <em>let yourself be weak in His presence.</em> The depletion you feel is not a sign of spiritual failure. It is a sign that you have been trying to fill others from an empty vessel.", scripture:'"He gives strength to the weary and increases the power of the weak."', ref:"Isaiah 40:29" },
-    breakthrough:{ title:"Receiving as a Spiritual Discipline", body:"Your breakthrough begins when you <strong>allow yourself to be ministered to.</strong> Not after you've helped everyone else. Not when you've earned it. Now. The silence is not empty — it is where God restores what the years of pouring took from you." }
+  B: {
+    name: "The Depleted Survivor",
+    tagline: "You were meant to be the vessel, not the source.",
+    diagnosis: "You're not just tired — you're empty. The well has run dry and you're operating on fumes. Silence feels like one more thing you don't have energy for. But here's the truth: God never asked you to be the source. You were meant to be the vessel. Your depletion is sacred ground — the place where self-reliance dies and dependence on Him becomes your only option.",
+    scripture: "He restores my soul. He leads me beside quiet waters.",
+    scriptureRef: "Psalm 23:2–3",
+    lessons: [
+      "You don't have to generate your own strength",
+      "Being empty makes room for Him to fill",
+      "His sustaining power shows up when you stop striving"
+    ],
+    breakthrough: "Your transformation begins with radical permission to stop. Not to 'work on yourself' in the silence — but to simply rest in His presence. Let Him carry what you've been forcing yourself to hold.",
+    practiceTag: "7-Day Practice: Sit, breathe, let Him be God"
   },
-  GG: {
-    name:"The Guilty Giver", archetype:"Called to Pour from Fullness, Not Fear",
-    essence:"You give generously, sacrificially, beautifully — but underneath the giving is a quiet anxiety. <em>You give because you are afraid of what happens if you don't.</em> God wants to free you to give from a completely different place.",
-    mirror:{ title:"She Loves Everyone Except Herself", body:"Your generosity is real. Your care is genuine. But when you give, there is often a shadow beneath it — the fear of disappointing, the anxiety of being seen as selfish, the compulsion to hold everyone's peace. <strong>That is not love. That is labor.</strong> And God never asked it of you." },
-    diagnosis:{ title:"Giving as Self-Protection Rather Than Sacred Calling", body:"Somewhere you learned that love must be earned through sacrifice. That saying no is selfish. That the needs of others are always more urgent than your own. But <em>Jesus did not pour out His life from guilt.</em> He poured from the abundance of a love that could not be diminished.", scripture:'"Each of you should give what you have decided in your heart to give, not reluctantly or under compulsion, for God loves a cheerful giver."', ref:"2 Corinthians 9:7" },
-    breakthrough:{ title:"Learning the Difference Between Calling and Compulsion", body:"Your breakthrough begins when you <strong>learn to sit with God before you serve anyone else.</strong> When you discover that your 'no' is not a betrayal — it is a boundary that protects the 'yes' God actually called you to. The silence is where He teaches you to give from overflow, not obligation." }
+  C: {
+    name: "The Guilty Giver",
+    tagline: "Boundaries aren't selfish — they're sacred.",
+    diagnosis: "Your heart to serve others is beautiful — but it's become your prison. You've confused love with self-abandonment. Silence feels selfish because you've made everyone else's needs more important than the voice of God. But boundaries aren't selfish — they're sacred. Saying 'no' to some things is actually saying 'yes' to His highest purposes for you.",
+    scripture: "It is for freedom that Christ has set us free.",
+    scriptureRef: "Galatians 5:1",
+    lessons: [
+      "God's voice matters more than people's expectations",
+      "You can love others without losing yourself",
+      "Boundaries protect what God is building in you"
+    ],
+    breakthrough: "Your transformation begins when you realize: disappointing people isn't the same as disappointing God. Silence teaches you to serve from overflow, not obligation. To give from fullness, not emptiness.",
+    practiceTag: "7-Day Practice: Identify one 'yes' that should be a 'no'"
   },
-  LW: {
-    name:"The Lost Wanderer", archetype:"Called Back to Herself and Her God",
-    essence:"You have not abandoned your faith — you have simply <em>drifted in a season that asked too much of you.</em> You are not lost to God. You are the woman He is actively seeking. And the path home is shorter than you think.",
-    mirror:{ title:"She Remembers Who She Was and Doesn't Know How to Return", body:"There was a version of you who felt certain. Who prayed with confidence. Who knew what she was called to. That woman didn't disappear — <strong>she went quiet to survive.</strong> And now the season is changing. God is calling her back." },
-    diagnosis:{ title:"Disconnection from Self as Spiritual Crisis", body:"The wandering is not rebellion. It is the soul's response to seasons that were too hard, too long, too lonely. You protected yourself the only way you knew how — by going a little numb. But numbness was never meant to be permanent. <em>You were made for aliveness.</em>", scripture:'"I will search for the lost and bring back the strays. I will bind up the injured and strengthen the weak."', ref:"Ezekiel 34:16" },
-    breakthrough:{ title:"The Practice of Coming Home", body:"Your breakthrough begins with <strong>one small return.</strong> Not a dramatic rededication. Not a full recovery. Just a single moment of honesty in the silence — 'I am here. I don't know how to find you. But I want to.' That is enough. He has already been moving toward you." }
+  D: {
+    name: "The Lost Wanderer",
+    tagline: "Silence isn't where you lose yourself — it's where you remember.",
+    diagnosis: "You've been running so long, you've forgotten where you were going. The roles, the expectations, the endless demands — they've obscured the woman God created you to be. Silence feels scary because you're not sure who you'll find there. But this disorientation isn't the end; it's the beginning. God is inviting you into the wilderness to rediscover your true identity — the one He gave you before the world told you who to be.",
+    scripture: "Be still, and know that I am God.",
+    scriptureRef: "Psalm 46:10",
+    lessons: [
+      "Who you are in Christ vs. who the world says you should be",
+      "Your identity is found in stillness, not striving",
+      "God has been speaking — you just couldn't hear Him through the noise"
+    ],
+    breakthrough: "Your transformation begins in the sacred pause. Silence isn't where you lose yourself — it's where you remember. Beneath all the roles and responsibilities, there's a woman God knows by name. She's waiting for you in the stillness.",
+    practiceTag: "14-Day Practice: Journal 'Who am I when no one needs me?'"
   }
 };
 
-// ═══════════════════
-// STATE
-// ═══════════════════
+// ─── STATE ───
 let currentQ = 0;
 let answers = [];
-let scores = {SA:0, DS:0, GG:0, LW:0};
-let stepsUnlocked = 2; // Steps 1 & 2 always unlocked on arrival
+let userName = '';
+let userEmail = '';
 
-// Silence timer state
-let silenceInterval = null;
-let silenceRunning = false;
-let silencePhaseNum = 1; // 1=prep(5min), 2=silence(10min)
-let silenceTimeLeft = 300;
-
-// ═══════════════════
-// SCREEN NAV
-// ═══════════════════
+// ─── HELPERS ───
 function showScreen(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
+  const el = document.getElementById(id);
+  el.classList.add('active');
   window.scrollTo(0, 0);
 }
 
-// ═══════════════════
-// ASSESSMENT
-// ═══════════════════
+function getProfile() {
+  const counts = { A: 0, B: 0, C: 0, D: 0 };
+  answers.forEach(a => { if (a) counts[a]++; });
+  return Object.entries(counts).sort((x, y) => y[1] - x[1])[0][0];
+}
+
+// ─── LANDING → START ───
 function startAssessment() {
-  currentQ = 0; answers = []; scores = {SA:0,DS:0,GG:0,LW:0};
+  currentQ = 0;
+  answers = Array(8).fill(null);
+  document.getElementById('progressBar').style.display = 'block';
+  showScreen('screen-question');
   renderQuestion();
-  showScreen('screen-assessment');
 }
 
+// ─── RENDER QUESTION ───
 function renderQuestion() {
-  const q = questions[currentQ];
-  const pct = (currentQ / questions.length) * 100;
-  document.getElementById('progressFill').style.width = pct + '%';
-  document.getElementById('progressLabel').textContent = (currentQ+1) + ' of ' + questions.length;
-  const selected = answers[currentQ];
-  const letters = ['A','B','C','D'];
+  const q = QUESTIONS[currentQ];
+  document.getElementById('qNum').textContent = `QUESTION ${currentQ + 1} OF 8`;
+  document.getElementById('qReveal').textContent = `Reveals: ${q.reveals}`;
+  document.getElementById('qTitle').textContent = q.title;
+  document.getElementById('qStem').textContent = q.stem;
 
-  document.getElementById('questionCard').innerHTML = `
-    <div class="q-number">${String(currentQ+1).padStart(2,'0')}</div>
-    <span class="q-category">${q.category}</span>
-    <p class="q-text">${q.text}</p>
-    <div class="q-options">
-      ${q.options.map((opt,i) => `
-        <button class="q-option ${selected===i?'selected':''}" onclick="selectOption(${i})">
-          <span class="opt-marker">${letters[i]}</span>
-          <span class="opt-text">${opt.text}</span>
-        </button>
-      `).join('')}
-    </div>
-    <div class="q-nav">
-      <button class="btn-back" onclick="prevQuestion()" ${currentQ===0?'style="opacity:0;pointer-events:none"':''}>← Return</button>
-      <button class="btn-next ${selected!==undefined?'enabled':''}" onclick="nextQuestion()">
-        ${currentQ===questions.length-1 ? 'Reveal My Profile' : 'Continue →'}
-      </button>
-    </div>
-  `;
+  // Dots
+  const dots = document.getElementById('qDots');
+  dots.innerHTML = '';
+  for (let i = 0; i < 8; i++) {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i < currentQ ? ' done' : i === currentQ ? ' active' : '');
+    dots.appendChild(d);
+  }
+
+  // Options
+  const opts = document.getElementById('qOptions');
+  opts.innerHTML = '';
+  q.options.forEach(o => {
+    const btn = document.createElement('button');
+    btn.className = 'option-btn' + (answers[currentQ] === o.letter ? ' selected' : '');
+    btn.innerHTML = `<span class="option-letter">${o.letter}</span><span>${o.text}</span>`;
+    btn.onclick = () => selectAnswer(o.letter);
+    opts.appendChild(btn);
+  });
+
+  // Nav
+  document.getElementById('btnBack').style.visibility = currentQ === 0 ? 'hidden' : 'visible';
+  updateNextBtn();
+
+  // Progress
+  document.getElementById('progressFill').style.width = `${(currentQ / 8) * 100}%`;
 }
 
-function selectOption(i) { answers[currentQ] = i; renderQuestion(); }
-function prevQuestion() { if(currentQ > 0){ currentQ--; renderQuestion(); } }
+function selectAnswer(letter) {
+  answers[currentQ] = letter;
+  document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+  document.querySelectorAll('.option-btn').forEach(b => {
+    if (b.querySelector('.option-letter').textContent === letter) b.classList.add('selected');
+  });
+  updateNextBtn();
+}
+
+function updateNextBtn() {
+  const btn = document.getElementById('btnNext');
+  if (answers[currentQ]) {
+    btn.classList.add('enabled');
+  } else {
+    btn.classList.remove('enabled');
+  }
+}
+
 function nextQuestion() {
-  if(answers[currentQ] === undefined) return;
-  scores[questions[currentQ].options[answers[currentQ]].profile]++;
-  if(currentQ < questions.length - 1){ currentQ++; renderQuestion(); }
-  else { calculateResults(); }
-}
-
-// ═══════════════════
-// RESULTS
-// ═══════════════════
-function calculateResults() {
-  showScreen('screen-calculating');
-  setTimeout(showResults, 3200);
-}
-
-function showResults() {
-  const top = Object.entries(scores).sort((a,b)=>b[1]-a[1])[0][0];
-  const p = profiles[top];
-  window.tqaCurrentProfile = p.name;
-
-  document.getElementById('resultName').innerHTML = p.name;
-  document.getElementById('resultArchetype').textContent = p.archetype;
-  document.getElementById('resultEssence').innerHTML = p.essence;
-  document.getElementById('mirrorTitle').textContent = p.mirror.title;
-  document.getElementById('mirrorBody').innerHTML = p.mirror.body;
-  document.getElementById('diagnosisTitle').textContent = p.diagnosis.title;
-  document.getElementById('diagnosisBody').innerHTML = p.diagnosis.body;
-  document.getElementById('scriptureText').textContent = p.diagnosis.scripture;
-  document.getElementById('scriptureRef').textContent = p.diagnosis.ref;
-  document.getElementById('breakthroughTitle').textContent = p.breakthrough.title;
-  document.getElementById('breakthroughBody').innerHTML = p.breakthrough.body;
-
-  renderRoadmap();
-  showScreen('screen-results');
-
-  setTimeout(() => {
-    document.querySelectorAll('.result-panel').forEach((el, i) => {
-      setTimeout(() => el.classList.add('visible'), i * 180);
-    });
-  }, 400);
-
-  setTimeout(() => {
-    const f = document.getElementById('salvationFlash');
-    f.classList.add('show');
-    setTimeout(() => f.classList.remove('show'), 4500);
-  }, 2000);
-}
-
-// ═══════════════════
-// ROADMAP
-// ═══════════════════
-const roadmapSteps = [
-  {
-    title: "Receive Your Profile",
-    desc: "Begin here. Read your sacred diagnosis slowly. She who was seen is now known.",
-    action: null
-  },
-  {
-    title: "Enter the Silence",
-    desc: "One 10-minute silence session. No agenda. No performance. Just presence with the One who assigned you.",
-    action: 'silence',
-    actionLabel: 'Begin Your Silence Session'
-  },
-  {
-    title: "Journal Your First Truth",
-    desc: "Write one honest sentence about what you discovered today. Not for anyone else. Just between you and God.",
-    action: 'journal',
-    actionLabel: 'Open Your Journal'
-  },
-  {
-    title: "Receive Your Soul Letter",
-    desc: "A personal letter written for the woman God has always seen — arriving in your inbox from The Quiet Authority.",
-    action: 'email',
-    actionLabel: 'Enter Your Email to Receive'
-  },
-  {
-    title: "Enter the Circle of Silence",
-    desc: "30 days. Guided. Sacred. Transformative. This is where the profile becomes a practice and the practice becomes a life.",
-    action: 'circle',
-    actionLabel: 'Enter the Circle of Silence →'
-  }
-];
-
-function renderRoadmap() {
-  const track = document.getElementById('stepsTrack');
-  if (!track) return;
-
-  track.innerHTML = roadmapSteps.map((step, i) => {
-    const isUnlocked = i < stepsUnlocked;
-    let actionHTML = '';
-
-    if (isUnlocked && step.action) {
-      if (step.action === 'silence') {
-        actionHTML = `<button class="step-action-btn" onclick="openSilenceModal()">${step.actionLabel}</button>`;
-      } else if (step.action === 'journal') {
-        actionHTML = `<button class="step-action-btn" onclick="openJournalModal()">${step.actionLabel}</button>`;
-      } else if (step.action === 'email') {
-        actionHTML = `<button class="step-action-btn" onclick="scrollToEmail()">${step.actionLabel}</button>`;
-      } else if (step.action === 'circle') {
-        const profileParam = window.tqaCurrentProfile ? '?profile=' + encodeURIComponent(window.tqaCurrentProfile) : '';
-        actionHTML = `<a href="https://transform24.github.io/circle-of-silence/${profileParam}" target="_blank" class="step-action-btn">${step.actionLabel}</a>`;
-      }
-    }
-
-    return `
-      <div class="step ${isUnlocked ? 'unlocked' : 'locked'}" ${isUnlocked && !step.action ? `onclick="advanceFromStep(${i})"` : ''}>
-        <span class="step-num">Step ${i+1}</span>
-        <p class="step-title">${step.title}</p>
-        <p class="step-desc">${step.desc}</p>
-        ${!isUnlocked ? '<span class="step-lock">◆ Complete previous step to unlock</span>' : ''}
-        ${actionHTML}
-      </div>`;
-  }).join('');
-}
-
-function advanceFromStep(i) {
-  // Clicking an unlocked step with no action advances the next step
-  if (i + 1 >= stepsUnlocked) {
-    stepsUnlocked = i + 2;
-    renderRoadmap();
+  if (!answers[currentQ]) return;
+  if (currentQ < 7) {
+    currentQ++;
+    renderQuestion();
+  } else {
+    // All done → email screen
+    document.getElementById('progressFill').style.width = '100%';
+    showScreen('screen-email');
   }
 }
 
-function scrollToEmail() {
-  document.getElementById('emailSection').scrollIntoView({behavior:'smooth', block:'start'});
+function goBack() {
+  if (currentQ > 0) {
+    currentQ--;
+    renderQuestion();
+  } else {
+    showScreen('screen-landing');
+    document.getElementById('progressBar').style.display = 'none';
+  }
 }
 
-// ═══════════════════
-// EMAIL
-// ═══════════════════
-function submitEmail() {
-  const name = document.getElementById('nameInput').value.trim();
-  const email = document.getElementById('emailInput').value.trim();
+// ─── EMAIL → RESULTS ───
+function revealResults() {
+  userName = document.getElementById('inputName').value.trim();
+  userEmail = document.getElementById('inputEmail').value.trim();
 
-  if (!name || !email) {
-    document.getElementById('nameInput').style.borderColor = !name ? 'var(--terra)' : 'rgba(196,166,120,.2)';
-    document.getElementById('emailInput').style.borderColor = !email ? 'var(--terra)' : 'rgba(196,166,120,.2)';
+  if (!userName || !userEmail) {
+    alert('Please enter your name and email to receive your profile.');
     return;
   }
 
-  window.tqaUserName = name;
-  window.tqaUserEmail = email;
+  const profile = getProfile();
+  const p = PROFILES[profile];
 
-  document.getElementById('emailInner').innerHTML = `
-    <span class="s-label">You Are Received</span>
-    <h3 class="email-title">${name}, the circle knows your name</h3>
-    <div class="gold-line"></div>
-    <p class="email-body"><em>Your sacred profile and a personal letter are on their way to your inbox.<br><br>
-    Your Transformation Roadmap is now fully open.<br><br>
-    <strong style="color:var(--gold);font-style:normal">The silence has been waiting for you.</strong></em></p>
-    <div style="margin-top:2rem;text-align:center">
-      <button onclick="scrollToRoadmap()"
-        style="font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;
-        background:var(--gold);color:var(--dark1);border:none;padding:1rem 2.5rem;cursor:pointer;">
-        View My Sacred Roadmap</button>
-    </div>
-  `;
+  // Hero
+  document.getElementById('rProfileName').innerHTML = `The <em>${p.name.replace('The ', '')}</em>`;
+  document.getElementById('rTagline').textContent = p.tagline;
 
-  // Fully unlock all steps
-  stepsUnlocked = 5;
-  renderRoadmap();
-
-  // Scroll to roadmap after brief pause
-  setTimeout(scrollToRoadmap, 900);
-}
-
-function scrollToRoadmap() {
-  document.getElementById('stepsTrack').scrollIntoView({behavior:'smooth', block:'start'});
-}
-
-// ═══════════════════
-// SILENCE MODAL
-// ═══════════════════
-function openSilenceModal() {
-  silencePhaseNum = 1;
-  silenceTimeLeft = 300;
-  silenceRunning = false;
-  clearInterval(silenceInterval);
-  updateSilenceUI();
-
-  document.getElementById('silenceComplete').classList.remove('show');
-  document.getElementById('silenceControls').style.display = 'flex';
-  document.getElementById('silenceModal').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeSilenceModal() {
-  clearInterval(silenceInterval);
-  silenceRunning = false;
-  document.getElementById('silenceModal').classList.remove('open');
-  document.body.style.overflow = '';
-
-  // Unlock step 3 (journal) after visiting silence
-  if (stepsUnlocked < 3) {
-    stepsUnlocked = 3;
-    renderRoadmap();
+  // Confirmation banner
+  if (userName && userEmail) {
+    document.getElementById('confirmationBanner').style.display = 'block';
+    document.getElementById('confirmationText').innerHTML =
+      `✦ &nbsp; ${userName}, your Silence Profile and breakthrough path have been sent to <strong style="color:var(--sage-light)">${userEmail}</strong>. Check your inbox — your first guided silence practice is waiting.`;
   }
+
+  // Diagnosis
+  document.getElementById('rDiagnosis').textContent = p.diagnosis;
+
+  // Scripture
+  document.getElementById('rScripture').textContent = `"${p.scripture}"`;
+  document.getElementById('rScriptureRef').textContent = `— ${p.scriptureRef}`;
+
+  // Lessons
+  const lessonsEl = document.getElementById('rLessons');
+  lessonsEl.innerHTML = '';
+  p.lessons.forEach(l => {
+    lessonsEl.innerHTML += `
+      <div class="lesson-item">
+        <div class="lesson-glyph">✦</div>
+        <div class="lesson-text">${l}</div>
+      </div>`;
+  });
+
+  // Breakthrough
+  document.getElementById('rBreakthrough').textContent = p.breakthrough;
+  document.getElementById('rPracticeTag').textContent = p.practiceTag;
+
+  document.getElementById('progressBar').style.display = 'none';
+  showScreen('screen-results');
 }
 
-function toggleSilenceTimer() {
-  if (silenceRunning) {
-    clearInterval(silenceInterval);
-    silenceRunning = false;
-    document.getElementById('silenceToggleBtn').textContent = 'Enter the Quiet';
-  } else {
-    silenceRunning = true;
-    document.getElementById('silenceToggleBtn').textContent = 'Pause Reflection';
-    silenceInterval = setInterval(() => {
-      silenceTimeLeft--;
-      updateSilenceUI();
-      if (silenceTimeLeft <= 0) {
-        clearInterval(silenceInterval);
-        silenceRunning = false;
-        if (silencePhaseNum === 1) {
-          // Advance to phase 2
-          silencePhaseNum = 2;
-          silenceTimeLeft = 600;
-          updateSilenceUI();
-          silenceInterval = setInterval(() => {
-            silenceTimeLeft--;
-            updateSilenceUI();
-            if (silenceTimeLeft <= 0) {
-              clearInterval(silenceInterval);
-              completeSilenceSession();
-            }
-          }, 1000);
-        } else {
-          completeSilenceSession();
-        }
-      }
-    }, 1000);
-  }
-}
-
-function resetSilenceTimer() {
-  clearInterval(silenceInterval);
-  silenceRunning = false;
-  silenceTimeLeft = silencePhaseNum === 1 ? 300 : 600;
-  document.getElementById('silenceToggleBtn').textContent = 'Enter the Quiet';
-  updateSilenceUI();
-}
-
-function updateSilenceUI() {
-  const mins = Math.floor(silenceTimeLeft / 60);
-  const secs = silenceTimeLeft % 60;
-  document.getElementById('silenceTimerDisplay').textContent = `${mins}:${secs.toString().padStart(2,'0')}`;
-
-  if (silencePhaseNum === 1) {
-    document.getElementById('silencePhase').textContent = 'Phase I · The Sacred Deposit';
-    document.getElementById('silenceTitle').textContent = 'Prepare to Hear';
-    document.getElementById('silenceSub').textContent = 'Quiet the external noise.';
-  } else {
-    document.getElementById('silencePhase').textContent = 'Phase II · The Holy Stillness';
-    document.getElementById('silenceTitle').textContent = 'The Listening Heart';
-    document.getElementById('silenceSub').textContent = 'He is speaking in the whisper.';
-  }
-}
-
-function completeSilenceSession() {
-  document.getElementById('silenceControls').style.display = 'none';
-  document.getElementById('silenceComplete').classList.add('show');
-  if (stepsUnlocked < 3) {
-    stepsUnlocked = 3;
-    renderRoadmap();
-  }
-}
-
-// ═══════════════════
-// JOURNAL MODAL
-// ═══════════════════
-function openJournalModal() {
-  document.getElementById('journalModal').style.display = 'flex';
-  document.body.style.overflow = 'hidden';
-}
-function closeJournalModal() {
-  document.getElementById('journalModal').style.display = 'none';
-  document.body.style.overflow = '';
-}
-function saveJournalEntry() {
-  const entry = document.getElementById('journalEntry').value.trim();
-  if (!entry) return;
-  try {
-    const entries = JSON.parse(localStorage.getItem('tqa_journal') || '[]');
-    entries.push({date: new Date().toISOString(), profile: window.tqaCurrentProfile||'', text: entry});
-    localStorage.setItem('tqa_journal', JSON.stringify(entries));
-  } catch(e) {}
-  document.getElementById('journalEntry').style.display = 'none';
-  document.querySelector('#journalModal button[onclick="saveJournalEntry()"]').style.display = 'none';
-  document.getElementById('journalConfirm').style.display = 'block';
-
-  // Unlock step 4 (email) after journaling
-  stepsUnlocked = Math.max(stepsUnlocked, 4);
-  setTimeout(() => {
-    closeJournalModal();
-    renderRoadmap();
-  }, 2200);
+// ─── FREE SESSION ───
+function startFreeSession() {
+  alert('Your free 15-minute silence session is coming soon.\n\nFor now, find a quiet place, set a timer for 10 minutes, and ask: "God, what do You want me to hear in the silence?"');
 }
 </script>
 </body>
