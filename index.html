@@ -838,9 +838,7 @@ function acceptJesus(){
 }
 
 function joinCircle(){
-  const sub=encodeURIComponent('Circle of Silence — Waitlist Request');
-  const bod=encodeURIComponent(`Hi Grace,\n\nI just completed The Quiet Authority assessment and I'd love to join the Circle of Silence waitlist.\n\nMy name: ${userName||'[Name]'}\nMy silence profile: ${PROFILES[currentProfile]?.name||''}\n\nThank you,\n${userName||''}`);
-  window.location.href=`mailto:grace@gracesanctuary.com?subject=${sub}&body=${bod}`;
+  window.open('https://beacons.ai/sanctuarygrace', '_blank');
 }
 
 // 7-DAY EXPERIENCE (profile-specific days injected at results render)
