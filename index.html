@@ -30,7 +30,7 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 #screen-landing{position:relative;align-items:stretch;justify-content:stretch;min-height:100vh;}
 .landing-banner{position:relative;width:100%;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:0 24px 80px;text-align:center;overflow:hidden;}
 .banner-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;opacity:0.75;}
-.banner-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(11,11,11,0.1) 0%,rgba(11,11,11,0.2) 40%,rgba(11,11,11,0.85) 75%,rgba(11,11,11,0.97) 100%);}
+.banner-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(11,11,11,0.35) 0%,rgba(11,11,11,0.5) 35%,rgba(11,11,11,0.88) 68%,rgba(11,11,11,0.98) 100%);}
 .landing-content{position:relative;z-index:2;max-width:680px;width:100%;}
 .ministry-label{font-size:0.6rem;letter-spacing:0.4em;text-transform:uppercase;color:var(--gold-dim);font-weight:200;margin-bottom:20px;}
 .landing-title{font-family:'Cormorant Garamond',serif;font-size:clamp(3.5rem,9vw,7rem);font-weight:300;line-height:0.88;color:var(--cream);margin-bottom:6px;letter-spacing:-0.02em;}
@@ -141,39 +141,57 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 .jp-text{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-style:italic;color:var(--cream);line-height:1.6;}
 
 /* BREATHING CIRCLES */
-.breathing-wrap{display:none;justify-content:center;align-items:center;margin:28px 0;position:relative;height:160px;}
-.breath-ring{
-  position:absolute;border-radius:50%;border:1px solid var(--gold);
-  animation:breathe 6s ease-in-out infinite;opacity:0;
+.breathing-wrap{
+  display:none;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  margin:40px auto;
+  position:relative;
+  height:320px;
+  width:320px;
 }
-.breath-ring:nth-child(1){width:60px;height:60px;animation-delay:0s;border-color:var(--gold);}
-.breath-ring:nth-child(2){width:90px;height:90px;animation-delay:0.5s;border-color:rgba(201,169,110,0.6);}
-.breath-ring:nth-child(3){width:120px;height:120px;animation-delay:1s;border-color:rgba(201,169,110,0.35);}
-.breath-ring:nth-child(4){width:150px;height:150px;animation-delay:1.5s;border-color:rgba(201,169,110,0.15);}
+.breath-ring{
+  position:absolute;
+  border-radius:50%;
+  border:1px solid var(--gold);
+  animation:breathe 8s ease-in-out infinite;
+  left:50%;top:50%;
+  transform:translate(-50%,-50%) scale(1);
+}
+.breath-ring:nth-child(1){width:80px;height:80px;animation-delay:0s;border-color:var(--gold);border-width:1.5px;}
+.breath-ring:nth-child(2){width:140px;height:140px;animation-delay:0.8s;border-color:rgba(201,169,110,0.55);}
+.breath-ring:nth-child(3){width:210px;height:210px;animation-delay:1.6s;border-color:rgba(201,169,110,0.3);}
+.breath-ring:nth-child(4){width:290px;height:290px;animation-delay:2.4s;border-color:rgba(201,169,110,0.12);}
 .breath-center{
-  position:absolute;width:40px;height:40px;border-radius:50%;
-  background:radial-gradient(circle,rgba(201,169,110,0.3),transparent);
-  animation:breatheCenter 6s ease-in-out infinite;
+  position:absolute;
+  width:50px;height:50px;
+  border-radius:50%;
+  left:50%;top:50%;
+  transform:translate(-50%,-50%);
+  background:radial-gradient(circle,rgba(201,169,110,0.4),transparent 70%);
+  animation:breatheCenter 8s ease-in-out infinite;
 }
 @keyframes breathe{
-  0%{transform:scale(0.85);opacity:0.8;}
-  50%{transform:scale(1.15);opacity:0.3;}
-  100%{transform:scale(0.85);opacity:0.8;}
+  0%,100%{transform:translate(-50%,-50%) scale(0.88);opacity:0.9;}
+  50%{transform:translate(-50%,-50%) scale(1.12);opacity:0.25;}
 }
 @keyframes breatheCenter{
-  0%{transform:scale(0.9);opacity:0.6;}
-  50%{transform:scale(1.2);opacity:1;}
-  100%{transform:scale(0.9);opacity:0.6;}
+  0%,100%{transform:translate(-50%,-50%) scale(0.9);opacity:0.5;}
+  50%{transform:translate(-50%,-50%) scale(1.25);opacity:1;}
 }
 .breath-label{
-  position:absolute;bottom:-24px;left:50%;transform:translateX(-50%);
-  font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;
-  color:var(--gold-dim);font-weight:200;white-space:nowrap;
-  animation:breatheLabel 6s ease-in-out infinite;
-}
-@keyframes breatheLabel{
-  0%,100%{content:'Breathe in';opacity:1;}
-  50%{opacity:0.5;}
+  position:absolute;
+  bottom:-48px;
+  left:50%;transform:translateX(-50%);
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.3rem;
+  font-style:italic;
+  letter-spacing:0.12em;
+  color:var(--gold);
+  font-weight:300;
+  white-space:nowrap;
+  transition:opacity 0.8s ease;
 }
 
 /* SCRIPTURE TICKER */
@@ -183,10 +201,10 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 }
 .ticker-track{
   display:inline-block;
-  animation:ticker 40s linear infinite;
+  animation:ticker 90s linear infinite;
   font-family:'Cormorant Garamond',serif;
-  font-style:italic;font-size:0.95rem;
-  color:var(--gold-dim);letter-spacing:0.05em;
+  font-style:italic;font-size:1.05rem;
+  color:var(--gold-dim);letter-spacing:0.06em;
 }
 @keyframes ticker{from{transform:translateX(100vw);}to{transform:translateX(-100%);}}
 
@@ -570,6 +588,21 @@ function revealResults(){
   document.getElementById('rPracticeTag').textContent=p.practiceTag;
   document.getElementById('jpText').textContent=p.journal;
   document.getElementById('progressBar').style.display='none';
+
+  // Send notification to Grace via Formspree
+  fetch('https://formspree.io/f/xeoqkgjb', {
+    method:'POST',
+    headers:{'Content-Type':'application/json','Accept':'application/json'},
+    body:JSON.stringify({
+      name: userName,
+      email: userEmail,
+      profile: p.name,
+      tagline: p.tagline,
+      _subject: `New Soul: ${userName} is ${p.name} — The Quiet Authority`,
+      message: `Name: ${userName}\nEmail: ${userEmail}\nProfile: ${p.name}\n\n${p.diagnosis}\n\nBreakthrough: ${p.breakthrough}\n\nPractice: ${p.practiceTag}`
+    })
+  }).catch(()=>{});
+
   showScreen('screen-results');
 }
 
