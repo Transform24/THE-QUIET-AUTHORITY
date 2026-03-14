@@ -146,52 +146,105 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
   flex-direction:column;
   justify-content:center;
   align-items:center;
-  margin:40px auto;
+  margin:40px auto 20px;
   position:relative;
-  height:320px;
-  width:320px;
+  height:300px;
+  width:300px;
 }
 .breath-ring{
   position:absolute;
   border-radius:50%;
-  border:1px solid var(--gold);
-  animation:breathe 8s ease-in-out infinite;
   left:50%;top:50%;
-  transform:translate(-50%,-50%) scale(1);
+  animation:breathe 8s ease-in-out infinite;
 }
-.breath-ring:nth-child(1){width:80px;height:80px;animation-delay:0s;border-color:var(--gold);border-width:1.5px;}
-.breath-ring:nth-child(2){width:140px;height:140px;animation-delay:0.8s;border-color:rgba(201,169,110,0.55);}
-.breath-ring:nth-child(3){width:210px;height:210px;animation-delay:1.6s;border-color:rgba(201,169,110,0.3);}
-.breath-ring:nth-child(4){width:290px;height:290px;animation-delay:2.4s;border-color:rgba(201,169,110,0.12);}
+.breath-ring:nth-child(1){width:70px;height:70px;margin-left:-35px;margin-top:-35px;left:50%;top:50%;position:absolute;border:2px solid var(--gold);animation-delay:0s;}
+.breath-ring:nth-child(2){width:130px;height:130px;margin-left:-65px;margin-top:-65px;left:50%;top:50%;position:absolute;border:1px solid rgba(201,169,110,0.6);animation-delay:0.7s;}
+.breath-ring:nth-child(3){width:200px;height:200px;margin-left:-100px;margin-top:-100px;left:50%;top:50%;position:absolute;border:1px solid rgba(201,169,110,0.35);animation-delay:1.4s;}
+.breath-ring:nth-child(4){width:280px;height:280px;margin-left:-140px;margin-top:-140px;left:50%;top:50%;position:absolute;border:1px solid rgba(201,169,110,0.15);animation-delay:2.1s;}
 .breath-center{
   position:absolute;
-  width:50px;height:50px;
-  border-radius:50%;
+  width:44px;height:44px;
+  margin-left:-22px;margin-top:-22px;
   left:50%;top:50%;
-  transform:translate(-50%,-50%);
-  background:radial-gradient(circle,rgba(201,169,110,0.4),transparent 70%);
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(201,169,110,0.5) 0%,rgba(201,169,110,0.1) 60%,transparent 100%);
   animation:breatheCenter 8s ease-in-out infinite;
 }
 @keyframes breathe{
-  0%,100%{transform:translate(-50%,-50%) scale(0.88);opacity:0.9;}
-  50%{transform:translate(-50%,-50%) scale(1.12);opacity:0.25;}
+  0%,100%{transform:scale(0.85);opacity:1;}
+  50%{transform:scale(1.15);opacity:0.2;}
 }
 @keyframes breatheCenter{
-  0%,100%{transform:translate(-50%,-50%) scale(0.9);opacity:0.5;}
-  50%{transform:translate(-50%,-50%) scale(1.25);opacity:1;}
+  0%,100%{transform:scale(0.85);opacity:0.6;}
+  50%{transform:scale(1.3);opacity:1;}
 }
 .breath-label{
   position:absolute;
-  bottom:-48px;
+  top:-44px;
   left:50%;transform:translateX(-50%);
   font-family:'Cormorant Garamond',serif;
-  font-size:1.3rem;
+  font-size:1.4rem;
   font-style:italic;
-  letter-spacing:0.12em;
+  letter-spacing:0.1em;
   color:var(--gold);
   font-weight:300;
   white-space:nowrap;
-  transition:opacity 0.8s ease;
+  transition:opacity 0.6s ease;
+}
+
+/* SALVATION MOMENT */
+.salvation-section{
+  background:var(--bg);
+  border-top:1px solid var(--border);
+  text-align:center;
+  padding:64px 24px;
+}
+.salvation-inner{max-width:560px;margin:0 auto;}
+.salvation-cross{font-size:2rem;margin-bottom:20px;opacity:0.7;}
+.salvation-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.8rem,4vw,2.8rem);
+  font-weight:300;color:var(--cream);
+  line-height:1.2;margin-bottom:16px;
+}
+.salvation-body{
+  font-size:0.88rem;color:var(--text-dim);
+  line-height:1.9;margin-bottom:32px;font-weight:300;
+  max-width:460px;margin-left:auto;margin-right:auto;
+}
+.salvation-verse{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;font-size:1.1rem;
+  color:var(--gold-dim);margin-bottom:32px;
+  line-height:1.6;
+}
+.btn-salvation{
+  display:inline-block;padding:18px 48px;
+  background:linear-gradient(135deg,rgba(201,169,110,0.15),rgba(201,169,110,0.05));
+  border:1px solid var(--gold);
+  color:var(--gold);
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.2rem;font-style:italic;font-weight:400;
+  letter-spacing:0.08em;
+  cursor:pointer;transition:all 0.4s ease;
+}
+.btn-salvation:hover{background:rgba(201,169,110,0.12);border-color:var(--gold-light);}
+.salvation-confirm{
+  display:none;
+  margin-top:28px;padding:24px 28px;
+  background:rgba(201,169,110,0.06);
+  border:1px solid var(--gold-dim);
+  border-top:2px solid var(--gold);
+}
+.salvation-confirm p{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.15rem;font-style:italic;
+  color:var(--cream);line-height:1.7;
+}
+.soul-count-total{
+  margin-top:16px;
+  font-size:0.65rem;letter-spacing:0.25em;
+  text-transform:uppercase;color:var(--gold-dim);font-weight:300;
 }
 
 /* SCRIPTURE TICKER */
@@ -470,6 +523,23 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
     </div>
   </div>
 
+  <!-- SALVATION MOMENT -->
+  <div class="salvation-section">
+    <div class="salvation-inner">
+      <div class="salvation-cross">✝</div>
+      <h2 class="salvation-title serif">Is God speaking to you<br>right now?</h2>
+      <p class="salvation-verse serif">"If you declare with your mouth, 'Jesus is Lord,' and believe in your heart that God raised him from the dead, you will be saved."<br>— Romans 10:9</p>
+      <p class="salvation-body">The silence you just practiced — that's where He meets you. If something stirred in you today and you're ready to say yes to Jesus, this is your moment. No perfect words needed. Just your heart.</p>
+      <button class="btn-salvation" onclick="acceptJesus()">
+        Yes — I receive Jesus today
+      </button>
+      <div class="salvation-confirm" id="salvationConfirm">
+        <p>"Welcome home, beloved. Heaven is rejoicing over you right now. You are known. You are loved. You are His."</p>
+        <div class="soul-count-total" id="soulCountTotal">You are soul #<span id="soulNum">1</span> recorded in The Quiet Authority today</div>
+      </div>
+    </div>
+  </div>
+
   <div class="r-footer">
     <p class="footer-min">Sanctuary Grace Ministry &nbsp;·&nbsp; Transform24</p>
     <p class="footer-verse serif">"Be still, and know that I am God." — Psalm 46:10</p>
@@ -676,6 +746,31 @@ function sessionComplete(){
   document.getElementById('timerLabel').textContent='Your session is complete. Well done, beloved.';
   document.getElementById('btnPauseSession').style.display='none';
   document.getElementById('journalPrompt').style.display='block';
+}
+
+function acceptJesus(){
+  const btn = document.querySelector('.btn-salvation');
+  btn.style.display = 'none';
+  document.getElementById('salvationConfirm').style.display = 'block';
+
+  // Count souls saved today - simple incrementing display
+  const todayKey = 'tqa_souls_' + new Date().toDateString();
+  let count = parseInt(localStorage.getItem(todayKey) || '0') + 1;
+  localStorage.setItem(todayKey, count);
+  document.getElementById('soulNum').textContent = count;
+
+  // Record soul with Grace via Formspree
+  fetch('https://formspree.io/f/xeoqkgjb', {
+    method:'POST',
+    headers:{'Content-Type':'application/json','Accept':'application/json'},
+    body:JSON.stringify({
+      _subject: '🕊️ A SOUL HAS ACCEPTED JESUS — The Quiet Authority',
+      name: userName || 'Anonymous',
+      email: userEmail || 'Not provided',
+      profile: PROFILES[currentProfile]?.name || '',
+      message: `SOUL SAVED\n\nName: ${userName||'Anonymous'}\nEmail: ${userEmail||'Not provided'}\nProfile: ${PROFILES[currentProfile]?.name||''}\nTime: ${new Date().toLocaleString()}\n\n"If you declare with your mouth Jesus is Lord... you will be saved." Romans 10:9`
+    })
+  }).catch(()=>{});
 }
 
 function joinCircle(){
