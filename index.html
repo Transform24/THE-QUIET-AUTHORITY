@@ -250,16 +250,69 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 /* SCRIPTURE TICKER */
 .scripture-ticker{
   background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);
-  padding:14px 0;overflow:hidden;white-space:nowrap;
+  padding:16px 0;overflow:hidden;white-space:nowrap;
 }
 .ticker-track{
   display:inline-block;
-  animation:ticker 90s linear infinite;
+  animation:ticker 180s linear infinite;
   font-family:'Cormorant Garamond',serif;
-  font-style:italic;font-size:1.05rem;
-  color:var(--gold-dim);letter-spacing:0.06em;
+  font-style:italic;font-size:1.1rem;
+  color:var(--gold-dim);letter-spacing:0.07em;
+  padding-left:100vw;
 }
-@keyframes ticker{from{transform:translateX(100vw);}to{transform:translateX(-100%);}}
+@keyframes ticker{from{transform:translateX(0);}to{transform:translateX(-100%);}}
+
+/* 7-DAY EXPERIENCE */
+.seven-day-section{
+  background:var(--bg2);
+  border-top:1px solid var(--border);
+}
+.seven-day-inner{
+  max-width:700px;margin:0 auto;
+  padding:60px 24px;
+}
+.seven-day-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.8rem,4vw,2.6rem);
+  font-weight:300;color:var(--cream);
+  margin-bottom:8px;text-align:center;
+}
+.seven-day-sub{
+  font-size:0.85rem;color:var(--text-dim);
+  text-align:center;line-height:1.8;
+  margin-bottom:40px;font-weight:300;
+}
+.day-cards{display:flex;flex-direction:column;gap:12px;}
+.day-card{
+  display:flex;align-items:flex-start;gap:20px;
+  padding:20px 24px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  transition:border-color 0.3s;
+}
+.day-card:hover{border-color:var(--gold-dim);}
+.day-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2rem;font-weight:300;
+  color:var(--gold-dim);flex-shrink:0;
+  line-height:1;min-width:36px;
+  text-align:center;
+}
+.day-content{}
+.day-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.1rem;font-weight:500;
+  color:var(--cream);margin-bottom:4px;
+}
+.day-practice{
+  font-size:0.82rem;color:var(--text-dim);
+  line-height:1.6;font-weight:300;
+}
+.day-scripture{
+  font-size:0.75rem;font-style:italic;
+  color:var(--gold-dim);margin-top:6px;
+  font-family:'Cormorant Garamond',serif;
+}
 
 /* LIVE COUNTER */
 .live-counter{
@@ -435,6 +488,16 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
   </div>
 
   <!-- SILENCE SESSION -->
+  <!-- 7-DAY EXPERIENCE -->
+  <div class="seven-day-section">
+    <div class="seven-day-inner">
+      <div class="r-label" style="text-align:center;">Your Sacred Practice</div>
+      <h2 class="seven-day-title serif">7 Days of Silence</h2>
+      <p class="seven-day-sub">One practice. One scripture. Seven days to begin your transformation. This is how stillness becomes a discipline.</p>
+      <div class="day-cards" id="dayCards"></div>
+    </div>
+  </div>
+
   <!-- SCRIPTURE TICKER -->
   <div class="scripture-ticker">
     <div class="ticker-track" id="tickerTrack"></div>
@@ -658,6 +721,7 @@ function revealResults(){
   document.getElementById('rPracticeTag').textContent=p.practiceTag;
   document.getElementById('jpText').textContent=p.journal;
   document.getElementById('progressBar').style.display='none';
+  renderSevenDays(currentProfile);
 
   // Send notification to Grace via Formspree
   fetch('https://formspree.io/f/xeoqkgjb', {
@@ -777,6 +841,64 @@ function joinCircle(){
   const sub=encodeURIComponent('Circle of Silence — Waitlist Request');
   const bod=encodeURIComponent(`Hi Grace,\n\nI just completed The Quiet Authority assessment and I'd love to join the Circle of Silence waitlist.\n\nMy name: ${userName||'[Name]'}\nMy silence profile: ${PROFILES[currentProfile]?.name||''}\n\nThank you,\n${userName||''}`);
   window.location.href=`mailto:grace@gracesanctuary.com?subject=${sub}&body=${bod}`;
+}
+
+// 7-DAY EXPERIENCE (profile-specific days injected at results render)
+const SEVEN_DAYS = {
+  A:[
+    {title:"Permission to Rest",practice:"Sit in silence for 10 minutes. Do nothing. Accomplish nothing. Just be.",scripture:"Matthew 11:28 — Come to me, all who are weary…"},
+    {title:"Your Worth Without Work",practice:"Before you open your phone, sit for 5 minutes. Ask: who am I before I produce anything today?",scripture:"Psalm 46:10 — Be still, and know that I am God."},
+    {title:"Receiving Instead of Achieving",practice:"10 minutes silence. When your mind lists tasks, gently return. Repeat: I am enough right now.",scripture:"Romans 8:1 — There is no condemnation for those in Christ."},
+    {title:"The Gift of Incompletion",practice:"Leave one thing undone today. Sit with the discomfort for 10 minutes in silence.",scripture:"Philippians 4:7 — The peace of God surpasses all understanding."},
+    {title:"Rest as Obedience",practice:"12 minutes silence. Journal: what would I do if I truly believed rest was holy?",scripture:"Exodus 33:14 — My presence will go with you and I will give you rest."},
+    {title:"Loved in the Stillness",practice:"15 minutes silence. No agenda. Just receive. Let God love you without earning it.",scripture:"1 John 4:10 — He loved us and sent His Son."},
+    {title:"Your New Practice",practice:"Set your daily silence time — same time every day. This is your sacred appointment with God.",scripture:"Isaiah 30:15 — In quietness and trust is your strength."}
+  ],
+  B:[
+    {title:"Permission to Be Empty",practice:"5 minutes silence. Don't try to fill it. Let the emptiness be the prayer.",scripture:"Psalm 23:2 — He leads me beside quiet waters."},
+    {title:"You Are the Vessel",practice:"10 minutes. Breathe slowly. With each exhale whisper: I don't have to generate this.",scripture:"2 Corinthians 4:7 — Treasure in jars of clay."},
+    {title:"Receiving His Strength",practice:"10 minutes silence after waking. Before you carry anything, receive.",scripture:"Isaiah 40:31 — Those who wait on the Lord renew their strength."},
+    {title:"Letting Go",practice:"12 minutes. With each breath out, release one thing you've been carrying.",scripture:"1 Peter 5:7 — Cast all your anxiety on Him."},
+    {title:"The Refilling",practice:"15 minutes silence. Ask only: what does it feel like to be filled instead of drained?",scripture:"John 7:38 — Rivers of living water will flow."},
+    {title:"Still Waters",practice:"Take your silence near something with water if possible. Simply be with God.",scripture:"Psalm 23:3 — He restores my soul."},
+    {title:"Sustained",practice:"15 minutes. Journal: where have I seen God sustain me this week in the silence?",scripture:"Lamentations 3:22 — His mercies are new every morning."}
+  ],
+  C:[
+    {title:"God's Voice First",practice:"10 minutes silence before checking messages. His voice before anyone else's.",scripture:"John 10:27 — My sheep listen to my voice."},
+    {title:"One Sacred No",practice:"Identify one yes to say no to today. Sit in 10 minutes silence before answering anyone.",scripture:"Galatians 5:1 — It is for freedom that Christ has set us free."},
+    {title:"Serving from Fullness",practice:"12 minutes silence. Ask: am I serving from overflow or obligation right now?",scripture:"Matthew 22:39 — Love your neighbor as yourself."},
+    {title:"Boundaries as Holiness",practice:"10 minutes silence. Journal: what boundary would protect what God is building in me?",scripture:"Proverbs 4:23 — Guard your heart above all else."},
+    {title:"His Approval Only",practice:"15 minutes silence. Release one person's disappointment to God. Let it go.",scripture:"Galatians 1:10 — Am I seeking approval of man or of God?"},
+    {title:"Overflow",practice:"15 minutes silence. Ask: what would I give if I were full instead of empty?",scripture:"Luke 6:38 — Give, and it will be given to you."},
+    {title:"Free to Say Yes",practice:"Journal: what would I say yes to if I weren't afraid of disappointing anyone?",scripture:"Romans 8:1 — No condemnation. You are free."}
+  ],
+  D:[
+    {title:"Who Were You Before?",practice:"10 minutes silence. Ask: God, who did you create me to be before the world had a say?",scripture:"Jeremiah 1:5 — Before I formed you, I knew you."},
+    {title:"The Wilderness as Sacred",practice:"10 minutes silence. Let the not-knowing be okay today.",scripture:"Hosea 2:14 — I will lead her into the wilderness and speak tenderly."},
+    {title:"Your True Name",practice:"12 minutes silence. Ask God: what do you call me?",scripture:"Isaiah 43:1 — I have called you by name; you are mine."},
+    {title:"Beneath the Roles",practice:"15 minutes. Imagine setting down every role you carry. Who remains?",scripture:"Psalm 139:14 — I am fearfully and wonderfully made."},
+    {title:"Remembering",practice:"Journal: what did I love before life got loud? What did I dream before duty replaced desire?",scripture:"Revelation 2:4 — Return to the love you had at first."},
+    {title:"Found in the Stillness",practice:"15 minutes silence. No question. No agenda. Just show up and let Him find you.",scripture:"Luke 15:5 — He rejoices when the lost is found."},
+    {title:"Your New Identity",practice:"Write one sentence: I am _____ , not because of what I do, but because of whose I am.",scripture:"1 Peter 2:9 — You are a chosen people, a royal priesthood."}
+  ]
+};
+
+function renderSevenDays(profile){
+  const days = SEVEN_DAYS[profile];
+  const container = document.getElementById('dayCards');
+  if(!container||!days) return;
+  container.innerHTML = '';
+  days.forEach((d,i)=>{
+    container.innerHTML += `
+      <div class="day-card">
+        <div class="day-num">${i+1}</div>
+        <div class="day-content">
+          <div class="day-title serif">${d.title}</div>
+          <div class="day-practice">${d.practice}</div>
+          <div class="day-scripture serif">${d.scripture}</div>
+        </div>
+      </div>`;
+  });
 }
 
 // SCRIPTURE TICKER
