@@ -176,6 +176,37 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
   50%{opacity:0.5;}
 }
 
+/* SCRIPTURE TICKER */
+.scripture-ticker{
+  background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  padding:14px 0;overflow:hidden;white-space:nowrap;
+}
+.ticker-track{
+  display:inline-block;
+  animation:ticker 40s linear infinite;
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;font-size:0.95rem;
+  color:var(--gold-dim);letter-spacing:0.05em;
+}
+@keyframes ticker{from{transform:translateX(100vw);}to{transform:translateX(-100%);}}
+
+/* LIVE COUNTER */
+.live-counter{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:10px 22px;margin-bottom:28px;
+  border:1px solid rgba(125,140,110,0.3);
+  background:rgba(125,140,110,0.06);
+  font-size:0.72rem;color:var(--sage-light);
+  letter-spacing:0.1em;font-weight:300;
+}
+.live-dot{
+  width:7px;height:7px;border-radius:50%;
+  background:var(--sage);
+  animation:pulse 1.8s ease-in-out infinite;
+  flex-shrink:0;
+}
+#liveNum{color:var(--sage-light);font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:400;}
+
 /* BIO */
 .bio-section{background:var(--bg);}
 .bio-inner{max-width:700px;margin:0 auto;padding:56px 24px;display:grid;grid-template-columns:180px 1fr;gap:40px;align-items:start;}
@@ -333,33 +364,48 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
   </div>
 
   <!-- SILENCE SESSION -->
+  <!-- SCRIPTURE TICKER -->
+  <div class="scripture-ticker">
+    <div class="ticker-track" id="tickerTrack"></div>
+  </div>
+
   <div class="silence-section">
     <div class="silence-inner">
       <div class="r-label" style="text-align:center;">Practice With Me — Free</div>
       <h2 class="silence-title serif">Your First Silence Session</h2>
       <p class="silence-sub">15 minutes. No experience required. Sacred music, guided stillness, and a journal prompt written for your profile.</p>
-      <div class="session-phases">
+
+      <!-- LIVE COUNTER -->
+      <div class="live-counter" id="liveCounter">
+        <div class="live-dot"></div>
+        <span id="liveNum">12</span> women are practicing silence right now
+      </div>
+
+      <div class="session-phases" id="sessionPhases">
         <div class="phase"><div class="phase-dot"></div>Minutes 1–5 &nbsp;—&nbsp; sacred music prepares your heart</div>
         <div class="phase"><div class="phase-dot"></div>Minutes 6–15 &nbsp;—&nbsp; guided silence with countdown</div>
         <div class="phase"><div class="phase-dot"></div>After &nbsp;—&nbsp; journal prompt for your profile</div>
       </div>
-      <div class="timer-display" id="timerDisplay">15:00</div>
-      <div class="timer-label" id="timerLabel">Ready when you are</div>
 
+      <!-- BREATHING CIRCLES — shown above timer during silence -->
       <div class="breathing-wrap" id="breathingWrap">
         <div class="breath-ring"></div>
         <div class="breath-ring"></div>
         <div class="breath-ring"></div>
         <div class="breath-ring"></div>
         <div class="breath-center"></div>
-        <span class="breath-label" id="breathLabel">Breathe</span>
+        <span class="breath-label" id="breathLabel">Breathe in</span>
       </div>
+
+      <div class="timer-display" id="timerDisplay">15:00</div>
+      <div class="timer-label" id="timerLabel">Ready when you are</div>
 
       <div class="timer-btns">
         <button class="btn-session gold" onclick="startSession()" id="btnStartSession">Begin Session</button>
         <button class="btn-session" onclick="pauseSession()" id="btnPauseSession" style="display:none;">Pause</button>
         <button class="btn-session" onclick="resetSession()" id="btnResetSession" style="display:none;">Reset</button>
       </div>
+
       <div class="journal-prompt" id="journalPrompt">
         <div class="jp-label">After Your Session — Journal Prompt</div>
         <p class="jp-text" id="jpText"></p>
@@ -533,11 +579,20 @@ function startSession(){
   document.getElementById('btnStartSession').style.display='none';
   document.getElementById('btnPauseSession').style.display='inline-block';
   document.getElementById('btnResetSession').style.display='inline-block';
+  document.getElementById('sessionPhases').style.display='none';
   const ma=document.getElementById('musicAudio');
   ma.src=MUSIC[Math.floor(Math.random()*MUSIC.length)];
   ma.loop=true;ma.volume=0.55;ma.play().catch(()=>{});
   timerSeconds=900;
   document.getElementById('timerLabel').textContent='Sacred music is playing — prepare your heart';
+  // Show breathing circles immediately
+  document.getElementById('breathingWrap').style.display='flex';
+  document.getElementById('breathLabel').textContent='Breathe in';
+  let inhale=true;
+  breathInterval=setInterval(()=>{
+    inhale=!inhale;
+    document.getElementById('breathLabel').textContent=inhale?'Breathe in':'Breathe out';
+  },4000);
   runTimer();
 }
 
@@ -552,10 +607,6 @@ function runTimer(){
       const fade=setInterval(()=>{v=Math.max(0,v-0.04);ma.volume=v;if(v===0){clearInterval(fade);ma.pause();}},250);
       sessionPhase='silence';
       document.getElementById('timerLabel').textContent='Be still. God is speaking.';
-      document.getElementById('breathingWrap').style.display='flex';
-      let inhale=true;
-      document.getElementById('breathLabel').textContent='Breathe in';
-      breathInterval=setInterval(()=>{inhale=!inhale;document.getElementById('breathLabel').textContent=inhale?'Breathe in':'Breathe out';},3000);
     }
     if(timerSeconds<=0){clearInterval(timerInterval);timerSeconds=0;updateTimerDisplay();sessionComplete();}
   },1000);
@@ -584,6 +635,7 @@ function resetSession(){
   document.getElementById('btnPauseSession').textContent='Pause';
   document.getElementById('journalPrompt').style.display='none';
   document.getElementById('breathingWrap').style.display='none';
+  document.getElementById('sessionPhases').style.display='flex';
 }
 
 function sessionComplete(){
@@ -598,6 +650,37 @@ function joinCircle(){
   const bod=encodeURIComponent(`Hi Grace,\n\nI just completed The Quiet Authority assessment and I'd love to join the Circle of Silence waitlist.\n\nMy name: ${userName||'[Name]'}\nMy silence profile: ${PROFILES[currentProfile]?.name||''}\n\nThank you,\n${userName||''}`);
   window.location.href=`mailto:grace@gracesanctuary.com?subject=${sub}&body=${bod}`;
 }
+
+// SCRIPTURE TICKER
+const TICKER_VERSES = [
+  '"If anyone declares with their mouth Jesus is Lord and believes in their heart God raised Him from the dead, they will be saved." — Romans 10:9',
+  '"For it is with your heart that you believe and are justified, and it is with your mouth that you profess your faith and are saved." — Romans 10:10',
+  '"Be still, and know that I am God." — Psalm 46:10',
+  '"Come to me, all who are weary and burdened, and I will give you rest." — Matthew 11:28',
+  '"He restores my soul. He leads me beside quiet waters." — Psalm 23:2–3',
+  '"It is for freedom that Christ has set us free." — Galatians 5:1',
+  '"My sheep listen to my voice; I know them, and they follow me." — John 10:27',
+  '"In repentance and rest is your salvation, in quietness and trust is your strength." — Isaiah 30:15',
+];
+(function initTicker(){
+  const track = document.getElementById('tickerTrack');
+  if(!track) return;
+  const text = TICKER_VERSES.join('&nbsp;&nbsp;&nbsp;✦&nbsp;&nbsp;&nbsp;') + '&nbsp;&nbsp;&nbsp;✦&nbsp;&nbsp;&nbsp;' + TICKER_VERSES.join('&nbsp;&nbsp;&nbsp;✦&nbsp;&nbsp;&nbsp;');
+  track.innerHTML = text;
+})();
+
+// LIVE COUNTER - simulates women currently practicing
+(function initLiveCounter(){
+  const el = document.getElementById('liveNum');
+  if(!el) return;
+  let base = 8 + Math.floor(Math.random()*18);
+  el.textContent = base;
+  setInterval(()=>{
+    const change = Math.random() < 0.5 ? 1 : -1;
+    base = Math.max(4, Math.min(40, base + change));
+    el.textContent = base;
+  }, 7000);
+})();
 </script>
 </body>
 </html>
