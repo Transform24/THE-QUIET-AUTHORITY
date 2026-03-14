@@ -38,7 +38,7 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 .gold-rule{width:48px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:28px auto;}
 .landing-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1rem,2.2vw,1.35rem);color:var(--cream-dim);line-height:1.55;margin-bottom:32px;max-width:500px;margin-left:auto;margin-right:auto;}
 .landing-body{font-size:0.85rem;color:var(--text-dim);line-height:1.95;margin-bottom:44px;max-width:480px;margin-left:auto;margin-right:auto;}
-.soul-counter{display:inline-flex;align-items:center;gap:10px;padding:10px 24px;border:1px solid var(--border2);background:rgba(201,169,110,0.04);margin-bottom:36px;}
+.soul-counter{display:inline-flex;align-items:center;gap:10px;padding:10px 24px;border:1px solid rgba(201,169,110,0.4);background:rgba(11,11,11,0.6);margin-bottom:36px;backdrop-filter:blur(4px);}
 .soul-pulse{width:6px;height:6px;border-radius:50%;background:var(--gold);animation:pulse 2s ease-in-out infinite;}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.4;transform:scale(0.7);}}
 .soul-text{font-size:0.68rem;letter-spacing:0.18em;color:var(--gold-dim);font-weight:300;}
@@ -49,12 +49,12 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 .btn-begin:hover{color:var(--bg);}
 .btn-begin span{position:relative;z-index:1;}
 .landing-promise{margin-top:20px;font-size:0.65rem;color:var(--text-muted);letter-spacing:0.12em;}
-.voiceover-bar{position:relative;z-index:2;display:flex;align-items:center;gap:12px;padding:14px 20px;border:1px solid var(--border);background:rgba(24,24,24,0.8);max-width:360px;margin:0 auto 28px;cursor:pointer;transition:border-color 0.3s;}
-.voiceover-bar:hover{border-color:var(--gold-dim);}
-.vo-icon{width:32px;height:32px;border:1px solid var(--gold-dim);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--gold);font-size:0.7rem;transition:all 0.3s;}
+.voiceover-bar{position:relative;z-index:10;display:flex;align-items:center;gap:14px;padding:16px 24px;border:1px solid var(--gold-dim);background:rgba(11,11,11,0.75);max-width:380px;margin:0 auto 32px;cursor:pointer;transition:border-color 0.3s;backdrop-filter:blur(6px);}
+.voiceover-bar:hover{border-color:var(--gold);background:rgba(201,169,110,0.08);}
+.vo-icon{width:36px;height:36px;border:1px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--gold);font-size:0.75rem;transition:all 0.3s;}
 .voiceover-bar:hover .vo-icon{background:var(--gold);color:var(--bg);border-color:var(--gold);}
-.vo-label{font-size:0.68rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-dim);font-weight:300;}
-.vo-sub{font-size:0.62rem;color:var(--text-muted);letter-spacing:0.08em;margin-top:2px;}
+.vo-label{font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--cream);font-weight:300;}
+.vo-sub{font-size:0.62rem;color:var(--gold-dim);letter-spacing:0.08em;margin-top:3px;}
 
 /* QUESTIONS */
 #screen-question{align-items:center;justify-content:center;padding:100px 24px 60px;min-height:100vh;}
@@ -139,6 +139,42 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 .journal-prompt{margin-top:36px;padding:24px 28px;background:var(--surface);border:1px solid var(--border);border-left:2px solid var(--gold-dim);text-align:left;display:none;}
 .jp-label{font-size:0.6rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:10px;font-weight:300;}
 .jp-text{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-style:italic;color:var(--cream);line-height:1.6;}
+
+/* BREATHING CIRCLES */
+.breathing-wrap{display:none;justify-content:center;align-items:center;margin:28px 0;position:relative;height:160px;}
+.breath-ring{
+  position:absolute;border-radius:50%;border:1px solid var(--gold);
+  animation:breathe 6s ease-in-out infinite;opacity:0;
+}
+.breath-ring:nth-child(1){width:60px;height:60px;animation-delay:0s;border-color:var(--gold);}
+.breath-ring:nth-child(2){width:90px;height:90px;animation-delay:0.5s;border-color:rgba(201,169,110,0.6);}
+.breath-ring:nth-child(3){width:120px;height:120px;animation-delay:1s;border-color:rgba(201,169,110,0.35);}
+.breath-ring:nth-child(4){width:150px;height:150px;animation-delay:1.5s;border-color:rgba(201,169,110,0.15);}
+.breath-center{
+  position:absolute;width:40px;height:40px;border-radius:50%;
+  background:radial-gradient(circle,rgba(201,169,110,0.3),transparent);
+  animation:breatheCenter 6s ease-in-out infinite;
+}
+@keyframes breathe{
+  0%{transform:scale(0.85);opacity:0.8;}
+  50%{transform:scale(1.15);opacity:0.3;}
+  100%{transform:scale(0.85);opacity:0.8;}
+}
+@keyframes breatheCenter{
+  0%{transform:scale(0.9);opacity:0.6;}
+  50%{transform:scale(1.2);opacity:1;}
+  100%{transform:scale(0.9);opacity:0.6;}
+}
+.breath-label{
+  position:absolute;bottom:-24px;left:50%;transform:translateX(-50%);
+  font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;
+  color:var(--gold-dim);font-weight:200;white-space:nowrap;
+  animation:breatheLabel 6s ease-in-out infinite;
+}
+@keyframes breatheLabel{
+  0%,100%{content:'Breathe in';opacity:1;}
+  50%{opacity:0.5;}
+}
 
 /* BIO */
 .bio-section{background:var(--bg);}
@@ -309,6 +345,16 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
       </div>
       <div class="timer-display" id="timerDisplay">15:00</div>
       <div class="timer-label" id="timerLabel">Ready when you are</div>
+
+      <div class="breathing-wrap" id="breathingWrap">
+        <div class="breath-ring"></div>
+        <div class="breath-ring"></div>
+        <div class="breath-ring"></div>
+        <div class="breath-ring"></div>
+        <div class="breath-center"></div>
+        <span class="breath-label" id="breathLabel">Breathe</span>
+      </div>
+
       <div class="timer-btns">
         <button class="btn-session gold" onclick="startSession()" id="btnStartSession">Begin Session</button>
         <button class="btn-session" onclick="pauseSession()" id="btnPauseSession" style="display:none;">Pause</button>
@@ -495,6 +541,7 @@ function startSession(){
   runTimer();
 }
 
+let breathInterval=null;
 function runTimer(){
   clearInterval(timerInterval);
   timerInterval=setInterval(()=>{
@@ -505,6 +552,10 @@ function runTimer(){
       const fade=setInterval(()=>{v=Math.max(0,v-0.04);ma.volume=v;if(v===0){clearInterval(fade);ma.pause();}},250);
       sessionPhase='silence';
       document.getElementById('timerLabel').textContent='Be still. God is speaking.';
+      document.getElementById('breathingWrap').style.display='flex';
+      let inhale=true;
+      document.getElementById('breathLabel').textContent='Breathe in';
+      breathInterval=setInterval(()=>{inhale=!inhale;document.getElementById('breathLabel').textContent=inhale?'Breathe in':'Breathe out';},3000);
     }
     if(timerSeconds<=0){clearInterval(timerInterval);timerSeconds=0;updateTimerDisplay();sessionComplete();}
   },1000);
@@ -522,7 +573,7 @@ function pauseSession(){
 }
 
 function resetSession(){
-  clearInterval(timerInterval);
+  clearInterval(timerInterval);clearInterval(breathInterval);
   const ma=document.getElementById('musicAudio');ma.pause();ma.src='';
   paused=false;timerSeconds=900;sessionPhase='idle';
   updateTimerDisplay();
@@ -532,6 +583,7 @@ function resetSession(){
   document.getElementById('btnResetSession').style.display='none';
   document.getElementById('btnPauseSession').textContent='Pause';
   document.getElementById('journalPrompt').style.display='none';
+  document.getElementById('breathingWrap').style.display='none';
 }
 
 function sessionComplete(){
