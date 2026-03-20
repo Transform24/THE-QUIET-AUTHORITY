@@ -5,6 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Quiet Authority | Sanctuary Grace Ministry</title>
 <meta name="description" content="Discover what silence is teaching you. A sacred assessment for burned-out Christian women ready for breakthrough.">
+<link rel="canonical" href="https://transform24.github.io/THE-QUIET-AUTHORITY/">
+<!-- Open Graph for Beacons and social sharing -->
+<meta property="og:title" content="The Quiet Authority — What Is Silence Teaching You?">
+<meta property="og:description" content="8-question sacred assessment revealing your Silence Profile and breakthrough path.">
+<meta property="og:url" content="https://transform24.github.io/THE-QUIET-AUTHORITY/">
+<meta property="og:type" content="website">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -436,14 +442,32 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
     <div class="email-dove">🕊️</div>
     <h2 class="email-title serif">Your profile<br>is ready.</h2>
     <p class="email-sub">Enter your name and email to reveal your Silence Profile and personalized breakthrough path — plus your first guided silence practice delivered to your inbox.</p>
-    <div class="form-group">
-      <input type="text" class="form-input" id="inputName" placeholder="Your first name" autocomplete="given-name">
-      <input type="email" class="form-input" id="inputEmail" placeholder="Your email address" autocomplete="email">
+
+    <!-- BEACONS FORM — connects directly to email sequence -->
+    <div id="beacons-form-wrap" style="margin-bottom:16px;">
+      <div class="form-group">
+        <input type="text" class="form-input" id="inputName" placeholder="Your first name" autocomplete="given-name">
+        <input type="email" class="form-input" id="inputEmail" placeholder="Your email address" autocomplete="email">
+      </div>
+      <button class="btn-begin" onclick="submitToBeaconsAndReveal()" style="width:100%;display:block;text-align:center;"><span>Reveal My Profile</span></button>
     </div>
-    <button class="btn-begin" onclick="revealResults()" style="width:100%;display:block;text-align:center;"><span>Reveal My Profile</span></button>
+
     <p class="email-privacy">Your information is sacred. No spam, ever. Unsubscribe anytime.</p>
   </div>
 </div>
+
+<!-- BEACONS EMBED SCRIPT -->
+<script>
+  (function () {
+    var s=document.createElement("script");
+    var t=Math.floor(new Date().getTime()/120000);
+    s.type="module";
+    s.async=1;
+    s.src=`https://beacons.ai/embeds/emailForm.js?v=${t}&b=sanctuarygrace&f=14b07084-af74-4653-8f79-54311df3a69a`;
+    document.body.appendChild(s);
+  })();
+</script>
+<div id="14b07084-af74-4653-8f79-54311df3a69a" style="display:none;"></div>
 
 <!-- ══ SCREEN 4: RESULTS ══ -->
 <div class="screen" id="screen-results">
@@ -700,6 +724,26 @@ function goBack(){
   else{showScreen('screen-landing');document.getElementById('progressBar').style.display='none';}
 }
 
+function submitToBeaconsAndReveal(){
+  userName=document.getElementById('inputName').value.trim();
+  userEmail=document.getElementById('inputEmail').value.trim();
+  if(!userName||!userEmail){alert('Please enter your name and email to reveal your profile.');return;}
+
+  // Submit to Beacons email list — triggers the 5-email sequence automatically
+  fetch('https://beacons.ai/api/v1/email-form/14b07084-af74-4653-8f79-54311df3a69a/subscribe',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({
+      email: userEmail,
+      name: userName,
+      customFields:{}
+    })
+  }).catch(()=>{});
+
+  // Reveal results regardless
+  revealResults();
+}
+
 function revealResults(){
   userName=document.getElementById('inputName').value.trim();
   userEmail=document.getElementById('inputEmail').value.trim();
@@ -752,13 +796,14 @@ function startSession(){
   ma.loop=true;ma.volume=0.55;ma.play().catch(()=>{});
   timerSeconds=900;
   document.getElementById('timerLabel').textContent='Sacred music is playing — prepare your heart';
-  // Show breathing circles immediately
+  // Show breathing circles immediately with full 4-phase cycle
   document.getElementById('breathingWrap').style.display='flex';
-  document.getElementById('breathLabel').textContent='Breathe in';
-  let inhale=true;
+  let breathPhase=0;
+  const breathPhases=['Breathe in','Hold...','Breathe out','Rest...'];
+  document.getElementById('breathLabel').textContent=breathPhases[0];
   breathInterval=setInterval(()=>{
-    inhale=!inhale;
-    document.getElementById('breathLabel').textContent=inhale?'Breathe in':'Breathe out';
+    breathPhase=(breathPhase+1)%4;
+    document.getElementById('breathLabel').textContent=breathPhases[breathPhase];
   },4000);
   runTimer();
 }
@@ -768,12 +813,22 @@ function runTimer(){
   clearInterval(timerInterval);
   timerInterval=setInterval(()=>{
     timerSeconds--;updateTimerDisplay();
+    // Silence phase starts at exactly 10:00 remaining
     if(timerSeconds===600){
       const ma=document.getElementById('musicAudio');
       let v=ma.volume;
       const fade=setInterval(()=>{v=Math.max(0,v-0.04);ma.volume=v;if(v===0){clearInterval(fade);ma.pause();}},250);
       sessionPhase='silence';
       document.getElementById('timerLabel').textContent='Be still. God is speaking.';
+      // Switch breath label to Hold then Out pattern for silence
+      clearInterval(breathInterval);
+      let phase=0;
+      const phases=['Breathe in','Hold...','Breathe out','Rest...'];
+      document.getElementById('breathLabel').textContent=phases[0];
+      breathInterval=setInterval(()=>{
+        phase=(phase+1)%4;
+        document.getElementById('breathLabel').textContent=phases[phase];
+      },4000);
     }
     if(timerSeconds<=0){clearInterval(timerInterval);timerSeconds=0;updateTimerDisplay();sessionComplete();}
   },1000);
