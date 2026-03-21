@@ -1,0 +1,26 @@
+{
+  "name": "remotion",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "studio": "remotion studio src/index.js",
+    "render:short": "remotion render src/index.js QuietAuthorityShort out/quiet-authority-short.mp4",
+    "render:wide": "remotion render src/index.js QuietAuthorityWide out/quiet-authority-wide.mp4",
+    "render:square": "remotion render src/index.js QuietAuthoritySquare out/quiet-authority-square.mp4",
+    "render:all": "npm run render:short && npm run render:wide && npm run render:square"
+  },
+  "remotion": {
+    "entryPoint": "src/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@remotion/cli": "4.0.438",
+    "@remotion/player": "4.0.438",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "remotion": "4.0.438"
+  }
+}
