@@ -726,146 +726,6 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 
 </div>
 
-<script>
-const QUESTIONS=[
-  {title:"When You Have a Free Moment",stem:"When you have an unexpected free moment, your first instinct is to...",reveals:"Relationship with stillness",options:[{l:"A",t:"Fill it immediately — check phone, turn on TV, find something to do"},{l:"B",t:"Feel anxious or guilty for not being productive"},{l:"C",t:"Worry about what you're forgetting or who needs you"},{l:"D",t:"Wonder who you are without all the doing"}]},
-  {title:"Silence Feels Like",stem:"If you sat in complete silence for 10 minutes right now, it would feel...",reveals:"Primary barrier to stillness",options:[{l:"A",t:"Impossible — my mind would race the entire time"},{l:"B",t:"Exhausting — I'm too tired even for silence"},{l:"C",t:"Selfish — others need me and I'd feel guilty"},{l:"D",t:"Scary — I don't know what would surface"}]},
-  {title:"God's Voice",stem:"When you think about hearing God's voice, you...",reveals:"Spiritual obstacle to listening",options:[{l:"A",t:"Feel like you're too busy and distracted to hear Him clearly"},{l:"B",t:"Wonder if you'd recognize it if He spoke"},{l:"C",t:"Think He's probably disappointed you're not doing more"},{l:"D",t:"Aren't sure He speaks to people like you"}]},
-  {title:"The Breaking Point",stem:"The moment that brought you here today feels most like...",reveals:"Type of depletion",options:[{l:"A",t:"Everything is falling apart and I can't keep up"},{l:"B",t:"I have nothing left to give — I'm empty"},{l:"C",t:"I can't keep saying yes when I need to say no"},{l:"D",t:"I've lost myself and don't know how to find me again"}]},
-  {title:"Your Deepest Fear",stem:"If you're honest, your biggest fear about being still is...",reveals:"What you're avoiding in silence",options:[{l:"A",t:"Everything will fall apart if I stop"},{l:"B",t:"I'll realize how empty I actually am"},{l:"C",t:"People will be upset with me or disappointed"},{l:"D",t:"I'll discover I don't know who I am anymore"}]},
-  {title:"When God Says 'Be Still'",stem:"When you read 'Be still and know that I am God' (Psalm 46:10), you...",reveals:"Obedience barrier",options:[{l:"A",t:"Think 'I will, as soon as I finish everything on my list'"},{l:"B",t:"Feel even more tired — like one more thing I'm failing at"},{l:"C",t:"Wonder if being still means letting people down"},{l:"D",t:"Don't understand how to do that anymore"}]},
-  {title:"God's Provision",stem:"When you think about God's provision in tight seasons, you...",reveals:"Trust level",options:[{l:"A",t:"See it but worry it won't last or won't be enough"},{l:"B",t:"Struggle to see it because you're too depleted to notice"},{l:"C",t:"Feel guilty receiving when you think you should earn it"},{l:"D",t:"Question if He's really there or if it's just coincidence"}]},
-  {title:"What You're Ready For",stem:"Right now, what you need most is...",reveals:"Desired transformation",options:[{l:"A",t:"Permission to stop performing and just rest in Him"},{l:"B",t:"To feel alive again — to remember what peace feels like"},{l:"C",t:"Freedom to say no without guilt and yes to what matters"},{l:"D",t:"To rediscover who God created you to be beneath all the roles"}]}
-];
-
-const PROFILES={
-  A:{name:"The Striving Achiever",tagline:"Your worth isn't in your output — it's in His love.",diagnosis:"You've built your identity on accomplishment, and silence threatens everything you've constructed. You equate stillness with laziness, rest with irresponsibility. But God is inviting you to discover that your worth isn't in your output — it's in His love. The breakthrough you're seeking? It's waiting in the stillness you're avoiding.",scripture:"Come to me, all who are weary and burdened, and I will give you rest.",ref:"Matthew 11:28",lessons:["You are enough without the achievement","Rest is obedience, not laziness","God's provision doesn't require your perfection"],breakthrough:"Your transformation begins when you stop proving and start receiving. Start with just 5 minutes of silence — not to accomplish anything, but to practice being loved apart from performing.",practiceTag:"7-Day Practice: 10 minutes of silence daily",journal:"What am I afraid will happen if I stop? What would it feel like to receive God's love without earning it?"},
-  B:{name:"The Depleted Survivor",tagline:"You were meant to be the vessel, not the source.",diagnosis:"You're not just tired — you're empty. The well has run dry and you're operating on fumes. Silence feels like one more thing you don't have energy for. But here's the truth: God never asked you to be the source. You were meant to be the vessel. Your depletion is sacred ground — the place where self-reliance dies and dependence on Him becomes your only option.",scripture:"He restores my soul. He leads me beside quiet waters.",ref:"Psalm 23:2–3",lessons:["You don't have to generate your own strength","Being empty makes room for Him to fill","His sustaining power shows up when you stop striving"],breakthrough:"Your transformation begins with radical permission to stop. Not to 'work on yourself' in the silence — but to simply rest in His presence. Let Him carry what you've been forcing yourself to hold.",practiceTag:"7-Day Practice: Sit, breathe, let Him be God",journal:"What have I been carrying that God never asked me to carry? What would it feel like to set it down?"},
-  C:{name:"The Guilty Giver",tagline:"Boundaries aren't selfish — they're sacred.",diagnosis:"Your heart to serve others is beautiful — but it's become your prison. You've confused love with self-abandonment. Silence feels selfish because you've made everyone else's needs more important than the voice of God. But boundaries aren't selfish — they're sacred. Saying 'no' to some things is actually saying 'yes' to His highest purposes for you.",scripture:"It is for freedom that Christ has set us free.",ref:"Galatians 5:1",lessons:["God's voice matters more than people's expectations","You can love others without losing yourself","Boundaries protect what God is building in you"],breakthrough:"Your transformation begins when you realize: disappointing people isn't the same as disappointing God. Silence teaches you to serve from overflow, not obligation. To give from fullness, not emptiness.",practiceTag:"7-Day Practice: Identify one 'yes' that should be a 'no'",journal:"Who am I trying not to disappoint right now? What is God actually asking of me — and what is He not?"},
-  D:{name:"The Lost Wanderer",tagline:"Silence isn't where you lose yourself — it's where you remember.",diagnosis:"You've been running so long, you've forgotten where you were going. The roles, the expectations, the endless demands — they've obscured the woman God created you to be. Silence feels scary because you're not sure who you'll find there. But this disorientation isn't the end; it's the beginning. God is inviting you into the wilderness to rediscover your true identity — the one He gave you before the world told you who to be.",scripture:"Be still, and know that I am God.",ref:"Psalm 46:10",lessons:["Who you are in Christ vs. who the world says you should be","Your identity is found in stillness, not striving","God has been speaking — you just couldn't hear Him through the noise"],breakthrough:"Your transformation begins in the sacred pause. Silence isn't where you lose yourself — it's where you remember. Beneath all the roles and responsibilities, there's a woman God knows by name. She's waiting for you in the stillness.",practiceTag:"14-Day Practice: Journal who you are when no one needs you",journal:"Who am I when no one needs anything from me? What is God whispering about my true identity?"}
-};
-
-let currentQ=0,answers=[],userName='',userEmail='',currentProfile='A';
-let voPlaying=false,timerInterval=null,timerSeconds=900,paused=false,sessionPhase='idle';
-const MUSIC=['music1.mp3','music2.mp3','music3.mp3','music4.mp3'];
-
-// Soul counter
-(function(){
-  let c=2847+Math.floor(Math.random()*40);
-  document.getElementById('soulCount').textContent=c.toLocaleString();
-  setInterval(()=>{if(Math.random()<0.12){c++;document.getElementById('soulCount').textContent=c.toLocaleString();}},9000);
-})();
-
-function nextQuestion() {
-  if(answers[currentQ] === undefined) return;
-
-  if(currentQ < questions.length - 1){
-    currentQ++;
-    renderQuestion();
-  } else {
-    calculateResults();
-  }
-}
-
-// ═══════════════════════════════════
-// RESULTS
-// ═══════════════════════════════════
-function calculateResults() {
-  scores = Object.fromEntries(Object.keys(profiles).map(k=>[k,0]));
-  answers.forEach((answerIdx, qIdx) => {
-    if(answerIdx !== undefined) {
-      scores[questions[qIdx].options[answerIdx].profile]++;
-    }
-  });
-  showScreen('screen-calculating');
-  setTimeout(showResults, 3200);
-}
-
-function showResults() {
-  const top = Object.entries(scores).sort((a,b)=>b[1]-a[1])[0][0];
-  const p = profiles[top];
-
-  window.tqaCurrentProfile = p.name; // carry profile to Circle of Silence
-  document.getElementById('resultName').innerHTML = p.name;
-  document.getElementById('resultArchetype').textContent = p.archetype;
-  document.getElementById('resultEssence').innerHTML = p.essence;
-  document.getElementById('mirrorTitle').textContent = p.mirror.title;
-  document.getElementById('mirrorBody').innerHTML = p.mirror.body;
-  document.getElementById('diagnosisTitle').textContent = p.diagnosis.title;
-  document.getElementById('diagnosisBody').innerHTML = p.diagnosis.body;
-  document.getElementById('scriptureText').textContent = p.diagnosis.scripture;
-  document.getElementById('scriptureRef').textContent = p.diagnosis.ref;
-  document.getElementById('breakthroughTitle').textContent = p.breakthrough.title;
-  document.getElementById('breakthroughBody').innerHTML = p.breakthrough.body;
-
-  // Roadmap
-  renderRoadmap();
-
-  showScreen('screen-results');
-
-  // Animate panels
-  setTimeout(()=>{
-    document.querySelectorAll('.result-panel').forEach((p,i)=>{
-      setTimeout(()=>p.classList.add('visible'), i * 180);
-    });
-  }, 400);
-
-  // Salvation counter flash
-  setTimeout(()=>{
-    const f = document.getElementById('salvationFlash');
-    f.classList.add('show');
-    setTimeout(()=>f.classList.remove('show'), 4500);
-  }, 2000);
-}
-
-function unlockStep(i) {
-  if(i <= stepsUnlocked) {
-    stepsUnlocked = Math.max(stepsUnlocked, i+1);
-    renderRoadmap();
-  }
-}
-
-// ═══════════════════════════════════
-// EMAIL
-// ═══════════════════════════════════
-function submitEmail() {
-  const name = document.getElementById('nameInput').value.trim();
-  const email = document.getElementById('emailInput').value.trim();
-  if(!name || !email) {
-    document.getElementById('nameInput').style.borderColor = !name ? 'var(--terra)' : 'rgba(196,166,120,.2)';
-    document.getElementById('emailInput').style.borderColor = !email ? 'var(--terra)' : 'rgba(196,166,120,.2)';
-    return;
-  }
-
-  // Store for profile carry-through
-  window.tqaUserName = name;
-  window.tqaUserEmail = email;
-
-  // Show sacred confirmation — she stays on page entirely
-  document.querySelector('.email-inner').innerHTML = `
-    <span class="s-label">You Are Received</span>
-    <h3 class="email-title" style="font-family:'Cinzel',serif;font-size:clamp(1.2rem,3vw,1.8rem);font-weight:400;color:var(--cream);margin-bottom:1rem">${name}, the circle knows your name</h3>
-    <div class="gold-line"></div>
-    <p class="email-body"><em>Your sacred profile and a personal letter are on their way to your inbox.<br><br>
-    <strong style="color:var(--gold);font-style:normal">The silence has been waiting for you.</strong></em></p>
-    <button onclick="document.getElementById('stepsTrack').scrollIntoView({behavior:'smooth',block:'start'})"
-      style="margin-top:1.5rem;font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.3em;
-      text-transform:uppercase;color:var(--dark);background:var(--gold);border:none;
-      padding:1.2rem 2.5rem;cursor:pointer;display:inline-block">
-      View My Sacred Roadmap ↑
-    </button>
-  `;
-
-  // Unlock all remaining roadmap steps
-  stepsUnlocked = roadmapSteps.length;
-  renderRoadmap();
-
-  // Scroll to roadmap automatically
-  setTimeout(()=>{
-    document.getElementById('stepsTrack').scrollIntoView({behavior:'smooth', block:'start'});
-  }, 1200);
-}
-
 <!-- JOURNAL MODAL -->
 <div id="journalModal" style="display:none;position:fixed;inset:0;background:rgba(14,12,10,.95);
   z-index:9999;align-items:center;justify-content:center;padding:2rem">
@@ -902,93 +762,153 @@ function submitEmail() {
 </div>
 
 <script>
-function renderRoadmap() {
-  const track = document.getElementById('stepsTrack');
-  if(!track) return;
-  track.innerHTML = roadmapSteps.map((step,i)=>{
-    const isUnlocked = step.unlocked || i < stepsUnlocked;
-    let actionHTML = '';
-    if(isUnlocked && step.action === 'circle'){
-      actionHTML = `<a href="https://buy.stripe.com/4gMeVd5oYaWlgDqgr8cQU09" target="_blank"
-        style="display:inline-block;margin-top:1.2rem;font-family:'Cinzel',serif;font-size:.65rem;
-        letter-spacing:.25em;text-transform:uppercase;color:var(--gold);
-        border:1px solid rgba(196,166,120,.4);padding:.7rem 1.6rem;text-decoration:none;
-        transition:all .3s">${step.actionLabel}</a>`;
-    } else if(isUnlocked && step.action === 'journal'){
-      actionHTML = `<button onclick="openJournalModal()"
-        style="margin-top:1.2rem;font-family:'Cinzel',serif;font-size:.65rem;
-        letter-spacing:.25em;text-transform:uppercase;color:var(--gold);background:none;
-        border:1px solid rgba(196,166,120,.4);padding:.7rem 1.6rem;cursor:pointer;
-        transition:all .3s">${step.actionLabel}</button>`;
-    }
-    if(timerSeconds<=0){clearInterval(timerInterval);timerSeconds=0;updateTimerDisplay();sessionComplete();}
-  },1000);
+const QUESTIONS=[
+  {title:"When You Have a Free Moment",stem:"When you have an unexpected free moment, your first instinct is to...",reveals:"Relationship with stillness",options:[{l:"A",t:"Fill it immediately — check phone, turn on TV, find something to do"},{l:"B",t:"Feel anxious or guilty for not being productive"},{l:"C",t:"Worry about what you're forgetting or who needs you"},{l:"D",t:"Wonder who you are without all the doing"}]},
+  {title:"Silence Feels Like",stem:"If you sat in complete silence for 10 minutes right now, it would feel...",reveals:"Primary barrier to stillness",options:[{l:"A",t:"Impossible — my mind would race the entire time"},{l:"B",t:"Exhausting — I'm too tired even for silence"},{l:"C",t:"Selfish — others need me and I'd feel guilty"},{l:"D",t:"Scary — I don't know what would surface"}]},
+  {title:"God's Voice",stem:"When you think about hearing God's voice, you...",reveals:"Spiritual obstacle to listening",options:[{l:"A",t:"Feel like you're too busy and distracted to hear Him clearly"},{l:"B",t:"Wonder if you'd recognize it if He spoke"},{l:"C",t:"Think He's probably disappointed you're not doing more"},{l:"D",t:"Aren't sure He speaks to people like you"}]},
+  {title:"The Breaking Point",stem:"The moment that brought you here today feels most like...",reveals:"Type of depletion",options:[{l:"A",t:"Everything is falling apart and I can't keep up"},{l:"B",t:"I have nothing left to give — I'm empty"},{l:"C",t:"I can't keep saying yes when I need to say no"},{l:"D",t:"I've lost myself and don't know how to find me again"}]},
+  {title:"Your Deepest Fear",stem:"If you're honest, your biggest fear about being still is...",reveals:"What you're avoiding in silence",options:[{l:"A",t:"Everything will fall apart if I stop"},{l:"B",t:"I'll realize how empty I actually am"},{l:"C",t:"People will be upset with me or disappointed"},{l:"D",t:"I'll discover I don't know who I am anymore"}]},
+  {title:"When God Says 'Be Still'",stem:"When you read 'Be still and know that I am God' (Psalm 46:10), you...",reveals:"Obedience barrier",options:[{l:"A",t:"Think 'I will, as soon as I finish everything on my list'"},{l:"B",t:"Feel even more tired — like one more thing I'm failing at"},{l:"C",t:"Wonder if being still means letting people down"},{l:"D",t:"Don't understand how to do that anymore"}]},
+  {title:"God's Provision",stem:"When you think about God's provision in tight seasons, you...",reveals:"Trust level",options:[{l:"A",t:"See it but worry it won't last or won't be enough"},{l:"B",t:"Struggle to see it because you're too depleted to notice"},{l:"C",t:"Feel guilty receiving when you think you should earn it"},{l:"D",t:"Question if He's really there or if it's just coincidence"}]},
+  {title:"What You're Ready For",stem:"Right now, what you need most is...",reveals:"Desired transformation",options:[{l:"A",t:"Permission to stop performing and just rest in Him"},{l:"B",t:"To feel alive again — to remember what peace feels like"},{l:"C",t:"Freedom to say no without guilt and yes to what matters"},{l:"D",t:"To rediscover who God created you to be beneath all the roles"}]}
+];
+
+const PROFILES={
+  A:{name:"The Striving Achiever",tagline:"Your worth isn't in your output — it's in His love.",diagnosis:"You've built your identity on accomplishment, and silence threatens everything you've constructed. You equate stillness with laziness, rest with irresponsibility. But God is inviting you to discover that your worth isn't in your output — it's in His love. The breakthrough you're seeking? It's waiting in the stillness you're avoiding.",scripture:"Come to me, all who are weary and burdened, and I will give you rest.",ref:"Matthew 11:28",lessons:["You are enough without the achievement","Rest is obedience, not laziness","God's provision doesn't require your perfection"],breakthrough:"Your transformation begins when you stop proving and start receiving. Start with just 5 minutes of silence — not to accomplish anything, but to practice being loved apart from performing.",practiceTag:"7-Day Practice: 10 minutes of silence daily",journal:"What am I afraid will happen if I stop? What would it feel like to receive God's love without earning it?"},
+  B:{name:"The Depleted Survivor",tagline:"You were meant to be the vessel, not the source.",diagnosis:"You're not just tired — you're empty. The well has run dry and you're operating on fumes. Silence feels like one more thing you don't have energy for. But here's the truth: God never asked you to be the source. You were meant to be the vessel. Your depletion is sacred ground — the place where self-reliance dies and dependence on Him becomes your only option.",scripture:"He restores my soul. He leads me beside quiet waters.",ref:"Psalm 23:2–3",lessons:["You don't have to generate your own strength","Being empty makes room for Him to fill","His sustaining power shows up when you stop striving"],breakthrough:"Your transformation begins with radical permission to stop. Not to 'work on yourself' in the silence — but to simply rest in His presence. Let Him carry what you've been forcing yourself to hold.",practiceTag:"7-Day Practice: Sit, breathe, let Him be God",journal:"What have I been carrying that God never asked me to carry? What would it feel like to set it down?"},
+  C:{name:"The Guilty Giver",tagline:"Boundaries aren't selfish — they're sacred.",diagnosis:"Your heart to serve others is beautiful — but it's become your prison. You've confused love with self-abandonment. Silence feels selfish because you've made everyone else's needs more important than the voice of God. But boundaries aren't selfish — they're sacred. Saying 'no' to some things is actually saying 'yes' to His highest purposes for you.",scripture:"It is for freedom that Christ has set us free.",ref:"Galatians 5:1",lessons:["God's voice matters more than people's expectations","You can love others without losing yourself","Boundaries protect what God is building in you"],breakthrough:"Your transformation begins when you realize: disappointing people isn't the same as disappointing God. Silence teaches you to serve from overflow, not obligation. To give from fullness, not emptiness.",practiceTag:"7-Day Practice: Identify one 'yes' that should be a 'no'",journal:"Who am I trying not to disappoint right now? What is God actually asking of me — and what is He not?"},
+  D:{name:"The Lost Wanderer",tagline:"Silence isn't where you lose yourself — it's where you remember.",diagnosis:"You've been running so long, you've forgotten where you were going. The roles, the expectations, the endless demands — they've obscured the woman God created you to be. Silence feels scary because you're not sure who you'll find there. But this disorientation isn't the end; it's the beginning. God is inviting you into the wilderness to rediscover your true identity — the one He gave you before the world told you who to be.",scripture:"Be still, and know that I am God.",ref:"Psalm 46:10",lessons:["Who you are in Christ vs. who the world says you should be","Your identity is found in stillness, not striving","God has been speaking — you just couldn't hear Him through the noise"],breakthrough:"Your transformation begins in the sacred pause. Silence isn't where you lose yourself — it's where you remember. Beneath all the roles and responsibilities, there's a woman God knows by name. She's waiting for you in the stillness.",practiceTag:"14-Day Practice: Journal who you are when no one needs you",journal:"Who am I when no one needs anything from me? What is God whispering about my true identity?"}
+};
+
+let currentQ=0,answers=[],userName='',userEmail='',currentProfile='A';
+let voPlaying=false,timerInterval=null,breathInterval=null,timerSeconds=900,paused=false,sessionPhase='idle';
+const MUSIC=['music1.mp3','music2.mp3','music3.mp3','music4.mp3'];
+
+// Soul counter
+(function(){
+  let c=2847+Math.floor(Math.random()*40);
+  document.getElementById('soulCount').textContent=c.toLocaleString();
+  setInterval(()=>{if(Math.random()<0.12){c++;document.getElementById('soulCount').textContent=c.toLocaleString();}},9000);
+})();
+
+// Live counter (results page)
+(function(){
+  let n=8+Math.floor(Math.random()*18);
+  const el=document.getElementById('liveNum');
+  if(el)el.textContent=n;
+  setInterval(()=>{
+    if(Math.random()<0.3){n+=Math.random()<0.6?1:-1;n=Math.max(4,Math.min(40,n));const e=document.getElementById('liveNum');if(e)e.textContent=n;}
+  },7000);
+})();
+
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
 }
 
-function updateTimerDisplay(){
-  const m=Math.floor(timerSeconds/60),s=timerSeconds%60;
-  document.getElementById('timerDisplay').textContent=`${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+function toggleVoiceover(){
+  const audio=document.getElementById('voiceoverAudio');
+  const icon=document.getElementById('voIcon');
+  if(voPlaying){audio.pause();icon.textContent='▶';voPlaying=false;}
+  else{audio.play().catch(()=>{});icon.textContent='⏸';voPlaying=true;}
 }
 
-function pauseSession(){
-  const btn=document.getElementById('btnPauseSession');
-  if(paused){runTimer();if(sessionPhase==='music')document.getElementById('musicAudio').play().catch(()=>{});btn.textContent='Pause';paused=false;}
-  else{clearInterval(timerInterval);document.getElementById('musicAudio').pause();btn.textContent='Resume';paused=true;}
+// ═══════════════════════════════════
+// ASSESSMENT
+// ═══════════════════════════════════
+function startAssessment(){
+  currentQ=0; answers=[];
+  renderQuestion();
+  showScreen('screen-question');
 }
 
-function resetSession(){
-  clearInterval(timerInterval);clearInterval(breathInterval);
-  const ma=document.getElementById('musicAudio');ma.pause();ma.src='';
-  paused=false;timerSeconds=900;sessionPhase='idle';
-  updateTimerDisplay();
-  document.getElementById('timerLabel').textContent='Ready when you are';
-  document.getElementById('btnStartSession').style.display='inline-block';
-  document.getElementById('btnPauseSession').style.display='none';
-  document.getElementById('btnResetSession').style.display='none';
-  document.getElementById('btnPauseSession').textContent='Pause';
-  document.getElementById('journalPrompt').style.display='none';
-  document.getElementById('breathingWrap').style.display='none';
-  document.getElementById('sessionPhases').style.display='flex';
+function renderQuestion(){
+  const q=QUESTIONS[currentQ];
+  document.getElementById('qNum').textContent='QUESTION '+(currentQ+1)+' OF '+QUESTIONS.length;
+  document.getElementById('qReveals').textContent='Reveals: '+q.reveals;
+  document.getElementById('qTitle').textContent=q.title;
+  document.getElementById('qStem').textContent=q.stem;
+  document.getElementById('qDots').innerHTML=QUESTIONS.map((_,i)=>
+    '<div class="dot '+(i<currentQ?'done':i===currentQ?'active':'')+'" ></div>'
+  ).join('');
+  const sel=answers[currentQ];
+  document.getElementById('qOptions').innerHTML=q.options.map((opt,i)=>
+    '<button class="option '+(sel===i?'selected':'')+'" onclick="selectAnswer('+i+')">'+
+    '<span class="opt-letter">'+opt.l+'</span>'+
+    '<span class="opt-text">'+opt.t+'</span></button>'
+  ).join('');
+  document.getElementById('btnBack').style.visibility=currentQ===0?'hidden':'visible';
+  const btnNext=document.getElementById('btnNext');
+  if(sel!==undefined){btnNext.removeAttribute('disabled');btnNext.classList.add('ready');}
+  else{btnNext.setAttribute('disabled','');btnNext.classList.remove('ready');}
 }
 
-function sessionComplete(){
-  sessionPhase='done';
-  document.getElementById('timerLabel').textContent='Your session is complete. Well done, beloved.';
-  document.getElementById('btnPauseSession').style.display='none';
-  document.getElementById('journalPrompt').style.display='block';
+function selectAnswer(i){answers[currentQ]=i;renderQuestion();}
+function goBack(){if(currentQ>0){currentQ--;renderQuestion();}}
+function nextQ(){
+  if(answers[currentQ]===undefined)return;
+  if(currentQ<QUESTIONS.length-1){currentQ++;renderQuestion();}
+  else{showScreen('screen-email');}
 }
 
-function acceptJesus(){
-  const btn = document.querySelector('.btn-salvation');
-  btn.style.display = 'none';
-  document.getElementById('salvationConfirm').style.display = 'block';
-
-  // Count souls saved today - simple incrementing display
-  const todayKey = 'tqa_souls_' + new Date().toDateString();
-  let count = parseInt(localStorage.getItem(todayKey) || '0') + 1;
-  localStorage.setItem(todayKey, count);
-  document.getElementById('soulNum').textContent = count;
-
-  // Record soul with Grace via Formspree
-  fetch('https://formspree.io/f/xeoqkgjb', {
-    method:'POST',
-    headers:{'Content-Type':'application/json','Accept':'application/json'},
-    body:JSON.stringify({
-      _subject: '🕊️ A SOUL HAS ACCEPTED JESUS — The Quiet Authority',
-      name: userName || 'Anonymous',
-      email: userEmail || 'Not provided',
-      profile: PROFILES[currentProfile]?.name || '',
-      message: `SOUL SAVED\n\nName: ${userName||'Anonymous'}\nEmail: ${userEmail||'Not provided'}\nProfile: ${PROFILES[currentProfile]?.name||''}\nTime: ${new Date().toLocaleString()}\n\n"If you declare with your mouth Jesus is Lord... you will be saved." Romans 10:9`
-    })
-  }).catch(()=>{});
+// ═══════════════════════════════════
+// EMAIL & REVEAL
+// ═══════════════════════════════════
+function submitToBeaconsAndReveal(){
+  const name=document.getElementById('inputName').value.trim();
+  const email=document.getElementById('inputEmail').value.trim();
+  if(!name||!email){
+    document.getElementById('inputName').style.borderColor=!name?'#c07856':'rgba(196,166,120,.3)';
+    document.getElementById('inputEmail').style.borderColor=!email?'#c07856':'rgba(196,166,120,.3)';
+    return;
+  }
+  userName=name; userEmail=email;
+  calculateAndShowResults();
 }
 
-function joinCircle(){
-  window.open('https://beacons.ai/sanctuarygrace', '_blank');
+// ═══════════════════════════════════
+// RESULTS
+// ═══════════════════════════════════
+function calculateAndShowResults(){
+  const tally={A:0,B:0,C:0,D:0};
+  const letters=['A','B','C','D'];
+  answers.forEach(idx=>{if(idx!==undefined)tally[letters[idx]]++;});
+  currentProfile=Object.entries(tally).sort((a,b)=>b[1]-a[1])[0][0];
+  showResults();
 }
 
-// 7-DAY EXPERIENCE (profile-specific days injected at results render)
-const SEVEN_DAYS = {
+function showResults(){
+  const p=PROFILES[currentProfile];
+  document.getElementById('rName').textContent=p.name;
+  document.getElementById('rTagline').textContent=p.tagline;
+  document.getElementById('rDiagnosis').textContent=p.diagnosis;
+  document.getElementById('rScripture').textContent=p.scripture;
+  document.getElementById('rScriptureRef').textContent=p.ref;
+  document.getElementById('rLessons').innerHTML=p.lessons.map(l=>'<div class="lesson-item">→ '+l+'</div>').join('');
+  document.getElementById('rBreakthrough').textContent=p.breakthrough;
+  document.getElementById('rPracticeTag').textContent=p.practiceTag;
+  document.getElementById('jpText').textContent=p.journal;
+  const days=SEVEN_DAYS[currentProfile];
+  document.getElementById('dayCards').innerHTML=days.map((d,i)=>
+    '<div class="day-card"><div class="day-num">Day '+(i+1)+'</div>'+
+    '<div class="day-title">'+d.title+'</div>'+
+    '<p class="day-practice">'+d.practice+'</p>'+
+    '<p class="day-scripture">'+d.scripture+'</p></div>'
+  ).join('');
+  if(userName){
+    const cb=document.getElementById('confirmBanner');
+    document.getElementById('confirmText').textContent=userName+', your Silence Profile is ready. Check your inbox at '+userEmail+'.';
+    if(cb)cb.style.display='block';
+  }
+
+  showScreen('screen-results');
+}
+
+</script>
+
+<script>
+const SEVEN_DAYS={
   A:[
     {title:"Permission to Rest",practice:"Sit in silence for 10 minutes. Do nothing. Accomplish nothing. Just be.",scripture:"Matthew 11:28 — Come to me, all who are weary…"},
     {title:"Your Worth Without Work",practice:"Before you open your phone, sit for 5 minutes. Ask: who am I before I produce anything today?",scripture:"Psalm 46:10 — Be still, and know that I am God."},
@@ -1027,9 +947,80 @@ const SEVEN_DAYS = {
   ]
 };
 
+function startSession(){
+  const ma=document.getElementById('musicAudio');
+  ma.src=MUSIC[Math.floor(Math.random()*MUSIC.length)];
+  ma.loop=true; ma.play().catch(()=>{});
+  sessionPhase='music'; timerSeconds=300;
+  document.getElementById('btnStartSession').style.display='none';
+  document.getElementById('btnPauseSession').style.display='inline-block';
+  document.getElementById('btnResetSession').style.display='inline-block';
+  document.getElementById('sessionPhases').style.display='none';
+  document.getElementById('timerLabel').textContent='Sacred music is preparing your heart…';
+  runTimer();
+}
+
+function runTimer(){
+  timerInterval=setInterval(()=>{
+    timerSeconds--;
+    updateTimerDisplay();
+    if(timerSeconds<=0){
+      clearInterval(timerInterval);
+      if(sessionPhase==='music'){
+        sessionPhase='silence'; timerSeconds=600;
+        document.getElementById('timerLabel').textContent='Enter the silence…';
+        document.getElementById('breathingWrap').style.display='flex';
+        startBreathing(); runTimer();
+      } else {
+        timerSeconds=0; updateTimerDisplay(); sessionComplete();
+      }
+    }
+  },1000);
+}
+
+function startBreathing(){
+  const label=document.getElementById('breathLabel');
+  const phases=['Breathe in','Hold…','Breathe out','Rest…'];
+  let phase=0;
+  function next(){label.textContent=phases[phase];phase=(phase+1)%4;}
+  next();
+  breathInterval=setInterval(next,4000);
+}
+
+function updateTimerDisplay(){
+  const m=Math.floor(timerSeconds/60),s=timerSeconds%60;
+  document.getElementById('timerDisplay').textContent=String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
+}
+
+function pauseSession(){
+  const btn=document.getElementById('btnPauseSession');
+  if(paused){runTimer();if(sessionPhase==='music')document.getElementById('musicAudio').play().catch(()=>{});btn.textContent='Pause';paused=false;}
+  else{clearInterval(timerInterval);document.getElementById('musicAudio').pause();btn.textContent='Resume';paused=true;}
+}
+
+function resetSession(){
+  clearInterval(timerInterval);clearInterval(breathInterval);
+  const ma=document.getElementById('musicAudio');ma.pause();ma.src='';
+  paused=false;timerSeconds=900;sessionPhase='idle';updateTimerDisplay();
+  document.getElementById('timerLabel').textContent='Ready when you are';
+  document.getElementById('btnStartSession').style.display='inline-block';
+  document.getElementById('btnPauseSession').style.display='none';
+  document.getElementById('btnResetSession').style.display='none';
+  document.getElementById('btnPauseSession').textContent='Pause';
+  document.getElementById('journalPrompt').style.display='none';
+  document.getElementById('breathingWrap').style.display='none';
+  document.getElementById('sessionPhases').style.display='flex';
+}
+
+function sessionComplete(){
+  sessionPhase='done';
+  document.getElementById('timerLabel').textContent='Your session is complete. Well done, beloved.';
+  document.getElementById('btnPauseSession').style.display='none';
+  document.getElementById('journalPrompt').style.display='block';
+}
+
 function openJournalModal(){
-  const m = document.getElementById('journalModal');
-  m.style.display='flex';
+  document.getElementById('journalModal').style.display='flex';
   document.body.style.overflow='hidden';
 }
 function closeJournalModal(){
@@ -1037,24 +1028,43 @@ function closeJournalModal(){
   document.body.style.overflow='';
 }
 function saveJournalEntry(){
-  const entry = document.getElementById('journalEntry').value.trim();
-  if(!entry) return;
-  // Save to localStorage as backup
+  const entry=document.getElementById('journalEntry').value.trim();
+  if(!entry)return;
   try{
-    const entries = JSON.parse(localStorage.getItem('tqa_journal')||'[]');
-    entries.push({date: new Date().toISOString(), profile: window.tqaCurrentProfile||'', text: entry});
-    localStorage.setItem('tqa_journal', JSON.stringify(entries));
+    const entries=JSON.parse(localStorage.getItem('tqa_journal')||'[]');
+    entries.push({date:new Date().toISOString(),profile:currentProfile,text:entry});
+    localStorage.setItem('tqa_journal',JSON.stringify(entries));
   }catch(e){}
   document.getElementById('journalEntry').style.display='none';
   document.querySelector('#journalModal button[onclick="saveJournalEntry()"]').style.display='none';
   document.getElementById('journalConfirm').style.display='block';
-  // Unlock next step
-  stepsUnlocked = Math.max(stepsUnlocked, 4);
-  setTimeout(()=>{
-    closeJournalModal();
-    renderRoadmap();
-  }, 2200);
+  setTimeout(()=>{closeJournalModal();},2200);
 }
+
+function acceptJesus(){
+  const btn=document.querySelector('.btn-salvation');
+  if(btn)btn.style.display='none';
+  const conf=document.getElementById('salvationConfirm');
+  if(conf)conf.style.display='block';
+  const todayKey='tqa_souls_'+new Date().toDateString();
+  let count=parseInt(localStorage.getItem(todayKey)||'0')+1;
+  localStorage.setItem(todayKey,count);
+  const el=document.getElementById('soulNum');if(el)el.textContent=count;
+  fetch('https://formspree.io/f/xeoqkgjb',{
+    method:'POST',
+    headers:{'Content-Type':'application/json','Accept':'application/json'},
+    body:JSON.stringify({
+      _subject:'🕊️ A SOUL HAS ACCEPTED JESUS — The Quiet Authority',
+      name:userName||'Anonymous',email:userEmail||'Not provided',
+      profile:PROFILES[currentProfile]?.name||''
+    })
+  }).catch(()=>{});
+}
+
+function joinCircle(){window.open('https://beacons.ai/sanctuarygrace','_blank');}
+
+// stepsTrack does not exist in current UI but renderRoadmap is called defensively
+function renderRoadmap(){}
 </script>
 </body>
 </html>
