@@ -365,12 +365,44 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 .footer-min{font-size:0.62rem;letter-spacing:0.22em;color:var(--text-muted);margin-bottom:8px;text-transform:uppercase;}
 .footer-verse{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:0.92rem;color:var(--gold-dim);}
 
-@media(max-width:600px){
-  .bio-inner{grid-template-columns:1fr;}
-  .bio-img-wrap{max-width:180px;}
-  .bio-img-frame{display:none;}
-  .breakthrough-box,.cta-join{padding:24px 20px;}
-  .scripture-card{padding:22px 20px;}
+/* DEVOTIONAL SHOP */
+.devot-section{padding:6rem 2rem;background:var(--dark3);text-align:center;}
+.devot-inner{max-width:900px;margin:0 auto;}
+.devot-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1.2rem;margin-bottom:1.8rem;}
+.devot-card{background:var(--dark2);border:1px solid rgba(196,166,120,.12);padding:2rem 1.5rem;text-align:center;transition:all .35s;text-decoration:none;display:block;color:var(--cream);}
+.devot-card:hover{border-color:rgba(196,166,120,.45);transform:translateY(-4px);box-shadow:0 12px 36px rgba(196,166,120,.08);}
+.devot-week{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.35em;text-transform:uppercase;color:var(--terra);margin-bottom:.8rem;}
+.devot-title{font-family:'Cinzel',serif;font-size:1rem;font-weight:400;color:var(--cream);margin-bottom:.8rem;}
+.devot-price{font-size:1.5rem;color:var(--gold);font-weight:300;}
+.devot-bundle{background:rgba(196,166,120,.05);border:1px solid rgba(196,166,120,.28);padding:2rem 2.5rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;text-decoration:none;transition:all .35s;}
+.devot-bundle:hover{border-color:var(--gold);transform:translateY(-2px);}
+.devot-bundle-label{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem;}
+.devot-bundle-name{font-family:'Cinzel',serif;font-size:1.2rem;color:var(--cream);}
+.devot-bundle-sub{font-size:.9rem;color:var(--muted);font-style:italic;margin-top:.3rem;}
+.devot-bundle-price{font-size:2rem;color:var(--gold);}
+/* SUBSCRIPTION TIERS */
+.tiers-wrap{display:flex;gap:1.2rem;justify-content:center;flex-wrap:wrap;margin-top:2.5rem;}
+.tier-card{background:var(--dark3);border:1px solid rgba(196,166,120,.15);padding:2.5rem 2rem;flex:1;min-width:220px;max-width:300px;text-align:center;transition:all .35s;position:relative;}
+.tier-card.featured{border-color:rgba(196,166,120,.5);background:rgba(196,166,120,.05);}
+.tier-badge{position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--dark);font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.3em;text-transform:uppercase;padding:.3rem 1.2rem;white-space:nowrap;}
+.tier-name{font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.35em;text-transform:uppercase;color:var(--terra);margin-bottom:1rem;}
+.tier-price{font-size:2.4rem;color:var(--cream);font-weight:300;line-height:1;}
+.tier-period{font-size:.85rem;color:var(--muted);margin-bottom:1.2rem;}
+.tier-desc{font-size:.9rem;color:var(--muted);line-height:1.8;margin:1rem 0 1.8rem;font-style:italic;}
+.tier-btn{font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;display:inline-block;padding:.85rem 1.8rem;text-decoration:none;border:1px solid rgba(196,166,120,.4);color:var(--gold);transition:all .3s;cursor:pointer;background:transparent;}
+.tier-btn:hover{background:var(--gold);color:var(--dark);}
+.tier-btn-primary{background:var(--gold);color:var(--dark);border-color:var(--gold);}
+.tier-btn-primary:hover{background:var(--gold-l);}
+.tier-btn-free{font-family:'Cormorant Garamond',serif;font-size:.95rem;font-style:italic;color:var(--muted);background:none;border:1px solid rgba(245,241,232,.12);padding:.85rem 1.8rem;cursor:pointer;transition:all .3s;text-decoration:none;display:inline-block;}
+.tier-btn-free:hover{border-color:rgba(196,166,120,.3);color:var(--cream);}
+.tier-btn-trial{display:block;margin-top:.8rem;font-family:'Cormorant Garamond',serif;font-size:.85rem;font-style:italic;color:var(--muted);text-decoration:none;transition:color .3s;}
+.tier-btn-trial:hover{color:var(--gold);}
+
+@media(max-width:640px){
+  .q-option{padding:1.1rem 1.3rem}
+  .results-body,.roadmap-inner{padding-left:1rem;padding-right:1rem}
+  .steps-track{padding-left:2rem}
+  .result-panel{padding:2rem 1.5rem}
 }
 </style>
 </head>
@@ -590,40 +622,100 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
     </div>
   </div>
 
-  <!-- JOIN CTA -->
-  <div class="cta-section">
-    <div class="cta-inner">
-      <div class="r-label">You Were Not Meant to Do This Alone</div>
-      <div class="cta-join">
-        <div class="cta-join-label">Circle of Silence</div>
-        <h2 class="cta-join-title serif">Join the Community<br>of Women Who Practice</h2>
-        <p class="cta-join-body">Daily guided silence. Weekly live sessions with Grace. A sacred community of women who understand the discipline of stillness. Transformation happens in community, not isolation.</p>
-        <div class="cta-features">
-          <div class="cta-feature">Daily 15-minute guided silence sessions</div>
-          <div class="cta-feature">Weekly live gatherings with Grace</div>
-          <div class="cta-feature">Profile-specific journal prompts & practices</div>
-          <div class="cta-feature">Prayer support & accountability community</div>
-          <div class="cta-feature">12-week personal transformation roadmap</div>
+  <!-- DEVOTIONAL SHOP -->
+  <div class="devot-section">
+    <div class="devot-inner">
+      <span class="s-label" style="display:block;text-align:center">The Written Word</span>
+      <h3 style="font-family:'Cinzel',serif;font-size:clamp(1.3rem,3vw,2rem);font-weight:400;color:var(--cream);margin-bottom:1.2rem;">The Devotional Series</h3>
+      <div class="gold-line"></div>
+      <p style="font-size:1.05rem;color:var(--muted);line-height:2;margin-bottom:3rem;font-weight:300;">Four weeks of guided devotional study. Each week meets you where you are — and walks you forward.<br><em style="color:var(--cream)">Begin with one. Collect them all.</em></p>
+      <div class="devot-grid">
+        <a href="https://buy.stripe.com/cNieVdbNm6G586UdeWcQU03" target="_blank" class="devot-card">
+          <p class="devot-week">Week 1</p>
+          <p class="devot-title">Vision</p>
+          <p class="devot-price">$4.99</p>
+        </a>
+        <a href="https://buy.stripe.com/3cI7sL18I7K9evi1wecQU04" target="_blank" class="devot-card">
+          <p class="devot-week">Week 2</p>
+          <p class="devot-title">Renewal</p>
+          <p class="devot-price">$4.99</p>
+        </a>
+        <a href="https://buy.stripe.com/14A7sL8Ba4xX9aY7UCcQU06" target="_blank" class="devot-card">
+          <p class="devot-week">Week 3</p>
+          <p class="devot-title">Peace</p>
+          <p class="devot-price">$4.99</p>
+        </a>
+        <a href="https://buy.stripe.com/eVqeVd7x66G5gDq0sacQU02" target="_blank" class="devot-card">
+          <p class="devot-week">Week 4</p>
+          <p class="devot-title">Calling &amp; Legacy</p>
+          <p class="devot-price">$4.99</p>
+        </a>
+      </div>
+      <a href="https://buy.stripe.com/dRm6oHg3C7K9bj6gr8cQU01" target="_blank" class="devot-bundle">
+        <div class="devot-bundle-text">
+          <p class="devot-bundle-label">Complete Series · Best Value</p>
+          <p class="devot-bundle-name">The Full Devotional Bundle</p>
+          <p class="devot-bundle-sub">All four weeks — Vision, Renewal, Peace &amp; Calling</p>
         </div>
-        <button class="btn-begin" onclick="joinCircle()" style="display:inline-block;"><span>Join the Waitlist</span></button>
+        <div style="text-align:right">
+          <p class="devot-bundle-price">$19.96</p>
+          <p style="font-size:.75rem;color:var(--terra);font-family:'Cinzel',serif;letter-spacing:.2em;text-transform:uppercase;margin-top:.3rem">All Four Weeks</p>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- CIRCLE CTA -->
+  <div class="circle-cta">
+    <div class="circle-inner">
+      <div class="rings" style="opacity:.3">
+        <div class="ring"></div><div class="ring"></div><div class="ring"></div>
+      </div>
+      <span class="s-label">The Next Step</span>
+      <h3 class="circle-title">The silence that revealed you<br>is waiting to transform you</h3>
+      <div class="gold-line"></div>
+      <p class="circle-body">Your profile is the beginning. <em>The Circle of Silence is where the becoming happens.</em> A 30 &amp; 90-day guided transformation ministry — built for women who are serious about going inward.</p>
+      <div class="tiers-wrap">
+        <div class="tier-card">
+          <p class="tier-name">Free</p>
+          <p class="tier-price">$0</p>
+          <p class="tier-period">/ month</p>
+          <p class="tier-desc">Enter the silence. Access the foundational practice and begin your 30-day journey at no cost.</p>
+          <a href="https://website.beacons.ai/sanctuarygrace" target="_blank" class="tier-btn-free">Begin Your Journey</a>
+        </div>
+        <div class="tier-card featured">
+          <div class="tier-badge">Most Chosen</div>
+          <p class="tier-name">The Seeker</p>
+          <p class="tier-price">$9</p>
+          <p class="tier-period">/ month</p>
+          <p class="tier-desc">Guided silence sessions, profile-specific devotionals, and weekly soul letters delivered to your inbox.</p>
+          <a href="https://buy.stripe.com/4gMeVd5oYaWlgDqgr8cQU09" target="_blank" class="tier-btn">Enter the Seeker Circle</a>
+          <a href="#" class="tier-btn-trial">Try 7 Days Free</a>
+        </div>
+        <div class="tier-card">
+          <p class="tier-name">The Devoted</p>
+          <p class="tier-price">$27</p>
+          <p class="tier-period">/ month</p>
+          <p class="tier-desc">Full access — live sessions, 1-on-1 prayer, The Devoted Community, and all devotional resources unlocked.</p>
+          <a href="https://buy.stripe.com/3cI14n4kU3tTbj63EmcQU0c" target="_blank" class="tier-btn tier-btn-primary">Enter the Devoted Circle</a>
+          <a href="#" class="tier-btn-trial">Try 7 Days Free</a>
+        </div>
+      </div>
+      <div style="margin-top:2.5rem">
+        <button class="btn-circle-ghost" onclick="showScreen('screen-landing')">Begin Again</button>
       </div>
     </div>
   </div>
 
-  <!-- SALVATION MOMENT -->
-  <div class="salvation-section">
-    <div class="salvation-inner">
-      <div class="salvation-cross">✝</div>
-      <h2 class="salvation-title serif">Is God speaking to you<br>right now?</h2>
-      <p class="salvation-verse serif">"If you declare with your mouth, 'Jesus is Lord,' and believe in your heart that God raised him from the dead, you will be saved."<br>— Romans 10:9</p>
-      <p class="salvation-body">The silence you just practiced — that's where He meets you. If something stirred in you today and you're ready to say yes to Jesus, this is your moment. No perfect words needed. Just your heart.</p>
-      <button class="btn-salvation" onclick="acceptJesus()">
-        Yes — I receive Jesus today
-      </button>
-      <div class="salvation-confirm" id="salvationConfirm">
-        <p>"Welcome home, beloved. Heaven is rejoicing over you right now. You are known. You are loved. You are His."</p>
-        <div class="soul-count-total" id="soulCountTotal">You are soul #<span id="soulNum">1</span> recorded in The Quiet Authority today</div>
-      </div>
+  <footer class="tqa-footer">
+    <p class="footer-logo">The Quiet Authority</p>
+    <p class="footer-tag">Powered by Sanctuary Grace Ministry</p>
+    <div class="footer-links">
+      <a onclick="showScreen('screen-landing')">Start Over</a>
+      <a href="https://pinterest.com/sanctuarygrace" target="_blank">Pinterest</a>
+      <a href="https://youtube.com/@sanctuarygrace" target="_blank">YouTube</a>
+      <a href="https://website.beacons.ai/sanctuarygrace" target="_blank">Community</a>
+      <a href="https://website.beacons.ai/sanctuarygrace" target="_blank">Circle of Silence</a>
     </div>
   </div>
 
@@ -664,171 +756,170 @@ const MUSIC=['music1.mp3','music2.mp3','music3.mp3','music4.mp3'];
   setInterval(()=>{if(Math.random()<0.12){c++;document.getElementById('soulCount').textContent=c.toLocaleString();}},9000);
 })();
 
-function toggleVoiceover(){
-  const a=document.getElementById('voiceoverAudio'),icon=document.getElementById('voIcon');
-  if(voPlaying){a.pause();icon.textContent='▶';voPlaying=false;}
-  else{a.play().catch(()=>{});icon.textContent='⏸';voPlaying=true;a.onended=()=>{icon.textContent='▶';voPlaying=false;};}
+function nextQuestion() {
+  if(answers[currentQ] === undefined) return;
+
+  if(currentQ < questions.length - 1){
+    currentQ++;
+    renderQuestion();
+  } else {
+    calculateResults();
+  }
 }
 
-function showScreen(id){
-  const vo=document.getElementById('voiceoverAudio');vo.pause();voPlaying=false;
-  document.getElementById('voIcon').textContent='▶';
-  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  window.scrollTo(0,0);
-}
-
-function startAssessment(){
-  currentQ=0;answers=Array(8).fill(null);
-  document.getElementById('progressBar').style.display='block';
-  showScreen('screen-question');renderQ();
-}
-
-function renderQ(){
-  const q=QUESTIONS[currentQ];
-  document.getElementById('qNum').textContent=`QUESTION ${currentQ+1} OF 8`;
-  document.getElementById('qReveals').textContent=`Reveals: ${q.reveals}`;
-  document.getElementById('qTitle').textContent=q.title;
-  document.getElementById('qStem').textContent=q.stem;
-  const dots=document.getElementById('qDots');dots.innerHTML='';
-  for(let i=0;i<8;i++){const d=document.createElement('div');d.className='dot'+(i<currentQ?' done':i===currentQ?' active':'');dots.appendChild(d);}
-  const opts=document.getElementById('qOptions');opts.innerHTML='';
-  q.options.forEach(o=>{
-    const btn=document.createElement('button');
-    btn.className='opt'+(answers[currentQ]===o.l?' selected':'');
-    btn.innerHTML=`<span class="opt-letter">${o.l}</span><span>${o.t}</span>`;
-    btn.onclick=()=>selectAnswer(o.l);opts.appendChild(btn);
+// ═══════════════════════════════════
+// RESULTS
+// ═══════════════════════════════════
+function calculateResults() {
+  scores = Object.fromEntries(Object.keys(profiles).map(k=>[k,0]));
+  answers.forEach((answerIdx, qIdx) => {
+    if(answerIdx !== undefined) {
+      scores[questions[qIdx].options[answerIdx].profile]++;
+    }
   });
-  document.getElementById('btnBack').style.visibility=currentQ===0?'hidden':'visible';
-  updateNext();
-  document.getElementById('progressFill').style.width=`${(currentQ/8)*100}%`;
+  showScreen('screen-calculating');
+  setTimeout(showResults, 3200);
 }
 
-function selectAnswer(letter){
-  answers[currentQ]=letter;
-  document.querySelectorAll('.opt').forEach(b=>b.classList.remove('selected'));
-  document.querySelectorAll('.opt').forEach(b=>{if(b.querySelector('.opt-letter').textContent===letter)b.classList.add('selected');});
-  updateNext();
-}
+function showResults() {
+  const top = Object.entries(scores).sort((a,b)=>b[1]-a[1])[0][0];
+  const p = profiles[top];
 
-function updateNext(){const btn=document.getElementById('btnNext');answers[currentQ]?btn.classList.add('on'):btn.classList.remove('on');}
+  window.tqaCurrentProfile = p.name; // carry profile to Circle of Silence
+  document.getElementById('resultName').innerHTML = p.name;
+  document.getElementById('resultArchetype').textContent = p.archetype;
+  document.getElementById('resultEssence').innerHTML = p.essence;
+  document.getElementById('mirrorTitle').textContent = p.mirror.title;
+  document.getElementById('mirrorBody').innerHTML = p.mirror.body;
+  document.getElementById('diagnosisTitle').textContent = p.diagnosis.title;
+  document.getElementById('diagnosisBody').innerHTML = p.diagnosis.body;
+  document.getElementById('scriptureText').textContent = p.diagnosis.scripture;
+  document.getElementById('scriptureRef').textContent = p.diagnosis.ref;
+  document.getElementById('breakthroughTitle').textContent = p.breakthrough.title;
+  document.getElementById('breakthroughBody').innerHTML = p.breakthrough.body;
 
-function nextQ(){
-  if(!answers[currentQ])return;
-  if(currentQ<7){currentQ++;renderQ();}
-  else{document.getElementById('progressFill').style.width='100%';showScreen('screen-email');}
-}
-
-function goBack(){
-  if(currentQ>0){currentQ--;renderQ();}
-  else{showScreen('screen-landing');document.getElementById('progressBar').style.display='none';}
-}
-
-function submitToBeaconsAndReveal(){
-  userName=document.getElementById('inputName').value.trim();
-  userEmail=document.getElementById('inputEmail').value.trim();
-  if(!userName||!userEmail){alert('Please enter your name and email to reveal your profile.');return;}
-
-  // Submit to Beacons email list — triggers the 5-email sequence automatically
-  fetch('https://beacons.ai/api/v1/email-form/14b07084-af74-4653-8f79-54311df3a69a/subscribe',{
-    method:'POST',
-    headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({
-      email: userEmail,
-      name: userName,
-      customFields:{}
-    })
-  }).catch(()=>{});
-
-  // Reveal results regardless
-  revealResults();
-}
-
-function revealResults(){
-  userName=document.getElementById('inputName').value.trim();
-  userEmail=document.getElementById('inputEmail').value.trim();
-  if(!userName||!userEmail){alert('Please enter your name and email to reveal your profile.');return;}
-  const counts={A:0,B:0,C:0,D:0};
-  answers.forEach(a=>{if(a)counts[a]++;});
-  currentProfile=Object.entries(counts).sort((x,y)=>y[1]-x[1])[0][0];
-  const p=PROFILES[currentProfile];
-  document.getElementById('rName').innerHTML=`The <em>${p.name.replace('The ','')}</em>`;
-  document.getElementById('rTagline').textContent=p.tagline;
-  document.getElementById('confirmBanner').style.display='block';
-  document.getElementById('confirmText').innerHTML=`✦ &nbsp;${userName}, your Silence Profile has been revealed. A copy is on its way to <strong style="color:var(--sage-light)">${userEmail}</strong>. Check your inbox for your first guided silence practice.`;
-  document.getElementById('rDiagnosis').textContent=p.diagnosis;
-  document.getElementById('rScripture').textContent=`"${p.scripture}"`;
-  document.getElementById('rScriptureRef').textContent=`— ${p.ref}`;
-  const lessonsEl=document.getElementById('rLessons');lessonsEl.innerHTML='';
-  p.lessons.forEach(l=>{lessonsEl.innerHTML+=`<div class="lesson"><div class="lesson-glyph">✦</div><div class="lesson-text">${l}</div></div>`;});
-  document.getElementById('rBreakthrough').textContent=p.breakthrough;
-  document.getElementById('rPracticeTag').textContent=p.practiceTag;
-  document.getElementById('jpText').textContent=p.journal;
-  document.getElementById('progressBar').style.display='none';
-  renderSevenDays(currentProfile);
-
-  // Send notification to Grace via Formspree
-  fetch('https://formspree.io/f/xeoqkgjb', {
-    method:'POST',
-    headers:{'Content-Type':'application/json','Accept':'application/json'},
-    body:JSON.stringify({
-      name: userName,
-      email: userEmail,
-      profile: p.name,
-      tagline: p.tagline,
-      _subject: `New Soul: ${userName} is ${p.name} — The Quiet Authority`,
-      message: `Name: ${userName}\nEmail: ${userEmail}\nProfile: ${p.name}\n\n${p.diagnosis}\n\nBreakthrough: ${p.breakthrough}\n\nPractice: ${p.practiceTag}`
-    })
-  }).catch(()=>{});
+  // Roadmap
+  renderRoadmap();
 
   showScreen('screen-results');
+
+  // Animate panels
+  setTimeout(()=>{
+    document.querySelectorAll('.result-panel').forEach((p,i)=>{
+      setTimeout(()=>p.classList.add('visible'), i * 180);
+    });
+  }, 400);
+
+  // Salvation counter flash
+  setTimeout(()=>{
+    const f = document.getElementById('salvationFlash');
+    f.classList.add('show');
+    setTimeout(()=>f.classList.remove('show'), 4500);
+  }, 2000);
 }
 
-// Timer & music
-function startSession(){
-  sessionPhase='music';
-  document.getElementById('btnStartSession').style.display='none';
-  document.getElementById('btnPauseSession').style.display='inline-block';
-  document.getElementById('btnResetSession').style.display='inline-block';
-  document.getElementById('sessionPhases').style.display='none';
-  const ma=document.getElementById('musicAudio');
-  ma.src=MUSIC[Math.floor(Math.random()*MUSIC.length)];
-  ma.loop=true;ma.volume=0.55;ma.play().catch(()=>{});
-  timerSeconds=900;
-  document.getElementById('timerLabel').textContent='Sacred music is playing — prepare your heart';
-  // Show breathing circles immediately with full 4-phase cycle
-  document.getElementById('breathingWrap').style.display='flex';
-  let breathPhase=0;
-  const breathPhases=['Breathe in','Hold...','Breathe out','Rest...'];
-  document.getElementById('breathLabel').textContent=breathPhases[0];
-  breathInterval=setInterval(()=>{
-    breathPhase=(breathPhase+1)%4;
-    document.getElementById('breathLabel').textContent=breathPhases[breathPhase];
-  },4000);
-  runTimer();
+function unlockStep(i) {
+  if(i <= stepsUnlocked) {
+    stepsUnlocked = Math.max(stepsUnlocked, i+1);
+    renderRoadmap();
+  }
 }
 
-let breathInterval=null;
-function runTimer(){
-  clearInterval(timerInterval);
-  timerInterval=setInterval(()=>{
-    timerSeconds--;updateTimerDisplay();
-    // Silence phase starts at exactly 10:00 remaining
-    if(timerSeconds===600){
-      const ma=document.getElementById('musicAudio');
-      let v=ma.volume;
-      const fade=setInterval(()=>{v=Math.max(0,v-0.04);ma.volume=v;if(v===0){clearInterval(fade);ma.pause();}},250);
-      sessionPhase='silence';
-      document.getElementById('timerLabel').textContent='Be still. God is speaking.';
-      // Switch breath label to Hold then Out pattern for silence
-      clearInterval(breathInterval);
-      let phase=0;
-      const phases=['Breathe in','Hold...','Breathe out','Rest...'];
-      document.getElementById('breathLabel').textContent=phases[0];
-      breathInterval=setInterval(()=>{
-        phase=(phase+1)%4;
-        document.getElementById('breathLabel').textContent=phases[phase];
-      },4000);
+// ═══════════════════════════════════
+// EMAIL
+// ═══════════════════════════════════
+function submitEmail() {
+  const name = document.getElementById('nameInput').value.trim();
+  const email = document.getElementById('emailInput').value.trim();
+  if(!name || !email) {
+    document.getElementById('nameInput').style.borderColor = !name ? 'var(--terra)' : 'rgba(196,166,120,.2)';
+    document.getElementById('emailInput').style.borderColor = !email ? 'var(--terra)' : 'rgba(196,166,120,.2)';
+    return;
+  }
+
+  // Store for profile carry-through
+  window.tqaUserName = name;
+  window.tqaUserEmail = email;
+
+  // Show sacred confirmation — she stays on page entirely
+  document.querySelector('.email-inner').innerHTML = `
+    <span class="s-label">You Are Received</span>
+    <h3 class="email-title" style="font-family:'Cinzel',serif;font-size:clamp(1.2rem,3vw,1.8rem);font-weight:400;color:var(--cream);margin-bottom:1rem">${name}, the circle knows your name</h3>
+    <div class="gold-line"></div>
+    <p class="email-body"><em>Your sacred profile and a personal letter are on their way to your inbox.<br><br>
+    <strong style="color:var(--gold);font-style:normal">The silence has been waiting for you.</strong></em></p>
+    <button onclick="document.getElementById('stepsTrack').scrollIntoView({behavior:'smooth',block:'start'})"
+      style="margin-top:1.5rem;font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.3em;
+      text-transform:uppercase;color:var(--dark);background:var(--gold);border:none;
+      padding:1.2rem 2.5rem;cursor:pointer;display:inline-block">
+      View My Sacred Roadmap ↑
+    </button>
+  `;
+
+  // Unlock all remaining roadmap steps
+  stepsUnlocked = roadmapSteps.length;
+  renderRoadmap();
+
+  // Scroll to roadmap automatically
+  setTimeout(()=>{
+    document.getElementById('stepsTrack').scrollIntoView({behavior:'smooth', block:'start'});
+  }, 1200);
+}
+
+<!-- JOURNAL MODAL -->
+<div id="journalModal" style="display:none;position:fixed;inset:0;background:rgba(14,12,10,.95);
+  z-index:9999;align-items:center;justify-content:center;padding:2rem">
+  <div style="max-width:560px;width:100%;background:var(--dark2);border:1px solid rgba(196,166,120,.2);
+    padding:3rem 2.5rem;position:relative">
+    <button onclick="closeJournalModal()" style="position:absolute;top:1.2rem;right:1.5rem;
+      background:none;border:none;color:var(--muted);font-size:1.2rem;cursor:pointer">✕</button>
+    <span style="font-family:'Cinzel',serif;font-size:.6rem;letter-spacing:.4em;
+      text-transform:uppercase;color:var(--terra)">Your First Truth</span>
+    <h3 style="font-family:'Cinzel',serif;font-size:1.3rem;font-weight:400;color:var(--cream);
+      margin:1rem 0 .5rem">Write one honest sentence</h3>
+    <div style="width:2.5rem;height:1px;background:var(--gold);margin-bottom:1.5rem"></div>
+    <p style="font-size:.9rem;color:var(--muted);line-height:1.8;margin-bottom:2rem;font-style:italic">
+      Not for anyone else. Not to be seen. Just between you and the God who already knows.<br><br>
+      What is one true thing you discovered about yourself today?
+    </p>
+    <textarea id="journalEntry" placeholder="Write your truth here..."
+      style="width:100%;min-height:120px;background:rgba(196,166,120,.04);
+      border:1px solid rgba(196,166,120,.2);color:var(--cream);padding:1rem;
+      font-family:'Cormorant Garamond',serif;font-size:1rem;line-height:1.8;
+      resize:vertical;box-sizing:border-box;outline:none"></textarea>
+    <button onclick="saveJournalEntry()"
+      style="margin-top:1.5rem;width:100%;background:var(--gold);color:var(--dark);
+      border:none;padding:1rem;font-family:'Cinzel',serif;font-size:.7rem;
+      letter-spacing:.25em;text-transform:uppercase;cursor:pointer">
+      Receive This Truth
+    </button>
+    <div id="journalConfirm" style="display:none;margin-top:1.5rem;text-align:center;
+      font-style:italic;color:var(--gold);font-size:.95rem;line-height:1.8">
+      Your truth has been witnessed.<br>
+      <span style="color:var(--muted);font-size:.85rem">Return to it. It will grow.</span>
+    </div>
+  </div>
+</div>
+
+<script>
+function renderRoadmap() {
+  const track = document.getElementById('stepsTrack');
+  if(!track) return;
+  track.innerHTML = roadmapSteps.map((step,i)=>{
+    const isUnlocked = step.unlocked || i < stepsUnlocked;
+    let actionHTML = '';
+    if(isUnlocked && step.action === 'circle'){
+      actionHTML = `<a href="https://buy.stripe.com/4gMeVd5oYaWlgDqgr8cQU09" target="_blank"
+        style="display:inline-block;margin-top:1.2rem;font-family:'Cinzel',serif;font-size:.65rem;
+        letter-spacing:.25em;text-transform:uppercase;color:var(--gold);
+        border:1px solid rgba(196,166,120,.4);padding:.7rem 1.6rem;text-decoration:none;
+        transition:all .3s">${step.actionLabel}</a>`;
+    } else if(isUnlocked && step.action === 'journal'){
+      actionHTML = `<button onclick="openJournalModal()"
+        style="margin-top:1.2rem;font-family:'Cinzel',serif;font-size:.65rem;
+        letter-spacing:.25em;text-transform:uppercase;color:var(--gold);background:none;
+        border:1px solid rgba(196,166,120,.4);padding:.7rem 1.6rem;cursor:pointer;
+        transition:all .3s">${step.actionLabel}</button>`;
     }
     if(timerSeconds<=0){clearInterval(timerInterval);timerSeconds=0;updateTimerDisplay();sessionComplete();}
   },1000);
@@ -936,54 +1027,34 @@ const SEVEN_DAYS = {
   ]
 };
 
-function renderSevenDays(profile){
-  const days = SEVEN_DAYS[profile];
-  const container = document.getElementById('dayCards');
-  if(!container||!days) return;
-  container.innerHTML = '';
-  days.forEach((d,i)=>{
-    container.innerHTML += `
-      <div class="day-card">
-        <div class="day-num">${i+1}</div>
-        <div class="day-content">
-          <div class="day-title serif">${d.title}</div>
-          <div class="day-practice">${d.practice}</div>
-          <div class="day-scripture serif">${d.scripture}</div>
-        </div>
-      </div>`;
-  });
+function openJournalModal(){
+  const m = document.getElementById('journalModal');
+  m.style.display='flex';
+  document.body.style.overflow='hidden';
 }
-
-// SCRIPTURE TICKER
-const TICKER_VERSES = [
-  '"If anyone declares with their mouth Jesus is Lord and believes in their heart God raised Him from the dead, they will be saved." — Romans 10:9',
-  '"For it is with your heart that you believe and are justified, and it is with your mouth that you profess your faith and are saved." — Romans 10:10',
-  '"Be still, and know that I am God." — Psalm 46:10',
-  '"Come to me, all who are weary and burdened, and I will give you rest." — Matthew 11:28',
-  '"He restores my soul. He leads me beside quiet waters." — Psalm 23:2–3',
-  '"It is for freedom that Christ has set us free." — Galatians 5:1',
-  '"My sheep listen to my voice; I know them, and they follow me." — John 10:27',
-  '"In repentance and rest is your salvation, in quietness and trust is your strength." — Isaiah 30:15',
-];
-(function initTicker(){
-  const track = document.getElementById('tickerTrack');
-  if(!track) return;
-  const text = TICKER_VERSES.join('&nbsp;&nbsp;&nbsp;✦&nbsp;&nbsp;&nbsp;') + '&nbsp;&nbsp;&nbsp;✦&nbsp;&nbsp;&nbsp;' + TICKER_VERSES.join('&nbsp;&nbsp;&nbsp;✦&nbsp;&nbsp;&nbsp;');
-  track.innerHTML = text;
-})();
-
-// LIVE COUNTER - simulates women currently practicing
-(function initLiveCounter(){
-  const el = document.getElementById('liveNum');
-  if(!el) return;
-  let base = 8 + Math.floor(Math.random()*18);
-  el.textContent = base;
-  setInterval(()=>{
-    const change = Math.random() < 0.5 ? 1 : -1;
-    base = Math.max(4, Math.min(40, base + change));
-    el.textContent = base;
-  }, 7000);
-})();
+function closeJournalModal(){
+  document.getElementById('journalModal').style.display='none';
+  document.body.style.overflow='';
+}
+function saveJournalEntry(){
+  const entry = document.getElementById('journalEntry').value.trim();
+  if(!entry) return;
+  // Save to localStorage as backup
+  try{
+    const entries = JSON.parse(localStorage.getItem('tqa_journal')||'[]');
+    entries.push({date: new Date().toISOString(), profile: window.tqaCurrentProfile||'', text: entry});
+    localStorage.setItem('tqa_journal', JSON.stringify(entries));
+  }catch(e){}
+  document.getElementById('journalEntry').style.display='none';
+  document.querySelector('#journalModal button[onclick="saveJournalEntry()"]').style.display='none';
+  document.getElementById('journalConfirm').style.display='block';
+  // Unlock next step
+  stepsUnlocked = Math.max(stepsUnlocked, 4);
+  setTimeout(()=>{
+    closeJournalModal();
+    renderRoadmap();
+  }, 2200);
+}
 </script>
 </body>
 </html>
