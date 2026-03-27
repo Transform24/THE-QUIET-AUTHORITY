@@ -834,7 +834,7 @@ function renderQuestion(){
   ).join('');
   const sel=answers[currentQ];
   document.getElementById('qOptions').innerHTML=q.options.map((opt,i)=>
-    '<button class="option '+(sel===i?'selected':'')+'" onclick="selectAnswer('+i+')">'+
+    '<button class="opt '+(sel===i?'selected':'')+'" onclick="selectAnswer('+i+')">'+
     '<span class="opt-letter">'+opt.l+'</span>'+
     '<span class="opt-text">'+opt.t+'</span></button>'
   ).join('');
