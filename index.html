@@ -268,6 +268,36 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 }
 @keyframes ticker{from{transform:translateX(0);}to{transform:translateX(-100%);}}
 
+/* WOMEN'S SCRIPTURE TICKER */
+.women-ticker{
+  background:transparent;border-top:1px solid rgba(201,169,110,0.12);border-bottom:1px solid rgba(201,169,110,0.12);
+  padding:14px 0;overflow:hidden;white-space:nowrap;position:relative;
+}
+.women-ticker::before,.women-ticker::after{content:'';position:absolute;top:0;bottom:0;width:80px;z-index:2;pointer-events:none;}
+.women-ticker::before{left:0;background:linear-gradient(90deg,var(--bg2),transparent);}
+.women-ticker::after{right:0;background:linear-gradient(-90deg,var(--bg2),transparent);}
+.women-ticker-track{
+  display:inline-block;
+  animation:ticker 240s linear infinite;
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;font-size:0.92rem;
+  color:rgba(201,169,110,0.45);letter-spacing:0.06em;
+  padding-left:100vw;
+}
+
+/* JOURNAL VIEW MODAL */
+.journal-view-modal{display:none;position:fixed;inset:0;background:rgba(11,11,11,0.96);z-index:9998;overflow-y:auto;padding:40px 24px;}
+.journal-view-inner{max-width:580px;margin:0 auto;padding-bottom:60px;}
+.journal-view-title{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;color:var(--cream);margin-bottom:8px;}
+.journal-view-sub{font-size:0.78rem;color:var(--text-muted);margin-bottom:32px;letter-spacing:0.06em;}
+.journal-entry-card{background:var(--surface);border:1px solid var(--border);border-left:2px solid var(--gold-dim);padding:20px 24px;margin-bottom:12px;}
+.jec-date{font-size:0.62rem;letter-spacing:0.2em;color:var(--gold-dim);margin-bottom:8px;text-transform:uppercase;}
+.jec-text{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;color:var(--cream);line-height:1.65;}
+.jec-profile{font-size:0.65rem;color:var(--text-muted);margin-top:8px;letter-spacing:0.12em;}
+.journal-view-empty{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.1rem;color:var(--text-muted);text-align:center;padding:40px 0;}
+.btn-close-jv{position:fixed;top:24px;right:24px;background:none;border:1px solid var(--border2);color:var(--text-dim);padding:8px 16px;font-size:0.7rem;letter-spacing:0.15em;cursor:pointer;font-family:'Jost',sans-serif;font-weight:300;transition:all 0.3s;}
+.btn-close-jv:hover{border-color:var(--gold-dim);color:var(--cream);}
+
 /* 7-DAY EXPERIENCE */
 .seven-day-section{
   background:var(--bg2);
@@ -420,6 +450,7 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
     <div class="landing-content">
       <div class="ministry-label">Sanctuary Grace Ministry</div>
       <h1 class="landing-title serif">The Quiet <em>Authority</em></h1>
+      <div style="font-size:0.58rem;letter-spacing:0.38em;color:var(--gold-dim);font-weight:200;margin-bottom:24px;text-transform:uppercase;opacity:0.8;">TQA and Sanctuary &nbsp;|&nbsp; a place of peace</div>
       <div class="gold-rule"></div>
       <p class="landing-sub serif">What Is Silence Teaching You?</p>
       <p class="landing-body">
@@ -599,6 +630,30 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
       <div class="journal-prompt" id="journalPrompt">
         <div class="jp-label">After Your Session — Journal Prompt</div>
         <p class="jp-text" id="jpText"></p>
+        <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap;">
+          <button class="btn-session gold" onclick="openJournalModal()" style="font-size:0.65rem;padding:10px 22px;">Write in Journal</button>
+          <button class="btn-session" onclick="viewJournalEntries()" style="font-size:0.65rem;padding:10px 22px;">View Saved Entries</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WOMEN'S SCRIPTURE TICKER -->
+  <div class="women-ticker">
+    <div class="women-ticker-track" id="womenTickerTrack"></div>
+  </div>
+
+  <!-- SALVATION MOMENT -->
+  <div class="salvation-section">
+    <div class="salvation-inner">
+      <div class="salvation-cross">✝</div>
+      <h2 class="salvation-title serif">Is Today the Day?</h2>
+      <p class="salvation-body">If something stirred in you today — a quiet knowing, a gentle pull toward something more — that is the Holy Spirit. You don't have to have it all figured out. You just have to say yes.</p>
+      <p class="salvation-verse">"That if thou shalt confess with thy mouth the Lord Jesus, and shalt believe in thine heart that God hath raised him from the dead, thou shalt be saved."<br>— Romans 10:9 KJV</p>
+      <button class="btn-salvation" onclick="acceptJesus()">Yes, I Accept Jesus Today</button>
+      <div class="salvation-confirm" id="salvationConfirm">
+        <p>Heaven is rejoicing over you right now, beloved.<br>You are loved, chosen, and covered. Welcome home.</p>
+        <div class="soul-count-total">Joined by <span id="soulNum">many</span> souls who said yes today</div>
       </div>
     </div>
   </div>
@@ -724,6 +779,17 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
     <p class="footer-verse serif">"Be still, and know that I am God." — Psalm 46:10</p>
   </div>
 
+</div>
+
+<!-- JOURNAL VIEW MODAL -->
+<div id="journalViewModal" class="journal-view-modal">
+  <button class="btn-close-jv" onclick="closeJournalView()">✕ Close</button>
+  <div class="journal-view-inner">
+    <div class="r-label" style="margin-bottom:10px;">Your Sacred Record</div>
+    <h2 class="journal-view-title serif">My Journal</h2>
+    <p class="journal-view-sub">Everything you've written is saved privately on this device. Only you can see this.</p>
+    <div id="journalEntriesList"></div>
+  </div>
 </div>
 
 <!-- JOURNAL MODAL -->
@@ -885,7 +951,7 @@ function showResults(){
   document.getElementById('rDiagnosis').textContent=p.diagnosis;
   document.getElementById('rScripture').textContent=p.scripture;
   document.getElementById('rScriptureRef').textContent=p.ref;
-  document.getElementById('rLessons').innerHTML=p.lessons.map(l=>'<div class="lesson-item">→ '+l+'</div>').join('');
+  document.getElementById('rLessons').innerHTML=p.lessons.map(l=>'<div class="lesson"><span class="lesson-glyph">✦</span><span class="lesson-text">'+l+'</span></div>').join('');
   document.getElementById('rBreakthrough').textContent=p.breakthrough;
   document.getElementById('rPracticeTag').textContent=p.practiceTag;
   document.getElementById('jpText').textContent=p.journal;
@@ -901,6 +967,39 @@ function showResults(){
     document.getElementById('confirmText').textContent=userName+', your Silence Profile is ready. Check your inbox at '+userEmail+'.';
     if(cb)cb.style.display='block';
   }
+
+  // Populate scripture ticker
+  const tickerScriptures=[
+    '"Be still, and know that I am God." — Psalm 46:10',
+    '"That if thou shalt confess with thy mouth the Lord Jesus, and shalt believe in thine heart that God hath raised him from the dead, thou shalt be saved." — Romans 10:9 KJV',
+    '"She is clothed with strength and dignity, and she laughs without fear of the future." — Proverbs 31:25',
+    '"He restores my soul. He leads me beside quiet waters." — Psalm 23:2–3',
+    '"Come to me, all who are weary and burdened, and I will give you rest." — Matthew 11:28',
+    '"I have called you by name; you are mine." — Isaiah 43:1',
+    '"It is for freedom that Christ has set us free." — Galatians 5:1',
+    '"Before I formed you in the womb I knew you." — Jeremiah 1:5',
+    '"The Lord is close to the brokenhearted and saves those who are crushed in spirit." — Psalm 34:18',
+    '"Fear not, for I am with you; be not dismayed, for I am your God." — Isaiah 41:10',
+    '"She opens her mouth with wisdom, and the teaching of kindness is on her tongue." — Proverbs 31:26',
+    '"He gives strength to the weary and increases the power of the weak." — Isaiah 40:29',
+  ];
+  const tickerText=tickerScriptures.join('   ✦   ');
+  const tt=document.getElementById('tickerTrack');
+  if(tt)tt.textContent=tickerText+'   ✦   '+tickerText;
+
+  // Populate women's background ticker
+  const womenScriptures=[
+    '"The Lord your God is with you, the Mighty Warrior who saves." — Zephaniah 3:17',
+    '"You are altogether beautiful, my darling; there is no flaw in you." — Song of Solomon 4:7',
+    '"She is more precious than rubies; nothing you desire can compare with her." — Proverbs 3:15',
+    '"Strength and honor are her clothing; she shall rejoice in time to come." — Proverbs 31:25 KJV',
+    '"I praise you because I am fearfully and wonderfully made." — Psalm 139:14',
+    '"The king\'s daughter is all glorious within." — Psalm 45:13 KJV',
+    '"A woman who fears the Lord is to be praised." — Proverbs 31:30',
+    '"She trusted in God, and He was her constant source." — Sanctuary Grace',
+  ];
+  const wt=document.getElementById('womenTickerTrack');
+  if(wt){const wt2=womenScriptures.join('   ✦   ');wt.textContent=wt2+'   ✦   '+wt2;}
 
   showScreen('screen-results');
 }
@@ -1039,6 +1138,34 @@ function saveJournalEntry(){
   document.querySelector('#journalModal button[onclick="saveJournalEntry()"]').style.display='none';
   document.getElementById('journalConfirm').style.display='block';
   setTimeout(()=>{closeJournalModal();},2200);
+}
+
+function viewJournalEntries(){
+  const modal=document.getElementById('journalViewModal');
+  const list=document.getElementById('journalEntriesList');
+  let entries=[];
+  try{entries=JSON.parse(localStorage.getItem('tqa_journal')||'[]');}catch(e){}
+  if(entries.length===0){
+    list.innerHTML='<p class="journal-view-empty">No entries yet. Complete a silence session and write your first truth.</p>';
+  } else {
+    entries=entries.slice().reverse();
+    list.innerHTML=entries.map(e=>{
+      const d=new Date(e.date);
+      const dateStr=d.toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+      const profileName=PROFILES[e.profile]?PROFILES[e.profile].name:'';
+      return '<div class="journal-entry-card">'+
+        '<div class="jec-date">'+dateStr+'</div>'+
+        '<p class="jec-text">'+e.text.replace(/</g,'&lt;').replace(/>/g,'&gt;')+'</p>'+
+        (profileName?'<div class="jec-profile">Profile: '+profileName+'</div>':'')+
+        '</div>';
+    }).join('');
+  }
+  modal.style.display='block';
+  document.body.style.overflow='hidden';
+}
+function closeJournalView(){
+  document.getElementById('journalViewModal').style.display='none';
+  document.body.style.overflow='';
 }
 
 function acceptJesus(){
