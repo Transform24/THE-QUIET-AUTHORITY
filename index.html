@@ -11,15 +11,18 @@
 <meta property="og:description" content="8-question sacred assessment revealing your Silence Profile and breakthrough path.">
 <meta property="og:url" content="https://transform24.github.io/THE-QUIET-AUTHORITY/">
 <meta property="og:type" content="website">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Jost:wght@200;300;400;500&family=Cinzel:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root {
   --bg:#0b0b0b;--bg2:#111111;--surface:#181818;--surface2:#202020;
   --border:#272727;--border2:#323232;
-  --gold:#c9a96e;--gold-light:#e2c98e;--gold-dim:#7a6040;
+  --gold:#c9a96e;--gold-light:#e2c98e;--gold-dim:#7a6040;--gold-l:#e2c98e;
   --sage:#7d8c6e;--sage-light:#9aab88;
   --cream:#f0ead8;--cream-dim:#b0a898;
   --text:#e0dace;--text-dim:#807870;--text-muted:#484840;
+  /* legacy aliases */
+  --dark:#0b0b0b;--dark2:#111111;--dark3:#0d0d0d;
+  --muted:#807870;--terra:#b8956a;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
@@ -198,6 +201,27 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
   transition:opacity 0.6s ease;
 }
 
+/* SACRED SPACE */
+.sacred-section{background:var(--bg);border-top:1px solid var(--border);}
+.sacred-inner{max-width:700px;margin:0 auto;padding:60px 24px;}
+.sacred-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:300;color:var(--cream);margin-bottom:8px;}
+.sacred-sub{font-size:0.85rem;color:var(--text-dim);line-height:1.8;margin-bottom:36px;font-weight:300;max-width:500px;}
+.sacred-disclaimer{font-size:0.62rem;color:var(--text-muted);letter-spacing:0.1em;margin-bottom:28px;}
+.sacred-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;}
+.sacred-card{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--border);text-decoration:none;transition:all 0.3s ease;position:relative;overflow:hidden;}
+.sacred-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold-dim),transparent);z-index:1;}
+.sacred-card:hover{border-color:var(--gold-dim);}
+.sacred-card-img{width:100%;height:180px;object-fit:cover;display:block;opacity:0.88;transition:opacity 0.3s ease;}
+.sacred-card:hover .sacred-card-img{opacity:1;}
+.sacred-card-body{padding:20px 22px 24px;flex:1;display:flex;flex-direction:column;}
+.sacred-collection{font-size:0.58rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:6px;font-weight:300;}
+.sacred-card-title{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:500;color:var(--cream);margin-bottom:8px;line-height:1.3;}
+.sacred-card-desc{font-size:0.82rem;color:var(--text-dim);line-height:1.65;font-weight:300;flex:1;}
+.sacred-tag{display:inline-block;margin-top:12px;padding:4px 12px;border:1px solid rgba(201,169,110,0.25);font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold-dim);font-weight:300;align-self:flex-start;}
+.sacred-cta{margin-top:28px;text-align:center;}
+.sacred-store-link{display:inline-block;padding:13px 36px;border:1px solid var(--gold-dim);color:var(--gold);font-family:'Jost',sans-serif;font-size:0.7rem;letter-spacing:0.22em;text-transform:uppercase;text-decoration:none;transition:all 0.3s ease;font-weight:300;}
+.sacred-store-link:hover{background:var(--gold);color:var(--bg);}
+
 /* SALVATION MOMENT */
 .salvation-section{
   background:var(--bg);
@@ -267,6 +291,36 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
   padding-left:100vw;
 }
 @keyframes ticker{from{transform:translateX(0);}to{transform:translateX(-100%);}}
+
+/* WOMEN'S SCRIPTURE TICKER */
+.women-ticker{
+  background:transparent;border-top:1px solid rgba(201,169,110,0.12);border-bottom:1px solid rgba(201,169,110,0.12);
+  padding:14px 0;overflow:hidden;white-space:nowrap;position:relative;
+}
+.women-ticker::before,.women-ticker::after{content:'';position:absolute;top:0;bottom:0;width:80px;z-index:2;pointer-events:none;}
+.women-ticker::before{left:0;background:linear-gradient(90deg,var(--bg2),transparent);}
+.women-ticker::after{right:0;background:linear-gradient(-90deg,var(--bg2),transparent);}
+.women-ticker-track{
+  display:inline-block;
+  animation:ticker 240s linear infinite;
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;font-size:0.92rem;
+  color:rgba(201,169,110,0.45);letter-spacing:0.06em;
+  padding-left:100vw;
+}
+
+/* JOURNAL VIEW MODAL */
+.journal-view-modal{display:none;position:fixed;inset:0;background:rgba(11,11,11,0.96);z-index:9998;overflow-y:auto;padding:40px 24px;}
+.journal-view-inner{max-width:580px;margin:0 auto;padding-bottom:60px;}
+.journal-view-title{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;color:var(--cream);margin-bottom:8px;}
+.journal-view-sub{font-size:0.78rem;color:var(--text-muted);margin-bottom:32px;letter-spacing:0.06em;}
+.journal-entry-card{background:var(--surface);border:1px solid var(--border);border-left:2px solid var(--gold-dim);padding:20px 24px;margin-bottom:12px;}
+.jec-date{font-size:0.62rem;letter-spacing:0.2em;color:var(--gold-dim);margin-bottom:8px;text-transform:uppercase;}
+.jec-text{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;color:var(--cream);line-height:1.65;}
+.jec-profile{font-size:0.65rem;color:var(--text-muted);margin-top:8px;letter-spacing:0.12em;}
+.journal-view-empty{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.1rem;color:var(--text-muted);text-align:center;padding:40px 0;}
+.btn-close-jv{position:fixed;top:24px;right:24px;background:none;border:1px solid var(--border2);color:var(--text-dim);padding:8px 16px;font-size:0.7rem;letter-spacing:0.15em;cursor:pointer;font-family:'Jost',sans-serif;font-weight:300;transition:all 0.3s;}
+.btn-close-jv:hover{border-color:var(--gold-dim);color:var(--cream);}
 
 /* 7-DAY EXPERIENCE */
 .seven-day-section{
@@ -398,6 +452,37 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 .tier-btn-trial{display:block;margin-top:.8rem;font-family:'Cormorant Garamond',serif;font-size:.85rem;font-style:italic;color:var(--muted);text-decoration:none;transition:color .3s;}
 .tier-btn-trial:hover{color:var(--gold);}
 
+/* SECTION LABEL */
+.s-label{font-family:'Cinzel',serif;font-size:0.58rem;letter-spacing:0.38em;text-transform:uppercase;color:var(--gold-dim);font-weight:300;display:block;margin-bottom:14px;}
+
+/* GOLD LINE */
+.gold-line{width:48px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:20px auto 28px;}
+
+/* CIRCLE CTA */
+.circle-cta{background:var(--bg2);border-top:1px solid var(--border);padding:64px 24px;text-align:center;position:relative;overflow:hidden;}
+.circle-inner{max-width:700px;margin:0 auto;position:relative;z-index:2;}
+.circle-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:300;color:var(--cream);line-height:1.2;margin-bottom:16px;}
+.circle-body{font-size:0.88rem;color:var(--text-dim);line-height:1.9;margin-bottom:36px;font-weight:300;max-width:520px;margin-left:auto;margin-right:auto;}
+.circle-body em{color:var(--cream);font-style:italic;}
+.btn-circle-ghost{background:none;border:1px solid var(--border2);color:var(--text-dim);font-family:'Jost',sans-serif;font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;padding:11px 28px;cursor:pointer;transition:all 0.3s;font-weight:300;}
+.btn-circle-ghost:hover{border-color:var(--gold-dim);color:var(--cream);}
+
+/* ANIMATED RINGS */
+.rings{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;}
+.ring{position:absolute;border-radius:50%;border:1px solid rgba(201,169,110,0.15);transform:translate(-50%,-50%);}
+.ring:nth-child(1){width:300px;height:300px;animation:ringPulse 6s ease-in-out infinite;}
+.ring:nth-child(2){width:500px;height:500px;animation:ringPulse 6s ease-in-out infinite 1.5s;}
+.ring:nth-child(3){width:700px;height:700px;animation:ringPulse 6s ease-in-out infinite 3s;}
+@keyframes ringPulse{0%,100%{opacity:0.3;transform:translate(-50%,-50%) scale(1);}50%{opacity:0.08;transform:translate(-50%,-50%) scale(1.04);}}
+
+/* TQA FOOTER */
+.tqa-footer{text-align:center;padding:36px 24px 28px;background:var(--bg);border-top:1px solid var(--border);}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:300;color:var(--cream);letter-spacing:0.08em;margin-bottom:4px;}
+.footer-tag{font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:20px;font-weight:300;}
+.footer-links{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;}
+.footer-links a{font-size:0.68rem;color:var(--text-muted);letter-spacing:0.12em;text-decoration:none;cursor:pointer;transition:color 0.3s;text-transform:uppercase;font-weight:300;}
+.footer-links a:hover{color:var(--gold);}
+
 @media(max-width:640px){
   .q-option{padding:1.1rem 1.3rem}
   .results-body,.roadmap-inner{padding-left:1rem;padding-right:1rem}
@@ -420,6 +505,7 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
     <div class="landing-content">
       <div class="ministry-label">Sanctuary Grace Ministry</div>
       <h1 class="landing-title serif">The Quiet <em>Authority</em></h1>
+      <div style="font-size:0.58rem;letter-spacing:0.38em;color:var(--gold-dim);font-weight:200;margin-bottom:24px;text-transform:uppercase;opacity:0.8;">TQA and Sanctuary &nbsp;|&nbsp; a place of peace</div>
       <div class="gold-rule"></div>
       <p class="landing-sub serif">What Is Silence Teaching You?</p>
       <p class="landing-body">
@@ -554,6 +640,20 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
     </div>
   </div>
 
+  <!-- CREATE YOUR SACRED SPACE -->
+  <div class="sacred-section">
+    <div class="sacred-inner">
+      <div class="r-label">Curated for Your Profile — Sanctuary Essentials</div>
+      <h2 class="sacred-title serif">Create Your Sacred Space</h2>
+      <p class="sacred-sub" id="sacredSub"></p>
+      <p class="sacred-disclaimer">As an Amazon Associate, Sanctuary Grace Ministry earns from qualifying purchases. Every item is hand-curated for your practice.</p>
+      <div class="sacred-grid" id="sacredGrid"></div>
+      <div class="sacred-cta">
+        <a class="sacred-store-link" href="https://www.amazon.com/shop/sanctuarygrac?tag=sanctuarygrac-20" target="_blank" rel="noopener">Browse the Full Sanctuary Store</a>
+      </div>
+    </div>
+  </div>
+
   <!-- SCRIPTURE TICKER -->
   <div class="scripture-ticker">
     <div class="ticker-track" id="tickerTrack"></div>
@@ -599,6 +699,30 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
       <div class="journal-prompt" id="journalPrompt">
         <div class="jp-label">After Your Session — Journal Prompt</div>
         <p class="jp-text" id="jpText"></p>
+        <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap;">
+          <button class="btn-session gold" onclick="openJournalModal()" style="font-size:0.65rem;padding:10px 22px;">Write in Journal</button>
+          <button class="btn-session" onclick="viewJournalEntries()" style="font-size:0.65rem;padding:10px 22px;">View Saved Entries</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WOMEN'S SCRIPTURE TICKER -->
+  <div class="women-ticker">
+    <div class="women-ticker-track" id="womenTickerTrack"></div>
+  </div>
+
+  <!-- SALVATION MOMENT -->
+  <div class="salvation-section">
+    <div class="salvation-inner">
+      <div class="salvation-cross">✝</div>
+      <h2 class="salvation-title serif">Is Today the Day?</h2>
+      <p class="salvation-body">If something stirred in you today — a quiet knowing, a gentle pull toward something more — that is the Holy Spirit. You don't have to have it all figured out. You just have to say yes.</p>
+      <p class="salvation-verse">"That if thou shalt confess with thy mouth the Lord Jesus, and shalt believe in thine heart that God hath raised him from the dead, thou shalt be saved."<br>— Romans 10:9 KJV</p>
+      <button class="btn-salvation" onclick="acceptJesus()">Yes, I Accept Jesus Today</button>
+      <div class="salvation-confirm" id="salvationConfirm">
+        <p>Heaven is rejoicing over you right now, beloved.<br>You are loved, chosen, and covered. Welcome home.</p>
+        <div class="soul-count-total">Joined by <span id="soulNum">many</span> souls who said yes today</div>
       </div>
     </div>
   </div>
@@ -717,13 +841,24 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
       <a href="https://website.beacons.ai/sanctuarygrace" target="_blank">Community</a>
       <a href="https://website.beacons.ai/sanctuarygrace" target="_blank">Circle of Silence</a>
     </div>
-  </div>
+  </footer>
 
   <div class="r-footer">
     <p class="footer-min">Sanctuary Grace Ministry &nbsp;·&nbsp; Transform24</p>
     <p class="footer-verse serif">"Be still, and know that I am God." — Psalm 46:10</p>
   </div>
 
+</div>
+
+<!-- JOURNAL VIEW MODAL -->
+<div id="journalViewModal" class="journal-view-modal">
+  <button class="btn-close-jv" onclick="closeJournalView()">✕ Close</button>
+  <div class="journal-view-inner">
+    <div class="r-label" style="margin-bottom:10px;">Your Sacred Record</div>
+    <h2 class="journal-view-title serif">My Journal</h2>
+    <p class="journal-view-sub">Everything you've written is saved privately on this device. Only you can see this.</p>
+    <div id="journalEntriesList"></div>
+  </div>
 </div>
 
 <!-- JOURNAL MODAL -->
@@ -885,7 +1020,7 @@ function showResults(){
   document.getElementById('rDiagnosis').textContent=p.diagnosis;
   document.getElementById('rScripture').textContent=p.scripture;
   document.getElementById('rScriptureRef').textContent=p.ref;
-  document.getElementById('rLessons').innerHTML=p.lessons.map(l=>'<div class="lesson-item">→ '+l+'</div>').join('');
+  document.getElementById('rLessons').innerHTML=p.lessons.map(l=>'<div class="lesson"><span class="lesson-glyph">✦</span><span class="lesson-text">'+l+'</span></div>').join('');
   document.getElementById('rBreakthrough').textContent=p.breakthrough;
   document.getElementById('rPracticeTag').textContent=p.practiceTag;
   document.getElementById('jpText').textContent=p.journal;
@@ -901,6 +1036,41 @@ function showResults(){
     document.getElementById('confirmText').textContent=userName+', your Silence Profile is ready. Check your inbox at '+userEmail+'.';
     if(cb)cb.style.display='block';
   }
+
+  renderSacredSpace();
+
+  // Populate scripture ticker
+  const tickerScriptures=[
+    '"Be still, and know that I am God." — Psalm 46:10',
+    '"That if thou shalt confess with thy mouth the Lord Jesus, and shalt believe in thine heart that God hath raised him from the dead, thou shalt be saved." — Romans 10:9 KJV',
+    '"She is clothed with strength and dignity, and she laughs without fear of the future." — Proverbs 31:25',
+    '"He restores my soul. He leads me beside quiet waters." — Psalm 23:2–3',
+    '"Come to me, all who are weary and burdened, and I will give you rest." — Matthew 11:28',
+    '"I have called you by name; you are mine." — Isaiah 43:1',
+    '"It is for freedom that Christ has set us free." — Galatians 5:1',
+    '"Before I formed you in the womb I knew you." — Jeremiah 1:5',
+    '"The Lord is close to the brokenhearted and saves those who are crushed in spirit." — Psalm 34:18',
+    '"Fear not, for I am with you; be not dismayed, for I am your God." — Isaiah 41:10',
+    '"She opens her mouth with wisdom, and the teaching of kindness is on her tongue." — Proverbs 31:26',
+    '"He gives strength to the weary and increases the power of the weak." — Isaiah 40:29',
+  ];
+  const tickerText=tickerScriptures.join('   ✦   ');
+  const tt=document.getElementById('tickerTrack');
+  if(tt)tt.textContent=tickerText+'   ✦   '+tickerText;
+
+  // Populate women's background ticker
+  const womenScriptures=[
+    '"The Lord your God is with you, the Mighty Warrior who saves." — Zephaniah 3:17',
+    '"You are altogether beautiful, my darling; there is no flaw in you." — Song of Solomon 4:7',
+    '"She is more precious than rubies; nothing you desire can compare with her." — Proverbs 3:15',
+    '"Strength and honor are her clothing; she shall rejoice in time to come." — Proverbs 31:25 KJV',
+    '"I praise you because I am fearfully and wonderfully made." — Psalm 139:14',
+    '"The king\'s daughter is all glorious within." — Psalm 45:13 KJV',
+    '"A woman who fears the Lord is to be praised." — Proverbs 31:30',
+    '"She trusted in God, and He was her constant source." — Sanctuary Grace',
+  ];
+  const wt=document.getElementById('womenTickerTrack');
+  if(wt){const wt2=womenScriptures.join('   ✦   ');wt.textContent=wt2+'   ✦   '+wt2;}
 
   showScreen('screen-results');
 }
@@ -946,6 +1116,63 @@ const SEVEN_DAYS={
     {title:"Your New Identity",practice:"Write one sentence: I am _____ , not because of what I do, but because of whose I am.",scripture:"1 Peter 2:9 — You are a chosen people, a royal priesthood."}
   ]
 };
+
+const SACRED_SPACE={
+  // GD image links — replace with collection-specific links as available
+  // GD1 = comfort/blankets collection image
+  // GD2 = sips collection image (use GD1 until available)
+  // GD3 = faith/journals collection image (use GD1 until available)
+  A:{
+    sub:"Striving Achievers need an environment that gives them permission to stop. These pieces were chosen specifically for you.",
+    items:[
+      {img:"https://drive.google.com/thumbnail?id=1UH6bGtMZ1maHh65Ld3R0PjDJxDPCMIdl&sz=w800",collection:"Comfort Corner",title:"BEDELITE Fleece Throw Blanket",desc:"Weighted permission. Wrap yourself in it and do absolutely nothing. Rest is not laziness — it is obedience to the God who said come.",tag:"Permission to Rest",link:"https://amzn.to/3KmuE71"},
+      {img:"https://drive.google.com/thumbnail?id=1UH6bGtMZ1maHh65Ld3R0PjDJxDPCMIdl&sz=w800",collection:"Atmosphere & Serenity",title:"Flameless Pillar Candles with Remote",desc:"Your environment is speaking to you. Set the atmosphere before you sit down to be still. Let every flicker say: this is a sacred space.",tag:"Peace Environment",link:"https://amzn.to/48cxqVG"},
+      {img:"https://drive.google.com/thumbnail?id=1UH6bGtMZ1maHh65Ld3R0PjDJxDPCMIdl&sz=w800",collection:"Sanctuary Sips",title:"Christian Art Gifts Travel Mug — Jeremiah 29:11",desc:"A slow morning reminder that He has a plan and it does not require your striving. Sip it in. Let it settle.",tag:"Slow Morning",link:"https://amzn.to/4oiTO4d"}
+    ]
+  },
+  B:{
+    sub:"Depleted Survivors need tenderness, not tasks. Every item here is chosen to fill you — nothing here asks anything of you.",
+    items:[
+      {img:"https://drive.google.com/thumbnail?id=1UH6bGtMZ1maHh65Ld3R0PjDJxDPCMIdl&sz=w800",collection:"Sanctuary Sips",title:"Christian Art Gifts Ceramic Mug Set — Butterflies",desc:"Something beautiful, just for you. Sip slow. Let warmth do what words cannot — restore you gently from the inside out.",tag:"Gentle Restoration",link:"https://amzn.to/3KwAp1V"},
+      {img:"https://drive.google.com/thumbnail?id=1UH6bGtMZ1maHh65Ld3R0PjDJxDPCMIdl&sz=w800",collection:"Comfort Corner",title:"Psalms 91 — He That Dwelleth",desc:"He that dwelleth in the secret place of the Most High. Read it slowly until what is empty begins to fill. Let Him be your refuge today.",tag:"Refilling Practice",link:"https://amzn.to/4otKevE"},
+      {img:"https://drive.google.com/thumbnail?id=1UH6bGtMZ1maHh65Ld3R0PjDJxDPCMIdl&sz=w800",collection:"Atmosphere & Serenity",title:"Essential Oil Diffuser — Cool Mist",desc:"Breathe in lavender, eucalyptus, peace. Give your senses permission to exhale. Your body knows how to restore — give it the space.",tag:"Sensory Rest",link:"https://amzn.to/4pcq9Lw"}
+    ]
+  },
+  C:{
+    sub:"Guilty Givers need a space that belongs entirely to them. No one else's needs are allowed to live here.",
+    items:[
+      {img:"https://drive.google.com/thumbnail?id=1UH6bGtMZ1maHh65Ld3R0PjDJxDPCMIdl&sz=w800",collection:"Faith & Devotion",title:"60 Week Prayer Journal",desc:"60 weeks of just you and God. No one else's needs live on these pages. His voice. Your heart. Nothing else is required here.",tag:"God's Voice First",link:"https://amzn.to/486JdVm"},
+      {img:"https://drive.google.com/thumbnail?id=1UH6bGtMZ1maHh65Ld3R0PjDJxDPCMIdl&sz=w800",collection:"Faith & Devotion",title:"Leather Lined Journal A5",desc:"A sacred space that is entirely yours. Write the truth no one else needs to see. This is between you and the God who already knows.",tag:"Your Sacred Space",link:"https://amzn.to/44rtiyA"},
+      {img:"https://drive.google.com/thumbnail?id=1UH6bGtMZ1maHh65Ld3R0PjDJxDPCMIdl&sz=w800",collection:"Sanctuary Sips",title:"Christian Art Gifts Ceramic Mug Set — Butterflies",desc:"One moment that is only for you. Sip slowly. You are allowed to receive without earning it, explaining it, or apologizing for it.",tag:"Your Moment",link:"https://amzn.to/3KwAp1V"}
+    ]
+  },
+  D:{
+    sub:"Lost Wanderers need beauty that reflects who they truly are. Let these pieces hold space for the woman you are remembering.",
+    items:[
+      {img:"https://drive.google.com/thumbnail?id=1UH6bGtMZ1maHh65Ld3R0PjDJxDPCMIdl&sz=w800",collection:"Faith & Devotion",title:"NIV, NKJV, NLT & The Message — Parallel Bible",desc:"Four translations. One truth: you are mine. Find the voice that speaks your language and reminds you exactly who God says you are.",tag:"Identity in Truth",link:"https://amzn.to/4iz6Yco"},
+      {img:"https://drive.google.com/thumbnail?id=1UH6bGtMZ1maHh65Ld3R0PjDJxDPCMIdl&sz=w800",collection:"Faith & Devotion",title:"Leather Lined Journal A5 + Gold Pen",desc:"Write who you are when no one needs you. Your true identity has been waiting on these pages. Go find her — she remembers.",tag:"Write Your True Self",link:"https://amzn.to/44rtiyA"},
+      {img:"https://drive.google.com/thumbnail?id=1UH6bGtMZ1maHh65Ld3R0PjDJxDPCMIdl&sz=w800",collection:"Creative Expression",title:"Acrylic Paint Pens — 24 Colors for Rock Painting",desc:"Before the world told you who to be, you created. Before duty replaced desire, you made beautiful things. Reclaim her. She is still there.",tag:"Rediscover Her",link:"https://amzn.to/43WV71z"}
+    ]
+  }
+};
+
+function renderSacredSpace(){
+  const s=SACRED_SPACE[currentProfile];
+  if(!s)return;
+  const sub=document.getElementById('sacredSub');
+  const grid=document.getElementById('sacredGrid');
+  if(sub)sub.textContent=s.sub;
+  if(grid)grid.innerHTML=s.items.map(item=>
+    '<a class="sacred-card" href="'+item.link+'" target="_blank" rel="noopener">'+
+    (item.img?'<img class="sacred-card-img" src="'+item.img+'" alt="'+item.collection+'" onerror="this.style.display=\'none\'">':'')+
+    '<div class="sacred-card-body">'+
+    '<div class="sacred-collection">'+item.collection+'</div>'+
+    '<div class="sacred-card-title">'+item.title+'</div>'+
+    '<p class="sacred-card-desc">'+item.desc+'</p>'+
+    '<span class="sacred-tag">'+item.tag+'</span>'+
+    '</div></a>'
+  ).join('');
+}
 
 function startSession(){
   const ma=document.getElementById('musicAudio');
@@ -1039,6 +1266,34 @@ function saveJournalEntry(){
   document.querySelector('#journalModal button[onclick="saveJournalEntry()"]').style.display='none';
   document.getElementById('journalConfirm').style.display='block';
   setTimeout(()=>{closeJournalModal();},2200);
+}
+
+function viewJournalEntries(){
+  const modal=document.getElementById('journalViewModal');
+  const list=document.getElementById('journalEntriesList');
+  let entries=[];
+  try{entries=JSON.parse(localStorage.getItem('tqa_journal')||'[]');}catch(e){}
+  if(entries.length===0){
+    list.innerHTML='<p class="journal-view-empty">No entries yet. Complete a silence session and write your first truth.</p>';
+  } else {
+    entries=entries.slice().reverse();
+    list.innerHTML=entries.map(e=>{
+      const d=new Date(e.date);
+      const dateStr=d.toLocaleDateString('en-US',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+      const profileName=PROFILES[e.profile]?PROFILES[e.profile].name:'';
+      return '<div class="journal-entry-card">'+
+        '<div class="jec-date">'+dateStr+'</div>'+
+        '<p class="jec-text">'+e.text.replace(/</g,'&lt;').replace(/>/g,'&gt;')+'</p>'+
+        (profileName?'<div class="jec-profile">Profile: '+profileName+'</div>':'')+
+        '</div>';
+    }).join('');
+  }
+  modal.style.display='block';
+  document.body.style.overflow='hidden';
+}
+function closeJournalView(){
+  document.getElementById('journalViewModal').style.display='none';
+  document.body.style.overflow='';
 }
 
 function acceptJesus(){
