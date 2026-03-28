@@ -11,15 +11,18 @@
 <meta property="og:description" content="8-question sacred assessment revealing your Silence Profile and breakthrough path.">
 <meta property="og:url" content="https://transform24.github.io/THE-QUIET-AUTHORITY/">
 <meta property="og:type" content="website">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Jost:wght@200;300;400;500&family=Cinzel:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root {
   --bg:#0b0b0b;--bg2:#111111;--surface:#181818;--surface2:#202020;
   --border:#272727;--border2:#323232;
-  --gold:#c9a96e;--gold-light:#e2c98e;--gold-dim:#7a6040;
+  --gold:#c9a96e;--gold-light:#e2c98e;--gold-dim:#7a6040;--gold-l:#e2c98e;
   --sage:#7d8c6e;--sage-light:#9aab88;
   --cream:#f0ead8;--cream-dim:#b0a898;
   --text:#e0dace;--text-dim:#807870;--text-muted:#484840;
+  /* legacy aliases */
+  --dark:#0b0b0b;--dark2:#111111;--dark3:#0d0d0d;
+  --muted:#807870;--terra:#b8956a;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
@@ -449,6 +452,37 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 .tier-btn-trial{display:block;margin-top:.8rem;font-family:'Cormorant Garamond',serif;font-size:.85rem;font-style:italic;color:var(--muted);text-decoration:none;transition:color .3s;}
 .tier-btn-trial:hover{color:var(--gold);}
 
+/* SECTION LABEL */
+.s-label{font-family:'Cinzel',serif;font-size:0.58rem;letter-spacing:0.38em;text-transform:uppercase;color:var(--gold-dim);font-weight:300;display:block;margin-bottom:14px;}
+
+/* GOLD LINE */
+.gold-line{width:48px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:20px auto 28px;}
+
+/* CIRCLE CTA */
+.circle-cta{background:var(--bg2);border-top:1px solid var(--border);padding:64px 24px;text-align:center;position:relative;overflow:hidden;}
+.circle-inner{max-width:700px;margin:0 auto;position:relative;z-index:2;}
+.circle-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:300;color:var(--cream);line-height:1.2;margin-bottom:16px;}
+.circle-body{font-size:0.88rem;color:var(--text-dim);line-height:1.9;margin-bottom:36px;font-weight:300;max-width:520px;margin-left:auto;margin-right:auto;}
+.circle-body em{color:var(--cream);font-style:italic;}
+.btn-circle-ghost{background:none;border:1px solid var(--border2);color:var(--text-dim);font-family:'Jost',sans-serif;font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;padding:11px 28px;cursor:pointer;transition:all 0.3s;font-weight:300;}
+.btn-circle-ghost:hover{border-color:var(--gold-dim);color:var(--cream);}
+
+/* ANIMATED RINGS */
+.rings{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;}
+.ring{position:absolute;border-radius:50%;border:1px solid rgba(201,169,110,0.15);transform:translate(-50%,-50%);}
+.ring:nth-child(1){width:300px;height:300px;animation:ringPulse 6s ease-in-out infinite;}
+.ring:nth-child(2){width:500px;height:500px;animation:ringPulse 6s ease-in-out infinite 1.5s;}
+.ring:nth-child(3){width:700px;height:700px;animation:ringPulse 6s ease-in-out infinite 3s;}
+@keyframes ringPulse{0%,100%{opacity:0.3;transform:translate(-50%,-50%) scale(1);}50%{opacity:0.08;transform:translate(-50%,-50%) scale(1.04);}}
+
+/* TQA FOOTER */
+.tqa-footer{text-align:center;padding:36px 24px 28px;background:var(--bg);border-top:1px solid var(--border);}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:300;color:var(--cream);letter-spacing:0.08em;margin-bottom:4px;}
+.footer-tag{font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:20px;font-weight:300;}
+.footer-links{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;}
+.footer-links a{font-size:0.68rem;color:var(--text-muted);letter-spacing:0.12em;text-decoration:none;cursor:pointer;transition:color 0.3s;text-transform:uppercase;font-weight:300;}
+.footer-links a:hover{color:var(--gold);}
+
 @media(max-width:640px){
   .q-option{padding:1.1rem 1.3rem}
   .results-body,.roadmap-inner{padding-left:1rem;padding-right:1rem}
@@ -807,7 +841,7 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
       <a href="https://website.beacons.ai/sanctuarygrace" target="_blank">Community</a>
       <a href="https://website.beacons.ai/sanctuarygrace" target="_blank">Circle of Silence</a>
     </div>
-  </div>
+  </footer>
 
   <div class="r-footer">
     <p class="footer-min">Sanctuary Grace Ministry &nbsp;·&nbsp; Transform24</p>
