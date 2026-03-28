@@ -204,16 +204,17 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 .sacred-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:300;color:var(--cream);margin-bottom:8px;}
 .sacred-sub{font-size:0.85rem;color:var(--text-dim);line-height:1.8;margin-bottom:36px;font-weight:300;max-width:500px;}
 .sacred-disclaimer{font-size:0.62rem;color:var(--text-muted);letter-spacing:0.1em;margin-bottom:28px;}
-.sacred-grid{display:flex;flex-direction:column;gap:14px;}
-.sacred-card{display:flex;align-items:flex-start;gap:20px;padding:22px 24px;background:var(--surface);border:1px solid var(--border);text-decoration:none;transition:all 0.3s ease;position:relative;overflow:hidden;}
-.sacred-card::before{content:'';position:absolute;top:0;left:0;width:2px;height:100%;background:linear-gradient(180deg,var(--gold-dim),transparent);}
-.sacred-card:hover{border-color:var(--gold-dim);background:var(--surface2);}
-.sacred-card-icon{font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:var(--gold-dim);flex-shrink:0;line-height:1;min-width:32px;text-align:center;}
-.sacred-card-body{flex:1;}
-.sacred-collection{font-size:0.58rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:5px;font-weight:300;}
-.sacred-card-title{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:500;color:var(--cream);margin-bottom:5px;}
-.sacred-card-desc{font-size:0.82rem;color:var(--text-dim);line-height:1.6;font-weight:300;}
-.sacred-tag{display:inline-block;margin-top:10px;padding:4px 12px;border:1px solid rgba(201,169,110,0.25);font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold-dim);font-weight:300;}
+.sacred-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;}
+.sacred-card{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--border);text-decoration:none;transition:all 0.3s ease;position:relative;overflow:hidden;}
+.sacred-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold-dim),transparent);z-index:1;}
+.sacred-card:hover{border-color:var(--gold-dim);}
+.sacred-card-img{width:100%;height:180px;object-fit:cover;display:block;opacity:0.88;transition:opacity 0.3s ease;}
+.sacred-card:hover .sacred-card-img{opacity:1;}
+.sacred-card-body{padding:20px 22px 24px;flex:1;display:flex;flex-direction:column;}
+.sacred-collection{font-size:0.58rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:6px;font-weight:300;}
+.sacred-card-title{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:500;color:var(--cream);margin-bottom:8px;line-height:1.3;}
+.sacred-card-desc{font-size:0.82rem;color:var(--text-dim);line-height:1.65;font-weight:300;flex:1;}
+.sacred-tag{display:inline-block;margin-top:12px;padding:4px 12px;border:1px solid rgba(201,169,110,0.25);font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold-dim);font-weight:300;align-self:flex-start;}
 .sacred-cta{margin-top:28px;text-align:center;}
 .sacred-store-link{display:inline-block;padding:13px 36px;border:1px solid var(--gold-dim);color:var(--gold);font-family:'Jost',sans-serif;font-size:0.7rem;letter-spacing:0.22em;text-transform:uppercase;text-decoration:none;transition:all 0.3s ease;font-weight:300;}
 .sacred-store-link:hover{background:var(--gold);color:var(--bg);}
@@ -1084,35 +1085,35 @@ const SEVEN_DAYS={
 
 const SACRED_SPACE={
   A:{
-    sub:"Striving Achievers need an environment that gives them permission to stop. These are chosen specifically for you.",
+    sub:"Striving Achievers need an environment that gives them permission to stop. These pieces were chosen specifically for you.",
     items:[
-      {icon:"🕯",collection:"Atmosphere & Serenity",title:"The Peace You Can Feel",desc:"Create a space that tells your nervous system it is safe to rest. Candles, warmth, stillness — an environment that slows you down.",tag:"Peace Environment",link:"https://www.amazon.com/shop/sanctuarygrac/list?tag=sanctuarygrac-20"},
-      {icon:"🫙",collection:"Comfort Corner",title:"Gratitude Ritual Kit",desc:"The Sanctuary Gratitude Jar Set anchors your morning before you open a single app. A ritual that replaces striving with receiving.",tag:"Morning Ritual",link:"https://www.amazon.com/shop/sanctuarygrac/list?tag=sanctuarygrac-20"},
-      {icon:"☕",collection:"Sanctuary Sips",title:"Warmth for the Soul",desc:"Replace the rushed coffee with something intentional. A warm cup that says: this moment is mine and mine alone.",tag:"Slow Morning",link:"https://www.amazon.com/shop/sanctuarygrac/list?tag=sanctuarygrac-20"}
+      {img:"comfort-corner.png",collection:"Comfort Corner",title:"BEDELITE Fleece Throw Blanket",desc:"Weighted permission. Wrap yourself in it and do absolutely nothing. Rest is not laziness — it is obedience to the God who said come.",tag:"Permission to Rest",link:"https://amzn.to/3KmuE71"},
+      {img:"",collection:"Atmosphere & Serenity",title:"Flameless Pillar Candles with Remote",desc:"Your environment is speaking to you. Set the atmosphere before you sit down to be still. Let every flicker say: this is a sacred space.",tag:"Peace Environment",link:"https://amzn.to/48cxqVG"},
+      {img:"sanctuary-sips.png",collection:"Sanctuary Sips",title:"Christian Art Gifts Travel Mug — Jeremiah 29:11",desc:"A slow morning reminder that He has a plan and it does not require your striving. Sip it in. Let it settle.",tag:"Slow Morning",link:"https://amzn.to/4oiTO4d"}
     ]
   },
   B:{
-    sub:"Depleted Survivors need tenderness, not tasks. Every item here is chosen to fill you — nothing asks anything of you.",
+    sub:"Depleted Survivors need tenderness, not tasks. Every item here is chosen to fill you — nothing here asks anything of you.",
     items:[
-      {icon:"☕",collection:"Sanctuary Sips",title:"Warmth for the Soul",desc:"Something warm. Something slow. A cup that asks nothing of you and offers everything you need in this moment.",tag:"Gentle Restoration",link:"https://www.amazon.com/shop/sanctuarygrac/list?tag=sanctuarygrac-20"},
-      {icon:"🫙",collection:"Comfort Corner",title:"Gratitude Ritual Kit",desc:"When you are running on empty, gratitude is a lifeline back to God. The Sanctuary Gratitude Jar makes it beautifully simple.",tag:"Refilling Practice",link:"https://www.amazon.com/shop/sanctuarygrac/list?tag=sanctuarygrac-20"},
-      {icon:"🕯",collection:"Atmosphere & Serenity",title:"The Peace You Can Feel",desc:"Give yourself one corner of the world that feels like rest. Your environment is speaking to you — let it say peace.",tag:"Rest Space",link:"https://www.amazon.com/shop/sanctuarygrac/list?tag=sanctuarygrac-20"}
+      {img:"sanctuary-sips.png",collection:"Sanctuary Sips",title:"Christian Art Gifts Ceramic Mug Set — Butterflies",desc:"Something beautiful, just for you. Sip slow. Let warmth do what words cannot — restore you gently from the inside out.",tag:"Gentle Restoration",link:"https://amzn.to/3KwAp1V"},
+      {img:"comfort-corner.png",collection:"Comfort Corner",title:"Psalms 91 — He That Dwelleth",desc:"He that dwelleth in the secret place of the Most High. Read it slowly until what is empty begins to fill. Let Him be your refuge today.",tag:"Refilling Practice",link:"https://amzn.to/4otKevE"},
+      {img:"",collection:"Atmosphere & Serenity",title:"Essential Oil Diffuser — Cool Mist",desc:"Breathe in lavender, eucalyptus, peace. Give your senses permission to exhale. Your body knows how to restore — give it the space.",tag:"Sensory Rest",link:"https://amzn.to/4pcq9Lw"}
     ]
   },
   C:{
     sub:"Guilty Givers need a space that belongs entirely to them. No one else's needs are allowed to live here.",
     items:[
-      {icon:"📖",collection:"Faith & Devotion Picks",title:"Tools for a Rooted Life",desc:"When you know what God actually says about you, what everyone else expects loses its grip. Ground yourself in truth.",tag:"Rooted in Truth",link:"https://www.amazon.com/shop/sanctuarygrac/list?tag=sanctuarygrac-20"},
-      {icon:"☕",collection:"Sanctuary Sips",title:"Warmth for the Soul",desc:"One moment that is only for you. Sip slowly. You are allowed to receive without earning it first.",tag:"Your Moment",link:"https://www.amazon.com/shop/sanctuarygrac/list?tag=sanctuarygrac-20"},
-      {icon:"🫙",collection:"Comfort Corner",title:"Gratitude Ritual Kit",desc:"A daily ritual that keeps you anchored to what God is doing — not what everyone around you needs from you.",tag:"Daily Anchor",link:"https://www.amazon.com/shop/sanctuarygrac/list?tag=sanctuarygrac-20"}
+      {img:"faith-devotion.png",collection:"Faith & Devotion",title:"60 Week Prayer Journal",desc:"60 weeks of just you and God. No one else's needs live on these pages. His voice. Your heart. Nothing else is required here.",tag:"God's Voice First",link:"https://amzn.to/486JdVm"},
+      {img:"faith-devotion.png",collection:"Faith & Devotion",title:"Leather Lined Journal A5",desc:"A sacred space that is entirely yours. Write the truth no one else needs to see. This is between you and the God who already knows.",tag:"Your Sacred Space",link:"https://amzn.to/44rtiyA"},
+      {img:"sanctuary-sips.png",collection:"Sanctuary Sips",title:"Christian Art Gifts Ceramic Mug Set — Butterflies",desc:"One moment that is only for you. Sip slowly. You are allowed to receive without earning it, explaining it, or apologizing for it.",tag:"Your Moment",link:"https://amzn.to/3KwAp1V"}
     ]
   },
   D:{
     sub:"Lost Wanderers need beauty that reflects who they truly are. Let these pieces hold space for the woman you are remembering.",
     items:[
-      {icon:"📖",collection:"Faith & Devotion Picks",title:"Tools for a Rooted Life",desc:"When you have forgotten who you are, return to what God says. These tools help you listen for the voice that knows your name.",tag:"Identity Anchor",link:"https://www.amazon.com/shop/sanctuarygrac/list?tag=sanctuarygrac-20"},
-      {icon:"🖼",collection:"Sanctuary Fine Arts Gallery",title:"Women of Many Tongues",desc:"Surround yourself with images of women who look like you — powerful, sacred, and fully seen. Representation is holy.",tag:"Sacred Reflection",link:"https://www.amazon.com/shop/sanctuarygrac/list?tag=sanctuarygrac-20"},
-      {icon:"🕯",collection:"Atmosphere & Serenity",title:"The Peace You Can Feel",desc:"Create a space where the real you feels safe to emerge. Peace is where she has been waiting all along.",tag:"Safe Space",link:"https://www.amazon.com/shop/sanctuarygrac/list?tag=sanctuarygrac-20"}
+      {img:"faith-devotion.png",collection:"Faith & Devotion",title:"NIV, NKJV, NLT & The Message — Parallel Bible",desc:"Four translations. One truth: you are mine. Find the voice that speaks your language and reminds you exactly who God says you are.",tag:"Identity in Truth",link:"https://amzn.to/4iz6Yco"},
+      {img:"faith-devotion.png",collection:"Faith & Devotion",title:"Leather Lined Journal A5 + Gold Pen",desc:"Write who you are when no one needs you. Your true identity has been waiting on these pages. Go find her — she remembers.",tag:"Write Your True Self",link:"https://amzn.to/44rtiyA"},
+      {img:"",collection:"Creative Expression",title:"Acrylic Paint Pens — 24 Colors for Rock Painting",desc:"Before the world told you who to be, you created. Before duty replaced desire, you made beautiful things. Reclaim her. She is still there.",tag:"Rediscover Her",link:"https://amzn.to/43WV71z"}
     ]
   }
 };
@@ -1125,7 +1126,7 @@ function renderSacredSpace(){
   if(sub)sub.textContent=s.sub;
   if(grid)grid.innerHTML=s.items.map(item=>
     '<a class="sacred-card" href="'+item.link+'" target="_blank" rel="noopener">'+
-    '<div class="sacred-card-icon">'+item.icon+'</div>'+
+    (item.img?'<img class="sacred-card-img" src="'+item.img+'" alt="'+item.collection+'" onerror="this.style.display=\'none\'">':'')+
     '<div class="sacred-card-body">'+
     '<div class="sacred-collection">'+item.collection+'</div>'+
     '<div class="sacred-card-title">'+item.title+'</div>'+
