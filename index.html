@@ -594,6 +594,10 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
     <div class="r-badge">Your Silence Profile</div>
     <h1 class="r-name serif" id="rName"></h1>
     <p class="r-tagline serif" id="rTagline"></p>
+    <div style="margin-top:28px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <button class="btn-session gold" onclick="openJournalModal()" style="font-size:0.68rem;padding:12px 28px;">✦ Write in My Journal</button>
+      <a class="btn-session" href="https://website.beacons.ai/sanctuarygrace" target="_blank" style="font-size:0.68rem;padding:12px 28px;text-decoration:none;display:inline-block;">Free Access — Sanctuary</a>
+    </div>
   </div>
 
   <div id="confirmBanner">
@@ -649,7 +653,8 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
       <p class="sacred-disclaimer">As an Amazon Associate, Sanctuary Grace Ministry earns from qualifying purchases. Every item is hand-curated for your practice.</p>
       <div class="sacred-grid" id="sacredGrid"></div>
       <div class="sacred-cta">
-        <a class="sacred-store-link" href="https://www.amazon.com/shop/sanctuarygrac?tag=sanctuarygrac-20" target="_blank" rel="noopener">Browse the Full Sanctuary Store</a>
+        <p style="font-size:0.75rem;color:var(--text-muted);margin-bottom:16px;line-height:1.7;">Want everything in one place? Browse the full curated collection — every item chosen for women like you.</p>
+        <a class="sacred-store-link" href="https://www.amazon.com/shop/sanctuarygrac?tag=sanctuarygrac-20" target="_blank" rel="noopener">Shop the Full Sanctuary Collection</a>
       </div>
     </div>
   </div>
@@ -805,7 +810,7 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
           <p class="tier-price">$0</p>
           <p class="tier-period">/ month</p>
           <p class="tier-desc">Enter the silence. Access the foundational practice and begin your 30-day journey at no cost.</p>
-          <a href="https://website.beacons.ai/sanctuarygrace" target="_blank" class="tier-btn-free">Begin Your Journey</a>
+          <a href="https://website.beacons.ai/sanctuarygrace" target="_blank" class="tier-btn-free">Begin Free at Sanctuary</a>
         </div>
         <div class="tier-card featured">
           <div class="tier-badge">Most Chosen</div>
@@ -999,6 +1004,18 @@ function submitToBeaconsAndReveal(){
     return;
   }
   userName=name; userEmail=email;
+  // Send name + email to Formspree so profile reaches your inbox
+  fetch('https://formspree.io/f/xeoqkgjb',{
+    method:'POST',
+    headers:{'Content-Type':'application/json','Accept':'application/json'},
+    body:JSON.stringify({
+      _subject:'🌿 New Assessment Submission — The Quiet Authority',
+      name:name,
+      email:email,
+      _replyto:email,
+      source:'TQA Assessment'
+    })
+  }).catch(()=>{});
   calculateAndShowResults();
 }
 
