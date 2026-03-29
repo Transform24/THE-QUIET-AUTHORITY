@@ -217,7 +217,9 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 .sacred-collection{font-size:0.58rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:6px;font-weight:300;}
 .sacred-card-title{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:500;color:var(--cream);margin-bottom:8px;line-height:1.3;}
 .sacred-card-desc{font-size:0.82rem;color:var(--text-dim);line-height:1.65;font-weight:300;flex:1;}
-.sacred-tag{display:inline-block;margin-top:12px;padding:4px 12px;border:1px solid rgba(201,169,110,0.25);font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold-dim);font-weight:300;align-self:flex-start;}
+.sacred-tagline{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:0.92rem;color:var(--gold-dim);margin-bottom:6px;}
+.sacred-shop-btn{display:inline-block;margin-top:14px;padding:9px 20px;border:1px solid var(--gold-dim);color:var(--gold);font-family:'Jost',sans-serif;font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;text-decoration:none;transition:all 0.3s ease;font-weight:300;align-self:flex-start;}
+.sacred-shop-btn:hover{background:var(--gold);color:var(--bg);}
 .sacred-cta{margin-top:28px;text-align:center;}
 .sacred-store-link{display:inline-block;padding:13px 36px;border:1px solid var(--gold-dim);color:var(--gold);font-family:'Jost',sans-serif;font-size:0.7rem;letter-spacing:0.22em;text-transform:uppercase;text-decoration:none;transition:all 0.3s ease;font-weight:300;}
 .sacred-store-link:hover{background:var(--gold);color:var(--bg);}
@@ -475,6 +477,12 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 .ring:nth-child(3){width:700px;height:700px;animation:ringPulse 6s ease-in-out infinite 3s;}
 @keyframes ringPulse{0%,100%{opacity:0.3;transform:translate(-50%,-50%) scale(1);}50%{opacity:0.08;transform:translate(-50%,-50%) scale(1.04);}}
 
+/* WAITLIST BLOCK */
+.waitlist-block{max-width:480px;margin:0 auto;text-align:center;padding:8px 0 0;}
+.waitlist-badge{display:inline-block;padding:6px 20px;border:1px solid var(--gold-dim);font-size:0.58rem;letter-spacing:0.32em;text-transform:uppercase;color:var(--gold);font-weight:300;margin-bottom:20px;}
+.waitlist-body{font-size:0.88rem;color:var(--text-dim);line-height:1.9;margin-bottom:28px;font-weight:300;}
+.waitlist-form{display:flex;flex-direction:column;}
+
 /* TQA FOOTER */
 .tqa-footer{text-align:center;padding:36px 24px 28px;background:var(--bg);border-top:1px solid var(--border);}
 .footer-logo{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:300;color:var(--cream);letter-spacing:0.08em;margin-bottom:4px;}
@@ -647,14 +655,14 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
   <!-- CREATE YOUR SACRED SPACE -->
   <div class="sacred-section">
     <div class="sacred-inner">
-      <div class="r-label">Curated for Your Profile — Sanctuary Essentials</div>
-      <h2 class="sacred-title serif">Create Your Sacred Space</h2>
+      <div class="r-label">Sanctuary Essentials — Amazon Curated</div>
+      <h2 class="sacred-title serif" id="sacredHeading">Curated Just for You</h2>
       <p class="sacred-sub" id="sacredSub"></p>
-      <p class="sacred-disclaimer">As an Amazon Associate, Sanctuary Grace Ministry earns from qualifying purchases. Every item is hand-curated for your practice.</p>
+      <p class="sacred-disclaimer">As an Amazon Associate, Sanctuary Grace Ministry earns from qualifying purchases. Every collection is hand-curated for your silence practice.</p>
       <div class="sacred-grid" id="sacredGrid"></div>
       <div class="sacred-cta">
-        <p style="font-size:0.75rem;color:var(--text-muted);margin-bottom:16px;line-height:1.7;">Want everything in one place? Browse the full curated collection — every item chosen for women like you.</p>
-        <a class="sacred-store-link" href="https://www.amazon.com/shop/sanctuarygrac?tag=sanctuarygrac-20" target="_blank" rel="noopener">Shop the Full Sanctuary Collection</a>
+        <p style="font-size:0.75rem;color:var(--text-muted);margin-bottom:16px;line-height:1.7;">Browse every collection — candles, journals, comfort, sips and more — all curated for women like you.</p>
+        <a class="sacred-store-link" href="https://www.amazon.com/shop/sanctuarygrac?tag=sanctuarygrac-20" target="_blank" rel="noopener">Shop the Full Sanctuary Collection →</a>
       </div>
     </div>
   </div>
@@ -804,33 +812,23 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
       <h3 class="circle-title">The silence that revealed you<br>is waiting to transform you</h3>
       <div class="gold-line"></div>
       <p class="circle-body">Your profile is the beginning. <em>The Circle of Silence is where the becoming happens.</em> A 30 &amp; 90-day guided transformation ministry — built for women who are serious about going inward.</p>
-      <div class="tiers-wrap">
-        <div class="tier-card">
-          <p class="tier-name">Free</p>
-          <p class="tier-price">$0</p>
-          <p class="tier-period">/ month</p>
-          <p class="tier-desc">Enter the silence. Access the foundational practice and begin your 30-day journey at no cost.</p>
-          <a href="https://website.beacons.ai/sanctuarygrace" target="_blank" class="tier-btn-free">Begin Free at Sanctuary</a>
+      <div class="waitlist-block">
+        <div class="waitlist-badge">Opening Soon</div>
+        <p class="waitlist-body">30 &amp; 90 days of guided transformation. Live sessions, profile-specific devotionals, weekly soul letters, and a community of women going inward together. Be first when the doors open.</p>
+        <div id="waitlistForm" class="waitlist-form">
+          <input type="text" class="form-input" id="waitlistName" placeholder="Your first name" style="margin-bottom:10px;">
+          <input type="email" class="form-input" id="waitlistEmail" placeholder="Your email address" style="margin-bottom:14px;">
+          <button class="btn-salvation" onclick="joinWaitlist()" style="width:100%;font-size:1rem;padding:16px;">Join the Waitlist</button>
         </div>
-        <div class="tier-card featured">
-          <div class="tier-badge">Most Chosen</div>
-          <p class="tier-name">The Seeker</p>
-          <p class="tier-price">$9</p>
-          <p class="tier-period">/ month</p>
-          <p class="tier-desc">Guided silence sessions, profile-specific devotionals, and weekly soul letters delivered to your inbox.</p>
-          <a href="https://buy.stripe.com/4gMeVd5oYaWlgDqgr8cQU09" target="_blank" class="tier-btn">Enter the Seeker Circle</a>
-          <a href="#" class="tier-btn-trial">Try 7 Days Free</a>
+        <div id="waitlistConfirm" style="display:none;margin-top:20px;padding:20px 24px;background:rgba(201,169,110,0.06);border:1px solid var(--gold-dim);">
+          <p class="serif" style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.1rem;color:var(--cream);line-height:1.7;">You're on the list, beloved.<br><span style="font-size:0.9rem;color:var(--text-dim);">We'll reach you when the Circle opens its doors.</span></p>
         </div>
-        <div class="tier-card">
-          <p class="tier-name">The Devoted</p>
-          <p class="tier-price">$27</p>
-          <p class="tier-period">/ month</p>
-          <p class="tier-desc">Full access — live sessions, 1-on-1 prayer, The Devoted Community, and all devotional resources unlocked.</p>
-          <a href="https://buy.stripe.com/3cI14n4kU3tTbj63EmcQU0c" target="_blank" class="tier-btn tier-btn-primary">Enter the Devoted Circle</a>
-          <a href="#" class="tier-btn-trial">Try 7 Days Free</a>
+        <div style="margin-top:24px;border-top:1px solid var(--border);padding-top:20px;">
+          <p style="font-size:0.72rem;color:var(--text-muted);margin-bottom:12px;letter-spacing:0.08em;">Access what's available now →</p>
+          <a href="https://website.beacons.ai/sanctuarygrace" target="_blank" class="tier-btn-free">Free Access at Sanctuary</a>
         </div>
       </div>
-      <div style="margin-top:2.5rem">
+      <div style="margin-top:2rem">
         <button class="btn-circle-ghost" onclick="showScreen('screen-landing')">Begin Again</button>
       </div>
     </div>
@@ -1134,12 +1132,50 @@ const SEVEN_DAYS={
   ]
 };
 
+const GD={
+  comfort:'https://drive.google.com/thumbnail?id=1UH6bGtMZ1maHh65Ld3R0PjDJxDPCMIdl&sz=w800',
+  faith:'https://drive.google.com/thumbnail?id=1dpnLSnhCEST9pwUwc58H45rHoIlaypoZ&sz=w800',
+  sips:'https://drive.google.com/thumbnail?id=1SKTxq3B8nR0oSX9HW-ioaGFH2deq2hrN&sz=w800'
+};
+
 const SACRED_SPACE={
-  // GD image links — replace with collection-specific links as available
-  // GD1 = comfort/blankets collection image
-  // GD2 = sips collection image (use GD1 until available)
-  // GD3 = faith/journals collection image (use GD1 until available)
   A:{
+    heading:'Curated Just for You',
+    sub:'The Striving Achiever needs one thing above all else — an environment that gives her permission to stop.',
+    collections:[
+      {img:GD.comfort,title:'The Rest Ritual',tagline:'You have earned this.',desc:'A weighted softness that tells your body the striving is done for today. Wrap yourself in it and do nothing.',link:'https://amzn.to/3KmuE71',cta:'Shop The Rest Ritual'},
+      {img:GD.sips,title:'Sip & Be Still',tagline:'One slow cup before the world asks anything.',desc:'A travel mug engraved with Jeremiah 29:11 — a daily reminder that He has a plan and it does not require your exhaustion.',link:'https://amzn.to/4oiTO4d',cta:'Shop Sanctuary Sips'},
+      {img:GD.faith,title:'A Place of Faith',tagline:'60 weeks of just you and God.',desc:'No agenda. No performance. A prayer journal that holds your honest words and gives God room to respond.',link:'https://amzn.to/486JdVm',cta:'Shop A Place of Faith'}
+    ]
+  },
+  B:{
+    heading:'Curated Just for You',
+    sub:'The Depleted Survivor does not need more to do — she needs something that fills without demanding.',
+    collections:[
+      {img:GD.sips,title:'Warmth for the Weary',tagline:'Something beautiful, just for you.',desc:'A ceramic butterfly mug set chosen for the woman who deserves beautiful things. Sip slowly. Let it restore.',link:'https://amzn.to/3KwAp1V',cta:'Shop Sanctuary Sips'},
+      {img:GD.comfort,title:'The Comfort Corner',tagline:'He that dwelleth in the secret place.',desc:'Psalms 91 and a fleece blanket soft enough to feel like grace. Read it slowly until the empty places begin to fill.',link:'https://amzn.to/4otKevE',cta:'Shop Comfort Corner'},
+      {img:GD.faith,title:'A Place of Faith',tagline:'Just you and God. Nothing else required.',desc:'A leather-lined journal for every honest prayer, every question, every quiet moment between you and the God who restores.',link:'https://amzn.to/44rtiyA',cta:'Shop A Place of Faith'}
+    ]
+  },
+  C:{
+    heading:'Curated Just for You',
+    sub:'The Guilty Giver needs a space that is entirely hers — where no one else\'s needs are allowed to live.',
+    collections:[
+      {img:GD.faith,title:'A Place of Faith',tagline:'Write what no one else needs to see.',desc:'A leather A5 journal and gold pen — a sacred space that belongs only to you. Your truth. Your God. Your pages.',link:'https://amzn.to/44rtiyA',cta:'Shop A Place of Faith'},
+      {img:GD.sips,title:'Sip Without Apology',tagline:'One moment that is only yours.',desc:'The butterfly ceramic mug set — because you are allowed beautiful things without earning them or explaining them.',link:'https://amzn.to/3KwAp1V',cta:'Shop Sanctuary Sips'},
+      {img:GD.comfort,title:'The Rest Ritual',tagline:'Give yourself permission to receive.',desc:'A soft fleece throw and Psalms 91 — two things that ask nothing of you and offer everything. You are allowed this.',link:'https://amzn.to/3KmuE71',cta:'Shop Comfort Corner'}
+    ]
+  },
+  D:{
+    heading:'Curated Just for You',
+    sub:'The Lost Wanderer needs beauty that reflects who she truly is — and tools to help her remember.',
+    collections:[
+      {img:GD.faith,title:'A Place of Faith',tagline:'Four voices. One truth: you are mine.',desc:'The NIV, NKJV, NLT & The Message in one parallel Bible — find the translation that speaks your language and says: I know your name.',link:'https://amzn.to/4iz6Yco',cta:'Shop A Place of Faith'},
+      {img:GD.sips,title:'Sip & Remember',tagline:'A quiet moment to remember who you are.',desc:'The butterfly ceramic mug set — brew something warm, sit with the silence, and let the woman beneath all the roles resurface.',link:'https://amzn.to/3KwAp1V',cta:'Shop Sanctuary Sips'},
+      {img:GD.comfort,title:'Create & Reclaim',tagline:'Before duty replaced desire, you created.',desc:'Acrylic paint pens and smooth painting rocks — because the woman God made was creative before the world made her busy.',link:'https://amzn.to/43WV71z',cta:'Shop Creative Expression'}
+    ]
+  }
+};
     sub:"Striving Achievers need an environment that gives them permission to stop. These pieces were chosen specifically for you.",
     items:[
       {img:"https://drive.google.com/thumbnail?id=1UH6bGtMZ1maHh65Ld3R0PjDJxDPCMIdl&sz=w800",collection:"Comfort Corner",title:"BEDELITE Fleece Throw Blanket",desc:"Weighted permission. Wrap yourself in it and do absolutely nothing. Rest is not laziness — it is obedience to the God who said come.",tag:"Permission to Rest",link:"https://amzn.to/3KmuE71"},
@@ -1176,18 +1212,20 @@ const SACRED_SPACE={
 function renderSacredSpace(){
   const s=SACRED_SPACE[currentProfile];
   if(!s)return;
+  const heading=document.getElementById('sacredHeading');
   const sub=document.getElementById('sacredSub');
   const grid=document.getElementById('sacredGrid');
+  if(heading)heading.textContent=s.heading;
   if(sub)sub.textContent=s.sub;
-  if(grid)grid.innerHTML=s.items.map(item=>
-    '<a class="sacred-card" href="'+item.link+'" target="_blank" rel="noopener">'+
-    (item.img?'<img class="sacred-card-img" src="'+item.img+'" alt="'+item.collection+'" onerror="this.style.display=\'none\'">':'')+
+  if(grid)grid.innerHTML=s.collections.map(c=>
+    '<div class="sacred-card">'+
+    (c.img?'<img class="sacred-card-img" src="'+c.img+'" alt="'+c.title+'" onerror="this.style.display=\'none\'">':'')+
     '<div class="sacred-card-body">'+
-    '<div class="sacred-collection">'+item.collection+'</div>'+
-    '<div class="sacred-card-title">'+item.title+'</div>'+
-    '<p class="sacred-card-desc">'+item.desc+'</p>'+
-    '<span class="sacred-tag">'+item.tag+'</span>'+
-    '</div></a>'
+    '<div class="sacred-tagline">'+c.tagline+'</div>'+
+    '<div class="sacred-card-title">'+c.title+'</div>'+
+    '<p class="sacred-card-desc">'+c.desc+'</p>'+
+    '<a class="sacred-shop-btn" href="'+c.link+'" target="_blank" rel="noopener">'+c.cta+' →</a>'+
+    '</div></div>'
   ).join('');
 }
 
@@ -1334,6 +1372,28 @@ function acceptJesus(){
 }
 
 function joinCircle(){window.open('https://beacons.ai/sanctuarygrace','_blank');}
+
+function joinWaitlist(){
+  const name=document.getElementById('waitlistName').value.trim();
+  const email=document.getElementById('waitlistEmail').value.trim();
+  if(!name||!email){
+    document.getElementById('waitlistName').style.borderColor=!name?'#c07856':'';
+    document.getElementById('waitlistEmail').style.borderColor=!email?'#c07856':'';
+    return;
+  }
+  fetch('https://formspree.io/f/xeoqkgjb',{
+    method:'POST',
+    headers:{'Content-Type':'application/json','Accept':'application/json'},
+    body:JSON.stringify({
+      _subject:'⭕ Circle of Silence Waitlist — '+name,
+      name:name,email:email,_replyto:email,
+      profile:PROFILES[currentProfile]?.name||'',
+      source:'Circle of Silence Waitlist'
+    })
+  }).catch(()=>{});
+  document.getElementById('waitlistForm').style.display='none';
+  document.getElementById('waitlistConfirm').style.display='block';
+}
 
 // stepsTrack does not exist in current UI but renderRoadmap is called defensively
 function renderRoadmap(){}
