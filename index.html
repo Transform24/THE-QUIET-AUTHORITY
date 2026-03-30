@@ -436,6 +436,18 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 .devot-bundle-name{font-family:'Cinzel',serif;font-size:1.2rem;color:var(--cream);}
 .devot-bundle-sub{font-size:.9rem;color:var(--muted);font-style:italic;margin-top:.3rem;}
 .devot-bundle-price{font-size:2rem;color:var(--gold);}
+/* GOING DEEPER BOOKS */
+.books-section{padding:5rem 2rem;background:var(--dark2);text-align:center;}
+.books-inner{max-width:860px;margin:0 auto;}
+.books-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2rem;margin-top:2.5rem;}
+.book-card{background:var(--dark3);border:1px solid rgba(196,166,120,.18);padding:2.5rem 2rem;text-align:center;transition:all .35s;text-decoration:none;display:block;color:var(--cream);}
+.book-card:hover{border-color:var(--gold);transform:translateY(-4px);box-shadow:0 14px 40px rgba(196,166,120,.1);}
+.book-label{font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.38em;text-transform:uppercase;color:var(--terra);margin-bottom:.8rem;}
+.book-title{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-style:italic;color:var(--cream);line-height:1.4;margin-bottom:.8rem;}
+.book-sub{font-size:.85rem;color:var(--muted);font-style:italic;margin-bottom:1.4rem;line-height:1.6;}
+.book-price{font-size:1.8rem;color:var(--gold);font-weight:300;margin-bottom:1.2rem;}
+.book-btn{display:inline-block;font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.3em;text-transform:uppercase;padding:.7rem 1.8rem;border:1px solid rgba(196,166,120,.5);color:var(--gold);transition:all .3s;}
+.book-card:hover .book-btn{background:var(--gold);color:var(--dark);}
 /* SUBSCRIPTION TIERS */
 .tiers-wrap{display:flex;gap:1.2rem;justify-content:center;flex-wrap:wrap;margin-top:2.5rem;}
 .tier-card{background:var(--dark3);border:1px solid rgba(196,166,120,.15);padding:2.5rem 2rem;flex:1;min-width:220px;max-width:300px;text-align:center;transition:all .35s;position:relative;}
@@ -788,7 +800,7 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
           <p class="devot-price">$4.99</p>
         </a>
       </div>
-      <a href="https://buy.stripe.com/dRm6oHg3C7K9bj6gr8cQU01" target="_blank" class="devot-bundle">
+      <a href="https://buy.stripe.com/4gM6oH6t28Od5YM3EmcQU0k" target="_blank" class="devot-bundle">
         <div class="devot-bundle-text">
           <p class="devot-bundle-label">Complete Series · Best Value</p>
           <p class="devot-bundle-name">The Full Devotional Bundle</p>
@@ -799,6 +811,31 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
           <p style="font-size:.75rem;color:var(--terra);font-family:'Cinzel',serif;letter-spacing:.2em;text-transform:uppercase;margin-top:.3rem">All Four Weeks</p>
         </div>
       </a>
+    </div>
+  </div>
+
+  <!-- GOING DEEPER BOOKS -->
+  <div class="books-section">
+    <div class="books-inner">
+      <p class="s-label">Going Deeper</p>
+      <h2 style="font-family:'Cinzel',serif;font-size:1.5rem;font-weight:400;color:var(--cream);margin:.6rem 0 .5rem">Words That Meet You Where You Are</h2>
+      <p style="font-size:.95rem;color:var(--muted);font-style:italic;max-width:540px;margin:0 auto">Two books written for women ready to stop performing and start becoming.</p>
+      <div class="books-grid">
+        <a href="https://buy.stripe.com/00w3cv5oYc0p0EscaScQU0d" target="_blank" class="book-card">
+          <p class="book-label">Spiritual Formation</p>
+          <p class="book-title">The Quiet Authority: Transforming Nurturer Burnout into Spiritual Power</p>
+          <p class="book-sub">For the woman who gives everything and wonders why she still feels empty.</p>
+          <p class="book-price">$15.99</p>
+          <span class="book-btn">Get the Book</span>
+        </a>
+        <a href="https://buy.stripe.com/eVq3cv8Ba6G5bj6fn4cQU0g" target="_blank" class="book-card">
+          <p class="book-label">A Parable for the Journey</p>
+          <p class="book-title">The Parable of the Cocoon</p>
+          <p class="book-sub">A story of surrender, silence, and the woman who emerged on the other side.</p>
+          <p class="book-price">$15.99</p>
+          <span class="book-btn">Get the Book</span>
+        </a>
+      </div>
     </div>
   </div>
 
