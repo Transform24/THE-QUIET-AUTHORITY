@@ -425,8 +425,10 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 .devot-section{padding:6rem 2rem;background:var(--dark3);text-align:center;}
 .devot-inner{max-width:900px;margin:0 auto;}
 .devot-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1.2rem;margin-bottom:1.8rem;}
-.devot-card{background:var(--dark2);border:1px solid rgba(196,166,120,.12);padding:2rem 1.5rem;text-align:center;transition:all .35s;text-decoration:none;display:block;color:var(--cream);}
+.devot-card{background:var(--dark2);border:1px solid rgba(196,166,120,.12);padding:0;text-align:center;transition:all .35s;text-decoration:none;display:block;color:var(--cream);overflow:hidden;}
 .devot-card:hover{border-color:rgba(196,166,120,.45);transform:translateY(-4px);box-shadow:0 12px 36px rgba(196,166,120,.08);}
+.devot-cover{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;}
+.devot-card-body{padding:1.4rem 1.2rem 1.6rem;}
 .devot-week{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.35em;text-transform:uppercase;color:var(--terra);margin-bottom:.8rem;}
 .devot-title{font-family:'Cinzel',serif;font-size:1rem;font-weight:400;color:var(--cream);margin-bottom:.8rem;}
 .devot-price{font-size:1.5rem;color:var(--gold);font-weight:300;}
@@ -786,24 +788,36 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
       <p style="font-size:1.05rem;color:var(--muted);line-height:2;margin-bottom:3rem;font-weight:300;">Four weeks of guided devotional study. Each week meets you where you are — and walks you forward.<br><em style="color:var(--cream)">Begin with one. Collect them all.</em></p>
       <div class="devot-grid">
         <a href="https://buy.stripe.com/cNieVdbNm6G586UdeWcQU03" target="_blank" class="devot-card">
-          <p class="devot-week">Week 1</p>
-          <p class="devot-title">Vision</p>
-          <p class="devot-price">$4.99</p>
+          <img src="https://drive.google.com/thumbnail?id=1xtE3Mq5az-DtytlZxWaNkH9zFASX55AB&sz=w800" alt="Week 1 — Vision" class="devot-cover" onerror="this.style.display='none'">
+          <div class="devot-card-body">
+            <p class="devot-week">Week 1</p>
+            <p class="devot-title">Vision</p>
+            <p class="devot-price">$4.99</p>
+          </div>
         </a>
         <a href="https://buy.stripe.com/3cI7sL18I7K9evi1wecQU04" target="_blank" class="devot-card">
-          <p class="devot-week">Week 2</p>
-          <p class="devot-title">Renewal</p>
-          <p class="devot-price">$4.99</p>
+          <img src="https://drive.google.com/thumbnail?id=1KF08d6GO_j2Hin-0mzOkLA_ehNvYRP8u&sz=w800" alt="Week 2 — Renewal" class="devot-cover" onerror="this.style.display='none'">
+          <div class="devot-card-body">
+            <p class="devot-week">Week 2</p>
+            <p class="devot-title">Renewal</p>
+            <p class="devot-price">$4.99</p>
+          </div>
         </a>
         <a href="https://buy.stripe.com/14A7sL8Ba4xX9aY7UCcQU06" target="_blank" class="devot-card">
-          <p class="devot-week">Week 3</p>
-          <p class="devot-title">Peace</p>
-          <p class="devot-price">$4.99</p>
+          <img src="https://drive.google.com/thumbnail?id=1zFbWcrn6q-Z_Y1_G0NJPtG_ZdOeLLzTQ&sz=w800" alt="Week 3 — Peace" class="devot-cover" onerror="this.style.display='none'">
+          <div class="devot-card-body">
+            <p class="devot-week">Week 3</p>
+            <p class="devot-title">Peace</p>
+            <p class="devot-price">$4.99</p>
+          </div>
         </a>
         <a href="https://buy.stripe.com/eVqeVd7x66G5gDq0sacQU02" target="_blank" class="devot-card">
-          <p class="devot-week">Week 4</p>
-          <p class="devot-title">Calling &amp; Legacy</p>
-          <p class="devot-price">$4.99</p>
+          <img src="https://drive.google.com/thumbnail?id=1h_iFqZw28tM0AYZV9Ozu-WrJecnjQGkY&sz=w800" alt="Week 4 — Calling & Legacy" class="devot-cover" onerror="this.style.display='none'">
+          <div class="devot-card-body">
+            <p class="devot-week">Week 4</p>
+            <p class="devot-title">Calling &amp; Legacy</p>
+            <p class="devot-price">$4.99</p>
+          </div>
         </a>
       </div>
       <a href="https://buy.stripe.com/4gM6oH6t28Od5YM3EmcQU0k" target="_blank" class="devot-bundle">
