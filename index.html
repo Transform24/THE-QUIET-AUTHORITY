@@ -438,16 +438,22 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 .devot-bundle-price{font-size:2rem;color:var(--gold);}
 /* GOING DEEPER BOOKS */
 .books-section{padding:5rem 2rem;background:var(--dark2);text-align:center;}
-.books-inner{max-width:860px;margin:0 auto;}
+.books-inner{max-width:960px;margin:0 auto;}
 .books-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2rem;margin-top:2.5rem;}
-.book-card{background:var(--dark3);border:1px solid rgba(196,166,120,.18);padding:2.5rem 2rem;text-align:center;transition:all .35s;text-decoration:none;display:block;color:var(--cream);}
+.book-card{background:var(--dark3);border:1px solid rgba(196,166,120,.18);padding:0;text-align:center;transition:all .35s;text-decoration:none;display:block;color:var(--cream);overflow:hidden;}
 .book-card:hover{border-color:var(--gold);transform:translateY(-4px);box-shadow:0 14px 40px rgba(196,166,120,.1);}
+.book-cover{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;}
+.book-cover-placeholder{width:100%;aspect-ratio:3/4;background:linear-gradient(160deg,rgba(196,166,120,.06),rgba(196,166,120,.02));display:flex;align-items:center;justify-content:center;}
+.book-body{padding:1.8rem 1.8rem 2rem;}
 .book-label{font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.38em;text-transform:uppercase;color:var(--terra);margin-bottom:.8rem;}
-.book-title{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-style:italic;color:var(--cream);line-height:1.4;margin-bottom:.8rem;}
-.book-sub{font-size:.85rem;color:var(--muted);font-style:italic;margin-bottom:1.4rem;line-height:1.6;}
-.book-price{font-size:1.8rem;color:var(--gold);font-weight:300;margin-bottom:1.2rem;}
+.book-title{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-style:italic;color:var(--cream);line-height:1.4;margin-bottom:.7rem;}
+.book-sub{font-size:.85rem;color:var(--muted);font-style:italic;margin-bottom:1.2rem;line-height:1.6;}
+.book-price{font-size:1.8rem;color:var(--gold);font-weight:300;margin-bottom:1.1rem;}
+.book-price.free{font-size:1.2rem;letter-spacing:.2em;font-family:'Cinzel',serif;color:var(--terra);}
 .book-btn{display:inline-block;font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.3em;text-transform:uppercase;padding:.7rem 1.8rem;border:1px solid rgba(196,166,120,.5);color:var(--gold);transition:all .3s;}
 .book-card:hover .book-btn{background:var(--gold);color:var(--dark);}
+.book-btn.free-btn{border-color:var(--terra);color:var(--terra);}
+.book-card:hover .free-btn{background:var(--terra);color:var(--dark);}
 /* SUBSCRIPTION TIERS */
 .tiers-wrap{display:flex;gap:1.2rem;justify-content:center;flex-wrap:wrap;margin-top:2.5rem;}
 .tier-card{background:var(--dark3);border:1px solid rgba(196,166,120,.15);padding:2.5rem 2rem;flex:1;min-width:220px;max-width:300px;text-align:center;transition:all .35s;position:relative;}
@@ -819,21 +825,45 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
     <div class="books-inner">
       <p class="s-label">Going Deeper</p>
       <h2 style="font-family:'Cinzel',serif;font-size:1.5rem;font-weight:400;color:var(--cream);margin:.6rem 0 .5rem">Words That Meet You Where You Are</h2>
-      <p style="font-size:.95rem;color:var(--muted);font-style:italic;max-width:540px;margin:0 auto">Two books written for women ready to stop performing and start becoming.</p>
+      <p style="font-size:.95rem;color:var(--muted);font-style:italic;max-width:540px;margin:0 auto">Books and resources written for women ready to stop performing and start becoming.</p>
       <div class="books-grid">
         <a href="https://buy.stripe.com/00w3cv5oYc0p0EscaScQU0d" target="_blank" class="book-card">
-          <p class="book-label">Spiritual Formation</p>
-          <p class="book-title">The Quiet Authority: Transforming Nurturer Burnout into Spiritual Power</p>
-          <p class="book-sub">For the woman who gives everything and wonders why she still feels empty.</p>
-          <p class="book-price">$15.99</p>
-          <span class="book-btn">Get the Book</span>
+          <img id="bookCoverTQA" src="" alt="The Quiet Authority book cover" class="book-cover" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" style="display:none">
+          <div class="book-cover-placeholder" id="bookCoverTQAPlaceholder">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(196,166,120,.3)" stroke-width="1"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          </div>
+          <div class="book-body">
+            <p class="book-label">Spiritual Formation</p>
+            <p class="book-title">The Quiet Authority: Transforming Nurturer Burnout into Spiritual Power</p>
+            <p class="book-sub">For the woman who gives everything and wonders why she still feels empty.</p>
+            <p class="book-price">$15.99</p>
+            <span class="book-btn">Get the Book</span>
+          </div>
         </a>
         <a href="https://buy.stripe.com/eVq3cv8Ba6G5bj6fn4cQU0g" target="_blank" class="book-card">
-          <p class="book-label">A Parable for the Journey</p>
-          <p class="book-title">The Parable of the Cocoon</p>
-          <p class="book-sub">A story of surrender, silence, and the woman who emerged on the other side.</p>
-          <p class="book-price">$15.99</p>
-          <span class="book-btn">Get the Book</span>
+          <img id="bookCoverCocoon" src="" alt="The Parable of the Cocoon cover" class="book-cover" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" style="display:none">
+          <div class="book-cover-placeholder" id="bookCoverCocoonPlaceholder">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(196,166,120,.3)" stroke-width="1"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          </div>
+          <div class="book-body">
+            <p class="book-label">A Parable for the Journey</p>
+            <p class="book-title">The Parable of the Cocoon</p>
+            <p class="book-sub">A story of surrender, silence, and the woman who emerged on the other side.</p>
+            <p class="book-price">$15.99</p>
+            <span class="book-btn">Get the Book</span>
+          </div>
+        </a>
+        <a href="https://beacons.ai/sanctuarygrace" target="_blank" class="book-card">
+          <div class="book-cover-placeholder" style="display:flex">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(196,166,120,.3)" stroke-width="1"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          </div>
+          <div class="book-body">
+            <p class="book-label">Free Resource</p>
+            <p class="book-title">The R.E.S.T. Workbook</p>
+            <p class="book-sub">The R.E.S.T. Framework for Permanent Emotional and Spiritual Renewal — a companion to your assessment journey.</p>
+            <p class="book-price free">Free Download</p>
+            <span class="book-btn free-btn">Download Free</span>
+          </div>
         </a>
       </div>
     </div>
@@ -1090,6 +1120,7 @@ function showResults(){
   }
 
   renderSacredSpace();
+  loadBookCovers();
 
   // Populate scripture ticker
   const tickerScriptures=[
@@ -1172,8 +1203,22 @@ const SEVEN_DAYS={
 const GD={
   comfort:'https://drive.google.com/thumbnail?id=1UH6bGtMZ1maHh65Ld3R0PjDJxDPCMIdl&sz=w800',
   faith:'https://drive.google.com/thumbnail?id=1dpnLSnhCEST9pwUwc58H45rHoIlaypoZ&sz=w800',
-  sips:'https://drive.google.com/thumbnail?id=1SKTxq3B8nR0oSX9HW-ioaGFH2deq2hrN&sz=w800'
+  sips:'https://drive.google.com/thumbnail?id=1SKTxq3B8nR0oSX9HW-ioaGFH2deq2hrN&sz=w800',
+  // Book covers — set Google Drive file IDs once images are uploaded and shared publicly
+  bookTQA:'',    // The Quiet Authority cover
+  bookCocoon:'' // The Parable of the Cocoon cover
 };
+
+function loadBookCovers(){
+  if(GD.bookTQA){
+    const img=document.getElementById('bookCoverTQA');
+    if(img){img.src=GD.bookTQA;img.style.display='block';const p=document.getElementById('bookCoverTQAPlaceholder');if(p)p.style.display='none';}
+  }
+  if(GD.bookCocoon){
+    const img=document.getElementById('bookCoverCocoon');
+    if(img){img.src=GD.bookCocoon;img.style.display='block';const p=document.getElementById('bookCoverCocoonPlaceholder');if(p)p.style.display='none';}
+  }
+}
 
 const SACRED_SPACE={
   A:{
