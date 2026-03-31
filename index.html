@@ -1218,6 +1218,7 @@ const GD={
   comfort:'https://drive.google.com/thumbnail?id=1UH6bGtMZ1maHh65Ld3R0PjDJxDPCMIdl&sz=w800',
   faith:'https://drive.google.com/thumbnail?id=1dpnLSnhCEST9pwUwc58H45rHoIlaypoZ&sz=w800',
   sips:'https://drive.google.com/thumbnail?id=1SKTxq3B8nR0oSX9HW-ioaGFH2deq2hrN&sz=w800',
+  wallart:'https://drive.google.com/thumbnail?id=1TzbsynRrHZi2kdfINA2ASWQR90PXCgip&sz=w800',
   // Book covers — set Google Drive file IDs once images are uploaded and shared publicly
   bookTQA:'https://drive.google.com/thumbnail?id=1bbD40-3I5hFGScJvvBuO9ivSB-UQ_81j&sz=w800',    // The Quiet Authority cover
   bookCocoon:'https://drive.google.com/thumbnail?id=1O7rDMjde08CUhOmmeqGba8aj-kgHKAhL&sz=w800' // The Parable of the Cocoon cover
@@ -1239,7 +1240,7 @@ const SACRED_SPACE={
     heading:'Curated Just for You',
     sub:'The Striving Achiever needs one thing above all else — an environment that gives her permission to stop.',
     collections:[
-      {img:GD.comfort,title:'The Rest Ritual',tagline:'You have earned this.',desc:'A weighted softness that tells your body the striving is done for today. Wrap yourself in it and do nothing.',link:'https://amzn.to/3KmuE71',cta:'Shop The Rest Ritual'},
+      {img:GD.comfort,title:'The Rest Ritual',tagline:'You have earned this.',desc:'A fleece throw weighted with permission — wrap yourself in it and do absolutely nothing. Rest is not laziness. It is obedience.',link:'https://www.amazon.com/dp/B0C7V67VVV?tag=sanctuarygrac-20',cta:'Shop The Rest Ritual'},
       {img:GD.sips,title:'Sip & Be Still',tagline:'One slow cup before the world asks anything.',desc:'A travel mug engraved with Jeremiah 29:11 — a daily reminder that He has a plan and it does not require your exhaustion.',link:'https://amzn.to/4oiTO4d',cta:'Shop Sanctuary Sips'},
       {img:GD.faith,title:'A Place of Faith',tagline:'60 weeks of just you and God.',desc:'No agenda. No performance. A prayer journal that holds your honest words and gives God room to respond.',link:'https://amzn.to/486JdVm',cta:'Shop A Place of Faith'}
     ]
@@ -1248,8 +1249,8 @@ const SACRED_SPACE={
     heading:'Curated Just for You',
     sub:'The Depleted Survivor does not need more to do — she needs something that fills without demanding.',
     collections:[
-      {img:GD.sips,title:'Warmth for the Weary',tagline:'Something beautiful, just for you.',desc:'A ceramic butterfly mug set chosen for the woman who deserves beautiful things. Sip slowly. Let it restore.',link:'https://amzn.to/3KwAp1V',cta:'Shop Sanctuary Sips'},
-      {img:GD.comfort,title:'The Comfort Corner',tagline:'He that dwelleth in the secret place.',desc:'Psalms 91 and a fleece blanket soft enough to feel like grace. Read it slowly until the empty places begin to fill.',link:'https://amzn.to/4otKevE',cta:'Shop Comfort Corner'},
+      {img:GD.sips,title:'Warmth for the Weary',tagline:'Something beautiful, just for you.',desc:'A ceramic butterfly mug set chosen for the woman who deserves beautiful things. Sip slowly. Let it restore you from the inside out.',link:'https://amzn.to/3KwAp1V',cta:'Shop Sanctuary Sips'},
+      {img:GD.comfort,title:'Breathe & Be Restored',tagline:'Let your senses exhale.',desc:'A cool mist essential oil diffuser — fill the air with lavender, peace, and permission. Your body knows how to restore. Give it the space.',link:'https://amzn.to/4pcq9Lw',cta:'Shop Restoration'},
       {img:GD.faith,title:'A Place of Faith',tagline:'Just you and God. Nothing else required.',desc:'A leather-lined journal for every honest prayer, every question, every quiet moment between you and the God who restores.',link:'https://amzn.to/44rtiyA',cta:'Shop A Place of Faith'}
     ]
   },
@@ -1258,8 +1259,8 @@ const SACRED_SPACE={
     sub:'The Guilty Giver needs a space that is entirely hers — where no one else\'s needs are allowed to live.',
     collections:[
       {img:GD.faith,title:'A Place of Faith',tagline:'Write what no one else needs to see.',desc:'A leather A5 journal and gold pen — a sacred space that belongs only to you. Your truth. Your God. Your pages.',link:'https://amzn.to/44rtiyA',cta:'Shop A Place of Faith'},
-      {img:GD.sips,title:'Sip Without Apology',tagline:'One moment that is only yours.',desc:'The butterfly ceramic mug set — because you are allowed beautiful things without earning them or explaining them.',link:'https://amzn.to/3KwAp1V',cta:'Shop Sanctuary Sips'},
-      {img:GD.comfort,title:'The Rest Ritual',tagline:'Give yourself permission to receive.',desc:'A soft fleece throw and Psalms 91 — two things that ask nothing of you and offer everything. You are allowed this.',link:'https://amzn.to/3KmuE71',cta:'Shop Comfort Corner'}
+      {img:GD.sips,title:'Sip Without Apology',tagline:'One moment that is only yours.',desc:'The butterfly ceramic mug set — because you are allowed beautiful things without earning them, explaining them, or apologizing for them.',link:'https://amzn.to/3KwAp1V',cta:'Shop Sanctuary Sips'},
+      {img:GD.comfort,title:'Set the Atmosphere',tagline:'Give yourself permission to receive.',desc:'Flameless pillar candles with remote — set the atmosphere before you sit down to be still. Let every flicker say: this is a sacred space.',link:'https://amzn.to/48cxqVG',cta:'Shop Atmosphere'}
     ]
   },
   D:{
@@ -1268,39 +1269,7 @@ const SACRED_SPACE={
     collections:[
       {img:GD.faith,title:'A Place of Faith',tagline:'Four voices. One truth: you are mine.',desc:'The NIV, NKJV, NLT & The Message in one parallel Bible — find the translation that speaks your language and says: I know your name.',link:'https://amzn.to/4iz6Yco',cta:'Shop A Place of Faith'},
       {img:GD.sips,title:'Sip & Remember',tagline:'A quiet moment to remember who you are.',desc:'The butterfly ceramic mug set — brew something warm, sit with the silence, and let the woman beneath all the roles resurface.',link:'https://amzn.to/3KwAp1V',cta:'Shop Sanctuary Sips'},
-      {img:GD.comfort,title:'Create & Reclaim',tagline:'Before duty replaced desire, you created.',desc:'Acrylic paint pens and smooth painting rocks — because the woman God made was creative before the world made her busy.',link:'https://amzn.to/43WV71z',cta:'Shop Creative Expression'}
-    ]
-  }
-};
-    sub:"Striving Achievers need an environment that gives them permission to stop. These pieces were chosen specifically for you.",
-    items:[
-      {img:"https://drive.google.com/thumbnail?id=1UH6bGtMZ1maHh65Ld3R0PjDJxDPCMIdl&sz=w800",collection:"Comfort Corner",title:"BEDELITE Fleece Throw Blanket",desc:"Weighted permission. Wrap yourself in it and do absolutely nothing. Rest is not laziness — it is obedience to the God who said come.",tag:"Permission to Rest",link:"https://amzn.to/3KmuE71"},
-      {img:"https://drive.google.com/thumbnail?id=1UH6bGtMZ1maHh65Ld3R0PjDJxDPCMIdl&sz=w800",collection:"Atmosphere & Serenity",title:"Flameless Pillar Candles with Remote",desc:"Your environment is speaking to you. Set the atmosphere before you sit down to be still. Let every flicker say: this is a sacred space.",tag:"Peace Environment",link:"https://amzn.to/48cxqVG"},
-      {img:"https://drive.google.com/thumbnail?id=1UH6bGtMZ1maHh65Ld3R0PjDJxDPCMIdl&sz=w800",collection:"Sanctuary Sips",title:"Christian Art Gifts Travel Mug — Jeremiah 29:11",desc:"A slow morning reminder that He has a plan and it does not require your striving. Sip it in. Let it settle.",tag:"Slow Morning",link:"https://amzn.to/4oiTO4d"}
-    ]
-  },
-  B:{
-    sub:"Depleted Survivors need tenderness, not tasks. Every item here is chosen to fill you — nothing here asks anything of you.",
-    items:[
-      {img:"https://drive.google.com/thumbnail?id=1UH6bGtMZ1maHh65Ld3R0PjDJxDPCMIdl&sz=w800",collection:"Sanctuary Sips",title:"Christian Art Gifts Ceramic Mug Set — Butterflies",desc:"Something beautiful, just for you. Sip slow. Let warmth do what words cannot — restore you gently from the inside out.",tag:"Gentle Restoration",link:"https://amzn.to/3KwAp1V"},
-      {img:"https://drive.google.com/thumbnail?id=1UH6bGtMZ1maHh65Ld3R0PjDJxDPCMIdl&sz=w800",collection:"Comfort Corner",title:"Psalms 91 — He That Dwelleth",desc:"He that dwelleth in the secret place of the Most High. Read it slowly until what is empty begins to fill. Let Him be your refuge today.",tag:"Refilling Practice",link:"https://amzn.to/4otKevE"},
-      {img:"https://drive.google.com/thumbnail?id=1UH6bGtMZ1maHh65Ld3R0PjDJxDPCMIdl&sz=w800",collection:"Atmosphere & Serenity",title:"Essential Oil Diffuser — Cool Mist",desc:"Breathe in lavender, eucalyptus, peace. Give your senses permission to exhale. Your body knows how to restore — give it the space.",tag:"Sensory Rest",link:"https://amzn.to/4pcq9Lw"}
-    ]
-  },
-  C:{
-    sub:"Guilty Givers need a space that belongs entirely to them. No one else's needs are allowed to live here.",
-    items:[
-      {img:"https://drive.google.com/thumbnail?id=1UH6bGtMZ1maHh65Ld3R0PjDJxDPCMIdl&sz=w800",collection:"Faith & Devotion",title:"60 Week Prayer Journal",desc:"60 weeks of just you and God. No one else's needs live on these pages. His voice. Your heart. Nothing else is required here.",tag:"God's Voice First",link:"https://amzn.to/486JdVm"},
-      {img:"https://drive.google.com/thumbnail?id=1UH6bGtMZ1maHh65Ld3R0PjDJxDPCMIdl&sz=w800",collection:"Faith & Devotion",title:"Leather Lined Journal A5",desc:"A sacred space that is entirely yours. Write the truth no one else needs to see. This is between you and the God who already knows.",tag:"Your Sacred Space",link:"https://amzn.to/44rtiyA"},
-      {img:"https://drive.google.com/thumbnail?id=1UH6bGtMZ1maHh65Ld3R0PjDJxDPCMIdl&sz=w800",collection:"Sanctuary Sips",title:"Christian Art Gifts Ceramic Mug Set — Butterflies",desc:"One moment that is only for you. Sip slowly. You are allowed to receive without earning it, explaining it, or apologizing for it.",tag:"Your Moment",link:"https://amzn.to/3KwAp1V"}
-    ]
-  },
-  D:{
-    sub:"Lost Wanderers need beauty that reflects who they truly are. Let these pieces hold space for the woman you are remembering.",
-    items:[
-      {img:"https://drive.google.com/thumbnail?id=1UH6bGtMZ1maHh65Ld3R0PjDJxDPCMIdl&sz=w800",collection:"Faith & Devotion",title:"NIV, NKJV, NLT & The Message — Parallel Bible",desc:"Four translations. One truth: you are mine. Find the voice that speaks your language and reminds you exactly who God says you are.",tag:"Identity in Truth",link:"https://amzn.to/4iz6Yco"},
-      {img:"https://drive.google.com/thumbnail?id=1UH6bGtMZ1maHh65Ld3R0PjDJxDPCMIdl&sz=w800",collection:"Faith & Devotion",title:"Leather Lined Journal A5 + Gold Pen",desc:"Write who you are when no one needs you. Your true identity has been waiting on these pages. Go find her — she remembers.",tag:"Write Your True Self",link:"https://amzn.to/44rtiyA"},
-      {img:"https://drive.google.com/thumbnail?id=1UH6bGtMZ1maHh65Ld3R0PjDJxDPCMIdl&sz=w800",collection:"Creative Expression",title:"Acrylic Paint Pens — 24 Colors for Rock Painting",desc:"Before the world told you who to be, you created. Before duty replaced desire, you made beautiful things. Reclaim her. She is still there.",tag:"Rediscover Her",link:"https://amzn.to/43WV71z"}
+      {img:GD.comfort,title:'Create & Reclaim',tagline:'Before duty replaced desire, you created.',desc:'Smooth painting rocks and acrylic paint pens — because the woman God made was creative before the world made her busy. Reclaim her.',link:'https://amzn.to/3XsxnPd',cta:'Shop Creative Expression'}
     ]
   }
 };
