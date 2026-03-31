@@ -438,6 +438,22 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 .devot-bundle-name{font-family:'Cinzel',serif;font-size:1.2rem;color:var(--cream);}
 .devot-bundle-sub{font-size:.9rem;color:var(--muted);font-style:italic;margin-top:.3rem;}
 .devot-bundle-price{font-size:2rem;color:var(--gold);}
+/* GALLERY WALL ART */
+.gallery-section{padding:6rem 2rem;background:var(--bg);text-align:center;position:relative;overflow:hidden;}
+.gallery-inner{max-width:900px;margin:0 auto;}
+.gallery-hero{position:relative;margin:2.5rem 0;border:1px solid rgba(196,166,120,.2);overflow:hidden;}
+.gallery-hero-img{width:100%;max-height:480px;object-fit:cover;display:block;filter:blur(3px) brightness(.7);transform:scale(1.04);transition:all .6s;}
+.gallery-hero:hover .gallery-hero-img{filter:blur(1px) brightness(.8);}
+.gallery-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;background:linear-gradient(to bottom,rgba(11,11,11,.3),rgba(11,11,11,.7));}
+.gallery-lock{font-size:1.8rem;margin-bottom:1rem;opacity:.7;}
+.gallery-soon{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.5em;text-transform:uppercase;color:var(--gold);margin-bottom:.6rem;}
+.gallery-overlay-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,4vw,2.8rem);font-style:italic;color:var(--cream);line-height:1.3;margin-bottom:.8rem;}
+.gallery-overlay-sub{font-size:.9rem;color:rgba(240,234,216,.7);max-width:420px;line-height:1.7;margin-bottom:1.8rem;}
+.gallery-tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;margin:1.6rem 0;}
+.gallery-tile{aspect-ratio:1;background:rgba(196,166,120,.04);border:1px solid rgba(196,166,120,.1);display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:.45rem;letter-spacing:.3em;color:var(--gold-dim);text-transform:uppercase;}
+.gallery-waitlist{max-width:480px;margin:0 auto;}
+.gallery-waitlist .form-input{margin-bottom:.8rem;}
+.gallery-note{font-size:.78rem;color:var(--muted);font-style:italic;margin-top:1rem;line-height:1.6;}
 /* GOING DEEPER BOOKS */
 .books-section{padding:5rem 2rem;background:var(--dark2);text-align:center;}
 .books-inner{max-width:960px;margin:0 auto;}
@@ -831,6 +847,49 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
           <p style="font-size:.75rem;color:var(--terra);font-family:'Cinzel',serif;letter-spacing:.2em;text-transform:uppercase;margin-top:.3rem">All Four Weeks</p>
         </div>
       </a>
+    </div>
+  </div>
+
+  <!-- GALLERY WALL ART PREVIEW -->
+  <div class="gallery-section">
+    <div class="gallery-inner">
+      <p class="s-label">Sanctuary Art</p>
+      <h2 style="font-family:'Cinzel',serif;font-size:1.5rem;font-weight:400;color:var(--cream);margin:.6rem 0 .4rem">The Gallery Wall Art Library</h2>
+      <p style="font-size:.95rem;color:var(--muted);font-style:italic;max-width:560px;margin:0 auto 0">Every piece born from a Kingdom lesson. Art that holds what words can&rsquo;t say.</p>
+
+      <div class="gallery-hero">
+        <img src="https://drive.google.com/thumbnail?id=1TzbsynRrHZi2kdfINA2ASWQR90PXCgip&sz=w1200" alt="Sanctuary Gallery Preview" class="gallery-hero-img" onerror="this.style.display='none'">
+        <div class="gallery-overlay">
+          <span class="gallery-lock">🖼</span>
+          <p class="gallery-soon">Available Soon</p>
+          <h3 class="gallery-overlay-title">Art that was made<br>from the same silence<br>you just sat in</h3>
+          <p class="gallery-overlay-sub">Printable scripture art, original paintings, and wall pieces created from personal Kingdom revelation. Each piece is a testimony — not a decoration.</p>
+          <button class="btn btn-gold" onclick="document.getElementById('galleryWaitlist').scrollIntoView({behavior:'smooth'})">Be First to Access the Gallery</button>
+        </div>
+      </div>
+
+      <div class="gallery-tiles">
+        <div class="gallery-tile">Scripture Art</div>
+        <div class="gallery-tile">Original Paintings</div>
+        <div class="gallery-tile">Printable Pieces</div>
+        <div class="gallery-tile">Kingdom Revelation</div>
+        <div class="gallery-tile">Prophetic Art</div>
+        <div class="gallery-tile">Digital Downloads</div>
+      </div>
+
+      <div class="gallery-waitlist" id="galleryWaitlist">
+        <p style="font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.35em;text-transform:uppercase;color:var(--terra);margin-bottom:1.2rem">Join the Preview List</p>
+        <div id="galleryForm">
+          <input type="text" class="form-input" id="galleryName" placeholder="Your first name" style="margin-bottom:.8rem">
+          <input type="email" class="form-input" id="galleryEmail" placeholder="Your email address" style="margin-bottom:1rem">
+          <button class="btn btn-gold" onclick="joinGalleryList()">Notify Me When It Opens</button>
+        </div>
+        <div id="galleryConfirm" style="display:none;padding:1.5rem;border:1px solid rgba(196,166,120,.3);background:rgba(196,166,120,.04)">
+          <p style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-style:italic;color:var(--cream);margin-bottom:.4rem">You&rsquo;re on the list.</p>
+          <p style="font-size:.85rem;color:var(--muted)">When the gallery opens, you&rsquo;ll be among the first to receive access — and the story behind each piece.</p>
+        </div>
+        <p class="gallery-note">This is original art rooted in Kingdom revelation and personal testimony. Not stock. Not generic. Made from the journey — for women on theirs.</p>
+      </div>
     </div>
   </div>
 
@@ -1458,6 +1517,28 @@ function joinWaitlist(){
   }).catch(()=>{});
   document.getElementById('waitlistForm').style.display='none';
   document.getElementById('waitlistConfirm').style.display='block';
+}
+
+function joinGalleryList(){
+  const name=document.getElementById('galleryName').value.trim();
+  const email=document.getElementById('galleryEmail').value.trim();
+  if(!name||!email){
+    document.getElementById('galleryName').style.borderColor=!name?'#c07856':'';
+    document.getElementById('galleryEmail').style.borderColor=!email?'#c07856':'';
+    return;
+  }
+  fetch('https://formspree.io/f/xeoqkgjb',{
+    method:'POST',
+    headers:{'Content-Type':'application/json','Accept':'application/json'},
+    body:JSON.stringify({
+      _subject:'🎨 Gallery Art Library Preview List — '+name,
+      name:name,email:email,_replyto:email,
+      profile:PROFILES[currentProfile]?.name||'',
+      source:'Gallery Wall Art Preview List'
+    })
+  }).catch(()=>{});
+  document.getElementById('galleryForm').style.display='none';
+  document.getElementById('galleryConfirm').style.display='block';
 }
 
 // stepsTrack does not exist in current UI but renderRoadmap is called defensively
