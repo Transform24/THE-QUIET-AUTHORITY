@@ -1162,7 +1162,7 @@ function submitToBeaconsAndReveal(){
   }
   userName=name; userEmail=email;
   // Send name + email to Formspree so profile reaches your inbox
-  fetch('https://formspree.io/f/xeoqkgjb',{
+  fetch('https://formspree.io/f/xzdkgbbq',{
     method:'POST',
     headers:{'Content-Type':'application/json','Accept':'application/json'},
     body:JSON.stringify({
@@ -1503,7 +1503,7 @@ function acceptJesus(){
   let count=parseInt(localStorage.getItem(todayKey)||'0')+1;
   localStorage.setItem(todayKey,count);
   const el=document.getElementById('soulNum');if(el)el.textContent=count;
-  fetch('https://formspree.io/f/xeoqkgjb',{
+  fetch('https://formspree.io/f/xzdkgbbq',{
     method:'POST',
     headers:{'Content-Type':'application/json','Accept':'application/json'},
     body:JSON.stringify({
@@ -1524,7 +1524,7 @@ function joinWaitlist(){
     document.getElementById('waitlistEmail').style.borderColor=!email?'#c07856':'';
     return;
   }
-  fetch('https://formspree.io/f/xeoqkgjb',{
+  fetch('https://formspree.io/f/xzdkgbbq',{
     method:'POST',
     headers:{'Content-Type':'application/json','Accept':'application/json'},
     body:JSON.stringify({
@@ -1546,7 +1546,7 @@ function joinGalleryList(){
     document.getElementById('galleryEmail').style.borderColor=!email?'#c07856':'';
     return;
   }
-  fetch('https://formspree.io/f/xeoqkgjb',{
+  fetch('https://formspree.io/f/xzdkgbbq',{
     method:'POST',
     headers:{'Content-Type':'application/json','Accept':'application/json'},
     body:JSON.stringify({
