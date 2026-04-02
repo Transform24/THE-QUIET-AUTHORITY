@@ -21,6 +21,9 @@
 <meta name="twitter:image" content="https://drive.google.com/thumbnail?id=1bbD40-3I5hFGScJvvBuO9ivSB-UQ_81j&sz=w1200">
 <meta name="pinterest-rich-pin" content="true">
 <meta name="theme-color" content="#0b0b0b">
+<!-- MailerLite Universal -->
+<script>(function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].push(arguments));},l=d.createElement(e),l.async=1,l.src=u,n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})(window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');ml('account', '2145322');</script>
+<!-- End MailerLite Universal -->
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Jost:wght@200;300;400;500&family=Cinzel:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -1194,6 +1197,12 @@ function submitToBeaconsAndReveal(){
       _replyto:email,
       source:'TQA Assessment'
     })
+  }).catch(()=>{});
+  // Add subscriber to MailerLite
+  fetch('https://assets.mailerlite.com/jsonp/2145322/forms/opYPHB/subscribe',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({fields:{email:email,name:name}})
   }).catch(()=>{});
   calculateAndShowResults();
 }
