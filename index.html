@@ -21,6 +21,11 @@
 <meta name="twitter:image" content="https://drive.google.com/thumbnail?id=1bbD40-3I5hFGScJvvBuO9ivSB-UQ_81j&sz=w1200">
 <meta name="pinterest-rich-pin" content="true">
 <meta name="theme-color" content="#0b0b0b">
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230b0b0b'/><text y='.9em' font-size='72' x='50%' text-anchor='middle' dominant-baseline='hanging' fill='%23c9a96e' font-family='serif'>✦</text></svg>">
+<!-- Google Analytics — replace GA_MEASUREMENT_ID with your real ID from analytics.google.com -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','GA_MEASUREMENT_ID');</script>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Jost:wght@200;300;400;500&family=Cinzel:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -710,6 +715,7 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
     <p class="r-tagline serif" id="rTagline"></p>
     <div style="margin-top:28px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
       <button class="btn-session gold" onclick="openJournalModal()" style="font-size:0.68rem;padding:12px 28px;">✦ Write in My Journal</button>
+      <button class="btn-session" onclick="shareProfile()" style="font-size:0.68rem;padding:12px 28px;">Share My Profile</button>
       <a class="btn-session" href="https://website.beacons.ai/sanctuarygrace" target="_blank" style="font-size:0.68rem;padding:12px 28px;text-decoration:none;display:inline-block;">Free Access — Sanctuary</a>
     </div>
   </div>
@@ -913,7 +919,7 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
           <p class="devot-bundle-sub">All four weeks — Vision, Renewal, Peace &amp; Calling</p>
         </div>
         <div style="text-align:right">
-          <p class="devot-bundle-price">$19.96</p>
+          <p class="devot-bundle-price">$19.98</p>
           <p style="font-size:.75rem;color:var(--terra);font-family:'Cinzel',serif;letter-spacing:.2em;text-transform:uppercase;margin-top:.3rem">All Four Weeks</p>
         </div>
       </a>
@@ -931,24 +937,23 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
       <div class="wa-card">
         <div class="wa-card-img-wrap">
           <img src="https://drive.google.com/thumbnail?id=1TzbsynRrHZi2kdfINA2ASWQR90PXCgip&sz=w1200"
-               alt="Be Still — Sanctuary Grace Ministry Wall Art"
+               alt="Women Of Many Tongues Fine Art Collection — Sanctuary Grace Ministry"
                class="wa-card-img" onerror="this.style.display='none'">
         </div>
         <div class="wa-card-body">
-          <p class="wa-card-label">First Release · Digital Print</p>
-          <h3 class="wa-card-title serif">Be Still</h3>
-          <p class="wa-card-sub">A printable scripture art piece created from personal Kingdom revelation. Print at home or at any print shop — all sizes included in one download.</p>
+          <p class="wa-card-label">First Release · Fine Art Collection</p>
+          <h3 class="wa-card-title serif">Women Of<br>Many Tongues</h3>
+          <p class="wa-card-sub">An original fine art collection created from Kingdom revelation. Printable at home or any print shop — every size included in one instant download.</p>
           <ul class="wa-sizes">
             <li>5×7</li><li>8×10</li><li>11×14</li><li>16×20</li>
           </ul>
           <div class="wa-card-price-row">
-            <span class="wa-price">$9.99</span>
-            <span class="wa-price-note">All sizes · Instant download</span>
+            <span class="wa-price">$17.99</span>
+            <span class="wa-price-note">Full collection · All sizes · Instant download</span>
           </div>
-          <!-- Replace YOUR_WA1_STRIPE_LINK with your Stripe Payment Link once created -->
           <!-- Stripe → After payment → https://transform24.github.io/THE-QUIET-AUTHORITY/?ty=wa1 -->
-          <a href="YOUR_WA1_STRIPE_LINK" target="_blank" class="wa-buy-btn" id="wa1BuyBtn">Get This Print →</a>
-          <p class="wa-story">This piece was made in the same silence you just sat in. Hang it where you pray.</p>
+          <a href="YOUR_WA1_STRIPE_LINK" target="_blank" class="wa-buy-btn" id="wa1BuyBtn">Get the Collection →</a>
+          <p class="wa-story">This art was made in the same silence you just sat in. Hang it where you pray.</p>
         </div>
       </div>
 
@@ -1051,18 +1056,30 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
       </div>
 
       <div class="waitlist-block">
-        <div class="waitlist-badge">The First Step — Opening Soon</div>
-        <p class="waitlist-body">30 days. Structured. Sacred. Each step defines more of your purpose and strips away more of what you were not. When the Circle opens, you will be ready to enter — not perform.</p>
-        <div id="waitlistForm" class="waitlist-form">
-          <input type="text" class="form-input" id="waitlistName" placeholder="Your first name" style="margin-bottom:10px;">
-          <input type="email" class="form-input" id="waitlistEmail" placeholder="Your email address" style="margin-bottom:14px;">
-          <button class="btn-salvation" onclick="joinWaitlist()" style="width:100%;font-size:1rem;padding:16px;">Step Into the Circle</button>
+        <div class="waitlist-badge">The Circle Is Open</div>
+        <p class="waitlist-body">30 days. Structured. Sacred. Choose the tier that meets you where you are. Both enter the same Circle — the same silence, the same transformation.</p>
+
+        <!-- LIVE CIRCLE TIERS -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px;max-width:480px;margin-left:auto;margin-right:auto;">
+          <!-- Basic $9/mo -->
+          <!-- Stripe → After payment → https://transform24.github.io/THE-QUIET-AUTHORITY/?ty=circle_basic -->
+          <a href="YOUR_CIRCLE_BASIC_STRIPE_LINK" target="_blank" style="display:flex;flex-direction:column;align-items:center;padding:24px 16px;border:1px solid var(--border2);text-decoration:none;transition:border-color 0.3s;background:var(--surface);" onmouseover="this.style.borderColor='var(--gold-dim)'" onmouseout="this.style.borderColor='var(--border2)'">
+            <span style="font-family:'Cinzel',serif;font-size:0.52rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:10px;">The Sanctuary</span>
+            <span style="font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--gold);font-weight:300;line-height:1;">$9</span>
+            <span style="font-size:0.6rem;color:var(--text-muted);letter-spacing:0.1em;margin-bottom:14px;">per month</span>
+            <span style="font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;padding:9px 18px;border:1px solid var(--gold-dim);color:var(--gold);font-family:'Jost',sans-serif;font-weight:300;">Enter →</span>
+          </a>
+          <!-- Pro $27/mo -->
+          <!-- Stripe → After payment → https://transform24.github.io/THE-QUIET-AUTHORITY/?ty=circle_pro -->
+          <a href="YOUR_CIRCLE_PRO_STRIPE_LINK" target="_blank" style="display:flex;flex-direction:column;align-items:center;padding:24px 16px;border:1px solid var(--gold-dim);text-decoration:none;transition:all 0.3s;background:rgba(201,169,110,0.04);" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='var(--gold-dim)'">
+            <span style="font-family:'Cinzel',serif;font-size:0.52rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">The Inner Circle</span>
+            <span style="font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--gold);font-weight:300;line-height:1;">$27</span>
+            <span style="font-size:0.6rem;color:var(--text-muted);letter-spacing:0.1em;margin-bottom:14px;">per month</span>
+            <span style="font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;padding:9px 18px;border:1px solid var(--gold);color:var(--gold);font-family:'Jost',sans-serif;font-weight:300;">Enter →</span>
+          </a>
         </div>
-        <div id="waitlistConfirm" style="display:none;margin-top:20px;padding:20px 24px;background:rgba(201,169,110,0.06);border:1px solid var(--gold-dim);">
-          <p class="serif" style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.1rem;color:var(--cream);line-height:1.7;">You are on the list, beloved.<br><span style="font-size:0.9rem;color:var(--text-dim);">When the first door opens — you will be among the first to enter. Not because you earned it. Because He chose you.</span></p>
-        </div>
-        <div style="margin-top:24px;border-top:1px solid var(--border);padding-top:20px;">
-          <p style="font-size:0.72rem;color:var(--text-muted);margin-bottom:12px;letter-spacing:0.08em;">Access what is already yours →</p>
+
+        <div style="margin-top:16px;border-top:1px solid var(--border);padding-top:20px;">
           <a href="https://beacons.ai/sanctuarygrace" target="_blank" class="tier-btn-free">Begin with What Is Already Yours</a>
         </div>
       </div>
@@ -1475,18 +1492,44 @@ const PRODUCTS={
     ]
   },
   wa1:{
-    name:'Be Still — Wall Art Print',
-    badge:'Gallery — Digital Download',
-    sub:'Your print files are ready. All four sizes in one download — print at home or any print shop.',
-    // Replace with your actual Google Drive file/folder ID once uploaded
-    // Format: https://drive.google.com/uc?export=download&id=YOUR_FILE_ID
+    name:'Women Of Many Tongues Fine Art Collection',
+    badge:'Gallery — Fine Art Collection',
+    sub:'Your collection is ready. All sizes in one download — print at home or any print shop.',
     downloadUrl:'https://drive.google.com/drive/folders/YOUR_WA1_FOLDER',
-    beaconsTag:'wallart-be-still',
+    beaconsTag:'wallart-women-of-many-tongues',
     sequence:[
       {day:'Now',text:'All print files open from Google Drive — 5×7, 8×10, 11×14, 16×20'},
       {day:'Day 2',text:'Printing tips — home printer vs. print shop (Walgreens, Staples, Canva Print)'},
       {day:'Day 5',text:'Where to hang it — sacred space inspiration'},
       {day:'Day 10',text:'New piece dropping soon — you\'ll hear first'},
+    ]
+  },
+  circle_basic:{
+    name:'The Circle of Silence — The Sanctuary ($9/mo)',
+    badge:'Circle of Silence',
+    sub:'You are in. The Circle of Silence begins now. Check your inbox for your first step.',
+    downloadUrl:'https://beacons.ai/sanctuarygrace',
+    beaconsTag:'circle-sanctuary',
+    sequence:[
+      {day:'Now',text:'Welcome to the Circle — your first step delivered'},
+      {day:'Day 1',text:'Day 1 of 30 — Silence Commands begins'},
+      {day:'Day 7',text:'Week 1 reflection — what is rising in you?'},
+      {day:'Day 14',text:'Halfway — the unlayering deepens'},
+      {day:'Day 30',text:'You completed the Circle — what comes next'},
+    ]
+  },
+  circle_pro:{
+    name:'The Circle of Silence — The Inner Circle ($27/mo)',
+    badge:'The Inner Circle',
+    sub:'You have entered the Inner Circle. Everything begins now. Check your inbox.',
+    downloadUrl:'https://beacons.ai/sanctuarygrace',
+    beaconsTag:'circle-inner',
+    sequence:[
+      {day:'Now',text:'Welcome to the Inner Circle — your first step delivered'},
+      {day:'Day 1',text:'Day 1 of 30 — your personalized silence practice'},
+      {day:'Day 7',text:'Week 1 deep dive — Inner Circle exclusive teaching'},
+      {day:'Day 14',text:'Halfway reflection + 1:1 check-in invitation'},
+      {day:'Day 30',text:'Completion — what the Circle revealed in you'},
     ]
   }
 };
@@ -1978,6 +2021,23 @@ function viewJournalEntries(){
 function closeJournalView(){
   document.getElementById('journalViewModal').style.display='none';
   document.body.style.overflow='';
+}
+
+function shareProfile(){
+  const profileNames={A:'The Striving Achiever',B:'The Depleted Survivor',C:'The Guilty Giver',D:'The Lost Wanderer'};
+  const name=profileNames[currentProfile]||'My Silence Profile';
+  const url='https://transform24.github.io/THE-QUIET-AUTHORITY/';
+  const text='I just discovered I am "'+name+'" — take the free 8-question sacred assessment and find yours. What is silence teaching you?';
+  if(navigator.share){
+    navigator.share({title:'The Quiet Authority — My Silence Profile',text:text,url:url}).catch(()=>{});
+  } else {
+    // Fallback — copy to clipboard
+    navigator.clipboard.writeText(text+'\n'+url).then(()=>{
+      alert('Copied to clipboard! Paste it anywhere to share your profile.');
+    }).catch(()=>{
+      window.open('https://pinterest.com/pin/create/button/?url='+encodeURIComponent(url)+'&description='+encodeURIComponent(text),'_blank');
+    });
+  }
 }
 
 function acceptJesus(){
