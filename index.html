@@ -1196,19 +1196,65 @@ function submitToBeaconsAndReveal(){
     return;
   }
   userName=name; userEmail=email;
-  // Send name + email to Formspree so profile reaches your inbox
+
+  // 1. Calculate profile first so we can pass it to both destinations
+  const tally={A:0,B:0,C:0,D:0};
+  answers.forEach(idx=>{if(idx!==undefined)tally['ABCD'[idx]]++;});
+  currentProfile=Object.entries(tally).sort((a,b)=>b[1]-a[1])[0][0];
+  const profileNames={A:'The Achiever',B:'The Depleted Giver',C:'The Overcomer',D:'The Seeker'};
+
+  // 2. Formspree — notifies you with name + profile
   fetch('https://formspree.io/f/xzdkgbbq',{
     method:'POST',
     headers:{'Content-Type':'application/json','Accept':'application/json'},
     body:JSON.stringify({
-      _subject:'🌿 New Assessment Submission — The Quiet Authority',
-      name:name,
-      email:email,
-      _replyto:email,
-      source:'TQA Assessment'
+      _subject:'🌿 New TQA Submission — '+profileNames[currentProfile],
+      name:name,email:email,
+      profile:currentProfile,
+      profileName:profileNames[currentProfile],
+      _replyto:email,source:'TQA Assessment'
     })
   }).catch(()=>{});
-  calculateAndShowResults();
+
+  // 3. Beacons — programmatically trigger the hidden embed form so the
+  //    subscriber enters the correct email sequence in Beacons.
+  //    The embed loads async; we poll until the form inputs are ready.
+  triggerBeaconsSubscribe(name,email);
+
+  showResults();
+}
+
+// Finds the Beacons embed form, fills it with the subscriber's details,
+// and dispatches native input events so the Beacons script detects the
+// values before submitting — this is what "dispatch" means in practice.
+function triggerBeaconsSubscribe(name,email){
+  const BEACONS_DIV='14b07084-af74-4653-8f79-54311df3a69a';
+  const wrap=document.getElementById(BEACONS_DIV);
+  if(!wrap)return;
+  let tries=0;
+  const poll=setInterval(()=>{
+    const emailEl=wrap.querySelector('input[type="email"],input[name="email"]');
+    const nameEl=wrap.querySelector('input[type="text"],input[name="name"],input[name="firstName"]');
+    const form=wrap.querySelector('form');
+    if(form&&emailEl){
+      clearInterval(poll);
+      // Fill values and dispatch input events so Beacons' React handler sees them
+      function fill(el,val){
+        const nativeSetter=Object.getOwnPropertyDescriptor(window.HTMLInputElement.prototype,'value').set;
+        nativeSetter.call(el,val);
+        el.dispatchEvent(new Event('input',{bubbles:true}));
+        el.dispatchEvent(new Event('change',{bubbles:true}));
+      }
+      fill(emailEl,email);
+      if(nameEl)fill(nameEl,name);
+      // Submit after a brief tick so Beacons state has updated
+      setTimeout(()=>{
+        const btn=form.querySelector('button[type="submit"],input[type="submit"]');
+        if(btn)btn.click();else form.requestSubmit();
+      },300);
+    }
+    if(++tries>30)clearInterval(poll); // give up after ~9 s
+  },300);
 }
 
 // ═══════════════════════════════════
