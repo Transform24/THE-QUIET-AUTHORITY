@@ -439,6 +439,24 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 .cta-feature::before{content:'✦';color:var(--gold-dim);flex-shrink:0;font-size:0.7rem;margin-top:2px;}
 
 
+/* POST-PURCHASE THANK YOU */
+#screen-thankyou{align-items:center;justify-content:center;padding:80px 24px;min-height:100vh;text-align:center;}
+.ty-wrap{max-width:520px;width:100%;}
+.ty-icon{font-size:2rem;color:var(--gold);margin-bottom:20px;display:block;}
+.ty-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,5vw,3rem);font-weight:400;color:var(--cream);line-height:1.15;margin:10px 0 14px;}
+.ty-sub{font-size:0.88rem;color:var(--text-dim);line-height:1.85;margin-bottom:32px;}
+.ty-download-box{padding:24px 28px;border:1px solid var(--gold-dim);background:rgba(201,169,110,0.05);margin-bottom:28px;}
+.ty-download-label{font-size:0.62rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:16px;}
+.ty-download-btn{display:inline-block;padding:13px 36px;border:1px solid var(--gold);color:var(--gold);font-family:'Jost',sans-serif;font-size:0.72rem;letter-spacing:0.22em;text-transform:uppercase;text-decoration:none;transition:all 0.3s;font-weight:300;}
+.ty-download-btn:hover{background:var(--gold);color:var(--bg);}
+.ty-email-prompt{font-size:0.82rem;color:var(--text-dim);margin-bottom:20px;line-height:1.7;}
+.ty-seq-label{font-size:0.62rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:16px;}
+.ty-seq-item{display:flex;align-items:flex-start;gap:14px;padding:12px 0;border-bottom:1px solid var(--border);text-align:left;}
+.ty-seq-item:last-child{border-bottom:none;}
+.ty-seq-day{font-size:0.62rem;letter-spacing:0.18em;color:var(--gold-dim);flex-shrink:0;width:52px;padding-top:2px;}
+.ty-seq-text{font-size:0.82rem;color:var(--text-dim);line-height:1.55;}
+.ty-email-block .form-group{display:flex;flex-direction:column;gap:10px;margin-bottom:4px;}
+
 /* FOOTER */
 .r-footer{text-align:center;padding:44px 24px;border-top:1px solid var(--border);background:var(--bg2);}
 .footer-min{font-size:0.62rem;letter-spacing:0.22em;color:var(--text-muted);margin-bottom:8px;text-transform:uppercase;}
@@ -1047,6 +1065,40 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 
 </div>
 
+<!-- ══ SCREEN 5: POST-PURCHASE THANK YOU ══ -->
+<div class="screen" id="screen-thankyou">
+  <div class="ty-wrap">
+    <div class="ty-icon">✦</div>
+    <div class="r-badge" id="tyBadge">Your Purchase</div>
+    <h1 class="ty-title serif" id="tyTitle">Thank you, beloved.</h1>
+    <p class="ty-sub" id="tySub">Your download is ready. Check your inbox — your delivery email is on its way.</p>
+
+    <div class="ty-download-box" id="tyDownloadBox">
+      <p class="ty-download-label">Access your download</p>
+      <a class="ty-download-btn" id="tyDownloadLink" href="#" target="_blank">Download Now →</a>
+    </div>
+
+    <div class="ty-email-block" id="tyEmailBlock" style="display:none;">
+      <p class="ty-email-prompt">Enter your email to receive your download link and begin your welcome sequence:</p>
+      <div class="form-group">
+        <input type="text" class="form-input" id="tyName" placeholder="Your first name" autocomplete="given-name">
+        <input type="email" class="form-input" id="tyEmail" placeholder="Your email address" autocomplete="email">
+      </div>
+      <button class="btn-begin" onclick="submitTyEmail()" style="width:100%;display:block;text-align:center;margin-top:4px;"><span>Send My Download</span></button>
+    </div>
+
+    <div class="ty-sequence" id="tySequence" style="display:none;">
+      <p class="ty-seq-label">What's coming to your inbox:</p>
+      <div id="tySequenceList"></div>
+    </div>
+
+    <div style="margin-top:40px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <button class="btn-session gold" onclick="showScreen('screen-results')" style="font-size:0.68rem;padding:12px 28px;">← Back to My Profile</button>
+      <button class="btn-session" onclick="showScreen('screen-landing')" style="font-size:0.68rem;padding:12px 28px;">Start Again</button>
+    </div>
+  </div>
+</div>
+
 <!-- JOURNAL VIEW MODAL -->
 <div id="journalViewModal" class="journal-view-modal">
   <button class="btn-close-jv" onclick="closeJournalView()">✕ Close</button>
@@ -1255,6 +1307,242 @@ function triggerBeaconsSubscribe(name,email){
     }
     if(++tries>30)clearInterval(poll); // give up after ~9 s
   },300);
+}
+
+// ═══════════════════════════════════════════════════════════════
+// STRIPE POST-PURCHASE — success URL handler + sequence trigger
+// ═══════════════════════════════════════════════════════════════
+//
+// HOW TO WIRE IN STRIPE:
+//  For each Payment Link → Settings → "After payment" → Custom page →
+//  https://transform24.github.io/THE-QUIET-AUTHORITY/?ty=PRODUCT_CODE
+//
+//  Product codes → ty param:
+//    dw1    = Devotional Week 1 – Vision         ($4.99)
+//    dw2    = Devotional Week 2 – Renewal        ($4.99)
+//    dw3    = Devotional Week 3 – Peace          ($4.99)
+//    dw4    = Devotional Week 4 – Calling        ($4.99)
+//    bundle = Full Devotional Bundle             ($19.96)
+//    tqa    = The Quiet Authority (book)         ($15.99)
+//    cocoon = The Parable of the Cocoon (book)   ($15.99)
+//    wa_s   = Wall Art – Small (5×7 / 8×10)
+//    wa_m   = Wall Art – Medium (11×14 / 16×20)
+//    wa_l   = Wall Art – Large (18×24 / 24×36)
+//    wa_set = Wall Art – Bundle (all sizes)
+
+const PRODUCTS={
+  dw1:{
+    name:'Devotional Week 1 — Vision',
+    badge:'The Devotional Series',
+    sub:'Your Week 1 devotional is ready. Read it slowly — let each day be a door.',
+    // Replace with your actual Google Drive / Gumroad / Beehiiv download URL
+    downloadUrl:'https://drive.google.com/drive/folders/YOUR_DW1_FOLDER',
+    beaconsTag:'devotional-week1',
+    sequence:[
+      {day:'Now',text:'Download link delivered to your inbox'},
+      {day:'Day 2',text:'How to use Week 1 for maximum impact'},
+      {day:'Day 4',text:'Reflection prompt + Week 2 preview'},
+      {day:'Day 7',text:'You finished Week 1 — Week 2 invite'},
+    ]
+  },
+  dw2:{
+    name:'Devotional Week 2 — Renewal',
+    badge:'The Devotional Series',
+    sub:'Week 2 is yours. Renewal begins where striving ends.',
+    downloadUrl:'https://drive.google.com/drive/folders/YOUR_DW2_FOLDER',
+    beaconsTag:'devotional-week2',
+    sequence:[
+      {day:'Now',text:'Download link delivered to your inbox'},
+      {day:'Day 2',text:'Renewal — what it actually means for you'},
+      {day:'Day 5',text:'Mid-week reflection + Week 3 preview'},
+      {day:'Day 7',text:'Week 3 — Peace — invite'},
+    ]
+  },
+  dw3:{
+    name:'Devotional Week 3 — Peace',
+    badge:'The Devotional Series',
+    sub:'Peace that passes understanding. This week will teach you why.',
+    downloadUrl:'https://drive.google.com/drive/folders/YOUR_DW3_FOLDER',
+    beaconsTag:'devotional-week3',
+    sequence:[
+      {day:'Now',text:'Download link delivered to your inbox'},
+      {day:'Day 2',text:'The kind of peace this week is teaching'},
+      {day:'Day 5',text:'Reflection + Week 4 preview'},
+      {day:'Day 7',text:'Week 4 — Calling & Legacy — invite'},
+    ]
+  },
+  dw4:{
+    name:'Devotional Week 4 — Calling & Legacy',
+    badge:'The Devotional Series',
+    sub:'You were made for more than survival. This week reveals it.',
+    downloadUrl:'https://drive.google.com/drive/folders/YOUR_DW4_FOLDER',
+    beaconsTag:'devotional-week4',
+    sequence:[
+      {day:'Now',text:'Download link delivered to your inbox'},
+      {day:'Day 2',text:'Your calling — what it is and what it isn\'t'},
+      {day:'Day 5',text:'Legacy reflection prompt'},
+      {day:'Day 7',text:'Complete series — Circle of Silence invite'},
+    ]
+  },
+  bundle:{
+    name:'The Full Devotional Bundle',
+    badge:'Complete Series — All Four Weeks',
+    sub:'All four weeks are yours. Vision → Renewal → Peace → Calling. Take your time.',
+    downloadUrl:'https://drive.google.com/drive/folders/YOUR_BUNDLE_FOLDER',
+    beaconsTag:'devotional-bundle',
+    sequence:[
+      {day:'Now',text:'All four devotionals delivered to your inbox'},
+      {day:'Day 3',text:'Getting the most from the full series'},
+      {day:'Day 7',text:'Week 1 check-in — how are you moving?'},
+      {day:'Day 14',text:'Halfway through — reflection + encouragement'},
+      {day:'Day 28',text:'You finished — Circle of Silence invitation'},
+    ]
+  },
+  tqa:{
+    name:'The Quiet Authority',
+    badge:'Spiritual Formation',
+    sub:'The book is yours. Read it like a conversation — not a curriculum.',
+    downloadUrl:'https://drive.google.com/drive/folders/YOUR_TQA_FOLDER',
+    beaconsTag:'book-tqa',
+    sequence:[
+      {day:'Now',text:'Your download link is in your inbox'},
+      {day:'Day 2',text:'How to read The Quiet Authority for transformation'},
+      {day:'Day 7',text:'Chapter check-in + reflection prompt'},
+      {day:'Day 14',text:'Companion resource — The R.E.S.T. Workbook (free)'},
+      {day:'Day 21',text:'Circle of Silence — go deeper invitation'},
+    ]
+  },
+  cocoon:{
+    name:'The Parable of the Cocoon',
+    badge:'A Parable for the Journey',
+    sub:'Read it slowly. Every line was written from inside the transformation.',
+    downloadUrl:'https://drive.google.com/drive/folders/YOUR_COCOON_FOLDER',
+    beaconsTag:'book-cocoon',
+    sequence:[
+      {day:'Now',text:'Your download link is in your inbox'},
+      {day:'Day 2',text:'The story behind the parable — Grace\'s note'},
+      {day:'Day 5',text:'Reflection: where are you in the cocoon?'},
+      {day:'Day 10',text:'The Quiet Authority — companion book invite'},
+    ]
+  },
+  wa_s:{
+    name:'Wall Art — Small Prints',
+    badge:'Gallery — Digital Download',
+    sub:'5×7 and 8×10 print files included. Print at home or at any print shop.',
+    downloadUrl:'https://drive.google.com/drive/folders/YOUR_WA_SMALL_FOLDER',
+    beaconsTag:'wallart-small',
+    sequence:[
+      {day:'Now',text:'Download link — high-res print files in your inbox'},
+      {day:'Day 2',text:'Printing tips for best quality at home'},
+      {day:'Day 5',text:'Medium & large size upgrade offer'},
+    ]
+  },
+  wa_m:{
+    name:'Wall Art — Medium Prints',
+    badge:'Gallery — Digital Download',
+    sub:'11×14 and 16×20 print files included. Professional print quality.',
+    downloadUrl:'https://drive.google.com/drive/folders/YOUR_WA_MED_FOLDER',
+    beaconsTag:'wallart-medium',
+    sequence:[
+      {day:'Now',text:'Download link — high-res print files in your inbox'},
+      {day:'Day 2',text:'Where to print for the best result'},
+      {day:'Day 5',text:'Full size bundle upgrade offer'},
+    ]
+  },
+  wa_l:{
+    name:'Wall Art — Large Prints',
+    badge:'Gallery — Digital Download',
+    sub:'18×24 and 24×36 print files. Statement pieces for your sacred space.',
+    downloadUrl:'https://drive.google.com/drive/folders/YOUR_WA_LARGE_FOLDER',
+    beaconsTag:'wallart-large',
+    sequence:[
+      {day:'Now',text:'Download link — high-res files in your inbox'},
+      {day:'Day 2',text:'Recommended print partners for large format'},
+      {day:'Day 5',text:'Complete wall art bundle offer'},
+    ]
+  },
+  wa_set:{
+    name:'Wall Art — Complete Bundle',
+    badge:'Gallery — All Sizes',
+    sub:'Every size included: 5×7 · 8×10 · 11×14 · 16×20 · 18×24 · 24×36.',
+    downloadUrl:'https://drive.google.com/drive/folders/YOUR_WA_BUNDLE_FOLDER',
+    beaconsTag:'wallart-bundle',
+    sequence:[
+      {day:'Now',text:'All print files — every size — in your inbox'},
+      {day:'Day 2',text:'Printing guide — home vs. print shop'},
+      {day:'Day 7',text:'New art drops — get notified first'},
+    ]
+  }
+};
+
+function handlePurchaseSuccess(){
+  const params=new URLSearchParams(window.location.search);
+  const ty=params.get('ty');
+  if(!ty||!PRODUCTS[ty])return;
+
+  const p=PRODUCTS[ty];
+  document.getElementById('tyBadge').textContent=p.badge;
+  document.getElementById('tyTitle').textContent='Thank you, beloved.';
+  document.getElementById('tySub').textContent=p.sub;
+  document.getElementById('tyDownloadLink').href=p.downloadUrl;
+  document.getElementById('tyDownloadLink').textContent='Download '+p.name+' →';
+
+  // If we already have the user's email from the assessment, skip the email block
+  if(userEmail){
+    document.getElementById('tyEmailBlock').style.display='none';
+    triggerBeaconsPurchaseSequence(p.beaconsTag,userName||'',userEmail);
+  } else {
+    document.getElementById('tyDownloadBox').style.display='none';
+    document.getElementById('tyEmailBlock').style.display='block';
+  }
+
+  // Show the sequence preview
+  const seqEl=document.getElementById('tySequence');
+  const seqList=document.getElementById('tySequenceList');
+  seqEl.style.display='block';
+  seqList.innerHTML=p.sequence.map(s=>
+    '<div class="ty-seq-item">'+
+    '<span class="ty-seq-day">'+s.day+'</span>'+
+    '<span class="ty-seq-text">'+s.text+'</span>'+
+    '</div>'
+  ).join('');
+
+  // Clean URL so refresh doesn't re-trigger
+  history.replaceState({},'',window.location.pathname);
+  showScreen('screen-thankyou');
+}
+
+function submitTyEmail(){
+  const name=document.getElementById('tyName').value.trim();
+  const email=document.getElementById('tyEmail').value.trim();
+  if(!email)return;
+  userName=name||userName; userEmail=email;
+
+  const params=new URLSearchParams(window.location.search);
+  // Product was stored before URL was cleaned; read from badge text as fallback
+  const tag=document.getElementById('tyBadge').dataset.tag||'purchase';
+
+  // Show download box now that we have email
+  document.getElementById('tyEmailBlock').style.display='none';
+  document.getElementById('tyDownloadBox').style.display='block';
+
+  triggerBeaconsPurchaseSequence(tag,name,email);
+
+  // Also notify via Formspree
+  fetch('https://formspree.io/f/xzdkgbbq',{
+    method:'POST',
+    headers:{'Content-Type':'application/json','Accept':'application/json'},
+    body:JSON.stringify({
+      _subject:'💳 Purchase — '+document.getElementById('tyTitle').textContent,
+      name:name,email:email,product:tag,_replyto:email,source:'Stripe Post-Purchase'
+    })
+  }).catch(()=>{});
+}
+
+// Trigger the Beacons sequence for a purchased product
+// Uses same embed-form approach as assessment, with product tag passed via name field prefix
+function triggerBeaconsPurchaseSequence(productTag,name,email){
+  triggerBeaconsSubscribe((name||'')+' ['+productTag+']',email);
 }
 
 // ═══════════════════════════════════
@@ -1681,6 +1969,11 @@ function joinGalleryList(){
 
 // stepsTrack does not exist in current UI but renderRoadmap is called defensively
 function renderRoadmap(){}
+
+// On page load — check for Stripe success redirect (?ty=product_code)
+(function(){
+  if(window.location.search.includes('ty='))handlePurchaseSuccess();
+})();
 </script>
 </body>
 </html>
