@@ -9,16 +9,27 @@
 *{margin:0;padding:0;box-sizing:border-box;}
 body{background:#e8e8e8;font-family:'Jost',sans-serif;padding:40px 24px;}
 h1{font-family:'Cinzel',serif;font-size:0.8rem;letter-spacing:0.4em;text-transform:uppercase;color:#888;text-align:center;margin-bottom:8px;}
-p.note{font-size:0.75rem;color:#999;text-align:center;margin-bottom:48px;}
-.pin-grid{display:grid;grid-template-columns:repeat(auto-fill,735px);gap:40px;justify-content:center;}
+p.note{font-size:0.75rem;color:#999;text-align:center;margin-bottom:48px;line-height:1.7;}
 
-/* ── PIN BASE — 735×1102 px (2:3) — standard Pinterest size ── */
+/* ── INSTRUCTIONS PANEL ── */
+.instructions{max-width:900px;margin:0 auto 48px;background:#fff;border:1px solid #ddd;padding:28px 32px;}
+.instructions h2{font-family:'Cinzel',serif;font-size:0.7rem;letter-spacing:0.35em;text-transform:uppercase;color:#555;margin-bottom:14px;}
+.instructions ol{padding-left:18px;}
+.instructions li{font-size:0.78rem;color:#666;line-height:2;margin-bottom:4px;}
+.instructions strong{color:#0b0b0b;}
+.flow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:16px;padding-top:16px;border-top:1px solid #eee;}
+.flow-step{font-size:0.68rem;letter-spacing:0.12em;padding:6px 14px;background:#0b0b0b;color:#fff;font-weight:300;}
+.flow-arrow{font-size:0.8rem;color:#aaa;}
+
+.pin-grid{display:grid;grid-template-columns:repeat(auto-fill,735px);gap:48px;justify-content:center;}
+
+/* ── PIN BASE — 735×1102 px (2:3) standard Pinterest ratio ── */
 .pin{
   width:735px;height:1102px;
   display:flex;flex-direction:column;
   align-items:center;justify-content:center;
   position:relative;overflow:hidden;
-  padding:60px 64px;
+  padding:56px 64px 110px;
   page-break-inside:avoid;
 }
 
@@ -30,7 +41,9 @@ p.note{font-size:0.75rem;color:#999;text-align:center;margin-bottom:48px;}
 .pin.white .pin-sub{color:#555;}
 .pin.white .pin-verse{color:#222;}
 .pin.white .pin-verse-ref{color:#888;}
-.pin.white .pin-url{color:#bbb;}
+.pin.white .pin-cta-bar{background:#0b0b0b;}
+.pin.white .pin-cta-action{color:#f0ead8;}
+.pin.white .pin-cta-url{color:#888;}
 .pin.white .pin-ministry{color:#ccc;}
 .pin.white .pin-corner-tl,.pin.white .pin-corner-br{border-color:#ddd;}
 
@@ -42,13 +55,15 @@ p.note{font-size:0.75rem;color:#999;text-align:center;margin-bottom:48px;}
 .pin.black .pin-sub{color:#807870;}
 .pin.black .pin-verse{color:#c9a96e;}
 .pin.black .pin-verse-ref{color:#7a6040;}
-.pin.black .pin-url{color:#333;}
+.pin.black .pin-cta-bar{background:#ffffff;}
+.pin.black .pin-cta-action{color:#0b0b0b;}
+.pin.black .pin-cta-url{color:#666;}
 .pin.black .pin-ministry{color:#2a2a2a;}
 .pin.black .pin-corner-tl,.pin.black .pin-corner-br{border-color:#1f1f1f;}
 
-/* SHARED PIN ELEMENTS */
+/* SHARED ELEMENTS */
 .pin-corner-tl{position:absolute;top:28px;left:28px;width:40px;height:40px;border-top:1px solid;border-left:1px solid;}
-.pin-corner-br{position:absolute;bottom:28px;right:28px;width:40px;height:40px;border-bottom:1px solid;border-right:1px solid;}
+.pin-corner-br{position:absolute;bottom:100px;right:28px;width:40px;height:40px;border-bottom:1px solid;border-right:1px solid;}
 .pin-label{font-size:0.6rem;letter-spacing:0.45em;text-transform:uppercase;font-weight:300;margin-bottom:28px;text-align:center;}
 .pin-rule{width:48px;height:1px;margin:0 auto 28px;}
 .pin-headline{font-family:'Cormorant Garamond',serif;font-size:3.8rem;font-weight:300;line-height:1.05;text-align:center;margin-bottom:28px;letter-spacing:-0.01em;}
@@ -56,12 +71,28 @@ p.note{font-size:0.75rem;color:#999;text-align:center;margin-bottom:48px;}
 .pin-sub{font-size:0.78rem;letter-spacing:0.18em;text-transform:uppercase;font-weight:300;text-align:center;margin-bottom:40px;line-height:1.8;}
 .pin-verse{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-style:italic;text-align:center;line-height:1.6;margin-bottom:10px;}
 .pin-verse-ref{font-size:0.62rem;letter-spacing:0.22em;text-transform:uppercase;text-align:center;font-weight:300;}
-.pin-url{font-size:0.55rem;letter-spacing:0.28em;text-transform:uppercase;position:absolute;bottom:52px;text-align:center;width:100%;font-weight:300;}
-.pin-ministry{font-family:'Cinzel',serif;font-size:0.5rem;letter-spacing:0.4em;text-transform:uppercase;position:absolute;bottom:28px;text-align:center;width:100%;}
+
+/* CTA BAR — anchored at bottom, points to Beacons assessment */
+.pin-cta-bar{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:18px 32px;
+  display:flex;flex-direction:column;align-items:center;gap:4px;
+}
+.pin-cta-action{
+  font-family:'Cinzel',serif;font-size:0.62rem;letter-spacing:0.38em;
+  text-transform:uppercase;font-weight:400;
+}
+.pin-cta-url{
+  font-size:0.52rem;letter-spacing:0.22em;text-transform:lowercase;font-weight:300;
+}
+.pin-ministry{
+  position:absolute;bottom:76px;text-align:center;width:100%;
+  font-family:'Cinzel',serif;font-size:0.45rem;letter-spacing:0.38em;text-transform:uppercase;
+}
 
 @media print{
   body{background:#fff;padding:0;}
-  h1,p.note{display:none;}
+  h1,p.note,.instructions{display:none;}
   .pin-grid{gap:0;}
   .pin{page-break-after:always;border:none;}
 }
@@ -70,11 +101,40 @@ p.note{font-size:0.75rem;color:#999;text-align:center;margin-bottom:48px;}
 <body>
 
 <h1>Pinterest Pin Templates — The Quiet Authority</h1>
-<p class="note">Right-click any pin → Save as image, or use browser Print → Save as PDF. Each pin is 735×1102 px (standard Pinterest 2:3 ratio).</p>
+<p class="note">Each pin has a CTA bar at the bottom pointing to your Beacons assessment.<br>
+Right-click → Save as image, or Print → Save as PDF to export.</p>
+
+<div class="instructions">
+  <h2>How These Pins Work — The Full Flow</h2>
+  <ol>
+    <li>Upload pin image to Pinterest → set <strong>Destination URL</strong> to: <strong>https://beacons.ai/sanctuarygrace</strong> (or the direct assessment link)</li>
+    <li>Woman clicks the pin → lands on your Beacons page / assessment</li>
+    <li>She takes the 8-question assessment → enters name + email</li>
+    <li><strong>Beacons captures her</strong> → she enters your email sequence automatically</li>
+    <li>Email 1 delivers her Silence Profile → Day 1 of the 7-Day Plan → link back to the app</li>
+    <li>App deepens the relationship → she sees devotionals, books, Sacred Space products</li>
+    <li>She purchases → Stripe → thank-you screen → purchase sequence in Beacons</li>
+  </ol>
+  <div class="flow">
+    <span class="flow-step">Pinterest Pin</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-step">Beacons Assessment</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-step">Email Captured</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-step">Beacons Sequence</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-step">App &amp; Products</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-step">Stripe Purchase</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-step">Purchase Sequence</span>
+  </div>
+</div>
 
 <div class="pin-grid">
 
-  <!-- PIN 1 · WHITE · Silence Assessment -->
+  <!-- PIN 1 · WHITE · Quiet Authority -->
   <div class="pin white">
     <div class="pin-corner-tl"></div>
     <div class="pin-corner-br"></div>
@@ -85,11 +145,14 @@ p.note{font-size:0.75rem;color:#999;text-align:center;margin-bottom:48px;}
     <div class="pin-rule"></div>
     <div class="pin-verse">"Be still, and know<br>that I am God."</div>
     <div class="pin-verse-ref">Psalm 46:10</div>
-    <div class="pin-url">transform24.github.io/THE-QUIET-AUTHORITY</div>
     <div class="pin-ministry">Sanctuary Grace Ministry</div>
+    <div class="pin-cta-bar">
+      <span class="pin-cta-action">Take the Free Assessment →</span>
+      <span class="pin-cta-url">beacons.ai/sanctuarygrace</span>
+    </div>
   </div>
 
-  <!-- PIN 2 · BLACK · Silence Assessment -->
+  <!-- PIN 2 · BLACK · Quiet Authority -->
   <div class="pin black">
     <div class="pin-corner-tl"></div>
     <div class="pin-corner-br"></div>
@@ -100,11 +163,14 @@ p.note{font-size:0.75rem;color:#999;text-align:center;margin-bottom:48px;}
     <div class="pin-rule"></div>
     <div class="pin-verse">"Be still, and know<br>that I am God."</div>
     <div class="pin-verse-ref">Psalm 46:10</div>
-    <div class="pin-url">transform24.github.io/THE-QUIET-AUTHORITY</div>
     <div class="pin-ministry">Sanctuary Grace Ministry</div>
+    <div class="pin-cta-bar">
+      <span class="pin-cta-action">Take the Free Assessment →</span>
+      <span class="pin-cta-url">beacons.ai/sanctuarygrace</span>
+    </div>
   </div>
 
-  <!-- PIN 3 · WHITE · 8-Question Assessment -->
+  <!-- PIN 3 · WHITE · Discover Your Silence Profile -->
   <div class="pin white">
     <div class="pin-corner-tl"></div>
     <div class="pin-corner-br"></div>
@@ -115,11 +181,14 @@ p.note{font-size:0.75rem;color:#999;text-align:center;margin-bottom:48px;}
     <div class="pin-rule"></div>
     <div class="pin-verse">"In quietness and trust<br>is your strength."</div>
     <div class="pin-verse-ref">Isaiah 30:15</div>
-    <div class="pin-url">transform24.github.io/THE-QUIET-AUTHORITY</div>
     <div class="pin-ministry">Sanctuary Grace Ministry</div>
+    <div class="pin-cta-bar">
+      <span class="pin-cta-action">Discover Your Profile — Free →</span>
+      <span class="pin-cta-url">beacons.ai/sanctuarygrace</span>
+    </div>
   </div>
 
-  <!-- PIN 4 · BLACK · 8-Question Assessment -->
+  <!-- PIN 4 · BLACK · Discover Your Silence Profile -->
   <div class="pin black">
     <div class="pin-corner-tl"></div>
     <div class="pin-corner-br"></div>
@@ -130,8 +199,11 @@ p.note{font-size:0.75rem;color:#999;text-align:center;margin-bottom:48px;}
     <div class="pin-rule"></div>
     <div class="pin-verse">"In quietness and trust<br>is your strength."</div>
     <div class="pin-verse-ref">Isaiah 30:15</div>
-    <div class="pin-url">transform24.github.io/THE-QUIET-AUTHORITY</div>
     <div class="pin-ministry">Sanctuary Grace Ministry</div>
+    <div class="pin-cta-bar">
+      <span class="pin-cta-action">Discover Your Profile — Free →</span>
+      <span class="pin-cta-url">beacons.ai/sanctuarygrace</span>
+    </div>
   </div>
 
   <!-- PIN 5 · WHITE · 7-Day Silence Plan -->
@@ -145,8 +217,11 @@ p.note{font-size:0.75rem;color:#999;text-align:center;margin-bottom:48px;}
     <div class="pin-rule"></div>
     <div class="pin-verse">"He restores my soul.<br>He leads me beside<br>quiet waters."</div>
     <div class="pin-verse-ref">Psalm 23:2–3</div>
-    <div class="pin-url">transform24.github.io/THE-QUIET-AUTHORITY</div>
     <div class="pin-ministry">Sanctuary Grace Ministry</div>
+    <div class="pin-cta-bar">
+      <span class="pin-cta-action">Get Your Free 7-Day Plan →</span>
+      <span class="pin-cta-url">beacons.ai/sanctuarygrace</span>
+    </div>
   </div>
 
   <!-- PIN 6 · BLACK · 7-Day Silence Plan -->
@@ -160,11 +235,14 @@ p.note{font-size:0.75rem;color:#999;text-align:center;margin-bottom:48px;}
     <div class="pin-rule"></div>
     <div class="pin-verse">"He restores my soul.<br>He leads me beside<br>quiet waters."</div>
     <div class="pin-verse-ref">Psalm 23:2–3</div>
-    <div class="pin-url">transform24.github.io/THE-QUIET-AUTHORITY</div>
     <div class="pin-ministry">Sanctuary Grace Ministry</div>
+    <div class="pin-cta-bar">
+      <span class="pin-cta-action">Get Your Free 7-Day Plan →</span>
+      <span class="pin-cta-url">beacons.ai/sanctuarygrace</span>
+    </div>
   </div>
 
-  <!-- PIN 7 · WHITE · Burnout / Rest -->
+  <!-- PIN 7 · WHITE · Rest Is Sacred -->
   <div class="pin white">
     <div class="pin-corner-tl"></div>
     <div class="pin-corner-br"></div>
@@ -175,11 +253,14 @@ p.note{font-size:0.75rem;color:#999;text-align:center;margin-bottom:48px;}
     <div class="pin-rule"></div>
     <div class="pin-verse">"Come to me,<br>all who are weary<br>and burdened,<br>and I will give you rest."</div>
     <div class="pin-verse-ref">Matthew 11:28</div>
-    <div class="pin-url">transform24.github.io/THE-QUIET-AUTHORITY</div>
     <div class="pin-ministry">Sanctuary Grace Ministry</div>
+    <div class="pin-cta-bar">
+      <span class="pin-cta-action">Find Your Silence Profile — Free →</span>
+      <span class="pin-cta-url">beacons.ai/sanctuarygrace</span>
+    </div>
   </div>
 
-  <!-- PIN 8 · BLACK · Burnout / Rest -->
+  <!-- PIN 8 · BLACK · Rest Is Sacred -->
   <div class="pin black">
     <div class="pin-corner-tl"></div>
     <div class="pin-corner-br"></div>
@@ -190,8 +271,11 @@ p.note{font-size:0.75rem;color:#999;text-align:center;margin-bottom:48px;}
     <div class="pin-rule"></div>
     <div class="pin-verse">"Come to me,<br>all who are weary<br>and burdened,<br>and I will give you rest."</div>
     <div class="pin-verse-ref">Matthew 11:28</div>
-    <div class="pin-url">transform24.github.io/THE-QUIET-AUTHORITY</div>
     <div class="pin-ministry">Sanctuary Grace Ministry</div>
+    <div class="pin-cta-bar">
+      <span class="pin-cta-action">Find Your Silence Profile — Free →</span>
+      <span class="pin-cta-url">beacons.ai/sanctuarygrace</span>
+    </div>
   </div>
 
 </div>
