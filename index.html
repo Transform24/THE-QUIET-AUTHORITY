@@ -456,6 +456,8 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 .ty-seq-day{font-size:0.62rem;letter-spacing:0.18em;color:var(--gold-dim);flex-shrink:0;width:52px;padding-top:2px;}
 .ty-seq-text{font-size:0.82rem;color:var(--text-dim);line-height:1.55;}
 .ty-email-block .form-group{display:flex;flex-direction:column;gap:10px;margin-bottom:4px;}
+.ty-delivery-strip{display:flex;align-items:center;justify-content:center;gap:10px;padding:12px 20px;border:1px solid rgba(125,140,110,0.3);background:rgba(125,140,110,0.06);margin-bottom:24px;font-size:0.75rem;color:var(--sage-light);letter-spacing:0.1em;}
+.ty-delivery-dot{width:6px;height:6px;border-radius:50%;background:var(--sage);animation:pulse 2s ease-in-out infinite;flex-shrink:0;}
 
 /* FOOTER */
 .r-footer{text-align:center;padding:44px 24px;border-top:1px solid var(--border);background:var(--bg2);}
@@ -1071,22 +1073,34 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
     <div class="ty-icon">✦</div>
     <div class="r-badge" id="tyBadge">Your Purchase</div>
     <h1 class="ty-title serif" id="tyTitle">Thank you, beloved.</h1>
-    <p class="ty-sub" id="tySub">Your download is ready. Check your inbox — your delivery email is on its way.</p>
+    <p class="ty-sub" id="tySub"></p>
 
+    <!-- Step 1: Download opens automatically — this is the backup button -->
     <div class="ty-download-box" id="tyDownloadBox">
-      <p class="ty-download-label">Access your download</p>
-      <a class="ty-download-btn" id="tyDownloadLink" href="#" target="_blank">Download Now →</a>
+      <p class="ty-download-label" id="tyDownloadStatus">Opening your download…</p>
+      <a class="ty-download-btn" id="tyDownloadLink" href="#" target="_blank" rel="noopener">Download Again →</a>
+      <p style="font-size:0.68rem;color:var(--text-muted);margin-top:12px;line-height:1.7;">
+        Your file opens from Google Drive. If nothing happened,<br>tap the button above.
+      </p>
     </div>
 
+    <!-- Step 2: email capture for direct purchasers who skipped the assessment -->
     <div class="ty-email-block" id="tyEmailBlock" style="display:none;">
-      <p class="ty-email-prompt">Enter your email to receive your download link and begin your welcome sequence:</p>
+      <p class="ty-email-prompt">Enter your email so we can send your download link and begin your welcome series:</p>
       <div class="form-group">
         <input type="text" class="form-input" id="tyName" placeholder="Your first name" autocomplete="given-name">
         <input type="email" class="form-input" id="tyEmail" placeholder="Your email address" autocomplete="email">
       </div>
-      <button class="btn-begin" onclick="submitTyEmail()" style="width:100%;display:block;text-align:center;margin-top:4px;"><span>Send My Download</span></button>
+      <button class="btn-begin" onclick="submitTyEmail()" style="width:100%;display:block;text-align:center;margin-top:4px;"><span>Send My Download Link</span></button>
     </div>
 
+    <!-- Delivery confirmation strip -->
+    <div class="ty-delivery-strip" id="tyDeliveryStrip" style="display:none;">
+      <span class="ty-delivery-dot"></span>
+      <span id="tyDeliveryMsg">Download link sent to your inbox</span>
+    </div>
+
+    <!-- What's coming in email sequence -->
     <div class="ty-sequence" id="tySequence" style="display:none;">
       <p class="ty-seq-label">What's coming to your inbox:</p>
       <div id="tySequenceList"></div>
@@ -1329,6 +1343,17 @@ function triggerBeaconsSubscribe(name,email){
 //    wa_m   = Wall Art – Medium (11×14 / 16×20)
 //    wa_l   = Wall Art – Large (18×24 / 24×36)
 //    wa_set = Wall Art – Bundle (all sizes)
+//
+//  GOOGLE DRIVE — downloadUrl format:
+//    Single PDF:  https://drive.google.com/uc?export=download&id=YOUR_FILE_ID
+//    Folder:      https://drive.google.com/drive/folders/YOUR_FOLDER_ID
+//
+//  To get the file ID: open file in Drive → Share → Copy link →
+//  the ID is the long string between /d/ and /view in the URL.
+//  Set sharing to "Anyone with the link → Viewer".
+//
+//  The app auto-opens the Drive file in a new tab 1.2s after the
+//  thank-you screen loads. The same link is also sent via Beacons Email 1.
 
 const PRODUCTS={
   dw1:{
@@ -1482,32 +1507,48 @@ function handlePurchaseSuccess(){
 
   const p=PRODUCTS[ty];
   document.getElementById('tyBadge').textContent=p.badge;
-  document.getElementById('tyTitle').textContent='Thank you, beloved.';
   document.getElementById('tySub').textContent=p.sub;
-  document.getElementById('tyDownloadLink').href=p.downloadUrl;
-  document.getElementById('tyDownloadLink').textContent='Download '+p.name+' →';
 
-  // If we already have the user's email from the assessment, skip the email block
+  // Wire up the download button
+  const dlLink=document.getElementById('tyDownloadLink');
+  dlLink.href=p.downloadUrl;
+  dlLink.textContent='Download '+p.name+' →';
+  document.getElementById('tyBadge').dataset.tag=p.beaconsTag;
+
   if(userEmail){
+    // Already captured from assessment — show download immediately
     document.getElementById('tyEmailBlock').style.display='none';
+    document.getElementById('tyDownloadBox').style.display='block';
+
+    // AUTO-OPEN the Google Drive file after 1.2s (gives screen time to render)
+    setTimeout(()=>{
+      window.open(p.downloadUrl,'_blank');
+      document.getElementById('tyDownloadStatus').textContent='Your download has opened ✦';
+    },1200);
+
+    // Show delivery confirmation strip
+    const strip=document.getElementById('tyDeliveryStrip');
+    document.getElementById('tyDeliveryMsg').textContent=
+      'Download link also sent to '+userEmail;
+    strip.style.display='flex';
+
     triggerBeaconsPurchaseSequence(p.beaconsTag,userName||'',userEmail);
   } else {
+    // Direct Stripe purchase — email not yet captured
     document.getElementById('tyDownloadBox').style.display='none';
     document.getElementById('tyEmailBlock').style.display='block';
   }
 
-  // Show the sequence preview
-  const seqEl=document.getElementById('tySequence');
-  const seqList=document.getElementById('tySequenceList');
-  seqEl.style.display='block';
-  seqList.innerHTML=p.sequence.map(s=>
+  // Sequence preview
+  document.getElementById('tySequence').style.display='block';
+  document.getElementById('tySequenceList').innerHTML=p.sequence.map(s=>
     '<div class="ty-seq-item">'+
     '<span class="ty-seq-day">'+s.day+'</span>'+
     '<span class="ty-seq-text">'+s.text+'</span>'+
     '</div>'
   ).join('');
 
-  // Clean URL so refresh doesn't re-trigger
+  // Clean URL so a refresh doesn't re-trigger the flow
   history.replaceState({},'',window.location.pathname);
   showScreen('screen-thankyou');
 }
@@ -1518,22 +1559,33 @@ function submitTyEmail(){
   if(!email)return;
   userName=name||userName; userEmail=email;
 
-  const params=new URLSearchParams(window.location.search);
-  // Product was stored before URL was cleaned; read from badge text as fallback
   const tag=document.getElementById('tyBadge').dataset.tag||'purchase';
+  const p=PRODUCTS[tag];
 
-  // Show download box now that we have email
+  // Hide email form, show download box
   document.getElementById('tyEmailBlock').style.display='none';
   document.getElementById('tyDownloadBox').style.display='block';
 
+  // Auto-open Google Drive file immediately
+  if(p&&p.downloadUrl){
+    window.open(p.downloadUrl,'_blank');
+    document.getElementById('tyDownloadStatus').textContent='Your download has opened ✦';
+  }
+
+  // Show delivery confirmation
+  const strip=document.getElementById('tyDeliveryStrip');
+  document.getElementById('tyDeliveryMsg').textContent='Download link sent to '+email;
+  strip.style.display='flex';
+
+  // Trigger Beacons purchase sequence
   triggerBeaconsPurchaseSequence(tag,name,email);
 
-  // Also notify via Formspree
+  // Notify via Formspree
   fetch('https://formspree.io/f/xzdkgbbq',{
     method:'POST',
     headers:{'Content-Type':'application/json','Accept':'application/json'},
     body:JSON.stringify({
-      _subject:'💳 Purchase — '+document.getElementById('tyTitle').textContent,
+      _subject:'💳 Purchase — '+(p?p.name:tag),
       name:name,email:email,product:tag,_replyto:email,source:'Stripe Post-Purchase'
     })
   }).catch(()=>{});
