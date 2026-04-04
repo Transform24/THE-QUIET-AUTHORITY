@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pinterest Pins — The Quiet Authority | Sanctuary Grace Ministry</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Jost:wght@200;300;400;500&family=Cinzel:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#e8e8e8;font-family:'Jost',sans-serif;padding:40px 24px;}
+h1{font-family:'Cinzel',serif;font-size:0.8rem;letter-spacing:0.4em;text-transform:uppercase;color:#888;text-align:center;margin-bottom:8px;}
+p.note{font-size:0.75rem;color:#999;text-align:center;margin-bottom:48px;}
+.pin-grid{display:grid;grid-template-columns:repeat(auto-fill,735px);gap:40px;justify-content:center;}
+
+/* ── PIN BASE — 735×1102 px (2:3) — standard Pinterest size ── */
+.pin{
+  width:735px;height:1102px;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  position:relative;overflow:hidden;
+  padding:60px 64px;
+  page-break-inside:avoid;
+}
+
+/* WHITE PIN */
+.pin.white{background:#ffffff;border:1px solid #ddd;}
+.pin.white .pin-label{color:#aaa;}
+.pin.white .pin-rule{background:#000;}
+.pin.white .pin-headline{color:#0b0b0b;}
+.pin.white .pin-sub{color:#555;}
+.pin.white .pin-verse{color:#222;}
+.pin.white .pin-verse-ref{color:#888;}
+.pin.white .pin-url{color:#bbb;}
+.pin.white .pin-ministry{color:#ccc;}
+.pin.white .pin-corner-tl,.pin.white .pin-corner-br{border-color:#ddd;}
+
+/* BLACK PIN */
+.pin.black{background:#0b0b0b;border:1px solid #1a1a1a;}
+.pin.black .pin-label{color:#484840;}
+.pin.black .pin-rule{background:#c9a96e;}
+.pin.black .pin-headline{color:#f0ead8;}
+.pin.black .pin-sub{color:#807870;}
+.pin.black .pin-verse{color:#c9a96e;}
+.pin.black .pin-verse-ref{color:#7a6040;}
+.pin.black .pin-url{color:#333;}
+.pin.black .pin-ministry{color:#2a2a2a;}
+.pin.black .pin-corner-tl,.pin.black .pin-corner-br{border-color:#1f1f1f;}
+
+/* SHARED PIN ELEMENTS */
+.pin-corner-tl{position:absolute;top:28px;left:28px;width:40px;height:40px;border-top:1px solid;border-left:1px solid;}
+.pin-corner-br{position:absolute;bottom:28px;right:28px;width:40px;height:40px;border-bottom:1px solid;border-right:1px solid;}
+.pin-label{font-size:0.6rem;letter-spacing:0.45em;text-transform:uppercase;font-weight:300;margin-bottom:28px;text-align:center;}
+.pin-rule{width:48px;height:1px;margin:0 auto 28px;}
+.pin-headline{font-family:'Cormorant Garamond',serif;font-size:3.8rem;font-weight:300;line-height:1.05;text-align:center;margin-bottom:28px;letter-spacing:-0.01em;}
+.pin-headline em{font-style:italic;display:block;}
+.pin-sub{font-size:0.78rem;letter-spacing:0.18em;text-transform:uppercase;font-weight:300;text-align:center;margin-bottom:40px;line-height:1.8;}
+.pin-verse{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-style:italic;text-align:center;line-height:1.6;margin-bottom:10px;}
+.pin-verse-ref{font-size:0.62rem;letter-spacing:0.22em;text-transform:uppercase;text-align:center;font-weight:300;}
+.pin-url{font-size:0.55rem;letter-spacing:0.28em;text-transform:uppercase;position:absolute;bottom:52px;text-align:center;width:100%;font-weight:300;}
+.pin-ministry{font-family:'Cinzel',serif;font-size:0.5rem;letter-spacing:0.4em;text-transform:uppercase;position:absolute;bottom:28px;text-align:center;width:100%;}
+
+@media print{
+  body{background:#fff;padding:0;}
+  h1,p.note{display:none;}
+  .pin-grid{gap:0;}
+  .pin{page-break-after:always;border:none;}
+}
+</style>
+</head>
+<body>
+
+<h1>Pinterest Pin Templates — The Quiet Authority</h1>
+<p class="note">Right-click any pin → Save as image, or use browser Print → Save as PDF. Each pin is 735×1102 px (standard Pinterest 2:3 ratio).</p>
+
+<div class="pin-grid">
+
+  <!-- PIN 1 · WHITE · Silence Assessment -->
+  <div class="pin white">
+    <div class="pin-corner-tl"></div>
+    <div class="pin-corner-br"></div>
+    <div class="pin-label">Sanctuary Grace Ministry</div>
+    <div class="pin-rule"></div>
+    <div class="pin-headline">The<br>Quiet<br><em>Authority</em></div>
+    <div class="pin-sub">What Is Silence<br>Teaching You?</div>
+    <div class="pin-rule"></div>
+    <div class="pin-verse">"Be still, and know<br>that I am God."</div>
+    <div class="pin-verse-ref">Psalm 46:10</div>
+    <div class="pin-url">transform24.github.io/THE-QUIET-AUTHORITY</div>
+    <div class="pin-ministry">Sanctuary Grace Ministry</div>
+  </div>
+
+  <!-- PIN 2 · BLACK · Silence Assessment -->
+  <div class="pin black">
+    <div class="pin-corner-tl"></div>
+    <div class="pin-corner-br"></div>
+    <div class="pin-label">Sanctuary Grace Ministry</div>
+    <div class="pin-rule"></div>
+    <div class="pin-headline">The<br>Quiet<br><em>Authority</em></div>
+    <div class="pin-sub">What Is Silence<br>Teaching You?</div>
+    <div class="pin-rule"></div>
+    <div class="pin-verse">"Be still, and know<br>that I am God."</div>
+    <div class="pin-verse-ref">Psalm 46:10</div>
+    <div class="pin-url">transform24.github.io/THE-QUIET-AUTHORITY</div>
+    <div class="pin-ministry">Sanctuary Grace Ministry</div>
+  </div>
+
+  <!-- PIN 3 · WHITE · 8-Question Assessment -->
+  <div class="pin white">
+    <div class="pin-corner-tl"></div>
+    <div class="pin-corner-br"></div>
+    <div class="pin-label">Free Sacred Assessment</div>
+    <div class="pin-rule"></div>
+    <div class="pin-headline"><em>Discover</em><br>Your<br>Silence<br>Profile</div>
+    <div class="pin-sub">8 Questions · Burned-Out<br>Christian Women</div>
+    <div class="pin-rule"></div>
+    <div class="pin-verse">"In quietness and trust<br>is your strength."</div>
+    <div class="pin-verse-ref">Isaiah 30:15</div>
+    <div class="pin-url">transform24.github.io/THE-QUIET-AUTHORITY</div>
+    <div class="pin-ministry">Sanctuary Grace Ministry</div>
+  </div>
+
+  <!-- PIN 4 · BLACK · 8-Question Assessment -->
+  <div class="pin black">
+    <div class="pin-corner-tl"></div>
+    <div class="pin-corner-br"></div>
+    <div class="pin-label">Free Sacred Assessment</div>
+    <div class="pin-rule"></div>
+    <div class="pin-headline"><em>Discover</em><br>Your<br>Silence<br>Profile</div>
+    <div class="pin-sub">8 Questions · Burned-Out<br>Christian Women</div>
+    <div class="pin-rule"></div>
+    <div class="pin-verse">"In quietness and trust<br>is your strength."</div>
+    <div class="pin-verse-ref">Isaiah 30:15</div>
+    <div class="pin-url">transform24.github.io/THE-QUIET-AUTHORITY</div>
+    <div class="pin-ministry">Sanctuary Grace Ministry</div>
+  </div>
+
+  <!-- PIN 5 · WHITE · 7-Day Silence Plan -->
+  <div class="pin white">
+    <div class="pin-corner-tl"></div>
+    <div class="pin-corner-br"></div>
+    <div class="pin-label">Free 7-Day Plan</div>
+    <div class="pin-rule"></div>
+    <div class="pin-headline">7 Days<br>of<br><em>Silence</em></div>
+    <div class="pin-sub">One Practice · One Scripture<br>Seven Days to Transform</div>
+    <div class="pin-rule"></div>
+    <div class="pin-verse">"He restores my soul.<br>He leads me beside<br>quiet waters."</div>
+    <div class="pin-verse-ref">Psalm 23:2–3</div>
+    <div class="pin-url">transform24.github.io/THE-QUIET-AUTHORITY</div>
+    <div class="pin-ministry">Sanctuary Grace Ministry</div>
+  </div>
+
+  <!-- PIN 6 · BLACK · 7-Day Silence Plan -->
+  <div class="pin black">
+    <div class="pin-corner-tl"></div>
+    <div class="pin-corner-br"></div>
+    <div class="pin-label">Free 7-Day Plan</div>
+    <div class="pin-rule"></div>
+    <div class="pin-headline">7 Days<br>of<br><em>Silence</em></div>
+    <div class="pin-sub">One Practice · One Scripture<br>Seven Days to Transform</div>
+    <div class="pin-rule"></div>
+    <div class="pin-verse">"He restores my soul.<br>He leads me beside<br>quiet waters."</div>
+    <div class="pin-verse-ref">Psalm 23:2–3</div>
+    <div class="pin-url">transform24.github.io/THE-QUIET-AUTHORITY</div>
+    <div class="pin-ministry">Sanctuary Grace Ministry</div>
+  </div>
+
+  <!-- PIN 7 · WHITE · Burnout / Rest -->
+  <div class="pin white">
+    <div class="pin-corner-tl"></div>
+    <div class="pin-corner-br"></div>
+    <div class="pin-label">For the Burned-Out Believer</div>
+    <div class="pin-rule"></div>
+    <div class="pin-headline"><em>Rest</em><br>Is<br>Sacred</div>
+    <div class="pin-sub">You Are Enough Right Now<br>Silence Is Your Breakthrough</div>
+    <div class="pin-rule"></div>
+    <div class="pin-verse">"Come to me,<br>all who are weary<br>and burdened,<br>and I will give you rest."</div>
+    <div class="pin-verse-ref">Matthew 11:28</div>
+    <div class="pin-url">transform24.github.io/THE-QUIET-AUTHORITY</div>
+    <div class="pin-ministry">Sanctuary Grace Ministry</div>
+  </div>
+
+  <!-- PIN 8 · BLACK · Burnout / Rest -->
+  <div class="pin black">
+    <div class="pin-corner-tl"></div>
+    <div class="pin-corner-br"></div>
+    <div class="pin-label">For the Burned-Out Believer</div>
+    <div class="pin-rule"></div>
+    <div class="pin-headline"><em>Rest</em><br>Is<br>Sacred</div>
+    <div class="pin-sub">You Are Enough Right Now<br>Silence Is Your Breakthrough</div>
+    <div class="pin-rule"></div>
+    <div class="pin-verse">"Come to me,<br>all who are weary<br>and burdened,<br>and I will give you rest."</div>
+    <div class="pin-verse-ref">Matthew 11:28</div>
+    <div class="pin-url">transform24.github.io/THE-QUIET-AUTHORITY</div>
+    <div class="pin-ministry">Sanctuary Grace Ministry</div>
+  </div>
+
+</div>
+</body>
+</html>

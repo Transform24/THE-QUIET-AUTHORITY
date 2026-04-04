@@ -385,6 +385,18 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
   color:var(--gold-dim);margin-top:6px;
   font-family:'Cormorant Garamond',serif;
 }
+/* Day progress states */
+.day-card.locked{opacity:0.38;pointer-events:none;}
+.day-card.locked .day-num{color:var(--text-muted);}
+.day-card.available{border-color:var(--gold-dim);cursor:pointer;}
+.day-card.available .day-num{color:var(--gold);}
+.day-card.completed{border-color:var(--sage);background:rgba(125,140,110,0.06);}
+.day-card.completed .day-num{color:var(--sage);}
+.day-card.completed .day-title{color:var(--cream-dim);}
+.day-status{font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;margin-top:8px;font-weight:300;}
+.day-card.completed .day-status{color:var(--sage);}
+.day-card.available .day-status{color:var(--gold-dim);}
+.day-card.locked .day-status{color:var(--text-muted);}
 
 /* LIVE COUNTER */
 .live-counter{
@@ -425,6 +437,7 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 .cta-features{display:flex;flex-direction:column;gap:10px;margin-bottom:32px;max-width:380px;margin-left:auto;margin-right:auto;text-align:left;}
 .cta-feature{display:flex;align-items:flex-start;gap:12px;font-size:0.83rem;color:var(--text-dim);font-weight:300;line-height:1.5;}
 .cta-feature::before{content:'✦';color:var(--gold-dim);flex-shrink:0;font-size:0.7rem;margin-top:2px;}
+
 
 /* FOOTER */
 .r-footer{text-align:center;padding:44px 24px;border-top:1px solid var(--border);background:var(--bg2);}
@@ -1221,12 +1234,7 @@ function showResults(){
   document.getElementById('rPracticeTag').textContent=p.practiceTag;
   document.getElementById('jpText').textContent=p.journal;
   const days=SEVEN_DAYS[currentProfile];
-  document.getElementById('dayCards').innerHTML=days.map((d,i)=>
-    '<div class="day-card"><div class="day-num">Day '+(i+1)+'</div>'+
-    '<div class="day-title">'+d.title+'</div>'+
-    '<p class="day-practice">'+d.practice+'</p>'+
-    '<p class="day-scripture">'+d.scripture+'</p></div>'
-  ).join('');
+  renderDayCards(days);
   if(userName){
     const cb=document.getElementById('confirmBanner');
     document.getElementById('confirmText').textContent=userName+', your Silence Profile is ready. Check your inbox at '+userEmail+'.';
@@ -1323,6 +1331,38 @@ const GD={
   bookTQA:'https://drive.google.com/thumbnail?id=1bbD40-3I5hFGScJvvBuO9ivSB-UQ_81j&sz=w800',    // The Quiet Authority cover
   bookCocoon:'https://drive.google.com/thumbnail?id=1O7rDMjde08CUhOmmeqGba8aj-kgHKAhL&sz=w800' // The Parable of the Cocoon cover
 };
+
+/* ── Day Progress ── */
+function getDayProgress(){
+  try{return JSON.parse(localStorage.getItem('tqa_days_'+currentProfile)||'[]');}
+  catch(e){return[];}
+}
+function markDayComplete(idx){
+  const prog=getDayProgress();
+  if(!prog.includes(idx))prog.push(idx);
+  try{localStorage.setItem('tqa_days_'+currentProfile,JSON.stringify(prog));}catch(e){}
+  renderDayCards(SEVEN_DAYS[currentProfile]);
+}
+function renderDayCards(days){
+  const prog=getDayProgress();
+  const firstAvail=prog.length<7?prog.length:7;
+  document.getElementById('dayCards').innerHTML=days.map((d,i)=>{
+    const done=prog.includes(i);
+    const avail=!done&&i===firstAvail;
+    const locked=!done&&!avail;
+    const cls='day-card'+(done?' completed':avail?' available':' locked');
+    const statusLabel=done?'✦ Completed':avail?'Today\'s Practice':'Unlocks after Day '+i;
+    const clickAttr=avail?'onclick="markDayComplete('+i+')" title="Mark Day '+(i+1)+' complete"':'';
+    return '<div class="'+cls+'" '+clickAttr+'>'+
+      '<div class="day-num">'+(i+1)+'</div>'+
+      '<div class="day-content">'+
+      '<div class="day-title">'+d.title+'</div>'+
+      '<p class="day-practice">'+d.practice+'</p>'+
+      '<p class="day-scripture">'+d.scripture+'</p>'+
+      '<div class="day-status">'+statusLabel+'</div>'+
+      '</div></div>';
+  }).join('');
+}
 
 function loadBookCovers(){
   if(GD.bookTQA){
@@ -1464,6 +1504,17 @@ function sessionComplete(){
   document.getElementById('timerLabel').textContent='Your session is complete. Well done, beloved.';
   document.getElementById('btnPauseSession').style.display='none';
   document.getElementById('journalPrompt').style.display='block';
+  // Offer to mark current day complete
+  if(currentProfile){
+    const prog=getDayProgress();
+    const nextDay=prog.length;
+    if(nextDay<7){
+      setTimeout(()=>{
+        const ok=confirm('Mark Day '+(nextDay+1)+' of your 7-Day Silence Plan complete?');
+        if(ok)markDayComplete(nextDay);
+      },800);
+    }
+  }
 }
 
 function openJournalModal(){
