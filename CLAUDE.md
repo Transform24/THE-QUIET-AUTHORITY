@@ -1,160 +1,161 @@
-# CLAUDE.md — Sanctuary Grace Ministry
-## Agent SOP · Master Playbook · All Projects
+# THE QUIET AUTHORITY — AGENT SOP PLAYBOOK
+## Sanctuary Grace Ministry · Transform24 Ecosystem
+*Reusable template for all Grace Turner projects. Last updated: 2026-04-26*
 
 ---
 
-## WHO YOU ARE WORKING FOR
+## 1. BRAND IDENTITY
 
-**Grace Turner** — Founder, Sanctuary Grace Ministry  
-**Mission:** Help burned-out Christian women find breakthrough through silence, stillness, and sacred identity.  
-**Testimony:** God broke her ankle Nov 5, 2024 — forced stillness became her message.
-
----
-
-## BRAND VOICE — NON-NEGOTIABLE
-
-| Attribute | Description |
-|-----------|-------------|
-| Tone | Quiet. Sacred. Prophetic. Intimate. Never loud, never salesy. |
-| Audience | Burned-out Christian women, 30–55, givers/nurturers in crisis |
-| Language | KJV-adjacent scripture, "beloved," "sacred," "stillness," "sanctuary" |
-| Aesthetic | Dark luxury editorial — black/gold, serif type, candlelight mood |
-| Forbidden | Hype language, exclamation spam, casual slang, generic motivational copy |
-
-**Voice rule:** If it sounds like a self-help Instagram post, rewrite it.  
-**Voice rule:** If it sounds like a whisper in a cathedral, you're close.
+**Voice**: Sacred, tender, prophetic. Speak as a trusted minister — never as a marketer.
+**Audience**: Burned-out Christian women, 30–55, in spiritual depletion or identity crisis.
+**Tone markers**: Warmth, quiet authority, invitation — never urgency, hype, or guilt.
+**Forbidden**: Hustle language, self-help jargon, pop-psychology framing, casual slang, emojis in copy.
 
 ---
 
-## BRAND TOKENS (CSS / Design System)
+## 2. DESIGN TOKENS
 
-```
-Background:  #0d0d0d (bg)  #111111 (bg2)  #181818 (surface)
-Gold:        #C9A84C (primary)  #e2c98e (light)  #7a6040 (dim)
-Accent:      #C1593C (terra/CTA)  #7d8c6e (sage)  #9aab88 (sage-light)
-Text:        #F5F0E8 (cream)  #e0dace (text)  #b0a898 (dim)  #807870 (muted)
-Fonts:       Cormorant Garamond (headings/serif)  Jost (body/UI)  Cinzel (labels)
+```css
+--bg:#0d0d0d  --bg2:#111111  --surface:#181818  --surface2:#202020
+--border:#272727  --border2:#323232
+--gold:#C9A84C  --gold-light:#e2c98e  --gold-dim:#7a6040
+--terra:#C1593C  --sage:#7d8c6e  --sage-light:#9aab88
+--cream:#F5F0E8  --cream-dim:#b0a898  --parchment:#C4A47C
+--text:#e0dace  --text-dim:#807870  --text-muted:#484840
 ```
 
----
-
-## ECOSYSTEM MAP
-
-| Project | URL / Repo | Purpose |
-|---------|-----------|---------|
-| The Quiet Authority | `transform24.github.io/THE-QUIET-AUTHORITY` | 8-question assessment + profile engine |
-| Sanctuary Community | `beacons.ai/sanctuarygrace` | Free hub, links, resources |
-| Devotional Series | Stripe (4 PDFs @ $4.99 + bundle $19.96) | Weeks 1–4: Vision, Renewal, Peace, Calling |
-| Books | Stripe ($15.99 each) | The Quiet Authority book · The Parable of the Cocoon |
-| Gallery | Coming soon | Prophetic wall art / printable downloads |
-| Circle of Silence | Coming soon | 30-day paid transformation program |
-| Pinterest | `pinterest.com/sanctuarygrace` | Primary traffic driver |
-| YouTube | `youtube.com/@sanctuarygrace` | Video content |
+**Fonts**: Cormorant Garamond (headings/display) · Jost (body/UI) · Cinzel (labels)
+**Rule**: Never change tokens. Never add new colors without Grace's approval.
 
 ---
 
-## SILENCE PROFILES (Assessment Engine)
+## 3. APP ARCHITECTURE — THE QUIET AUTHORITY
 
-| ID | Name | Tagline |
-|----|------|---------|
-| A | The Striving Achiever | Your worth isn't in your output — it's in His love. |
-| B | The Depleted Survivor | You were meant to be the vessel, not the source. |
-| C | The Guilty Giver | Boundaries aren't selfish — they're sacred. |
-| D | The Lost Wanderer | Silence isn't where you lose yourself — it's where you remember. |
+**File**: `index.html` (single-file, no build tools, no framework)
+**Deploy**: GitHub Pages auto-deploy from `main` ~60s
+**Live URL**: https://transform24.github.io/THE-QUIET-AUTHORITY/
 
----
+### Screens (in order)
+| ID | Purpose |
+|---|---|
+| `screen-landing` | Entry, soul counter, resume banner |
+| `screen-question` | 8-question assessment |
+| `screen-email` | Name + email capture before reveal |
+| `screen-reveal` | Profile name ceremony + match bars |
+| `screen-results` | Profile hero + scripture + shop + silence session |
+| `screen-dashboard` | Practice tracker + stats + quick actions |
 
-## INTEGRATIONS
+### LocalStorage Keys
+| Key | Value |
+|---|---|
+| `tqa_profile` | `{profile, name, email, date}` |
+| `tqa_journal` | `[{date, profile, text}]` |
+| `tqa_days` | `[0,1,2,…]` — completed day indices |
+| `tqa_sessions` | integer — completed silence sessions |
 
-| Service | Purpose | Key |
-|---------|---------|-----|
-| Formspree | Form submissions | `xzdkgbbq` |
-| MailerLite | Email list | Account 2145322 · Group: `Quiet Authority — Assessment` |
-| Amazon Associates | Shop links | Tag: `sanctuarygrac-20` |
-| GitHub Pages | Hosting | Auto-deploys from `main` branch (~60s) |
-| Stripe | Payments | Links in index.html devot-section |
-
----
-
-## AGENT RULES (All Projects)
-
-1. **Never change brand voice, tone, or copy** without explicit instruction
-2. **Never push to `main` directly** — work on feature branch, then merge
-3. **Always Playwright-test** before committing UX changes
-4. **HTML-first** — this is a single-file app (`index.html`); no frameworks
-5. **No new files** unless explicitly requested — edit existing
-6. **Music files:** `music1–4.mp3` are local; never reference external audio URLs
-7. **Images:** `banner.png`, `bio.png` are local; product images via Google Drive thumbnails
-8. **Validate HTML** after every edit — no unclosed tags, DOCTYPE must be first line
-9. **Compact commits** — one commit per logical change, descriptive message
-10. **After push** — always confirm with Playwright screenshot of affected screens
+### Profile Keys
+`A` = The Striving Achiever · `B` = The Depleted Survivor · `C` = The Guilty Giver · `D` = The Lost Wanderer
 
 ---
 
-## KNOWN BUGS / WATCH LIST
+## 4. IP PROTECTION PROTOCOL
 
-- [ ] Silence timer: music phase = 5 min, silence phase = 10 min (total 15) — verify on every touch
-- [ ] Silence quotes: must rotate from `SILENCE_QUOTES` array (local data only, no internet quotes)
-- [ ] Shop cards: links must go to Amazon **product pages** (not affiliate storefront/commission page)
-- [ ] Profile download: `downloadProfile()` must produce a `.txt` file — test after any JS refactor
-- [ ] `<!DOCTYPE html>` must remain the **first byte** of `index.html` — never let build tools prepend content
-- [ ] Music picker: 4 tracks must be labeled and selectable before session starts
+**Rule**: Grace's proprietary written content (diagnosis, lessons, breakthrough, 7-day plan, journal prompts) is stored in JS but **never rendered as a visible web page section**.
 
----
+**Delivery pattern**:
+1. On form submit → `submitAndReveal()` triggers `window.open('mailto:...')` with full profile plain text pre-filled — user sends to themselves immediately
+2. On results screen → Download button calls `downloadProfile()` → `buildProfileText()` → `.txt` file
+3. Results screen shows ONLY: profile name, tagline, scripture (public), email notice, shop, silence session
 
-## WORKFLOW FOR EVERY TASK
-
-```
-1. Read CLAUDE.md (this file) — always start here
-2. Read current index.html (or relevant file) — understand state before editing
-3. Make changes on feature branch: claude/<task-name>
-4. Playwright test: screenshot all affected screens
-5. Fix any visual regressions
-6. Commit with clear message
-7. Merge to main → push → GitHub Pages deploys
-```
+**`buildProfileText(p, days, name)`** — shared builder for both mailto and download. Must stay in sync if profile copy changes.
 
 ---
 
-## FILE STRUCTURE
+## 5. INTEGRATIONS
 
-```
-THE-QUIET-AUTHORITY/
-  index.html          # Entire app — single file
-  404.html            # GitHub Pages redirect
-  CLAUDE.md           # This file — agent SOP
-  banner.png          # Landing hero image
-  bio.png             # Grace Turner photo
-  music1–4.mp3        # Silence session audio tracks
-  CNAME               # Custom domain (if set)
-  workflows/          # AI agent automation system
-    README.md
-    agents/           # 5 Claude agent prompt files
-    templates/        # Repurpose brief, pin, email templates
-    triggers/         # Remote trigger registry
+| Service | Key / ID | Purpose |
+|---|---|---|
+| Formspree | `xzdkgbbq` | Email submissions to Grace + soul acceptances |
+| MailerLite | Account 2145322 | Email list (connect via Formspree webhook) |
+| Amazon Associates | Tag `sanctuarygrac-20` | All shop links must include this tag |
+| Google Fonts | CDN | Cormorant Garamond, Jost, Cinzel |
+
+---
+
+## 6. AGENT RULES
+
+1. **Never change brand voice, tokens, or font stack** without explicit Grace approval
+2. **Always test with Playwright** after any UI change: `node --input-type=module < test.mjs` (ESM only, path `/opt/node22/lib/node_modules/playwright/index.mjs`)
+3. **Single-file HTML** — no build tools, no npm, no frameworks, no new files unless Grace requests
+4. **Profile IP stays off-screen** — diagnosis/lessons/breakthrough/7-day never rendered as visible page content
+5. **All Amazon links** must include `?tag=sanctuarygrac-20` or `tag=sanctuarygrac-20` in the URL
+6. **Formspree key `xzdkgbbq`** — all forms submit here. Never create new endpoints without approval
+7. **Git branch protocol** — develop on `claude/fix-index-agent-profile-AOol2`, push there, never force-push main
+8. **No comments** in code unless the WHY is non-obvious
+9. **Compact responses** — Grace wants minimal token usage. Plan briefly, execute, ship
+10. **Test from the UX perspective** — open in browser, click the golden path, check mobile viewport
+
+---
+
+## 7. KNOWN ARCHITECTURE PATTERNS
+
+```javascript
+// Screen navigation
+showScreen('screen-id')  // handles all overlay visibility
+
+// Profile scoring
+calculateProfile()        // returns dominant letter A/B/C/D
+getProfileScores()        // returns {A:%, B:%, C:%, D:%}
+
+// Email delivery (IP-safe)
+buildProfileText(p, days, name)  // full profile plain text
+
+// Dashboard
+showDashboard()           // checks localStorage, renders, shows screen
+renderDashboard(saved)    // populates all dashboard DOM
+toggleDay(i)              // toggle day-circle completion
+recordSession()           // increment tqa_sessions on session complete
 ```
 
 ---
 
-## COPY THIS BLOCK FOR NEW PROJECTS
+## 8. PENDING / ROADMAP
 
-```markdown
-# CLAUDE.md — [Project Name] · Sanctuary Grace Ministry
-
-> Inherits all rules from master SOP.
-> See: THE-QUIET-AUTHORITY/CLAUDE.md
-
-## Project-Specific Context
-**Purpose:**
-**URL:**
-**Branch strategy:**
-
-## Project-Specific Integrations
-
-## Known Issues / Open Tasks
-```
+- [ ] **Dual timer display** — Music phase (5:00) + Silence phase (10:00) shown separately
+- [ ] **Amazon link cloaking** — `goShop(url)` JS function, remove href from `<a>` tags
+- [ ] **Wall art shop** — Replace gallery "coming soon" with actual art shop (Grace's creations, size pricing: 8x10 / 11x14 / 16x20 / bundle, Stripe links, instant download)
+- [ ] **Language selector** — English, Spanish, Portuguese, French, Korean (Google Translate cookie approach)
+- [ ] **Profile match bars on results screen** — currently only on reveal; consider adding to dashboard
+- [ ] **Journal preview on dashboard** — show last 2 entries inline
+- [ ] **MailerLite automation** — trigger profile email to user when Formspree submission arrives (eliminate mailto: dependency)
 
 ---
 
-*Sanctuary Grace Ministry · Transform24 · Grace Turner*  
-*"Be still, and know that I am God." — Psalm 46:10*
+## 9. PROFITABLE SUGGESTIONS FOR GRACE'S ECOSYSTEM
+
+1. **Profile-gated content** — Each profile gets a unique Google Drive PDF delivered via email (diagnosis + 7-day plan as a beautifully designed PDF, not plain text). Upgrade path to premium version.
+2. **Circle of Silence membership** — Monthly Zoom silence sessions, $27/month. Gate behind MailerLite sequence triggered by TQA completion.
+3. **TQA Companion Journal (physical)** — Sell on Amazon KDP. Profile-specific journal prompts are the content. Already written — just format it.
+4. **Wall art as profile gifts** — "Which profile are you?" → "Send this to a friend who is a [Profile Name]." Viral gifting loop.
+5. **Ministry team licensing** — Churches buy TQA for their women's ministry. $97/year per church. White-label with church name.
+6. **Devotional series upsell** — After results: "Your 30-day deep dive starts here" → link to paid devotional on Amazon KDP.
+7. **Speaking / retreat tool** — TQA as a retreat ice-breaker. Retreat leaders pay to use it with groups. PDF facilitation guide.
+
+---
+
+## 10. NEW PROJECT TEMPLATE (inherit from this SOP)
+
+```
+Project Name:
+Deploy URL:
+GitHub Repo:
+Branch pattern: claude/[task]-[id]
+Formspree key: (inherit xzdkgbbq or new)
+MailerLite tag:
+Amazon tag: sanctuarygrac-20
+Primary screen IDs:
+LocalStorage keys:
+IP protection method: (email delivery / download / server-side)
+Brand tokens: (inherit from §2 above)
+Agent rules: (inherit §6 above, append project-specific rules)
+```
