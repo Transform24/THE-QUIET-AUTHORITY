@@ -583,6 +583,45 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 #sqType{font-size:0.58rem;letter-spacing:0.38em;text-transform:uppercase;color:var(--gold-dim);font-weight:300;margin-bottom:12px;}
 #sqText{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.05rem,2vw,1.3rem);color:var(--cream);line-height:1.65;margin-bottom:10px;font-weight:400;}
 #sqRef{font-size:0.65rem;letter-spacing:0.15em;color:var(--gold-dim);font-weight:300;}
+
+/* ══ MATCH BARS (reveal) ══ */
+.match-breakdown{margin-top:32px;text-align:left;width:100%;max-width:380px;margin-left:auto;margin-right:auto;opacity:0;animation:revealFade 0.8s ease 3.2s forwards;}
+.match-row{margin-bottom:13px;}
+.match-row-labels{display:flex;justify-content:space-between;margin-bottom:5px;font-size:0.6rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:300;}
+.match-row-labels .mn{color:var(--text-muted);}
+.match-row-labels .mp{color:var(--gold-dim);}
+.match-bar-track{height:2px;background:var(--border);overflow:hidden;}
+.match-bar-fill{height:100%;background:var(--border2);width:0%;transition:width 1.1s cubic-bezier(0.4,0,0.2,1) 0.3s;}
+.match-bar-fill.top{background:var(--gold);}
+
+/* ══ DASHBOARD ══ */
+#screen-dashboard{padding:68px 0 80px;min-height:100vh;}
+.dash-wrap{max-width:580px;margin:0 auto;padding:0 24px;}
+.dash-header{text-align:center;padding:32px 0 28px;border-bottom:1px solid var(--border);margin-bottom:4px;}
+.dash-badge{display:inline-block;padding:6px 20px;border:1px solid var(--gold-dim);font-size:0.56rem;letter-spacing:0.32em;text-transform:uppercase;color:var(--gold);font-weight:300;margin-bottom:14px;}
+.dash-profile-name{font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,4vw,2.4rem);font-weight:300;color:var(--cream);line-height:1.1;margin-bottom:6px;}
+.dash-profile-name em{color:var(--gold);font-style:italic;}
+.dash-since{font-size:0.6rem;letter-spacing:0.18em;color:var(--text-muted);font-weight:300;}
+.dash-section{padding:24px 0;border-bottom:1px solid var(--border);}
+.dash-stitle{font-size:0.58rem;letter-spacing:0.32em;text-transform:uppercase;color:var(--gold-dim);font-weight:300;margin-bottom:16px;}
+.day-circles{display:flex;gap:7px;justify-content:center;flex-wrap:wrap;}
+.day-circle{width:44px;height:44px;border-radius:50%;border:1px solid var(--border2);background:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:2px;transition:all 0.25s;font-family:'Jost',sans-serif;}
+.day-circle:hover{border-color:var(--gold-dim);}
+.day-circle.done{border-color:var(--gold);background:rgba(201,169,110,0.1);}
+.day-circle .dcn{font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--text-muted);line-height:1;transition:color 0.25s;}
+.day-circle.done .dcn{color:var(--gold);}
+.day-circle .dcl{font-size:0.44rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted);transition:color 0.25s;}
+.day-circle.done .dcl{color:var(--gold-dim);}
+.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+.stat-card{background:var(--surface);border:1px solid var(--border);padding:16px 10px;text-align:center;}
+.stat-num{font-family:'Cormorant Garamond',serif;font-size:2.2rem;font-weight:300;color:var(--gold);line-height:1;}
+.stat-lbl{font-size:0.54rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-muted);margin-top:5px;font-weight:300;}
+.dash-actions{padding:24px 0 0;display:flex;flex-direction:column;gap:8px;}
+.btn-dash{padding:14px 18px;background:var(--surface);border:1px solid var(--border);color:var(--text-dim);font-family:'Jost',sans-serif;font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;transition:all 0.25s;font-weight:300;text-align:left;display:flex;align-items:center;gap:12px;width:100%;}
+.btn-dash:hover{border-color:var(--gold-dim);color:var(--cream);}
+.btn-dash.gold{border-color:var(--gold-dim);color:var(--gold);}
+.btn-dash.gold:hover{background:rgba(201,169,110,0.07);}
+.dai{font-size:0.95rem;flex-shrink:0;}
 </style>
 </head>
 <body>
@@ -620,8 +659,8 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
   <button class="tab-item" id="tab-shop" onclick="tabNav('shop')">
     <span class="tab-icon">✦</span>Shop
   </button>
-  <button class="tab-item" id="tab-journal" onclick="openJournalModal()">
-    <span class="tab-icon">✎</span>Journal
+  <button class="tab-item" id="tab-dash" onclick="showDashboard()">
+    <span class="tab-icon">⊞</span>Dashboard
   </button>
 </nav>
 
@@ -750,6 +789,7 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
     <div class="reveal-cta-group">
       <button class="btn-begin" onclick="enterResults()" style="padding:14px 44px;"><span>Enter My Sanctuary →</span></button>
     </div>
+    <div class="match-breakdown" id="revealMatch"></div>
   </div>
 </div>
 
@@ -1115,6 +1155,41 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 
 </div><!-- end screen-results -->
 
+<!-- ══ SCREEN: DASHBOARD ══ -->
+<div class="screen" id="screen-dashboard">
+  <div class="dash-wrap">
+    <div class="dash-header">
+      <div class="dash-badge">Your Silence Profile</div>
+      <h2 class="dash-profile-name" id="dashProfileName"></h2>
+      <p class="dash-since" id="dashSince"></p>
+    </div>
+
+    <div class="dash-section">
+      <div class="dash-stitle">7-Day Practice Tracker</div>
+      <div class="day-circles" id="dayCircles"></div>
+      <p style="font-size:0.65rem;color:var(--text-muted);text-align:center;margin-top:12px;letter-spacing:0.08em;">Tap a day to mark it complete</p>
+    </div>
+
+    <div class="dash-section">
+      <div class="dash-stitle">Your Journey</div>
+      <div class="stat-grid">
+        <div class="stat-card"><div class="stat-num" id="statSessions">0</div><div class="stat-lbl">Sessions</div></div>
+        <div class="stat-card"><div class="stat-num" id="statDays">0</div><div class="stat-lbl">Days Done</div></div>
+        <div class="stat-card"><div class="stat-num" id="statJournal">0</div><div class="stat-lbl">Entries</div></div>
+      </div>
+    </div>
+
+    <div class="dash-actions">
+      <div class="dash-stitle">Quick Actions</div>
+      <button class="btn-dash gold" onclick="downloadProfile()"><span class="dai">⬇</span>Download My Full Profile</button>
+      <button class="btn-dash" onclick="openJournalModal()"><span class="dai">✎</span>Write in My Journal</button>
+      <button class="btn-dash" onclick="viewJournalEntries()"><span class="dai">≡</span>View Journal Entries</button>
+      <button class="btn-dash" onclick="resumeProfile()"><span class="dai">✦</span>View My Full Results</button>
+      <button class="btn-dash" onclick="startOver()" style="color:var(--text-muted);"><span class="dai">↺</span>Retake Assessment</button>
+    </div>
+  </div>
+</div>
+
 <!-- ══ JOURNAL VIEW MODAL ══ -->
 <div id="journalViewModal" class="journal-view-modal">
   <button class="btn-close-jv" onclick="closeJournalView()">✕ Close</button>
@@ -1271,6 +1346,9 @@ function showScreen(id){
     if(npl&&currentProfile){npl.textContent=PROFILES[currentProfile].name;npl.style.display='block';}
     setActiveTab('profile');
     startTabObserver();
+  } else if(id==='screen-dashboard'){
+    if(tb)tb.classList.add('visible');
+    setActiveTab('dash');
   } else if(id==='screen-landing'){
     // show return bar if a profile is saved
     try{
@@ -1286,7 +1364,7 @@ function showScreen(id){
 
 function startOver(){
   currentQ=0;answers=[];
-  try{localStorage.removeItem('tqa_profile');}catch(e){}
+  try{localStorage.removeItem('tqa_profile');localStorage.removeItem('tqa_days');localStorage.removeItem('tqa_sessions');}catch(e){}
   const rb=document.getElementById('resumeBanner');
   if(rb)rb.style.display='none';
   const prb=document.getElementById('profileReturnBar');
@@ -1431,11 +1509,19 @@ function calculateProfile(){
   return Object.entries(tally).sort((a,b)=>b[1]-a[1])[0][0];
 }
 
+// ── PROFILE SCORES ────────────────────────────────────────────
+function getProfileScores(){
+  const tally={A:0,B:0,C:0,D:0};
+  const letters=['A','B','C','D'];
+  answers.forEach(idx=>{if(idx!==undefined)tally[letters[idx]]++;});
+  const total=Object.values(tally).reduce((a,b)=>a+b,0)||1;
+  return Object.fromEntries(Object.entries(tally).map(([k,v])=>[k,Math.round(v/total*100)]));
+}
+
 // ── REVEAL CEREMONY ───────────────────────────────────────────
 function calculateAndReveal(){
   currentProfile=calculateProfile();
 
-  // Save to localStorage so user can return
   try{
     localStorage.setItem('tqa_profile',JSON.stringify({
       profile:currentProfile,name:userName,email:userEmail,date:new Date().toISOString()
@@ -1443,24 +1529,35 @@ function calculateAndReveal(){
   }catch(e){}
 
   const p=PROFILES[currentProfile];
-
-  // Populate reveal screen
   const greet=document.getElementById('revealGreeting');
   if(greet)greet.textContent=userName?userName+', you have been seen.':'Beloved, you have been seen.';
-
   const rn=document.getElementById('revealName');
   if(rn)rn.innerHTML='<em>'+p.name+'</em>';
-
   const rt=document.getElementById('revealTagline');
   if(rt)rt.textContent=p.tagline;
 
-  // Reset animations by forcing reflow
+  // Match breakdown bars
+  const scores=getProfileScores();
+  const rm=document.getElementById('revealMatch');
+  if(rm){
+    const order=['A','B','C','D'];
+    rm.innerHTML=order.map(k=>{
+      const pct=scores[k];const isPrimary=k===currentProfile;
+      return '<div class="match-row">'+
+        '<div class="match-row-labels"><span class="mn">'+PROFILES[k].name+'</span><span class="mp">'+pct+'%</span></div>'+
+        '<div class="match-bar-track"><div class="match-bar-fill'+(isPrimary?' top':'')+'" style="width:0%" data-pct="'+pct+'"></div></div>'+
+        '</div>';
+    }).join('');
+    requestAnimationFrame(()=>requestAnimationFrame(()=>{
+      rm.querySelectorAll('.match-bar-fill').forEach(b=>{b.style.width=b.dataset.pct+'%';});
+    }));
+  }
+
+  // Reset animations
   const rc=document.querySelector('.reveal-content');
   if(rc){
     rc.querySelectorAll('[style*="animation"]').forEach(el=>{
-      el.style.animation='none';
-      el.offsetHeight; // reflow
-      el.style.animation='';
+      el.style.animation='none';el.offsetHeight;el.style.animation='';
     });
   }
 
@@ -1610,6 +1707,7 @@ function resetSession(){
 
 function sessionComplete(){
   sessionPhase='done';
+  recordSession();
   document.getElementById('timerLabel').textContent='Your session is complete. Well done, beloved.';
   document.getElementById('btnPauseSession').style.display='none';
   document.getElementById('journalPrompt').style.display='block';
@@ -1726,6 +1824,59 @@ function joinGalleryList(){
   }).catch(()=>{});
   document.getElementById('galleryForm').style.display='none';
   document.getElementById('galleryConfirm').style.display='block';
+}
+
+// ── DASHBOARD ─────────────────────────────────────────────────
+function getSavedProfile(){
+  try{return JSON.parse(localStorage.getItem('tqa_profile')||'null');}catch(e){return null;}
+}
+
+function showDashboard(){
+  const saved=getSavedProfile();
+  if(!saved||!PROFILES[saved.profile]){showScreen('screen-landing');return;}
+  currentProfile=saved.profile;
+  userName=saved.name||'';
+  renderDashboard(saved);
+  showScreen('screen-dashboard');
+}
+
+function renderDashboard(saved){
+  const p=PROFILES[saved.profile];
+  const pn=document.getElementById('dashProfileName');
+  if(pn)pn.innerHTML='<em>'+p.name+'</em>';
+  const ds=document.getElementById('dashSince');
+  if(ds){
+    const d=saved.date?new Date(saved.date):new Date();
+    ds.textContent='Member since '+d.toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
+  }
+  let days=[];try{days=JSON.parse(localStorage.getItem('tqa_days')||'[]');}catch(e){}
+  const dc=document.getElementById('dayCircles');
+  if(dc){
+    dc.innerHTML=Array.from({length:7},(_,i)=>{
+      const done=days.includes(i);
+      return '<button class="day-circle'+(done?' done':'')+'" onclick="toggleDay('+i+')">'+
+        '<span class="dcn">'+(i+1)+'</span>'+
+        '<span class="dcl">'+(done?'✓':'Day')+'</span></button>';
+    }).join('');
+  }
+  let sess=0,jc=0,dc2=0;
+  try{sess=parseInt(localStorage.getItem('tqa_sessions')||'0');}catch(e){}
+  try{jc=JSON.parse(localStorage.getItem('tqa_journal')||'[]').length;}catch(e){}
+  try{dc2=JSON.parse(localStorage.getItem('tqa_days')||'[]').length;}catch(e){}
+  const ss=document.getElementById('statSessions');const sd=document.getElementById('statDays');const sj=document.getElementById('statJournal');
+  if(ss)ss.textContent=sess;if(sd)sd.textContent=dc2;if(sj)sj.textContent=jc;
+}
+
+function toggleDay(i){
+  let days=[];try{days=JSON.parse(localStorage.getItem('tqa_days')||'[]');}catch(e){}
+  const idx=days.indexOf(i);if(idx>=0)days.splice(idx,1);else days.push(i);
+  try{localStorage.setItem('tqa_days',JSON.stringify(days));}catch(e){}
+  const saved=getSavedProfile();if(saved)renderDashboard(saved);
+}
+
+function recordSession(){
+  let n=0;try{n=parseInt(localStorage.getItem('tqa_sessions')||'0');}catch(e){}
+  try{localStorage.setItem('tqa_sessions',String(n+1));}catch(e){}
 }
 
 // ── TAB BAR ───────────────────────────────────────────────────
