@@ -1,11 +1,3 @@
-
-index.txt
-
-Page
-1
-/
-1
-100%
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -123,21 +115,51 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 /* resume banner — shows if saved profile exists */
 #resumeBanner{
   display:none;
-  background:rgba(201,169,110,0.09);
+  background:rgba(201,169,110,0.1);
   border:1px solid var(--gold);
-  border-left:4px solid var(--gold);
-  padding:20px 24px;
-  margin:0 auto 28px;
-  max-width:460px;
+  border-top:3px solid var(--gold);
+  padding:28px 32px;
+  margin:0 auto 24px;
+  max-width:520px;
+  width:100%;
   text-align:left;
-  cursor:pointer;
+  cursor:default;
   transition:all 0.3s;
   animation:fadeUp 0.6s ease forwards;
 }
-#resumeBanner:hover{background:rgba(201,169,110,0.15);transform:translateY(-2px);}
-.resume-label{font-size:0.58rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;font-weight:300;}
-.resume-name{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--cream);}
-.resume-hint{font-size:0.68rem;color:var(--gold-dim);margin-top:6px;letter-spacing:0.06em;}
+.resume-label{font-size:0.58rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;font-weight:300;}
+.resume-name{font-family:'Cormorant Garamond',serif;font-size:1.35rem;color:var(--cream);font-style:italic;}
+.resume-hint{font-size:0.72rem;color:var(--cream-dim);margin-top:8px;letter-spacing:0.04em;line-height:1.5;}
+.resume-cta{margin-top:20px;display:flex;flex-direction:column;gap:10px;}
+.btn-resume-primary{padding:14px;background:var(--gold);color:var(--bg);border:none;font-family:'Jost',sans-serif;font-size:0.72rem;letter-spacing:0.22em;text-transform:uppercase;cursor:pointer;font-weight:300;transition:all 0.3s;}
+.btn-resume-primary:hover{background:var(--gold-light);}
+.btn-resume-ghost{padding:11px;background:transparent;color:var(--text-muted);border:1px solid var(--border);font-family:'Jost',sans-serif;font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;cursor:pointer;font-weight:300;transition:all 0.3s;}
+.btn-resume-ghost:hover{border-color:var(--gold-dim);color:var(--cream);}
+
+/* profile return bar — fixed bottom bar on landing when profile saved */
+#profileReturnBar{
+  display:none;
+  position:fixed;bottom:0;left:0;right:0;
+  z-index:450;
+  background:rgba(13,13,13,0.97);
+  border-top:1px solid var(--gold-dim);
+  backdrop-filter:blur(16px);
+  padding:12px 24px;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+#profileReturnBar.visible{display:flex;}
+.prb-info{min-width:0;}
+.prb-label{font-size:0.54rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold-dim);font-weight:300;margin-bottom:3px;}
+.prb-name{font-family:'Cormorant Garamond',serif;font-size:0.95rem;color:var(--cream);font-style:italic;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.btn-prb{padding:10px 24px;background:transparent;border:1px solid var(--gold);color:var(--gold);font-family:'Jost',sans-serif;font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;cursor:pointer;transition:all 0.3s;font-weight:300;white-space:nowrap;flex-shrink:0;}
+.btn-prb:hover{background:var(--gold);color:var(--bg);}
+@media(max-width:480px){
+  #profileReturnBar{padding:10px 16px;}
+  .prb-name{font-size:0.85rem;}
+  .btn-prb{padding:9px 16px;font-size:0.6rem;}
+}
 
 .btn-begin{display:inline-block;padding:17px 56px;background:transparent;border:1px solid var(--gold);color:var(--gold);font-family:'Jost',sans-serif;font-weight:300;font-size:0.72rem;letter-spacing:0.28em;text-transform:uppercase;cursor:pointer;transition:all 0.4s ease;position:relative;overflow:hidden;}
 .btn-begin::before{content:'';position:absolute;inset:0;background:var(--gold);transform:translateX(-101%);transition:transform 0.4s ease;}
@@ -603,6 +625,15 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
   </button>
 </nav>
 
+<!-- ══ PROFILE RETURN BAR (landing screen, returning users) ══ -->
+<div id="profileReturnBar">
+  <div class="prb-info">
+    <div class="prb-label">Profile Saved</div>
+    <div class="prb-name" id="prbName"></div>
+  </div>
+  <button class="btn-prb" onclick="resumeProfile()">View My Profile →</button>
+</div>
+
 <!-- ══ SAVE TOAST ══ -->
 <div id="saveToast">✦ Saved to your device</div>
 
@@ -638,10 +669,14 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
       </div>
 
       <!-- Resume banner — shown if saved profile exists -->
-      <div id="resumeBanner" onclick="resumeProfile()">
-        <div class="resume-label">Welcome back, beloved</div>
+      <div id="resumeBanner">
+        <div class="resume-label">✦ Welcome back, beloved</div>
         <div class="resume-name" id="resumeProfileName"></div>
-        <div class="resume-hint">Tap to return to your profile →</div>
+        <div class="resume-hint">Your Silence Profile is saved and waiting for you.</div>
+        <div class="resume-cta">
+          <button class="btn-resume-primary" onclick="resumeProfile()">View My Profile →</button>
+          <button class="btn-resume-ghost" onclick="startAssessment()">Begin a New Assessment</button>
+        </div>
       </div>
 
       <div class="voiceover-bar" onclick="toggleVoiceover()" id="voBar">
@@ -880,20 +915,35 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
     </div>
   </div>
 
-  <!-- BIO -->
-  <div class="bio-section">
+  <!-- AGENT PROFILE — Grace Turner -->
+  <div class="bio-section" id="section-guide">
+    <div style="max-width:700px;margin:0 auto;padding:20px 24px 0;">
+      <div style="text-align:center;padding:14px 0 6px;">
+        <div class="r-label" style="display:inline-block;">Your Guide Through the Silence</div>
+      </div>
+    </div>
     <div class="bio-inner">
       <div class="bio-img-wrap">
         <img class="bio-img" src="bio.png" alt="Grace Turner — Sanctuary Grace Ministry">
         <div class="bio-img-frame"></div>
       </div>
       <div>
-        <div class="r-label">A Word from Grace</div>
         <h3 class="bio-name serif">Grace Turner</h3>
-        <div class="bio-role">Sanctuary Grace Ministry · Founder</div>
+        <div class="bio-role">Sanctuary Grace Ministry · Founder &amp; Minister</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 18px;">
+          <span style="font-size:0.55rem;letter-spacing:0.2em;padding:3px 10px;border:1px solid var(--border2);color:var(--text-muted);text-transform:uppercase;font-weight:300;">Founder</span>
+          <span style="font-size:0.55rem;letter-spacing:0.2em;padding:3px 10px;border:1px solid var(--border2);color:var(--text-muted);text-transform:uppercase;font-weight:300;">Minister</span>
+          <span style="font-size:0.55rem;letter-spacing:0.2em;padding:3px 10px;border:1px solid var(--gold-dim);color:var(--gold-dim);text-transform:uppercase;font-weight:300;">Author</span>
+        </div>
         <p class="bio-text">I understand what you're going through — because I've been there.</p>
         <p class="bio-text">On November 5, 2024, God broke my ankle. Not to punish me — but to still me. In that forced stillness, I learned what you're about to discover: <em style="color:var(--cream);font-style:italic;">the breakthrough you're seeking is waiting in the silence you're avoiding.</em></p>
+        <p class="bio-text">Sanctuary Grace Ministry exists for one reason: to walk alongside women who have poured themselves out for everyone else — and help them find their way back to the God who fills.</p>
         <p class="bio-sig">— Grace</p>
+        <div style="margin-top:20px;padding-top:18px;border-top:1px solid var(--border);display:flex;gap:20px;flex-wrap:wrap;align-items:center;">
+          <a href="https://pinterest.com/sanctuarygrace" target="_blank" rel="noopener" style="font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color 0.3s;font-family:'Jost',sans-serif;font-weight:300;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">Pinterest</a>
+          <a href="https://youtube.com/@sanctuarygrace" target="_blank" rel="noopener" style="font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color 0.3s;font-family:'Jost',sans-serif;font-weight:300;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">YouTube</a>
+          <a href="https://beacons.ai/sanctuarygrace" target="_blank" rel="noopener" style="font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold-dim);text-decoration:none;transition:color 0.3s;font-family:'Jost',sans-serif;font-weight:300;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--gold-dim)'">Sanctuary Community →</a>
+        </div>
       </div>
     </div>
   </div>
@@ -1173,18 +1223,25 @@ let voPlaying=false,timerInterval=null,breathInterval=null,timerSeconds=900,paus
   if(lv)lv.textContent=n;
   setInterval(()=>{if(Math.random()<0.3){n+=Math.random()<0.6?1:-1;n=Math.max(4,Math.min(40,n));const e=document.getElementById('liveNum');if(e)e.textContent=n;}},7000);
 
-  // Check localStorage for saved profile — show resume banner
+  // Check localStorage for saved profile — show resume banner + return bar
   try{
     const saved=JSON.parse(localStorage.getItem('tqa_profile')||'null');
     if(saved&&saved.profile&&PROFILES[saved.profile]){
       currentProfile=saved.profile;
       userName=saved.name||'';
       userEmail=saved.email||'';
+      const profileName=PROFILES[saved.profile].name;
       const rb=document.getElementById('resumeBanner');
       const rn=document.getElementById('resumeProfileName');
       if(rb&&rn){
-        rn.textContent=PROFILES[saved.profile].name;
+        rn.textContent=profileName;
         rb.style.display='block';
+      }
+      const prb=document.getElementById('profileReturnBar');
+      const prbName=document.getElementById('prbName');
+      if(prb&&prbName){
+        prbName.textContent=profileName;
+        prb.classList.add('visible');
       }
     }
   }catch(e){}
@@ -1201,39 +1258,48 @@ function showScreen(id){
   const ret=document.getElementById('returnBtn');
   const pb=document.getElementById('progressBar');
   const tb=document.getElementById('tabBar');
+  const prb=document.getElementById('profileReturnBar');
+
+  // hide all overlays first
+  if(nav)nav.classList.remove('visible');
+  if(ret)ret.classList.remove('visible');
+  if(tb)tb.classList.remove('visible');
+  if(prb)prb.classList.remove('visible');
+  if(pb)pb.style.display='none';
 
   if(id==='screen-question'){
-    if(nav)nav.classList.remove('visible');
-    if(ret)ret.classList.remove('visible');
-    if(tb)tb.classList.remove('visible');
     if(pb)pb.style.display='block';
     updateProgress();
   } else if(id==='screen-reveal'){
-    if(nav)nav.classList.remove('visible');
-    if(ret)ret.classList.remove('visible');
-    if(tb)tb.classList.remove('visible');
-    if(pb)pb.style.display='none';
     const npl=document.getElementById('navProfileLabel');
     if(npl&&currentProfile){npl.textContent=PROFILES[currentProfile].name;npl.style.display='block';}
   } else if(id==='screen-results'){
     if(nav)nav.classList.add('visible');
-    if(ret)ret.classList.remove('visible');
     if(tb)tb.classList.add('visible');
-    if(pb)pb.style.display='none';
     const npl=document.getElementById('navProfileLabel');
     if(npl&&currentProfile){npl.textContent=PROFILES[currentProfile].name;npl.style.display='block';}
     setActiveTab('profile');
     startTabObserver();
-  } else {
-    if(nav)nav.classList.remove('visible');
-    if(ret)ret.classList.remove('visible');
-    if(tb)tb.classList.remove('visible');
-    if(pb)pb.style.display='none';
+  } else if(id==='screen-landing'){
+    // show return bar if a profile is saved
+    try{
+      const saved=JSON.parse(localStorage.getItem('tqa_profile')||'null');
+      if(saved&&saved.profile&&PROFILES[saved.profile]){
+        const prbName=document.getElementById('prbName');
+        if(prbName)prbName.textContent=PROFILES[saved.profile].name;
+        if(prb)prb.classList.add('visible');
+      }
+    }catch(e){}
   }
 }
 
 function startOver(){
   currentQ=0;answers=[];
+  try{localStorage.removeItem('tqa_profile');}catch(e){}
+  const rb=document.getElementById('resumeBanner');
+  if(rb)rb.style.display='none';
+  const prb=document.getElementById('profileReturnBar');
+  if(prb)prb.classList.remove('visible');
   showScreen('screen-landing');
 }
 
