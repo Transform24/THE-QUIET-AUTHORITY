@@ -113,7 +113,7 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 .landing-title em{display:block;font-style:italic;color:var(--gold);font-size:clamp(2.5rem,7vw,5.5rem);}
 .gold-rule{width:48px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:28px auto;}
 .landing-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1rem,2.2vw,1.35rem);color:var(--cream-dim);line-height:1.55;margin-bottom:32px;max-width:500px;margin-left:auto;margin-right:auto;}
-.landing-body{font-size:0.85rem;color:var(--text-dim);line-height:1.95;margin-bottom:44px;max-width:480px;margin-left:auto;margin-right:auto;}
+.landing-body{font-size:0.88rem;color:rgba(240,234,216,0.82);line-height:1.95;margin-bottom:44px;max-width:480px;margin-left:auto;margin-right:auto;}
 .soul-counter{display:inline-flex;align-items:center;gap:10px;padding:10px 24px;border:1px solid rgba(201,169,110,0.4);background:rgba(13,13,13,0.6);margin-bottom:36px;backdrop-filter:blur(4px);}
 .soul-pulse{width:6px;height:6px;border-radius:50%;background:var(--gold);animation:pulse 2s ease-in-out infinite;}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.4;transform:scale(0.7);}}
@@ -144,7 +144,7 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 .btn-begin:hover::before{transform:translateX(0);}
 .btn-begin:hover{color:var(--bg);}
 .btn-begin span{position:relative;z-index:1;}
-.landing-promise{margin-top:20px;font-size:0.65rem;color:var(--text-muted);letter-spacing:0.12em;}
+.landing-promise{margin-top:20px;font-size:0.68rem;color:rgba(240,234,216,0.6);letter-spacing:0.12em;}
 
 .voiceover-bar{position:relative;z-index:10;display:flex;align-items:center;gap:14px;padding:16px 24px;border:1px solid var(--gold-dim);background:rgba(13,13,13,0.75);max-width:380px;margin:0 auto 32px;cursor:pointer;transition:border-color 0.3s;backdrop-filter:blur(6px);}
 .voiceover-bar:hover{border-color:var(--gold);}
@@ -1132,10 +1132,10 @@ const SEVEN_DAYS={
 };
 
 const SACRED_SPACE={
-  A:{heading:"Curated Just for You",sub:"The Striving Achiever needs one thing above all else — an environment that gives her permission to stop.",collections:[{img:'https://drive.google.com/thumbnail?id=1UH6bGtMZ1maHh65Ld3R0PjDJxDPCMIdl&sz=w800',title:'The Rest Ritual',tagline:'You have earned this.',desc:'A fleece throw weighted with permission — wrap yourself in it and do absolutely nothing. Rest is not laziness. It is obedience.',link:'https://www.amazon.com/dp/B0C7V67VVV?tag=sanctuarygrac-20',cta:'Shop The Rest Ritual'},{img:'https://drive.google.com/thumbnail?id=1SKTxq3B8nR0oSX9HW-ioaGFH2deq2hrN&sz=w800',title:'Sip & Be Still',tagline:'One slow cup before the world asks anything.',desc:'A travel mug — a daily reminder that He has a plan and it does not require your exhaustion.',link:'https://amzn.to/4oiTO4d',cta:'Shop Sanctuary Sips'},{img:'https://drive.google.com/thumbnail?id=1dpnLSnhCEST9pwUwc58H45rHoIlaypoZ&sz=w800',title:'A Place of Faith',tagline:'60 weeks of just you and God.',desc:'No agenda. No performance. A prayer journal that holds your honest words and gives God room to respond.',link:'https://amzn.to/486JdVm',cta:'Shop A Place of Faith'}]},
-  B:{heading:"Curated Just for You",sub:"The Depleted Survivor does not need more to do — she needs something that fills without demanding.",collections:[{img:'https://drive.google.com/thumbnail?id=1SKTxq3B8nR0oSX9HW-ioaGFH2deq2hrN&sz=w800',title:'Warmth for the Weary',tagline:'Something beautiful, just for you.',desc:'A ceramic butterfly mug set chosen for the woman who deserves beautiful things. Sip slowly. Let it restore you.',link:'https://amzn.to/3KwAp1V',cta:'Shop Sanctuary Sips'},{img:'https://drive.google.com/thumbnail?id=1UH6bGtMZ1maHh65Ld3R0PjDJxDPCMIdl&sz=w800',title:'Breathe & Be Restored',tagline:'Let your senses exhale.',desc:'A cool mist essential oil diffuser — fill the air with lavender, peace, and permission.',link:'https://amzn.to/4pcq9Lw',cta:'Shop Restoration'},{img:'https://drive.google.com/thumbnail?id=1dpnLSnhCEST9pwUwc58H45rHoIlaypoZ&sz=w800',title:'A Place of Faith',tagline:'Just you and God. Nothing else required.',desc:'A leather-lined journal for every honest prayer and quiet moment between you and the God who restores.',link:'https://amzn.to/44rtiyA',cta:'Shop A Place of Faith'}]},
-  C:{heading:"Curated Just for You",sub:"The Guilty Giver needs a space that is entirely hers — where no one else's needs are allowed to live.",collections:[{img:'https://drive.google.com/thumbnail?id=1dpnLSnhCEST9pwUwc58H45rHoIlaypoZ&sz=w800',title:'A Place of Faith',tagline:'Write what no one else needs to see.',desc:'A leather A5 journal and gold pen — a sacred space that belongs only to you.',link:'https://amzn.to/44rtiyA',cta:'Shop A Place of Faith'},{img:'https://drive.google.com/thumbnail?id=1SKTxq3B8nR0oSX9HW-ioaGFH2deq2hrN&sz=w800',title:'Sip Without Apology',tagline:'One moment that is only yours.',desc:'The butterfly ceramic mug set — because you are allowed beautiful things without earning them.',link:'https://amzn.to/3KwAp1V',cta:'Shop Sanctuary Sips'},{img:'https://drive.google.com/thumbnail?id=1UH6bGtMZ1maHh65Ld3R0PjDJxDPCMIdl&sz=w800',title:'Set the Atmosphere',tagline:'Give yourself permission to receive.',desc:'Flameless pillar candles with remote — set the atmosphere before you sit down to be still.',link:'https://amzn.to/48cxqVG',cta:'Shop Atmosphere'}]},
-  D:{heading:"Curated Just for You",sub:"The Lost Wanderer needs beauty that reflects who she truly is — and tools to help her remember.",collections:[{img:'https://drive.google.com/thumbnail?id=1dpnLSnhCEST9pwUwc58H45rHoIlaypoZ&sz=w800',title:'A Place of Faith',tagline:'Four voices. One truth: you are mine.',desc:'The NIV, NKJV, NLT & The Message in one parallel Bible — find the translation that speaks your language.',link:'https://amzn.to/4iz6Yco',cta:'Shop A Place of Faith'},{img:'https://drive.google.com/thumbnail?id=1SKTxq3B8nR0oSX9HW-ioaGFH2deq2hrN&sz=w800',title:'Sip & Remember',tagline:'A quiet moment to remember who you are.',desc:'The butterfly ceramic mug set — brew something warm and let the woman beneath all the roles resurface.',link:'https://amzn.to/3KwAp1V',cta:'Shop Sanctuary Sips'},{img:'https://drive.google.com/thumbnail?id=1UH6bGtMZ1maHh65Ld3R0PjDJxDPCMIdl&sz=w800',title:'Create & Reclaim',tagline:'Before duty replaced desire, you created.',desc:'Smooth painting rocks and acrylic paint pens — because the woman God made was creative before the world made her busy.',link:'https://amzn.to/3XsxnPd',cta:'Shop Creative Expression'}]}
+  A:{heading:"Curated Just for You",sub:"The Striving Achiever needs one thing above all else — an environment that gives her permission to stop.",collections:[{img:'https://drive.google.com/thumbnail?id=1UH6bGtMZ1maHh65Ld3R0PjDJxDPCMIdl&sz=w800',title:'The Rest Ritual',tagline:'You have earned this.',desc:'A fleece throw weighted with permission — wrap yourself in it and do absolutely nothing. Rest is not laziness. It is obedience.',link:'https://www.amazon.com/dp/B0C7V67VVV?tag=sanctuarygrac-20',cta:'Shop The Rest Ritual'},{img:'https://drive.google.com/thumbnail?id=1SKTxq3B8nR0oSX9HW-ioaGFH2deq2hrN&sz=w800',title:'Sip & Be Still',tagline:'One slow cup before the world asks anything.',desc:'A travel mug — a daily reminder that He has a plan and it does not require your exhaustion.',link:'https://amzn.to/4oiTO4d',cta:'Shop Sanctuary Sips'},{img:'https://drive.google.com/thumbnail?id=1dpnLSnhCEST9pwUwc58H45rHoIlaypoZ&sz=w800',title:'A Place of Faith',tagline:'60 weeks of just you and God.',desc:'No agenda. No performance. A prayer journal that holds your honest words and gives God room to respond.',link:'https://amzn.to/486JdVm',cta:'Shop A Place of Faith'},{img:'https://drive.google.com/thumbnail?id=1UH6bGtMZ1maHh65Ld3R0PjDJxDPCMIdl&sz=w800',title:'Set the Atmosphere',tagline:'Your space should feel like permission.',desc:'Flameless pillar candles with remote — light your sanctuary without lifting a finger. Signal to your body: it is safe to rest here.',link:'https://amzn.to/48cxqVG',cta:'Shop Set the Atmosphere'}]},
+  B:{heading:"Curated Just for You",sub:"The Depleted Survivor does not need more to do — she needs something that fills without demanding.",collections:[{img:'https://drive.google.com/thumbnail?id=1SKTxq3B8nR0oSX9HW-ioaGFH2deq2hrN&sz=w800',title:'Warmth for the Weary',tagline:'Something beautiful, just for you.',desc:'A ceramic butterfly mug set chosen for the woman who deserves beautiful things. Sip slowly. Let it restore you.',link:'https://amzn.to/3KwAp1V',cta:'Shop Sanctuary Sips'},{img:'https://drive.google.com/thumbnail?id=1UH6bGtMZ1maHh65Ld3R0PjDJxDPCMIdl&sz=w800',title:'Breathe & Be Restored',tagline:'Let your senses exhale.',desc:'A cool mist essential oil diffuser — fill the air with lavender, peace, and permission.',link:'https://amzn.to/4pcq9Lw',cta:'Shop Restoration'},{img:'https://drive.google.com/thumbnail?id=1dpnLSnhCEST9pwUwc58H45rHoIlaypoZ&sz=w800',title:'A Place of Faith',tagline:'Just you and God. Nothing else required.',desc:'A leather-lined journal for every honest prayer and quiet moment between you and the God who restores.',link:'https://amzn.to/44rtiyA',cta:'Shop A Place of Faith'},{img:'https://drive.google.com/thumbnail?id=1UH6bGtMZ1maHh65Ld3R0PjDJxDPCMIdl&sz=w800',title:'Wrapped in Rest',tagline:'Give your body permission to stop.',desc:'A weighted fleece throw — because the woman who gives everything to everyone finally deserves warmth with no strings attached.',link:'https://www.amazon.com/dp/B0C7V67VVV?tag=sanctuarygrac-20',cta:'Shop Wrapped in Rest'}]},
+  C:{heading:"Curated Just for You",sub:"The Guilty Giver needs a space that is entirely hers — where no one else's needs are allowed to live.",collections:[{img:'https://drive.google.com/thumbnail?id=1dpnLSnhCEST9pwUwc58H45rHoIlaypoZ&sz=w800',title:'A Place of Faith',tagline:'Write what no one else needs to see.',desc:'A leather A5 journal and gold pen — a sacred space that belongs only to you.',link:'https://amzn.to/44rtiyA',cta:'Shop A Place of Faith'},{img:'https://drive.google.com/thumbnail?id=1SKTxq3B8nR0oSX9HW-ioaGFH2deq2hrN&sz=w800',title:'Sip Without Apology',tagline:'One moment that is only yours.',desc:'The butterfly ceramic mug set — because you are allowed beautiful things without earning them.',link:'https://amzn.to/3KwAp1V',cta:'Shop Sanctuary Sips'},{img:'https://drive.google.com/thumbnail?id=1UH6bGtMZ1maHh65Ld3R0PjDJxDPCMIdl&sz=w800',title:'Set the Atmosphere',tagline:'Give yourself permission to receive.',desc:'Flameless pillar candles with remote — set the atmosphere before you sit down to be still.',link:'https://amzn.to/48cxqVG',cta:'Shop Atmosphere'},{img:'https://drive.google.com/thumbnail?id=1UH6bGtMZ1maHh65Ld3R0PjDJxDPCMIdl&sz=w800',title:'Breathe & Receive',tagline:'Your senses deserve to rest too.',desc:'A cool mist essential oil diffuser — breathe in lavender and let your nervous system remember: you are allowed to just be.',link:'https://amzn.to/4pcq9Lw',cta:'Shop Breathe & Receive'}]},
+  D:{heading:"Curated Just for You",sub:"The Lost Wanderer needs beauty that reflects who she truly is — and tools to help her remember.",collections:[{img:'https://drive.google.com/thumbnail?id=1dpnLSnhCEST9pwUwc58H45rHoIlaypoZ&sz=w800',title:'A Place of Faith',tagline:'Four voices. One truth: you are mine.',desc:'The NIV, NKJV, NLT & The Message in one parallel Bible — find the translation that speaks your language.',link:'https://amzn.to/4iz6Yco',cta:'Shop A Place of Faith'},{img:'https://drive.google.com/thumbnail?id=1SKTxq3B8nR0oSX9HW-ioaGFH2deq2hrN&sz=w800',title:'Sip & Remember',tagline:'A quiet moment to remember who you are.',desc:'The butterfly ceramic mug set — brew something warm and let the woman beneath all the roles resurface.',link:'https://amzn.to/3KwAp1V',cta:'Shop Sanctuary Sips'},{img:'https://drive.google.com/thumbnail?id=1UH6bGtMZ1maHh65Ld3R0PjDJxDPCMIdl&sz=w800',title:'Create & Reclaim',tagline:'Before duty replaced desire, you created.',desc:'Smooth painting rocks and acrylic paint pens — because the woman God made was creative before the world made her busy.',link:'https://amzn.to/3XsxnPd',cta:'Shop Creative Expression'},{img:'https://drive.google.com/thumbnail?id=1UH6bGtMZ1maHh65Ld3R0PjDJxDPCMIdl&sz=w800',title:'Set the Atmosphere',tagline:'A space that says: she is here.',desc:'Flameless pillar candles with remote — light the room that belongs to the woman you are rediscovering.',link:'https://amzn.to/48cxqVG',cta:'Shop Set the Atmosphere'}]}
 };
 
 const MUSIC=['music1.mp3','music2.mp3','music3.mp3','music4.mp3'];
@@ -1209,8 +1209,8 @@ function showScreen(id){
     if(pb)pb.style.display='block';
     updateProgress();
   } else if(id==='screen-reveal'){
-    if(nav)nav.classList.add('visible');
-    if(ret)ret.classList.add('visible');
+    if(nav)nav.classList.remove('visible');
+    if(ret)ret.classList.remove('visible');
     if(tb)tb.classList.remove('visible');
     if(pb)pb.style.display='none';
     const npl=document.getElementById('navProfileLabel');
@@ -1411,7 +1411,7 @@ function showResults(){
   if(userName){
     const cb=document.getElementById('confirmBanner');
     const ct=document.getElementById('confirmText');
-    if(ct)ct.innerHTML=userName+', your Silence Profile is saved to this device. <button onclick="downloadProfile()" style="background:none;border:1px solid var(--sage);color:var(--sage-light);font-family:\'Jost\',sans-serif;font-size:0.63rem;letter-spacing:0.15em;text-transform:uppercase;padding:6px 16px;cursor:pointer;margin-left:8px;font-weight:300;">⬇ Download Profile</button>';
+    if(ct)ct.innerHTML=userName+', your Silence Profile is saved to this device. <span style="display:inline-flex;gap:8px;flex-wrap:wrap;margin-top:10px;"><button onclick="downloadProfile()" style="background:none;border:1px solid var(--sage);color:var(--sage-light);font-family:\'Jost\',sans-serif;font-size:0.63rem;letter-spacing:0.15em;text-transform:uppercase;padding:6px 16px;cursor:pointer;font-weight:300;">⬇ Download Profile</button><button onclick="emailProfile()" style="background:none;border:1px solid var(--gold-dim);color:var(--gold);font-family:\'Jost\',sans-serif;font-size:0.63rem;letter-spacing:0.15em;text-transform:uppercase;padding:6px 16px;cursor:pointer;font-weight:300;">✉ Email to Me</button></span>';
     if(cb)cb.style.display='block';
   }
 
@@ -1772,6 +1772,30 @@ function downloadProfile(){
   a.href=url;a.download='MyQuietAuthorityProfile.txt';
   document.body.appendChild(a);a.click();document.body.removeChild(a);
   URL.revokeObjectURL(url);
+}
+
+// ── EMAIL PROFILE ─────────────────────────────────────────────
+function emailProfile(){
+  const p=PROFILES[currentProfile];
+  const days=SEVEN_DAYS[currentProfile];
+  let body='THE QUIET AUTHORITY — YOUR SILENCE PROFILE\n\n';
+  body+='Name: '+(userName||'Beloved')+'\n';
+  body+='Profile: '+p.name+'\n';
+  body+='Date: '+new Date().toLocaleDateString()+'\n\n';
+  body+=p.tagline+'\n\n';
+  body+='YOUR DIAGNOSIS:\n'+p.diagnosis+'\n\n';
+  body+='SCRIPTURE:\n"'+p.scripture+'" — '+p.ref+'\n\n';
+  body+='WHAT SILENCE WANTS TO TEACH YOU:\n'+p.lessons.map(l=>'• '+l).join('\n')+'\n\n';
+  body+='YOUR BREAKTHROUGH PATH:\n'+p.breakthrough+'\n\n';
+  body+='7-DAY PRACTICE:\n';
+  days.forEach((d,i)=>{body+='Day '+(i+1)+': '+d.title+'\n'+d.practice+'\n\n';});
+  body+='JOURNAL PROMPT:\n'+p.journal+'\n\n';
+  body+='───────────────────────────────────\n';
+  body+='Sanctuary Grace Ministry\nhttps://transform24.github.io/THE-QUIET-AUTHORITY/';
+  const sub=encodeURIComponent('My Quiet Authority Profile — '+p.name);
+  const bdy=encodeURIComponent(body);
+  const to=encodeURIComponent(userEmail||'');
+  window.open('mailto:'+to+'?subject='+sub+'&body='+bdy);
 }
 </script>
 </body>
