@@ -774,9 +774,14 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
     </div>
   </div>
 
-  <div class="r-section">
-    <div class="r-label">Based on your responses, here's what I see</div>
-    <p class="r-diagnosis" id="rDiagnosis"></p>
+  <!-- email delivery notice — shown after submit -->
+  <div class="r-section" id="emailDeliveryNotice" style="display:none;">
+    <div class="r-label">✦ Your Full Profile Has Been Sent</div>
+    <div class="breakthrough-box">
+      <p class="bt-body">Your complete Silence Profile — your personal diagnosis, what God is saying to you, the lessons silence wants to teach you, your breakthrough path, and your 7-day sacred practice — has been composed for <strong id="deliveredToEmail" style="color:var(--gold);"></strong>.</p>
+      <p style="font-size:0.78rem;color:var(--text-muted);margin-top:16px;line-height:1.7;">Use the download button below to save your full profile to this device, or check your email client.</p>
+      <button class="btn-session gold" onclick="downloadProfile()" style="margin-top:18px;font-size:0.68rem;">⬇ Download My Full Profile</button>
+    </div>
   </div>
 
   <div class="r-section">
@@ -787,27 +792,13 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
     </div>
   </div>
 
-  <div class="r-section">
-    <div class="r-label">What Silence Wants to Teach You</div>
-    <div class="lessons" id="rLessons"></div>
-  </div>
-
-  <div class="r-section">
-    <div class="r-label">Your Breakthrough Path</div>
-    <div class="breakthrough-box">
-      <h3 class="bt-heading serif">Here's how transformation begins for you</h3>
-      <p class="bt-body" id="rBreakthrough"></p>
-      <div class="practice-tag" id="rPracticeTag"></div>
-    </div>
-  </div>
-
   <!-- 7-DAY PRACTICE -->
   <div class="seven-day-section" id="section-practice">
-    <div class="seven-day-inner">
+    <div class="seven-day-inner" style="text-align:center;">
       <div class="r-label" style="text-align:center;">Your Sacred Practice</div>
       <h2 class="seven-day-title serif">7 Days of Silence</h2>
-      <p class="seven-day-sub">One practice. One scripture. Seven days to begin your transformation.</p>
-      <div class="day-cards" id="dayCards"></div>
+      <p class="seven-day-sub">Your complete 7-day practice plan — daily practices, scriptures, and journal prompts tailored to your profile — is included in your downloadable profile.</p>
+      <button class="btn-session gold" onclick="downloadProfile()" style="margin-top:8px;font-size:0.68rem;">⬇ Download Your 7-Day Plan</button>
     </div>
   </div>
 
@@ -1382,6 +1373,24 @@ function nextQ(){
 }
 
 // ── EMAIL & SUBMIT ────────────────────────────────────────────
+function buildProfileText(p,days,name){
+  let t='THE QUIET AUTHORITY — YOUR SILENCE PROFILE\n';
+  t+='══════════════════════════════════════════\n\n';
+  t+='Beloved '+(name||'friend')+',\n\n';
+  t+='Your Profile: '+p.name+'\n"'+p.tagline+'"\n';
+  t+='Date: '+new Date().toLocaleDateString()+'\n\n';
+  t+='━━━ WHAT GOD WANTS YOU TO HEAR ━━━\n"'+p.scripture+'" — '+p.ref+'\n\n';
+  t+='━━━ YOUR DIAGNOSIS ━━━\n'+p.diagnosis+'\n\n';
+  t+='━━━ WHAT SILENCE WANTS TO TEACH YOU ━━━\n'+p.lessons.map(l=>'• '+l).join('\n')+'\n\n';
+  t+='━━━ YOUR BREAKTHROUGH PATH ━━━\n'+p.breakthrough+'\n\n';
+  t+='━━━ YOUR 7-DAY PRACTICE ━━━\n'+p.practiceTag+'\n\n';
+  days.forEach((d,i)=>{t+='Day '+(i+1)+': '+d.title+'\nPractice: '+d.practice+'\n'+d.scripture+'\n\n';});
+  t+='━━━ JOURNAL PROMPT ━━━\n'+p.journal+'\n\n';
+  t+='══════════════════════════════════════════\n';
+  t+='Sanctuary Grace Ministry\nhttps://transform24.github.io/THE-QUIET-AUTHORITY/';
+  return t;
+}
+
 function submitAndReveal(){
   const name=document.getElementById('inputName').value.trim();
   const email=document.getElementById('inputEmail').value.trim();
@@ -1389,14 +1398,25 @@ function submitAndReveal(){
   if(!email||!email.includes('@')){document.getElementById('inputEmail').style.borderColor='#C1593C';return;}
   userName=name;userEmail=email;
 
-  // Formspree submission
+  const profileKey=calculateProfile();
+  const p=PROFILES[profileKey];
+  const profileText=buildProfileText(p,SEVEN_DAYS[profileKey],name);
+
+  // Deliver full profile to user's email immediately via mailto
+  try{
+    const sub=encodeURIComponent('Your Quiet Authority Profile — '+p.name);
+    const bdy=encodeURIComponent(profileText);
+    window.open('mailto:'+encodeURIComponent(email)+'?subject='+sub+'&body='+bdy,'_self');
+  }catch(e){}
+
+  // Formspree notification for Grace's records
   fetch('https://formspree.io/f/xzdkgbbq',{
     method:'POST',
     headers:{'Content-Type':'application/json','Accept':'application/json'},
     body:JSON.stringify({
       _subject:'🌿 New TQA Submission — '+name,
       name:name,email:email,_replyto:email,
-      profile:calculateProfile(),
+      profile:p.name,
       source:'TQA Assessment'
     })
   }).catch(()=>{});
@@ -1456,30 +1476,18 @@ function showResults(){
   const p=PROFILES[currentProfile];
   document.getElementById('rName').innerHTML='<em>'+p.name+'</em>';
   document.getElementById('rTagline').textContent=p.tagline;
-  document.getElementById('rDiagnosis').textContent=p.diagnosis;
   document.getElementById('rScripture').textContent=p.scripture;
   document.getElementById('rScriptureRef').textContent=p.ref;
-  document.getElementById('rLessons').innerHTML=p.lessons.map(l=>'<div class="lesson"><span class="lesson-glyph">✦</span><span class="lesson-text">'+l+'</span></div>').join('');
-  document.getElementById('rBreakthrough').textContent=p.breakthrough;
-  document.getElementById('rPracticeTag').textContent=p.practiceTag;
-  document.getElementById('jpText').textContent=p.journal;
 
-  // 7-day cards
-  const days=SEVEN_DAYS[currentProfile];
-  document.getElementById('dayCards').innerHTML=days.map((d,i)=>
-    '<div class="day-card"><div class="day-num">'+(i+1)+'</div>'+
-    '<div class="day-content"><div class="day-title">'+d.title+'</div>'+
-    '<p class="day-practice">'+d.practice+'</p>'+
-    '<p class="day-scripture">'+d.scripture+'</p></div></div>'
-  ).join('');
+  // Show journal prompt for silence session
+  const jpText=document.getElementById('jpText');
+  if(jpText)jpText.textContent=p.journal;
 
-  // Confirm banner
-  if(userName){
-    const cb=document.getElementById('confirmBanner');
-    const ct=document.getElementById('confirmText');
-    if(ct)ct.innerHTML=userName+', your Silence Profile is saved to this device. <span style="display:inline-flex;gap:8px;flex-wrap:wrap;margin-top:10px;"><button onclick="downloadProfile()" style="background:none;border:1px solid var(--sage);color:var(--sage-light);font-family:\'Jost\',sans-serif;font-size:0.63rem;letter-spacing:0.15em;text-transform:uppercase;padding:6px 16px;cursor:pointer;font-weight:300;">⬇ Download Profile</button><button onclick="emailProfile()" style="background:none;border:1px solid var(--gold-dim);color:var(--gold);font-family:\'Jost\',sans-serif;font-size:0.63rem;letter-spacing:0.15em;text-transform:uppercase;padding:6px 16px;cursor:pointer;font-weight:300;">✉ Email to Me</button></span>';
-    if(cb)cb.style.display='block';
-  }
+  // Show email delivery notice
+  const edn=document.getElementById('emailDeliveryNotice');
+  const dte=document.getElementById('deliveredToEmail');
+  if(edn){edn.style.display='block';}
+  if(dte&&userEmail)dte.textContent=userEmail;
 
   renderSacredSpace();
   renderTickers();
@@ -1815,23 +1823,7 @@ function stopSilenceQuotes(){
 
 // ── DOWNLOAD PROFILE ──────────────────────────────────────────
 function downloadProfile(){
-  const p=PROFILES[currentProfile];
-  const days=SEVEN_DAYS[currentProfile];
-  let t='THE QUIET AUTHORITY — YOUR SILENCE PROFILE\n';
-  t+='═══════════════════════════════════════════\n\n';
-  t+='Name: '+(userName||'Beloved')+'\n';
-  t+='Profile: '+p.name+'\n';
-  t+='Date: '+new Date().toLocaleDateString()+'\n\n';
-  t+=p.tagline+'\n\n';
-  t+='━━━ YOUR DIAGNOSIS ━━━\n'+p.diagnosis+'\n\n';
-  t+='━━━ SCRIPTURE ━━━\n"'+p.scripture+'" — '+p.ref+'\n\n';
-  t+='━━━ WHAT SILENCE WANTS TO TEACH YOU ━━━\n'+p.lessons.map(l=>'• '+l).join('\n')+'\n\n';
-  t+='━━━ YOUR BREAKTHROUGH PATH ━━━\n'+p.breakthrough+'\n\n';
-  t+='━━━ 7-DAY PRACTICE ━━━\n';
-  days.forEach((d,i)=>{t+='Day '+(i+1)+': '+d.title+'\n'+d.practice+'\n'+d.scripture+'\n\n';});
-  t+='━━━ JOURNAL PROMPT ━━━\n'+p.journal+'\n\n';
-  t+='═══════════════════════════════════════════\n';
-  t+='Sanctuary Grace Ministry\nhttps://transform24.github.io/THE-QUIET-AUTHORITY/\n';
+  const t=buildProfileText(PROFILES[currentProfile],SEVEN_DAYS[currentProfile],userName);
   const blob=new Blob([t],{type:'text/plain'});
   const url=URL.createObjectURL(blob);
   const a=document.createElement('a');
@@ -1840,30 +1832,7 @@ function downloadProfile(){
   URL.revokeObjectURL(url);
 }
 
-// ── EMAIL PROFILE ─────────────────────────────────────────────
-function emailProfile(){
-  const p=PROFILES[currentProfile];
-  const days=SEVEN_DAYS[currentProfile];
-  let body='THE QUIET AUTHORITY — YOUR SILENCE PROFILE\n\n';
-  body+='Name: '+(userName||'Beloved')+'\n';
-  body+='Profile: '+p.name+'\n';
-  body+='Date: '+new Date().toLocaleDateString()+'\n\n';
-  body+=p.tagline+'\n\n';
-  body+='YOUR DIAGNOSIS:\n'+p.diagnosis+'\n\n';
-  body+='SCRIPTURE:\n"'+p.scripture+'" — '+p.ref+'\n\n';
-  body+='WHAT SILENCE WANTS TO TEACH YOU:\n'+p.lessons.map(l=>'• '+l).join('\n')+'\n\n';
-  body+='YOUR BREAKTHROUGH PATH:\n'+p.breakthrough+'\n\n';
-  body+='7-DAY PRACTICE:\n';
-  days.forEach((d,i)=>{body+='Day '+(i+1)+': '+d.title+'\n'+d.practice+'\n\n';});
-  body+='JOURNAL PROMPT:\n'+p.journal+'\n\n';
-  body+='───────────────────────────────────\n';
-  body+='Sanctuary Grace Ministry\nhttps://transform24.github.io/THE-QUIET-AUTHORITY/';
-  const sub=encodeURIComponent('My Quiet Authority Profile — '+p.name);
-  const bdy=encodeURIComponent(body);
-  const to=encodeURIComponent(userEmail||'');
-  window.open('mailto:'+to+'?subject='+sub+'&body='+bdy);
-}
+
 </script>
 </body>
 </html>
-Displaying index.txt.
