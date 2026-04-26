@@ -565,7 +565,12 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 .match-bar-fill.top{background:var(--gold);}
 
 /* ══ DASHBOARD ══ */
-#screen-dashboard{padding:68px 0 80px;min-height:100vh;}
+#screen-dashboard{padding:52px 0 80px;min-height:100vh;}
+#dashBack{position:fixed;top:0;left:0;right:0;z-index:400;height:52px;background:rgba(13,13,13,0.96);border-bottom:1px solid var(--border);backdrop-filter:blur(12px);display:none;align-items:center;padding:0 20px;gap:14px;}
+#dashBack.visible{display:flex;}
+#dashBack button{background:none;border:none;color:var(--text-muted);font-family:'Jost',sans-serif;font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;cursor:pointer;transition:color 0.3s;font-weight:300;}
+#dashBack button:hover{color:var(--gold);}
+#dashBack .db-title{font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--cream);font-weight:300;flex:1;text-align:center;}
 .dash-wrap{max-width:580px;margin:0 auto;padding:0 24px;}
 .dash-header{text-align:center;padding:32px 0 28px;border-bottom:1px solid var(--border);margin-bottom:4px;}
 .dash-badge{display:inline-block;padding:6px 20px;border:1px solid var(--gold-dim);font-size:0.56rem;letter-spacing:0.32em;text-transform:uppercase;color:var(--gold);font-weight:300;margin-bottom:14px;}
@@ -611,6 +616,13 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
     </div>
   </div>
 </nav>
+
+<!-- ══ DASHBOARD BACK BAR ══ -->
+<div id="dashBack">
+  <button onclick="resumeProfile()">← Results</button>
+  <span class="db-title">My Dashboard</span>
+  <button onclick="startOver()" style="color:var(--text-muted);">Start Over</button>
+</div>
 
 <!-- ══ BOTTOM TAB BAR ══ -->
 <nav id="tabBar">
@@ -1300,10 +1312,12 @@ function showScreen(id){
   const pb=document.getElementById('progressBar');
   const tb=document.getElementById('tabBar');
   const prb=document.getElementById('profileReturnBar');
+  const db=document.getElementById('dashBack');
 
   if(nav)nav.classList.remove('visible');
   if(tb)tb.classList.remove('visible');
   if(prb)prb.classList.remove('visible');
+  if(db)db.classList.remove('visible');
   if(pb)pb.style.display='none';
 
   if(id==='screen-question'){
@@ -1321,6 +1335,7 @@ function showScreen(id){
     startTabObserver();
   } else if(id==='screen-dashboard'){
     if(tb)tb.classList.add('visible');
+    if(db)db.classList.add('visible');
     setActiveTab('dash');
   } else if(id==='screen-landing'){
     // show return bar if a profile is saved

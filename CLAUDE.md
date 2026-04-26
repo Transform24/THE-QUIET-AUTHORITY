@@ -58,7 +58,32 @@
 
 ---
 
-## 4. IP PROTECTION PROTOCOL
+## 4. ECOSYSTEM MAP
+
+| Project | URL / Handle | Purpose |
+|---|---|---|
+| The Quiet Authority | `transform24.github.io/THE-QUIET-AUTHORITY` | 8-question assessment + profile engine |
+| Sanctuary Community | `beacons.ai/sanctuarygrace` | Free hub, links, all resources |
+| Pinterest | `pinterest.com/sanctuarygrace` | Primary traffic driver |
+| YouTube | `youtube.com/@sanctuarygrace` | Video content |
+| Circle of Silence | Coming soon | 30-day paid transformation program |
+| Gallery Wall Art | Coming soon | Prophetic printable downloads |
+
+### Stripe Payment Links
+| Product | Price | Link |
+|---|---|---|
+| Devotional Week 1 — Vision | $4.99 | `buy.stripe.com/cNieVdbNm6G586UdeWcQU03` |
+| Devotional Week 2 — Renewal | $4.99 | `buy.stripe.com/3cI7sL18I7K9evi1wecQU04` |
+| Devotional Week 3 — Peace | $4.99 | `buy.stripe.com/14A7sL8Ba4xX9aY7UCcQU06` |
+| Devotional Week 4 — Calling | $4.99 | `buy.stripe.com/eVqeVd7x66G5gDq0sacQU02` |
+| Devotional Bundle (all 4) | $19.96 | `buy.stripe.com/4gM6oH6t28Od5YM3EmcQU0k` |
+| Book — The Quiet Authority | $15.99 | `buy.stripe.com/00w3cv5oYc0p0EscaScQU0d` |
+| Book — The Parable of the Cocoon | $15.99 | `buy.stripe.com/eVq3cv8Ba6G5bj6fn4cQU0g` |
+| R.E.S.T. Workbook | Free | `beacons.ai/sanctuarygrace` |
+
+---
+
+## 5. IP PROTECTION PROTOCOL
 
 **Rule**: Grace's proprietary written content (diagnosis, lessons, breakthrough, 7-day plan, journal prompts) is stored in JS but **never rendered as a visible web page section**.
 
@@ -71,7 +96,7 @@
 
 ---
 
-## 5. INTEGRATIONS
+## 6. INTEGRATIONS
 
 | Service | Key / ID | Purpose |
 |---|---|---|
@@ -82,7 +107,7 @@
 
 ---
 
-## 6. AGENT RULES
+## 7. AGENT RULES
 
 1. **Never change brand voice, tokens, or font stack** without explicit Grace approval
 2. **Always test with Playwright** after any UI change: `node --input-type=module < test.mjs` (ESM only, path `/opt/node22/lib/node_modules/playwright/index.mjs`)
@@ -102,7 +127,7 @@
 
 ---
 
-## 7. KNOWN ARCHITECTURE PATTERNS
+## 8. KNOWN ARCHITECTURE PATTERNS
 
 ```javascript
 // Screen navigation
@@ -128,7 +153,7 @@ recordSession()           // increment tqa_sessions; called inside sessionComple
 
 ---
 
-## 8. PENDING / ROADMAP
+## 9. PENDING / ROADMAP
 
 - [x] **Profile match bars on reveal screen** — 4 animated bars, primary glows gold
 - [x] **User dashboard** — 7-day tracker, session stats, quick actions (`screen-dashboard`)
@@ -142,7 +167,7 @@ recordSession()           // increment tqa_sessions; called inside sessionComple
 
 ---
 
-## 9. PROFITABLE SUGGESTIONS FOR GRACE'S ECOSYSTEM
+## 10. PROFITABLE SUGGESTIONS FOR GRACE'S ECOSYSTEM
 
 1. **Profile-gated content** — Each profile gets a unique Google Drive PDF delivered via email (diagnosis + 7-day plan as a beautifully designed PDF, not plain text). Upgrade path to premium version.
 2. **Circle of Silence membership** — Monthly Zoom silence sessions, $27/month. Gate behind MailerLite sequence triggered by TQA completion.
@@ -154,7 +179,7 @@ recordSession()           // increment tqa_sessions; called inside sessionComple
 
 ---
 
-## 10. WHAT NOT TO DO (learned the hard way)
+## 11. WHAT NOT TO DO (learned the hard way)
 
 - **Do NOT render** diagnosis / lessons / breakthrough / 7-day as page HTML — IP violation
 - **Do NOT add MailerLite** until Grace requests automated sequences
@@ -167,7 +192,7 @@ recordSession()           // increment tqa_sessions; called inside sessionComple
 
 ---
 
-## 11. NEW PROJECT TEMPLATE (inherit from this SOP)
+## 12. NEW PROJECT TEMPLATE (inherit from this SOP)
 
 ```
 Project Name:
