@@ -269,23 +269,23 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 .lessons{display:flex;flex-direction:column;gap:14px;margin-top:8px;}
 .lesson{display:flex;align-items:flex-start;gap:16px;padding:18px 22px;background:var(--surface);border:1px solid var(--border);}
 .lesson-glyph{color:var(--gold);font-family:'Cormorant Garamond',serif;font-size:1.1rem;flex-shrink:0;margin-top:2px;}
-.lesson-text{font-size:0.86rem;color:var(--text-dim);line-height:1.7;font-weight:300;}
+.lesson-text{font-size:0.9rem;color:var(--cream-dim);line-height:1.7;font-weight:300;}
 .breakthrough-box{background:var(--surface);border:1px solid var(--border2);padding:34px;margin-top:8px;position:relative;}
 .breakthrough-box::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
 .bt-heading{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:500;color:var(--cream);margin-bottom:14px;}
-.bt-body{font-size:0.86rem;color:var(--text-dim);line-height:1.88;font-weight:300;}
+.bt-body{font-size:0.9rem;color:var(--cream-dim);line-height:1.88;font-weight:300;}
 .practice-tag{display:inline-block;margin-top:18px;padding:7px 18px;border:1px solid var(--sage);color:var(--sage-light);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;font-weight:300;}
 
 /* ══ SILENCE SESSION ══ */
 .silence-section{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
 .silence-inner{max-width:700px;margin:0 auto;padding:56px 24px;text-align:center;}
 .silence-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:300;color:var(--cream);margin-bottom:10px;}
-.silence-sub{font-size:0.85rem;color:var(--text-dim);line-height:1.8;margin-bottom:40px;font-weight:300;max-width:460px;margin-left:auto;margin-right:auto;}
+.silence-sub{font-size:0.88rem;color:var(--cream-dim);line-height:1.8;margin-bottom:40px;font-weight:300;max-width:460px;margin-left:auto;margin-right:auto;}
 .session-phases{display:flex;flex-direction:column;gap:10px;margin-bottom:36px;max-width:400px;margin-left:auto;margin-right:auto;text-align:left;}
 .phase{display:flex;align-items:center;gap:14px;font-size:0.82rem;color:var(--text-dim);font-weight:300;}
 .phase-dot{width:7px;height:7px;border-radius:50%;background:var(--sage);flex-shrink:0;}
 .timer-display{font-family:'Cormorant Garamond',serif;font-size:clamp(3.5rem,8vw,6rem);font-weight:300;color:var(--gold);letter-spacing:0.05em;margin:24px 0;line-height:1;}
-.timer-label{font-size:0.65rem;letter-spacing:0.25em;text-transform:uppercase;color:var(--text-muted);margin-bottom:28px;font-weight:300;}
+.timer-label{font-size:0.72rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:28px;font-weight:300;}
 .timer-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
 .btn-session{padding:13px 32px;background:transparent;border:1px solid var(--sage);color:var(--sage-light);font-family:'Jost',sans-serif;font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;cursor:pointer;transition:all 0.3s ease;font-weight:300;}
 .btn-session:hover{background:var(--sage);color:var(--bg);}
@@ -317,7 +317,7 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 .day-card:hover{border-color:var(--gold-dim);}
 .day-num{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:var(--gold-dim);flex-shrink:0;line-height:1;min-width:36px;text-align:center;}
 .day-title{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:500;color:var(--cream);margin-bottom:4px;}
-.day-practice{font-size:0.82rem;color:var(--text-dim);line-height:1.6;font-weight:300;}
+.day-practice{font-size:0.86rem;color:var(--cream-dim);line-height:1.6;font-weight:300;}
 .day-scripture{font-size:0.75rem;font-style:italic;color:var(--gold-dim);margin-top:6px;font-family:'Cormorant Garamond',serif;}
 
 /* ══ SACRED SPACE ══ */
@@ -539,6 +539,28 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
   .tab-item{font-size:0.44rem;}
   .tab-icon{font-size:0.9rem;}
 }
+
+/* ══ AUDIO TRACK PICKER ══ */
+.track-btn{
+  background:none;border:1px solid var(--border2);color:var(--text-muted);
+  font-family:'Jost',sans-serif;font-size:0.62rem;letter-spacing:0.12em;
+  text-transform:uppercase;padding:9px 16px;cursor:pointer;
+  transition:all 0.3s;font-weight:300;
+}
+.track-btn:hover{border-color:var(--sage);color:var(--sage-light);}
+.track-btn.active{border-color:var(--gold);color:var(--gold);background:rgba(201,169,110,0.07);}
+
+/* ══ SILENCE QUOTE DISPLAY ══ */
+#silenceQuoteDisplay{
+  max-width:420px;margin:0 auto 24px;text-align:center;
+  padding:22px 26px;
+  background:rgba(201,169,110,0.04);
+  border:1px solid rgba(201,169,110,0.15);
+  animation:fadeUp 0.8s ease forwards;
+}
+#sqType{font-size:0.58rem;letter-spacing:0.38em;text-transform:uppercase;color:var(--gold-dim);font-weight:300;margin-bottom:12px;}
+#sqText{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1.05rem,2vw,1.3rem);color:var(--cream);line-height:1.65;margin-bottom:10px;font-weight:400;}
+#sqRef{font-size:0.65rem;letter-spacing:0.15em;color:var(--gold-dim);font-weight:300;}
 </style>
 </head>
 <body>
@@ -801,8 +823,25 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
         <span class="breath-label" id="breathLabel">Breathe in</span>
       </div>
 
+      <div id="silenceQuoteDisplay" style="display:none;">
+        <div id="sqType"></div>
+        <p id="sqText"></p>
+        <div id="sqRef"></div>
+      </div>
+
       <div class="timer-display" id="timerDisplay">15:00</div>
       <div class="timer-label" id="timerLabel">Ready when you are</div>
+
+      <div id="audioPickerWrap" style="margin-bottom:24px;">
+        <div style="font-size:0.58rem;letter-spacing:0.32em;text-transform:uppercase;color:var(--gold-dim);font-weight:300;margin-bottom:12px;text-align:center;">Choose Your Atmosphere</div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;">
+          <button class="track-btn" onclick="selectTrack(0)">Track I — Still Waters</button>
+          <button class="track-btn" onclick="selectTrack(1)">Track II — Morning Quiet</button>
+          <button class="track-btn" onclick="selectTrack(2)">Track III — Holy Ground</button>
+          <button class="track-btn" onclick="selectTrack(3)">Track IV — Sacred Rest</button>
+        </div>
+        <div style="font-size:0.6rem;color:var(--text-muted);text-align:center;margin-top:8px;letter-spacing:0.08em;">Select a track or we'll choose one for you</div>
+      </div>
 
       <div class="timer-btns">
         <button class="btn-session gold" onclick="startSession()" id="btnStartSession">Begin Session</button>
@@ -1101,9 +1140,24 @@ const SACRED_SPACE={
 
 const MUSIC=['music1.mp3','music2.mp3','music3.mp3','music4.mp3'];
 
+const SILENCE_QUOTES=[
+  {type:'Thinking',text:'"Be still, and know that I am God."',ref:'— Psalm 46:10'},
+  {type:'Praying',text:'Lord, in this silence I receive what you have been trying to give me.',ref:''},
+  {type:'Meditating',text:'"He restores my soul. He leads me beside quiet waters."',ref:'— Psalm 23:2–3'},
+  {type:'Praying',text:'I release what I cannot carry. You were never asking me to hold it.',ref:''},
+  {type:'Thinking',text:'"I have called you by name; you are mine."',ref:'— Isaiah 43:1'},
+  {type:'Meditating',text:'Beneath the roles, the titles, the noise — she is still here. Known. Loved. Named.',ref:''},
+  {type:'Praying',text:'"Come to me, all who are weary, and I will give you rest."',ref:'— Matthew 11:28'},
+  {type:'Thinking',text:'God, show me who I am when no one needs anything from me.',ref:''},
+  {type:'Meditating',text:'The silence is not empty. It is full of everything He has been waiting to say.',ref:''},
+  {type:'Thinking',text:'"She is clothed with strength and dignity."',ref:'— Proverbs 31:25'},
+  {type:'Praying',text:'You are enough, beloved. You have always been enough.',ref:''},
+  {type:'Meditating',text:'"Before I formed you in the womb, I knew you."',ref:'— Jeremiah 1:5'}
+];
+
 // ── STATE ─────────────────────────────────────────────────────
 let currentQ=0,answers=[],userName='',userEmail='',currentProfile='A';
-let voPlaying=false,timerInterval=null,breathInterval=null,timerSeconds=900,paused=false,sessionPhase='idle';
+let voPlaying=false,timerInterval=null,breathInterval=null,timerSeconds=900,paused=false,sessionPhase='idle',selectedTrack=-1,silenceQuoteInterval=null,silenceQuoteIdx=0;
 
 // ── INIT ──────────────────────────────────────────────────────
 (function init(){
@@ -1357,7 +1411,7 @@ function showResults(){
   if(userName){
     const cb=document.getElementById('confirmBanner');
     const ct=document.getElementById('confirmText');
-    if(ct)ct.textContent=userName+', your Silence Profile has been sent to '+userEmail+'.';
+    if(ct)ct.innerHTML=userName+', your Silence Profile is saved to this device. <button onclick="downloadProfile()" style="background:none;border:1px solid var(--sage);color:var(--sage-light);font-family:\'Jost\',sans-serif;font-size:0.63rem;letter-spacing:0.15em;text-transform:uppercase;padding:6px 16px;cursor:pointer;margin-left:8px;font-weight:300;">⬇ Download Profile</button>';
     if(cb)cb.style.display='block';
   }
 
@@ -1401,9 +1455,13 @@ function renderTickers(){
 // ── SILENCE SESSION ───────────────────────────────────────────
 function startSession(){
   const ma=document.getElementById('musicAudio');
-  ma.src=MUSIC[Math.floor(Math.random()*MUSIC.length)];
+  const ti=selectedTrack>=0?selectedTrack:Math.floor(Math.random()*MUSIC.length);
+  ma.src=MUSIC[ti];
   ma.volume=0.32;ma.loop=true;ma.play().catch(()=>{});
   sessionPhase='music';timerSeconds=300;
+  updateTimerDisplay();
+  const ap=document.getElementById('audioPickerWrap');
+  if(ap)ap.style.display='none';
   document.getElementById('btnStartSession').style.display='none';
   document.getElementById('btnPauseSession').style.display='inline-block';
   document.getElementById('btnResetSession').style.display='inline-block';
@@ -1423,7 +1481,7 @@ function runTimer(){
         document.getElementById('timerLabel').textContent='Enter the silence…';
         const bw=document.getElementById('breathingWrap');
         if(bw)bw.style.display='flex';
-        startBreathing();runTimer();
+        startBreathing();startSilenceQuotes();runTimer();
       } else {
         timerSeconds=0;updateTimerDisplay();sessionComplete();
       }
@@ -1459,9 +1517,13 @@ function pauseSession(){
 }
 
 function resetSession(){
+  stopSilenceQuotes();
   clearInterval(timerInterval);clearInterval(breathInterval);
   const ma=document.getElementById('musicAudio');ma.pause();ma.src='';
   paused=false;timerSeconds=900;sessionPhase='idle';updateTimerDisplay();
+  selectedTrack=-1;
+  document.querySelectorAll('.track-btn').forEach(b=>b.classList.remove('active'));
+  const ap=document.getElementById('audioPickerWrap');if(ap)ap.style.display='block';
   document.getElementById('timerLabel').textContent='Ready when you are';
   document.getElementById('btnStartSession').style.display='inline-block';
   document.getElementById('btnPauseSession').style.display='none';
@@ -1652,6 +1714,64 @@ function showSaveToast(){
     t.style.opacity='0';
     setTimeout(()=>{t.style.display='none';},450);
   },2200);
+}
+
+// ── AUDIO TRACK SELECTION ─────────────────────────────────────
+function selectTrack(i){
+  selectedTrack=i;
+  document.querySelectorAll('.track-btn').forEach((b,idx)=>b.classList.toggle('active',idx===i));
+}
+
+// ── SILENCE QUOTES ────────────────────────────────────────────
+function startSilenceQuotes(){
+  silenceQuoteIdx=Math.floor(Math.random()*SILENCE_QUOTES.length);
+  const el=document.getElementById('silenceQuoteDisplay');
+  const typeEl=document.getElementById('sqType');
+  const textEl=document.getElementById('sqText');
+  const refEl=document.getElementById('sqRef');
+  function show(){
+    const q=SILENCE_QUOTES[silenceQuoteIdx];
+    if(el)el.style.display='block';
+    if(typeEl)typeEl.textContent=q.type+'…';
+    if(textEl)textEl.textContent=q.text;
+    if(refEl)refEl.textContent=q.ref;
+    silenceQuoteIdx=(silenceQuoteIdx+1)%SILENCE_QUOTES.length;
+  }
+  show();
+  silenceQuoteInterval=setInterval(show,75000);
+}
+
+function stopSilenceQuotes(){
+  clearInterval(silenceQuoteInterval);
+  const el=document.getElementById('silenceQuoteDisplay');
+  if(el)el.style.display='none';
+}
+
+// ── DOWNLOAD PROFILE ──────────────────────────────────────────
+function downloadProfile(){
+  const p=PROFILES[currentProfile];
+  const days=SEVEN_DAYS[currentProfile];
+  let t='THE QUIET AUTHORITY — YOUR SILENCE PROFILE\n';
+  t+='═══════════════════════════════════════════\n\n';
+  t+='Name: '+(userName||'Beloved')+'\n';
+  t+='Profile: '+p.name+'\n';
+  t+='Date: '+new Date().toLocaleDateString()+'\n\n';
+  t+=p.tagline+'\n\n';
+  t+='━━━ YOUR DIAGNOSIS ━━━\n'+p.diagnosis+'\n\n';
+  t+='━━━ SCRIPTURE ━━━\n"'+p.scripture+'" — '+p.ref+'\n\n';
+  t+='━━━ WHAT SILENCE WANTS TO TEACH YOU ━━━\n'+p.lessons.map(l=>'• '+l).join('\n')+'\n\n';
+  t+='━━━ YOUR BREAKTHROUGH PATH ━━━\n'+p.breakthrough+'\n\n';
+  t+='━━━ 7-DAY PRACTICE ━━━\n';
+  days.forEach((d,i)=>{t+='Day '+(i+1)+': '+d.title+'\n'+d.practice+'\n'+d.scripture+'\n\n';});
+  t+='━━━ JOURNAL PROMPT ━━━\n'+p.journal+'\n\n';
+  t+='═══════════════════════════════════════════\n';
+  t+='Sanctuary Grace Ministry\nhttps://transform24.github.io/THE-QUIET-AUTHORITY/\n';
+  const blob=new Blob([t],{type:'text/plain'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url;a.download='MyQuietAuthorityProfile.txt';
+  document.body.appendChild(a);a.click();document.body.removeChild(a);
+  URL.revokeObjectURL(url);
 }
 </script>
 </body>
