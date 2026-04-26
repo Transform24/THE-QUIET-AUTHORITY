@@ -75,25 +75,6 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 #navProfileLabel{font-size:0.6rem;color:var(--gold-dim);letter-spacing:0.15em;display:none;}
 
 /* ══ RETURN FLOAT BUTTON ══ */
-#returnBtn{
-  display:none;
-  position:fixed;bottom:24px;right:24px;
-  z-index:450;
-  background:var(--bg2);
-  border:1px solid var(--gold-dim);
-  color:var(--gold);
-  font-family:'Jost',sans-serif;
-  font-size:0.62rem;
-  letter-spacing:0.18em;
-  text-transform:uppercase;
-  padding:10px 20px;
-  cursor:pointer;
-  transition:all 0.3s;
-  backdrop-filter:blur(8px);
-}
-#returnBtn:hover{background:var(--gold);color:var(--bg);}
-#returnBtn.visible{display:block;}
-
 /* ══ LANDING ══ */
 #screen-landing{position:relative;align-items:stretch;justify-content:stretch;min-height:100vh;}
 .landing-banner{position:relative;width:100%;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:0 24px 80px;text-align:center;overflow:hidden;}
@@ -279,19 +260,11 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 .r-name{font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,6.5vw,5rem);font-weight:300;color:var(--cream);line-height:1;margin-bottom:10px;}
 .r-name em{color:var(--gold);font-style:italic;}
 .r-tagline{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(1rem,2vw,1.3rem);color:var(--cream-dim);margin-top:14px;}
-#confirmBanner{display:none;background:var(--bg2);padding:18px 24px;}
-.confirm-inner{max-width:720px;margin:0 auto;background:rgba(125,140,110,0.07);border:1px solid var(--sage);border-left:3px solid var(--sage);padding:18px 22px;}
-.confirm-inner p{font-size:0.83rem;color:var(--sage-light);line-height:1.6;font-weight:300;}
 .r-section{max-width:700px;margin:0 auto;padding:56px 24px;border-bottom:1px solid var(--border);}
 .r-label{font-size:0.58rem;letter-spacing:0.36em;text-transform:uppercase;color:var(--gold-dim);font-weight:300;margin-bottom:22px;}
-.r-diagnosis{font-family:'Cormorant Garamond',serif;font-size:clamp(1.1rem,2.2vw,1.42rem);font-weight:400;color:var(--cream);line-height:1.78;}
 .scripture-card{background:var(--surface);border-left:2px solid var(--gold);padding:30px 34px;margin-top:8px;}
 .scripture-text{font-family:'Cormorant Garamond',serif;font-size:clamp(1.15rem,2.4vw,1.55rem);font-style:italic;font-weight:400;color:var(--cream);line-height:1.65;margin-bottom:12px;}
 .scripture-ref{font-size:0.68rem;letter-spacing:0.2em;color:var(--gold-dim);font-weight:300;}
-.lessons{display:flex;flex-direction:column;gap:14px;margin-top:8px;}
-.lesson{display:flex;align-items:flex-start;gap:16px;padding:18px 22px;background:var(--surface);border:1px solid var(--border);}
-.lesson-glyph{color:var(--gold);font-family:'Cormorant Garamond',serif;font-size:1.1rem;flex-shrink:0;margin-top:2px;}
-.lesson-text{font-size:0.9rem;color:var(--cream-dim);line-height:1.7;font-weight:300;}
 .breakthrough-box{background:var(--surface);border:1px solid var(--border2);padding:34px;margin-top:8px;position:relative;}
 .breakthrough-box::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);}
 .bt-heading{font-family:'Cormorant Garamond',serif;font-size:1.25rem;font-weight:500;color:var(--cream);margin-bottom:14px;}
@@ -334,9 +307,6 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 .seven-day-inner{max-width:700px;margin:0 auto;padding:60px 24px;}
 .seven-day-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:300;color:var(--cream);margin-bottom:8px;text-align:center;}
 .seven-day-sub{font-size:0.85rem;color:var(--text-dim);text-align:center;line-height:1.8;margin-bottom:40px;font-weight:300;}
-.day-cards{display:flex;flex-direction:column;gap:12px;}
-.day-card{display:flex;align-items:flex-start;gap:20px;padding:20px 24px;background:var(--surface);border:1px solid var(--border);transition:border-color 0.3s;}
-.day-card:hover{border-color:var(--gold-dim);}
 .day-num{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:var(--gold-dim);flex-shrink:0;line-height:1;min-width:36px;text-align:center;}
 .day-title{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:500;color:var(--cream);margin-bottom:4px;}
 .day-practice{font-size:0.86rem;color:var(--cream-dim);line-height:1.6;font-weight:300;}
@@ -642,9 +612,6 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
   </div>
 </nav>
 
-<!-- ══ RETURN FLOAT BUTTON ══ -->
-<button id="returnBtn" onclick="scrollToTop()">↑ My Profile</button>
-
 <!-- ══ BOTTOM TAB BAR ══ -->
 <nav id="tabBar">
   <button class="tab-item" id="tab-profile" onclick="tabNav('profile')">
@@ -805,12 +772,6 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
     <div style="margin-top:28px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
       <button class="btn-session gold" onclick="openJournalModal()" style="font-size:0.68rem;padding:12px 28px;">✦ Write in My Journal</button>
       <a class="btn-session" href="https://website.beacons.ai/sanctuarygrace" target="_blank" style="font-size:0.68rem;padding:12px 28px;text-decoration:none;display:inline-block;">Free Access — Sanctuary</a>
-    </div>
-  </div>
-
-  <div id="confirmBanner">
-    <div class="confirm-inner">
-      <p id="confirmText"></p>
     </div>
   </div>
 
@@ -1321,14 +1282,11 @@ function showScreen(id){
   window.scrollTo(0,0);
 
   const nav=document.getElementById('stickyNav');
-  const ret=document.getElementById('returnBtn');
   const pb=document.getElementById('progressBar');
   const tb=document.getElementById('tabBar');
   const prb=document.getElementById('profileReturnBar');
 
-  // hide all overlays first
   if(nav)nav.classList.remove('visible');
-  if(ret)ret.classList.remove('visible');
   if(tb)tb.classList.remove('visible');
   if(prb)prb.classList.remove('visible');
   if(pb)pb.style.display='none';
