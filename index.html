@@ -782,8 +782,8 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
   <div class="r-section" id="emailDeliveryNotice" style="display:none;">
     <div class="r-label">✦ Your Full Profile Has Been Sent</div>
     <div class="breakthrough-box">
-      <p class="bt-body">Your complete Silence Profile — your personal diagnosis, what God is saying to you, the lessons silence wants to teach you, your breakthrough path, and your 7-day sacred practice — has been composed for <strong id="deliveredToEmail" style="color:var(--gold);"></strong>.</p>
-      <p style="font-size:0.78rem;color:var(--text-muted);margin-top:16px;line-height:1.7;">Use the download button below to save your full profile to this device, or check your email client.</p>
+      <p class="bt-body">Your complete Silence Profile — your personal diagnosis, what God is saying to you, the lessons silence wants to teach you, your breakthrough path, and your 7-day sacred practice — is on file for <strong id="deliveredToEmail" style="color:var(--gold);"></strong>.</p>
+      <p style="font-size:0.78rem;color:var(--text-muted);margin-top:16px;line-height:1.7;">Download your full profile to this device anytime, or check your email inbox.</p>
       <button class="btn-session gold" onclick="downloadProfile()" style="margin-top:18px;font-size:0.68rem;">⬇ Download My Full Profile</button>
     </div>
   </div>
@@ -1457,7 +1457,7 @@ function submitAndReveal(){
   try{
     const sub=encodeURIComponent('Your Quiet Authority Profile — '+p.name);
     const bdy=encodeURIComponent(profileText);
-    window.open('mailto:'+encodeURIComponent(email)+'?subject='+sub+'&body='+bdy,'_self');
+    window.location.href='mailto:'+encodeURIComponent(email)+'?subject='+sub+'&body='+bdy;
   }catch(e){}
 
   // Formspree notification for Grace's records
@@ -1553,11 +1553,12 @@ function showResults(){
   const jpText=document.getElementById('jpText');
   if(jpText)jpText.textContent=p.journal;
 
-  // Show email delivery notice
+  // Show email delivery notice — pull from localStorage if returning user
   const edn=document.getElementById('emailDeliveryNotice');
   const dte=document.getElementById('deliveredToEmail');
-  if(edn){edn.style.display='block';}
-  if(dte&&userEmail)dte.textContent=userEmail;
+  const displayEmail=userEmail||(()=>{try{return JSON.parse(localStorage.getItem('tqa_profile')||'null')?.email||'';}catch(e){return '';}})();
+  if(edn)edn.style.display='block';
+  if(dte&&displayEmail)dte.textContent=displayEmail;
 
   renderSacredSpace();
   renderTickers();
