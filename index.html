@@ -279,8 +279,19 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 .session-phases{display:flex;flex-direction:column;gap:10px;margin-bottom:36px;max-width:400px;margin-left:auto;margin-right:auto;text-align:left;}
 .phase{display:flex;align-items:center;gap:14px;font-size:0.82rem;color:var(--text-dim);font-weight:300;}
 .phase-dot{width:7px;height:7px;border-radius:50%;background:var(--sage);flex-shrink:0;}
-.timer-display{font-family:'Cormorant Garamond',serif;font-size:clamp(3.5rem,8vw,6rem);font-weight:300;color:var(--gold);letter-spacing:0.05em;margin:24px 0;line-height:1;}
+.timer-phase{font-size:0.58rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--sage);margin-bottom:6px;font-weight:300;text-align:center;display:none;}
+.timer-display{font-family:'Cormorant Garamond',serif;font-size:clamp(3.5rem,8vw,6rem);font-weight:300;color:var(--gold);letter-spacing:0.05em;margin:8px 0 24px;line-height:1;}
 .timer-label{font-size:0.72rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:28px;font-weight:300;}
+.cowork-section{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:80px 24px;}
+.cowork-inner{max-width:600px;margin:0 auto;text-align:center;}
+.cowork-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,5vw,2.6rem);font-weight:300;color:var(--cream);margin:16px 0 20px;line-height:1.2;}
+.cowork-body{color:var(--text-dim);line-height:1.85;font-size:0.92rem;font-weight:300;margin-bottom:28px;}
+.cowork-features{display:flex;flex-direction:column;gap:12px;margin:0 auto 32px;text-align:left;max-width:380px;}
+.cowork-feat{display:flex;align-items:center;gap:12px;font-size:0.84rem;color:var(--text-dim);font-weight:300;}
+.cf-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0;}
+.btn-cowork{background:transparent;border:1px solid var(--gold);color:var(--gold);font-family:'Cinzel',serif;font-size:0.65rem;letter-spacing:0.28em;text-transform:uppercase;padding:14px 36px;cursor:pointer;transition:all 0.3s;margin-bottom:16px;}
+.btn-cowork:hover{background:var(--gold);color:var(--bg);}
+.cowork-note{font-size:0.72rem;color:var(--text-muted);letter-spacing:0.1em;font-weight:300;}
 .timer-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
 .btn-session{padding:13px 32px;background:transparent;border:1px solid var(--sage);color:var(--sage-light);font-family:'Jost',sans-serif;font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;cursor:pointer;transition:all 0.3s ease;font-weight:300;}
 .btn-session:hover{background:var(--sage);color:var(--bg);}
@@ -328,7 +339,7 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 .sacred-tagline{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:0.92rem;color:var(--gold-dim);margin-bottom:6px;}
 .sacred-card-title{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:500;color:var(--cream);margin-bottom:10px;line-height:1.35;}
 .sacred-card-desc{font-size:0.84rem;color:var(--text-dim);line-height:1.72;font-weight:300;flex:1;}
-.sacred-shop-btn{display:inline-block;margin-top:14px;padding:9px 20px;border:1px solid var(--gold-dim);color:var(--gold);font-family:'Jost',sans-serif;font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;text-decoration:none;transition:all 0.3s ease;font-weight:300;align-self:flex-start;}
+.sacred-shop-btn{display:inline-block;margin-top:14px;padding:9px 20px;border:1px solid var(--gold-dim);color:var(--gold);font-family:'Jost',sans-serif;font-size:0.65rem;letter-spacing:0.18em;text-transform:uppercase;text-decoration:none;transition:all 0.3s ease;font-weight:300;align-self:flex-start;cursor:pointer;background:transparent;}
 .sacred-shop-btn:hover{background:var(--gold);color:var(--bg);}
 .sacred-cta{margin-top:28px;text-align:center;}
 .sacred-store-link{display:inline-block;padding:13px 36px;border:1px solid var(--gold-dim);color:var(--gold);font-family:'Jost',sans-serif;font-size:0.7rem;letter-spacing:0.22em;text-transform:uppercase;text-decoration:none;transition:all 0.3s ease;font-weight:300;}
@@ -871,6 +882,7 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
         <span class="breath-label" id="breathLabel">Breathe in</span>
       </div>
 
+      <div class="timer-phase" id="timerPhase"></div>
       <div class="timer-display" id="timerDisplay">15:00</div>
       <div class="timer-label" id="timerLabel">Ready when you are</div>
 
@@ -911,6 +923,22 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
           <button class="btn-session" onclick="viewJournalEntries()" style="font-size:0.65rem;padding:10px 22px;">View Saved Entries</button>
         </div>
       </div>
+    </div>
+  </div>
+
+  <!-- CIRCLE OF SILENCE — CO-WORKING -->
+  <div class="cowork-section">
+    <div class="cowork-inner">
+      <div class="r-label" style="text-align:center;">Practice Together</div>
+      <h2 class="cowork-title serif">The Circle of Silence</h2>
+      <p class="cowork-body">You were not meant to practice silence alone. Every week, women across the Body of Christ gather in sacred co-working silence — present together, accountable together, restoring together. No speaking required. Just showing up.</p>
+      <div class="cowork-features">
+        <div class="cowork-feat"><span class="cf-dot"></span>Live weekly silence sessions via Zoom</div>
+        <div class="cowork-feat"><span class="cf-dot"></span>Your profile guides your practice</div>
+        <div class="cowork-feat"><span class="cf-dot"></span>Accountability without pressure</div>
+      </div>
+      <button class="btn-cowork" onclick="goShop('https://beacons.ai/sanctuarygrace')">Join the Waitlist</button>
+      <div class="cowork-note">Circle of Silence launches soon · Free to join the waitlist</div>
     </div>
   </div>
 
@@ -1585,7 +1613,7 @@ function renderSacredSpace(){
     '<div class="sacred-tagline">'+c.tagline+'</div>'+
     '<div class="sacred-card-title">'+c.title+'</div>'+
     '<p class="sacred-card-desc">'+c.desc+'</p>'+
-    '<a class="sacred-shop-btn" href="'+c.link+'" target="_blank" rel="noopener">'+c.cta+' →</a>'+
+    '<button class="sacred-shop-btn" onclick="goShop(\''+c.link+'\')">'+c.cta+' →</button>'+
     '</div></div>'
   ).join('');
 }
@@ -1648,10 +1676,25 @@ function startBreathing(){
   next();breathInterval=setInterval(next,4000);
 }
 
+function goShop(u){window.open(u,'_blank','noopener noreferrer');}
+
 function updateTimerDisplay(){
-  const m=Math.floor(timerSeconds/60),s=timerSeconds%60;
   const el=document.getElementById('timerDisplay');
-  if(el)el.textContent=String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
+  const ph=document.getElementById('timerPhase');
+  if(sessionPhase==='music'){
+    const rem=timerSeconds-600;
+    const m=Math.floor(rem/60),s=rem%60;
+    if(el)el.textContent=String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
+    if(ph){ph.textContent='♪ Music Phase';ph.style.display='block';}
+  } else if(sessionPhase==='silence'){
+    const m=Math.floor(timerSeconds/60),s=timerSeconds%60;
+    if(el)el.textContent=String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
+    if(ph){ph.textContent='✦ Silence Phase';ph.style.display='block';}
+  } else {
+    const m=Math.floor(timerSeconds/60),s=timerSeconds%60;
+    if(el)el.textContent=String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
+    if(ph)ph.style.display='none';
+  }
 }
 
 function pauseSession(){
@@ -1676,6 +1719,7 @@ function resetSession(){
   document.querySelectorAll('.track-btn').forEach(b=>b.classList.remove('active'));
   const ap=document.getElementById('audioPickerWrap');if(ap)ap.style.display='block';
   document.getElementById('timerLabel').textContent='Ready when you are';
+  const tp=document.getElementById('timerPhase');if(tp)tp.style.display='none';
   document.getElementById('btnStartSession').style.display='inline-block';
   document.getElementById('btnPauseSession').style.display='none';
   document.getElementById('btnResetSession').style.display='none';
