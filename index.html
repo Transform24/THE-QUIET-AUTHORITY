@@ -764,7 +764,8 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
     <p class="r-tagline serif" id="rTagline"></p>
     <div style="margin-top:28px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
       <button class="btn-session gold" onclick="openJournalModal()" style="font-size:0.68rem;padding:12px 28px;">✦ Write in My Journal</button>
-      <a class="btn-session" href="https://website.beacons.ai/sanctuarygrace" target="_blank" style="font-size:0.68rem;padding:12px 28px;text-decoration:none;display:inline-block;">Free Access — Sanctuary</a>
+      <button class="btn-session gold" onclick="downloadProfile()" style="font-size:0.68rem;padding:12px 28px;">⬇ Download My Profile</button>
+      <a class="btn-session" href="https://beacons.ai/sanctuarygrace" target="_blank" rel="noopener" style="font-size:0.68rem;padding:12px 28px;text-decoration:none;display:inline-block;">Free Access — Sanctuary</a>
     </div>
   </div>
 
@@ -849,6 +850,12 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
         <div class="phase"><div class="phase-dot"></div>After &nbsp;—&nbsp; journal prompt for your profile</div>
       </div>
 
+      <div id="silenceQuoteDisplay" style="display:none;">
+        <div id="sqType"></div>
+        <p id="sqText"></p>
+        <div id="sqRef"></div>
+      </div>
+
       <div class="breathing-wrap" id="breathingWrap">
         <div class="breath-ring"></div>
         <div class="breath-ring"></div>
@@ -858,24 +865,30 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
         <span class="breath-label" id="breathLabel">Breathe in</span>
       </div>
 
-      <div id="silenceQuoteDisplay" style="display:none;">
-        <div id="sqType"></div>
-        <p id="sqText"></p>
-        <div id="sqRef"></div>
-      </div>
-
       <div class="timer-display" id="timerDisplay">15:00</div>
       <div class="timer-label" id="timerLabel">Ready when you are</div>
 
       <div id="audioPickerWrap" style="margin-bottom:24px;">
-        <div style="font-size:0.58rem;letter-spacing:0.32em;text-transform:uppercase;color:var(--gold-dim);font-weight:300;margin-bottom:12px;text-align:center;">Choose Your Atmosphere</div>
-        <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;">
-          <button class="track-btn" onclick="selectTrack(0)">Still Waters</button>
-          <button class="track-btn" onclick="selectTrack(1)">Gratitude</button>
-          <button class="track-btn" onclick="selectTrack(2)">Violin &amp; Cello</button>
-          <button class="track-btn" onclick="selectTrack(3)">Sacred Strings</button>
+        <div style="font-size:0.58rem;letter-spacing:0.32em;text-transform:uppercase;color:var(--gold-dim);font-weight:300;margin-bottom:14px;text-align:center;">Choose Your Atmosphere</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;max-width:380px;margin:0 auto;">
+          <button class="track-btn" onclick="selectTrack(0)" id="track0" style="display:flex;flex-direction:column;align-items:flex-start;padding:11px 14px;gap:3px;">
+            <span style="font-size:0.62rem;color:inherit;letter-spacing:0.12em;text-transform:uppercase;">Classical</span>
+            <span style="font-size:0.54rem;color:var(--text-muted);letter-spacing:0.06em;font-style:italic;text-transform:none;">Violin &amp; Piano</span>
+          </button>
+          <button class="track-btn" onclick="selectTrack(1)" id="track1" style="display:flex;flex-direction:column;align-items:flex-start;padding:11px 14px;gap:3px;">
+            <span style="font-size:0.62rem;color:inherit;letter-spacing:0.12em;text-transform:uppercase;">Still Waters</span>
+            <span style="font-size:0.54rem;color:var(--text-muted);letter-spacing:0.06em;font-style:italic;text-transform:none;">Ambient · Gentle</span>
+          </button>
+          <button class="track-btn" onclick="selectTrack(2)" id="track2" style="display:flex;flex-direction:column;align-items:flex-start;padding:11px 14px;gap:3px;">
+            <span style="font-size:0.62rem;color:inherit;letter-spacing:0.12em;text-transform:uppercase;">Gratitude</span>
+            <span style="font-size:0.54rem;color:var(--text-muted);letter-spacing:0.06em;font-style:italic;text-transform:none;">Worship · Soft</span>
+          </button>
+          <button class="track-btn" onclick="selectTrack(3)" id="track3" style="display:flex;flex-direction:column;align-items:flex-start;padding:11px 14px;gap:3px;">
+            <span style="font-size:0.62rem;color:inherit;letter-spacing:0.12em;text-transform:uppercase;">Sacred Strings</span>
+            <span style="font-size:0.54rem;color:var(--text-muted);letter-spacing:0.06em;font-style:italic;text-transform:none;">Orchestral · Deep</span>
+          </button>
         </div>
-        <div style="font-size:0.6rem;color:var(--text-muted);text-align:center;margin-top:8px;letter-spacing:0.08em;">Select a track or we'll choose one for you</div>
+        <div style="font-size:0.58rem;color:var(--text-muted);text-align:center;margin-top:10px;letter-spacing:0.08em;">Original music by Sanctuary Grace Ministry · Select a track or one will be chosen for you</div>
       </div>
 
       <div class="timer-btns">
@@ -1524,7 +1537,8 @@ function startSession(){
   const ti=selectedTrack>=0?selectedTrack:Math.floor(Math.random()*MUSIC.length);
   ma.src=MUSIC[ti];
   ma.volume=0.32;ma.loop=true;ma.play().catch(()=>{});
-  sessionPhase='music';timerSeconds=300;
+  // Single 15:00 countdown — phase changes at 10:00 remaining (600s)
+  sessionPhase='music';timerSeconds=900;
   updateTimerDisplay();
   const ap=document.getElementById('audioPickerWrap');
   if(ap)ap.style.display='none';
@@ -1540,17 +1554,18 @@ function runTimer(){
   timerInterval=setInterval(()=>{
     timerSeconds--;
     updateTimerDisplay();
+    // Switch from music to silence at 10:00 remaining
+    if(sessionPhase==='music'&&timerSeconds===600){
+      sessionPhase='silence';
+      document.getElementById('timerLabel').textContent='Enter the silence…';
+      const bw=document.getElementById('breathingWrap');
+      if(bw)bw.style.display='flex';
+      startBreathing();
+      startSilenceQuotes();
+    }
     if(timerSeconds<=0){
       clearInterval(timerInterval);
-      if(sessionPhase==='music'){
-        sessionPhase='silence';timerSeconds=600;
-        document.getElementById('timerLabel').textContent='Enter the silence…';
-        const bw=document.getElementById('breathingWrap');
-        if(bw)bw.style.display='flex';
-        startBreathing();startSilenceQuotes();runTimer();
-      } else {
-        timerSeconds=0;updateTimerDisplay();sessionComplete();
-      }
+      timerSeconds=0;updateTimerDisplay();sessionComplete();
     }
   },1000);
 }
@@ -1785,7 +1800,10 @@ function showSaveToast(){
 // ── AUDIO TRACK SELECTION ─────────────────────────────────────
 function selectTrack(i){
   selectedTrack=i;
-  document.querySelectorAll('.track-btn').forEach((b,idx)=>b.classList.toggle('active',idx===i));
+  [0,1,2,3].forEach(idx=>{
+    const b=document.getElementById('track'+idx);
+    if(b)b.classList.toggle('active',idx===i);
+  });
 }
 
 // ── SILENCE QUOTES ────────────────────────────────────────────
@@ -1804,7 +1822,7 @@ function startSilenceQuotes(){
     silenceQuoteIdx=(silenceQuoteIdx+1)%SILENCE_QUOTES.length;
   }
   show();
-  silenceQuoteInterval=setInterval(show,75000);
+  silenceQuoteInterval=setInterval(show,20000);
 }
 
 function stopSilenceQuotes(){
