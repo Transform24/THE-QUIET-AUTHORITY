@@ -123,20 +123,21 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 /* resume banner — shows if saved profile exists */
 #resumeBanner{
   display:none;
-  background:rgba(201,169,110,0.06);
-  border:1px solid var(--gold-dim);
-  border-left:3px solid var(--gold);
-  padding:14px 20px;
-  margin:0 auto 24px;
+  background:rgba(201,169,110,0.09);
+  border:1px solid var(--gold);
+  border-left:4px solid var(--gold);
+  padding:20px 24px;
+  margin:0 auto 28px;
   max-width:460px;
   text-align:left;
   cursor:pointer;
-  transition:border-color 0.3s;
+  transition:all 0.3s;
+  animation:fadeUp 0.6s ease forwards;
 }
-#resumeBanner:hover{border-color:var(--gold);}
-.resume-label{font-size:0.58rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);margin-bottom:4px;font-weight:300;}
-.resume-name{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--cream);}
-.resume-hint{font-size:0.65rem;color:var(--text-muted);margin-top:3px;}
+#resumeBanner:hover{background:rgba(201,169,110,0.15);transform:translateY(-2px);}
+.resume-label{font-size:0.58rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;font-weight:300;}
+.resume-name{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--cream);}
+.resume-hint{font-size:0.68rem;color:var(--gold-dim);margin-top:6px;letter-spacing:0.06em;}
 
 .btn-begin{display:inline-block;padding:17px 56px;background:transparent;border:1px solid var(--gold);color:var(--gold);font-family:'Jost',sans-serif;font-weight:300;font-size:0.72rem;letter-spacing:0.28em;text-transform:uppercase;cursor:pointer;transition:all 0.4s ease;position:relative;overflow:hidden;}
 .btn-begin::before{content:'';position:absolute;inset:0;background:var(--gold);transform:translateX(-101%);transition:transform 0.4s ease;}
@@ -250,7 +251,7 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 @keyframes revealSlideUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
 
 /* ══ RESULTS ══ */
-#screen-results{padding:0;min-height:100vh;}
+#screen-results{padding:0;min-height:100vh;padding-bottom:68px;}
 .r-hero{text-align:center;padding:80px 24px 64px;background:linear-gradient(180deg,rgba(201,169,110,0.06) 0%,transparent 100%);border-bottom:1px solid var(--border);}
 .r-badge{display:inline-block;padding:7px 22px;border:1px solid var(--gold-dim);font-size:0.6rem;letter-spacing:0.32em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:26px;font-weight:300;}
 .r-name{font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,6.5vw,5rem);font-weight:300;color:var(--cream);line-height:1;margin-bottom:10px;}
@@ -491,6 +492,53 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
   .nav-links .nav-link:not(.cta){display:none;}
   #navProfileLabel{display:none!important;}
 }
+
+/* ══ BOTTOM TAB BAR ══ */
+#tabBar{
+  display:none;
+  position:fixed;bottom:0;left:0;right:0;
+  z-index:450;
+  background:rgba(13,13,13,0.97);
+  border-top:1px solid var(--border);
+  backdrop-filter:blur(16px);
+  height:60px;
+  align-items:stretch;
+  justify-content:space-around;
+}
+#tabBar.visible{display:flex;}
+.tab-item{
+  flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:3px;background:none;border:none;cursor:pointer;
+  color:var(--text-muted);font-family:'Jost',sans-serif;
+  font-size:0.5rem;letter-spacing:0.12em;text-transform:uppercase;font-weight:300;
+  transition:color 0.25s;padding:0 2px;
+  border-top:2px solid transparent;
+}
+.tab-item:hover{color:var(--cream);}
+.tab-item.active{color:var(--gold);border-top-color:var(--gold);}
+.tab-icon{font-size:1rem;line-height:1;}
+
+/* ══ SAVE TOAST ══ */
+#saveToast{
+  display:none;
+  position:fixed;bottom:72px;left:50%;transform:translateX(-50%);
+  z-index:460;
+  background:rgba(125,140,110,0.12);
+  border:1px solid var(--sage);
+  padding:10px 24px;
+  font-size:0.65rem;letter-spacing:0.18em;
+  color:var(--sage-light);text-transform:uppercase;font-weight:300;
+  font-family:'Jost',sans-serif;backdrop-filter:blur(8px);
+  white-space:nowrap;pointer-events:none;
+  opacity:0;transition:opacity 0.4s ease;
+}
+#saveToast.show{display:block;}
+
+@media(max-width:480px){
+  #tabBar{height:56px;}
+  .tab-item{font-size:0.44rem;}
+  .tab-icon{font-size:0.9rem;}
+}
 </style>
 </head>
 <body>
@@ -513,6 +561,28 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 
 <!-- ══ RETURN FLOAT BUTTON ══ -->
 <button id="returnBtn" onclick="scrollToTop()">↑ My Profile</button>
+
+<!-- ══ BOTTOM TAB BAR ══ -->
+<nav id="tabBar">
+  <button class="tab-item" id="tab-profile" onclick="tabNav('profile')">
+    <span class="tab-icon">✦</span>Profile
+  </button>
+  <button class="tab-item" id="tab-practice" onclick="tabNav('practice')">
+    <span class="tab-icon">☽</span>Practice
+  </button>
+  <button class="tab-item" id="tab-silence" onclick="tabNav('silence')">
+    <span class="tab-icon">◯</span>Silence
+  </button>
+  <button class="tab-item" id="tab-shop" onclick="tabNav('shop')">
+    <span class="tab-icon">✦</span>Shop
+  </button>
+  <button class="tab-item" id="tab-journal" onclick="openJournalModal()">
+    <span class="tab-icon">✎</span>Journal
+  </button>
+</nav>
+
+<!-- ══ SAVE TOAST ══ -->
+<div id="saveToast">✦ Saved to your device</div>
 
 <!-- AUDIO -->
 <audio id="voiceoverAudio" src="voiceover.mp3" preload="auto"></audio>
@@ -675,7 +745,7 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
   </div>
 
   <!-- 7-DAY PRACTICE -->
-  <div class="seven-day-section">
+  <div class="seven-day-section" id="section-practice">
     <div class="seven-day-inner">
       <div class="r-label" style="text-align:center;">Your Sacred Practice</div>
       <h2 class="seven-day-title serif">7 Days of Silence</h2>
@@ -685,7 +755,7 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
   </div>
 
   <!-- SACRED SPACE -->
-  <div class="sacred-section">
+  <div class="sacred-section" id="section-shop">
     <div class="sacred-inner">
       <div class="r-label">Sanctuary Essentials — Amazon Curated</div>
       <h2 class="sacred-title serif" id="sacredHeading">Curated Just for You</h2>
@@ -1076,22 +1146,34 @@ function showScreen(id){
   const nav=document.getElementById('stickyNav');
   const ret=document.getElementById('returnBtn');
   const pb=document.getElementById('progressBar');
+  const tb=document.getElementById('tabBar');
 
   if(id==='screen-question'){
     if(nav)nav.classList.remove('visible');
     if(ret)ret.classList.remove('visible');
+    if(tb)tb.classList.remove('visible');
     if(pb)pb.style.display='block';
     updateProgress();
-  } else if(id==='screen-reveal'||id==='screen-results'){
+  } else if(id==='screen-reveal'){
     if(nav)nav.classList.add('visible');
     if(ret)ret.classList.add('visible');
+    if(tb)tb.classList.remove('visible');
     if(pb)pb.style.display='none';
-    // show profile name in nav
     const npl=document.getElementById('navProfileLabel');
     if(npl&&currentProfile){npl.textContent=PROFILES[currentProfile].name;npl.style.display='block';}
+  } else if(id==='screen-results'){
+    if(nav)nav.classList.add('visible');
+    if(ret)ret.classList.remove('visible');
+    if(tb)tb.classList.add('visible');
+    if(pb)pb.style.display='none';
+    const npl=document.getElementById('navProfileLabel');
+    if(npl&&currentProfile){npl.textContent=PROFILES[currentProfile].name;npl.style.display='block';}
+    setActiveTab('profile');
+    startTabObserver();
   } else {
     if(nav)nav.classList.remove('visible');
     if(ret)ret.classList.remove('visible');
+    if(tb)tb.classList.remove('visible');
     if(pb)pb.style.display='none';
   }
 }
@@ -1282,6 +1364,7 @@ function showResults(){
   renderSacredSpace();
   renderTickers();
   showScreen('screen-results');
+  setTimeout(showSaveToast, 800);
 }
 
 function renderSacredSpace(){
@@ -1507,6 +1590,68 @@ function joinGalleryList(){
   }).catch(()=>{});
   document.getElementById('galleryForm').style.display='none';
   document.getElementById('galleryConfirm').style.display='block';
+}
+
+// ── TAB BAR ───────────────────────────────────────────────────
+function tabNav(section){
+  const targets={
+    profile:'resultsTop',
+    practice:'section-practice',
+    silence:'silenceSection',
+    shop:'section-shop'
+  };
+  const id=targets[section];
+  if(id){
+    const el=document.getElementById(id);
+    if(el)el.scrollIntoView({behavior:'smooth'});
+  }
+  setActiveTab(section);
+}
+
+function setActiveTab(id){
+  document.querySelectorAll('.tab-item').forEach(t=>t.classList.remove('active'));
+  const tab=document.getElementById('tab-'+id);
+  if(tab)tab.classList.add('active');
+}
+
+let _tabObserver=null;
+let _observerStarted=false;
+
+function startTabObserver(){
+  if(_observerStarted||!('IntersectionObserver' in window))return;
+  _observerStarted=true;
+  const map=[
+    {id:'resultsTop',tab:'profile'},
+    {id:'section-practice',tab:'practice'},
+    {id:'silenceSection',tab:'silence'},
+    {id:'section-shop',tab:'shop'}
+  ];
+  _tabObserver=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        const found=map.find(s=>s.id===e.target.id);
+        if(found)setActiveTab(found.tab);
+      }
+    });
+  },{threshold:0.25});
+  map.forEach(s=>{
+    const el=document.getElementById(s.id);
+    if(el)_tabObserver.observe(el);
+  });
+}
+
+// ── SAVE TOAST ────────────────────────────────────────────────
+function showSaveToast(){
+  const t=document.getElementById('saveToast');
+  if(!t)return;
+  t.style.display='block';
+  requestAnimationFrame(()=>{
+    requestAnimationFrame(()=>{t.style.opacity='1';});
+  });
+  setTimeout(()=>{
+    t.style.opacity='0';
+    setTimeout(()=>{t.style.display='none';},450);
+  },2200);
 }
 </script>
 </body>
