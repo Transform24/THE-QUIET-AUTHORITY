@@ -90,10 +90,15 @@
 4. **Profile IP stays off-screen** — diagnosis/lessons/breakthrough/7-day never rendered as visible page content
 5. **All Amazon links** must include `?tag=sanctuarygrac-20` or `tag=sanctuarygrac-20` in the URL
 6. **Formspree key `xzdkgbbq`** — all forms submit here. Never create new endpoints without approval
-7. **Git branch protocol** — develop on `claude/fix-index-agent-profile-AOol2`, push there, never force-push main
+7. **Git branch protocol** — new sessions use `claude/[short-task]-[4-char-id]`, push there, never force-push main
 8. **No comments** in code unless the WHY is non-obvious
 9. **Compact responses** — Grace wants minimal token usage. Plan briefly, execute, ship
 10. **Test from the UX perspective** — open in browser, click the golden path, check mobile viewport
+11. **Playwright path** — `/opt/node22/lib/node_modules/playwright/index.mjs` ESM only — never `require('playwright')`
+12. **Local test server** — `python3 -m http.server 8080` from repo root, verify with `curl -s -o /dev/null -w "%{http_code}" http://localhost:8080/`
+13. **startOver() clears all three** — `tqa_profile` + `tqa_days` + `tqa_sessions`
+14. **emailDeliveryNotice** — shows on results only when `userEmail` is set; populated by `showResults()`
+15. **Do NOT add MailerLite** until Grace is ready for automated follow-up sequences
 
 ---
 
@@ -107,27 +112,33 @@ showScreen('screen-id')  // handles all overlay visibility
 calculateProfile()        // returns dominant letter A/B/C/D
 getProfileScores()        // returns {A:%, B:%, C:%, D:%}
 
-// Email delivery (IP-safe)
-buildProfileText(p, days, name)  // full profile plain text
+// Submit flow (IP-safe)
+// submitAndReveal() → buildProfileText() → window.open(mailto:) → Formspree → calculateAndReveal()
+buildProfileText(p, days, name)  // shared builder — email + download must stay in sync
 
 // Dashboard
 showDashboard()           // checks localStorage, renders, shows screen
 renderDashboard(saved)    // populates all dashboard DOM
-toggleDay(i)              // toggle day-circle completion
-recordSession()           // increment tqa_sessions on session complete
+toggleDay(i)              // toggle day-circle completion; rebuilds DOM — re-query after click
+recordSession()           // increment tqa_sessions; called inside sessionComplete()
+
+// Session flow
+// startSession() → runTimer() → sessionComplete() → recordSession()
 ```
 
 ---
 
 ## 8. PENDING / ROADMAP
 
+- [x] **Profile match bars on reveal screen** — 4 animated bars, primary glows gold
+- [x] **User dashboard** — 7-day tracker, session stats, quick actions (`screen-dashboard`)
+- [x] **IP protection** — profile delivered via mailto + download, not rendered on-page
 - [ ] **Dual timer display** — Music phase (5:00) + Silence phase (10:00) shown separately
-- [ ] **Amazon link cloaking** — `goShop(url)` JS function, remove href from `<a>` tags
-- [ ] **Wall art shop** — Replace gallery "coming soon" with actual art shop (Grace's creations, size pricing: 8x10 / 11x14 / 16x20 / bundle, Stripe links, instant download)
+- [ ] **Amazon link cloaking** — `goShop(url)` JS function, remove `href` from `<a>` tags
+- [ ] **Wall art shop** — Replace gallery "coming soon" with actual art shop (Grace's creations, pricing: 8x10 / 11x14 / 16x20 / bundle, Stripe links, instant download)
 - [ ] **Language selector** — English, Spanish, Portuguese, French, Korean (Google Translate cookie approach)
-- [ ] **Profile match bars on results screen** — currently only on reveal; consider adding to dashboard
 - [ ] **Journal preview on dashboard** — show last 2 entries inline
-- [ ] **MailerLite automation** — trigger profile email to user when Formspree submission arrives (eliminate mailto: dependency)
+- [ ] **MailerLite automation** — replace mailto: with automated delivery when Grace is ready
 
 ---
 
@@ -143,7 +154,20 @@ recordSession()           // increment tqa_sessions on session complete
 
 ---
 
-## 10. NEW PROJECT TEMPLATE (inherit from this SOP)
+## 10. WHAT NOT TO DO (learned the hard way)
+
+- **Do NOT render** diagnosis / lessons / breakthrough / 7-day as page HTML — IP violation
+- **Do NOT add MailerLite** until Grace requests automated sequences
+- **Do NOT use** `confirmBanner` — removed; replaced by `emailDeliveryNotice`
+- **Do NOT reference** `returnBtn` — removed from DOM and JS
+- **Do NOT use** `require('playwright')` — ESM only, `import` from full path
+- **Do NOT add colors** outside the token system — get Grace's approval first
+- **Do NOT call** `window.open(mailto:)` after async code if possible — must fire in click handler scope
+- **Do NOT re-use stale Playwright element handles** after DOM rebuilds — re-query after any click that re-renders
+
+---
+
+## 11. NEW PROJECT TEMPLATE (inherit from this SOP)
 
 ```
 Project Name:
