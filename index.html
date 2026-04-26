@@ -248,7 +248,35 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 .reveal-cta-group{
   display:flex;gap:14px;justify-content:center;flex-wrap:wrap;
   opacity:0;
-  animation:revealFade 0.8s ease 2.8s forwards;
+  animation:revealFade 0.8s ease 4.4s forwards;
+}
+.reveal-scripture{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:clamp(0.95rem,2vw,1.15rem);color:var(--gold-dim);
+  line-height:1.75;margin-bottom:6px;
+  opacity:0;animation:revealFade 0.8s ease 3s forwards;
+}
+.reveal-scripture-ref{
+  font-size:0.62rem;letter-spacing:0.22em;color:var(--text-muted);
+  text-transform:uppercase;margin-bottom:32px;display:block;
+  opacity:0;animation:revealFade 0.8s ease 3.2s forwards;
+}
+.reveal-truths{
+  display:flex;flex-direction:column;gap:10px;
+  margin:0 auto 32px;max-width:420px;text-align:left;
+  opacity:0;animation:revealFade 0.8s ease 3.5s forwards;
+}
+.reveal-truth{
+  display:flex;align-items:flex-start;gap:12px;
+  font-size:0.84rem;color:var(--text-dim);font-weight:300;line-height:1.6;
+}
+.rt-mark{color:var(--gold);font-size:0.7rem;flex-shrink:0;margin-top:3px;}
+.reveal-practice-tag{
+  display:inline-block;padding:7px 20px;
+  border:1px solid var(--sage);color:var(--sage-light);
+  font-size:0.62rem;letter-spacing:0.22em;text-transform:uppercase;font-weight:300;
+  margin-bottom:32px;
+  opacity:0;animation:revealFade 0.8s ease 3.8s forwards;
 }
 @keyframes revealFade{from{opacity:0;}to{opacity:1;}}
 @keyframes revealSlideUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
@@ -282,16 +310,21 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 .timer-phase{font-size:0.58rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--sage);margin-bottom:6px;font-weight:300;text-align:center;display:none;}
 .timer-display{font-family:'Cormorant Garamond',serif;font-size:clamp(3.5rem,8vw,6rem);font-weight:300;color:var(--gold);letter-spacing:0.05em;margin:8px 0 24px;line-height:1;}
 .timer-label{font-size:0.72rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:28px;font-weight:300;}
-.cowork-section{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:80px 24px;}
-.cowork-inner{max-width:600px;margin:0 auto;text-align:center;}
-.cowork-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,5vw,2.6rem);font-weight:300;color:var(--cream);margin:16px 0 20px;line-height:1.2;}
-.cowork-body{color:var(--text-dim);line-height:1.85;font-size:0.92rem;font-weight:300;margin-bottom:28px;}
-.cowork-features{display:flex;flex-direction:column;gap:12px;margin:0 auto 32px;text-align:left;max-width:380px;}
-.cowork-feat{display:flex;align-items:center;gap:12px;font-size:0.84rem;color:var(--text-dim);font-weight:300;}
-.cf-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0;}
-.btn-cowork{background:transparent;border:1px solid var(--gold);color:var(--gold);font-family:'Cinzel',serif;font-size:0.65rem;letter-spacing:0.28em;text-transform:uppercase;padding:14px 36px;cursor:pointer;transition:all 0.3s;margin-bottom:16px;}
+.cowork-section{background:linear-gradient(180deg,var(--bg) 0%,var(--surface) 40%,var(--bg) 100%);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:96px 24px;position:relative;overflow:hidden;}
+.cowork-section::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:1px;height:100%;background:linear-gradient(180deg,transparent,var(--gold-dim),transparent);opacity:0.4;}
+.cowork-inner{max-width:620px;margin:0 auto;text-align:center;position:relative;}
+.cowork-eyebrow{font-family:'Cinzel',serif;font-size:0.6rem;letter-spacing:0.38em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:20px;}
+.cowork-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,6vw,3.4rem);font-weight:300;color:var(--cream);margin:0 0 8px;line-height:1.1;font-style:italic;}
+.cowork-subtitle{font-family:'Cormorant Garamond',serif;font-size:clamp(1rem,2.5vw,1.25rem);font-weight:300;color:var(--gold);margin:0 0 28px;letter-spacing:0.06em;}
+.cowork-body{color:var(--text-dim);line-height:1.95;font-size:0.93rem;font-weight:300;margin-bottom:36px;max-width:520px;margin-left:auto;margin-right:auto;}
+.cowork-divider{width:40px;height:1px;background:var(--gold-dim);margin:0 auto 36px;}
+.cowork-features{display:flex;flex-direction:column;gap:14px;margin:0 auto 40px;text-align:left;max-width:400px;}
+.cowork-feat{display:flex;align-items:flex-start;gap:14px;font-size:0.85rem;color:var(--text-dim);font-weight:300;line-height:1.6;}
+.cf-dot{width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:7px;}
+.btn-cowork{background:transparent;border:1px solid var(--gold);color:var(--gold);font-family:'Cinzel',serif;font-size:0.62rem;letter-spacing:0.3em;text-transform:uppercase;padding:16px 42px;cursor:pointer;transition:all 0.4s;display:inline-block;}
 .btn-cowork:hover{background:var(--gold);color:var(--bg);}
-.cowork-note{font-size:0.72rem;color:var(--text-muted);letter-spacing:0.1em;font-weight:300;}
+.cowork-verse{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1rem;color:var(--gold-dim);margin:28px auto 6px;max-width:440px;line-height:1.7;}
+.cowork-ref{font-size:0.68rem;letter-spacing:0.18em;color:var(--text-muted);text-transform:uppercase;}
 .timer-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
 .btn-session{padding:13px 32px;background:transparent;border:1px solid var(--sage);color:var(--sage-light);font-family:'Jost',sans-serif;font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;cursor:pointer;transition:all 0.3s ease;font-weight:300;}
 .btn-session:hover{background:var(--sage);color:var(--bg);}
@@ -776,6 +809,10 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
     <h1 class="reveal-name" id="revealName"><em></em></h1>
     <div class="reveal-divider"></div>
     <p class="reveal-tagline" id="revealTagline"></p>
+    <p class="reveal-scripture" id="revealScripture"></p>
+    <span class="reveal-scripture-ref" id="revealScriptureRef"></span>
+    <div class="reveal-truths" id="revealTruths"></div>
+    <div class="reveal-practice-tag" id="revealPracticeTag"></div>
     <div class="reveal-cta-group">
       <button class="btn-begin" onclick="enterResults()" style="padding:14px 44px;"><span>Enter My Sanctuary →</span></button>
     </div>
@@ -926,19 +963,23 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
     </div>
   </div>
 
-  <!-- CIRCLE OF SILENCE — CO-WORKING -->
+  <!-- CIRCLE OF SILENCE — THE WOMAN WHO POURS -->
   <div class="cowork-section">
     <div class="cowork-inner">
-      <div class="r-label" style="text-align:center;">Practice Together</div>
-      <h2 class="cowork-title serif">The Circle of Silence</h2>
-      <p class="cowork-body">You were not meant to practice silence alone. Every week, women across the Body of Christ gather in sacred co-working silence — present together, accountable together, restoring together. No speaking required. Just showing up.</p>
+      <div class="cowork-eyebrow">Circle of Silence · The Next Step</div>
+      <h2 class="cowork-title">The Woman Who Pours</h2>
+      <div class="cowork-subtitle">She does not pour from obligation. She pours from overflow.</div>
+      <div class="cowork-divider"></div>
+      <p class="cowork-body">You came here depleted — striving, surviving, giving from empty, or lost in the noise. The silence has begun to fill you. Now there is a deeper invitation: to join a circle of women who gather weekly in sacred co-working silence, accountable to nothing but presence, and pouring into one another without a word spoken.</p>
       <div class="cowork-features">
-        <div class="cowork-feat"><span class="cf-dot"></span>Live weekly silence sessions via Zoom</div>
-        <div class="cowork-feat"><span class="cf-dot"></span>Your profile guides your practice</div>
-        <div class="cowork-feat"><span class="cf-dot"></span>Accountability without pressure</div>
+        <div class="cowork-feat"><span class="cf-dot"></span>Weekly live silence sessions — cameras on, hearts open, no speaking required</div>
+        <div class="cowork-feat"><span class="cf-dot"></span>Your Silence Profile guides every practice inside the Circle</div>
+        <div class="cowork-feat"><span class="cf-dot"></span>A community of women becoming who God called them to be — together</div>
+        <div class="cowork-feat"><span class="cf-dot"></span>The Woman Who Pours is not the loudest in the room. She is the most rooted.</div>
       </div>
-      <button class="btn-cowork" onclick="goShop('https://beacons.ai/sanctuarygrace')">Join the Waitlist</button>
-      <div class="cowork-note">Circle of Silence launches soon · Free to join the waitlist</div>
+      <button class="btn-cowork" onclick="goShop('https://beacons.ai/sanctuarygrace')">Reserve My Place in the Circle</button>
+      <div class="cowork-verse">"She opens her hand to the poor and reaches out her hands to the needy."</div>
+      <div class="cowork-ref">Proverbs 31:20 · The Woman Who Pours</div>
     </div>
   </div>
 
@@ -1540,6 +1581,20 @@ function calculateAndReveal(){
   if(rn)rn.innerHTML='<em>'+p.name+'</em>';
   const rt=document.getElementById('revealTagline');
   if(rt)rt.textContent=p.tagline;
+
+  // Scripture on reveal
+  const rs=document.getElementById('revealScripture');
+  if(rs)rs.textContent='“'+p.scripture+'”';
+  const rsr=document.getElementById('revealScriptureRef');
+  if(rsr)rsr.textContent='— '+p.ref;
+
+  // 3 truths (lessons)
+  const rvt=document.getElementById('revealTruths');
+  if(rvt&&p.lessons)rvt.innerHTML=p.lessons.map(l=>'<div class="reveal-truth"><span class="rt-mark">✦</span><span>'+l+'</span></div>').join('');
+
+  // Practice tag
+  const rpt=document.getElementById('revealPracticeTag');
+  if(rpt)rpt.textContent=p.practiceTag;
 
   // Match breakdown bars
   const scores=getProfileScores();
