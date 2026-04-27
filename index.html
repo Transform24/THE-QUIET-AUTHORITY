@@ -96,6 +96,7 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 /* resume banner — shows if saved profile exists */
 #resumeBanner{
   display:none;
+  position:relative;
   background:rgba(201,169,110,0.1);
   border:1px solid var(--gold);
   border-top:3px solid var(--gold);
@@ -762,12 +763,13 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 
       <!-- Resume banner — shown if saved profile exists -->
       <div id="resumeBanner">
+        <button onclick="startOver()" style="position:absolute;top:12px;right:14px;background:none;border:none;color:var(--text-muted);font-size:1rem;cursor:pointer;line-height:1;" title="Clear saved profile">✕</button>
         <div class="resume-label">✦ Welcome back, beloved</div>
         <div class="resume-name" id="resumeProfileName"></div>
         <div class="resume-hint">Your Silence Profile is saved and waiting for you.</div>
         <div class="resume-cta">
           <button class="btn-resume-primary" onclick="resumeProfile()">View My Profile →</button>
-          <button class="btn-resume-ghost" onclick="startAssessment()">Begin a New Assessment</button>
+          <button class="btn-resume-ghost" onclick="startOver()">Begin a New Assessment</button>
         </div>
       </div>
 
