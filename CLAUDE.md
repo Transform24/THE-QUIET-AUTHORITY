@@ -64,10 +64,10 @@
 |---|---|---|
 | The Quiet Authority | `transform24.github.io/THE-QUIET-AUTHORITY` | 8-question assessment + profile engine |
 | Sanctuary Community | `beacons.ai/sanctuarygrace` | Free hub, links, all resources |
-| Pinterest | `pinterest.com/sanctuarygrace` | Primary traffic driver |
-| YouTube | `youtube.com/@sanctuarygrace` | Video content |
+| Pinterest | `pinterest.com/sanctuarygracefaith` | No movement last 30 days — not primary driver currently |
+| YouTube | `youtube.com/@TheQuietAuthority-f1z` | Channel: Sanctuary Grace \| Quiet Authority for Women · Silence. Stillness. Sovereignty. |
 | Circle of Silence | Coming soon | 30-day paid transformation program |
-| Gallery Wall Art | Coming soon | Prophetic printable downloads |
+| Gallery Wall Art | Coming soon | Prophetic printable downloads — BLOCKED on Stripe links + art images |
 
 ### Stripe Payment Links
 | Product | Price | Link |
