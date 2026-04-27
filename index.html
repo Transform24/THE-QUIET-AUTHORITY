@@ -678,10 +678,11 @@ body{top:0!important;}
 /* ══ LANGUAGE BAR ══ */
 #langBar{position:fixed;bottom:18px;right:14px;display:flex;align-items:center;gap:5px;z-index:601;opacity:0.6;transition:opacity 0.3s;}
 #langBar:hover{opacity:1;}
-.lang-btn{background:none;border:none;color:var(--text-muted);font-family:'Cinzel',serif;font-size:0.5rem;letter-spacing:0.16em;cursor:pointer;padding:4px 2px;transition:color 0.3s;font-weight:400;line-height:1;}
+.lang-btn{background:none;border:none;color:var(--text-muted);font-family:'Cinzel',serif;font-size:0.62rem;letter-spacing:0.16em;cursor:pointer;padding:8px 6px;transition:color 0.3s;font-weight:400;line-height:1;}
 .lang-btn:hover{color:var(--cream);}
 .lang-btn.cur{color:var(--gold);}
-.lang-sep{color:var(--border2);font-size:0.45rem;pointer-events:none;}
+.lang-sep{color:var(--border2);font-size:0.55rem;pointer-events:none;}
+#landingLangBar{display:flex;align-items:center;justify-content:center;gap:2px;margin-top:18px;opacity:0.75;}
 </style>
 </head>
 <body>
@@ -799,6 +800,9 @@ body{top:0!important;}
 
       <button class="btn-begin" onclick="startAssessment()"><span>Begin the Assessment</span></button>
       <p class="landing-promise">8 questions &nbsp;·&nbsp; 3 minutes &nbsp;·&nbsp; Your breakthrough awaits</p>
+      <div id="landingLangBar">
+        <button class="lang-btn" onclick="setLanguage('en')">EN</button><span class="lang-sep">·</span><button class="lang-btn" onclick="setLanguage('es')">ES</button><span class="lang-sep">·</span><button class="lang-btn" onclick="setLanguage('pt')">PT</button><span class="lang-sep">·</span><button class="lang-btn" onclick="setLanguage('fr')">FR</button><span class="lang-sep">·</span><button class="lang-btn" onclick="setLanguage('ko')">KO</button>
+      </div>
     </div>
   </div>
 </div>
@@ -1019,7 +1023,7 @@ body{top:0!important;}
       <div class="cowork-divider"></div>
       <p class="cowork-body">You came here depleted — striving, surviving, giving from empty, or lost in the noise. The silence has begun to fill you. Now there is a deeper invitation: to join a circle of women who gather weekly in sacred co-working silence, accountable to nothing but presence, and pouring into one another without a word spoken.</p>
       <div class="cowork-features">
-        <div class="cowork-feat"><span class="cf-dot"></span>Weekly live silence sessions — cameras on, hearts open, no speaking required</div>
+        <div class="cowork-feat"><span class="cf-dot"></span>Weekly live silence sessions — hearts open, no speaking required</div>
         <div class="cowork-feat"><span class="cf-dot"></span>Your Silence Profile guides every practice inside the Circle</div>
         <div class="cowork-feat"><span class="cf-dot"></span>A community of women becoming who God called them to be — together</div>
         <div class="cowork-feat"><span class="cf-dot"></span>The Woman Who Pours is not the loudest in the room. She is the most rooted.</div>
@@ -1049,8 +1053,8 @@ body{top:0!important;}
           <div class="cos-how-title">How It Works</div>
           <div class="cos-steps">
             <div class="cos-step"><span class="cos-step-num">1</span><span class="cos-step-body">Reserve your place at <span style="color:var(--cream);cursor:pointer;" onclick="goShop('https://beacons.ai/sanctuarygrace')">beacons.ai/sanctuarygrace</span></span></div>
-            <div class="cos-step"><span class="cos-step-num">2</span><span class="cos-step-body">Receive your Zoom link by email</span></div>
-            <div class="cos-step"><span class="cos-step-num">3</span><span class="cos-step-body">Show up. Cameras on. No words required.</span></div>
+            <div class="cos-step"><span class="cos-step-num">2</span><span class="cos-step-body">Receive your session link by email</span></div>
+            <div class="cos-step"><span class="cos-step-num">3</span><span class="cos-step-body">Show up. Hearts open. No words required.</span></div>
           </div>
         </div>
       </div>
@@ -1106,7 +1110,7 @@ body{top:0!important;}
         <p class="bio-sig">— Grace</p>
         <div style="margin-top:20px;padding-top:18px;border-top:1px solid var(--border);display:flex;gap:20px;flex-wrap:wrap;align-items:center;">
           <a href="https://pinterest.com/sanctuarygrace" target="_blank" rel="noopener" style="font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color 0.3s;font-family:'Jost',sans-serif;font-weight:300;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">Pinterest</a>
-          <a href="https://youtube.com/@sanctuarygrace" target="_blank" rel="noopener" style="font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color 0.3s;font-family:'Jost',sans-serif;font-weight:300;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">YouTube</a>
+          <a href="https://beacons.ai/sanctuarygrace" target="_blank" rel="noopener" style="font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color 0.3s;font-family:'Jost',sans-serif;font-weight:300;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">YouTube</a>
           <a href="https://beacons.ai/sanctuarygrace" target="_blank" rel="noopener" style="font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold-dim);text-decoration:none;transition:color 0.3s;font-family:'Jost',sans-serif;font-weight:300;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--gold-dim)'">Sanctuary Community →</a>
         </div>
       </div>
@@ -1276,7 +1280,7 @@ body{top:0!important;}
     <div class="footer-links">
       <a onclick="startOver()">Start Over</a>
       <a href="https://pinterest.com/sanctuarygrace" target="_blank">Pinterest</a>
-      <a href="https://youtube.com/@sanctuarygrace" target="_blank">YouTube</a>
+      <a href="https://beacons.ai/sanctuarygrace" target="_blank">YouTube</a>
       <a href="https://website.beacons.ai/sanctuarygrace" target="_blank">Community</a>
       <a href="https://website.beacons.ai/sanctuarygrace" target="_blank">Circle of Silence</a>
     </div>
@@ -1817,6 +1821,7 @@ function runTimer(){
     // Switch from music to silence at 10:00 remaining
     if(sessionPhase==='music'&&timerSeconds===600){
       sessionPhase='silence';
+      const ma=document.getElementById('musicAudio');ma.pause();
       document.getElementById('timerLabel').textContent='Enter the silence…';
       const bw=document.getElementById('breathingWrap');
       if(bw)bw.style.display='flex';
