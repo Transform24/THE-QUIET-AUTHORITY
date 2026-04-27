@@ -1610,9 +1610,19 @@ function submitAndReveal(){
   if(!email||!email.includes('@')){document.getElementById('inputEmail').style.borderColor='#C1593C';return;}
   userName=name;userEmail=email;
 
-  // Notify Grace via Formspree — silent, never blocks UX
   const profileKey=calculateProfile();
   const p=PROFILES[profileKey];
+  const days=SEVEN_DAYS[profileKey]||[];
+  const text=buildProfileText(p,days,name);
+
+  // Deliver full profile to user's own inbox — synchronous, fires in click scope to avoid popup blocking
+  const a=document.createElement('a');
+  a.href='mailto:'+email+'?subject='+encodeURIComponent('Your Quiet Authority Profile — '+p.name)+'&body='+encodeURIComponent(text);
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+
+  // Notify Grace via Formspree — silent, never blocks UX
   fetch('https://formspree.io/f/xzdkgbbq',{
     method:'POST',
     headers:{'Content-Type':'application/json','Accept':'application/json'},
