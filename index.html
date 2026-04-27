@@ -325,6 +325,27 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 .btn-cowork:hover{background:var(--gold);color:var(--bg);}
 .cowork-verse{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1rem;color:var(--gold-dim);margin:28px auto 6px;max-width:440px;line-height:1.7;}
 .cowork-ref{font-size:0.68rem;letter-spacing:0.18em;color:var(--text-muted);text-transform:uppercase;}
+.cos-block{margin:48px auto 0;max-width:520px;border-top:1px solid var(--border);padding-top:44px;}
+.cos-label{font-family:'Cinzel',serif;font-size:0.58rem;letter-spacing:0.38em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:20px;}
+.cos-schedule{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:32px;max-width:360px;margin-left:auto;margin-right:auto;}
+.cos-slot{background:var(--surface);border:1px solid var(--border);padding:12px 16px;text-align:left;}
+.cos-day{font-family:'Cinzel',serif;font-size:0.58rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--sage-light);margin-bottom:4px;}
+.cos-time{font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--cream);letter-spacing:0.04em;}
+.cos-tz{font-size:0.6rem;color:var(--text-dim);letter-spacing:0.12em;text-transform:uppercase;margin-top:2px;}
+.cos-countdown-wrap{margin-bottom:28px;}
+.cos-countdown-label{font-size:0.58rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--text-dim);margin-bottom:8px;font-weight:300;}
+#cosCountdown{font-family:'Cormorant Garamond',serif;font-size:clamp(2.4rem,6vw,3.6rem);font-weight:300;color:var(--gold);letter-spacing:0.06em;line-height:1;}
+.cos-live{display:none;align-items:center;justify-content:center;gap:10px;margin-bottom:28px;}
+.cos-live-dot{width:9px;height:9px;border-radius:50%;background:var(--gold);animation:pulse 1.4s ease-in-out infinite;flex-shrink:0;}
+.cos-live-text{font-family:'Cinzel',serif;font-size:0.7rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);}
+.btn-cowork-join{background:var(--gold);border:none;color:var(--bg);font-family:'Cinzel',serif;font-size:0.62rem;letter-spacing:0.3em;text-transform:uppercase;padding:16px 42px;cursor:pointer;transition:all 0.4s;display:none;margin-bottom:28px;}
+.btn-cowork-join:hover{background:var(--gold-light);}
+.cos-how{margin-top:8px;text-align:left;border-top:1px solid var(--border);padding-top:32px;}
+.cos-how-title{font-family:'Cinzel',serif;font-size:0.58rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:18px;text-align:center;}
+.cos-steps{display:flex;flex-direction:column;gap:16px;}
+.cos-step{display:flex;align-items:flex-start;gap:16px;}
+.cos-step-num{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--gold-dim);font-weight:300;line-height:1;flex-shrink:0;min-width:22px;}
+.cos-step-body{font-size:0.85rem;color:var(--text-dim);line-height:1.65;font-weight:300;}
 .timer-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
 .btn-session{padding:13px 32px;background:transparent;border:1px solid var(--sage);color:var(--sage-light);font-family:'Jost',sans-serif;font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;cursor:pointer;transition:all 0.3s ease;font-weight:300;}
 .btn-session:hover{background:var(--sage);color:var(--bg);}
@@ -978,6 +999,36 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
         <div class="cowork-feat"><span class="cf-dot"></span>The Woman Who Pours is not the loudest in the room. She is the most rooted.</div>
       </div>
       <button class="btn-cowork" onclick="goShop('https://beacons.ai/sanctuarygrace')">Reserve My Place in the Circle</button>
+
+      <div class="cos-block">
+        <div class="cos-label">Session Schedule</div>
+        <div class="cos-schedule">
+          <div class="cos-slot"><div class="cos-day">Monday</div><div class="cos-time">7:00 AM</div><div class="cos-tz">EST</div></div>
+          <div class="cos-slot"><div class="cos-day">Wednesday</div><div class="cos-time">7:00 AM</div><div class="cos-tz">EST</div></div>
+          <div class="cos-slot"><div class="cos-day">Friday</div><div class="cos-time">7:00 AM</div><div class="cos-tz">EST</div></div>
+          <div class="cos-slot"><div class="cos-day">Thursday</div><div class="cos-time">8:00 PM</div><div class="cos-tz">EST</div></div>
+        </div>
+
+        <div class="cos-live" id="cosLive">
+          <span class="cos-live-dot"></span>
+          <span class="cos-live-text">Session is Live</span>
+        </div>
+        <div class="cos-countdown-wrap" id="cosCountdownWrap">
+          <div class="cos-countdown-label">Next session begins in</div>
+          <div id="cosCountdown">--:--:--</div>
+        </div>
+        <button class="btn-cowork-join" id="cosJoinBtn" onclick="goShop('ZOOM_PLACEHOLDER')">Join This Session</button>
+
+        <div class="cos-how">
+          <div class="cos-how-title">How It Works</div>
+          <div class="cos-steps">
+            <div class="cos-step"><span class="cos-step-num">1</span><span class="cos-step-body">Reserve your place at <span style="color:var(--cream);cursor:pointer;" onclick="goShop('https://beacons.ai/sanctuarygrace')">beacons.ai/sanctuarygrace</span></span></div>
+            <div class="cos-step"><span class="cos-step-num">2</span><span class="cos-step-body">Receive your Zoom link by email</span></div>
+            <div class="cos-step"><span class="cos-step-num">3</span><span class="cos-step-body">Show up. Cameras on. No words required.</span></div>
+          </div>
+        </div>
+      </div>
+
       <div class="cowork-verse">"She opens her hand to the poor and reaches out her hands to the needy."</div>
       <div class="cowork-ref">Proverbs 31:20 · The Woman Who Pours</div>
     </div>
@@ -1357,6 +1408,7 @@ let voPlaying=false,timerInterval=null,breathInterval=null,timerSeconds=900,paus
       }
     }
   }catch(e){}
+  initCoworkCountdown();
 })();
 
 // ── NAVIGATION ────────────────────────────────────────────────
@@ -2052,6 +2104,64 @@ function stopSilenceQuotes(){
   clearInterval(silenceQuoteInterval);
   const el=document.getElementById('silenceQuoteDisplay');
   if(el)el.style.display='none';
+}
+
+// ── CIRCLE OF SILENCE COUNTDOWN ───────────────────────────────
+function initCoworkCountdown(){
+  const LIVE_WINDOW_MS = 15 * 60 * 1000;
+
+  function getNextSession(now){
+    const ny = new Date(now.toLocaleString('en-US',{timeZone:'America/New_York'}));
+    const dow = ny.getDay();
+    const h = ny.getHours();
+    const m = ny.getMinutes();
+    const secOfDay = h * 3600 + m * 60 + ny.getSeconds();
+
+    const sessions = [
+      {day:1, h:7,  min:0},
+      {day:3, h:7,  min:0},
+      {day:5, h:7,  min:0},
+      {day:4, h:20, min:0},
+    ];
+
+    let best = null;
+    for(const s of sessions){
+      let daysAhead = (s.day - dow + 7) % 7;
+      const targetSec = s.h * 3600 + s.min * 60;
+      if(daysAhead === 0 && secOfDay >= targetSec + 900) daysAhead = 7;
+      const msAhead = daysAhead * 86400000 + (targetSec - secOfDay) * 1000;
+      if(best === null || msAhead < best.ms) best = {ms: msAhead, h: s.h, min: s.min, day: s.day};
+    }
+    return best;
+  }
+
+  function tick(){
+    const now = new Date();
+    const next = getNextSession(now);
+    const liveEl = document.getElementById('cosLive');
+    const wrapEl = document.getElementById('cosCountdownWrap');
+    const cdEl  = document.getElementById('cosCountdown');
+    const joinEl = document.getElementById('cosJoinBtn');
+    if(!liveEl||!wrapEl||!cdEl||!joinEl) return;
+
+    if(next.ms <= 0 && next.ms > -LIVE_WINDOW_MS){
+      liveEl.style.display = 'flex';
+      wrapEl.style.display = 'none';
+      joinEl.style.display = 'inline-block';
+    } else {
+      liveEl.style.display = 'none';
+      wrapEl.style.display = 'block';
+      joinEl.style.display = 'none';
+      const total = Math.max(0, Math.floor(next.ms / 1000));
+      const hh = Math.floor(total / 3600);
+      const mm = Math.floor((total % 3600) / 60);
+      const ss = total % 60;
+      cdEl.textContent = String(hh).padStart(2,'0')+':'+String(mm).padStart(2,'0')+':'+String(ss).padStart(2,'0');
+    }
+  }
+
+  tick();
+  setInterval(tick, 1000);
 }
 
 // ── DOWNLOAD PROFILE ──────────────────────────────────────────
