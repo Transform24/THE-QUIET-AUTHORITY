@@ -870,11 +870,10 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 
   <!-- email delivery notice — shown after submit -->
   <div class="r-section" id="emailDeliveryNotice" style="display:none;">
-    <div class="r-label">✦ Your Full Profile Has Been Sent</div>
+    <div class="r-label">✦ Your Profile Is Ready</div>
     <div class="breakthrough-box">
-      <p class="bt-body">Your complete Silence Profile — your personal diagnosis, what God is saying to you, the lessons silence wants to teach you, your breakthrough path, and your 7-day sacred practice — is on file for <strong id="deliveredToEmail" style="color:var(--gold);"></strong>.</p>
-      <p style="font-size:0.78rem;color:var(--text-muted);margin-top:16px;line-height:1.7;">Download your full profile to this device anytime, or check your email inbox.</p>
-      <button class="btn-session gold" onclick="downloadProfile()" style="margin-top:18px;font-size:0.68rem;">⬇ Download My Full Profile</button>
+      <p class="bt-body">Your complete Silence Profile is yours — diagnosis, breakthrough path, and your full 7-day practice plan. Download it now to keep it. Grace Turner has been notified and will be in touch at <strong id="deliveredToEmail" style="color:var(--gold);"></strong>.</p>
+      <button class="btn-session gold" onclick="downloadProfile()" style="margin-top:20px;font-size:0.68rem;">⬇ Download My Full Profile</button>
     </div>
   </div>
 
@@ -1594,23 +1593,14 @@ function submitAndReveal(){
   if(!email||!email.includes('@')){document.getElementById('inputEmail').style.borderColor='#C1593C';return;}
   userName=name;userEmail=email;
 
+  // Notify Grace via Formspree — silent, never blocks UX
   const profileKey=calculateProfile();
   const p=PROFILES[profileKey];
-  const profileText=buildProfileText(p,SEVEN_DAYS[profileKey],name);
-
-  // Deliver full profile to user's email immediately via mailto
-  try{
-    const sub=encodeURIComponent('Your Quiet Authority Profile — '+p.name);
-    const bdy=encodeURIComponent(profileText);
-    window.location.href='mailto:'+encodeURIComponent(email)+'?subject='+sub+'&body='+bdy;
-  }catch(e){}
-
-  // Formspree notification for Grace's records
   fetch('https://formspree.io/f/xzdkgbbq',{
     method:'POST',
     headers:{'Content-Type':'application/json','Accept':'application/json'},
     body:JSON.stringify({
-      _subject:'🌿 New TQA Submission — '+name,
+      _subject:'New TQA Profile — '+name+' · '+p.name,
       name:name,email:email,_replyto:email,
       profile:p.name,
       source:'TQA Assessment'
