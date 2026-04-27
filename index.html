@@ -798,6 +798,9 @@ body{top:0!important;}
       </div>
 
       <button class="btn-begin" onclick="startAssessment()"><span>Begin the Assessment</span></button>
+      <div style="display:flex;align-items:center;justify-content:center;gap:10px;margin-top:16px;">
+        <button class="lang-btn" onclick="setLanguage('en')" style="font-size:0.72rem;padding:6px 4px;">EN</button><span class="lang-sep">·</span><button class="lang-btn" onclick="setLanguage('es')" style="font-size:0.72rem;padding:6px 4px;">ES</button><span class="lang-sep">·</span><button class="lang-btn" onclick="setLanguage('pt')" style="font-size:0.72rem;padding:6px 4px;">PT</button><span class="lang-sep">·</span><button class="lang-btn" onclick="setLanguage('fr')" style="font-size:0.72rem;padding:6px 4px;">FR</button><span class="lang-sep">·</span><button class="lang-btn" onclick="setLanguage('ko')" style="font-size:0.72rem;padding:6px 4px;">KO</button>
+      </div>
       <p class="landing-promise">8 questions &nbsp;·&nbsp; 3 minutes &nbsp;·&nbsp; Your breakthrough awaits</p>
     </div>
   </div>
@@ -1019,7 +1022,7 @@ body{top:0!important;}
       <div class="cowork-divider"></div>
       <p class="cowork-body">You came here depleted — striving, surviving, giving from empty, or lost in the noise. The silence has begun to fill you. Now there is a deeper invitation: to join a circle of women who gather weekly in sacred co-working silence, accountable to nothing but presence, and pouring into one another without a word spoken.</p>
       <div class="cowork-features">
-        <div class="cowork-feat"><span class="cf-dot"></span>Weekly live silence sessions — cameras on, hearts open, no speaking required</div>
+        <div class="cowork-feat"><span class="cf-dot"></span>Weekly live silence sessions — hearts open, no speaking required</div>
         <div class="cowork-feat"><span class="cf-dot"></span>Your Silence Profile guides every practice inside the Circle</div>
         <div class="cowork-feat"><span class="cf-dot"></span>A community of women becoming who God called them to be — together</div>
         <div class="cowork-feat"><span class="cf-dot"></span>The Woman Who Pours is not the loudest in the room. She is the most rooted.</div>
@@ -1106,7 +1109,7 @@ body{top:0!important;}
         <p class="bio-sig">— Grace</p>
         <div style="margin-top:20px;padding-top:18px;border-top:1px solid var(--border);display:flex;gap:20px;flex-wrap:wrap;align-items:center;">
           <a href="https://pinterest.com/sanctuarygrace" target="_blank" rel="noopener" style="font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color 0.3s;font-family:'Jost',sans-serif;font-weight:300;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">Pinterest</a>
-          <a href="https://youtube.com/@sanctuarygrace" target="_blank" rel="noopener" style="font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color 0.3s;font-family:'Jost',sans-serif;font-weight:300;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">YouTube</a>
+          <a href="https://youtube.com/@TheQuietAuthority-f1z" target="_blank" rel="noopener" style="font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color 0.3s;font-family:'Jost',sans-serif;font-weight:300;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">YouTube</a>
           <a href="https://beacons.ai/sanctuarygrace" target="_blank" rel="noopener" style="font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold-dim);text-decoration:none;transition:color 0.3s;font-family:'Jost',sans-serif;font-weight:300;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--gold-dim)'">Sanctuary Community →</a>
         </div>
       </div>
@@ -1276,9 +1279,9 @@ body{top:0!important;}
     <div class="footer-links">
       <a onclick="startOver()">Start Over</a>
       <a href="https://pinterest.com/sanctuarygrace" target="_blank">Pinterest</a>
-      <a href="https://youtube.com/@sanctuarygrace" target="_blank">YouTube</a>
-      <a href="https://website.beacons.ai/sanctuarygrace" target="_blank">Community</a>
-      <a href="https://website.beacons.ai/sanctuarygrace" target="_blank">Circle of Silence</a>
+      <a href="https://youtube.com/@TheQuietAuthority-f1z" target="_blank">YouTube</a>
+      <a href="https://beacons.ai/sanctuarygrace" target="_blank">Community</a>
+      <a href="https://beacons.ai/sanctuarygrace" target="_blank">Circle of Silence</a>
     </div>
   </footer>
 
@@ -1817,6 +1820,7 @@ function runTimer(){
     // Switch from music to silence at 10:00 remaining
     if(sessionPhase==='music'&&timerSeconds===600){
       sessionPhase='silence';
+      document.getElementById('musicAudio').pause();
       document.getElementById('timerLabel').textContent='Enter the silence…';
       const bw=document.getElementById('breathingWrap');
       if(bw)bw.style.display='flex';
