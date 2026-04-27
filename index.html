@@ -197,11 +197,11 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 
 /* ══ PROFILE REVEAL — NEW CEREMONY ══ */
 #screen-reveal{
-  align-items:center;justify-content:center;
+  align-items:center;justify-content:flex-start;
   min-height:100vh;text-align:center;
-  padding:60px 24px;
+  padding:72px 24px 80px;
   background:var(--bg);
-  position:relative;overflow:hidden;
+  position:relative;overflow-y:auto;overflow-x:hidden;
 }
 .reveal-rings{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;}
 .reveal-ring{position:absolute;border-radius:50%;border:1px solid rgba(201,169,110,0.12);transform:translate(-50%,-50%);}
@@ -248,23 +248,23 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 .reveal-cta-group{
   display:flex;gap:14px;justify-content:center;flex-wrap:wrap;
   opacity:0;
-  animation:revealFade 0.8s ease 4.4s forwards;
+  animation:revealFade 0.8s ease 3.4s forwards;
 }
 .reveal-scripture{
   font-family:'Cormorant Garamond',serif;font-style:italic;
   font-size:clamp(0.95rem,2vw,1.15rem);color:var(--gold-dim);
   line-height:1.75;margin-bottom:6px;
-  opacity:0;animation:revealFade 0.8s ease 3s forwards;
+  opacity:0;animation:revealFade 0.8s ease 2.4s forwards;
 }
 .reveal-scripture-ref{
   font-size:0.62rem;letter-spacing:0.22em;color:var(--text-muted);
-  text-transform:uppercase;margin-bottom:32px;display:block;
-  opacity:0;animation:revealFade 0.8s ease 3.2s forwards;
+  text-transform:uppercase;margin-bottom:28px;display:block;
+  opacity:0;animation:revealFade 0.8s ease 2.6s forwards;
 }
 .reveal-truths{
   display:flex;flex-direction:column;gap:10px;
-  margin:0 auto 32px;max-width:420px;text-align:left;
-  opacity:0;animation:revealFade 0.8s ease 3.5s forwards;
+  margin:0 auto 28px;max-width:420px;text-align:left;
+  opacity:0;animation:revealFade 0.8s ease 2.8s forwards;
 }
 .reveal-truth{
   display:flex;align-items:flex-start;gap:12px;
@@ -275,8 +275,8 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
   display:inline-block;padding:7px 20px;
   border:1px solid var(--sage);color:var(--sage-light);
   font-size:0.62rem;letter-spacing:0.22em;text-transform:uppercase;font-weight:300;
-  margin-bottom:32px;
-  opacity:0;animation:revealFade 0.8s ease 3.8s forwards;
+  margin-bottom:28px;
+  opacity:0;animation:revealFade 0.8s ease 3.1s forwards;
 }
 @keyframes revealFade{from{opacity:0;}to{opacity:1;}}
 @keyframes revealSlideUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:translateY(0);}}
