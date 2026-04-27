@@ -672,9 +672,25 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 .btn-dash.gold{border-color:var(--gold-dim);color:var(--gold);}
 .btn-dash.gold:hover{background:rgba(201,169,110,0.07);}
 .dai{font-size:0.95rem;flex-shrink:0;}
+/* ══ GOOGLE TRANSLATE SUPPRESS ══ */
+.goog-te-banner-frame,.skiptranslate{display:none!important;}
+body{top:0!important;}
+/* ══ LANGUAGE BAR ══ */
+#langBar{position:fixed;bottom:18px;right:14px;display:flex;align-items:center;gap:5px;z-index:601;opacity:0.6;transition:opacity 0.3s;}
+#langBar:hover{opacity:1;}
+.lang-btn{background:none;border:none;color:var(--text-muted);font-family:'Cinzel',serif;font-size:0.5rem;letter-spacing:0.16em;cursor:pointer;padding:4px 2px;transition:color 0.3s;font-weight:400;line-height:1;}
+.lang-btn:hover{color:var(--cream);}
+.lang-btn.cur{color:var(--gold);}
+.lang-sep{color:var(--border2);font-size:0.45rem;pointer-events:none;}
 </style>
 </head>
 <body>
+
+<!-- ══ LANGUAGE BAR ══ -->
+<div id="langBar">
+  <button class="lang-btn" onclick="setLanguage('en')">EN</button><span class="lang-sep">·</span><button class="lang-btn" onclick="setLanguage('es')">ES</button><span class="lang-sep">·</span><button class="lang-btn" onclick="setLanguage('pt')">PT</button><span class="lang-sep">·</span><button class="lang-btn" onclick="setLanguage('fr')">FR</button><span class="lang-sep">·</span><button class="lang-btn" onclick="setLanguage('ko')">KO</button>
+</div>
+<div id="google_translate_element" style="display:none;visibility:hidden;"></div>
 
 <!-- ══ PROGRESS BAR ══ -->
 <div id="progressBar"><div id="progressFill"></div></div>
@@ -1431,6 +1447,7 @@ let voPlaying=false,timerInterval=null,breathInterval=null,timerSeconds=900,paus
     }
   }catch(e){}
   initCoworkCountdown();
+  initLangBar();
 })();
 
 // ── NAVIGATION ────────────────────────────────────────────────
@@ -2220,7 +2237,31 @@ function downloadProfile(){
   URL.revokeObjectURL(url);
 }
 
-
+function googleTranslateElementInit(){
+  new google.translate.TranslateElement({pageLanguage:'en',autoDisplay:false},'google_translate_element');
+}
+function getCurrentLang(){
+  const m=document.cookie.match(/googtrans=\/en\/([a-z]+)/);
+  return m?m[1]:'en';
+}
+function setLanguage(lang){
+  const d=location.hostname;
+  if(lang==='en'){
+    document.cookie='googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/';
+    document.cookie='googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.'+d;
+  } else {
+    document.cookie='googtrans=/en/'+lang+'; path=/';
+    document.cookie='googtrans=/en/'+lang+'; path=/; domain=.'+d;
+  }
+  location.reload();
+}
+function initLangBar(){
+  const cur=getCurrentLang();
+  document.querySelectorAll('.lang-btn').forEach(b=>{
+    b.classList.toggle('cur', b.textContent.trim().toLowerCase()===cur);
+  });
+}
 </script>
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
 </body>
 </html>
