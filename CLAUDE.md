@@ -64,10 +64,10 @@
 |---|---|---|
 | The Quiet Authority | `transform24.github.io/THE-QUIET-AUTHORITY` | 8-question assessment + profile engine |
 | Sanctuary Community | `beacons.ai/sanctuarygrace` | Free hub, links, all resources |
-| Pinterest | `pinterest.com/sanctuarygrace` | Primary traffic driver |
-| YouTube | `youtube.com/@sanctuarygrace` | Video content |
+| Pinterest | `pinterest.com/sanctuarygracefaith` | No movement last 30 days — not primary driver currently |
+| YouTube | `youtube.com/@TheQuietAuthority-f1z` | Channel: Sanctuary Grace \| Quiet Authority for Women · Silence. Stillness. Sovereignty. |
 | Circle of Silence | Coming soon | 30-day paid transformation program |
-| Gallery Wall Art | Coming soon | Prophetic printable downloads |
+| Gallery Wall Art | Coming soon | Prophetic printable downloads — BLOCKED on Stripe links + art images |
 
 ### Stripe Payment Links
 | Product | Price | Link |
@@ -158,12 +158,14 @@ recordSession()           // increment tqa_sessions; called inside sessionComple
 - [x] **Profile match bars on reveal screen** — 4 animated bars, primary glows gold
 - [x] **User dashboard** — 7-day tracker, session stats, quick actions (`screen-dashboard`)
 - [x] **IP protection** — profile delivered via mailto + download, not rendered on-page
-- [ ] **Dual timer display** — Music phase (5:00) + Silence phase (10:00) shown separately
-- [ ] **Amazon link cloaking** — `goShop(url)` JS function, remove `href` from `<a>` tags
-- [ ] **Wall art shop** — Replace gallery "coming soon" with actual art shop (Grace's creations, pricing: 8x10 / 11x14 / 16x20 / bundle, Stripe links, instant download)
-- [ ] **Language selector** — English, Spanish, Portuguese, French, Korean (Google Translate cookie approach)
-- [ ] **Journal preview on dashboard** — show last 2 entries inline
-- [ ] **MailerLite automation** — replace mailto: with automated delivery when Grace is ready
+- [x] **Dual timer display** — Music phase (5:00) + Silence phase (10:00) shown separately
+- [x] **Amazon link cloaking** — `goShop(url)` JS function, `href` removed from shop anchors
+- [x] **Language selector** — EN/ES/PT/FR/KO via Google Translate, inline on landing + fixed bottom-right bar
+- [x] **Music stops at silence phase** — `musicAudio.pause()` fires at 10:00 remaining
+- [x] **YouTube handle** — `@TheQuietAuthority-f1z` · Channel: Sanctuary Grace | Quiet Authority for Women
+- [x] **Journal preview on dashboard** — last 2 entries shown inline (2026-04-27)
+- [ ] **Wall art shop** — BLOCKED: needs Stripe links from Grace (pricing: 8x10 / 11x14 / 16x20 / bundle) + art image URLs
+- [ ] **MailerLite automation** — DO NOT add until Grace explicitly requests it
 
 ---
 
