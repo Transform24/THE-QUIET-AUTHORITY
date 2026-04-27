@@ -372,10 +372,19 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 .seven-day-inner{max-width:700px;margin:0 auto;padding:60px 24px;}
 .seven-day-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:300;color:var(--cream);margin-bottom:8px;text-align:center;}
 .seven-day-sub{font-size:0.85rem;color:var(--text-dim);text-align:center;line-height:1.8;margin-bottom:40px;font-weight:300;}
+.day-card{display:flex;gap:20px;align-items:flex-start;padding:24px 28px;background:var(--surface);border:1px solid var(--border);margin-bottom:10px;}
+.day-card.day-1{border-left:2px solid var(--gold);}
+.day-card.locked{opacity:0.38;pointer-events:none;filter:blur(1.5px);}
 .day-num{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:var(--gold-dim);flex-shrink:0;line-height:1;min-width:36px;text-align:center;}
+.day-body{flex:1;}
 .day-title{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:500;color:var(--cream);margin-bottom:4px;}
 .day-practice{font-size:0.86rem;color:var(--cream-dim);line-height:1.6;font-weight:300;}
 .day-scripture{font-size:0.75rem;font-style:italic;color:var(--gold-dim);margin-top:6px;font-family:'Cormorant Garamond',serif;}
+.dash-journal-preview{margin-top:8px;display:flex;flex-direction:column;gap:10px;}
+.djp-entry{background:var(--surface2);border-left:2px solid var(--gold-dim);padding:14px 16px;}
+.djp-date{font-size:0.6rem;letter-spacing:0.16em;color:var(--text-muted);text-transform:uppercase;margin-bottom:6px;}
+.djp-text{font-size:0.84rem;color:var(--cream-dim);line-height:1.65;font-weight:300;font-style:italic;}
+.djp-empty{font-size:0.82rem;color:var(--text-muted);text-align:center;padding:16px 0;font-style:italic;}
 
 /* ══ SACRED SPACE ══ */
 .sacred-section{background:var(--bg);border-top:1px solid var(--border);}
@@ -879,11 +888,14 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 
   <!-- 7-DAY PRACTICE -->
   <div class="seven-day-section" id="section-practice">
-    <div class="seven-day-inner" style="text-align:center;">
+    <div class="seven-day-inner">
       <div class="r-label" style="text-align:center;">Your Sacred Practice</div>
       <h2 class="seven-day-title serif">7 Days of Silence</h2>
-      <p class="seven-day-sub">Your complete 7-day practice plan — daily practices, scriptures, and journal prompts tailored to your profile — is included in your downloadable profile.</p>
-      <button class="btn-session gold" onclick="downloadProfile()" style="margin-top:8px;font-size:0.68rem;">⬇ Download Your 7-Day Plan</button>
+      <p class="seven-day-sub">Begin here. One day at a time. Your full plan — all 7 days with practices, scriptures, and journal prompts — is yours to keep.</p>
+      <div id="dayPreviewContainer"></div>
+      <div style="text-align:center;margin-top:32px;">
+        <button class="btn-session gold" onclick="downloadProfile()" style="font-size:0.68rem;">⬇ Download All 7 Days</button>
+      </div>
     </div>
   </div>
 
@@ -1285,6 +1297,14 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
         <div class="stat-card"><div class="stat-num" id="statDays">0</div><div class="stat-lbl">Days Done</div></div>
         <div class="stat-card"><div class="stat-num" id="statJournal">0</div><div class="stat-lbl">Entries</div></div>
       </div>
+    </div>
+
+    <div class="dash-section">
+      <div class="dash-stitle" style="display:flex;justify-content:space-between;align-items:center;">
+        <span>Recent Journal</span>
+        <button onclick="viewJournalEntries()" style="background:none;border:none;color:var(--gold-dim);font-size:0.62rem;letter-spacing:0.16em;text-transform:uppercase;cursor:pointer;font-family:'Jost',sans-serif;">View All</button>
+      </div>
+      <div class="dash-journal-preview" id="dashJournalPreview"></div>
     </div>
 
     <div class="dash-actions">
@@ -1701,8 +1721,26 @@ function showResults(){
 
   renderSacredSpace();
   renderTickers();
+  renderDayPreview();
   showScreen('screen-results');
   setTimeout(showSaveToast, 800);
+}
+
+function renderDayPreview(){
+  const container=document.getElementById('dayPreviewContainer');
+  if(!container)return;
+  const days=SEVEN_DAYS[currentProfile];
+  if(!days||!days.length)return;
+  container.innerHTML=days.map((d,i)=>{
+    const locked=i>0;
+    return '<div class="day-card'+(i===0?' day-1':'')+(locked?' locked':'')+'">'
+      +'<div class="day-num">'+(i+1)+'</div>'
+      +'<div class="day-body">'
+      +'<div class="day-title">'+d.title+'</div>'
+      +(locked?'<div class="day-practice">Included in your full download.</div>'
+        :'<div class="day-practice">'+d.practice+'</div><div class="day-scripture">'+d.scripture+'</div>')
+      +'</div></div>';
+  }).join('');
 }
 
 function renderSacredSpace(){
@@ -1996,6 +2034,20 @@ function renderDashboard(saved){
   try{dc2=JSON.parse(localStorage.getItem('tqa_days')||'[]').length;}catch(e){}
   const ss=document.getElementById('statSessions');const sd=document.getElementById('statDays');const sj=document.getElementById('statJournal');
   if(ss)ss.textContent=sess;if(sd)sd.textContent=dc2;if(sj)sj.textContent=jc;
+
+  const djp=document.getElementById('dashJournalPreview');
+  if(djp){
+    let entries=[];try{entries=JSON.parse(localStorage.getItem('tqa_journal')||'[]');}catch(e){}
+    if(entries.length===0){
+      djp.innerHTML='<div class="djp-empty">No entries yet. Write your first truth after a silence session.</div>';
+    } else {
+      djp.innerHTML=entries.slice(-2).reverse().map(e=>{
+        const d=new Date(e.date).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+        const preview=e.text.length>120?e.text.slice(0,120)+'…':e.text;
+        return '<div class="djp-entry"><div class="djp-date">'+d+'</div><div class="djp-text">'+preview+'</div></div>';
+      }).join('');
+    }
+  }
 }
 
 function toggleDay(i){
