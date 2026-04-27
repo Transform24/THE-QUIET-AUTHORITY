@@ -879,10 +879,7 @@ body{top:0!important;}
     <p class="r-tagline serif" id="rTagline"></p>
     <div style="margin-top:28px;display:flex;flex-direction:column;gap:10px;align-items:center;max-width:320px;margin-left:auto;margin-right:auto;">
       <button class="btn-session gold" onclick="openJournalModal()" style="font-size:0.68rem;padding:13px 28px;width:100%;">✦ Write in My Journal</button>
-      <div style="display:flex;gap:10px;width:100%;">
-        <button class="btn-session gold" onclick="downloadProfile()" style="font-size:0.65rem;padding:11px 16px;flex:1;">⬇ Download</button>
-        <a class="btn-session" href="https://beacons.ai/sanctuarygrace" target="_blank" rel="noopener" style="font-size:0.65rem;padding:11px 16px;flex:1;text-decoration:none;text-align:center;">Free Access</a>
-      </div>
+      <button class="btn-session gold" onclick="downloadProfile()" style="font-size:0.65rem;padding:11px 16px;width:100%;">⬇ Download My Full Profile</button>
     </div>
   </div>
 
@@ -1613,9 +1610,19 @@ function submitAndReveal(){
   if(!email||!email.includes('@')){document.getElementById('inputEmail').style.borderColor='#C1593C';return;}
   userName=name;userEmail=email;
 
-  // Notify Grace via Formspree — silent, never blocks UX
   const profileKey=calculateProfile();
   const p=PROFILES[profileKey];
+  const days=SEVEN_DAYS[profileKey]||[];
+  const text=buildProfileText(p,days,name);
+
+  // Deliver full profile to user's own inbox — synchronous, fires in click scope to avoid popup blocking
+  const a=document.createElement('a');
+  a.href='mailto:'+email+'?subject='+encodeURIComponent('Your Quiet Authority Profile — '+p.name)+'&body='+encodeURIComponent(text);
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+
+  // Notify Grace via Formspree — silent, never blocks UX
   fetch('https://formspree.io/f/xzdkgbbq',{
     method:'POST',
     headers:{'Content-Type':'application/json','Accept':'application/json'},
