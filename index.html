@@ -471,16 +471,32 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 .gallery-section{padding:6rem 2rem;background:var(--bg);text-align:center;position:relative;overflow:hidden;}
 .gallery-inner{max-width:900px;margin:0 auto;}
 .gallery-hero{position:relative;margin:2.5rem 0;border:1px solid rgba(196,166,120,.2);overflow:hidden;}
-.gallery-hero-img{width:100%;max-height:480px;object-fit:cover;display:block;filter:blur(3px) brightness(.7);transform:scale(1.04);}
-.gallery-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;background:linear-gradient(to bottom,rgba(13,13,13,.3),rgba(13,13,13,.7));}
-.gallery-lock{font-size:1.8rem;margin-bottom:1rem;opacity:.7;}
-.gallery-soon{font-family:'Cinzel',serif;font-size:.55rem;letter-spacing:.5em;text-transform:uppercase;color:var(--gold);margin-bottom:.6rem;}
-.gallery-overlay-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,4vw,2.8rem);font-style:italic;color:var(--cream);line-height:1.3;margin-bottom:.8rem;}
-.gallery-overlay-sub{font-size:.9rem;color:rgba(240,234,216,.7);max-width:420px;line-height:1.7;margin-bottom:1.8rem;}
-.gallery-tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;margin:1.6rem 0;}
-.gallery-tile{aspect-ratio:1;background:rgba(196,166,120,.04);border:1px solid rgba(196,166,120,.1);display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:.45rem;letter-spacing:.3em;color:var(--gold-dim);text-transform:uppercase;}
-.gallery-waitlist{max-width:480px;margin:0 auto;}
-.gallery-note{font-size:.78rem;color:var(--muted);font-style:italic;margin-top:1rem;line-height:1.6;}
+.gallery-hero-img{width:100%;max-height:380px;object-fit:cover;display:block;filter:brightness(.75);transform:scale(1.02);}
+.gallery-hero-caption{padding:1.2rem 1rem;background:rgba(13,13,13,.96);border-top:1px solid rgba(196,166,120,.15);font-size:.85rem;color:var(--text-dim);font-style:italic;}
+.art-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem;margin:2rem 0 1.5rem;text-align:left;}
+.art-card{background:var(--surface);border:1px solid var(--border);overflow:hidden;transition:all .35s;}
+.art-card:hover{border-color:var(--gold-dim);transform:translateY(-3px);box-shadow:0 12px 36px rgba(0,0,0,.4);}
+.art-card-img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;opacity:.88;}
+.art-card-img-placeholder{width:100%;aspect-ratio:3/4;background:linear-gradient(160deg,rgba(196,166,120,.06) 0%,rgba(13,13,13,.8) 100%);display:flex;align-items:center;justify-content:center;}
+.art-card-body{padding:1.2rem;}
+.art-card-profile{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.4em;text-transform:uppercase;color:var(--terra);margin-bottom:.5rem;}
+.art-card-name{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-style:italic;color:var(--cream);margin-bottom:.5rem;line-height:1.3;}
+.art-card-desc{font-size:.8rem;color:var(--text-dim);line-height:1.65;margin-bottom:.8rem;}
+.art-card-meta{font-size:.75rem;color:var(--muted);margin-bottom:.9rem;}
+.art-card-price{font-size:1.25rem;color:var(--gold);font-weight:300;margin-bottom:.9rem;}
+.art-card-btn{display:block;width:100%;padding:11px;background:transparent;border:1px solid var(--gold-dim);color:var(--gold);font-family:'Cinzel',serif;font-size:.52rem;letter-spacing:.3em;text-transform:uppercase;cursor:pointer;transition:all .3s;}
+.art-card-btn:hover{background:rgba(196,166,120,.1);border-color:var(--gold);}
+.art-bundle-wrap{border:1px solid rgba(196,166,120,.28);background:rgba(196,166,120,.04);padding:2rem 2.5rem;text-align:left;margin-bottom:.5rem;}
+.art-bundle-label{font-family:'Cinzel',serif;font-size:.5rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem;}
+.art-bundle-name{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-style:italic;color:var(--cream);margin-bottom:.5rem;}
+.art-bundle-sub{font-size:.88rem;color:var(--text-dim);line-height:1.65;margin-bottom:1.2rem;}
+.art-bundle-row{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;flex-wrap:wrap;}
+.art-promo{background:rgba(193,89,60,.07);border:1px solid rgba(193,89,60,.22);padding:.9rem 1.4rem;margin-bottom:1.4rem;text-align:center;}
+.art-promo-label{font-family:'Cinzel',serif;font-size:.48rem;letter-spacing:.35em;text-transform:uppercase;color:var(--terra);margin-bottom:.3rem;}
+.art-promo-code{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--cream);letter-spacing:.15em;}
+.art-promo-note{font-size:.75rem;color:var(--muted);margin-top:.3rem;}
+.gallery-note{font-size:.78rem;color:var(--muted);font-style:italic;margin-top:1.5rem;line-height:1.6;}
+@media(max-width:600px){.art-grid{grid-template-columns:1fr;}.art-bundle-wrap{padding:1.5rem;}.art-bundle-row{flex-direction:column;}}
 
 /* ══ BOOKS ══ */
 .books-section{padding:5rem 2rem;background:var(--dark2);text-align:center;}
@@ -1162,37 +1178,82 @@ body{top:0!important;}
       <p class="s-label">Sanctuary Art</p>
       <h2 style="font-family:'Cinzel',serif;font-size:1.5rem;font-weight:400;color:var(--cream);margin:.6rem 0 .4rem">The Gallery Wall Art Library</h2>
       <p style="font-size:.95rem;color:var(--muted);font-style:italic;max-width:560px;margin:0 auto">Every piece born from a Kingdom lesson. Art that holds what words can't say.</p>
-      <div class="gallery-hero">
-        <img src="https://drive.google.com/thumbnail?id=1TzbsynRrHZi2kdfINA2ASWQR90PXCgip&sz=w1200" alt="Sanctuary Gallery Preview" class="gallery-hero-img" onerror="this.style.display='none'">
-        <div class="gallery-overlay">
-          <span class="gallery-lock">🖼</span>
-          <p class="gallery-soon">Available Soon</p>
-          <h3 class="gallery-overlay-title">Art that was made<br>from the same silence<br>you just sat in</h3>
-          <p class="gallery-overlay-sub">Printable scripture art, original paintings, and wall pieces created from personal Kingdom revelation.</p>
-          <button class="btn-session gold" onclick="document.getElementById('galleryWaitlist').scrollIntoView({behavior:'smooth'})" style="margin-top:0">Be First to Access the Gallery</button>
+
+      <div class="gallery-hero" style="margin:2rem 0 0;">
+        <img src="https://drive.google.com/thumbnail?id=1TzbsynRrHZi2kdfINA2ASWQR90PXCgip&sz=w1200" alt="Sanctuary Grace Prophetic Wall Art" class="gallery-hero-img" onerror="this.style.display='none'">
+        <div class="gallery-hero-caption">Prophetic printable art · All sizes included · Instant digital download</div>
+      </div>
+
+      <div class="art-grid">
+        <!-- Profile A -->
+        <div class="art-card">
+          <div class="art-card-img-placeholder"></div>
+          <div class="art-card-body">
+            <p class="art-card-profile">Profile A</p>
+            <h3 class="art-card-name">The Striving Achiever</h3>
+            <p class="art-card-desc">You have been faithful. This art was made for the woman who needs a daily reminder that her worth was never in her output — it was always in Him.</p>
+            <p class="art-card-meta">8×10 · 11×14 · 16×20 included</p>
+            <p class="art-card-price">$9.99</p>
+            <button class="art-card-btn" onclick="goShop('https://buy.stripe.com/14AbJ1bNm3tT9aY3EmcQU0n')">Download My Art</button>
+          </div>
+        </div>
+        <!-- Profile B -->
+        <div class="art-card">
+          <div class="art-card-img-placeholder"></div>
+          <div class="art-card-body">
+            <p class="art-card-profile">Profile B</p>
+            <h3 class="art-card-name">The Depleted Survivor</h3>
+            <p class="art-card-desc">You are not failing. You are emptied — and emptied is exactly where God does His most sacred work. Let it hold the truth on the days you cannot.</p>
+            <p class="art-card-meta">8×10 · 11×14 · 16×20 included</p>
+            <p class="art-card-price">$9.99</p>
+            <button class="art-card-btn" onclick="goShop('https://buy.stripe.com/dRm9ATg3Cc0p2MA2AicQU0r')">Download My Art</button>
+          </div>
+        </div>
+        <!-- Profile C -->
+        <div class="art-card">
+          <div class="art-card-img-placeholder"></div>
+          <div class="art-card-body">
+            <p class="art-card-profile">Profile C</p>
+            <h3 class="art-card-name">The Guilty Giver</h3>
+            <p class="art-card-desc">You were never meant to carry everyone. This art was created for the woman learning — slowly, tenderly — that she is allowed to have a portion too.</p>
+            <p class="art-card-meta">8×10 · 11×14 · 16×20 included</p>
+            <p class="art-card-price">$9.99</p>
+            <button class="art-card-btn" onclick="goShop('https://buy.stripe.com/7sYdR95oY3tT1IwdeWcQU0q')">Download My Art</button>
+          </div>
+        </div>
+        <!-- Profile D -->
+        <div class="art-card">
+          <div class="art-card-img-placeholder"></div>
+          <div class="art-card-body">
+            <p class="art-card-profile">Profile D</p>
+            <h3 class="art-card-name">The Lost Wanderer</h3>
+            <p class="art-card-desc">You have not drifted beyond His reach. This art is for the woman who has misplaced herself — and is ready to be found again. Hang it as a marker.</p>
+            <p class="art-card-meta">8×10 · 11×14 · 16×20 included</p>
+            <p class="art-card-price">$9.99</p>
+            <button class="art-card-btn" onclick="goShop('https://buy.stripe.com/5kQdR92cM5C1af23EmcQU0o')">Download My Art</button>
+          </div>
         </div>
       </div>
-      <div class="gallery-tiles">
-        <div class="gallery-tile">Scripture Art</div>
-        <div class="gallery-tile">Original Paintings</div>
-        <div class="gallery-tile">Printable Pieces</div>
-        <div class="gallery-tile">Kingdom Revelation</div>
-        <div class="gallery-tile">Prophetic Art</div>
-        <div class="gallery-tile">Digital Downloads</div>
-      </div>
-      <div class="gallery-waitlist" id="galleryWaitlist">
-        <p style="font-family:'Cinzel',serif;font-size:.58rem;letter-spacing:.35em;text-transform:uppercase;color:var(--terra);margin-bottom:1.2rem">Join the Preview List</p>
-        <div id="galleryForm">
-          <input type="text" class="form-input" id="galleryName" placeholder="Your first name" style="margin-bottom:.8rem">
-          <input type="email" class="form-input" id="galleryEmail" placeholder="Your email address" style="margin-bottom:1rem">
-          <button class="btn-session gold" onclick="joinGalleryList()" style="width:100%;padding:14px;">Notify Me When It Opens</button>
+
+      <!-- Bundle -->
+      <div class="art-bundle-wrap">
+        <div class="art-promo">
+          <p class="art-promo-label">Mother's Day · Expires May 11</p>
+          <p class="art-promo-code">MOTHERSDAY</p>
+          <p class="art-promo-note">Enter this code at checkout — one profile free when you buy all four</p>
         </div>
-        <div id="galleryConfirm" style="display:none;padding:1.5rem;border:1px solid rgba(196,166,120,.3);background:rgba(196,166,120,.04);margin-top:1rem">
-          <p style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-style:italic;color:var(--cream);margin-bottom:.4rem">You're on the list.</p>
-          <p style="font-size:.85rem;color:var(--muted)">When the gallery opens, you'll be among the first to receive access — and the story behind each piece.</p>
+        <div class="art-bundle-row">
+          <div>
+            <p class="art-bundle-label">Complete Collection</p>
+            <h3 class="art-bundle-name">All Four Profiles — Full Bundle</h3>
+            <p class="art-bundle-sub">One for every season. One for every woman you have been. All four Silence Profiles, all three print sizes — sixteen pieces total. Share one with a woman in your circle who needs it.</p>
+            <p style="font-size:1.6rem;color:var(--gold);font-weight:300;margin-bottom:1rem;">$29.99</p>
+          </div>
         </div>
-        <p class="gallery-note">Original art rooted in Kingdom revelation and personal testimony. Not stock. Not generic. Made from the journey — for women on theirs.</p>
+        <button class="art-card-btn" onclick="goShop('https://buy.stripe.com/7sY4gz5oY4xXbj6caScQU0l')">Shop the Full Collection</button>
       </div>
+
+      <p class="gallery-note">Original art rooted in Kingdom revelation and personal testimony. Not stock. Not generic. Made from the journey — for women on theirs.</p>
     </div>
   </div>
 
