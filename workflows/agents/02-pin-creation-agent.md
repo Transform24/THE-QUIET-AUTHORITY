@@ -43,5 +43,5 @@ For each of the 5 pin titles + descriptions:
 
 ## Notes
 - One pin per day maximum to avoid spam flags
-- Use Canva or image templates for pin visuals (see templates/pin-visual-guide.md)
+- Use Canva or image templates for pin visuals (see workflows/templates/pin-visual-guide.md)
 - Always link to assessment or Beacons storefront

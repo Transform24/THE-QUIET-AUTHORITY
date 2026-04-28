@@ -39,7 +39,7 @@ workflows/
 
 ## How to Use
 
-1. Fill in `templates/repurpose-brief.md` with your new content
+1. Fill in `workflows/templates/repurpose-brief.md` with your new content
 2. Fire the **Repurpose Agent** trigger — it reads the brief and outputs copy
 3. Review copy in `workflows/output/` (auto-created by agents)
 4. Fire the **Pin Creation Agent** trigger — it posts approved pins
