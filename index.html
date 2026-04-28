@@ -952,7 +952,7 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
             <span class="wa-price-note">Full collection · All sizes · Instant download</span>
           </div>
           <!-- Stripe → After payment → https://transform24.github.io/THE-QUIET-AUTHORITY/?ty=wa1 -->
-          <a href="YOUR_WA1_STRIPE_LINK" target="_blank" class="wa-buy-btn" id="wa1BuyBtn">Get the Collection →</a>
+          <a href="https://buy.stripe.com/3cI14n4kU3tTbj63EmcQU0c" target="_blank" class="wa-buy-btn" id="wa1BuyBtn">Get the Collection →</a>
           <p class="wa-story">This art was made in the same silence you just sat in. Hang it where you pray.</p>
         </div>
       </div>
@@ -964,7 +964,7 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
         <div id="galleryForm">
           <input type="text" class="form-input" id="galleryName" placeholder="Your first name" style="margin-bottom:.8rem">
           <input type="email" class="form-input" id="galleryEmail" placeholder="Your email address" style="margin-bottom:1rem">
-          <button class="btn btn-gold" onclick="joinGalleryList()">Notify Me First</button>
+          <button class="btn-begin" onclick="joinGalleryList()" style="width:100%;display:block;text-align:center;"><span>Notify Me First</span></button>
         </div>
         <div id="galleryConfirm" style="display:none;padding:1.5rem;border:1px solid rgba(196,166,120,.3);background:rgba(196,166,120,.04)">
           <p style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-style:italic;color:var(--cream);margin-bottom:.4rem">You&rsquo;re on the list.</p>
@@ -1063,7 +1063,7 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px;max-width:480px;margin-left:auto;margin-right:auto;">
           <!-- Basic $9/mo -->
           <!-- Stripe → After payment → https://transform24.github.io/THE-QUIET-AUTHORITY/?ty=circle_basic -->
-          <a href="YOUR_CIRCLE_BASIC_STRIPE_LINK" target="_blank" style="display:flex;flex-direction:column;align-items:center;padding:24px 16px;border:1px solid var(--border2);text-decoration:none;transition:border-color 0.3s;background:var(--surface);" onmouseover="this.style.borderColor='var(--gold-dim)'" onmouseout="this.style.borderColor='var(--border2)'">
+          <a href="https://buy.stripe.com/4gMeVd5oYaWlgDqgr8cQU09" target="_blank" style="display:flex;flex-direction:column;align-items:center;padding:24px 16px;border:1px solid var(--border2);text-decoration:none;transition:border-color 0.3s;background:var(--surface);" onmouseover="this.style.borderColor='var(--gold-dim)'" onmouseout="this.style.borderColor='var(--border2)'">
             <span style="font-family:'Cinzel',serif;font-size:0.52rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:10px;">The Sanctuary</span>
             <span style="font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--gold);font-weight:300;line-height:1;">$9</span>
             <span style="font-size:0.6rem;color:var(--text-muted);letter-spacing:0.1em;margin-bottom:14px;">per month</span>
@@ -1071,7 +1071,7 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
           </a>
           <!-- Pro $27/mo -->
           <!-- Stripe → After payment → https://transform24.github.io/THE-QUIET-AUTHORITY/?ty=circle_pro -->
-          <a href="YOUR_CIRCLE_PRO_STRIPE_LINK" target="_blank" style="display:flex;flex-direction:column;align-items:center;padding:24px 16px;border:1px solid var(--gold-dim);text-decoration:none;transition:all 0.3s;background:rgba(201,169,110,0.04);" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='var(--gold-dim)'">
+          <a href="https://buy.stripe.com/5kQ14n6t27K986U0sacQU0h" target="_blank" style="display:flex;flex-direction:column;align-items:center;padding:24px 16px;border:1px solid var(--gold-dim);text-decoration:none;transition:all 0.3s;background:rgba(201,169,110,0.04);" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='var(--gold-dim)'">
             <span style="font-family:'Cinzel',serif;font-size:0.52rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;">The Inner Circle</span>
             <span style="font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--gold);font-weight:300;line-height:1;">$27</span>
             <span style="font-size:0.6rem;color:var(--text-muted);letter-spacing:0.1em;margin-bottom:14px;">per month</span>
@@ -1308,7 +1308,7 @@ function submitToBeaconsAndReveal(){
   const tally={A:0,B:0,C:0,D:0};
   answers.forEach(idx=>{if(idx!==undefined)tally['ABCD'[idx]]++;});
   currentProfile=Object.entries(tally).sort((a,b)=>b[1]-a[1])[0][0];
-  const profileNames={A:'The Achiever',B:'The Depleted Giver',C:'The Overcomer',D:'The Seeker'};
+  const profileNames={A:'The Striving Achiever',B:'The Depleted Survivor',C:'The Guilty Giver',D:'The Lost Wanderer'};
 
   // 2. Formspree — notifies you with name + profile
   fetch('https://formspree.io/f/xzdkgbbq',{
@@ -1454,7 +1454,7 @@ const PRODUCTS={
     name:'The Full Devotional Bundle',
     badge:'Complete Series — All Four Weeks',
     sub:'All four weeks are yours. Vision → Renewal → Peace → Calling. Take your time.',
-    downloadUrl:'https://drive.google.com/uc?export=download&id=1SFBHpfzV_uTTLeUElDw74xtFbKyOOeR4',// BUNDLE: replace with a shared Drive folder containing all 4 weeks, or create a zip
+    downloadUrl:'https://drive.google.com/drive/folders/1JXklOnoGZRzxQcOxTTTaWMiwCnDu2gju',
     beaconsTag:'devotional-bundle',
     sequence:[
       {day:'Now',text:'All four devotionals delivered to your inbox'},
