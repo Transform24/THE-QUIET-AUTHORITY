@@ -250,7 +250,7 @@ All links already in index.html SACRED_SPACE data. Do not modify link structure.
 - [x] Sticky nav simplified: logo + Start Over only
 - [x] Journal save toast + seg_journal_ tracking
 - [x] Agent 06 file created in workflows/agents/
-- [ ] Dashboard rebuilt: full 5-segment daily journey + sign-in/sign-out
+- [x] Dashboard rebuilt: full 5-segment daily journey + sign-in/sign-out
 - [ ] Shop order: Stripe first, Amazon after (verify current order)
 - [ ] platform-stack.md updated (Beacons replaces MailerLite)
 - [x] Wall art WOMT images uploaded to repo root (WOMT9/8/cover1/profile2/profile3)
