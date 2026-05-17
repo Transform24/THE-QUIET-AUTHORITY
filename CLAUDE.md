@@ -1,212 +1,256 @@
-# THE QUIET AUTHORITY — AGENT SOP PLAYBOOK
-## Sanctuary Grace Ministry · Transform24 Ecosystem
-*Reusable template for all Grace Turner projects. Last updated: 2026-04-26*
+# THE QUIET AUTHORITY — AGENT SOP
+## Sanctuary Grace Ministry · Transform24
+*Last updated: 2026-05-16 · This file is the law. Everything else defers to it.*
 
 ---
 
-## 1. BRAND IDENTITY
+## 1. BRAND IDENTITY — NEVER CHANGE WITHOUT GRACE APPROVAL
 
-**Voice**: Sacred, tender, prophetic. Speak as a trusted minister — never as a marketer.
-**Audience**: Burned-out Christian women, 30–55, in spiritual depletion or identity crisis.
-**Tone markers**: Warmth, quiet authority, invitation — never urgency, hype, or guilt.
-**Forbidden**: Hustle language, self-help jargon, pop-psychology framing, casual slang, emojis in copy.
+**Voice:** Sacred, tender, prophetic. Minister — never marketer.
+**Audience:** Burned-out Christian women, 30–55, spiritual depletion or identity crisis.
+**Tone:** Warmth, quiet authority, invitation. Never urgency, hype, or guilt.
+**Forbidden:** Hustle language, self-help jargon, pop-psychology, casual slang, emojis in copy.
 
 ---
 
-## 2. DESIGN TOKENS
+## 2. DESIGN TOKENS — NEVER CHANGE WITHOUT GRACE APPROVAL
 
 ```css
---bg:#0d0d0d  --bg2:#111111  --surface:#181818  --surface2:#202020
---border:#272727  --border2:#323232
---gold:#C9A84C  --gold-light:#e2c98e  --gold-dim:#7a6040
---terra:#C1593C  --sage:#7d8c6e  --sage-light:#9aab88
---cream:#F5F0E8  --cream-dim:#b0a898  --parchment:#C4A47C
---text:#e0dace  --text-dim:#807870  --text-muted:#484840
+--bg:#0d0d0d --bg2:#111111 --surface:#181818 --surface2:#202020
+--border:#272727 --border2:#323232
+--gold:#C9A84C --gold-light:#e2c98e --gold-dim:#7a6040
+--terra:#C1593C --sage:#7d8c6e --sage-light:#9aab88
+--cream:#F5F0E8 --cream-dim:#b0a898 --parchment:#C4A47C
+--text:#e0dace --text-dim:#807870 --text-muted:#484840
 ```
 
-**Fonts**: Cormorant Garamond (headings/display) · Jost (body/UI) · Cinzel (labels)
-**Rule**: Never change tokens. Never add new colors without Grace's approval.
+**Fonts (Google CDN — already loaded):**
+- `Cormorant Garamond` → headings, display, scripture, reveal ceremony
+- `Jost` → body text, UI, buttons, labels
+- `Cinzel` → section badges, product labels, ALL CAPS decorative
 
 ---
 
-## 3. APP ARCHITECTURE — THE QUIET AUTHORITY
+## 3. APP ARCHITECTURE
 
-**File**: `index.html` (single-file, no build tools, no framework)
-**Deploy**: GitHub Pages auto-deploy from `main` ~60s
-**Live URL**: https://transform24.github.io/THE-QUIET-AUTHORITY/
+**File:** `index.html` — single file, no build tools, no npm, no framework
+**Deploy:** GitHub Pages auto-deploy from `main` (~60s after merge)
+**Live URL:** `https://transform24.github.io/THE-QUIET-AUTHORITY/`
+**Branch protocol:** `claude/[task]-[4-char-id]` → PR → merge → never force-push main
 
-### Screens (in order)
+### Screens (JS-switched via `showScreen()`)
 | ID | Purpose |
 |---|---|
-| `screen-landing` | Entry, soul counter, resume banner |
-| `screen-question` | 8-question assessment |
-| `screen-email` | Name + email capture before reveal |
-| `screen-reveal` | Profile name ceremony + match bars |
-| `screen-results` | Profile hero + scripture + shop + silence session |
-| `screen-dashboard` | Practice tracker + stats + quick actions |
+| `screen-landing` | Hero, soul counter, language selector, resume banner |
+| `screen-question` | 8-question assessment, progress bar |
+| `screen-email` | Name + email capture — fires once, gate closes permanently |
+| `screen-reveal` | Profile ceremony, match bars, scripture |
+| `screen-results` | Full sanctuary — tabbed scrollable experience |
+| `screen-dashboard` | Daily journey tracker, stats, journal, sign-in/sign-out |
 
-### LocalStorage Keys
-| Key | Value |
-|---|---|
-| `tqa_profile` | `{profile, name, email, date}` |
-| `tqa_journal` | `[{date, profile, text}]` |
-| `tqa_days` | `[0,1,2,…]` — completed day indices |
-| `tqa_sessions` | integer — completed silence sessions |
-
-### Profile Keys
-`A` = The Striving Achiever · `B` = The Depleted Survivor · `C` = The Guilty Giver · `D` = The Lost Wanderer
-
----
-
-## 4. ECOSYSTEM MAP
-
-| Project | URL / Handle | Purpose |
+### screen-results Sections (tab-navigated)
+| Anchor | Section | Tab |
 |---|---|---|
-| The Quiet Authority | `transform24.github.io/THE-QUIET-AUTHORITY` | 8-question assessment + profile engine |
-| Sanctuary Community | `beacons.ai/sanctuarygrace` | Free hub, links, all resources |
-| Pinterest | `pinterest.com/sanctuarygracefaith` | No movement last 30 days — not primary driver currently |
-| YouTube | `youtube.com/@TheQuietAuthority-f1z` | Channel: Sanctuary Grace \| Quiet Authority for Women · Silence. Stillness. Sovereignty. |
-| Circle of Silence | Coming soon | 30-day paid transformation program |
-| Gallery Wall Art | Coming soon | Prophetic printable downloads — BLOCKED on Stripe links + art images |
+| `resultsTop` | Profile hero, journal + download CTAs | Profile |
+| `section-practice` | 7-day practice (progressive unlock) | Practice |
+| `section-shop` | Stripe products first, then Amazon curated by profile | Shop |
+| `silenceSection` | 15-min session (music + silence), journal prompt | Silence |
+| *(CoS)* | Circle of Silence, YouTube link, waitlist | — |
+| *(salvation)* | Romans 10:9, Accept Jesus CTA | — |
 
-### Stripe Payment Links
-| Product | Price | Link |
-|---|---|---|
-| Devotional Week 1 — Vision | $4.99 | `buy.stripe.com/cNieVdbNm6G586UdeWcQU03` |
-| Devotional Week 2 — Renewal | $4.99 | `buy.stripe.com/3cI7sL18I7K9evi1wecQU04` |
-| Devotional Week 3 — Peace | $4.99 | `buy.stripe.com/14A7sL8Ba4xX9aY7UCcQU06` |
-| Devotional Week 4 — Calling | $4.99 | `buy.stripe.com/eVqeVd7x66G5gDq0sacQU02` |
-| Devotional Bundle (all 4) | $19.96 | `buy.stripe.com/4gM6oH6t28Od5YM3EmcQU0k` |
-| Book — The Quiet Authority | $15.99 | `buy.stripe.com/00w3cv5oYc0p0EscaScQU0d` |
-| Book — The Parable of the Cocoon | $15.99 | `buy.stripe.com/eVq3cv8Ba6G5bj6fn4cQU0g` |
-| R.E.S.T. Workbook | Free | `beacons.ai/sanctuarygrace` |
+### Audio Files (repo root — confirmed)
+```
+voiceover.mp3 ← landing screen voiceover bar
+music1.mp3 ← Classical · Violin & Piano
+music2.mp3 ← Still Waters · Ambient
+music3.mp3 ← Gratitude · Worship
+music4.mp3 ← Sacred Strings · Orchestral
+```
 
 ---
 
-## 5. IP PROTECTION PROTOCOL
+## 4. LOCALSTORAGE KEYS
 
-**Rule**: Grace's proprietary written content (diagnosis, lessons, breakthrough, 7-day plan, journal prompts) is stored in JS but **never rendered as a visible web page section**.
-
-**Delivery pattern**:
-1. On form submit → `submitAndReveal()` triggers `window.open('mailto:...')` with full profile plain text pre-filled — user sends to themselves immediately
-2. On results screen → Download button calls `downloadProfile()` → `buildProfileText()` → `.txt` file
-3. Results screen shows ONLY: profile name, tagline, scripture (public), email notice, shop, silence session
-
-**`buildProfileText(p, days, name)`** — shared builder for both mailto and download. Must stay in sync if profile copy changes.
-
----
-
-## 6. INTEGRATIONS
-
-| Service | Key / ID | Purpose |
-|---|---|---|
-| Formspree | `xzdkgbbq` | Email submissions to Grace + soul acceptances |
-| MailerLite | Account 2145322 | Email list (connect via Formspree webhook) |
-| Amazon Associates | Tag `sanctuarygrac-20` | All shop links must include this tag |
-| Google Fonts | CDN | Cormorant Garamond, Jost, Cinzel |
+| Key | Set by | Cleared by startOver() | Purpose |
+|---|---|---|---|
+| `tqa_profile_complete` | `submitAndReveal()` — ONCE | **NEVER** | Permanent gate |
+| `tqa_profile` | `submitAndReveal()` | Yes | Profile data |
+| `tqa_journal` | Journal modal save | **NEVER** | Journal entries |
+| `tqa_days` | `toggleDay()` | Yes | 7-day progress |
+| `tqa_sessions` | `recordSession()` | Yes | Session count |
+| `tqa_signin_[date]` | `signInDay()` | Yes | Daily sign-in |
+| `tqa_signout_[date]` | `signOutDay()` | Yes | Daily sign-out |
+| `tqa_streak` | `signOutDay()` | Yes | Consecutive days |
+| `seg_morning_[date]` | Segment 1 complete | Yes | Daily tracking |
+| `seg_reflection_[date]` | Segment 2 complete | Yes | Daily tracking |
+| `seg_practice_[date]` | Segment 3 complete | Yes | Daily tracking |
+| `seg_silence_[date]` | `recordSession()` | Yes | Daily tracking |
+| `seg_journal_[date]` | Journal modal save | Yes | Daily tracking |
+| `tqa_souls_[date]` | `acceptJesus()` | **NEVER** | Salvation count |
 
 ---
 
-## 7. AGENT RULES
+## 5. PROFILE GATE — PERMANENT (CRITICAL)
 
-1. **Never change brand voice, tokens, or font stack** without explicit Grace approval
-2. **Always test with Playwright** after any UI change: `node --input-type=module < test.mjs` (ESM only, path `/opt/node22/lib/node_modules/playwright/index.mjs`)
-3. **Single-file HTML** — no build tools, no npm, no frameworks, no new files unless Grace requests
-4. **Profile IP stays off-screen** — diagnosis/lessons/breakthrough/7-day never rendered as visible page content
-5. **All Amazon links** must include `?tag=sanctuarygrac-20` or `tag=sanctuarygrac-20` in the URL
-6. **Formspree key `xzdkgbbq`** — all forms submit here. Never create new endpoints without approval
-7. **Git branch protocol** — new sessions use `claude/[short-task]-[4-char-id]`, push there, never force-push main
-8. **No comments** in code unless the WHY is non-obvious
-9. **Compact responses** — Grace wants minimal token usage. Plan briefly, execute, ship
-10. **Test from the UX perspective** — open in browser, click the golden path, check mobile viewport
-11. **Playwright path** — `/opt/node22/lib/node_modules/playwright/index.mjs` ESM only — never `require('playwright')`
-12. **Local test server** — `python3 -m http.server 8080` from repo root, verify with `curl -s -o /dev/null -w "%{http_code}" http://localhost:8080/`
-13. **startOver() clears all three** — `tqa_profile` + `tqa_days` + `tqa_sessions`
-14. **emailDeliveryNotice** — shows on results only when `userEmail` is set; populated by `showResults()`
-15. **Do NOT add MailerLite** until Grace is ready for automated follow-up sequences
+Once `tqa_profile_complete === '1'` is set it is **never cleared**.
+Assessment and email screens are closed permanently for that device.
+
+**`startOver()` behavior:**
+- Clears: `tqa_profile`, `tqa_days`, `tqa_sessions`, daily segment keys
+- **Never clears:** `tqa_profile_complete`, `tqa_journal`, `tqa_souls_[date]`
+- If gate is set → skip landing/questions/email → go straight to results
+- "Retake Assessment" on dashboard is the ONLY path back to questions
+- Even on retake, `screen-email` is never shown again — goes to `calculateAndReveal()` directly
+
+**Landing screen when gate is set:**
+- "Begin Assessment" → changes to "Continue My Journey →" → calls `resumeProfile()`
+- Resume banner shows profile name
+- Profile return bar visible at bottom
 
 ---
 
-## 8. KNOWN ARCHITECTURE PATTERNS
+## 6. FULL-DAY EXPERIENCE — 5 TIMED SEGMENTS
+
+| Segment | Time | What Happens | localStorage |
+|---|---|---|---|
+| Morning Stillness | 5 min | Breathing + profile scripture | `seg_morning_[date]` |
+| Reflection | 10 min | Profile read-through, diagnosis, breakthrough | `seg_reflection_[date]` |
+| Sacred Practice | 10 min | Day N of 7-day plan (progressive unlock) | `seg_practice_[date]` |
+| Silence Session | 15 min | Music (5 min) → silence (10 min) → journal | `seg_silence_[date]` |
+| Journal & Close | 5 min | Write → sign out → streak saved | `seg_journal_[date]` |
+
+Dashboard shows: name, profile, streak, today's 5 segments with status, 7-day circles, stats, journal preview.
+
+---
+
+## 7. UX RULES — APPROVED 2026-05-16
+
+1. Landing: single primary action glows. Everything else secondary.
+2. Between questions: emotional acknowledgment fades in 2 seconds.
+3. After session complete: "Well done, beloved. Heaven noticed." → 3s → devotional CTA → journal prompt.
+4. Dashboard greeting: "[Name]. This is Day [N]. You are still showing up."
+5. Shop order: Stripe products first (devotionals, wall art, books) → Amazon after.
+6. Mobile nav: tab bar only. Sticky nav = logo + "Start Over" text link only.
+7. Journal save: save toast fires on every journal save.
+8. Circle of Silence join: links to `https://youtube.com/@TheQuietAuthority-f1z`
+
+---
+
+## 8. CODE PATTERNS
 
 ```javascript
-// Screen navigation
-showScreen('screen-id')  // handles all overlay visibility
+showScreen('screen-id') // all navigation
+calculateProfile() // returns A/B/C/D
+getProfileScores() // {A:%, B:%, C:%, D:%}
 
-// Profile scoring
-calculateProfile()        // returns dominant letter A/B/C/D
-getProfileScores()        // returns {A:%, B:%, C:%, D:%}
+// Submit flow — ORDER IS SACRED
+// submitAndReveal()
+// → buildProfileText()
+// → a.click() [mailto — SYNC BEFORE ANY FETCH]
+// → localStorage.setItem('tqa_profile_complete','1') ← GATE
+// → fetch(Formspree xzdkgbbq)
+// → calculateAndReveal()
 
-// Submit flow (IP-safe)
-// submitAndReveal() → buildProfileText() → window.open(mailto:) → Formspree → calculateAndReveal()
-buildProfileText(p, days, name)  // shared builder — email + download must stay in sync
-
-// Dashboard
-showDashboard()           // checks localStorage, renders, shows screen
-renderDashboard(saved)    // populates all dashboard DOM
-toggleDay(i)              // toggle day-circle completion; rebuilds DOM — re-query after click
-recordSession()           // increment tqa_sessions; called inside sessionComplete()
-
-// Session flow
-// startSession() → runTimer() → sessionComplete() → recordSession()
+// startOver() — gate check before routing
+// toggleDay(i) — rebuilds DOM, re-query after
+// recordSession() — inside sessionComplete()
+// goShop(url) — all external links
 ```
 
 ---
 
-## 9. PENDING / ROADMAP
+## 9. ALL PRODUCTS
 
-- [x] **Profile match bars on reveal screen** — 4 animated bars, primary glows gold
-- [x] **User dashboard** — 7-day tracker, session stats, quick actions (`screen-dashboard`)
-- [x] **IP protection** — profile delivered via mailto + download, not rendered on-page
-- [x] **Dual timer display** — Music phase (5:00) + Silence phase (10:00) shown separately
-- [x] **Amazon link cloaking** — `goShop(url)` JS function, `href` removed from shop anchors
-- [x] **Language selector** — EN/ES/PT/FR/KO via Google Translate, inline on landing + fixed bottom-right bar
-- [x] **Music stops at silence phase** — `musicAudio.pause()` fires at 10:00 remaining
-- [x] **YouTube handle** — `@TheQuietAuthority-f1z` · Channel: Sanctuary Grace | Quiet Authority for Women
-- [x] **Journal preview on dashboard** — last 2 entries shown inline (2026-04-27)
-- [ ] **Wall art shop** — BLOCKED: needs Stripe links from Grace (pricing: 8x10 / 11x14 / 16x20 / bundle) + art image URLs
-- [ ] **MailerLite automation** — DO NOT add until Grace explicitly requests it
+### Wall Art — Stripe (live)
+| Profile | Price | Link |
+|---|---|---|
+| A — The Striving Achiever | $9.99 | buy.stripe.com/14AbJ1bNm3tT9aY3EmcQU0n |
+| B — The Depleted Survivor | $9.99 | buy.stripe.com/dRm9ATg3Cc0p2MA2AicQU0r |
+| C — The Guilty Giver | $9.99 | buy.stripe.com/7sYdR95oY3tT1IwdeWcQU0q |
+| D — The Lost Wanderer | $9.99 | buy.stripe.com/5kQdR92cM5C1af23EmcQU0o |
+| Bundle — All Four | $29.99 | buy.stripe.com/7sY4gz5oY4xXbj6caScQU0l |
 
----
+Wall art images: wall-art-WOMT9.jpg (A) · wall-art-WOMT8.jpg (B) · wall-art-WOMT-profile3.jpg (C) · wall-art-WOMT-profile2.jpg (D) · wall-art-WOMT-cover1.jpg (hero)
 
-## 10. PROFITABLE SUGGESTIONS FOR GRACE'S ECOSYSTEM
+### Devotionals — Stripe (live)
+| Product | Price | Link |
+|---|---|---|
+| Week 1 — Vision | $4.99 | buy.stripe.com/cNieVdbNm6G586UdeWcQU03 |
+| Week 2 — Renewal | $4.99 | buy.stripe.com/3cI7sL18I7K9evi1wecQU04 |
+| Week 3 — Peace | $4.99 | buy.stripe.com/14A7sL8Ba4xX9aY7UCcQU06 |
+| Week 4 — Calling | $4.99 | buy.stripe.com/eVqeVd7x66G5gDq0sacQU02 |
+| Bundle all 4 | $19.96 | buy.stripe.com/4gM6oH6t28Od5YM3EmcQU0k |
 
-1. **Profile-gated content** — Each profile gets a unique Google Drive PDF delivered via email (diagnosis + 7-day plan as a beautifully designed PDF, not plain text). Upgrade path to premium version.
-2. **Circle of Silence membership** — Monthly Zoom silence sessions, $27/month. Gate behind MailerLite sequence triggered by TQA completion.
-3. **TQA Companion Journal (physical)** — Sell on Amazon KDP. Profile-specific journal prompts are the content. Already written — just format it.
-4. **Wall art as profile gifts** — "Which profile are you?" → "Send this to a friend who is a [Profile Name]." Viral gifting loop.
-5. **Ministry team licensing** — Churches buy TQA for their women's ministry. $97/year per church. White-label with church name.
-6. **Devotional series upsell** — After results: "Your 30-day deep dive starts here" → link to paid devotional on Amazon KDP.
-7. **Speaking / retreat tool** — TQA as a retreat ice-breaker. Retreat leaders pay to use it with groups. PDF facilitation guide.
+### Books — Stripe (live)
+| Product | Price | Link |
+|---|---|---|
+| The Quiet Authority | $15.99 | buy.stripe.com/00w3cv5oYc0p0EscaScQU0d |
+| The Parable of the Cocoon | $15.99 | buy.stripe.com/eVq3cv8Ba6G5bj6fn4cQU0g |
+| R.E.S.T. Workbook | Free | beacons.ai/sanctuarygrace |
 
----
-
-## 11. WHAT NOT TO DO (learned the hard way)
-
-- **Do NOT render** diagnosis / lessons / breakthrough / 7-day as page HTML — IP violation
-- **Do NOT add MailerLite** until Grace requests automated sequences
-- **Do NOT use** `confirmBanner` — removed; replaced by `emailDeliveryNotice`
-- **Do NOT reference** `returnBtn` — removed from DOM and JS
-- **Do NOT use** `require('playwright')` — ESM only, `import` from full path
-- **Do NOT add colors** outside the token system — get Grace's approval first
-- **Do NOT call** `window.open(mailto:)` after async code if possible — must fire in click handler scope
-- **Do NOT re-use stale Playwright element handles** after DOM rebuilds — re-query after any click that re-renders
+### Amazon Affiliate (tag: sanctuarygrac-20)
+Weighted fleece throw · Travel mug · Prayer journal · Flameless candles · Butterfly mug · Diffuser · Leather journal · Parallel Bible
+All links already in index.html SACRED_SPACE data. Do not modify link structure.
 
 ---
 
-## 12. NEW PROJECT TEMPLATE (inherit from this SOP)
+## 10. INTEGRATIONS
 
-```
-Project Name:
-Deploy URL:
-GitHub Repo:
-Branch pattern: claude/[task]-[id]
-Formspree key: (inherit xzdkgbbq or new)
-MailerLite tag:
-Amazon tag: sanctuarygrac-20
-Primary screen IDs:
-LocalStorage keys:
-IP protection method: (email delivery / download / server-side)
-Brand tokens: (inherit from §2 above)
-Agent rules: (inherit §6 above, append project-specific rules)
-```
+| Service | Key | Purpose |
+|---|---|---|
+| Formspree | `xzdkgbbq` | All form submissions |
+| Amazon Associates | `sanctuarygrac-20` | All product links must include tag |
+| Beacons | beacons.ai/sanctuarygrace | Email list, sequences, storefront |
+| YouTube | youtube.com/@TheQuietAuthority-f1z | Circle of Silence join link |
+
+**Email engine: Beacons — not MailerLite, not Zapier.**
+
+---
+
+## 11. AGENT TEAM — 6 AGENTS
+
+| # | Agent | Reads | Writes | Trigger |
+|---|---|---|---|---|
+| 01 | Repurpose | Drive /content-inbox/ | Drive /content-queue/ | Manual |
+| 02 | Publish | Drive /content-queue/ (approved) | pin-log.md + posts | After approval |
+| 03 | Storefront Sync | index.html + product-registry.md | Audit + patches | Mon 6am |
+| 04 | Lead Responder | Formspree webhook | leads.md + Beacons tag | Formspree webhook |
+| 05 | Weekly Report | All /output/ | Weekly report | Mon 7am |
+| 06 | Daily Check-In | Beacons list + templates | Beacons broadcast | Daily 7am |
+
+---
+
+## 12. NEVER DO
+
+- Clear `tqa_profile_complete` — permanent gate
+- Clear `tqa_journal` — sacred user entries
+- Render profile IP as visible HTML — IP violation
+- Call mailto after async code — popup blocker kills delivery
+- Force-push main
+- Add npm / build tools / frameworks
+- Change design tokens without Grace approval
+- Reference MailerLite — removed, Beacons is the email engine
+- Use `confirmBanner` — removed
+- Use `returnBtn` — removed
+- Use `require('playwright')` — ESM only
+
+---
+
+## 13. ROADMAP — PENDING (all approved 2026-05-16)
+
+- [x] tqa_profile_complete gate in submitAndReveal() + startOver()
+- [x] Dashboard greeting: name + day number + rotating encouragement
+- [x] Wall art image placeholders → WOMT images
+- [x] Ticker font 1.1rem → 1.5rem, speed 180s → 300s
+- [x] Romans 10:9 prominence (larger, gold, border-left)
+- [x] ZOOM_PLACEHOLDER → https://youtube.com/@TheQuietAuthority-f1z
+- [x] Progressive day unlock in renderDayPreview()
+- [x] Between-question emotional acknowledgment
+- [x] Session complete: "Well done, beloved" → 3s → devotional CTA → journal
+- [x] Sticky nav simplified: logo + Start Over only
+- [x] Journal save toast + seg_journal_ tracking
+- [x] Agent 06 file created in workflows/agents/
+- [ ] Dashboard rebuilt: full 5-segment daily journey + sign-in/sign-out
+- [ ] Shop order: Stripe first, Amazon after (verify current order)
+- [ ] platform-stack.md updated (Beacons replaces MailerLite)
+- [ ] Wall art WOMT images uploaded to repo root
