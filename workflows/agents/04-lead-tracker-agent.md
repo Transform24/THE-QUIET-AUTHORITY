@@ -22,11 +22,11 @@ STEPS:
    - Any profile indicators in their message
 
 2. TAG the lead with their likely Silence Profile based on message content:
-   - Profile A (The Awakening Soul) — words like: beginning, new, just started, seeking
-   - Profile B (The Weary Warrior) — words like: tired, burned out, exhausted, fighting
-   - Profile C (The Guilty Giver) — words like: can't stop, people, guilt, giving too much
-   - Profile D (The Hidden Vessel) — words like: invisible, forgotten, overlooked, quiet
-   - Profile E (The Surrendered Saint) — words like: peace, surrender, letting go, trust
+   - profile-A (The Striving Achiever) — words like: performing, achieving, exhausted, not enough, busy
+   - profile-B (The Depleted Survivor) — words like: tired, burned out, empty, surviving, running on fumes
+   - profile-C (The Guilty Giver) — words like: can't stop giving, guilt, everyone else, never for me
+   - profile-D (The Lost Wanderer) — words like: invisible, forgotten, lost, disconnected, who am I
+   - new-believer — words like: just said yes, new to faith, just accepted, born again
    - Unknown — if unclear
 
 3. APPEND to workflows/output/leads.md in this format:

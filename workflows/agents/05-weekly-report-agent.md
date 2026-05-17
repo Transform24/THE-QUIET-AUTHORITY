@@ -30,11 +30,11 @@ BUILD a weekly report and save to workflows/output/weekly-report-[DATE].md:
 ## Leads This Week
 - New submissions: [N]
 - Profile breakdown:
-  - Awakening Soul: [N]
-  - Weary Warrior: [N]
-  - Guilty Giver: [N]
-  - Hidden Vessel: [N]
-  - Surrendered Saint: [N]
+  - The Striving Achiever (A): [N]
+  - The Depleted Survivor (B): [N]
+  - The Guilty Giver (C): [N]
+  - The Lost Wanderer (D): [N]
+  - New Believers: [N]
 
 ## Storefront Health
 - Open issues: [N]

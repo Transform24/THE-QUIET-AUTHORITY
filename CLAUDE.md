@@ -253,4 +253,4 @@ All links already in index.html SACRED_SPACE data. Do not modify link structure.
 - [ ] Dashboard rebuilt: full 5-segment daily journey + sign-in/sign-out
 - [ ] Shop order: Stripe first, Amazon after (verify current order)
 - [ ] platform-stack.md updated (Beacons replaces MailerLite)
-- [ ] Wall art WOMT images uploaded to repo root
+- [x] Wall art WOMT images uploaded to repo root (WOMT9/8/cover1/profile2/profile3)
