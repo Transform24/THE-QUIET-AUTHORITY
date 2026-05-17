@@ -412,7 +412,7 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 
 /* ══ TICKERS ══ */
 .scripture-ticker{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:16px 0;overflow:hidden;white-space:nowrap;}
-.ticker-track{display:inline-block;animation:ticker 180s linear infinite;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.1rem;color:var(--gold-dim);letter-spacing:0.07em;padding-left:100vw;}
+.ticker-track{display:inline-block;animation:ticker 300s linear infinite;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.5rem;color:var(--gold-dim);letter-spacing:0.07em;padding-left:100vw;}
 @keyframes ticker{from{transform:translateX(0);}to{transform:translateX(-100%);}}
 .women-ticker{background:transparent;border-top:1px solid rgba(201,169,110,0.12);border-bottom:1px solid rgba(201,169,110,0.12);padding:14px 0;overflow:hidden;white-space:nowrap;position:relative;}
 .women-ticker::before,.women-ticker::after{content:'';position:absolute;top:0;bottom:0;width:80px;z-index:2;pointer-events:none;}
@@ -431,7 +431,7 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 .salvation-cross{font-size:2rem;margin-bottom:20px;opacity:0.7;}
 .salvation-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:300;color:var(--cream);line-height:1.2;margin-bottom:16px;}
 .salvation-body{font-size:0.88rem;color:var(--text-dim);line-height:1.9;margin-bottom:32px;font-weight:300;max-width:460px;margin-left:auto;margin-right:auto;}
-.salvation-verse{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.1rem;color:var(--gold-dim);margin-bottom:32px;line-height:1.6;}
+.salvation-verse{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.5rem;color:var(--gold);margin-bottom:32px;line-height:1.7;border-left:2px solid var(--gold-dim);padding-left:20px;text-align:left;max-width:480px;margin-left:auto;margin-right:auto;}
 .btn-salvation{display:inline-block;padding:18px 48px;background:linear-gradient(135deg,rgba(201,169,110,0.15),rgba(201,169,110,0.05));border:1px solid var(--gold);color:var(--gold);font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-style:italic;font-weight:400;letter-spacing:0.08em;cursor:pointer;transition:all 0.4s ease;}
 .btn-salvation:hover{background:rgba(201,169,110,0.12);border-color:var(--gold-light);}
 .salvation-confirm{display:none;margin-top:28px;padding:24px 28px;background:rgba(201,169,110,0.06);border:1px solid var(--gold-dim);border-top:2px solid var(--gold);}
@@ -718,9 +718,7 @@ body{top:0!important;}
   <div style="display:flex;align-items:center;gap:16px;">
     <span id="navProfileLabel"></span>
     <div class="nav-links">
-      <button class="nav-link" onclick="scrollToTop()">My Profile</button>
-      <button class="nav-link" onclick="scrollToSession()">Silence Session</button>
-      <button class="nav-link cta" onclick="startOver()">Start Over</button>
+      <button class="nav-link" style="font-size:0.62rem;color:var(--text-muted);opacity:0.7;border:none;background:none;" onclick="startOver()">Start Over</button>
     </div>
   </div>
 </nav>
@@ -1063,7 +1061,7 @@ body{top:0!important;}
           <div class="cos-countdown-label">Next session begins in</div>
           <div id="cosCountdown">--:--:--</div>
         </div>
-        <button class="btn-cowork-join" id="cosJoinBtn" onclick="goShop('ZOOM_PLACEHOLDER')">Join This Session</button>
+        <button class="btn-cowork-join" id="cosJoinBtn" onclick="goShop('https://youtube.com/@TheQuietAuthority-f1z')">Join on YouTube →</button>
 
         <div class="cos-how">
           <div class="cos-how-title">How It Works</div>
@@ -1187,7 +1185,7 @@ body{top:0!important;}
       <div class="art-grid">
         <!-- Profile A -->
         <div class="art-card">
-          <div class="art-card-img-placeholder"></div>
+          <img class="art-card-img" src="wall-art-WOMT9.jpg" alt="The Striving Achiever — Sacred Wall Art" onerror="this.style.display='none'">
           <div class="art-card-body">
             <p class="art-card-profile">Profile A</p>
             <h3 class="art-card-name">The Striving Achiever</h3>
@@ -1199,7 +1197,7 @@ body{top:0!important;}
         </div>
         <!-- Profile B -->
         <div class="art-card">
-          <div class="art-card-img-placeholder"></div>
+          <img class="art-card-img" src="wall-art-WOMT8.jpg" alt="The Depleted Survivor — Sacred Wall Art" onerror="this.style.display='none'">
           <div class="art-card-body">
             <p class="art-card-profile">Profile B</p>
             <h3 class="art-card-name">The Depleted Survivor</h3>
@@ -1211,7 +1209,7 @@ body{top:0!important;}
         </div>
         <!-- Profile C -->
         <div class="art-card">
-          <div class="art-card-img-placeholder"></div>
+          <img class="art-card-img" src="wall-art-WOMT-profile3.jpg" alt="The Guilty Giver — Sacred Wall Art" onerror="this.style.display='none'">
           <div class="art-card-body">
             <p class="art-card-profile">Profile C</p>
             <h3 class="art-card-name">The Guilty Giver</h3>
@@ -1223,7 +1221,7 @@ body{top:0!important;}
         </div>
         <!-- Profile D -->
         <div class="art-card">
-          <div class="art-card-img-placeholder"></div>
+          <img class="art-card-img" src="wall-art-WOMT-profile2.jpg" alt="The Lost Wanderer — Sacred Wall Art" onerror="this.style.display='none'">
           <div class="art-card-body">
             <p class="art-card-profile">Profile D</p>
             <h3 class="art-card-name">The Lost Wanderer</h3>
@@ -1506,6 +1504,11 @@ let voPlaying=false,timerInterval=null,breathInterval=null,timerSeconds=900,paus
         prbName.textContent=profileName;
         prb.classList.add('visible');
       }
+      // Gate — returning user: change begin button
+      if(localStorage.getItem('tqa_profile_complete')==='1'){
+        const beginBtn=document.querySelector('.btn-begin');
+        if(beginBtn){beginBtn.innerHTML='<span>Continue My Journey →</span>';beginBtn.onclick=function(){resumeProfile();};}
+      }
     }
   }catch(e){}
   initCoworkCountdown();
@@ -1563,11 +1566,32 @@ function showScreen(id){
 
 function startOver(){
   currentQ=0;answers=[];
-  try{localStorage.removeItem('tqa_profile');localStorage.removeItem('tqa_days');localStorage.removeItem('tqa_sessions');}catch(e){}
+  try{
+    localStorage.removeItem('tqa_profile');
+    localStorage.removeItem('tqa_days');
+    localStorage.removeItem('tqa_sessions');
+    const today=new Date().toISOString().slice(0,10);
+    ['morning','reflection','practice','silence','journal'].forEach(s=>{
+      localStorage.removeItem('seg_'+s+'_'+today);
+    });
+    localStorage.removeItem('tqa_signin_'+today);
+  }catch(e){}
   const rb=document.getElementById('resumeBanner');
   if(rb)rb.style.display='none';
   const prb=document.getElementById('profileReturnBar');
   if(prb)prb.classList.remove('visible');
+  // GATE — completed users never see assessment again
+  const complete=localStorage.getItem('tqa_profile_complete');
+  if(complete==='1'){
+    const saved=getSavedProfile();
+    if(saved&&PROFILES[saved.profile]){
+      currentProfile=saved.profile;userName=saved.name||'';userEmail=saved.email||'';
+      showResults();
+    } else {
+      showScreen('screen-landing');
+    }
+    return;
+  }
   showScreen('screen-landing');
 }
 
@@ -1629,9 +1653,30 @@ function renderQuestion(){
   updateProgress();
 }
 
+const Q_ACKNOWLEDGMENTS=[
+  'That took courage to admit.',
+  'He sees what you just named.',
+  'That honesty is holy.',
+  'You are not alone in this.',
+  'This is what breakthrough begins with.',
+  'Keep going, beloved.',
+  'You are being seen right now.',
+  'Almost there. You are doing something sacred.'
+];
 function selectAnswer(i){
   answers[currentQ]=i;
   renderQuestion();
+  let ack=document.getElementById('qAck');
+  if(!ack){
+    ack=document.createElement('div');
+    ack.id='qAck';
+    ack.style.cssText='font-family:"Cormorant Garamond",serif;font-style:italic;font-size:1rem;color:var(--gold-dim);text-align:center;margin-top:20px;opacity:0;transition:opacity 0.6s ease;letter-spacing:0.04em;min-height:1.4em;';
+    const qw=document.querySelector('.q-wrap');
+    if(qw)qw.appendChild(ack);
+  }
+  ack.textContent=Q_ACKNOWLEDGMENTS[currentQ]||'Keep going, beloved.';
+  ack.style.opacity='1';
+  setTimeout(()=>{ack.style.opacity='0';},2200);
   // auto-advance after brief pause
   setTimeout(()=>{
     if(answers[currentQ]!==undefined){
@@ -1686,6 +1731,9 @@ function submitAndReveal(){
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
+
+  // PERMANENT GATE — set once, never cleared by anything
+  try{localStorage.setItem('tqa_profile_complete','1');}catch(e){}
 
   // Notify Grace via Formspree — silent, never blocks UX
   fetch('https://formspree.io/f/xzdkgbbq',{
@@ -1813,14 +1861,18 @@ function renderDayPreview(){
   if(!container)return;
   const days=SEVEN_DAYS[currentProfile];
   if(!days||!days.length)return;
+  let completedDays=[];
+  try{completedDays=JSON.parse(localStorage.getItem('tqa_days')||'[]');}catch(e){}
   container.innerHTML=days.map((d,i)=>{
-    const locked=i>0;
-    return '<div class="day-card'+(i===0?' day-1':'')+(locked?' locked':'')+'">'
-      +'<div class="day-num">'+(i+1)+'</div>'
+    const done=completedDays.includes(i);
+    const unlocked=i===0||completedDays.includes(i-1);
+    return '<div class="day-card'+(done?' done':'')+(i===0?' day-1':'')+(unlocked?'':' locked')+'">'
+      +'<div class="day-num">'+(done?'✓':(i+1))+'</div>'
       +'<div class="day-body">'
       +'<div class="day-title">'+d.title+'</div>'
-      +(locked?'<div class="day-practice">Included in your full download.</div>'
-        :'<div class="day-practice">'+d.practice+'</div><div class="day-scripture">'+d.scripture+'</div>')
+      +(unlocked
+        ?'<div class="day-practice">'+d.practice+'</div><div class="day-scripture">'+d.scripture+'</div>'
+        :'<div class="day-practice" style="color:var(--text-muted);font-style:italic;">Complete Day '+(i)+' to unlock.</div>')
       +'</div></div>';
   }).join('');
 }
@@ -1960,9 +2012,31 @@ function resetSession(){
 function sessionComplete(){
   sessionPhase='done';
   recordSession();
-  document.getElementById('timerLabel').textContent='Your session is complete. Well done, beloved.';
+  try{const t=new Date().toISOString().slice(0,10);localStorage.setItem('seg_silence_'+t,'1');}catch(e){}
+  const tl=document.getElementById('timerLabel');
+  if(tl)tl.textContent='Well done, beloved. Heaven noticed.';
+  const bw=document.getElementById('breathingWrap');if(bw)bw.style.display='none';
+  stopSilenceQuotes();
   document.getElementById('btnPauseSession').style.display='none';
-  document.getElementById('journalPrompt').style.display='block';
+  setTimeout(()=>{
+    const devLinks={A:'https://buy.stripe.com/cNieVdbNm6G586UdeWcQU03',B:'https://buy.stripe.com/3cI7sL18I7K9evi1wecQU04',C:'https://buy.stripe.com/14A7sL8Ba4xX9aY7UCcQU06',D:'https://buy.stripe.com/eVqeVd7x66G5gDq0sacQU02'};
+    const devNames={A:'Week 1 — Vision',B:'Week 2 — Renewal',C:'Week 3 — Peace',D:'Week 4 — Calling'};
+    let devCta=document.getElementById('sessionDevotionalCta');
+    if(!devCta){
+      devCta=document.createElement('div');
+      devCta.id='sessionDevotionalCta';
+      devCta.style.cssText='margin:20px auto;max-width:400px;padding:20px 24px;background:rgba(201,169,110,0.06);border:1px solid var(--gold-dim);text-align:center;animation:fadeUp 0.8s ease forwards;';
+      const si=document.querySelector('.silence-inner');
+      if(si)si.appendChild(devCta);
+    }
+    devCta.innerHTML='<div style="font-size:0.58rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:10px;font-family:\'Cinzel\',serif;">Continue Your Journey</div>'
+      +'<div style="font-family:\'Cormorant Garamond\',serif;font-size:1.1rem;color:var(--cream);margin-bottom:14px;font-style:italic;">Your devotional — '+devNames[currentProfile]+'</div>'
+      +'<button class="btn-session gold" onclick="goShop(\''+devLinks[currentProfile]+'\')" style="font-size:0.65rem;padding:11px 28px;">$4.99 · Begin This Week →</button>';
+    devCta.style.display='block';
+    const jp=document.getElementById('journalPrompt');
+    if(jp)jp.style.display='block';
+  },3000);
+  setTimeout(()=>{if(tl)tl.textContent='Your session is complete. Well done, beloved.';},8000);
 }
 
 // ── JOURNAL ───────────────────────────────────────────────────
@@ -1989,6 +2063,8 @@ function saveJournalEntry(){
     entries.push({date:new Date().toISOString(),profile:currentProfile,text:entry});
     localStorage.setItem('tqa_journal',JSON.stringify(entries));
   }catch(e){}
+  try{const t=new Date().toISOString().slice(0,10);localStorage.setItem('seg_journal_'+t,'1');}catch(e){}
+  showSaveToast();
   document.getElementById('journalEntry').style.display='none';
   const jb=document.querySelector('#journalModal button[onclick="saveJournalEntry()"]');
   if(jb)jb.style.display='none';
@@ -2099,7 +2175,13 @@ function renderDashboard(saved){
   const ds=document.getElementById('dashSince');
   if(ds){
     const d=saved.date?new Date(saved.date):new Date();
-    ds.textContent='Member since '+d.toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
+    const dayNum=Math.max(1,Math.floor((Date.now()-d.getTime())/(1000*60*60*24))+1);
+    const encouragements=['You are still showing up.','He sees your faithfulness.','Keep going, beloved.','This is sacred ground.','He is meeting you here.','Your presence matters.','You are not forgotten.'];
+    const enc=encouragements[(dayNum-1)%encouragements.length];
+    const hr=new Date().getHours();
+    const tg=hr<12?'Good morning':hr<17?'Good afternoon':'Good evening';
+    ds.innerHTML='<span style="font-family:\'Cormorant Garamond\',serif;font-size:1.15rem;font-style:italic;color:var(--cream);display:block;margin-bottom:6px;">'+tg+', '+(saved.name||'beloved')+'.</span>'
+      +'<span style="font-size:0.78rem;color:var(--gold-dim);letter-spacing:0.06em;">This is Day '+dayNum+'. '+enc+'</span>';
   }
   let days=[];try{days=JSON.parse(localStorage.getItem('tqa_days')||'[]');}catch(e){}
   const dc=document.getElementById('dayCircles');

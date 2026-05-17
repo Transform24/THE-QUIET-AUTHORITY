@@ -17,6 +17,8 @@ CONTENT IN (YouTube / Drive / idea)
 [04] LEAD TRACKER         — logs Formspree submissions to Drive, tags by profile
         ↓
 [05] WEEKLY REPORT        — Monday summary of pins, leads, and next actions
+        ↓
+[06] DAILY CHECK-IN       — daily profile-matched inspiration email, 7am every day
 ```
 
 ## Folder Structure

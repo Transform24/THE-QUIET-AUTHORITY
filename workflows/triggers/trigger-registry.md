@@ -14,6 +14,7 @@ Create each trigger via Claude Code (`/schedule` or `RemoteTrigger` tool) and re
 | 03 | Storefront Sync | [ADD ID] | Every Monday 6:00 AM | — | Pending setup |
 | 04 | Lead Tracker | [ADD ID] | On Formspree webhook | — | Pending setup |
 | 05 | Weekly Report | [ADD ID] | Every Monday 7:00 AM | — | Pending setup |
+| 06 | Daily Check-In | [ADD ID] | Every day 7:00 AM | — | Pending setup |
 
 ---
 
