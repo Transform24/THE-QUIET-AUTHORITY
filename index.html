@@ -689,6 +689,46 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 .btn-dash.gold{border-color:var(--gold-dim);color:var(--gold);}
 .btn-dash.gold:hover{background:rgba(201,169,110,0.07);}
 .dai{font-size:0.95rem;flex-shrink:0;}
+/* ══ SEGMENT CHECKLIST ══ */
+.seg-list{display:flex;flex-direction:column;}
+.seg-row{display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid var(--border);position:relative;transition:opacity 0.2s;}
+.seg-row:last-child{border-bottom:none;}
+.seg-row.locked{opacity:0.38;}
+.seg-row.active{cursor:pointer;}
+.seg-row.done{cursor:default;}
+.seg-row.active:hover .seg-label{color:var(--cream);}
+.seg-icon{width:28px;height:28px;border-radius:50%;border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:0.72rem;color:var(--text-muted);transition:all 0.25s;font-family:'Jost',sans-serif;}
+.seg-row.done .seg-icon{border-color:var(--gold);background:rgba(201,169,110,0.12);color:var(--gold);}
+.seg-row.active .seg-icon{border-color:var(--terra);background:rgba(193,89,60,0.1);color:var(--terra);}
+.seg-body{flex:1;min-width:0;}
+.seg-label{font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);font-weight:300;transition:color 0.2s;}
+.seg-row.done .seg-label{color:var(--text-muted);}
+.seg-row.active .seg-label{color:var(--cream);}
+.seg-dur{font-size:0.58rem;letter-spacing:0.1em;color:var(--text-muted);margin-top:3px;}
+.seg-cta{font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--terra);font-weight:400;flex-shrink:0;white-space:nowrap;}
+.seg-row.done .seg-cta{color:var(--text-muted);}
+.seg-row.locked .seg-cta{color:var(--text-muted);}
+/* ══ SIGN IN / SIGN OUT ══ */
+.btn-sign-in,.btn-sign-out{width:100%;padding:16px 20px;border:1px solid var(--gold-dim);background:rgba(201,169,110,0.04);color:var(--gold);font-family:'Cinzel',serif;font-size:0.62rem;letter-spacing:0.28em;text-transform:uppercase;cursor:pointer;transition:all 0.3s;font-weight:400;display:flex;align-items:center;justify-content:center;gap:10px;}
+.btn-sign-in:hover{background:rgba(201,169,110,0.1);border-color:var(--gold);}
+.btn-sign-out{border-color:var(--sage);color:var(--sage);}
+.btn-sign-out:hover{background:rgba(125,140,110,0.1);border-color:var(--sage-light);}
+.signed-status{text-align:center;padding:10px 0;}
+.signed-label{font-family:'Cinzel',serif;font-size:0.58rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold-dim);}
+.signed-sub{font-size:0.62rem;color:var(--text-muted);margin-top:5px;font-style:italic;font-family:'Cormorant Garamond',serif;}
+.streak-chip{display:inline-flex;align-items:center;gap:8px;background:rgba(201,169,110,0.06);border:1px solid var(--gold-dim);padding:6px 14px;margin-top:12px;}
+.streak-num{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--gold);line-height:1;}
+.streak-lbl{font-size:0.5rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold-dim);font-weight:300;}
+.night-scripture{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;color:var(--cream-dim);line-height:1.65;text-align:center;margin-top:14px;padding:0 8px;}
+/* ══ MORNING MODAL ══ */
+#morningModal{display:none;position:fixed;inset:0;background:rgba(13,13,13,0.98);z-index:9998;flex-direction:column;align-items:center;justify-content:center;padding:40px 24px;text-align:center;overflow-y:auto;}
+#morningModal.open{display:flex;}
+.morning-badge{font-family:'Cinzel',serif;font-size:0.54rem;letter-spacing:0.38em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
+.morning-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.7rem,4vw,2.5rem);font-weight:300;color:var(--cream);line-height:1.1;margin-bottom:6px;}
+.morning-sub{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-muted);margin-bottom:28px;font-family:'Jost',sans-serif;}
+.morning-scripture{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-style:italic;color:var(--cream);line-height:1.7;max-width:400px;margin:0 auto 28px;padding:18px 22px;border-left:2px solid var(--gold-dim);text-align:left;}
+.btn-morning-complete{padding:14px 32px;background:none;border:1px solid var(--gold-dim);color:var(--gold);font-family:'Cinzel',serif;font-size:0.58rem;letter-spacing:0.3em;text-transform:uppercase;cursor:pointer;transition:all 0.3s;margin-top:8px;}
+.btn-morning-complete:hover{background:rgba(201,169,110,0.1);border-color:var(--gold);}
 /* ══ GOOGLE TRANSLATE SUPPRESS ══ */
 .goog-te-banner-frame,.skiptranslate{display:none!important;}
 body{top:0!important;}
@@ -1355,18 +1395,33 @@ body{top:0!important;}
 <!-- ══ SCREEN: DASHBOARD ══ -->
 <div class="screen" id="screen-dashboard">
   <div class="dash-wrap">
+
     <div class="dash-header">
       <div class="dash-badge">Your Silence Profile</div>
       <h2 class="dash-profile-name" id="dashProfileName"></h2>
-      <p class="dash-since" id="dashSince"></p>
+      <div class="dash-since" id="dashGreeting"></div>
     </div>
 
+    <!-- Sign In -->
+    <div class="dash-section" id="dashSignInSection"></div>
+
+    <!-- Today's Journey -->
+    <div class="dash-section">
+      <div class="dash-stitle">Today's Journey</div>
+      <div class="seg-list" id="segList"></div>
+    </div>
+
+    <!-- Sign Out -->
+    <div class="dash-section" id="dashSignOutSection"></div>
+
+    <!-- 7-Day Tracker -->
     <div class="dash-section">
       <div class="dash-stitle">7-Day Practice Tracker</div>
       <div class="day-circles" id="dayCircles"></div>
       <p style="font-size:0.65rem;color:var(--text-muted);text-align:center;margin-top:12px;letter-spacing:0.08em;">Tap a day to mark it complete</p>
     </div>
 
+    <!-- Stats -->
     <div class="dash-section">
       <div class="dash-stitle">Your Journey</div>
       <div class="stat-grid">
@@ -1376,6 +1431,7 @@ body{top:0!important;}
       </div>
     </div>
 
+    <!-- Journal preview -->
     <div class="dash-section">
       <div class="dash-stitle" style="display:flex;justify-content:space-between;align-items:center;">
         <span>Recent Journal</span>
@@ -1384,6 +1440,7 @@ body{top:0!important;}
       <div class="dash-journal-preview" id="dashJournalPreview"></div>
     </div>
 
+    <!-- Quick Actions -->
     <div class="dash-actions">
       <div class="dash-stitle">Quick Actions</div>
       <button class="btn-dash gold" onclick="downloadProfile()"><span class="dai">⬇</span>Download My Full Profile</button>
@@ -1392,7 +1449,24 @@ body{top:0!important;}
       <button class="btn-dash" onclick="resumeProfile()"><span class="dai">✦</span>View My Full Results</button>
       <button class="btn-dash" onclick="startOver()" style="color:var(--text-muted);"><span class="dai">↺</span>Retake Assessment</button>
     </div>
+
   </div>
+</div>
+
+<!-- ══ MORNING STILLNESS MODAL ══ -->
+<div id="morningModal">
+  <div class="morning-badge">Morning Stillness — Segment 1</div>
+  <h2 class="morning-title">Enter the Stillness</h2>
+  <p class="morning-sub">5 minutes · breathe · receive</p>
+  <div class="breathing-wrap" style="display:flex;margin-bottom:28px;">
+    <div class="breath-ring"></div>
+    <div class="breath-ring"></div>
+    <div class="breath-ring"></div>
+    <div class="breath-ring"></div>
+    <div class="breath-center"></div>
+  </div>
+  <blockquote class="morning-scripture" id="morningScripture"></blockquote>
+  <button class="btn-morning-complete" onclick="completeMorningStillness()">I Am Present — Complete ✓</button>
 </div>
 
 <!-- ══ JOURNAL VIEW MODAL ══ -->
@@ -1472,6 +1546,19 @@ let voPlaying=false,timerInterval=null,breathInterval=null,timerSeconds=900,paus
 
 // ── INIT ──────────────────────────────────────────────────────
 (function init(){
+  // Gate — returning users skip landing entirely, go straight to results
+  if(localStorage.getItem('tqa_profile_complete')==='1'){
+    try{
+      const _s=JSON.parse(localStorage.getItem('tqa_profile')||'null');
+      if(_s&&_s.profile&&PROFILES[_s.profile]){
+        currentProfile=_s.profile;userName=_s.name||'';userEmail=_s.email||'';
+        showResults();
+        initCoworkCountdown();initLangBar();
+        return;
+      }
+    }catch(e){}
+  }
+
   // Soul counter
   let c=2847+Math.floor(Math.random()*40);
   const sc=document.getElementById('soulCount');
@@ -1484,7 +1571,7 @@ let voPlaying=false,timerInterval=null,breathInterval=null,timerSeconds=900,paus
   if(lv)lv.textContent=n;
   setInterval(()=>{if(Math.random()<0.3){n+=Math.random()<0.6?1:-1;n=Math.max(4,Math.min(40,n));const e=document.getElementById('liveNum');if(e)e.textContent=n;}},7000);
 
-  // Check localStorage for saved profile — show resume banner + return bar
+  // Check localStorage for saved profile (gate not set) — show resume banner
   try{
     const saved=JSON.parse(localStorage.getItem('tqa_profile')||'null');
     if(saved&&saved.profile&&PROFILES[saved.profile]){
@@ -1494,21 +1581,10 @@ let voPlaying=false,timerInterval=null,breathInterval=null,timerSeconds=900,paus
       const profileName=PROFILES[saved.profile].name;
       const rb=document.getElementById('resumeBanner');
       const rn=document.getElementById('resumeProfileName');
-      if(rb&&rn){
-        rn.textContent=profileName;
-        rb.style.display='block';
-      }
+      if(rb&&rn){rn.textContent=profileName;rb.style.display='block';}
       const prb=document.getElementById('profileReturnBar');
       const prbName=document.getElementById('prbName');
-      if(prb&&prbName){
-        prbName.textContent=profileName;
-        prb.classList.add('visible');
-      }
-      // Gate — returning user: change begin button
-      if(localStorage.getItem('tqa_profile_complete')==='1'){
-        const beginBtn=document.querySelector('.btn-begin');
-        if(beginBtn){beginBtn.innerHTML='<span>Continue My Journey →</span>';beginBtn.onclick=function(){resumeProfile();};}
-      }
+      if(prb&&prbName){prbName.textContent=profileName;prb.classList.add('visible');}
     }
   }catch(e){}
   initCoworkCountdown();
@@ -2170,19 +2246,82 @@ function showDashboard(){
 
 function renderDashboard(saved){
   const p=PROFILES[saved.profile];
+  const t=new Date().toISOString().slice(0,10);
+  const d=saved.date?new Date(saved.date):new Date();
+  const dayNum=Math.max(1,Math.floor((Date.now()-d.getTime())/(1000*60*60*24))+1);
+  const encouragements=['You are still showing up.','He sees your faithfulness.','Keep going, beloved.','This is sacred ground.','He is meeting you here.','Your presence matters.','You are not forgotten.'];
+  const enc=encouragements[(dayNum-1)%encouragements.length];
+  const hr=new Date().getHours();
+  const tg=hr<12?'Good morning':hr<17?'Good afternoon':'Good evening';
+  const streak=parseInt(localStorage.getItem('tqa_streak')||'0');
+
   const pn=document.getElementById('dashProfileName');
   if(pn)pn.innerHTML='<em>'+p.name+'</em>';
-  const ds=document.getElementById('dashSince');
-  if(ds){
-    const d=saved.date?new Date(saved.date):new Date();
-    const dayNum=Math.max(1,Math.floor((Date.now()-d.getTime())/(1000*60*60*24))+1);
-    const encouragements=['You are still showing up.','He sees your faithfulness.','Keep going, beloved.','This is sacred ground.','He is meeting you here.','Your presence matters.','You are not forgotten.'];
-    const enc=encouragements[(dayNum-1)%encouragements.length];
-    const hr=new Date().getHours();
-    const tg=hr<12?'Good morning':hr<17?'Good afternoon':'Good evening';
-    ds.innerHTML='<span style="font-family:\'Cormorant Garamond\',serif;font-size:1.15rem;font-style:italic;color:var(--cream);display:block;margin-bottom:6px;">'+tg+', '+(saved.name||'beloved')+'.</span>'
-      +'<span style="font-size:0.78rem;color:var(--gold-dim);letter-spacing:0.06em;">This is Day '+dayNum+'. '+enc+'</span>';
+
+  const gr=document.getElementById('dashGreeting');
+  if(gr){
+    gr.innerHTML='<span style="font-family:\'Cormorant Garamond\',serif;font-size:1.15rem;font-style:italic;color:var(--cream);display:block;margin-bottom:6px;">'+tg+', '+(saved.name||'beloved')+'.</span>'
+      +'<span style="font-size:0.78rem;color:var(--gold-dim);letter-spacing:0.06em;">This is Day '+dayNum+'. '+enc+'</span>'
+      +(streak>0?'<div class="streak-chip"><span class="streak-num">'+streak+'</span><span class="streak-lbl">Day Streak</span></div>':'');
   }
+
+  // Sign-in section
+  const signedIn=localStorage.getItem('tqa_signin_'+t)==='1';
+  const siSec=document.getElementById('dashSignInSection');
+  if(siSec){
+    if(signedIn){
+      siSec.innerHTML='<div class="signed-status"><div class="signed-label">☀ Day Opened</div><div class="signed-sub">You have shown up. Heaven has noticed.</div></div>';
+    } else {
+      siSec.innerHTML='<button class="btn-sign-in" onclick="signInDay()">☀ Sign In — Begin Your Day</button>';
+    }
+  }
+
+  // Segment checklist
+  const SEGS=[
+    {key:'seg_morning',label:'Morning Stillness',dur:'5 min',fn:'launchMorningStillness()'},
+    {key:'seg_reflection',label:'Reflection',dur:'10 min',fn:'launchReflection()'},
+    {key:'seg_practice',label:'Sacred Practice',dur:'10 min',fn:'launchSacredPractice()'},
+    {key:'seg_silence',label:'Silence Session',dur:'15 min',fn:'launchSilenceSession()'},
+    {key:'seg_journal',label:'Journal & Close',dur:'5 min',fn:'launchJournalClose()'},
+  ];
+  const sl=document.getElementById('segList');
+  if(sl){
+    let foundCurrent=false;
+    sl.innerHTML=SEGS.map((seg,i)=>{
+      const done=localStorage.getItem(seg.key+'_'+t)==='1';
+      let state,icon,cta,onclick='';
+      if(done){
+        state='done';icon='✓';cta='Complete';
+      } else if(!foundCurrent&&signedIn){
+        state='active';icon='→';cta='Begin →';
+        onclick=' onclick="'+seg.fn+'"';
+        foundCurrent=true;
+      } else {
+        state='locked';icon='○';
+        cta=signedIn&&i>0?'After '+SEGS[i-1].label.split(' ')[0]:'Sign in first';
+      }
+      return '<div class="seg-row '+state+'"'+onclick+'>'
+        +'<div class="seg-icon">'+icon+'</div>'
+        +'<div class="seg-body"><div class="seg-label">'+seg.label+'</div><div class="seg-dur">'+seg.dur+'</div></div>'
+        +'<div class="seg-cta">'+cta+'</div>'
+        +'</div>';
+    }).join('');
+  }
+
+  // Sign-out section
+  const signedOut=localStorage.getItem('tqa_signout_'+t)==='1';
+  const soSec=document.getElementById('dashSignOutSection');
+  if(soSec){
+    const nightScriptures=['Be still, and know that I am God. — Psalm 46:10','He grants sleep to those he loves. — Psalm 127:2','In peace I will lie down and sleep. — Psalm 4:8'];
+    const ns=nightScriptures[dayNum%nightScriptures.length];
+    if(signedOut){
+      soSec.innerHTML='<div class="signed-status"><div class="signed-label" style="color:var(--sage);">☽ Day Sealed</div><div class="night-scripture">'+ns+'</div></div>';
+    } else {
+      soSec.innerHTML='<button class="btn-sign-out" onclick="signOutDay()">☽ Close My Day</button>';
+    }
+  }
+
+  // 7-day circles
   let days=[];try{days=JSON.parse(localStorage.getItem('tqa_days')||'[]');}catch(e){}
   const dc=document.getElementById('dayCircles');
   if(dc){
@@ -2193,6 +2332,8 @@ function renderDashboard(saved){
         '<span class="dcl">'+(done?'✓':'Day')+'</span></button>';
     }).join('');
   }
+
+  // Stats
   let sess=0,jc=0,dc2=0;
   try{sess=parseInt(localStorage.getItem('tqa_sessions')||'0');}catch(e){}
   try{jc=JSON.parse(localStorage.getItem('tqa_journal')||'[]').length;}catch(e){}
@@ -2200,6 +2341,7 @@ function renderDashboard(saved){
   const ss=document.getElementById('statSessions');const sd=document.getElementById('statDays');const sj=document.getElementById('statJournal');
   if(ss)ss.textContent=sess;if(sd)sd.textContent=dc2;if(sj)sj.textContent=jc;
 
+  // Journal preview
   const djp=document.getElementById('dashJournalPreview');
   if(djp){
     let entries=[];try{entries=JSON.parse(localStorage.getItem('tqa_journal')||'[]');}catch(e){}
@@ -2207,12 +2349,74 @@ function renderDashboard(saved){
       djp.innerHTML='<div class="djp-empty">No entries yet. Write your first truth after a silence session.</div>';
     } else {
       djp.innerHTML=entries.slice(-2).reverse().map(e=>{
-        const d=new Date(e.date).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
+        const dt=new Date(e.date).toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});
         const preview=e.text.length>120?e.text.slice(0,120)+'…':e.text;
-        return '<div class="djp-entry"><div class="djp-date">'+d+'</div><div class="djp-text">'+preview+'</div></div>';
+        return '<div class="djp-entry"><div class="djp-date">'+dt+'</div><div class="djp-text">'+preview+'</div></div>';
       }).join('');
     }
   }
+}
+
+function signInDay(){
+  const t=new Date().toISOString().slice(0,10);
+  try{localStorage.setItem('tqa_signin_'+t,'1');}catch(e){}
+  const saved=getSavedProfile();if(saved)renderDashboard(saved);
+}
+
+function signOutDay(){
+  const today=new Date();
+  const t=today.toISOString().slice(0,10);
+  if(localStorage.getItem('tqa_signout_'+t)==='1')return;
+  try{localStorage.setItem('tqa_signout_'+t,'1');}catch(e){}
+  const yesterday=new Date(today);yesterday.setDate(yesterday.getDate()-1);
+  const yt=yesterday.toISOString().slice(0,10);
+  let streak=1;
+  if(localStorage.getItem('tqa_signout_'+yt)==='1'){
+    try{streak=parseInt(localStorage.getItem('tqa_streak')||'0')+1;}catch(e){streak=1;}
+  }
+  try{localStorage.setItem('tqa_streak',String(streak));}catch(e){}
+  const saved=getSavedProfile();if(saved)renderDashboard(saved);
+}
+
+function launchMorningStillness(){
+  const saved=getSavedProfile();
+  const p=saved&&PROFILES[saved.profile]?PROFILES[saved.profile]:null;
+  const scripture=p?'"'+p.scripture+'" — '+p.ref:'Be still, and know that I am God. — Psalm 46:10';
+  const ms=document.getElementById('morningScripture');if(ms)ms.textContent=scripture;
+  const mm=document.getElementById('morningModal');if(mm)mm.classList.add('open');
+}
+
+function completeMorningStillness(){
+  const t=new Date().toISOString().slice(0,10);
+  try{localStorage.setItem('seg_morning_'+t,'1');}catch(e){}
+  const mm=document.getElementById('morningModal');if(mm)mm.classList.remove('open');
+  const saved=getSavedProfile();if(saved)renderDashboard(saved);
+}
+
+function launchReflection(){
+  const t=new Date().toISOString().slice(0,10);
+  try{localStorage.setItem('seg_reflection_'+t,'1');}catch(e){}
+  resumeProfile();
+  setTimeout(()=>{const el=document.getElementById('resultsTop');if(el)el.scrollIntoView({behavior:'smooth'});},400);
+}
+
+function launchSacredPractice(){
+  const t=new Date().toISOString().slice(0,10);
+  try{localStorage.setItem('seg_practice_'+t,'1');}catch(e){}
+  resumeProfile();
+  setTimeout(()=>{const el=document.getElementById('section-practice');if(el)el.scrollIntoView({behavior:'smooth'});},400);
+}
+
+function launchSilenceSession(){
+  resumeProfile();
+  setTimeout(()=>{const el=document.getElementById('silenceSection');if(el)el.scrollIntoView({behavior:'smooth'});},400);
+}
+
+function launchJournalClose(){
+  const t=new Date().toISOString().slice(0,10);
+  try{localStorage.setItem('seg_journal_'+t,'1');}catch(e){}
+  openJournalModal();
+  const saved=getSavedProfile();if(saved)renderDashboard(saved);
 }
 
 function toggleDay(i){
