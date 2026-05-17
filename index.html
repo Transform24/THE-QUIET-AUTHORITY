@@ -496,6 +496,23 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 .art-promo-code{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--cream);letter-spacing:.15em;}
 .art-promo-note{font-size:.75rem;color:var(--muted);margin-top:.3rem;}
 .gallery-note{font-size:.78rem;color:var(--muted);font-style:italic;margin-top:1.5rem;line-height:1.6;}
+/* ══ SHOP OFFER SYSTEM ══ */
+.shop-offer-banner{background:linear-gradient(135deg,rgba(201,168,76,.08),rgba(193,89,60,.05));border:1px solid rgba(201,168,76,.28);padding:1.2rem 1.8rem;margin-bottom:2.4rem;text-align:center;}
+.shop-offer-banner.coming-soon{background:rgba(125,140,110,.05);border-color:rgba(125,140,110,.22);}
+.sob-eyebrow{font-family:'Cinzel',serif;font-size:.44rem;letter-spacing:.38em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:.4rem;}
+.coming-soon .sob-eyebrow{color:var(--sage);}
+.sob-headline{font-family:'Cormorant Garamond',serif;font-size:1.35rem;font-style:italic;color:var(--cream);line-height:1.3;margin-bottom:.35rem;}
+.sob-sub{font-size:.82rem;color:var(--text-dim);margin-bottom:.7rem;line-height:1.55;}
+.sob-code-wrap{display:inline-flex;align-items:center;gap:.8rem;background:rgba(201,168,76,.07);border:1px solid rgba(201,168,76,.28);padding:.45rem 1.2rem;margin-bottom:.5rem;}
+.sob-code{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--gold-light);letter-spacing:.2em;}
+.sob-expires{font-size:.62rem;color:var(--text-muted);letter-spacing:.14em;font-family:'Cinzel',serif;text-transform:uppercase;}
+.bundle-offer-card{background:rgba(201,168,76,.04);border:1px solid rgba(201,168,76,.22);padding:1.3rem 1.6rem;margin:1.2rem 0;text-align:center;}
+.boc-label{font-family:'Cinzel',serif;font-size:.44rem;letter-spacing:.38em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem;}
+.boc-headline{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-style:italic;color:var(--cream);margin-bottom:.4rem;}
+.boc-body{font-size:.82rem;color:var(--text-dim);line-height:1.6;margin-bottom:.8rem;}
+.boc-code-row{display:flex;align-items:center;justify-content:center;gap:.6rem;flex-wrap:wrap;}
+.boc-code{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--gold-light);letter-spacing:.2em;background:rgba(201,168,76,.08);border:1px dashed rgba(201,168,76,.38);padding:.3rem 1rem;}
+.boc-value{font-size:.68rem;color:var(--terra);font-family:'Cinzel',serif;letter-spacing:.18em;text-transform:uppercase;}
 @media(max-width:600px){.art-grid{grid-template-columns:1fr;}.art-bundle-wrap{padding:1.5rem;}.art-bundle-row{flex-direction:column;}}
 
 /* ══ BOOKS ══ */
@@ -975,6 +992,7 @@ body{top:0!important;}
   <!-- DEVOTIONAL SHOP -->
   <div class="devot-section" id="section-shop">
     <div class="devot-inner">
+      <div id="shopOfferBanner"></div>
       <span class="s-label" style="text-align:center;">The Written Word</span>
       <h3 style="font-family:'Cinzel',serif;font-size:clamp(1.3rem,3vw,2rem);font-weight:400;color:var(--cream);margin-bottom:1.2rem;">The Devotional Series</h3>
       <div class="gold-line"></div>
@@ -1076,11 +1094,7 @@ body{top:0!important;}
 
       <!-- Bundle -->
       <div class="art-bundle-wrap">
-        <div class="art-promo">
-          <p class="art-promo-label">Mother's Day · Expires May 11</p>
-          <p class="art-promo-code">MOTHERSDAY</p>
-          <p class="art-promo-note">Enter this code at checkout — one profile free when you buy all four</p>
-        </div>
+        <div id="artPromoBlock"></div>
         <div class="art-bundle-row">
           <div>
             <p class="art-bundle-label">Complete Collection</p>
@@ -1150,6 +1164,7 @@ body{top:0!important;}
       <div class="r-label">Sanctuary Essentials — Amazon Curated</div>
       <h2 class="sacred-title serif" id="sacredHeading">Curated Just for You</h2>
       <p class="sacred-sub" id="sacredSub"></p>
+      <div id="amazonBundleOffer"></div>
       <p class="sacred-disclaimer">As an Amazon Associate, Sanctuary Grace Ministry earns from qualifying purchases. Every collection is hand-curated for your silence practice.</p>
       <div class="sacred-grid" id="sacredGrid"></div>
       <div class="sacred-cta">
@@ -1526,6 +1541,80 @@ const SACRED_SPACE={
 };
 
 const MUSIC=['music1.mp3','music2.mp3','music3.mp3','music4.mp3'];
+
+const HOLIDAY_PROMOS=[
+  {label:'Memorial Day · Honor & Rest',       expires:'May 27',  code:'MEMORIAL26',   headline:'25% off all wall art',              note:'Honor those who served — and give yourself permission to rest.',          mmdd_start:'0520',mmdd_end:'0527'},
+  {label:'Father\'s Day · For the Families She Holds', expires:'Jun 22', code:'FATHERSDAY26', headline:'Buy one devotional, gift one free',    note:'One for her. One for someone she loves. Use at Stripe checkout.',         mmdd_start:'0608',mmdd_end:'0622'},
+  {label:'Juneteenth · Walk in Your Freedom', expires:'Jun 21',  code:'FREEDOM19',    headline:'15% off everything',                note:'True freedom begins in the spirit — and in the stillness.',               mmdd_start:'0617',mmdd_end:'0621'},
+  {label:'Independence Day · Spirit of Freedom',expires:'Jul 5', code:'FREEDOM4TH',   headline:'20% off books',                     note:'Declare your freedom from performing for approval.',                      mmdd_start:'0628',mmdd_end:'0705'},
+  {label:'Labor Day · Rest Is Sacred',         expires:'Sep 7',  code:'REST2026',      headline:'25% off devotional bundle',         note:'The most holy act on a Labor Day — choosing rest.',                       mmdd_start:'0830',mmdd_end:'0907'},
+  {label:'Veterans Day · Honor & Gratitude',   expires:'Nov 12', code:'VETERANS26',   headline:'15% off all products',              note:'For women who carry quiet strength — seen by God.',                       mmdd_start:'1109',mmdd_end:'1112'},
+  {label:'Thanksgiving · Season of Gratitude', expires:'Nov 30', code:'GRATEFUL26',   headline:'25% off everything',                note:'Grateful women become powerful women.',                                    mmdd_start:'1120',mmdd_end:'1130'},
+  {label:'Christmas · The Gift of Stillness',  expires:'Dec 26', code:'STILLNESS26',  headline:'30% off — our biggest gift',        note:'The greatest gift is already yours. This is for the journey.',            mmdd_start:'1215',mmdd_end:'1226'},
+  {label:'New Year · Fresh Season',            expires:'Jan 5',  code:'FRESH2027',    headline:'20% off your first purchase',       note:'New season. New surrender. Same faithful God.',                           mmdd_start:'1228',mmdd_end:'0105'},
+  {label:'Valentine\'s Day · You Are Beloved', expires:'Feb 15', code:'BELOVED27',    headline:'15% off wall art',                  note:'Because beloved women give from overflow — not from empty.',              mmdd_start:'0207',mmdd_end:'0215'},
+  {label:'Lent · Season of Surrender',         expires:'Mar 20', code:'LENT2027',     headline:'20% off devotionals',               note:'Forty days of intentional stillness.',                                    mmdd_start:'0218',mmdd_end:'0320'},
+  {label:'Resurrection Season · He Is Risen',  expires:'Apr 7',  code:'RISEN2027',    headline:'25% off devotional bundle',         note:'He is risen. And so are you. Walk forward.',                             mmdd_start:'0330',mmdd_end:'0407'},
+  {label:'Mother\'s Day · She Who Gives',      expires:'May 11', code:'MOTHERS27',    headline:'One profile free with bundle',      note:'For the woman who gives everything — she deserves this.',                 mmdd_start:'0504',mmdd_end:'0512'},
+];
+
+const BUNDLE_OFFERS=[
+  {id:'amazon2free', label:'Amazon Sanctuary Bundle',           headline:'Add Any 2 Amazon Items',               sub:'receive Week 1 Devotional free',         body:'Select any two sanctuary items below, complete your Amazon purchase, then use this code at Stripe checkout. Your devotional (Vision, Week 1) is yours at no charge.',                                                  code:'B2AMAZON',    value:'$4.99 Free'},
+  {id:'artdevot',    label:'Complete Your Sanctuary',           headline:'Wall Art Bundle + Devotional Bundle',  sub:'save $8 together',                        body:'Buy the All Four Profiles Wall Art Bundle ($29.99) and The Full Devotional Bundle ($19.96) — enter this code at Stripe checkout to receive $8 off your total.',                                                           code:'ARTDEVOT',    value:'Save $8'},
+  {id:'always',      label:'Loyalty Offer · No Expiry',         headline:'Your Sanctuary Code',                  sub:'10% off everything, always',              body:'You showed up. That means something. Use this code on any Stripe product — devotionals, wall art, or books — any time, no conditions.',                                                                                           code:'SANCTUARY10', value:'10% Off'},
+];
+
+function getActiveHolidayPromo(){
+  const now=new Date();
+  const mmdd=String(now.getMonth()+1).padStart(2,'0')+String(now.getDate()).padStart(2,'0');
+  for(const p of HOLIDAY_PROMOS){
+    if(p.mmdd_start>p.mmdd_end){
+      // wraps year (e.g. Dec 28 → Jan 5)
+      if(mmdd>=p.mmdd_start||mmdd<=p.mmdd_end)return p;
+    } else {
+      if(mmdd>=p.mmdd_start&&mmdd<=p.mmdd_end)return p;
+    }
+  }
+  return null;
+}
+
+function getNextHolidayPromo(){
+  const now=new Date();
+  const mmdd=String(now.getMonth()+1).padStart(2,'0')+String(now.getDate()).padStart(2,'0');
+  const future=HOLIDAY_PROMOS.filter(p=>p.mmdd_start>mmdd&&!(p.mmdd_start>p.mmdd_end))
+    .sort((a,b)=>a.mmdd_start.localeCompare(b.mmdd_start));
+  return future.length?future[0]:HOLIDAY_PROMOS[0];
+}
+
+function renderShopOffers(){
+  const active=getActiveHolidayPromo();
+  const next=getNextHolidayPromo();
+  const fallback={label:'Always Active · Loyalty Offer',code:'SANCTUARY10',headline:'10% off — yours always',note:'Use this code at checkout any time. No conditions.',expires:'No expiry'};
+
+  // ── Top-of-shop banner ──
+  const banner=document.getElementById('shopOfferBanner');
+  if(banner){
+    if(active){
+      banner.innerHTML='<div class="shop-offer-banner"><p class="sob-eyebrow">'+active.label+'</p><p class="sob-headline">'+active.headline+'</p><p class="sob-sub">'+active.note+'</p><div class="sob-code-wrap"><span class="sob-code">'+active.code+'</span></div><p class="sob-expires">Expires '+active.expires+' &nbsp;&middot;&nbsp; Enter at Stripe checkout</p></div>';
+    } else {
+      banner.innerHTML='<div class="shop-offer-banner coming-soon"><p class="sob-eyebrow">Coming Next &mdash; '+next.label+'</p><p class="sob-headline">'+next.headline+'</p><p class="sob-sub">Code <strong style="color:var(--gold-light)">'+next.code+'</strong> activates '+next.label.split('\xb7')[0].trim()+'</p><p class="sob-expires">Today &mdash; use SANCTUARY10 for 10% off everything &nbsp;&middot;&nbsp; Always active</p></div>';
+    }
+  }
+
+  // ── Wall art promo block ──
+  const artBlock=document.getElementById('artPromoBlock');
+  if(artBlock){
+    const p=active||fallback;
+    artBlock.innerHTML='<div class="art-promo"><p class="art-promo-label">'+p.label+'</p><p class="art-promo-code">'+p.code+'</p><p class="art-promo-note">'+(active?p.headline+' &nbsp;&middot;&nbsp; ':'')+p.note+' &nbsp;&middot;&nbsp; Expires: '+p.expires+'</p></div>';
+  }
+
+  // ── Amazon bundle offer ──
+  const amazonBlock=document.getElementById('amazonBundleOffer');
+  if(amazonBlock){
+    const b=BUNDLE_OFFERS[0];
+    amazonBlock.innerHTML='<div class="bundle-offer-card"><p class="boc-label">'+b.label+'</p><p class="boc-headline">'+b.headline+' &rarr; '+b.sub+'</p><p class="boc-body">'+b.body+'</p><div class="boc-code-row"><span class="boc-code">'+b.code+'</span><span class="boc-value">'+b.value+'</span></div></div>';
+  }
+}
 
 const SILENCE_QUOTES=[
   {type:'Thinking',text:'"Be still, and know that I am God."',ref:'— Psalm 46:10'},
@@ -1935,6 +2024,7 @@ function showResults(){
   if(dte&&displayEmail)dte.textContent=displayEmail;
 
   renderSacredSpace();
+  renderShopOffers();
   renderTickers();
   renderDayPreview();
   showScreen('screen-results');
