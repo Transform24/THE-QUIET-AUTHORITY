@@ -792,11 +792,11 @@ body{top:0!important;}
   <button class="tab-item" id="tab-profile" onclick="tabNav('profile')">
     <span class="tab-icon">✦</span>Profile
   </button>
-  <button class="tab-item" id="tab-practice" onclick="tabNav('practice')">
-    <span class="tab-icon">☽</span>Practice
-  </button>
   <button class="tab-item" id="tab-silence" onclick="tabNav('silence')">
     <span class="tab-icon">◯</span>Silence
+  </button>
+  <button class="tab-item" id="tab-practice" onclick="tabNav('practice')">
+    <span class="tab-icon">☽</span>Practice
   </button>
   <button class="tab-item" id="tab-shop" onclick="tabNav('shop')">
     <span class="tab-icon">✦</span>Shop
@@ -973,6 +973,133 @@ body{top:0!important;}
     <div class="scripture-card">
       <p class="scripture-text" id="rScripture"></p>
       <p class="scripture-ref" id="rScriptureRef"></p>
+    </div>
+  </div>
+
+  <!-- SILENCE SESSION -->
+  <div class="silence-section" id="silenceSection">
+    <div class="silence-inner">
+      <div class="r-label" style="text-align:center;">Practice With Me — Free</div>
+      <h2 class="silence-title serif">Your First Silence Session</h2>
+      <p class="silence-sub">15 minutes. No experience required. Sacred music, guided stillness, and a journal prompt written for your profile.</p>
+
+      <div class="live-counter">
+        <div class="live-dot"></div>
+        <span id="liveNum">12</span>&nbsp; women are practicing silence right now
+      </div>
+
+      <div class="session-phases" id="sessionPhases">
+        <div class="phase"><div class="phase-dot"></div>Minutes 1–5 &nbsp;—&nbsp; sacred music prepares your heart</div>
+        <div class="phase"><div class="phase-dot"></div>Minutes 6–15 &nbsp;—&nbsp; guided silence with countdown</div>
+        <div class="phase"><div class="phase-dot"></div>After &nbsp;—&nbsp; journal prompt for your profile</div>
+      </div>
+
+      <div id="silenceQuoteDisplay" style="display:none;">
+        <div id="sqType"></div>
+        <p id="sqText"></p>
+        <div id="sqRef"></div>
+      </div>
+
+      <div class="breathing-wrap" id="breathingWrap">
+        <div class="breath-ring"></div>
+        <div class="breath-ring"></div>
+        <div class="breath-ring"></div>
+        <div class="breath-ring"></div>
+        <div class="breath-center"></div>
+        <span class="breath-label" id="breathLabel">Breathe in</span>
+      </div>
+
+      <div class="timer-phase" id="timerPhase"></div>
+      <div class="timer-display" id="timerDisplay">15:00</div>
+      <div class="timer-label" id="timerLabel">Ready when you are</div>
+
+      <div id="audioPickerWrap" style="margin-bottom:24px;">
+        <div style="font-size:0.58rem;letter-spacing:0.32em;text-transform:uppercase;color:var(--gold-dim);font-weight:300;margin-bottom:14px;text-align:center;">Choose Your Atmosphere</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;max-width:380px;margin:0 auto;">
+          <button class="track-btn" onclick="selectTrack(0)" id="track0" style="display:flex;flex-direction:column;align-items:flex-start;padding:11px 14px;gap:3px;">
+            <span style="font-size:0.62rem;color:inherit;letter-spacing:0.12em;text-transform:uppercase;">Classical</span>
+            <span style="font-size:0.54rem;color:var(--text-muted);letter-spacing:0.06em;font-style:italic;text-transform:none;">Violin &amp; Piano</span>
+          </button>
+          <button class="track-btn" onclick="selectTrack(1)" id="track1" style="display:flex;flex-direction:column;align-items:flex-start;padding:11px 14px;gap:3px;">
+            <span style="font-size:0.62rem;color:inherit;letter-spacing:0.12em;text-transform:uppercase;">Still Waters</span>
+            <span style="font-size:0.54rem;color:var(--text-muted);letter-spacing:0.06em;font-style:italic;text-transform:none;">Ambient · Gentle</span>
+          </button>
+          <button class="track-btn" onclick="selectTrack(2)" id="track2" style="display:flex;flex-direction:column;align-items:flex-start;padding:11px 14px;gap:3px;">
+            <span style="font-size:0.62rem;color:inherit;letter-spacing:0.12em;text-transform:uppercase;">Gratitude</span>
+            <span style="font-size:0.54rem;color:var(--text-muted);letter-spacing:0.06em;font-style:italic;text-transform:none;">Worship · Soft</span>
+          </button>
+          <button class="track-btn" onclick="selectTrack(3)" id="track3" style="display:flex;flex-direction:column;align-items:flex-start;padding:11px 14px;gap:3px;">
+            <span style="font-size:0.62rem;color:inherit;letter-spacing:0.12em;text-transform:uppercase;">Sacred Strings</span>
+            <span style="font-size:0.54rem;color:var(--text-muted);letter-spacing:0.06em;font-style:italic;text-transform:none;">Orchestral · Deep</span>
+          </button>
+        </div>
+        <div style="font-size:0.58rem;color:var(--text-muted);text-align:center;margin-top:10px;letter-spacing:0.08em;">Original music by Sanctuary Grace Ministry · Select a track or one will be chosen for you</div>
+      </div>
+
+      <div class="timer-btns">
+        <button class="btn-session gold" onclick="startSession()" id="btnStartSession">Begin Session</button>
+        <button class="btn-session" onclick="pauseSession()" id="btnPauseSession" style="display:none;">Pause</button>
+        <button class="btn-session" onclick="resetSession()" id="btnResetSession" style="display:none;">Reset</button>
+      </div>
+
+      <div class="journal-prompt" id="journalPrompt">
+        <div class="jp-label">After Your Session — Journal Prompt</div>
+        <p class="jp-text" id="jpText"></p>
+        <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap;">
+          <button class="btn-session gold" onclick="openJournalModal()" style="font-size:0.65rem;padding:10px 22px;">Write in Journal</button>
+          <button class="btn-session" onclick="viewJournalEntries()" style="font-size:0.65rem;padding:10px 22px;">View Saved Entries</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CIRCLE OF SILENCE — THE WOMAN WHO POURS -->
+  <div class="cowork-section">
+    <div class="cowork-inner">
+      <div class="cowork-eyebrow">Circle of Silence · The Next Step</div>
+      <h2 class="cowork-title">The Woman Who Pours</h2>
+      <div class="cowork-subtitle">She does not pour from obligation. She pours from overflow.</div>
+      <div class="cowork-divider"></div>
+      <p class="cowork-body">You came here depleted — striving, surviving, giving from empty, or lost in the noise. The silence has begun to fill you. Now there is a deeper invitation: to join a circle of women who gather weekly in sacred co-working silence, accountable to nothing but presence, and pouring into one another without a word spoken.</p>
+      <div class="cowork-features">
+        <div class="cowork-feat"><span class="cf-dot"></span>Weekly live silence sessions — hearts open, no speaking required</div>
+        <div class="cowork-feat"><span class="cf-dot"></span>Your Silence Profile guides every practice inside the Circle</div>
+        <div class="cowork-feat"><span class="cf-dot"></span>A community of women becoming who God called them to be — together</div>
+        <div class="cowork-feat"><span class="cf-dot"></span>The Woman Who Pours is not the loudest in the room. She is the most rooted.</div>
+      </div>
+      <button class="btn-cowork" onclick="goShop('https://beacons.ai/sanctuarygrace')">Reserve My Place in the Circle</button>
+
+      <div class="cos-block">
+        <div class="cos-label">Session Schedule</div>
+        <div class="cos-schedule">
+          <div class="cos-slot"><div class="cos-day">Monday</div><div class="cos-time">7:00 AM</div><div class="cos-tz">EST</div></div>
+          <div class="cos-slot"><div class="cos-day">Wednesday</div><div class="cos-time">7:00 AM</div><div class="cos-tz">EST</div></div>
+          <div class="cos-slot"><div class="cos-day">Friday</div><div class="cos-time">7:00 AM</div><div class="cos-tz">EST</div></div>
+          <div class="cos-slot"><div class="cos-day">Thursday</div><div class="cos-time">8:00 PM</div><div class="cos-tz">EST</div></div>
+        </div>
+
+        <div class="cos-live" id="cosLive">
+          <span class="cos-live-dot"></span>
+          <span class="cos-live-text">Session is Live</span>
+        </div>
+        <div class="cos-countdown-wrap" id="cosCountdownWrap">
+          <div class="cos-countdown-label">Next session begins in</div>
+          <div id="cosCountdown">--:--:--</div>
+        </div>
+        <button class="btn-cowork-join" id="cosJoinBtn" onclick="goShop('https://youtube.com/@TheQuietAuthority-f1z')">Join on YouTube →</button>
+
+        <div class="cos-how">
+          <div class="cos-how-title">How It Works</div>
+          <div class="cos-steps">
+            <div class="cos-step"><span class="cos-step-num">1</span><span class="cos-step-body">Reserve your place at <span style="color:var(--cream);cursor:pointer;" onclick="goShop('https://beacons.ai/sanctuarygrace')">beacons.ai/sanctuarygrace</span></span></div>
+            <div class="cos-step"><span class="cos-step-num">2</span><span class="cos-step-body">Receive your Zoom link by email</span></div>
+            <div class="cos-step"><span class="cos-step-num">3</span><span class="cos-step-body">Show up. Cameras on. No words required.</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cowork-verse">"She opens her hand to the poor and reaches out her hands to the needy."</div>
+      <div class="cowork-ref">Proverbs 31:20 · The Woman Who Pours</div>
     </div>
   </div>
 
@@ -1177,133 +1304,6 @@ body{top:0!important;}
   <!-- SCRIPTURE TICKER -->
   <div class="scripture-ticker">
     <div class="ticker-track" id="tickerTrack"></div>
-  </div>
-
-  <!-- SILENCE SESSION -->
-  <div class="silence-section" id="silenceSection">
-    <div class="silence-inner">
-      <div class="r-label" style="text-align:center;">Practice With Me — Free</div>
-      <h2 class="silence-title serif">Your First Silence Session</h2>
-      <p class="silence-sub">15 minutes. No experience required. Sacred music, guided stillness, and a journal prompt written for your profile.</p>
-
-      <div class="live-counter">
-        <div class="live-dot"></div>
-        <span id="liveNum">12</span>&nbsp; women are practicing silence right now
-      </div>
-
-      <div class="session-phases" id="sessionPhases">
-        <div class="phase"><div class="phase-dot"></div>Minutes 1–5 &nbsp;—&nbsp; sacred music prepares your heart</div>
-        <div class="phase"><div class="phase-dot"></div>Minutes 6–15 &nbsp;—&nbsp; guided silence with countdown</div>
-        <div class="phase"><div class="phase-dot"></div>After &nbsp;—&nbsp; journal prompt for your profile</div>
-      </div>
-
-      <div id="silenceQuoteDisplay" style="display:none;">
-        <div id="sqType"></div>
-        <p id="sqText"></p>
-        <div id="sqRef"></div>
-      </div>
-
-      <div class="breathing-wrap" id="breathingWrap">
-        <div class="breath-ring"></div>
-        <div class="breath-ring"></div>
-        <div class="breath-ring"></div>
-        <div class="breath-ring"></div>
-        <div class="breath-center"></div>
-        <span class="breath-label" id="breathLabel">Breathe in</span>
-      </div>
-
-      <div class="timer-phase" id="timerPhase"></div>
-      <div class="timer-display" id="timerDisplay">15:00</div>
-      <div class="timer-label" id="timerLabel">Ready when you are</div>
-
-      <div id="audioPickerWrap" style="margin-bottom:24px;">
-        <div style="font-size:0.58rem;letter-spacing:0.32em;text-transform:uppercase;color:var(--gold-dim);font-weight:300;margin-bottom:14px;text-align:center;">Choose Your Atmosphere</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;max-width:380px;margin:0 auto;">
-          <button class="track-btn" onclick="selectTrack(0)" id="track0" style="display:flex;flex-direction:column;align-items:flex-start;padding:11px 14px;gap:3px;">
-            <span style="font-size:0.62rem;color:inherit;letter-spacing:0.12em;text-transform:uppercase;">Classical</span>
-            <span style="font-size:0.54rem;color:var(--text-muted);letter-spacing:0.06em;font-style:italic;text-transform:none;">Violin &amp; Piano</span>
-          </button>
-          <button class="track-btn" onclick="selectTrack(1)" id="track1" style="display:flex;flex-direction:column;align-items:flex-start;padding:11px 14px;gap:3px;">
-            <span style="font-size:0.62rem;color:inherit;letter-spacing:0.12em;text-transform:uppercase;">Still Waters</span>
-            <span style="font-size:0.54rem;color:var(--text-muted);letter-spacing:0.06em;font-style:italic;text-transform:none;">Ambient · Gentle</span>
-          </button>
-          <button class="track-btn" onclick="selectTrack(2)" id="track2" style="display:flex;flex-direction:column;align-items:flex-start;padding:11px 14px;gap:3px;">
-            <span style="font-size:0.62rem;color:inherit;letter-spacing:0.12em;text-transform:uppercase;">Gratitude</span>
-            <span style="font-size:0.54rem;color:var(--text-muted);letter-spacing:0.06em;font-style:italic;text-transform:none;">Worship · Soft</span>
-          </button>
-          <button class="track-btn" onclick="selectTrack(3)" id="track3" style="display:flex;flex-direction:column;align-items:flex-start;padding:11px 14px;gap:3px;">
-            <span style="font-size:0.62rem;color:inherit;letter-spacing:0.12em;text-transform:uppercase;">Sacred Strings</span>
-            <span style="font-size:0.54rem;color:var(--text-muted);letter-spacing:0.06em;font-style:italic;text-transform:none;">Orchestral · Deep</span>
-          </button>
-        </div>
-        <div style="font-size:0.58rem;color:var(--text-muted);text-align:center;margin-top:10px;letter-spacing:0.08em;">Original music by Sanctuary Grace Ministry · Select a track or one will be chosen for you</div>
-      </div>
-
-      <div class="timer-btns">
-        <button class="btn-session gold" onclick="startSession()" id="btnStartSession">Begin Session</button>
-        <button class="btn-session" onclick="pauseSession()" id="btnPauseSession" style="display:none;">Pause</button>
-        <button class="btn-session" onclick="resetSession()" id="btnResetSession" style="display:none;">Reset</button>
-      </div>
-
-      <div class="journal-prompt" id="journalPrompt">
-        <div class="jp-label">After Your Session — Journal Prompt</div>
-        <p class="jp-text" id="jpText"></p>
-        <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap;">
-          <button class="btn-session gold" onclick="openJournalModal()" style="font-size:0.65rem;padding:10px 22px;">Write in Journal</button>
-          <button class="btn-session" onclick="viewJournalEntries()" style="font-size:0.65rem;padding:10px 22px;">View Saved Entries</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- CIRCLE OF SILENCE — THE WOMAN WHO POURS -->
-  <div class="cowork-section">
-    <div class="cowork-inner">
-      <div class="cowork-eyebrow">Circle of Silence · The Next Step</div>
-      <h2 class="cowork-title">The Woman Who Pours</h2>
-      <div class="cowork-subtitle">She does not pour from obligation. She pours from overflow.</div>
-      <div class="cowork-divider"></div>
-      <p class="cowork-body">You came here depleted — striving, surviving, giving from empty, or lost in the noise. The silence has begun to fill you. Now there is a deeper invitation: to join a circle of women who gather weekly in sacred co-working silence, accountable to nothing but presence, and pouring into one another without a word spoken.</p>
-      <div class="cowork-features">
-        <div class="cowork-feat"><span class="cf-dot"></span>Weekly live silence sessions — hearts open, no speaking required</div>
-        <div class="cowork-feat"><span class="cf-dot"></span>Your Silence Profile guides every practice inside the Circle</div>
-        <div class="cowork-feat"><span class="cf-dot"></span>A community of women becoming who God called them to be — together</div>
-        <div class="cowork-feat"><span class="cf-dot"></span>The Woman Who Pours is not the loudest in the room. She is the most rooted.</div>
-      </div>
-      <button class="btn-cowork" onclick="goShop('https://beacons.ai/sanctuarygrace')">Reserve My Place in the Circle</button>
-
-      <div class="cos-block">
-        <div class="cos-label">Session Schedule</div>
-        <div class="cos-schedule">
-          <div class="cos-slot"><div class="cos-day">Monday</div><div class="cos-time">7:00 AM</div><div class="cos-tz">EST</div></div>
-          <div class="cos-slot"><div class="cos-day">Wednesday</div><div class="cos-time">7:00 AM</div><div class="cos-tz">EST</div></div>
-          <div class="cos-slot"><div class="cos-day">Friday</div><div class="cos-time">7:00 AM</div><div class="cos-tz">EST</div></div>
-          <div class="cos-slot"><div class="cos-day">Thursday</div><div class="cos-time">8:00 PM</div><div class="cos-tz">EST</div></div>
-        </div>
-
-        <div class="cos-live" id="cosLive">
-          <span class="cos-live-dot"></span>
-          <span class="cos-live-text">Session is Live</span>
-        </div>
-        <div class="cos-countdown-wrap" id="cosCountdownWrap">
-          <div class="cos-countdown-label">Next session begins in</div>
-          <div id="cosCountdown">--:--:--</div>
-        </div>
-        <button class="btn-cowork-join" id="cosJoinBtn" onclick="goShop('https://youtube.com/@TheQuietAuthority-f1z')">Join on YouTube →</button>
-
-        <div class="cos-how">
-          <div class="cos-how-title">How It Works</div>
-          <div class="cos-steps">
-            <div class="cos-step"><span class="cos-step-num">1</span><span class="cos-step-body">Reserve your place at <span style="color:var(--cream);cursor:pointer;" onclick="goShop('https://beacons.ai/sanctuarygrace')">beacons.ai/sanctuarygrace</span></span></div>
-            <div class="cos-step"><span class="cos-step-num">2</span><span class="cos-step-body">Receive your Zoom link by email</span></div>
-            <div class="cos-step"><span class="cos-step-num">3</span><span class="cos-step-body">Show up. Cameras on. No words required.</span></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="cowork-verse">"She opens her hand to the poor and reaches out her hands to the needy."</div>
-      <div class="cowork-ref">Proverbs 31:20 · The Woman Who Pours</div>
-    </div>
   </div>
 
   <!-- WOMEN'S TICKER -->
@@ -2560,8 +2560,8 @@ function startTabObserver(){
   _observerStarted=true;
   const map=[
     {id:'resultsTop',tab:'profile'},
-    {id:'section-practice',tab:'practice'},
     {id:'silenceSection',tab:'silence'},
+    {id:'section-practice',tab:'practice'},
     {id:'section-shop',tab:'shop'}
   ];
   _tabObserver=new IntersectionObserver(entries=>{
