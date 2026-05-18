@@ -1,6 +1,15 @@
 # THE QUIET AUTHORITY — AGENT SOP
 ## Sanctuary Grace Ministry · Transform24
-*Last updated: 2026-05-16 · This file is the law. Everything else defers to it.*
+*Last updated: 2026-05-18 · This file is the law. Everything else defers to it.*
+
+---
+
+## 0. SECURITY — READ BEFORE ANY INTEGRATION WORK
+
+- **NEVER** ask the user to paste API keys, secrets, or credentials into chat.
+- If a key is needed, instruct the user to set it as an environment variable (`export STRIPE_SECRET_KEY=...`) or store it in a `.env` file that is gitignored.
+- If a secret is accidentally shared in chat, **immediately stop all work** and instruct the user to revoke/rotate it in the provider dashboard before proceeding.
+- Scan every diff before committing — if any string matches `sk_live_`, `sk_test_`, `rk_live_`, or `API_KEY=`, abort and warn.
 
 ---
 
@@ -136,7 +145,22 @@ Dashboard shows: name, profile, streak, today's 5 segments with status, 7-day ci
 
 ---
 
-## 8. CODE PATTERNS
+## 8. MOBILE / UX CHECKLIST
+
+Before opening any PR for a user-facing UI change, verify all of the following:
+
+- [ ] Body text is minimum 16px on mobile, secondary text minimum 14px
+- [ ] No duplicate images or assets rendered (especially Amazon product cards)
+- [ ] New-user flow works end-to-end (landing → questions → email → reveal → results)
+- [ ] Returning-user flow works end-to-end (gate set → skip to results, no email screen)
+- [ ] All primary CTAs are tappable on 375px width
+- [ ] Shop tab scrolls to Stripe products first, Amazon after
+
+Include audit results in the PR description.
+
+---
+
+## 9. CODE PATTERNS
 
 ```javascript
 showScreen('screen-id') // all navigation
@@ -194,7 +218,15 @@ All links already in index.html SACRED_SPACE data. Do not modify link structure.
 
 ---
 
-## 10. INTEGRATIONS
+## 10. STRIPE INTEGRATION
+
+- Before any Stripe write operation (coupons, products, prices), verify the API key has write scope. Make a small test write call first; if it fails with 403, stop and ask Grace to provide a write-scoped key OR provide exact Stripe dashboard steps for manual completion.
+- Never assume the sandbox has outbound network access to `api.stripe.com` — confirm with a read call before writing any integration code.
+- Stripe MCP key lives in settings — never request it in chat.
+
+---
+
+## 11. INTEGRATIONS
 
 | Service | Key | Purpose |
 |---|---|---|
@@ -207,7 +239,7 @@ All links already in index.html SACRED_SPACE data. Do not modify link structure.
 
 ---
 
-## 11. AGENT TEAM — 6 AGENTS
+## 12. AGENT TEAM — 6 AGENTS
 
 | # | Agent | Reads | Writes | Trigger |
 |---|---|---|---|---|
@@ -220,7 +252,16 @@ All links already in index.html SACRED_SPACE data. Do not modify link structure.
 
 ---
 
-## 12. NEVER DO
+## 12. GIT WORKFLOW
+
+- Branch protocol: `claude/[task]-[4-char-id]` → PR → squash merge → never force-push main
+- After every squash merge: immediately rebase any open dependent branches onto `origin/main` before opening the next PR — prevents duplicate-commit merge conflicts
+- Before opening a PR: complete the Mobile / UX Checklist (Section 8) and include results in the PR body
+- Never skip the checklist to ship faster — one cleanup PR costs more than one careful pre-merge pass
+
+---
+
+## 13. NEVER DO
 
 - Clear `tqa_profile_complete` — permanent gate
 - Clear `tqa_journal` — sacred user entries
