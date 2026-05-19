@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__9b844449-9351-49c9-90d7-0dabf2e67ebf__download_file_content"
+    ]
+  }
+}
