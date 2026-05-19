@@ -1258,9 +1258,7 @@ body{top:0!important;}
       <p style="font-size:.95rem;color:var(--muted);font-style:italic;max-width:540px;margin:0 auto">Books and resources written for women ready to stop performing and start becoming.</p>
       <div class="books-grid">
         <a href="https://buy.stripe.com/00w3cv5oYc0p0EscaScQU0d" target="_blank" class="book-card">
-          <div class="book-cover-placeholder" style="display:flex">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(196,166,120,.3)" stroke-width="1"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-          </div>
+          <img src="quiet-authority-cover.png" class="book-cover" alt="The Quiet Authority — Grace Turner" onerror="this.style.display='none'">
           <div class="book-body">
             <p class="book-label">Spiritual Formation</p>
             <p class="book-title">The Quiet Authority: Transforming Nurturer Burnout into Spiritual Power</p>
@@ -1270,9 +1268,7 @@ body{top:0!important;}
           </div>
         </a>
         <a href="https://buy.stripe.com/eVq3cv8Ba6G5bj6fn4cQU0g" target="_blank" class="book-card">
-          <div class="book-cover-placeholder" style="display:flex">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(196,166,120,.3)" stroke-width="1"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-          </div>
+          <img src="parable-of-the-cocoon-cover.png" class="book-cover" alt="The Parable of the Cocoon — Grace Turner" onerror="this.style.display='none'">
           <div class="book-body">
             <p class="book-label">A Parable for the Journey</p>
             <p class="book-title">The Parable of the Cocoon</p>
@@ -1293,6 +1289,25 @@ body{top:0!important;}
             <span class="book-btn free-btn">Download Free</span>
           </div>
         </a>
+        <div class="book-card" style="cursor:default;position:relative;">
+          <img src="woman-who-pours-cover.png" class="book-cover" alt="The Woman Who Pours — Grace Turner" onerror="this.style.display='none'">
+          <div class="book-body">
+            <p class="book-label" style="color:var(--terra);">Coming Soon</p>
+            <p class="book-title">The Woman Who Pours</p>
+            <p class="book-sub">Sacrificial Rebirth · The Crimson Path to Illumination. She does not pour from obligation — she pours from overflow.</p>
+            <p class="book-price" style="color:var(--gold-dim);font-size:.72rem;letter-spacing:.1em;">Be First to Know</p>
+            <button class="book-btn" onclick="openWWPWaitlist(event)" style="width:100%;cursor:pointer;">Join the Waitlist</button>
+          </div>
+        </div>
+      </div>
+      <div id="wwpWaitlistWrap" style="display:none;max-width:400px;margin:2rem auto 0;text-align:center;">
+        <p style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--cream);font-size:1.05rem;margin-bottom:1rem;">She is coming. Be the first to receive her.</p>
+        <div style="display:flex;flex-direction:column;gap:.7rem;">
+          <input id="wwpName" type="text" placeholder="Your name" class="cos-wl-input" autocomplete="name">
+          <input id="wwpEmail" type="email" placeholder="Your email" class="cos-wl-input" autocomplete="email">
+          <button onclick="submitWWPWaitlist()" style="background:var(--terra);color:var(--cream);border:none;padding:.85rem;font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;cursor:pointer;">Reserve My Place</button>
+        </div>
+        <div id="wwpConfirm" style="display:none;padding:1.2rem 0;font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;color:var(--gold-light);line-height:1.7;">Your place is reserved, beloved.<br><span style="font-size:.85rem;color:var(--text-dim);font-style:normal;">You will hear from Grace when she arrives.</span></div>
       </div>
     </div>
   </div>
@@ -1547,10 +1562,10 @@ const _D=JSON.parse(decodeURIComponent(escape(atob("eyJwIjp7IkEiOnsibmFtZSI6IlRo
 const PROFILES=_D.p;
 const SEVEN_DAYS=_D.d;
 const SACRED_SPACE={
-  A:{heading:"Curated Just for You",sub:"The Striving Achiever needs one thing above all else — an environment that gives her permission to stop.",collections:[{img:'https://picsum.photos/seed/tqa-fleece-a/400/300',title:'The Rest Ritual',tagline:'You have earned this.',desc:'A fleece throw weighted with permission — wrap yourself in it and do absolutely nothing. Rest is not laziness. It is obedience.',link:'https://www.amazon.com/dp/B0C7V67VVV?tag=sanctuarygrac-20',cta:'Shop The Rest Ritual'},{img:'https://picsum.photos/seed/tqa-travelmug-a/400/300',title:'Sip & Be Still',tagline:'One slow cup before the world asks anything.',desc:'A travel mug — a daily reminder that He has a plan and it does not require your exhaustion.',link:'https://amzn.to/4oiTO4d',cta:'Shop Sanctuary Sips'},{img:'https://picsum.photos/seed/tqa-journal-a/400/300',title:'A Place of Faith',tagline:'60 weeks of just you and God.',desc:'No agenda. No performance. A prayer journal that holds your honest words and gives God room to respond.',link:'https://amzn.to/486JdVm',cta:'Shop A Place of Faith'},{img:'https://picsum.photos/seed/tqa-candles-a/400/300',title:'Set the Atmosphere',tagline:'Your space should feel like permission.',desc:'Flameless pillar candles with remote — light your sanctuary without lifting a finger. Signal to your body: it is safe to rest here.',link:'https://amzn.to/48cxqVG',cta:'Shop Set the Atmosphere'}]},
-  B:{heading:"Curated Just for You",sub:"The Depleted Survivor does not need more to do — she needs something that fills without demanding.",collections:[{img:'https://picsum.photos/seed/tqa-butterfly-b/400/300',title:'Warmth for the Weary',tagline:'Something beautiful, just for you.',desc:'A ceramic butterfly mug set chosen for the woman who deserves beautiful things. Sip slowly. Let it restore you.',link:'https://amzn.to/3KwAp1V',cta:'Shop Sanctuary Sips'},{img:'https://picsum.photos/seed/tqa-diffuser-b/400/300',title:'Breathe & Be Restored',tagline:'Let your senses exhale.',desc:'A cool mist essential oil diffuser — fill the air with lavender, peace, and permission.',link:'https://amzn.to/4pcq9Lw',cta:'Shop Restoration'},{img:'https://picsum.photos/seed/tqa-leather-b/400/300',title:'A Place of Faith',tagline:'Just you and God. Nothing else required.',desc:'A leather-lined journal for every honest prayer and quiet moment between you and the God who restores.',link:'https://amzn.to/44rtiyA',cta:'Shop A Place of Faith'},{img:'https://picsum.photos/seed/tqa-wrap-b/400/300',title:'Wrapped in Rest',tagline:'Give your body permission to stop.',desc:'A weighted fleece throw — because the woman who gives everything to everyone finally deserves warmth with no strings attached.',link:'https://www.amazon.com/dp/B0C7V67VVV?tag=sanctuarygrac-20',cta:'Shop Wrapped in Rest'}]},
-  C:{heading:"Curated Just for You",sub:"The Guilty Giver needs a space that is entirely hers — where no one else's needs are allowed to live.",collections:[{img:'https://picsum.photos/seed/tqa-a5journal-c/400/300',title:'A Place of Faith',tagline:'Write what no one else needs to see.',desc:'A leather A5 journal and gold pen — a sacred space that belongs only to you.',link:'https://amzn.to/44rtiyA',cta:'Shop A Place of Faith'},{img:'https://picsum.photos/seed/tqa-mug-c/400/300',title:'Sip Without Apology',tagline:'One moment that is only yours.',desc:'The butterfly ceramic mug set — because you are allowed beautiful things without earning them.',link:'https://amzn.to/3KwAp1V',cta:'Shop Sanctuary Sips'},{img:'https://picsum.photos/seed/tqa-candles-c/400/300',title:'Set the Atmosphere',tagline:'Give yourself permission to receive.',desc:'Flameless pillar candles with remote — set the atmosphere before you sit down to be still.',link:'https://amzn.to/48cxqVG',cta:'Shop Atmosphere'},{img:'https://picsum.photos/seed/tqa-diffuse-c/400/300',title:'Breathe & Receive',tagline:'Your senses deserve to rest too.',desc:'A cool mist essential oil diffuser — breathe in lavender and let your nervous system remember: you are allowed to just be.',link:'https://amzn.to/4pcq9Lw',cta:'Shop Breathe & Receive'}]},
-  D:{heading:"Curated Just for You",sub:"The Lost Wanderer needs beauty that reflects who she truly is — and tools to help her remember.",collections:[{img:'https://picsum.photos/seed/tqa-bible-d/400/300',title:'A Place of Faith',tagline:'Four voices. One truth: you are mine.',desc:'The NIV, NKJV, NLT & The Message in one parallel Bible — find the translation that speaks your language.',link:'https://amzn.to/4iz6Yco',cta:'Shop A Place of Faith'},{img:'https://picsum.photos/seed/tqa-sip-d/400/300',title:'Sip & Remember',tagline:'A quiet moment to remember who you are.',desc:'The butterfly ceramic mug set — brew something warm and let the woman beneath all the roles resurface.',link:'https://amzn.to/3KwAp1V',cta:'Shop Sanctuary Sips'},{img:'https://picsum.photos/seed/tqa-create-d/400/300',title:'Create & Reclaim',tagline:'Before duty replaced desire, you created.',desc:'Smooth painting rocks and acrylic paint pens — because the woman God made was creative before the world made her busy.',link:'https://amzn.to/3XsxnPd',cta:'Shop Creative Expression'},{img:'https://picsum.photos/seed/tqa-candles-d/400/300',title:'Set the Atmosphere',tagline:'A space that says: she is here.',desc:'Flameless pillar candles with remote — light the room that belongs to the woman you are rediscovering.',link:'https://amzn.to/48cxqVG',cta:'Shop Set the Atmosphere'}]}
+  A:{heading:"Curated Just for You",sub:"The Striving Achiever needs one thing above all else — an environment that gives her permission to stop.",collections:[{img:'https://picsum.photos/seed/tqa-fleece-a/400/300',title:'The Rest Ritual',tagline:'You have earned this.',desc:'A fleece throw weighted with permission — wrap yourself in it and do absolutely nothing. Rest is not laziness. It is obedience.',link:'https://www.amazon.com/dp/B0C7V67VVV?tag=sanctuarygrac-20',cta:'Shop The Rest Ritual'},{img:'https://picsum.photos/seed/tqa-travelmug-a/400/300',title:'Sip & Be Still',tagline:'One slow cup before the world asks anything.',desc:'A travel mug — a daily reminder that He has a plan and it does not require your exhaustion.',link:'https://amzn.to/4oiTO4d',cta:'Shop Sanctuary Sips'},{img:'https://picsum.photos/seed/tqa-journal-a/400/300',title:'A Place of Faith',tagline:'60 weeks of just you and God.',desc:'No agenda. No performance. A prayer journal that holds your honest words and gives God room to respond.',link:'https://amzn.to/486JdVm',cta:'Shop A Place of Faith'}]},
+  B:{heading:"Curated Just for You",sub:"The Depleted Survivor does not need more to do — she needs something that fills without demanding.",collections:[{img:'https://picsum.photos/seed/tqa-butterfly-b/400/300',title:'Warmth for the Weary',tagline:'Something beautiful, just for you.',desc:'A ceramic butterfly mug set chosen for the woman who deserves beautiful things. Sip slowly. Let it restore you.',link:'https://amzn.to/3KwAp1V',cta:'Shop Sanctuary Sips'},{img:'https://picsum.photos/seed/tqa-diffuser-b/400/300',title:'Breathe & Be Restored',tagline:'Let your senses exhale.',desc:'A cool mist essential oil diffuser — fill the air with lavender, peace, and permission.',link:'https://amzn.to/4pcq9Lw',cta:'Shop Restoration'},{img:'https://picsum.photos/seed/tqa-leather-b/400/300',title:'A Place of Faith',tagline:'Just you and God. Nothing else required.',desc:'A leather-lined journal for every honest prayer and quiet moment between you and the God who restores.',link:'https://amzn.to/44rtiyA',cta:'Shop A Place of Faith'}]},
+  C:{heading:"Curated Just for You",sub:"The Guilty Giver needs a space that is entirely hers — where no one else's needs are allowed to live.",collections:[{img:'https://picsum.photos/seed/tqa-a5journal-c/400/300',title:'A Place of Faith',tagline:'Write what no one else needs to see.',desc:'A leather A5 journal and gold pen — a sacred space that belongs only to you.',link:'https://amzn.to/44rtiyA',cta:'Shop A Place of Faith'},{img:'https://picsum.photos/seed/tqa-mug-c/400/300',title:'Sip Without Apology',tagline:'One moment that is only yours.',desc:'The butterfly ceramic mug set — because you are allowed beautiful things without earning them.',link:'https://amzn.to/3KwAp1V',cta:'Shop Sanctuary Sips'},{img:'https://picsum.photos/seed/tqa-candles-c/400/300',title:'Set the Atmosphere',tagline:'Give yourself permission to receive.',desc:'Flameless pillar candles with remote — set the atmosphere before you sit down to be still.',link:'https://amzn.to/48cxqVG',cta:'Shop Atmosphere'}]},
+  D:{heading:"Curated Just for You",sub:"The Lost Wanderer needs beauty that reflects who she truly is — and tools to help her remember.",collections:[{img:'https://picsum.photos/seed/tqa-bible-d/400/300',title:'A Place of Faith',tagline:'Four voices. One truth: you are mine.',desc:'The NIV, NKJV, NLT & The Message in one parallel Bible — find the translation that speaks your language.',link:'https://amzn.to/4iz6Yco',cta:'Shop A Place of Faith'},{img:'https://picsum.photos/seed/tqa-sip-d/400/300',title:'Sip & Remember',tagline:'A quiet moment to remember who you are.',desc:'The butterfly ceramic mug set — brew something warm and let the woman beneath all the roles resurface.',link:'https://amzn.to/3KwAp1V',cta:'Shop Sanctuary Sips'},{img:'https://picsum.photos/seed/tqa-create-d/400/300',title:'Create & Reclaim',tagline:'Before duty replaced desire, you created.',desc:'Smooth painting rocks and acrylic paint pens — because the woman God made was creative before the world made her busy.',link:'https://amzn.to/3XsxnPd',cta:'Shop Creative Expression'}]}
 };
 
 const MUSIC=['music1.mp3','music2.mp3','music3.mp3','music4.mp3'];
@@ -2784,6 +2799,27 @@ function shareProfile(){
       if(btn){const orig=btn.textContent;btn.textContent='✓ Copied to clipboard';setTimeout(()=>{btn.textContent=orig;},2500);}
     }).catch(()=>{});
   }
+}
+
+function openWWPWaitlist(e){
+  e.preventDefault();
+  const w=document.getElementById('wwpWaitlistWrap');
+  if(w){w.style.display='block';w.scrollIntoView({behavior:'smooth',block:'center'});}
+}
+function submitWWPWaitlist(){
+  const name=document.getElementById('wwpName').value.trim();
+  const email=document.getElementById('wwpEmail').value.trim();
+  if(!name||!email){
+    const first=!name?document.getElementById('wwpName'):document.getElementById('wwpEmail');
+    first.style.borderColor='var(--terra)';first.focus();return;
+  }
+  fetch('https://formspree.io/f/xzdkgbbq',{
+    method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
+    body:JSON.stringify({_subject:'The Woman Who Pours — Waitlist',name:name,email:email,_replyto:email,source:'WWP Book Waitlist'})
+  }).finally(()=>{
+    document.getElementById('wwpWaitlistWrap').querySelector('div[style*="flex-direction"]').style.display='none';
+    document.getElementById('wwpConfirm').style.display='block';
+  });
 }
 
 function joinCircleWaitlist(){
