@@ -2747,11 +2747,25 @@ function initCoworkCountdown(){
 
 // ── DOWNLOAD PROFILE ──────────────────────────────────────────
 function downloadProfile(){
-  const t=buildProfileText(PROFILES[currentProfile],SEVEN_DAYS[currentProfile],userName);
-  const blob=new Blob([t],{type:'text/plain'});
+  const p=PROFILES[currentProfile];
+  const days=SEVEN_DAYS[currentProfile];
+  const name=userName||'Beloved';
+  const t=buildProfileText(p,days,name);
+  const lines=t.split('\n');
+  const html='<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Your Quiet Authority Profile — '+p.name+'</title><style>body{background:#0d0d0d;color:#e0dace;font-family:Georgia,serif;max-width:680px;margin:40px auto;padding:0 24px 60px;line-height:1.8}h1{color:#C9A84C;font-size:1.4rem;letter-spacing:.08em;border-bottom:1px solid #272727;padding-bottom:16px;margin-bottom:24px}h2{color:#C9A84C;font-size:.85rem;letter-spacing:.22em;text-transform:uppercase;margin-top:32px;margin-bottom:8px}p{margin:6px 0;color:#e0dace}em{color:#e2c98e;font-style:italic}.footer{margin-top:40px;padding-top:16px;border-top:1px solid #272727;font-size:.75rem;color:#807870;text-align:center}</style></head><body>';
+  let out='<h1>The Quiet Authority — Your Silence Profile</h1>';
+  out+='<p>Beloved '+name+',</p><p>Your Profile: <em>'+p.name+'</em></p><p><em>"'+p.tagline+'"</em></p><p>Date: '+new Date().toLocaleDateString()+'</p>';
+  let cur='';
+  lines.forEach(l=>{
+    if(l.startsWith('━━━')){cur=l.replace(/━━━\s*/g,'').replace(/\s*━━━/g,'');out+='<h2>'+cur+'</h2>';}
+    else if(l.startsWith('══')||l===''||l.startsWith('THE QUIET')||l.startsWith('Beloved ')||l.startsWith('Your Profile')||l.startsWith('Date:')){/* skip — handled above */}
+    else{out+='<p>'+l+'</p>';}
+  });
+  out+='<div class="footer">Sanctuary Grace Ministry · <a href="https://transform24.github.io/THE-QUIET-AUTHORITY/" style="color:#C9A84C">transform24.github.io/THE-QUIET-AUTHORITY</a></div>';
+  const blob=new Blob([html+out+'</body></html>'],{type:'text/html'});
   const url=URL.createObjectURL(blob);
   const a=document.createElement('a');
-  a.href=url;a.download='MyQuietAuthorityProfile.txt';
+  a.href=url;a.download='MyQuietAuthorityProfile.html';
   document.body.appendChild(a);a.click();document.body.removeChild(a);
   URL.revokeObjectURL(url);
 }
