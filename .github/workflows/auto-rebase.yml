@@ -1,0 +1,26 @@
+name: Auto Rebase PRs
+
+# Runs whenever main is updated — rebases all open PRs that have no conflicts.
+# PRs with real conflicts are skipped and left for manual resolution.
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  rebase:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Rebase open PRs onto main
+        uses: peter-evans/rebase@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
