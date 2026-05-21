@@ -373,7 +373,7 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 .seven-day-section{background:var(--bg2);border-top:1px solid var(--border);}
 .seven-day-inner{max-width:700px;margin:0 auto;padding:60px 24px;}
 .seven-day-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,4vw,2.6rem);font-weight:300;color:var(--cream);margin-bottom:8px;text-align:center;}
-.seven-day-sub{font-size:0.85rem;color:var(--text-dim);text-align:center;line-height:1.8;margin-bottom:40px;font-weight:300;}
+.seven-day-sub{font-size:0.875rem;color:var(--text-dim);text-align:center;line-height:1.8;margin-bottom:40px;font-weight:300;}
 .day-card{display:flex;gap:20px;align-items:flex-start;padding:24px 28px;background:var(--surface);border:1px solid var(--border);margin-bottom:10px;}
 .day-card.day-1{border-left:2px solid var(--gold);}
 .day-card.locked{opacity:0.38;pointer-events:none;filter:blur(1.5px);}
@@ -1369,7 +1369,7 @@ body{top:0!important;}
       <div class="salvation-cross">✝</div>
       <h2 class="salvation-title serif">Is Today the Day?</h2>
       <p class="salvation-body">If something stirred in you today — a quiet knowing, a gentle pull toward something more — that is the Holy Spirit. You don't have to have it all figured out. You just have to say yes.</p>
-      <p class="salvation-verse">"That if thou shalt confess with thy mouth the Lord Jesus, and shalt believe in thine heart that God hath raised him from the dead, thou shalt be saved."<br>— Romans 10:9 KJV</p>
+      <p class="salvation-verse">"That if thou shalt confess with thy mouth the Lord Jesus, and shalt believe in thine heart that God hath raised him from the dead, thou shalt be saved. For with the heart man believeth unto righteousness; and with the mouth confession is made unto salvation."<br>— Romans 10:9–10 KJV</p>
       <button class="btn-salvation" onclick="acceptJesus()">Yes, I Accept Jesus Today</button>
       <div class="salvation-confirm" id="salvationConfirm">
         <p>Heaven is rejoicing over you right now, beloved.<br>You are loved, chosen, and covered. Welcome home.</p>
@@ -2602,6 +2602,15 @@ function setActiveTab(id){
   document.querySelectorAll('.tab-item').forEach(t=>t.classList.remove('active'));
   const tab=document.getElementById('tab-'+id);
   if(tab)tab.classList.add('active');
+}
+
+function highlightPathStep(n){
+  [1,2,3].forEach(i=>{
+    const el=document.getElementById('gps-'+i);
+    if(!el)return;
+    if(i<=n){el.style.color='var(--gold)';el.style.borderColor='var(--gold-dim)';}
+    else{el.style.color='var(--text-dim)';el.style.borderColor='var(--border)';}
+  });
 }
 
 let _tabObserver=null;
