@@ -8,6 +8,9 @@ export default defineConfig({
     baseURL: 'http://localhost:8080',
     headless: true,
     screenshot: 'only-on-failure',
+    launchOptions: {
+      executablePath: '/opt/pw-browsers/chromium-1194/chrome-linux/chrome',
+    },
   },
   projects: [
     {
