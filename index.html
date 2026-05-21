@@ -2411,7 +2411,8 @@ function renderDashboard(saved){
 
   const gr=document.getElementById('dashGreeting');
   if(gr){
-    gr.innerHTML='<span style="font-family:\'Cormorant Garamond\',serif;font-size:1.15rem;font-style:italic;color:var(--cream);display:block;margin-bottom:6px;">'+tg+', '+(saved.name||'beloved')+'.</span>'
+    const dn=saved.name?saved.name.charAt(0).toUpperCase()+saved.name.slice(1):'beloved';
+    gr.innerHTML='<span style="font-family:\'Cormorant Garamond\',serif;font-size:1.15rem;font-style:italic;color:var(--cream);display:block;margin-bottom:6px;">'+tg+', '+dn+'.</span>'
       +'<span style="font-size:0.78rem;color:var(--gold-dim);letter-spacing:0.06em;">This is Day '+dayNum+'. '+enc+'</span>'
       +(streak>0?'<div class="streak-chip"><span class="streak-num">'+streak+'</span><span class="streak-lbl">Day Streak</span></div>':'');
   }
@@ -2590,6 +2591,17 @@ function tabNav(section){
     silence:'silenceSection',
     shop:'section-shop'
   };
+  // If on dashboard, switch back to results first then scroll
+  const dash=document.getElementById('screen-dashboard');
+  if(dash&&dash.classList.contains('active')){
+    showResults();
+    setTimeout(()=>{
+      const el=document.getElementById(targets[section]);
+      if(el)el.scrollIntoView({behavior:'smooth'});
+      setActiveTab(section);
+    },400);
+    return;
+  }
   const id=targets[section];
   if(id){
     const el=document.getElementById(id);
