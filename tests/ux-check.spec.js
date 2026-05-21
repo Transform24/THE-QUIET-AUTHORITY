@@ -40,7 +40,7 @@ test.describe('New user flow', () => {
   });
 
   test('question screen loads after starting assessment', async ({ page }) => {
-    const btn = page.locator('#screen-landing button').filter({ hasText: /begin|assessment|journey|silence/i }).first();
+    const btn = page.locator('#screen-landing .btn-begin');
     await btn.click();
     await expect(page.locator('#screen-question')).toBeVisible({ timeout: 8000 });
     await page.screenshot({ path: 'test-results/02-question-screen.png', fullPage: true });
