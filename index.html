@@ -2604,6 +2604,15 @@ function setActiveTab(id){
   if(tab)tab.classList.add('active');
 }
 
+function highlightPathStep(n){
+  [1,2,3].forEach(i=>{
+    const el=document.getElementById('gps-'+i);
+    if(!el)return;
+    if(i<=n){el.style.color='var(--gold)';el.style.borderColor='var(--gold-dim)';}
+    else{el.style.color='var(--text-dim)';el.style.borderColor='var(--border)';}
+  });
+}
+
 let _tabObserver=null;
 let _observerStarted=false;
 
