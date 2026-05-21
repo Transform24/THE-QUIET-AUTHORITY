@@ -29,11 +29,11 @@
   --gold:#C9A84C;--gold-light:#e2c98e;--gold-dim:#7a6040;
   --terra:#C1593C;
   --sage:#7d8c6e;--sage-light:#9aab88;
-  --cream:#F5F0E8;--cream-dim:#b0a898;
+  --cream:#F5F0E8;--cream-dim:#ccc4b8;
   --parchment:#C4A47C;
-  --text:#e0dace;--text-dim:#807870;--text-muted:#484840;
+  --text:#ede8e0;--text-dim:#a09080;--text-muted:#706858;
   --dark:#0d0d0d;--dark2:#111111;--dark3:#0d0d0d;
-  --muted:#807870;
+  --muted:#a09080;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
@@ -902,23 +902,7 @@ body{top:0!important;}
   </div>
 </div>
 
-<!-- ══════════════════════════════════════
-     SCREEN 3: EMAIL
-══════════════════════════════════════ -->
-<div class="screen" id="screen-email">
-  <div class="email-wrap">
-    <div class="email-dove">🕊️</div>
-    <h2 class="email-title serif">Your profile<br>is ready.</h2>
-    <p class="email-sub">Enter your name and email to reveal your Silence Profile and personalized breakthrough path — plus your first guided silence practice delivered to your inbox.</p>
-    <div class="form-group">
-      <input type="text" class="form-input" id="inputName" placeholder="Your first name" autocomplete="given-name">
-      <input type="email" class="form-input" id="inputEmail" placeholder="Your email address" autocomplete="email">
-    </div>
-    <button class="btn-begin" onclick="submitAndReveal()" style="width:100%;display:block;text-align:center;"><span>Reveal My Profile →</span></button>
-    <p class="email-privacy">Your information is sacred. No spam, ever. Unsubscribe anytime.</p>
-    <p class="email-privacy" style="margin-top:10px;color:var(--text-muted);font-style:italic;">Your profile will be delivered to your email — your mail app may open briefly. This is intentional.</p>
-  </div>
-</div>
+<!-- screen-email removed: assessment flows directly to profile reveal -->
 
 <!-- ══════════════════════════════════════
      SCREEN 4: PROFILE REVEAL — new ceremony
@@ -981,7 +965,7 @@ body{top:0!important;}
   <div class="r-section" id="emailDeliveryNotice" style="display:none;">
     <div class="r-label">✦ Your Profile Is Ready</div>
     <div class="breakthrough-box">
-      <p class="bt-body">Your complete Silence Profile is yours — diagnosis, breakthrough path, and your full 7-day practice plan. Download it now to keep it. Grace Turner has been notified and will be in touch at <strong id="deliveredToEmail" style="color:var(--gold);"></strong>.</p>
+      <p class="bt-body">Your complete Silence Profile is yours — your soul truth, breakthrough path, and your full 7-day practice plan. Download it now to keep it.</p>
       <button class="btn-session gold" onclick="downloadProfile()" style="margin-top:20px;font-size:0.68rem;">⬇ Download My Full Profile</button>
     </div>
   </div>
@@ -1186,8 +1170,9 @@ body{top:0!important;}
           <p class="devot-bundle-sub">All four weeks — Vision, Renewal, Peace &amp; Calling</p>
         </div>
         <div style="text-align:right">
-          <p class="devot-bundle-price">$19.96</p>
-          <p style="font-size:.75rem;color:var(--terra);font-family:'Cinzel',serif;letter-spacing:.2em;text-transform:uppercase;margin-top:.3rem">All Four Weeks</p>
+          <p style="font-size:.85rem;color:var(--text-dim);text-decoration:line-through;margin-bottom:.2rem;">$19.96</p>
+          <p class="devot-bundle-price">$14.99</p>
+          <p style="font-size:.75rem;color:var(--terra);font-family:'Cinzel',serif;letter-spacing:.2em;text-transform:uppercase;margin-top:.3rem">Save $4.97</p>
         </div>
       </a>
     </div>
@@ -1264,7 +1249,9 @@ body{top:0!important;}
             <p class="art-bundle-label">Complete Collection</p>
             <h3 class="art-bundle-name">All Four Profiles — Full Bundle</h3>
             <p class="art-bundle-sub">One for every season. One for every woman you have been. All four Silence Profiles, all three print sizes — sixteen pieces total. Share one with a woman in your circle who needs it.</p>
-            <p style="font-size:1.6rem;color:var(--gold);font-weight:300;margin-bottom:1rem;">$29.99</p>
+            <p style="font-size:.85rem;color:var(--text-dim);text-decoration:line-through;margin-bottom:.2rem;">$39.96</p>
+            <p style="font-size:1.6rem;color:var(--gold);font-weight:300;margin-bottom:.2rem;">$29.99</p>
+            <p style="font-size:.72rem;color:var(--terra);font-family:'Cinzel',serif;letter-spacing:.2em;text-transform:uppercase;margin-bottom:1rem;">Save $9.97</p>
           </div>
         </div>
         <button class="art-card-btn" onclick="goShop('https://buy.stripe.com/7sY4gz5oY4xXbj6caScQU0l')">Shop the Full Collection</button>
@@ -1314,7 +1301,7 @@ body{top:0!important;}
           </div>
         </a>
         <div class="book-card" style="cursor:default;position:relative;">
-          <img src="woman-who-pours-cover.png" class="book-cover" alt="The Woman Who Pours — Grace Turner" onerror="this.style.display='none'">
+          <img src="woman-who-pours-cover.png" class="book-cover" alt="The Woman Who Pours — Grace Turner" style="max-height:320px;object-position:top;" onerror="this.style.display='none'">
           <div class="book-body">
             <p class="book-label" style="color:var(--terra);">Coming Soon</p>
             <p class="book-title">The Woman Who Pours</p>
@@ -1907,7 +1894,7 @@ function selectAnswer(i){
   setTimeout(()=>{
     if(answers[currentQ]!==undefined){
       if(currentQ<QUESTIONS.length-1){currentQ++;renderQuestion();}
-      else{showScreen('screen-email');}
+      else{calculateAndReveal();}
     }
   },420);
 }
@@ -1917,7 +1904,7 @@ function goBack(){if(currentQ>0){currentQ--;renderQuestion();}}
 function nextQ(){
   if(answers[currentQ]===undefined)return;
   if(currentQ<QUESTIONS.length-1){currentQ++;renderQuestion();}
-  else{showScreen('screen-email');}
+  else{calculateAndReveal();}
 }
 
 // ── EMAIL & SUBMIT ────────────────────────────────────────────
@@ -1928,7 +1915,7 @@ function buildProfileText(p,days,name){
   t+='Your Profile: '+p.name+'\n"'+p.tagline+'"\n';
   t+='Date: '+new Date().toLocaleDateString()+'\n\n';
   t+='━━━ WHAT GOD WANTS YOU TO HEAR ━━━\n"'+p.scripture+'" — '+p.ref+'\n\n';
-  t+='━━━ YOUR DIAGNOSIS ━━━\n'+p.diagnosis+'\n\n';
+  t+='━━━ YOUR SOUL TRUTH ━━━\n'+p.diagnosis+'\n\n';
   t+='━━━ WHAT SILENCE WANTS TO TEACH YOU ━━━\n'+p.lessons.map(l=>'• '+l).join('\n')+'\n\n';
   t+='━━━ YOUR BREAKTHROUGH PATH ━━━\n'+p.breakthrough+'\n\n';
   t+='━━━ YOUR 7-DAY PRACTICE ━━━\n'+p.practiceTag+'\n\n';
@@ -1997,6 +1984,7 @@ function calculateAndReveal(){
   currentProfile=calculateProfile();
 
   try{
+    localStorage.setItem('tqa_profile_complete','1');
     localStorage.setItem('tqa_profile',JSON.stringify({
       profile:currentProfile,name:userName,email:userEmail,date:new Date().toISOString()
     }));
@@ -2070,10 +2058,7 @@ function showResults(){
 
   // Show email delivery notice — pull from localStorage if returning user
   const edn=document.getElementById('emailDeliveryNotice');
-  const dte=document.getElementById('deliveredToEmail');
-  const displayEmail=userEmail||(()=>{try{return JSON.parse(localStorage.getItem('tqa_profile')||'null')?.email||'';}catch(e){return '';}})();
   if(edn)edn.style.display='block';
-  if(dte&&displayEmail)dte.textContent=displayEmail;
 
   renderSacredSpace();
   renderShopOffers();
