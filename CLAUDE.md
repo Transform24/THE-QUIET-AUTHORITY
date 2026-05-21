@@ -1,6 +1,6 @@
 # THE QUIET AUTHORITY — AGENT SOP
 ## Sanctuary Grace Ministry · Transform24
-*Last updated: 2026-05-18 · This file is the law. Everything else defers to it.*
+*Last updated: 2026-05-21 · This file is the law. Everything else defers to it.*
 
 ---
 
@@ -256,8 +256,20 @@ All links already in index.html SACRED_SPACE data. Do not modify link structure.
 
 - Branch protocol: `claude/[task]-[4-char-id]` → PR → squash merge → never force-push main
 - After every squash merge: immediately rebase any open dependent branches onto `origin/main` before opening the next PR — prevents duplicate-commit merge conflicts
+- Before opening a PR: always run `git fetch origin && git rebase origin/main` to surface conflicts early
+- When a branch conflicts with already-squash-merged commits: cherry-pick only the new commits onto a fresh branch from main rather than fighting the rebase
 - Before opening a PR: complete the Mobile / UX Checklist (Section 8) and include results in the PR body
 - Never skip the checklist to ship faster — one cleanup PR costs more than one careful pre-merge pass
+
+---
+
+## 13. SUBAGENT PERMISSIONS
+
+- Project-level permissions live in `.claude/settings.json` (checked into repo) — subagents inherit these automatically
+- Local user settings (`settings.local.json`, gitignored) are NOT inherited by subagents — never put required permissions there
+- When a subagent is denied a tool (e.g., Drive download, WebFetch), add it to `.claude/settings.json` under `permissions.allow` and retry
+- Current project permissions: `mcp__9b844449__download_file_content` (Google Drive downloads)
+- When spawning a subagent for Drive work, confirm `.claude/settings.json` has the permission before dispatching
 
 ---
 
