@@ -796,11 +796,11 @@ body{top:0!important;}
   <button class="tab-item" id="tab-profile" onclick="tabNav('profile')">
     <span class="tab-icon">✦</span>Profile
   </button>
-  <button class="tab-item" id="tab-silence" onclick="tabNav('silence')">
-    <span class="tab-icon">◯</span>Silence
-  </button>
   <button class="tab-item" id="tab-practice" onclick="tabNav('practice')">
     <span class="tab-icon">☽</span>Practice
+  </button>
+  <button class="tab-item" id="tab-silence" onclick="tabNav('silence')">
+    <span class="tab-icon">◯</span>Silence
   </button>
   <button class="tab-item" id="tab-shop" onclick="tabNav('shop')">
     <span class="tab-icon">✦</span>Shop
@@ -964,6 +964,19 @@ body{top:0!important;}
     </div>
   </div>
 
+  <!-- guided path strip — always visible, shows the 3-step journey -->
+  <div id="guidedPathStrip" style="padding:28px 24px 8px;max-width:480px;margin:0 auto;text-align:center;">
+    <div style="font-size:0.55rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--gold-dim);font-weight:300;margin-bottom:18px;">Your Path Begins Here</div>
+    <div style="display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;margin-bottom:24px;">
+      <div id="gps-1" style="font-size:0.65rem;letter-spacing:0.1em;color:var(--gold);border:1px solid var(--gold-dim);padding:7px 14px;font-family:'Cinzel',serif;">1 · Profile</div>
+      <div style="color:var(--gold-dim);font-size:0.8rem;">→</div>
+      <div id="gps-2" style="font-size:0.65rem;letter-spacing:0.1em;color:var(--text-dim);border:1px solid var(--border);padding:7px 14px;font-family:'Cinzel',serif;">2 · Practice</div>
+      <div style="color:var(--gold-dim);font-size:0.8rem;">→</div>
+      <div id="gps-3" style="font-size:0.65rem;letter-spacing:0.1em;color:var(--text-dim);border:1px solid var(--border);padding:7px 14px;font-family:'Cinzel',serif;">3 · Silence</div>
+    </div>
+    <button class="btn-session gold" onclick="tabNav('practice');highlightPathStep(2);" style="font-size:0.68rem;padding:14px 32px;width:100%;max-width:300px;">Begin Day 1 of Practice →</button>
+  </div>
+
   <!-- email delivery notice — shown after submit -->
   <div class="r-section" id="emailDeliveryNotice" style="display:none;">
     <div class="r-label">✦ Your Profile Is Ready</div>
@@ -978,6 +991,24 @@ body{top:0!important;}
     <div class="scripture-card">
       <p class="scripture-text" id="rScripture"></p>
       <p class="scripture-ref" id="rScriptureRef"></p>
+    </div>
+  </div>
+
+  <!-- 7-DAY PRACTICE -->
+  <div class="seven-day-section" id="section-practice">
+    <div class="seven-day-inner">
+      <div class="r-label" style="text-align:center;">Your Sacred Practice</div>
+      <h2 class="seven-day-title serif">7 Days of Silence</h2>
+      <p class="seven-day-sub">Begin here. One day at a time. Your full plan — all 7 days with practices, scriptures, and journal prompts — is yours to keep.</p>
+      <div id="dayPreviewContainer"></div>
+      <div style="text-align:center;margin-top:32px;">
+        <button class="btn-session gold" onclick="downloadProfile()" style="font-size:0.68rem;">⬇ Download All 7 Days</button>
+      </div>
+      <!-- next step: silence session -->
+      <div style="text-align:center;margin-top:36px;padding-top:32px;border-top:1px solid var(--border);">
+        <p class="serif" style="font-style:italic;color:var(--cream-dim);font-size:1rem;margin-bottom:16px;">Your practice is planted. Now let stillness take root.</p>
+        <button class="btn-session" onclick="tabNav('silence');highlightPathStep(3);" style="font-size:0.68rem;padding:13px 28px;border:1px solid var(--gold-dim);color:var(--gold);background:transparent;">Enter Your Silence Session →</button>
+      </div>
     </div>
   </div>
 
@@ -1114,18 +1145,11 @@ body{top:0!important;}
       <div class="cowork-verse">"She opens her hand to the poor and reaches out her hands to the needy."</div>
       <div class="cowork-ref">Proverbs 31:20 · The Woman Who Pours</div>
     </div>
-  </div>
-
-  <!-- 7-DAY PRACTICE -->
-  <div class="seven-day-section" id="section-practice">
-    <div class="seven-day-inner">
-      <div class="r-label" style="text-align:center;">Your Sacred Practice</div>
-      <h2 class="seven-day-title serif">7 Days of Silence</h2>
-      <p class="seven-day-sub">Begin here. One day at a time. Your full plan — all 7 days with practices, scriptures, and journal prompts — is yours to keep.</p>
-      <div id="dayPreviewContainer"></div>
-      <div style="text-align:center;margin-top:32px;">
-        <button class="btn-session gold" onclick="downloadProfile()" style="font-size:0.68rem;">⬇ Download All 7 Days</button>
-      </div>
+    <!-- next step: dashboard -->
+    <div style="text-align:center;padding:36px 24px 48px;border-top:1px solid var(--border);margin-top:8px;">
+      <p class="serif" style="font-style:italic;color:var(--cream-dim);font-size:1rem;margin-bottom:8px;">This is your sanctuary now.</p>
+      <p style="font-size:0.82rem;color:var(--text-dim);margin-bottom:20px;line-height:1.7;">Come back every morning. Your 5 daily segments are waiting.</p>
+      <button class="btn-session gold" onclick="showDashboard()" style="font-size:0.68rem;padding:14px 32px;">Enter My Daily Dashboard →</button>
     </div>
   </div>
 
