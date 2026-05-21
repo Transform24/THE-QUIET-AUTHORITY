@@ -878,6 +878,7 @@ body{top:0!important;}
         <button class="lang-btn" onclick="setLanguage('en')" style="font-size:0.72rem;padding:6px 4px;">EN</button><span class="lang-sep">·</span><button class="lang-btn" onclick="setLanguage('es')" style="font-size:0.72rem;padding:6px 4px;">ES</button><span class="lang-sep">·</span><button class="lang-btn" onclick="setLanguage('pt')" style="font-size:0.72rem;padding:6px 4px;">PT</button><span class="lang-sep">·</span><button class="lang-btn" onclick="setLanguage('fr')" style="font-size:0.72rem;padding:6px 4px;">FR</button><span class="lang-sep">·</span><button class="lang-btn" onclick="setLanguage('ko')" style="font-size:0.72rem;padding:6px 4px;">KO</button>
       </div>
       <p class="landing-promise">8 questions &nbsp;·&nbsp; 3 minutes &nbsp;·&nbsp; Your breakthrough awaits</p>
+      <p style="font-size:0.6rem;color:var(--text-muted);letter-spacing:0.1em;margin-top:18px;max-width:340px;margin-left:auto;margin-right:auto;line-height:1.6;">For spiritual encouragement &amp; informational purposes only. Not a substitute for professional mental health or medical advice.</p>
     </div>
   </div>
 </div>
@@ -1444,6 +1445,7 @@ body{top:0!important;}
   <div class="r-footer">
     <p class="footer-min">Sanctuary Grace Ministry &nbsp;·&nbsp; Transform24</p>
     <p class="footer-verse serif">"Be still, and know that I am God." — Psalm 46:10</p>
+    <p style="font-size:0.58rem;color:var(--text-muted);letter-spacing:0.1em;margin-top:16px;line-height:1.7;">For spiritual encouragement &amp; informational purposes only. Not a substitute for professional mental health or medical advice.<br>© 2026 Sanctuary Grace Ministry. All rights reserved.</p>
   </div>
 
 </div><!-- end screen-results -->
@@ -2758,7 +2760,7 @@ function downloadProfile(){
     else if(l.startsWith('══')||l===''||l.startsWith('THE QUIET')||l.startsWith('Beloved ')||l.startsWith('Your Profile')||l.startsWith('Date:')){/* skip — handled above */}
     else{out+='<p>'+l+'</p>';}
   });
-  out+='<div class="footer">Sanctuary Grace Ministry · <a href="https://transform24.github.io/THE-QUIET-AUTHORITY/" style="color:#C9A84C">transform24.github.io/THE-QUIET-AUTHORITY</a></div>';
+  out+='<div class="footer">Sanctuary Grace Ministry · <a href="https://transform24.github.io/THE-QUIET-AUTHORITY/" style="color:#C9A84C">transform24.github.io/THE-QUIET-AUTHORITY</a><br><span style="font-size:.65rem;color:#484840;">For spiritual encouragement &amp; informational purposes only. Not a substitute for professional mental health or medical advice. © 2026 Sanctuary Grace Ministry.</span></div>';
   const blob=new Blob([html+out+'</body></html>'],{type:'text/html'});
   const url=URL.createObjectURL(blob);
   const a=document.createElement('a');
@@ -2771,7 +2773,7 @@ function downloadProfileCard(){
   const p=PROFILES[currentProfile];
   const size=1080;
   const c=document.createElement('canvas');
-  c.width=size;c.height=size;
+  c.width=size;c.height=1380;
   const ctx=c.getContext('2d');
   // background
   ctx.fillStyle='#0d0d0d';ctx.fillRect(0,0,size,size);
@@ -2816,12 +2818,50 @@ function downloadProfileCard(){
     ctx.fillStyle='rgba(201,168,76,.5)';ctx.font='20px Jost,sans-serif';
     ctx.fillText(userName.toUpperCase(),size/2,680);
   }
+  // what this means section
+  const diagY=650;
+  ctx.strokeStyle='rgba(201,168,76,.2)';ctx.lineWidth=1;
+  ctx.beginPath();ctx.moveTo(100,diagY);ctx.lineTo(size-100,diagY);ctx.stroke();
+  ctx.fillStyle='#7a6040';ctx.font='600 18px Cinzel,serif';ctx.textAlign='center';
+  ctx.fillText('WHAT THIS MEANS FOR YOU',size/2,diagY+36);
+  ctx.fillStyle='#b0a898';ctx.font='26px "Cormorant Garamond",serif';ctx.textAlign='center';
+  const diagText=p.diagnosis||'';
+  const diagWords=diagText.split(' ');
+  let diagLine='';let diagLineY=diagY+76;const diagMaxW=880;
+  diagWords.forEach((word,i)=>{
+    const test=diagLine+word+' ';
+    if(ctx.measureText(test).width>diagMaxW&&diagLine!==''){
+      ctx.fillText(diagLine.trim(),size/2,diagLineY);
+      diagLine=word+' ';diagLineY+=38;
+    } else {diagLine=test;}
+    if(i===diagWords.length-1){ctx.fillText(diagLine.trim(),size/2,diagLineY);diagLineY+=38;}
+  });
+  // breakthrough
+  const btY=diagLineY+20;
+  ctx.strokeStyle='rgba(201,168,76,.2)';ctx.lineWidth=1;
+  ctx.beginPath();ctx.moveTo(100,btY);ctx.lineTo(size-100,btY);ctx.stroke();
+  ctx.fillStyle='#7a6040';ctx.font='600 16px Cinzel,serif';
+  ctx.fillText('YOUR NEXT STEP',size/2,btY+30);
+  ctx.fillStyle='#e2c98e';ctx.font='italic 24px "Cormorant Garamond",serif';
+  const btWords=(p.breakthrough||'').split(' ');
+  let btLine='';let btLineY=btY+60;
+  btWords.forEach((word,i)=>{
+    const test=btLine+word+' ';
+    if(ctx.measureText(test).width>diagMaxW&&btLine!==''){
+      ctx.fillText(btLine.trim(),size/2,btLineY);
+      btLine=word+' ';btLineY+=34;
+    } else {btLine=test;}
+    if(i===btWords.length-1){ctx.fillText(btLine.trim(),size/2,btLineY);btLineY+=34;}
+  });
+  // disclaimer
+  ctx.fillStyle='#323232';ctx.font='14px Jost,sans-serif';
+  ctx.fillText('For spiritual encouragement & informational purposes only.',size/2,1310);
   // bottom branding
   ctx.fillStyle='#484840';ctx.font='500 20px Cinzel,serif';
-  ctx.fillText('THE QUIET AUTHORITY  ·  SANCTUARY GRACE MINISTRY',size/2,size-80);
-  ctx.fillStyle='rgba(201,168,76,.3)';ctx.fillRect(size/2-200,size-65,400,1);
+  ctx.fillText('THE QUIET AUTHORITY  ·  SANCTUARY GRACE MINISTRY',size/2,1338);
+  ctx.fillStyle='rgba(201,168,76,.3)';ctx.fillRect(size/2-200,1352,400,1);
   ctx.fillStyle='#484840';ctx.font='16px Jost,sans-serif';
-  ctx.fillText('transform24.github.io/THE-QUIET-AUTHORITY',size/2,size-48);
+  ctx.fillText('transform24.github.io/THE-QUIET-AUTHORITY',size/2,1370);
   // download
   c.toBlob(blob=>{
     const url=URL.createObjectURL(blob);
