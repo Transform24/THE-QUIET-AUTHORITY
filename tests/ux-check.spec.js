@@ -31,7 +31,7 @@ test.describe('New user flow', () => {
   });
 
   test('primary CTA button is tappable at 375px', async ({ page }) => {
-    const btn = page.locator('#screen-landing button').first();
+    const btn = page.locator('#screen-landing .btn-begin');
     await expect(btn).toBeVisible();
     const box = await btn.boundingBox();
     expect(box).not.toBeNull();
