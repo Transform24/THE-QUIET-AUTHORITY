@@ -753,21 +753,15 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 /* ══ GOOGLE TRANSLATE SUPPRESS ══ */
 .goog-te-banner-frame,.skiptranslate{display:none!important;}
 body{top:0!important;}
-/* ══ LANGUAGE BAR ══ */
-#langBar{position:fixed;bottom:18px;right:14px;display:flex;align-items:center;gap:5px;z-index:601;opacity:0.6;transition:opacity 0.3s;}
-#langBar:hover{opacity:1;}
-.lang-btn{background:none;border:none;color:var(--text-muted);font-family:'Cinzel',serif;font-size:0.5rem;letter-spacing:0.16em;cursor:pointer;padding:4px 2px;transition:color 0.3s;font-weight:400;line-height:1;}
+/* ══ LANGUAGE SELECTOR ══ */
+.lang-btn{background:none;border:none;color:var(--text-muted);font-family:'Cinzel',serif;font-size:0.72rem;letter-spacing:0.16em;cursor:pointer;padding:6px 4px;transition:color 0.3s;font-weight:400;line-height:1;}
 .lang-btn:hover{color:var(--cream);}
 .lang-btn.cur{color:var(--gold);}
-.lang-sep{color:var(--border2);font-size:0.45rem;pointer-events:none;}
+.lang-sep{color:var(--border2);font-size:0.6rem;pointer-events:none;}
 </style>
 </head>
 <body>
 
-<!-- ══ LANGUAGE BAR ══ -->
-<div id="langBar">
-  <button class="lang-btn" onclick="setLanguage('en')">EN</button><span class="lang-sep">·</span><button class="lang-btn" onclick="setLanguage('es')">ES</button><span class="lang-sep">·</span><button class="lang-btn" onclick="setLanguage('pt')">PT</button><span class="lang-sep">·</span><button class="lang-btn" onclick="setLanguage('fr')">FR</button><span class="lang-sep">·</span><button class="lang-btn" onclick="setLanguage('ko')">KO</button>
-</div>
 <div id="google_translate_element" style="display:none;visibility:hidden;"></div>
 
 <!-- ══ PROGRESS BAR ══ -->
@@ -876,6 +870,9 @@ body{top:0!important;}
       <button class="btn-begin" onclick="startAssessment()"><span>Begin the Assessment</span></button>
       <p class="landing-promise">8 questions &nbsp;·&nbsp; 3 minutes &nbsp;·&nbsp; Your breakthrough awaits</p>
       <p style="font-size:0.6rem;color:var(--text-muted);letter-spacing:0.1em;margin-top:18px;max-width:340px;margin-left:auto;margin-right:auto;line-height:1.6;">For spiritual encouragement &amp; informational purposes only. Not a substitute for professional mental health or medical advice.</p>
+      <div style="display:flex;align-items:center;justify-content:center;gap:10px;margin-top:16px;">
+        <button class="lang-btn" onclick="setLanguage('en')">EN</button><span class="lang-sep">·</span><button class="lang-btn" onclick="setLanguage('es')">ES</button><span class="lang-sep">·</span><button class="lang-btn" onclick="setLanguage('pt')">PT</button><span class="lang-sep">·</span><button class="lang-btn" onclick="setLanguage('fr')">FR</button><span class="lang-sep">·</span><button class="lang-btn" onclick="setLanguage('ko')">KO</button>
+      </div>
     </div>
   </div>
 </div>
@@ -1191,7 +1188,7 @@ body{top:0!important;}
       <div class="art-grid">
         <!-- Profile A -->
         <div class="art-card">
-          <img class="art-card-img" src="wall-art-WOMT9.jpg" alt="The Striving Achiever — Sacred Wall Art" onerror="this.style.display='none'">
+          <img class="art-card-img" src="profile-A.png" alt="The Striving Achiever — Sacred Wall Art" onerror="this.style.display='none'">
           <div class="art-card-body">
             <p class="art-card-profile">Profile A</p>
             <h3 class="art-card-name">The Striving Achiever</h3>
@@ -1203,7 +1200,7 @@ body{top:0!important;}
         </div>
         <!-- Profile B -->
         <div class="art-card">
-          <img class="art-card-img" src="wall-art-WOMT8.jpg" alt="The Depleted Survivor — Sacred Wall Art" onerror="this.style.display='none'">
+          <img class="art-card-img" src="profile-B.png" alt="The Depleted Survivor — Sacred Wall Art" onerror="this.style.display='none'">
           <div class="art-card-body">
             <p class="art-card-profile">Profile B</p>
             <h3 class="art-card-name">The Depleted Survivor</h3>
@@ -1215,7 +1212,7 @@ body{top:0!important;}
         </div>
         <!-- Profile C -->
         <div class="art-card">
-          <img class="art-card-img" src="wall-art-WOMT-profile3.jpg" alt="The Guilty Giver — Sacred Wall Art" onerror="this.style.display='none'">
+          <img class="art-card-img" src="profile-C.png" alt="The Guilty Giver — Sacred Wall Art" onerror="this.style.display='none'">
           <div class="art-card-body">
             <p class="art-card-profile">Profile C</p>
             <h3 class="art-card-name">The Guilty Giver</h3>
@@ -1227,7 +1224,7 @@ body{top:0!important;}
         </div>
         <!-- Profile D -->
         <div class="art-card">
-          <img class="art-card-img" src="wall-art-WOMT-profile2.jpg" alt="The Lost Wanderer — Sacred Wall Art" onerror="this.style.display='none'">
+          <img class="art-card-img" src="profile-D.png" alt="The Lost Wanderer — Sacred Wall Art" onerror="this.style.display='none'">
           <div class="art-card-body">
             <p class="art-card-profile">Profile D</p>
             <h3 class="art-card-name">The Lost Wanderer</h3>
