@@ -874,9 +874,6 @@ body{top:0!important;}
       </div>
 
       <button class="btn-begin" onclick="startAssessment()"><span>Begin the Assessment</span></button>
-      <div style="display:flex;align-items:center;justify-content:center;gap:10px;margin-top:16px;">
-        <button class="lang-btn" onclick="setLanguage('en')" style="font-size:0.72rem;padding:6px 4px;">EN</button><span class="lang-sep">·</span><button class="lang-btn" onclick="setLanguage('es')" style="font-size:0.72rem;padding:6px 4px;">ES</button><span class="lang-sep">·</span><button class="lang-btn" onclick="setLanguage('pt')" style="font-size:0.72rem;padding:6px 4px;">PT</button><span class="lang-sep">·</span><button class="lang-btn" onclick="setLanguage('fr')" style="font-size:0.72rem;padding:6px 4px;">FR</button><span class="lang-sep">·</span><button class="lang-btn" onclick="setLanguage('ko')" style="font-size:0.72rem;padding:6px 4px;">KO</button>
-      </div>
       <p class="landing-promise">8 questions &nbsp;·&nbsp; 3 minutes &nbsp;·&nbsp; Your breakthrough awaits</p>
       <p style="font-size:0.6rem;color:var(--text-muted);letter-spacing:0.1em;margin-top:18px;max-width:340px;margin-left:auto;margin-right:auto;line-height:1.6;">For spiritual encouragement &amp; informational purposes only. Not a substitute for professional mental health or medical advice.</p>
     </div>
@@ -2771,97 +2768,151 @@ function downloadProfile(){
 
 function downloadProfileCard(){
   const p=PROFILES[currentProfile];
-  const size=1080;
+  const w=1080;
+  const maxW=880;
+
+  // helper: word-wrap text onto canvas, returns final y position
+  function wrapText(ctx,text,x,startY,lineH){
+    const words=(text||'').split(' ');
+    let line='';let y=startY;
+    words.forEach((word,i)=>{
+      const test=line+word+' ';
+      if(ctx.measureText(test).width>maxW&&line!==''){
+        ctx.fillText(line.trim(),x,y);line=word+' ';y+=lineH;
+      } else {line=test;}
+      if(i===words.length-1&&line.trim()){ctx.fillText(line.trim(),x,y);y+=lineH;}
+    });
+    return y;
+  }
+
+  // ── first pass: measure total height needed ──────────────────
+  const measure=document.createElement('canvas');
+  measure.width=w;measure.height=100;
+  const mx=measure.getContext('2d');
+  mx.textAlign='center';
+
+  mx.font='italic 72px "Cormorant Garamond",serif';
+  // tagline lines
+  mx.font='28px "Cormorant Garamond",serif';
+  const tlW=mx.measureText(p.tagline).width;
+  const tlLines=tlW>maxW?2:1;
+  // scripture lines
+  mx.font='italic 30px "Cormorant Garamond",serif';
+  const scrW=mx.measureText('"'+(p.scripture||'')+'"').width;
+  const scrLines=scrW>maxW?2:1;
+  // diagnosis lines
+  mx.font='26px "Cormorant Garamond",serif';
+  const diagWords=(p.diagnosis||'').split(' ');
+  let diagLines=1;let diagLine='';
+  diagWords.forEach(word=>{const t=diagLine+word+' ';if(mx.measureText(t).width>maxW&&diagLine!==''){diagLines++;diagLine=word+' ';}else{diagLine=t;}});
+  // breakthrough lines
+  mx.font='italic 24px "Cormorant Garamond",serif';
+  const btWords=(p.breakthrough||'').split(' ');
+  let btLines=1;let btLine='';
+  btWords.forEach(word=>{const t=btLine+word+' ';if(mx.measureText(t).width>maxW&&btLine!==''){btLines++;btLine=word+' ';}else{btLine=t;}});
+
+  const estimatedH=
+    200 +          // eyebrow + name
+    60 +           // divider
+    tlLines*42 +   // tagline
+    60 +           // gap
+    scrLines*46 +  // scripture
+    40 +           // ref
+    (userName?50:0)+// name
+    80 +           // section divider + label
+    diagLines*40 + // diagnosis
+    80 +           // section divider + label
+    btLines*36 +   // breakthrough
+    120;           // footer
+
+  const h=Math.max(1400,estimatedH+60);
+
+  // ── draw ─────────────────────────────────────────────────────
   const c=document.createElement('canvas');
-  c.width=size;c.height=1380;
+  c.width=w;c.height=h;
   const ctx=c.getContext('2d');
-  // background
-  ctx.fillStyle='#0d0d0d';ctx.fillRect(0,0,size,size);
-  // gold border
-  ctx.strokeStyle='#C9A84C';ctx.lineWidth=2;ctx.strokeRect(40,40,size-80,size-80);
-  ctx.strokeStyle='rgba(201,168,76,.25)';ctx.lineWidth=1;ctx.strokeRect(50,50,size-100,size-100);
+  ctx.textAlign='center';
+
+  // background — full height
+  ctx.fillStyle='#0d0d0d';ctx.fillRect(0,0,w,h);
+
+  // border — full height
+  ctx.strokeStyle='#C9A84C';ctx.lineWidth=2;ctx.strokeRect(40,40,w-80,h-80);
+  ctx.strokeStyle='rgba(201,168,76,.25)';ctx.lineWidth=1;ctx.strokeRect(50,50,w-100,h-100);
+
+  let y=160;
+
   // eyebrow
-  ctx.fillStyle='#7a6040';ctx.font='600 22px Cinzel,serif';ctx.textAlign='center';
-  ctx.letterSpacing='8px';ctx.fillText('YOUR SILENCE PROFILE',size/2,160);
+  ctx.fillStyle='#7a6040';ctx.font='600 22px Cinzel,serif';
+  ctx.fillText('YOUR SILENCE PROFILE',w/2,y);
+  y+=80;
+
   // profile name
   ctx.fillStyle='#F5F0E8';ctx.font='italic 72px "Cormorant Garamond",serif';
-  ctx.fillText(p.name,size/2,280);
+  ctx.fillText(p.name,w/2,y);
+  y+=50;
+
   // gold divider
   ctx.strokeStyle='#C9A84C';ctx.lineWidth=1;
-  ctx.beginPath();ctx.moveTo(size/2-120,320);ctx.lineTo(size/2+120,320);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(w/2-120,y);ctx.lineTo(w/2+120,y);ctx.stroke();
+  y+=50;
+
   // tagline
   ctx.fillStyle='#b0a898';ctx.font='28px "Cormorant Garamond",serif';
-  const tl=p.tagline;const tlW=ctx.measureText(tl).width;
-  if(tlW>860){
-    const words=tl.split(' ');const mid=Math.ceil(words.length/2);
-    ctx.fillText(words.slice(0,mid).join(' '),size/2,380);
-    ctx.fillText(words.slice(mid).join(' '),size/2,416);
-  } else {
-    ctx.fillText(tl,size/2,390);
-  }
+  y=wrapText(ctx,p.tagline,w/2,y,42);
+  y+=40;
+
   // scripture
   ctx.fillStyle='#e2c98e';ctx.font='italic 30px "Cormorant Garamond",serif';
-  const sw=ctx.measureText('"'+p.scripture+'"').width;
-  if(sw>860){
-    const words=('"'+p.scripture+'"').split(' ');const mid=Math.ceil(words.length/2);
-    ctx.fillText(words.slice(0,mid).join(' '),size/2,520);
-    ctx.fillText(words.slice(mid).join(' '),size/2,560);
-    ctx.fillStyle='#7a6040';ctx.font='500 22px Jost,sans-serif';
-    ctx.fillText('— '+p.ref,size/2,610);
-  } else {
-    ctx.fillText('"'+p.scripture+'"',size/2,530);
-    ctx.fillStyle='#7a6040';ctx.font='500 22px Jost,sans-serif';
-    ctx.fillText('— '+p.ref,size/2,575);
-  }
-  // name if present
+  y=wrapText(ctx,'"'+(p.scripture||'')+'"',w/2,y,46);
+  ctx.fillStyle='#7a6040';ctx.font='500 22px Jost,sans-serif';
+  ctx.fillText('— '+(p.ref||''),w/2,y);
+  y+=50;
+
+  // user name (if set)
   if(userName){
     ctx.fillStyle='rgba(201,168,76,.5)';ctx.font='20px Jost,sans-serif';
-    ctx.fillText(userName.toUpperCase(),size/2,680);
+    ctx.fillText(userName.toUpperCase(),w/2,y);
+    y+=40;
   }
-  // what this means section
-  const diagY=650;
+  y+=20;
+
+  // ── WHAT THIS MEANS ──
   ctx.strokeStyle='rgba(201,168,76,.2)';ctx.lineWidth=1;
-  ctx.beginPath();ctx.moveTo(100,diagY);ctx.lineTo(size-100,diagY);ctx.stroke();
-  ctx.fillStyle='#7a6040';ctx.font='600 18px Cinzel,serif';ctx.textAlign='center';
-  ctx.fillText('WHAT THIS MEANS FOR YOU',size/2,diagY+36);
-  ctx.fillStyle='#b0a898';ctx.font='26px "Cormorant Garamond",serif';ctx.textAlign='center';
-  const diagText=p.diagnosis||'';
-  const diagWords=diagText.split(' ');
-  let diagLine='';let diagLineY=diagY+76;const diagMaxW=880;
-  diagWords.forEach((word,i)=>{
-    const test=diagLine+word+' ';
-    if(ctx.measureText(test).width>diagMaxW&&diagLine!==''){
-      ctx.fillText(diagLine.trim(),size/2,diagLineY);
-      diagLine=word+' ';diagLineY+=38;
-    } else {diagLine=test;}
-    if(i===diagWords.length-1){ctx.fillText(diagLine.trim(),size/2,diagLineY);diagLineY+=38;}
-  });
-  // breakthrough
-  const btY=diagLineY+20;
+  ctx.beginPath();ctx.moveTo(100,y);ctx.lineTo(w-100,y);ctx.stroke();
+  y+=40;
+  ctx.fillStyle='#7a6040';ctx.font='600 18px Cinzel,serif';
+  ctx.fillText('WHAT THIS MEANS FOR YOU',w/2,y);
+  y+=48;
+  ctx.fillStyle='#b0a898';ctx.font='26px "Cormorant Garamond",serif';
+  y=wrapText(ctx,p.diagnosis||'',w/2,y,40);
+  y+=30;
+
+  // ── YOUR NEXT STEP ──
   ctx.strokeStyle='rgba(201,168,76,.2)';ctx.lineWidth=1;
-  ctx.beginPath();ctx.moveTo(100,btY);ctx.lineTo(size-100,btY);ctx.stroke();
-  ctx.fillStyle='#7a6040';ctx.font='600 16px Cinzel,serif';
-  ctx.fillText('YOUR NEXT STEP',size/2,btY+30);
+  ctx.beginPath();ctx.moveTo(100,y);ctx.lineTo(w-100,y);ctx.stroke();
+  y+=38;
+  ctx.fillStyle='#7a6040';ctx.font='600 18px Cinzel,serif';
+  ctx.fillText('YOUR NEXT STEP',w/2,y);
+  y+=46;
   ctx.fillStyle='#e2c98e';ctx.font='italic 24px "Cormorant Garamond",serif';
-  const btWords=(p.breakthrough||'').split(' ');
-  let btLine='';let btLineY=btY+60;
-  btWords.forEach((word,i)=>{
-    const test=btLine+word+' ';
-    if(ctx.measureText(test).width>diagMaxW&&btLine!==''){
-      ctx.fillText(btLine.trim(),size/2,btLineY);
-      btLine=word+' ';btLineY+=34;
-    } else {btLine=test;}
-    if(i===btWords.length-1){ctx.fillText(btLine.trim(),size/2,btLineY);btLineY+=34;}
-  });
+  y=wrapText(ctx,p.breakthrough||'',w/2,y,36);
+  y+=40;
+
   // disclaimer
   ctx.fillStyle='#323232';ctx.font='14px Jost,sans-serif';
-  ctx.fillText('For spiritual encouragement & informational purposes only.',size/2,1310);
-  // bottom branding
+  ctx.fillText('For spiritual encouragement & informational purposes only.',w/2,y);
+  y+=32;
+
+  // branding
   ctx.fillStyle='#484840';ctx.font='500 20px Cinzel,serif';
-  ctx.fillText('THE QUIET AUTHORITY  ·  SANCTUARY GRACE MINISTRY',size/2,1338);
-  ctx.fillStyle='rgba(201,168,76,.3)';ctx.fillRect(size/2-200,1352,400,1);
+  ctx.fillText('THE QUIET AUTHORITY  ·  SANCTUARY GRACE MINISTRY',w/2,y);
+  y+=20;
+  ctx.fillStyle='rgba(201,168,76,.3)';ctx.fillRect(w/2-200,y,400,1);
+  y+=18;
   ctx.fillStyle='#484840';ctx.font='16px Jost,sans-serif';
-  ctx.fillText('transform24.github.io/THE-QUIET-AUTHORITY',size/2,1370);
+  ctx.fillText('transform24.github.io/THE-QUIET-AUTHORITY',w/2,y);
+
   // download
   c.toBlob(blob=>{
     const url=URL.createObjectURL(blob);
