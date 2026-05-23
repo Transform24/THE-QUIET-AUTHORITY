@@ -1,0 +1,52 @@
+name: Instagram Agent — Daily Post
+
+on:
+  schedule:
+    # 8:00 AM EST = 13:00 UTC (Mon/Tue/Thu/Fri/Sat only — agent checks day internally)
+    - cron: '0 13 * * 1,2,4,5,6'
+  workflow_dispatch:
+    inputs:
+      pillar_override:
+        description: 'Override pillar (carousel/scripture/reel/devotional/silence)'
+        required: false
+        default: ''
+
+jobs:
+  post-content:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Run Instagram Agent
+        uses: anthropics/claude-code-action@beta
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          allowed_tools: >
+            Bash,
+            Read,
+            Write,
+            mcp__9b844449-9351-49c9-90d7-0dabf2e67ebf__search_files,
+            mcp__9b844449-9351-49c9-90d7-0dabf2e67ebf__download_file_content,
+            mcp__34b5bd4c-98d1-4f06-9820-cac551ade120__generate-design,
+            mcp__34b5bd4c-98d1-4f06-9820-cac551ade120__upload-asset-from-url
+          prompt: |
+            You are running as the Instagram Agent for Sanctuary Grace Ministry.
+            Read the full agent instructions at: workflows/agents/08-instagram-agent.md
+            Then execute all steps exactly as written.
+
+            Environment:
+            - IG_ACCESS_TOKEN is ${{ secrets.IG_ACCESS_TOKEN != '' && 'SET' || 'NOT SET' }}
+            - IG_USER_ID is ${{ secrets.IG_USER_ID != '' && 'SET' || 'NOT SET' }}
+            - Pillar override: "${{ github.event.inputs.pillar_override }}"
+
+            If API keys not set, save full post brief to:
+            workflows/output/ig-drafts/$(date +%Y-%m-%d).md
+
+      - name: Commit output
+        run: |
+          git config user.name "Instagram Agent"
+          git config user.email "noreply@sanctuarygrace.com"
+          git add workflows/output/ || true
+          git diff --staged --quiet || git commit -m "Instagram Agent: $(date +%Y-%m-%d) post"
+          git push || true
