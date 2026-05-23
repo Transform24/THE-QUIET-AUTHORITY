@@ -22,12 +22,7 @@ jobs:
         uses: anthropics/claude-code-action@beta
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
-          allowed_tools: >
-            Bash,
-            Read,
-            Write,
-            mcp__9b844449-9351-49c9-90d7-0dabf2e67ebf__search_files,
-            mcp__9b844449-9351-49c9-90d7-0dabf2e67ebf__download_file_content
+          allowed_tools: "Bash,Read,Write"
           prompt: |
             You are running as the Substack Agent for Sanctuary Grace Ministry.
             Read the full agent instructions at: workflows/agents/10-substack-agent.md
