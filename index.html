@@ -381,6 +381,15 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 .day-title{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:500;color:var(--cream);margin-bottom:4px;}
 .day-practice{font-size:0.86rem;color:var(--cream-dim);line-height:1.6;font-weight:300;}
 .day-scripture{font-size:0.75rem;font-style:italic;color:var(--gold-dim);margin-top:6px;font-family:'Cormorant Garamond',serif;}
+.day-timer-wrap{margin-top:16px;padding-top:14px;border-top:1px solid var(--border);display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+.day-timer-display{font-family:'Cormorant Garamond',serif;font-size:2.4rem;font-weight:300;color:var(--gold);letter-spacing:0.06em;line-height:1;min-width:90px;}
+.day-timer-display.done{color:var(--sage);}
+.day-timer-label{font-size:0.56rem;letter-spacing:0.26em;text-transform:uppercase;color:var(--text-muted);margin-top:3px;font-weight:300;}
+.btn-day-timer{padding:8px 20px;background:transparent;border:1px solid var(--gold-dim);color:var(--gold);font-family:'Jost',sans-serif;font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;cursor:pointer;transition:all 0.3s;font-weight:300;}
+.btn-day-timer:hover{background:var(--gold);color:var(--bg);}
+.btn-day-timer.pause{border-color:var(--sage);color:var(--sage);}
+.btn-day-timer.pause:hover{background:var(--sage);color:var(--bg);}
+.day-complete-badge{font-size:0.62rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--sage-light);font-weight:300;display:flex;align-items:center;gap:6px;}
 .dash-journal-preview{margin-top:8px;display:flex;flex-direction:column;gap:10px;}
 .djp-entry{background:var(--surface2);border-left:2px solid var(--gold-dim);padding:14px 16px;}
 .djp-date{font-size:0.6rem;letter-spacing:0.16em;color:var(--text-muted);text-transform:uppercase;margin-bottom:6px;}
@@ -2118,6 +2127,14 @@ function showResults(){
   setTimeout(showSaveToast, 800);
 }
 
+function parsePracticeMins(text){
+  const m=text.match(/(\d+)\s*min/i);
+  return m?parseInt(m[1],10):10;
+}
+
+let dayTimerInterval=null;
+let dayTimerActive=-1;
+
 function renderDayPreview(){
   const container=document.getElementById('dayPreviewContainer');
   if(!container)return;
@@ -2128,15 +2145,95 @@ function renderDayPreview(){
   container.innerHTML=days.map((d,i)=>{
     const done=completedDays.includes(i);
     const unlocked=i===0||completedDays.includes(i-1);
-    return '<div class="day-card'+(done?' done':'')+(i===0?' day-1':'')+(unlocked?'':' locked')+'">'
+    const mins=parsePracticeMins(d.practice);
+    const mm=String(mins).padStart(2,'0');
+    const timerBlock=unlocked&&!done
+      ?'<div class="day-timer-wrap">'
+        +'<div>'
+          +'<div class="day-timer-display" id="dtDisplay'+i+'">'+mm+':00</div>'
+          +'<div class="day-timer-label" id="dtLabel'+i+'">'+mins+'-minute practice</div>'
+        +'</div>'
+        +'<button class="btn-day-timer" id="dtBtn'+i+'" onclick="toggleDayTimer('+i+','+mins+')" aria-label="Begin Day '+(i+1)+' practice timer">Begin Practice</button>'
+      +'</div>'
+      : done
+        ?'<div class="day-timer-wrap"><span class="day-complete-badge">✦ Practice Complete</span></div>'
+        :'';
+    return '<div class="day-card'+(done?' done':'')+(i===0?' day-1':'')+(unlocked?'':' locked')+'" id="dayCard'+i+'">'
       +'<div class="day-num">'+(done?'✓':(i+1))+'</div>'
       +'<div class="day-body">'
       +'<div class="day-title">'+d.title+'</div>'
       +(unlocked
-        ?'<div class="day-practice">'+d.practice+'</div><div class="day-scripture">'+d.scripture+'</div>'
+        ?'<div class="day-practice">'+d.practice+'</div><div class="day-scripture">'+d.scripture+'</div>'+timerBlock
         :'<div class="day-practice" style="color:var(--text-muted);font-style:italic;">Complete Day '+(i)+' to unlock.</div>')
       +'</div></div>';
   }).join('');
+}
+
+function toggleDayTimer(dayIdx,totalMins){
+  const btn=document.getElementById('dtBtn'+dayIdx);
+  if(!btn)return;
+
+  // If another timer is running, stop it first
+  if(dayTimerActive!==-1&&dayTimerActive!==dayIdx){
+    clearInterval(dayTimerInterval);
+    dayTimerInterval=null;
+    const prevBtn=document.getElementById('dtBtn'+dayTimerActive);
+    const prevLabel=document.getElementById('dtLabel'+dayTimerActive);
+    if(prevBtn){prevBtn.textContent='Begin Practice';prevBtn.classList.remove('pause');}
+    if(prevLabel){const pm=parsePracticeMins(SEVEN_DAYS[currentProfile][dayTimerActive].practice);prevLabel.textContent=pm+'-minute practice';}
+    // Reset display
+    const prevDisplay=document.getElementById('dtDisplay'+dayTimerActive);
+    const pm=parsePracticeMins(SEVEN_DAYS[currentProfile][dayTimerActive].practice);
+    if(prevDisplay){const mm=String(pm).padStart(2,'0');prevDisplay.textContent=mm+':00';}
+    dayTimerActive=-1;
+  }
+
+  // Pausing current timer
+  if(dayTimerActive===dayIdx&&dayTimerInterval){
+    clearInterval(dayTimerInterval);
+    dayTimerInterval=null;
+    dayTimerActive=-1;
+    btn.textContent='Resume Practice';
+    btn.classList.remove('pause');
+    const lbl=document.getElementById('dtLabel'+dayIdx);
+    if(lbl)lbl.textContent='Paused — tap to resume';
+    return;
+  }
+
+  // Start / resume
+  const display=document.getElementById('dtDisplay'+dayIdx);
+  const lbl=document.getElementById('dtLabel'+dayIdx);
+  if(!display)return;
+
+  // Read current remaining seconds from display
+  const parts=display.textContent.split(':');
+  let remaining=(parseInt(parts[0],10)*60)+(parseInt(parts[1],10));
+  if(remaining<=0)remaining=totalMins*60;
+
+  btn.textContent='Pause';
+  btn.classList.add('pause');
+  if(lbl)lbl.textContent='Practice in progress — stay present';
+  dayTimerActive=dayIdx;
+
+  dayTimerInterval=setInterval(()=>{
+    remaining--;
+    const m=Math.floor(remaining/60);
+    const s=remaining%60;
+    display.textContent=String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
+    if(remaining<=0){
+      clearInterval(dayTimerInterval);
+      dayTimerInterval=null;
+      dayTimerActive=-1;
+      display.textContent='00:00';
+      display.classList.add('done');
+      if(lbl)lbl.textContent='Well done, beloved.';
+      btn.textContent='Mark Complete ✓';
+      btn.classList.remove('pause');
+      btn.onclick=()=>{toggleDay(dayIdx);};
+      // Auto-mark after 2s
+      setTimeout(()=>{toggleDay(dayIdx);},2000);
+    }
+  },1000);
 }
 
 function renderSacredSpace(){
@@ -2607,9 +2704,12 @@ function launchJournalClose(){
 }
 
 function toggleDay(i){
+  // Stop any running timer for this day before marking done
+  if(dayTimerActive===i&&dayTimerInterval){clearInterval(dayTimerInterval);dayTimerInterval=null;dayTimerActive=-1;}
   let days=[];try{days=JSON.parse(localStorage.getItem('tqa_days')||'[]');}catch(e){}
   const idx=days.indexOf(i);if(idx>=0)days.splice(idx,1);else days.push(i);
   try{localStorage.setItem('tqa_days',JSON.stringify(days));}catch(e){}
+  renderDayPreview();
   const saved=getSavedProfile();if(saved)renderDashboard(saved);
 }
 
