@@ -12,7 +12,8 @@ beacons.ai/sanctuarygrace. Grace never opens Pinterest.
 
 ## Permission Level
 - READ: CLAUDE.md Section 13 (30-day pin schedule, brand specs)
-- READ: repo root `profile-A/B/C/D.png` (wall art images)
+- READ: repo root `profile-A/B/C/D.png` (profile portrait images — use for Pinterest profile pins only)
+- READ: repo root `wall-art-WOMT9.jpg`, `wall-art-WOMT8.jpg`, `wall-art-WOMT-profile3.jpg`, `wall-art-WOMT-profile2.jpg` (wall art product images)
 - READ: Drive `/content-queue/` (approved devotional covers)
 - WRITE: Pinterest via API (create pins)
 - WRITE: `workflows/output/pin-log.md`
