@@ -1,0 +1,53 @@
+name: Substack Agent — Daily Devotion
+
+on:
+  schedule:
+    # 6:00 AM EST = 11:00 AM UTC
+    - cron: '0 11 * * *'
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Override mode (daily or sunday)'
+        required: false
+        default: ''
+
+jobs:
+  publish-devotion:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Run Substack Agent
+        uses: anthropics/claude-code-action@beta
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          allowed_tools: >
+            Bash,
+            Read,
+            Write,
+            mcp__9b844449-9351-49c9-90d7-0dabf2e67ebf__search_files,
+            mcp__9b844449-9351-49c9-90d7-0dabf2e67ebf__download_file_content
+          prompt: |
+            You are running as the Substack Agent for Sanctuary Grace Ministry.
+            Read the full agent instructions at: workflows/agents/10-substack-agent.md
+            Then execute all steps exactly as written.
+
+            Environment:
+            - SUBSTACK_API_KEY is ${{ secrets.SUBSTACK_API_KEY != '' && 'SET' || 'NOT SET' }}
+            - SUBSTACK_PUBLICATION_ID is ${{ secrets.SUBSTACK_PUBLICATION_ID != '' && 'SET' || 'NOT SET' }}
+            - Mode override: "${{ github.event.inputs.mode }}"
+
+            If API keys are not set, save the formatted draft to:
+            workflows/output/substack-drafts/$(date +%Y-%m-%d).md
+            and commit it so Grace can review and publish manually.
+
+            Commit any output files with message: "Substack Agent: [date] [mode] devotion"
+
+      - name: Commit drafts if API not connected
+        run: |
+          git config user.name "Substack Agent"
+          git config user.email "noreply@sanctuarygrace.com"
+          git add workflows/output/ || true
+          git diff --staged --quiet || git commit -m "Substack Agent: $(date +%Y-%m-%d) devotion draft"
+          git push || true
