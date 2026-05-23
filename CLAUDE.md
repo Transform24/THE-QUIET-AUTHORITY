@@ -239,7 +239,7 @@ All links already in index.html SACRED_SPACE data. Do not modify link structure.
 
 ---
 
-## 12. AGENT TEAM — 6 AGENTS
+## 12. AGENT TEAM — 10 AGENTS
 
 | # | Agent | Reads | Writes | Trigger |
 |---|---|---|---|---|
@@ -249,6 +249,120 @@ All links already in index.html SACRED_SPACE data. Do not modify link structure.
 | 04 | Lead Responder | Formspree webhook | leads.md + Beacons tag | Formspree webhook |
 | 05 | Weekly Report | All /output/ | Weekly report | Mon 7am |
 | 06 | Daily Check-In | Beacons list + templates | Beacons broadcast | Daily 7am |
+| 07 | Pinterest Agent | CLAUDE.md Pinterest SOP + pin schedule | Canva design + pin-log.md | Daily per schedule |
+| 08 | Instagram Agent | Content calendar + Drive /content-queue/ | ig-log.md + scheduled posts | Daily per schedule |
+| 09 | YouTube Agent | Drive /content-queue/ + profile descriptions | Video scripts + yt-log.md | Weekly |
+| 10 | Substack Agent | Drive /devotion-inbox/ + profile content | Substack draft + substack-log.md | Daily 6am |
+
+---
+
+**Agent 07 — Pinterest Agent (pending build):**
+- Reads the 30-day pin schedule in Section 13
+- Uses Canva MCP (`brand_kit_id: kAHKceDuDGk`) to generate non-wall-art pins (scripture, quotes, devotional covers)
+- Wall art pins use existing repo images `profile-A/B/C/D.png` — no Canva generation needed
+- Writes caption copy using `/copywriting` skill in sacred TQA voice
+- Publishes via Pinterest API or scheduling tool (Tailwind/Buffer/Later)
+- Logs to `workflows/output/pin-log.md`
+- Needs: `PINTEREST_ACCESS_TOKEN` in `.env`
+
+---
+
+**Agent 08 — Instagram Agent (pending build):**
+- Reads content calendar and Drive `/content-queue/` for approved content
+- Repurposes Pinterest captions into shorter IG captions using `/social` skill (max 150 words, sacred voice)
+- Writes Reel scripts: hook (3 sec) + 3 beats + soft CTA → `beacons.ai/sanctuarygrace`
+- Writes carousel text: profile descriptions broken into 5–7 slides, each ending on a turn
+- Generates Canva thumbnail brief for Reel covers using brand kit `kAHKceDuDGk`
+- Posts via Instagram Graph API or drops into Buffer/Later/scheduling tool
+- Logs to `workflows/output/ig-log.md`
+- Needs: `IG_ACCESS_TOKEN` in `.env` (Meta Business account required)
+- Voice: same sacred TQA brand voice — no hustle, no urgency, no emojis in copy
+- Every post caption ends with: `beacons.ai/sanctuarygrace`
+
+**Instagram Content Pillars (mirrors Pinterest):**
+| Pillar | Format | Frequency |
+|---|---|---|
+| Profile reveal | Carousel (5–7 slides) | Weekly |
+| Scripture + profile | Static image or Reel | 2x/week |
+| Sacred aesthetic | Reel (B-roll + voiceover) | Weekly |
+| Devotional preview | Static image + caption | Weekly |
+| Circle of Silence | Reel or Story | Bi-weekly |
+
+---
+
+**Agent 09 — YouTube Agent (pending build):**
+- Reads devotional content, profile descriptions, and 7-day practice from Drive
+- Writes long-form video scripts in sacred TQA voice using `/copywriting` skill
+- Script structure: Opening stillness (30s) → Profile/topic teaching (8–12 min) → Silence invitation (2 min) → Soft CTA
+- Writes SEO-optimized video descriptions using `/content-strategy` skill
+- Includes: title (under 60 chars), description (200+ words), 5–8 tags, pinned comment text
+- Generates Canva thumbnail brief: profile image + 1 short line of terra text
+- Posts Community tab weekly encouragement (scripture + soft link to Beacons)
+- Logs to `workflows/output/yt-log.md`
+- Needs: `YOUTUBE_API_KEY` + OAuth 2.0 credentials in `.env`
+- Channel: `youtube.com/@TheQuietAuthority-f1z`
+
+**YouTube Content Series:**
+| Series | Format | Frequency |
+|---|---|---|
+| Profile deep dives | 10–15 min teaching | Monthly (1 per profile) |
+| 7-day practice walkthroughs | 5–8 min guided | Weekly |
+| Circle of Silence sessions | 15 min guided silence | Weekly |
+| Scripture reflections | 3–5 min devotional | 2x/week |
+
+---
+
+**Agent 10 — Substack Agent (pending build):**
+- Reads daily devotion content from Drive `/devotion-inbox/` or generates from profile descriptions
+- Writes in Grace's voice — sacred, tender, first-person, prophetic
+- Two modes:
+  - **Daily Devotion** (short): 200–300 words, one scripture, one reflection, one invitation. Publishes daily at 6am.
+  - **Weekly Letter** (long): 600–800 words, personal + prophetic, deeper teaching. Publishes Sunday.
+- Uses `/copywriting` skill for CTA language, `/stop-slop` to remove AI writing patterns before publishing
+- Formats as Substack post with title, subtitle, body, and closing CTA → `beacons.ai/sanctuarygrace`
+- Publishes via Substack API or email trigger to Substack import address
+- Logs to `workflows/output/substack-log.md`
+- Needs: `SUBSTACK_PUBLICATION_ID` + `SUBSTACK_API_KEY` in `.env`
+- Newsletter name: The Quiet Authority Daily / The Quiet Authority Letter
+
+**Substack Content Rhythm:**
+| Day | Content | Length |
+|---|---|---|
+| Mon–Sat | Daily Devotion | 200–300 words |
+| Sunday | Weekly Letter | 600–800 words |
+| As needed | Profile feature | 400–500 words |
+
+---
+
+**How to Remove Grace From the Process (all 4 platforms):**
+
+```
+Step 1: Set API credentials in .env (one-time setup per platform)
+  PINTEREST_ACCESS_TOKEN=...
+  IG_ACCESS_TOKEN=...
+  YOUTUBE_API_KEY=...
+  SUBSTACK_API_KEY=...
+
+Step 2: Build agent workflow files in workflows/agents/
+  pinterest-agent.yml
+  instagram-agent.yml
+  youtube-agent.yml
+  substack-agent.yml
+
+Step 3: Connect a scheduler
+  Recommended: GitHub Actions (free, already in repo)
+  Alternative: n8n for visual workflow management
+
+Step 4: Set content source
+  Drive /devotion-inbox/ = Grace drops raw content
+  Agent picks up, writes, formats, publishes — Grace never opens the platform
+```
+
+**Build order (easiest → most complex):**
+1. Substack — simplest API, highest daily devotion value
+2. Pinterest — already specced, just needs API key
+3. Instagram — most reach, Meta API has friction
+4. YouTube — scripts first, auto-posting second
 
 ---
 
@@ -260,6 +374,95 @@ All links already in index.html SACRED_SPACE data. Do not modify link structure.
 - When a branch conflicts with already-squash-merged commits: cherry-pick only the new commits onto a fresh branch from main rather than fighting the rebase
 - Before opening a PR: complete the Mobile / UX Checklist (Section 8) and include results in the PR body
 - Never skip the checklist to ship faster — one cleanup PR costs more than one careful pre-merge pass
+
+---
+
+## 13. PINTEREST SOP — 30-DAY LAUNCH
+
+### Why Pinterest → Beacons
+Pinterest is 76% women, strongest 25–54, faith/wellness is a top category. All traffic flows to `beacons.ai/sanctuarygrace` first — not the assessment, not Stripe. Beacons warms them, then assessment converts.
+
+### Brand Kit
+- **Canva brand kit ID:** `kAHKceDuDGk` — name: "TQA Pinterest — Sacred Profiles"
+- **Colors:** `#000000` (background) · `#C1593C` (terra, all text) · `#C9A84C` (gold, stars)
+- **Font:** Cinzel · Regular · ALL CAPS only
+- **Stars:** 4-point starburst, 3 sizes (large ~100px, medium ~50px, small ~28px), left margin
+- **Photo:** B&W only, high contrast, no tint, no overlay
+
+### Pin Image Sources
+| Pin type | Source | Do NOT recreate in Canva |
+|---|---|---|
+| Wall art profile pins | `profile-A/B/C/D.png` from repo root | ✓ Already perfect — download and upload directly to Pinterest |
+| Scripture quote cards | Generate in Canva with brand kit | — |
+| Devotional covers | Existing product images from Drive | — |
+| Sacred aesthetic | Generate in Canva or source from Drive | — |
+
+### Caption Rules
+- Sacred, tender, prophetic — minister not marketer
+- No emojis, no exclamation points, no urgency language
+- Every caption ends with: `beacons.ai/sanctuarygrace`
+- 100–200 words per caption
+- 3–5 hashtags, always last line, never repeated same 5 twice in a row
+
+### Hashtag Pool
+`#ChristianWomen` `#SpiritualRest` `#FaithAndWellness` `#QuietTime` `#SanctuaryGrace` `#SpiritualBurnout` `#FaithJourney` `#ScriptureForWomen` `#SacredSpace` `#HopeForWomen` `#ChristianMom` `#DailyDevotion`
+
+### Pinterest Boards
+| Board | Purpose |
+|---|---|
+| The Quiet Authority | All TQA brand content — wall art, assessment pins |
+| Spiritual Rest for Women | Broadest reach — discovery pins, scripture, aesthetics |
+| Christian Women Encouragement | Scripture, profile quotes, affirmations |
+| Sacred Morning Practices | Devotional covers, silence sessions, 7-day practice |
+
+### 30-Day Pin Schedule
+| Day | Pin | Board | Image source |
+|---|---|---|---|
+| 1 | The Guilty Giver wall art | The Quiet Authority | `profile-C.png` |
+| 2 | Sacred aesthetic + "There is a stillness that heals what striving never could" | Sacred Morning Practices | Canva / Drive |
+| 3 | The Depleted Survivor wall art | The Quiet Authority | `profile-B.png` |
+| 4 | Scripture pin — Matthew 11:28 | Christian Women Encouragement | Canva |
+| 5 | The Striving Achiever wall art | The Quiet Authority | `profile-A.png` |
+| 6 | Devotional Week 1 Vision cover | Sacred Morning Practices | Drive |
+| 7 | The Lost Wanderer wall art | The Quiet Authority | `profile-D.png` |
+| 8 | "Which type are you?" discovery pin — all 4 profiles listed | Spiritual Rest for Women | Canva |
+| 9 | Scripture + Guilty Giver quote | Christian Women Encouragement | Canva |
+| 10 | Devotional Week 2 Renewal cover | Sacred Morning Practices | Drive |
+| 11 | Re-pin Day 1 Guilty Giver → Spiritual Rest for Women | Spiritual Rest for Women | — |
+| 12 | "The assessment is free. The stillness is real." | The Quiet Authority | Canva |
+| 13 | Sacred aesthetic + "You were not made to pour from empty" | Christian Women Encouragement | Canva / Drive |
+| 14 | Circle of Silence pin — "15 minutes. Just you and God." | Sacred Morning Practices | Canva |
+| 15 | "Start here" assessment overview pin | Spiritual Rest for Women | Canva |
+| 16 | Devotional Week 3 Peace cover | Sacred Morning Practices | Drive |
+| 17 | Re-pin Guilty Giver wall art → Christian Women Encouragement | Christian Women Encouragement | — |
+| 18 | Quote pin — line from Guilty Giver profile description | The Quiet Authority | Canva |
+| 19 | R.E.S.T. Workbook — "Free. No catch. Just a path forward." | Spiritual Rest for Women | Canva |
+| 20 | Scripture + "Your exhaustion is not failure. It is an invitation." | Christian Women Encouragement | Canva |
+| 21 | Devotional Week 4 Calling cover | Sacred Morning Practices | Drive |
+| 22–24 | Re-pin 3 highest-performing pins from Weeks 1–2 to new boards | All boards | — |
+| 25 | Brand story pin — personal, links to assessment | Spiritual Rest for Women | Canva |
+| 26 | Re-pin Guilty Giver wall art to all 4 boards | All boards | — |
+| 27 | Devotional bundle pin — all 4 weeks, bundle savings | The Quiet Authority | Canva |
+| 28 | Circle of Silence waitlist pin | Sacred Morning Practices | Canva |
+| 29 | Scripture from 7-day practice | Christian Women Encouragement | Canva |
+| 30 | Review: identify top 3 pins by saves → double down Month 2 | — | — |
+
+### Posting Schedule
+- Post between 8–11am or 7–9pm (highest engagement for this demographic)
+- Minimum 1 day between pins
+- Save each wall art pin to at least 2 boards
+
+### Skills Used by Agent 07
+- `/copywriting` — caption writing, CTA copy
+- `/social` — platform optimization, repurposing
+- `/content-strategy` — pillar planning, what to create next
+
+### What Removes Grace From the Process
+Skills alone do NOT automate — they make Claude smarter when you ask.
+Agent 07 + Pinterest API connection = full automation. Still needed:
+- Pinterest API access token (`PINTEREST_ACCESS_TOKEN` in `.env`)
+- Scheduling tool OR Pinterest API write integration
+- Agent 07 workflow file in `workflows/agents/`
 
 ---
 
