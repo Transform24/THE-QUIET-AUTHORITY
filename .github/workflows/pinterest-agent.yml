@@ -1,0 +1,52 @@
+name: Pinterest Agent — Daily Pin
+
+on:
+  schedule:
+    # 9:00 AM EST = 14:00 UTC (peak Pinterest engagement)
+    - cron: '0 14 * * *'
+  workflow_dispatch:
+    inputs:
+      day_override:
+        description: 'Override day number (1-30)'
+        required: false
+        default: ''
+
+jobs:
+  post-pin:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Run Pinterest Agent
+        uses: anthropics/claude-code-action@beta
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          allowed_tools: >
+            Bash,
+            Read,
+            Write,
+            mcp__9b844449-9351-49c9-90d7-0dabf2e67ebf__search_files,
+            mcp__9b844449-9351-49c9-90d7-0dabf2e67ebf__download_file_content,
+            mcp__34b5bd4c-98d1-4f06-9820-cac551ade120__generate-design,
+            mcp__34b5bd4c-98d1-4f06-9820-cac551ade120__upload-asset-from-url
+          prompt: |
+            You are running as the Pinterest Agent for Sanctuary Grace Ministry.
+            Read the full agent instructions at: workflows/agents/07-pinterest-agent.md
+            Then execute all steps exactly as written.
+
+            Environment:
+            - PINTEREST_ACCESS_TOKEN is ${{ secrets.PINTEREST_ACCESS_TOKEN != '' && 'SET' || 'NOT SET' }}
+            - Day override: "${{ github.event.inputs.day_override }}"
+
+            If API key not set, save pin brief to:
+            workflows/output/pin-drafts/$(date +%Y-%m-%d).md
+            and commit so Grace can post manually.
+
+      - name: Commit output
+        run: |
+          git config user.name "Pinterest Agent"
+          git config user.email "noreply@sanctuarygrace.com"
+          git add workflows/output/ || true
+          git diff --staged --quiet || git commit -m "Pinterest Agent: $(date +%Y-%m-%d) pin"
+          git push || true

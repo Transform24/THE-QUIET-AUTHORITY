@@ -1,0 +1,54 @@
+name: YouTube Agent — Weekly Video + Community Post
+
+on:
+  schedule:
+    # Wednesday 7:00 AM EST = 12:00 UTC (weekly video)
+    - cron: '0 12 * * 3'
+    # Sunday 7:00 AM EST = 12:00 UTC (Community tab post)
+    - cron: '0 12 * * 0'
+  workflow_dispatch:
+    inputs:
+      task_override:
+        description: 'Override task (video or community)'
+        required: false
+        default: ''
+
+jobs:
+  youtube-task:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Run YouTube Agent
+        uses: anthropics/claude-code-action@beta
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          allowed_tools: >
+            Bash,
+            Read,
+            Write,
+            mcp__9b844449-9351-49c9-90d7-0dabf2e67ebf__search_files,
+            mcp__9b844449-9351-49c9-90d7-0dabf2e67ebf__download_file_content,
+            mcp__34b5bd4c-98d1-4f06-9820-cac551ade120__generate-design,
+            mcp__34b5bd4c-98d1-4f06-9820-cac551ade120__upload-asset-from-url
+          prompt: |
+            You are running as the YouTube Agent for Sanctuary Grace Ministry.
+            Read the full agent instructions at: workflows/agents/09-youtube-agent.md
+            Then execute all steps exactly as written.
+
+            Environment:
+            - YOUTUBE_API_KEY is ${{ secrets.YOUTUBE_API_KEY != '' && 'SET' || 'NOT SET' }}
+            - YOUTUBE_REFRESH_TOKEN is ${{ secrets.YOUTUBE_REFRESH_TOKEN != '' && 'SET' || 'NOT SET' }}
+            - Task override: "${{ github.event.inputs.task_override }}"
+
+            If API keys not set, save complete package to:
+            workflows/output/yt-drafts/$(date +%Y-%m-%d).md
+
+      - name: Commit output
+        run: |
+          git config user.name "YouTube Agent"
+          git config user.email "noreply@sanctuarygrace.com"
+          git add workflows/output/ || true
+          git diff --staged --quiet || git commit -m "YouTube Agent: $(date +%Y-%m-%d) package"
+          git push || true
