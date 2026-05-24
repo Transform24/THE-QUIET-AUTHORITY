@@ -1994,16 +1994,6 @@ function submitAndReveal(){
 
   const profileKey=calculateProfile();
   const p=PROFILES[profileKey];
-  const days=SEVEN_DAYS[profileKey]||[];
-  const text=buildProfileText(p,days,name);
-
-  // Deliver full profile to user's own inbox — synchronous, fires in click scope to avoid popup blocking
-  const a=document.createElement('a');
-  a.href='mailto:'+email+'?subject='+encodeURIComponent('Your Quiet Authority Profile — '+p.name)+'&body='+encodeURIComponent(text);
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-
   // PERMANENT GATE — set once, never cleared by anything
   try{localStorage.setItem('tqa_profile_complete','1');}catch(e){}
 
