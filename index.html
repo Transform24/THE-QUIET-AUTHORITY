@@ -3065,14 +3065,18 @@ function downloadProfileCard(){
   ctx.fillStyle='#484840';ctx.font='16px Jost,sans-serif';
   ctx.fillText('transform24.github.io/THE-QUIET-AUTHORITY',w/2,y);
 
-  // download
-  c.toBlob(blob=>{
-    const url=URL.createObjectURL(blob);
+  // open as viewable image in new tab — user can save from there
+  const dataUrl=c.toDataURL('image/png');
+  const win=window.open('','_blank');
+  if(win){
+    win.document.write('<html><head><title>My Quiet Authority Profile</title><style>*{margin:0;padding:0;box-sizing:border-box;}body{background:#0d0d0d;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;gap:18px;font-family:sans-serif;}img{max-width:100%;height:auto;display:block;}p{color:#7a6040;font-size:13px;letter-spacing:.1em;}</style></head><body><img src="'+dataUrl+'" alt="My Quiet Authority Profile"><p>HOLD TO SAVE ON MOBILE &nbsp;·&nbsp; RIGHT-CLICK TO SAVE ON DESKTOP</p></body></html>');
+    win.document.close();
+  } else {
+    // fallback: direct download if popup blocked
     const a=document.createElement('a');
-    a.href=url;a.download='MyQuietAuthorityProfile.png';
+    a.href=dataUrl;a.download='MyQuietAuthorityProfile.png';
     document.body.appendChild(a);a.click();document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-  },'image/png');
+  }
 }
 
 function shareProfile(){
