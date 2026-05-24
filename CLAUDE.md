@@ -182,11 +182,11 @@ getProfileScores() // {A:%, B:%, C:%, D:%}
 
 // Submit flow — ORDER IS SACRED
 // submitAndReveal()
-// → buildProfileText()
-// → a.click() [mailto — SYNC BEFORE ANY FETCH]
 // → localStorage.setItem('tqa_profile_complete','1') ← GATE
-// → fetch(Formspree xzdkgbbq)
+// → fetch(Formspree xzdkgbbq) — notifies Grace
+// → fetch(Make.com webhook) — routes to Beacons sequence by profile
 // → calculateAndReveal()
+// NOTE: mailto REMOVED. Make.com handles all delivery.
 
 // startOver() — gate check before routing
 // toggleDay(i) — rebuilds DOM, re-query after
