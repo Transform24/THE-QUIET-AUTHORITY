@@ -1,6 +1,19 @@
 # THE QUIET AUTHORITY — AGENT SOP
 ## Sanctuary Grace Ministry · Transform24
-*Last updated: 2026-05-21 · This file is the law. Everything else defers to it.*
+*Last updated: 2026-05-24 · This file is the law. Everything else defers to it.*
+
+---
+
+## COMPLETED CHANGES — DO NOT REDO THESE
+
+- **mailto removed** — the "email me my profile" mailto link was removed from `submitAndReveal()`. Make.com webhook handles all delivery now. Do NOT add it back.
+- **Make.com webhook wired** — `https://hook.us2.make.com/r4tscqqr8qzff82pr3dcxi1a3w5yn7xy` fires on every assessment submit with `name`, `email`, `profile_key`, `profile_name`, `source`.
+- **Psalm 91 Amazon link** — all 4 profiles use `https://amzn.to/3REMW6E`. Do NOT revert to B0C7V67VVV.
+- **Profile card download** — opens in new browser tab as viewable image, not silent file download.
+- **Email engine** — Beacons is current. Systeme.io account exists (locked, pending unlock). Migration to Systeme.io planned once unlocked. Make.com routes profiles to sequences.
+- **Automation** — Make.com (free, 1,000 ops/month) is the automation layer. Zapier is not used.
+- **7-day practice timers** — countdown timer on every day card, auto-marks complete at 00:00.
+- **UI/UX audit complete** — lazy loading, reduced motion, focus-visible, aria-labels, aria-live, aria-hidden, noreferrer all applied.
 
 ---
 
