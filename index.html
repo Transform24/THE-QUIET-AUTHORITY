@@ -2019,6 +2019,19 @@ function submitAndReveal(){
     })
   }).catch(()=>{});
 
+  // Route to Make.com — triggers correct email sequence by profile
+  fetch('https://hook.us2.make.com/r4tscqqr8qzff82pr3dcxi1a3w5yn7xy',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({
+      name:name,
+      email:email,
+      profile_key:profileKey,
+      profile_name:p.name,
+      source:'TQA Assessment'
+    })
+  }).catch(()=>{});
+
   calculateAndReveal();
 }
 
