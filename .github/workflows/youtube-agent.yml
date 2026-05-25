@@ -16,15 +16,17 @@ on:
 jobs:
   youtube-task:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
 
       - name: Run YouTube Agent
-        uses: anthropics/claude-code-action@beta
+        uses: anthropics/claude-code-action@v1
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
-          allowed_tools: "Bash,Read,Write"
           prompt: |
             You are running as the YouTube Agent for Sanctuary Grace Ministry.
             Read the full agent instructions at: workflows/agents/09-youtube-agent.md
@@ -37,6 +39,8 @@ jobs:
 
             If API keys not set, save complete package to:
             workflows/output/yt-drafts/$(date +%Y-%m-%d).md
+          claude_args: |
+            --allowedTools Bash,Read,Write
 
       - name: Commit output
         run: |
