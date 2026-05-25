@@ -14,15 +14,17 @@ on:
 jobs:
   publish-devotion:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
 
       - name: Run Substack Agent
-        uses: anthropics/claude-code-action@beta
+        uses: anthropics/claude-code-action@v1
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
-          allowed_tools: "Bash,Read,Write"
           prompt: |
             You are running as the Substack Agent for Sanctuary Grace Ministry.
             Read the full agent instructions at: workflows/agents/10-substack-agent.md
@@ -38,6 +40,8 @@ jobs:
             and commit it so Grace can review and publish manually.
 
             Commit any output files with message: "Substack Agent: [date] [mode] devotion"
+          claude_args: |
+            --allowedTools Bash,Read,Write
 
       - name: Commit drafts if API not connected
         run: |
