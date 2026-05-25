@@ -14,15 +14,17 @@ on:
 jobs:
   post-pin:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
 
       - name: Run Pinterest Agent
-        uses: anthropics/claude-code-action@beta
+        uses: anthropics/claude-code-action@v1
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
-          allowed_tools: "Bash,Read,Write"
           prompt: |
             You are running as the Pinterest Agent for Sanctuary Grace Ministry.
             Read the full agent instructions at: workflows/agents/07-pinterest-agent.md
@@ -35,6 +37,8 @@ jobs:
             If API key not set, save pin brief to:
             workflows/output/pin-drafts/$(date +%Y-%m-%d).md
             and commit so Grace can post manually.
+          claude_args: |
+            --allowedTools Bash,Read,Write
 
       - name: Commit output
         run: |
