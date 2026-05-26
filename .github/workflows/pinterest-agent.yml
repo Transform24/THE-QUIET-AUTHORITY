@@ -20,6 +20,9 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
 
       - name: Run Pinterest Agent
         uses: anthropics/claude-code-action@v1
@@ -31,19 +34,25 @@ jobs:
             Then execute all steps exactly as written.
 
             Environment:
-            - PINTEREST_ACCESS_TOKEN is ${{ secrets.PINTEREST_ACCESS_TOKEN != '' && 'SET' || 'NOT SET' }}
+            - PINTEREST_ACCESS_TOKEN is available as env var
             - Day override: "${{ github.event.inputs.day_override }}"
 
-            If API key not set, save pin brief to:
+            If PINTEREST_ACCESS_TOKEN is empty, save pin brief to:
             workflows/output/pin-drafts/$(date +%Y-%m-%d).md
             and commit so Grace can post manually.
           claude_args: |
             --allowedTools Bash,Read,Write
+        env:
+          PINTEREST_ACCESS_TOKEN: ${{ vars.PINTEREST_ACCESS_TOKEN }}
 
       - name: Commit output
         run: |
-          git config user.name "Pinterest Agent"
+          git config user.name "TQA Agent"
           git config user.email "noreply@sanctuarygrace.com"
           git add workflows/output/ || true
-          git diff --staged --quiet || git commit -m "Pinterest Agent: $(date +%Y-%m-%d) pin"
-          git push || true
+          if ! git diff --staged --quiet; then
+            BRANCH="agent-output/$(date +%Y-%m-%d-%H%M%S)"
+            git checkout -b "$BRANCH"
+            git commit -m "Pinterest Agent: $(date +%Y-%m-%d) output"
+            git push -u origin "$BRANCH" || true
+          fi

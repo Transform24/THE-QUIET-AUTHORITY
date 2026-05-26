@@ -20,6 +20,9 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
 
       - name: Run Instagram Agent
         uses: anthropics/claude-code-action@v1
@@ -31,19 +34,26 @@ jobs:
             Then execute all steps exactly as written.
 
             Environment:
-            - IG_ACCESS_TOKEN is ${{ secrets.IG_ACCESS_TOKEN != '' && 'SET' || 'NOT SET' }}
-            - IG_USER_ID is ${{ secrets.IG_USER_ID != '' && 'SET' || 'NOT SET' }}
+            - IG_ACCESS_TOKEN is available as env var
+            - IG_USER_ID is available as env var
             - Pillar override: "${{ github.event.inputs.pillar_override }}"
 
-            If API keys not set, save full post brief to:
+            If IG_ACCESS_TOKEN is empty, save full post brief to:
             workflows/output/ig-drafts/$(date +%Y-%m-%d).md
           claude_args: |
             --allowedTools Bash,Read,Write
+        env:
+          IG_ACCESS_TOKEN: ${{ vars.IG_ACCESS_TOKEN }}
+          IG_USER_ID: ${{ vars.IG_USER_ID }}
 
       - name: Commit output
         run: |
-          git config user.name "Instagram Agent"
+          git config user.name "TQA Agent"
           git config user.email "noreply@sanctuarygrace.com"
           git add workflows/output/ || true
-          git diff --staged --quiet || git commit -m "Instagram Agent: $(date +%Y-%m-%d) post"
-          git push || true
+          if ! git diff --staged --quiet; then
+            BRANCH="agent-output/$(date +%Y-%m-%d-%H%M%S)"
+            git checkout -b "$BRANCH"
+            git commit -m "Instagram Agent: $(date +%Y-%m-%d) output"
+            git push -u origin "$BRANCH" || true
+          fi

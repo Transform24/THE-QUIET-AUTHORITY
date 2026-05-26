@@ -22,6 +22,9 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
 
       - name: Run YouTube Agent
         uses: anthropics/claude-code-action@v1
@@ -33,19 +36,30 @@ jobs:
             Then execute all steps exactly as written.
 
             Environment:
-            - YOUTUBE_API_KEY is ${{ secrets.YOUTUBE_API_KEY != '' && 'SET' || 'NOT SET' }}
-            - YOUTUBE_REFRESH_TOKEN is ${{ secrets.YOUTUBE_REFRESH_TOKEN != '' && 'SET' || 'NOT SET' }}
+            - YOUTUBE_API_KEY is available as env var
+            - YOUTUBE_REFRESH_TOKEN is available as env var
+            - YOUTUBE_CLIENT_ID is available as env var
+            - YOUTUBE_CLIENT_SECRET is available as env var
             - Task override: "${{ github.event.inputs.task_override }}"
 
-            If API keys not set, save complete package to:
+            If API keys are empty, save complete package to:
             workflows/output/yt-drafts/$(date +%Y-%m-%d).md
           claude_args: |
             --allowedTools Bash,Read,Write
+        env:
+          YOUTUBE_API_KEY: ${{ vars.YOUTUBE_API_KEY }}
+          YOUTUBE_REFRESH_TOKEN: ${{ vars.YOUTUBE_REFRESH_TOKEN }}
+          YOUTUBE_CLIENT_ID: ${{ vars.YOUTUBE_CLIENT_ID }}
+          YOUTUBE_CLIENT_SECRET: ${{ vars.YOUTUBE_CLIENT_SECRET }}
 
       - name: Commit output
         run: |
-          git config user.name "YouTube Agent"
+          git config user.name "TQA Agent"
           git config user.email "noreply@sanctuarygrace.com"
           git add workflows/output/ || true
-          git diff --staged --quiet || git commit -m "YouTube Agent: $(date +%Y-%m-%d) package"
-          git push || true
+          if ! git diff --staged --quiet; then
+            BRANCH="agent-output/$(date +%Y-%m-%d-%H%M%S)"
+            git checkout -b "$BRANCH"
+            git commit -m "YouTube Agent: $(date +%Y-%m-%d) output"
+            git push -u origin "$BRANCH" || true
+          fi

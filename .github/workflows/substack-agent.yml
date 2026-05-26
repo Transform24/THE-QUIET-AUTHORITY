@@ -20,6 +20,9 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
 
       - name: Run Substack Agent
         uses: anthropics/claude-code-action@v1
@@ -31,22 +34,27 @@ jobs:
             Then execute all steps exactly as written.
 
             Environment:
-            - SUBSTACK_API_KEY is ${{ secrets.SUBSTACK_API_KEY != '' && 'SET' || 'NOT SET' }}
-            - SUBSTACK_PUBLICATION_ID is ${{ secrets.SUBSTACK_PUBLICATION_ID != '' && 'SET' || 'NOT SET' }}
+            - SUBSTACK_API_KEY is available as env var
+            - SUBSTACK_PUBLICATION_ID is available as env var
             - Mode override: "${{ github.event.inputs.mode }}"
 
-            If API keys are not set, save the formatted draft to:
+            If API keys are empty, save the formatted draft to:
             workflows/output/substack-drafts/$(date +%Y-%m-%d).md
             and commit it so Grace can review and publish manually.
-
-            Commit any output files with message: "Substack Agent: [date] [mode] devotion"
           claude_args: |
             --allowedTools Bash,Read,Write
+        env:
+          SUBSTACK_API_KEY: ${{ vars.SUBSTACK_API_KEY }}
+          SUBSTACK_PUBLICATION_ID: ${{ vars.SUBSTACK_PUBLICATION_ID }}
 
-      - name: Commit drafts if API not connected
+      - name: Commit output
         run: |
-          git config user.name "Substack Agent"
+          git config user.name "TQA Agent"
           git config user.email "noreply@sanctuarygrace.com"
           git add workflows/output/ || true
-          git diff --staged --quiet || git commit -m "Substack Agent: $(date +%Y-%m-%d) devotion draft"
-          git push || true
+          if ! git diff --staged --quiet; then
+            BRANCH="agent-output/$(date +%Y-%m-%d-%H%M%S)"
+            git checkout -b "$BRANCH"
+            git commit -m "Substack Agent: $(date +%Y-%m-%d) output"
+            git push -u origin "$BRANCH" || true
+          fi
