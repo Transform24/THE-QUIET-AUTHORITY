@@ -43,7 +43,7 @@ jobs:
           claude_args: |
             --allowedTools Bash,Read,Write
         env:
-          PINTEREST_ACCESS_TOKEN: ${{ vars.PINTEREST_ACCESS_TOKEN }}
+          PINTEREST_ACCESS_TOKEN: ${{ secrets.PINTEREST_ACCESS_TOKEN }}
 
       - name: Commit output
         run: |

@@ -44,8 +44,8 @@ jobs:
           claude_args: |
             --allowedTools Bash,Read,Write
         env:
-          SUBSTACK_API_KEY: ${{ vars.SUBSTACK_API_KEY }}
-          SUBSTACK_PUBLICATION_ID: ${{ vars.SUBSTACK_PUBLICATION_ID }}
+          SUBSTACK_API_KEY: ${{ secrets.SUBSTACK_API_KEY }}
+          SUBSTACK_PUBLICATION_ID: ${{ secrets.SUBSTACK_PUBLICATION_ID }}
 
       - name: Commit output
         run: |
