@@ -73,7 +73,7 @@ Format exactly as follows, 200–300 words total:
   CLOSING CTA:
   If this found you, there is more waiting.
   Begin your sacred assessment — free, and yours alone.
-  beacons.ai/sanctuarygrace
+  https://sanctuarygrace.store
 
   SIGN-OFF:
   With love,
@@ -102,7 +102,7 @@ Format exactly as follows, 600–800 words total:
 
   CLOSING CTA:
   The sanctuary is always open. Your profile, your practice, your path —
-  all of it is waiting at beacons.ai/sanctuarygrace
+  all of it is waiting at https://sanctuarygrace.store
 
   SIGN-OFF:
   With love,

@@ -1,0 +1,47 @@
+name: Content Repurpose Agent
+
+on:
+  workflow_dispatch:
+    inputs:
+      content_file:
+        description: 'Path to content file to repurpose (in workflows/templates/)'
+        required: true
+        default: 'repurpose-brief.md'
+
+jobs:
+  repurpose:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Run Repurpose Agent
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          prompt: |
+            You are running as the Content Repurpose Agent for Sanctuary Grace Ministry.
+            Read the full agent instructions at: workflows/agents/01-repurpose-agent.md
+            Content file to repurpose: workflows/templates/${{ github.event.inputs.content_file }}
+            Then execute all steps exactly as written.
+            Save output to: workflows/output/repurposed-$(date +%Y-%m-%d).md
+          claude_args: |
+            --allowedTools Bash,Read,Write
+
+      - name: Commit output
+        run: |
+          git config user.name "TQA Agent"
+          git config user.email "noreply@sanctuarygrace.com"
+          git add workflows/output/ || true
+          if ! git diff --staged --quiet; then
+            BRANCH="agent-output/repurpose-$(date +%Y-%m-%d-%H%M%S)"
+            git checkout -b "$BRANCH"
+            git commit -m "Repurpose Agent: $(date +%Y-%m-%d) content package"
+            git push -u origin "$BRANCH" || true
+          fi

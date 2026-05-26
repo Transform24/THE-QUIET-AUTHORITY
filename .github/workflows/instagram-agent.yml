@@ -20,6 +20,9 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
 
       - name: Run Instagram Agent
         uses: anthropics/claude-code-action@v1
@@ -42,8 +45,12 @@ jobs:
 
       - name: Commit output
         run: |
-          git config user.name "Instagram Agent"
+          git config user.name "TQA Agent"
           git config user.email "noreply@sanctuarygrace.com"
           git add workflows/output/ || true
-          git diff --staged --quiet || git commit -m "Instagram Agent: $(date +%Y-%m-%d) post"
-          git push || true
+          if ! git diff --staged --quiet; then
+            BRANCH="agent-output/$(date +%Y-%m-%d-%H%M%S)"
+            git checkout -b "$BRANCH"
+            git commit -m "Instagram Agent: $(date +%Y-%m-%d) output"
+            git push -u origin "$BRANCH" || true
+          fi

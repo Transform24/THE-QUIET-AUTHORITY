@@ -1,0 +1,45 @@
+name: Daily Check-In Agent
+
+on:
+  schedule:
+    # Daily 7:00 AM EST = 12:00 UTC
+    - cron: '0 12 * * *'
+  workflow_dispatch:
+
+jobs:
+  checkin:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Run Daily Check-In Agent
+        uses: anthropics/claude-code-action@v1
+        with:
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          prompt: |
+            You are running as the Daily Check-In Agent for Sanctuary Grace Ministry.
+            Read the full agent instructions at: workflows/agents/06-daily-checkin-agent.md
+            Today is $(date +%A), $(date +%Y-%m-%d).
+            Review yesterday's output logs and prepare today's ministry briefing.
+            Save to: workflows/output/daily-checkin-$(date +%Y-%m-%d).md
+          claude_args: |
+            --allowedTools Bash,Read,Write
+
+      - name: Commit output
+        run: |
+          git config user.name "TQA Agent"
+          git config user.email "noreply@sanctuarygrace.com"
+          git add workflows/output/ || true
+          if ! git diff --staged --quiet; then
+            BRANCH="agent-output/checkin-$(date +%Y-%m-%d-%H%M%S)"
+            git checkout -b "$BRANCH"
+            git commit -m "Daily Check-In Agent: $(date +%Y-%m-%d)"
+            git push -u origin "$BRANCH" || true
+          fi

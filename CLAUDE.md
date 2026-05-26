@@ -1,6 +1,6 @@
 # THE QUIET AUTHORITY — AGENT SOP
 ## Sanctuary Grace Ministry · Transform24
-*Last updated: 2026-05-24 · This file is the law. Everything else defers to it.*
+*Last updated: 2026-05-25 · This file is the law. Everything else defers to it.*
 
 ---
 
@@ -14,6 +14,10 @@
 - **Automation** — Make.com (free, 1,000 ops/month) is the automation layer. Zapier is not used.
 - **7-day practice timers** — countdown timer on every day card, auto-marks complete at 00:00.
 - **UI/UX audit complete** — lazy loading, reduced motion, focus-visible, aria-labels, aria-live, aria-hidden, noreferrer all applied.
+- **sanctuarygrace.store is the primary CTA** — all agent posts, app links, and CLAUDE.md updated from beacons.ai/sanctuarygrace to https://sanctuarygrace.store. Beacons still used for email sequences.
+- **Agents 01-06 GitHub Actions workflows built** — repurpose-agent.yml, storefront-sync.yml, lead-tracker.yml, weekly-report.yml, daily-checkin.yml created in .github/workflows/
+- **Pinterest Day 1 APPROVED** — Guilty Giver wall art. Caption approved by Grace 2026-05-25.
+- **Approval gate** — all agents save drafts to output/ folder and push to agent-output/* branches. Grace reviews and merges. No agent posts to platforms without Grace seeing the draft first.
 
 ---
 
@@ -223,7 +227,7 @@ Wall art images: wall-art-WOMT9.jpg (A) · wall-art-WOMT8.jpg (B) · wall-art-WO
 |---|---|---|
 | The Quiet Authority | $15.99 | buy.stripe.com/00w3cv5oYc0p0EscaScQU0d |
 | The Parable of the Cocoon | $15.99 | buy.stripe.com/eVq3cv8Ba6G5bj6fn4cQU0g |
-| R.E.S.T. Workbook | Free | beacons.ai/sanctuarygrace |
+| R.E.S.T. Workbook | Free | https://sanctuarygrace.store |
 
 ### Amazon Affiliate (tag: sanctuarygrac-20)
 Weighted fleece throw · Travel mug · Prayer journal · Flameless candles · Butterfly mug · Diffuser · Leather journal · Parallel Bible
@@ -245,7 +249,7 @@ All links already in index.html SACRED_SPACE data. Do not modify link structure.
 |---|---|---|
 | Formspree | `xzdkgbbq` | All form submissions |
 | Amazon Associates | `sanctuarygrac-20` | All product links must include tag |
-| Beacons | beacons.ai/sanctuarygrace | Email list, sequences, storefront |
+| Beacons | https://sanctuarygrace.store | Email list, sequences, storefront |
 | YouTube | youtube.com/@TheQuietAuthority-f1z | Circle of Silence join link |
 
 **Email engine: Beacons — not MailerLite, not Zapier.**
@@ -283,14 +287,14 @@ All links already in index.html SACRED_SPACE data. Do not modify link structure.
 **Agent 08 — Instagram Agent (pending build):**
 - Reads content calendar and Drive `/content-queue/` for approved content
 - Repurposes Pinterest captions into shorter IG captions using `/social` skill (max 150 words, sacred voice)
-- Writes Reel scripts: hook (3 sec) + 3 beats + soft CTA → `beacons.ai/sanctuarygrace`
+- Writes Reel scripts: hook (3 sec) + 3 beats + soft CTA → `https://sanctuarygrace.store`
 - Writes carousel text: profile descriptions broken into 5–7 slides, each ending on a turn
 - Generates Canva thumbnail brief for Reel covers using brand kit `kAHKceDuDGk`
 - Posts via Instagram Graph API or drops into Buffer/Later/scheduling tool
 - Logs to `workflows/output/ig-log.md`
 - Needs: `IG_ACCESS_TOKEN` in `.env` (Meta Business account required)
 - Voice: same sacred TQA brand voice — no hustle, no urgency, no emojis in copy
-- Every post caption ends with: `beacons.ai/sanctuarygrace`
+- Every post caption ends with: `https://sanctuarygrace.store`
 
 **Instagram Content Pillars (mirrors Pinterest):**
 | Pillar | Format | Frequency |
@@ -332,7 +336,7 @@ All links already in index.html SACRED_SPACE data. Do not modify link structure.
   - **Daily Devotion** (short): 200–300 words, one scripture, one reflection, one invitation. Publishes daily at 6am.
   - **Weekly Letter** (long): 600–800 words, personal + prophetic, deeper teaching. Publishes Sunday.
 - Uses `/copywriting` skill for CTA language, `/stop-slop` to remove AI writing patterns before publishing
-- Formats as Substack post with title, subtitle, body, and closing CTA → `beacons.ai/sanctuarygrace`
+- Formats as Substack post with title, subtitle, body, and closing CTA → `https://sanctuarygrace.store`
 - Publishes via Substack API or email trigger to Substack import address
 - Logs to `workflows/output/substack-log.md`
 - Needs: `SUBSTACK_PUBLICATION_ID` + `SUBSTACK_API_KEY` in `.env`
@@ -393,7 +397,7 @@ Step 4: Set content source
 ## 13. PINTEREST SOP — 30-DAY LAUNCH
 
 ### Why Pinterest → Beacons
-Pinterest is 76% women, strongest 25–54, faith/wellness is a top category. All traffic flows to `beacons.ai/sanctuarygrace` first — not the assessment, not Stripe. Beacons warms them, then assessment converts.
+Pinterest is 76% women, strongest 25–54, faith/wellness is a top category. All traffic flows to `https://sanctuarygrace.store` first — not the assessment, not Stripe. Beacons warms them, then assessment converts.
 
 ### Brand Kit
 - **Canva brand kit ID:** `kAHKceDuDGk` — name: "TQA Pinterest — Sacred Profiles"
@@ -413,7 +417,7 @@ Pinterest is 76% women, strongest 25–54, faith/wellness is a top category. All
 ### Caption Rules
 - Sacred, tender, prophetic — minister not marketer
 - No emojis, no exclamation points, no urgency language
-- Every caption ends with: `beacons.ai/sanctuarygrace`
+- Every caption ends with: `https://sanctuarygrace.store`
 - 100–200 words per caption
 - 3–5 hashtags, always last line, never repeated same 5 twice in a row
 
