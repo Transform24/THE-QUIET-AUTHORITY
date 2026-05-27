@@ -2,7 +2,6 @@ name: Substack Agent — Daily Devotion
 
 on:
   schedule:
-    # 6:00 AM EST = 11:00 AM UTC
     - cron: '0 11 * * *'
   workflow_dispatch:
     inputs:
@@ -27,91 +26,7 @@ jobs:
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           MODE_OVERRIDE: ${{ github.event.inputs.mode }}
-        run: |
-          cat > /tmp/substack_agent.py << 'PYEOF'
-import urllib.request, json, os, datetime, pathlib
-
-API_KEY = os.environ['GEMINI_API_KEY']
-URL = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={API_KEY}"
-
-def call_gemini(prompt):
-    data = json.dumps({"contents": [{"parts": [{"text": prompt}]}]}).encode()
-    req = urllib.request.Request(URL, data=data, headers={"Content-Type": "application/json"})
-    with urllib.request.urlopen(req, timeout=60) as r:
-        return json.loads(r.read())["candidates"][0]["content"]["parts"][0]["text"]
-
-today = datetime.date.today()
-day_name = today.strftime("%A")
-date_str = today.strftime("%Y-%m-%d")
-
-mode_override = os.environ.get("MODE_OVERRIDE", "").strip()
-if mode_override:
-    mode = mode_override
-elif day_name == "Sunday":
-    mode = "sunday"
-else:
-    mode = "daily"
-
-VOICE = """
-BRAND VOICE — SACRED LAW. Never deviate.
-Voice: Sacred, tender, prophetic. Minister — never marketer.
-Audience: Burned-out Christian women, 30-55, spiritual depletion or identity crisis.
-Tone: Warmth, quiet authority, invitation. Never urgency, hype, or guilt.
-FORBIDDEN: Hustle language, self-help jargon, pop-psychology, casual slang, emojis, exclamation marks.
-Ministry: Sanctuary Grace Ministry.
-Every piece closes with: https://sanctuarygrace.store
-"""
-
-if mode == "sunday":
-    prompt = f"""{VOICE}
-
-Today: {date_str} ({day_name})
-
-Write the SUNDAY WEEKLY LETTER for The Quiet Authority Substack (600-800 words).
-
-Structure:
-- Title (sacred, not clickbait, no exclamation marks)
-- Subtitle (one tender line)
-- Personal opening (first-person, as if writing to a beloved friend)
-- Central teaching (3-4 paragraphs, one scripture written in full with reference)
-- Reflection questions (2-3, gentle)
-- Closing blessing or prayer
-- Final line: "If you are ready to begin, the door is open at https://sanctuarygrace.store"
-
-Format as clean markdown. No emojis. No hype."""
-else:
-    prompt = f"""{VOICE}
-
-Today: {date_str} ({day_name})
-
-Write a DAILY DEVOTION for The Quiet Authority Substack (200-300 words).
-
-Structure:
-- Title (sacred, tender, no exclamation marks)
-- Scripture verse written in full (include Book Chapter:Verse)
-- Reflection (2-3 paragraphs, first-person, tender, speaks to spiritual exhaustion or identity)
-- One invitation (gentle offering, not a command)
-- Final line: "Come as you are. https://sanctuarygrace.store"
-
-Format as clean markdown. No emojis. No hype."""
-
-content = call_gemini(prompt)
-
-out_dir = pathlib.Path("workflows/output/substack-drafts")
-out_dir.mkdir(parents=True, exist_ok=True)
-out_file = out_dir / f"{date_str}.md"
-out_file.write_text(f"---\ndate: {date_str}\nmode: {mode}\nstatus: DRAFT — review before publishing\n---\n\n{content}\n")
-
-log_file = pathlib.Path("workflows/output/substack-log.md")
-entry = f"| {date_str} | {mode} | DRAFT SAVED | {out_file} |\n"
-if log_file.exists():
-    log_file.write_text(log_file.read_text() + entry)
-else:
-    log_file.write_text("| Date | Mode | Status | File |\n|---|---|---|---|\n" + entry)
-
-print(f"Draft saved: {out_file}")
-PYEOF
-          python3 /tmp/substack_agent.py
+        run: python3 workflows/scripts/substack_agent.py
 
       - name: Commit and push output
         run: |
