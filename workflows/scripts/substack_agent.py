@@ -10,7 +10,7 @@ if not API_KEY:
 
 print(f"API key present: YES (length {len(API_KEY)})", flush=True)
 
-URL = "https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent"
+URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent"
 
 def call_gemini(prompt):
     full_url = f"{URL}?key={API_KEY}"
