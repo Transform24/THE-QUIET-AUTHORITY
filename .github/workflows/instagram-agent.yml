@@ -2,7 +2,7 @@ name: Instagram Agent — Daily Post
 
 on:
   schedule:
-    # 8:00 AM EST = 13:00 UTC (Mon/Tue/Thu/Fri/Sat only — agent checks day internally)
+    # 8:00 AM EST = 13:00 UTC (Mon/Tue/Thu/Fri/Sat)
     - cron: '0 13 * * 1,2,4,5,6'
   workflow_dispatch:
     inputs:
@@ -16,7 +16,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-      id-token: write
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -24,36 +23,170 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
 
-      - name: Run Instagram Agent
-        uses: anthropics/claude-code-action@v1
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
-          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
-          prompt: |
-            You are running as the Instagram Agent for Sanctuary Grace Ministry.
-            Read the full agent instructions at: workflows/agents/08-instagram-agent.md
-            Then execute all steps exactly as written.
+          python-version: '3.11'
 
-            Environment:
-            - IG_ACCESS_TOKEN is available as env var
-            - IG_USER_ID is available as env var
-            - Pillar override: "${{ github.event.inputs.pillar_override }}"
+      - name: Install Gemini SDK
+        run: pip install google-generativeai
 
-            If IG_ACCESS_TOKEN is empty, save full post brief to:
-            workflows/output/ig-drafts/$(date +%Y-%m-%d).md
-          claude_args: |
-            --allowedTools Bash,Read,Write
+      - name: Run Instagram Agent
         env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
           IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          PILLAR_OVERRIDE: ${{ github.event.inputs.pillar_override }}
+        run: |
+          python3 << 'PYEOF'
+          import google.generativeai as genai
+          import os, datetime, pathlib
 
-      - name: Commit output
+          genai.configure(api_key=os.environ['GEMINI_API_KEY'])
+          model = genai.GenerativeModel('gemini-1.5-flash')
+
+          today = datetime.date.today()
+          day_name = today.strftime('%A')
+          date_str = today.strftime('%Y-%m-%d')
+
+          # Pillar rotation by day of week
+          PILLAR_BY_DAY = {
+              'Monday': 'carousel',
+              'Tuesday': 'scripture',
+              'Thursday': 'reel',
+              'Friday': 'devotional',
+              'Saturday': 'silence',
+          }
+
+          pillar_override = os.environ.get('PILLAR_OVERRIDE', '').strip()
+          pillar = pillar_override if pillar_override else PILLAR_BY_DAY.get(day_name, 'scripture')
+
+          VOICE = """
+          BRAND VOICE — SACRED LAW. Never deviate.
+          Voice: Sacred, tender, prophetic. Minister — never marketer.
+          Audience: Burned-out Christian women, 30-55, spiritual depletion or identity crisis.
+          Tone: Warmth, quiet authority, invitation. Never urgency, hype, or guilt.
+          FORBIDDEN: Hustle language, self-help jargon, pop-psychology, casual slang, emojis in copy, exclamation marks.
+          Ministry: Sanctuary Grace Ministry.
+          Every caption ends with: https://sanctuarygrace.store
+          Max caption length: 150 words.
+          """
+
+          PILLAR_INSTRUCTIONS = {
+              'carousel': """
+          Write a PROFILE REVEAL CAROUSEL (5-7 slides).
+          Each slide: 1-2 sentences max. Sacred and tender.
+          Each slide ends on a turn — the reader wants to swipe.
+          Topic: one of the 4 spiritual profiles (The Striving Achiever, The Depleted Survivor, The Guilty Giver, or The Lost Wanderer).
+          Final slide: soft CTA — "Discover your profile at https://sanctuarygrace.store"
+
+          Format:
+          SLIDE 1: [text]
+          SLIDE 2: [text]
+          ...
+          CAPTION: [150 words max, sacred voice, ends with https://sanctuarygrace.store]
+          HASHTAGS: [5-8 from: #ChristianWomen #SpiritualRest #FaithAndWellness #QuietTime #SanctuaryGrace #SpiritualBurnout #FaithJourney #ScriptureForWomen #SacredSpace #HopeForWomen]
+          CANVA BRIEF: [Image brief for each slide — black bg, Cinzel ALL CAPS, terra text #C1593C, 1080x1080px]
+          """,
+              'scripture': """
+          Write a SCRIPTURE + REFLECTION post.
+          Choose one scripture that speaks to spiritual exhaustion, rest, or identity in Christ.
+          Write the verse in full.
+          Reflection: 2 paragraphs, first-person, tender, prophetic.
+          Close softly with: https://sanctuarygrace.store
+
+          Format:
+          SCRIPTURE: [Book Chapter:Verse — full text]
+          CAPTION: [verse + reflection + CTA, max 150 words]
+          HASHTAGS: [5-8 from pool]
+          CANVA BRIEF: [Image brief — scripture text on black, Cinzel font, gold stars, terra accent]
+          """,
+              'reel': """
+          Write a REEL SCRIPT in sacred TQA voice.
+          Structure: Hook (3 sec) + 3 beats (10 sec each) + soft CTA (5 sec)
+          Total: ~45 seconds spoken at a tender, unhurried pace.
+          Hook: One line that stops the scroll. Not clickbait. Sacred.
+          3 Beats: Each is one true, tender statement. No lists. No steps. Just truth.
+          CTA: "If this is you, begin at https://sanctuarygrace.store"
+
+          Format:
+          HOOK: [3-second line]
+          BEAT 1: [10 seconds]
+          BEAT 2: [10 seconds]
+          BEAT 3: [10 seconds]
+          CTA: [5-second close]
+          CAPTION: [max 150 words, sacred voice, ends with https://sanctuarygrace.store]
+          HASHTAGS: [5-8 from pool]
+          THUMBNAIL BRIEF: [Canva brief for Reel cover — profile image, one short line of terra text]
+          """,
+              'devotional': """
+          Write a DEVOTIONAL PREVIEW post — a taste of this week's devotional content.
+          One scripture. 2-3 sentences of the teaching. End with a soft invitation.
+          This should make the reader want the full devotional.
+          CTA: "Full devotional at https://sanctuarygrace.store"
+
+          Format:
+          CAPTION: [max 150 words, sacred voice, ends with https://sanctuarygrace.store]
+          HASHTAGS: [5-8 from pool]
+          CANVA BRIEF: [devotional cover image brief]
+          """,
+              'silence': """
+          Write a CIRCLE OF SILENCE invitation post.
+          Invite the reader into 15 minutes with God.
+          Tender, unhurried, no pressure.
+          Link to: https://youtube.com/@TheQuietAuthority-f1z
+          Also mention: https://sanctuarygrace.store
+
+          Format:
+          CAPTION: [max 150 words, sacred invitation, links to YouTube + sanctuarygrace.store]
+          HASHTAGS: [5-8 from pool]
+          CANVA BRIEF: [Image brief — dark, peaceful, minimal text]
+          """,
+          }
+
+          instructions = PILLAR_INSTRUCTIONS.get(pillar, PILLAR_INSTRUCTIONS['scripture'])
+
+          prompt = f"""{VOICE}
+
+          Today: {date_str} ({day_name})
+          Content pillar: {pillar}
+
+          {instructions}
+
+          Hashtag pool: #ChristianWomen #SpiritualRest #FaithAndWellness #QuietTime #SanctuaryGrace #SpiritualBurnout #FaithJourney #ScriptureForWomen #SacredSpace #HopeForWomen #ChristianMom #DailyDevotion
+          Never repeat the same 5 hashtags twice in a row. Rotate the pool.
+          """
+
+          response = model.generate_content(prompt)
+          content = response.text
+
+          out_dir = pathlib.Path('workflows/output/ig-drafts')
+          out_dir.mkdir(parents=True, exist_ok=True)
+          out_file = out_dir / f'{date_str}.md'
+          out_file.write_text(
+              f'---\ndate: {date_str}\npillar: {pillar}\nstatus: DRAFT — review before posting\n---\n\n{content}\n'
+          )
+
+          log_file = pathlib.Path('workflows/output/ig-log.md')
+          log_entry = f'| {date_str} | {pillar} | DRAFT SAVED | {out_file} |\n'
+          if log_file.exists():
+              log_file.write_text(log_file.read_text() + log_entry)
+          else:
+              log_file.write_text('| Date | Pillar | Status | File |\n|---|---|---|---|\n' + log_entry)
+
+          print(f'Instagram draft saved: {out_file}')
+          PYEOF
+
+      - name: Commit and push output
         run: |
           git config user.name "TQA Agent"
           git config user.email "noreply@sanctuarygrace.com"
-          git add workflows/output/ || true
+          git add workflows/output/
           if ! git diff --staged --quiet; then
-            BRANCH="agent-output/$(date +%Y-%m-%d-%H%M%S)"
-            git checkout -b "$BRANCH"
-            git commit -m "Instagram Agent: $(date +%Y-%m-%d) output"
-            git push -u origin "$BRANCH" || true
+            git commit -m "Instagram Agent: $(date +%Y-%m-%d) ${PILLAR_OVERRIDE:-auto} draft"
+            git push origin HEAD:main
+          else
+            echo "No new content to commit"
           fi
+        env:
+          PILLAR_OVERRIDE: ${{ github.event.inputs.pillar_override }}
