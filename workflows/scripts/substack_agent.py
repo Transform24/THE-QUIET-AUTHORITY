@@ -1,17 +1,38 @@
-import urllib.request, json, os, datetime, pathlib
+import urllib.request, urllib.error, json, os, datetime, pathlib, sys
 
-API_KEY = os.environ["GEMINI_API_KEY"]
-URL = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={API_KEY}"
+print("=== Substack Agent starting ===", flush=True)
+print(f"Python: {sys.version}", flush=True)
+
+API_KEY = os.environ.get("GEMINI_API_KEY", "")
+if not API_KEY:
+    print("ERROR: GEMINI_API_KEY is not set or empty", flush=True)
+    sys.exit(1)
+
+print(f"API key present: YES (length {len(API_KEY)})", flush=True)
+
+URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent"
 
 def call_gemini(prompt):
-    data = json.dumps({"contents": [{"parts": [{"text": prompt}]}]}).encode()
-    req = urllib.request.Request(URL, data=data, headers={"Content-Type": "application/json"})
-    with urllib.request.urlopen(req, timeout=60) as r:
-        return json.loads(r.read())["candidates"][0]["content"]["parts"][0]["text"]
+    full_url = f"{URL}?key={API_KEY}"
+    payload = {"contents": [{"parts": [{"text": prompt}]}]}
+    data = json.dumps(payload).encode()
+    req = urllib.request.Request(full_url, data=data, headers={"Content-Type": "application/json"})
+    try:
+        with urllib.request.urlopen(req, timeout=60) as r:
+            result = json.loads(r.read())
+            return result["candidates"][0]["content"]["parts"][0]["text"]
+    except urllib.error.HTTPError as e:
+        body = e.read().decode()
+        print(f"HTTP {e.code} error: {body}", flush=True)
+        raise
+    except Exception as e:
+        print(f"Error: {type(e).__name__}: {e}", flush=True)
+        raise
 
 today = datetime.date.today()
 day_name = today.strftime("%A")
 date_str = today.strftime("%Y-%m-%d")
+print(f"Date: {date_str} ({day_name})", flush=True)
 
 mode_override = os.environ.get("MODE_OVERRIDE", "").strip()
 if mode_override:
@@ -20,6 +41,8 @@ elif day_name == "Sunday":
     mode = "sunday"
 else:
     mode = "daily"
+
+print(f"Mode: {mode}", flush=True)
 
 VOICE = """
 BRAND VOICE — SACRED LAW. Never deviate.
@@ -64,7 +87,9 @@ Structure:
 
 Format as clean markdown. No emojis. No hype."""
 
+print("Calling Gemini API...", flush=True)
 content = call_gemini(prompt)
+print(f"Response received ({len(content)} chars)", flush=True)
 
 out_dir = pathlib.Path("workflows/output/substack-drafts")
 out_dir.mkdir(parents=True, exist_ok=True)
@@ -80,4 +105,4 @@ if log_file.exists():
 else:
     log_file.write_text("| Date | Mode | Status | File |\n|---|---|---|---|\n" + entry)
 
-print(f"Draft saved: {out_file}")
+print(f"=== Done. Draft saved: {out_file} ===", flush=True)
