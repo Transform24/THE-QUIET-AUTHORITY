@@ -25,139 +25,107 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.11'
-
-      - name: Install Gemini SDK
-        run: pip install google-generativeai
-
       - name: Run YouTube Agent
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
           TASK_OVERRIDE: ${{ github.event.inputs.task_override }}
         run: |
-          python3 << 'PYEOF'
-          import google.generativeai as genai
-          import os, datetime, pathlib
+          cat > /tmp/youtube_agent.py << 'PYEOF'
+import urllib.request, json, os, datetime, pathlib
 
-          genai.configure(api_key=os.environ['GEMINI_API_KEY'])
-          model = genai.GenerativeModel('gemini-1.5-flash')
+API_KEY = os.environ["GEMINI_API_KEY"]
+URL = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={API_KEY}"
 
-          today = datetime.date.today()
-          day_name = today.strftime('%A')
-          date_str = today.strftime('%Y-%m-%d')
+def call_gemini(prompt):
+    data = json.dumps({"contents": [{"parts": [{"text": prompt}]}]}).encode()
+    req = urllib.request.Request(URL, data=data, headers={"Content-Type": "application/json"})
+    with urllib.request.urlopen(req, timeout=60) as r:
+        return json.loads(r.read())["candidates"][0]["content"]["parts"][0]["text"]
 
-          task_override = os.environ.get('TASK_OVERRIDE', '').strip()
-          if task_override:
-              task = task_override
-          elif day_name == 'Wednesday':
-              task = 'video'
-          else:
-              task = 'community'
+today = datetime.date.today()
+day_name = today.strftime("%A")
+date_str = today.strftime("%Y-%m-%d")
 
-          VOICE = """
-          BRAND VOICE — SACRED LAW. Never deviate.
-          Voice: Sacred, tender, prophetic. Minister — never marketer.
-          Audience: Burned-out Christian women, 30-55, spiritual depletion or identity crisis.
-          Tone: Warmth, quiet authority, invitation. Never urgency, hype, or guilt.
-          FORBIDDEN: Hustle language, self-help jargon, pop-psychology, casual slang, emojis in copy, exclamation marks.
-          Ministry: Sanctuary Grace Ministry.
-          Channel: youtube.com/@TheQuietAuthority-f1z
-          Every description and post ends with: https://sanctuarygrace.store
-          """
+task_override = os.environ.get("TASK_OVERRIDE", "").strip()
+if task_override:
+    task = task_override
+elif day_name == "Wednesday":
+    task = "video"
+else:
+    task = "community"
 
-          # Rotate through content series by week number
-          week_number = today.isocalendar()[1]
-          SERIES = ['Profile deep dive', '7-day practice walkthrough', 'Circle of Silence session', 'Scripture reflection']
-          series = SERIES[week_number % len(SERIES)]
+VOICE = """
+BRAND VOICE — SACRED LAW. Never deviate.
+Voice: Sacred, tender, prophetic. Minister — never marketer.
+Audience: Burned-out Christian women, 30-55.
+FORBIDDEN: Hustle language, emojis in copy, exclamation marks, urgency language.
+Ministry: Sanctuary Grace Ministry. Channel: youtube.com/@TheQuietAuthority-f1z
+Every description ends with: https://sanctuarygrace.store
+"""
 
-          if task == 'video':
-              prompt = f"""{VOICE}
+SERIES = ["Profile deep dive", "7-day practice walkthrough", "Circle of Silence session", "Scripture reflection"]
+series = SERIES[today.isocalendar()[1] % len(SERIES)]
 
-          Today: {date_str} ({day_name})
-          Content series this week: {series}
+if task == "video":
+    prompt = f"""{VOICE}
 
-          Write a complete VIDEO SCRIPT PACKAGE for The Quiet Authority YouTube channel.
+Today: {date_str} ({day_name})
+Content series: {series}
 
-          ## VIDEO TITLE
-          Under 60 characters. Sacred, not clickbait. No exclamation marks.
+Write a complete VIDEO SCRIPT PACKAGE for The Quiet Authority YouTube channel.
 
-          ## VIDEO SCRIPT
-          Structure (total ~10-12 minutes spoken at unhurried pace):
+## VIDEO TITLE
+Under 60 characters. Sacred, not clickbait. No exclamation marks.
 
-          OPENING STILLNESS (30 seconds):
-          Voiceover as the screen shows peaceful imagery. Invite the viewer to breathe, arrive, be present.
+## VIDEO SCRIPT
+OPENING STILLNESS (30 seconds): Voiceover inviting the viewer to breathe, arrive, be present.
+MAIN TEACHING (8-10 minutes): First-person, tender, prophetic. One central truth. One scripture written in full. 3-4 teaching sections. Speaks directly to the woman who is exhausted, questioning, or lost.
+SILENCE INVITATION (2 minutes): Guide the viewer into stillness. Tender, unhurried.
+SOFT CLOSE (30 seconds): One blessing. "When you are ready, the door is open at https://sanctuarygrace.store"
 
-          MAIN TEACHING (8-10 minutes):
-          Write in Grace's voice — first-person, tender, prophetic.
-          One central truth. One scripture (write it in full).
-          3-4 teaching sections, each building on the last.
-          Speak directly to the woman who is exhausted, questioning, or lost.
+## SEO DESCRIPTION
+200-250 words. Sacred voice. Mention the spiritual need, one scripture, the free assessment, and the channel.
+End with: https://sanctuarygrace.store
 
-          SILENCE INVITATION (2 minutes):
-          Invite the viewer into stillness. Guided breathing or prayer prompt.
-          Tender, unhurried. No pressure.
+## TAGS
+8-10 YouTube tags (no # symbol). Mix broad and specific terms.
 
-          SOFT CLOSE (30 seconds):
-          One blessing. One invitation.
-          "When you are ready, the door is open at https://sanctuarygrace.store"
+## PINNED COMMENT
+Under 100 words. Tender invitation to the assessment. End with: https://sanctuarygrace.store
 
-          ## SEO DESCRIPTION
-          200-250 words. Sacred voice. Include: the spiritual need this addresses, one scripture reference,
-          mention of the free assessment, channel name, website.
-          End with: https://sanctuarygrace.store
+## THUMBNAIL BRIEF
+1280x720px. Dark background. One profile image (B&W, high contrast). One short Cinzel ALL CAPS line in terra #C1593C. Gold star accent."""
 
-          ## TAGS
-          8-10 YouTube tags (no hashtag symbol). Mix broad and specific.
-          Examples: christian women, spiritual burnout, quiet time with God, faith encouragement
+else:
+    prompt = f"""{VOICE}
 
-          ## PINNED COMMENT
-          One tender line (under 100 words) inviting viewers to the assessment.
-          End with: https://sanctuarygrace.store
+Today: {date_str} ({day_name})
 
-          ## THUMBNAIL BRIEF
-          Canva brief: 1280x720px. Dark background. One profile image (B&W, high contrast).
-          One short line of text (Cinzel ALL CAPS, terra color #C1593C). Gold star accent.
-          """
+Write a YOUTUBE COMMUNITY POST for The Quiet Authority channel.
+- One scripture (written in full with reference)
+- 2-3 paragraphs of tender encouragement, first-person, prophetic
+- Soft invitation to the assessment or devotional
+- Final line: "https://sanctuarygrace.store"
+- Total: 100-150 words. No emojis. No exclamation marks."""
 
-          else:
-              prompt = f"""{VOICE}
+content = call_gemini(prompt)
 
-          Today: {date_str} ({day_name})
+out_dir = pathlib.Path("workflows/output/yt-drafts")
+out_dir.mkdir(parents=True, exist_ok=True)
+out_file = out_dir / f"{date_str}-{task}.md"
+out_file.write_text(f"---\ndate: {date_str}\ntask: {task}\nseries: {series}\nstatus: DRAFT — review before publishing\n---\n\n{content}\n")
 
-          Write a YOUTUBE COMMUNITY POST for The Quiet Authority channel.
+log_file = pathlib.Path("workflows/output/yt-log.md")
+entry = f"| {date_str} | {task} | {series} | DRAFT SAVED | {out_file} |\n"
+if log_file.exists():
+    log_file.write_text(log_file.read_text() + entry)
+else:
+    log_file.write_text("| Date | Task | Series | Status | File |\n|---|---|---|---|---|\n" + entry)
 
-          Format:
-          - One scripture (write it in full with reference)
-          - 2-3 paragraphs of tender encouragement — first-person, prophetic, speaks to the week's spiritual theme
-          - Soft invitation to the assessment or devotional
-          - Final line: "https://sanctuarygrace.store"
-          - Total: 100-150 words
-          - No emojis. No hype. No exclamation marks.
-          """
-
-          response = model.generate_content(prompt)
-          content = response.text
-
-          out_dir = pathlib.Path('workflows/output/yt-drafts')
-          out_dir.mkdir(parents=True, exist_ok=True)
-          out_file = out_dir / f'{date_str}-{task}.md'
-          out_file.write_text(
-              f'---\ndate: {date_str}\ntask: {task}\nseries: {series}\nstatus: DRAFT — review before publishing\n---\n\n{content}\n'
-          )
-
-          log_file = pathlib.Path('workflows/output/yt-log.md')
-          log_entry = f'| {date_str} | {task} | {series} | DRAFT SAVED | {out_file} |\n'
-          if log_file.exists():
-              log_file.write_text(log_file.read_text() + log_entry)
-          else:
-              log_file.write_text('| Date | Task | Series | Status | File |\n|---|---|---|---|---|\n' + log_entry)
-
-          print(f'YouTube draft saved: {out_file}')
-          PYEOF
+print(f"YouTube draft saved: {out_file}")
+PYEOF
+          python3 /tmp/youtube_agent.py
 
       - name: Commit and push output
         run: |
