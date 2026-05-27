@@ -23,14 +23,6 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.11'
-
-      - name: Install Gemini SDK
-        run: pip install google-generativeai
-
       - name: Run Instagram Agent
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
@@ -38,144 +30,133 @@ jobs:
           IG_USER_ID: ${{ secrets.IG_USER_ID }}
           PILLAR_OVERRIDE: ${{ github.event.inputs.pillar_override }}
         run: |
-          python3 << 'PYEOF'
-          import google.generativeai as genai
-          import os, datetime, pathlib
+          cat > /tmp/instagram_agent.py << 'PYEOF'
+import urllib.request, json, os, datetime, pathlib
 
-          genai.configure(api_key=os.environ['GEMINI_API_KEY'])
-          model = genai.GenerativeModel('gemini-1.5-flash')
+API_KEY = os.environ["GEMINI_API_KEY"]
+URL = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={API_KEY}"
 
-          today = datetime.date.today()
-          day_name = today.strftime('%A')
-          date_str = today.strftime('%Y-%m-%d')
+def call_gemini(prompt):
+    data = json.dumps({"contents": [{"parts": [{"text": prompt}]}]}).encode()
+    req = urllib.request.Request(URL, data=data, headers={"Content-Type": "application/json"})
+    with urllib.request.urlopen(req, timeout=60) as r:
+        return json.loads(r.read())["candidates"][0]["content"]["parts"][0]["text"]
 
-          # Pillar rotation by day of week
-          PILLAR_BY_DAY = {
-              'Monday': 'carousel',
-              'Tuesday': 'scripture',
-              'Thursday': 'reel',
-              'Friday': 'devotional',
-              'Saturday': 'silence',
-          }
+today = datetime.date.today()
+day_name = today.strftime("%A")
+date_str = today.strftime("%Y-%m-%d")
 
-          pillar_override = os.environ.get('PILLAR_OVERRIDE', '').strip()
-          pillar = pillar_override if pillar_override else PILLAR_BY_DAY.get(day_name, 'scripture')
+PILLAR_BY_DAY = {
+    "Monday": "carousel",
+    "Tuesday": "scripture",
+    "Thursday": "reel",
+    "Friday": "devotional",
+    "Saturday": "silence",
+}
 
-          VOICE = """
-          BRAND VOICE — SACRED LAW. Never deviate.
-          Voice: Sacred, tender, prophetic. Minister — never marketer.
-          Audience: Burned-out Christian women, 30-55, spiritual depletion or identity crisis.
-          Tone: Warmth, quiet authority, invitation. Never urgency, hype, or guilt.
-          FORBIDDEN: Hustle language, self-help jargon, pop-psychology, casual slang, emojis in copy, exclamation marks.
-          Ministry: Sanctuary Grace Ministry.
-          Every caption ends with: https://sanctuarygrace.store
-          Max caption length: 150 words.
-          """
+pillar_override = os.environ.get("PILLAR_OVERRIDE", "").strip()
+pillar = pillar_override if pillar_override else PILLAR_BY_DAY.get(day_name, "scripture")
 
-          PILLAR_INSTRUCTIONS = {
-              'carousel': """
-          Write a PROFILE REVEAL CAROUSEL (5-7 slides).
-          Each slide: 1-2 sentences max. Sacred and tender.
-          Each slide ends on a turn — the reader wants to swipe.
-          Topic: one of the 4 spiritual profiles (The Striving Achiever, The Depleted Survivor, The Guilty Giver, or The Lost Wanderer).
-          Final slide: soft CTA — "Discover your profile at https://sanctuarygrace.store"
+VOICE = """
+BRAND VOICE — SACRED LAW. Never deviate.
+Voice: Sacred, tender, prophetic. Minister — never marketer.
+Audience: Burned-out Christian women, 30-55.
+FORBIDDEN: Hustle language, emojis in copy, exclamation marks, urgency language.
+Ministry: Sanctuary Grace Ministry.
+Every caption ends with: https://sanctuarygrace.store
+Max caption: 150 words.
+"""
 
-          Format:
-          SLIDE 1: [text]
-          SLIDE 2: [text]
-          ...
-          CAPTION: [150 words max, sacred voice, ends with https://sanctuarygrace.store]
-          HASHTAGS: [5-8 from: #ChristianWomen #SpiritualRest #FaithAndWellness #QuietTime #SanctuaryGrace #SpiritualBurnout #FaithJourney #ScriptureForWomen #SacredSpace #HopeForWomen]
-          CANVA BRIEF: [Image brief for each slide — black bg, Cinzel ALL CAPS, terra text #C1593C, 1080x1080px]
-          """,
-              'scripture': """
-          Write a SCRIPTURE + REFLECTION post.
-          Choose one scripture that speaks to spiritual exhaustion, rest, or identity in Christ.
-          Write the verse in full.
-          Reflection: 2 paragraphs, first-person, tender, prophetic.
-          Close softly with: https://sanctuarygrace.store
+HASHTAGS = "#ChristianWomen #SpiritualRest #FaithAndWellness #QuietTime #SanctuaryGrace #SpiritualBurnout #FaithJourney #ScriptureForWomen #SacredSpace #HopeForWomen #ChristianMom #DailyDevotion"
 
-          Format:
-          SCRIPTURE: [Book Chapter:Verse — full text]
-          CAPTION: [verse + reflection + CTA, max 150 words]
-          HASHTAGS: [5-8 from pool]
-          CANVA BRIEF: [Image brief — scripture text on black, Cinzel font, gold stars, terra accent]
-          """,
-              'reel': """
-          Write a REEL SCRIPT in sacred TQA voice.
-          Structure: Hook (3 sec) + 3 beats (10 sec each) + soft CTA (5 sec)
-          Total: ~45 seconds spoken at a tender, unhurried pace.
-          Hook: One line that stops the scroll. Not clickbait. Sacred.
-          3 Beats: Each is one true, tender statement. No lists. No steps. Just truth.
-          CTA: "If this is you, begin at https://sanctuarygrace.store"
+INSTRUCTIONS = {
+    "carousel": f"""Write a PROFILE REVEAL CAROUSEL (5-7 slides).
+Each slide: 1-2 sentences, sacred and tender. Each slide ends on a turn — reader wants to swipe.
+Topic: one of the 4 profiles (The Striving Achiever, The Depleted Survivor, The Guilty Giver, or The Lost Wanderer).
+Final slide: "Discover your profile at https://sanctuarygrace.store"
 
-          Format:
-          HOOK: [3-second line]
-          BEAT 1: [10 seconds]
-          BEAT 2: [10 seconds]
-          BEAT 3: [10 seconds]
-          CTA: [5-second close]
-          CAPTION: [max 150 words, sacred voice, ends with https://sanctuarygrace.store]
-          HASHTAGS: [5-8 from pool]
-          THUMBNAIL BRIEF: [Canva brief for Reel cover — profile image, one short line of terra text]
-          """,
-              'devotional': """
-          Write a DEVOTIONAL PREVIEW post — a taste of this week's devotional content.
-          One scripture. 2-3 sentences of the teaching. End with a soft invitation.
-          This should make the reader want the full devotional.
-          CTA: "Full devotional at https://sanctuarygrace.store"
+Format:
+SLIDE 1: [text]
+SLIDE 2: [text]
+...final slide...
+CAPTION: [max 150 words, ends with https://sanctuarygrace.store]
+HASHTAGS: [5-8 from pool]
+CANVA BRIEF: [1080x1080px, black bg, Cinzel ALL CAPS, terra text #C1593C, per slide]""",
 
-          Format:
-          CAPTION: [max 150 words, sacred voice, ends with https://sanctuarygrace.store]
-          HASHTAGS: [5-8 from pool]
-          CANVA BRIEF: [devotional cover image brief]
-          """,
-              'silence': """
-          Write a CIRCLE OF SILENCE invitation post.
-          Invite the reader into 15 minutes with God.
-          Tender, unhurried, no pressure.
-          Link to: https://youtube.com/@TheQuietAuthority-f1z
-          Also mention: https://sanctuarygrace.store
+    "scripture": f"""Write a SCRIPTURE + REFLECTION post.
+Choose one scripture about spiritual exhaustion, rest, or identity in Christ. Write verse in full.
+Reflection: 2 paragraphs, first-person, tender, prophetic.
+Close with: https://sanctuarygrace.store
 
-          Format:
-          CAPTION: [max 150 words, sacred invitation, links to YouTube + sanctuarygrace.store]
-          HASHTAGS: [5-8 from pool]
-          CANVA BRIEF: [Image brief — dark, peaceful, minimal text]
-          """,
-          }
+Format:
+SCRIPTURE: [Book Chapter:Verse — full text]
+CAPTION: [verse + reflection + CTA, max 150 words]
+HASHTAGS: [5-8 from pool]
+CANVA BRIEF: [scripture text on black, Cinzel, gold stars, terra accent]""",
 
-          instructions = PILLAR_INSTRUCTIONS.get(pillar, PILLAR_INSTRUCTIONS['scripture'])
+    "reel": f"""Write a REEL SCRIPT in sacred TQA voice (~45 seconds at unhurried pace).
+Hook (3 sec): One line that stops the scroll. Sacred, not clickbait.
+Beat 1 (10 sec): One true, tender statement.
+Beat 2 (10 sec): One true, tender statement.
+Beat 3 (10 sec): One true, tender statement.
+CTA (5 sec): "If this is you, begin at https://sanctuarygrace.store"
 
-          prompt = f"""{VOICE}
+Format:
+HOOK: [3-second line]
+BEAT 1: [text]
+BEAT 2: [text]
+BEAT 3: [text]
+CTA: [close]
+CAPTION: [max 150 words, ends with https://sanctuarygrace.store]
+HASHTAGS: [5-8 from pool]
+THUMBNAIL BRIEF: [Canva cover brief]""",
 
-          Today: {date_str} ({day_name})
-          Content pillar: {pillar}
+    "devotional": f"""Write a DEVOTIONAL PREVIEW post — a taste of this week's content.
+One scripture. 2-3 sentences of teaching. Soft invitation.
+CTA: "Full devotional at https://sanctuarygrace.store"
 
-          {instructions}
+Format:
+CAPTION: [max 150 words, ends with https://sanctuarygrace.store]
+HASHTAGS: [5-8 from pool]
+CANVA BRIEF: [devotional cover image brief]""",
 
-          Hashtag pool: #ChristianWomen #SpiritualRest #FaithAndWellness #QuietTime #SanctuaryGrace #SpiritualBurnout #FaithJourney #ScriptureForWomen #SacredSpace #HopeForWomen #ChristianMom #DailyDevotion
-          Never repeat the same 5 hashtags twice in a row. Rotate the pool.
-          """
+    "silence": f"""Write a CIRCLE OF SILENCE invitation.
+Invite the reader into 15 minutes with God. Tender, unhurried.
+Link to: https://youtube.com/@TheQuietAuthority-f1z
+Also: https://sanctuarygrace.store
 
-          response = model.generate_content(prompt)
-          content = response.text
+Format:
+CAPTION: [max 150 words, links to YouTube + sanctuarygrace.store]
+HASHTAGS: [5-8 from pool]
+CANVA BRIEF: [dark, peaceful, minimal text]""",
+}
 
-          out_dir = pathlib.Path('workflows/output/ig-drafts')
-          out_dir.mkdir(parents=True, exist_ok=True)
-          out_file = out_dir / f'{date_str}.md'
-          out_file.write_text(
-              f'---\ndate: {date_str}\npillar: {pillar}\nstatus: DRAFT — review before posting\n---\n\n{content}\n'
-          )
+prompt = f"""{VOICE}
 
-          log_file = pathlib.Path('workflows/output/ig-log.md')
-          log_entry = f'| {date_str} | {pillar} | DRAFT SAVED | {out_file} |\n'
-          if log_file.exists():
-              log_file.write_text(log_file.read_text() + log_entry)
-          else:
-              log_file.write_text('| Date | Pillar | Status | File |\n|---|---|---|---|\n' + log_entry)
+Today: {date_str} ({day_name})
+Content pillar: {pillar}
 
-          print(f'Instagram draft saved: {out_file}')
-          PYEOF
+{INSTRUCTIONS.get(pillar, INSTRUCTIONS["scripture"])}
+
+Hashtag pool: {HASHTAGS}"""
+
+content = call_gemini(prompt)
+
+out_dir = pathlib.Path("workflows/output/ig-drafts")
+out_dir.mkdir(parents=True, exist_ok=True)
+out_file = out_dir / f"{date_str}.md"
+out_file.write_text(f"---\ndate: {date_str}\npillar: {pillar}\nstatus: DRAFT — review before posting\n---\n\n{content}\n")
+
+log_file = pathlib.Path("workflows/output/ig-log.md")
+entry = f"| {date_str} | {pillar} | DRAFT SAVED | {out_file} |\n"
+if log_file.exists():
+    log_file.write_text(log_file.read_text() + entry)
+else:
+    log_file.write_text("| Date | Pillar | Status | File |\n|---|---|---|---|\n" + entry)
+
+print(f"Instagram draft saved: {out_file}")
+PYEOF
+          python3 /tmp/instagram_agent.py
 
       - name: Commit and push output
         run: |

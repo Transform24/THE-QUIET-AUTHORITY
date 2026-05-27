@@ -23,102 +23,95 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.11'
-
-      - name: Install Gemini SDK
-        run: pip install google-generativeai
-
       - name: Run Substack Agent
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           MODE_OVERRIDE: ${{ github.event.inputs.mode }}
         run: |
-          python3 << 'PYEOF'
-          import google.generativeai as genai
-          import os, datetime, pathlib
+          cat > /tmp/substack_agent.py << 'PYEOF'
+import urllib.request, json, os, datetime, pathlib
 
-          genai.configure(api_key=os.environ['GEMINI_API_KEY'])
-          model = genai.GenerativeModel('gemini-1.5-flash')
+API_KEY = os.environ['GEMINI_API_KEY']
+URL = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={API_KEY}"
 
-          today = datetime.date.today()
-          day_name = today.strftime('%A')
-          date_str = today.strftime('%Y-%m-%d')
+def call_gemini(prompt):
+    data = json.dumps({"contents": [{"parts": [{"text": prompt}]}]}).encode()
+    req = urllib.request.Request(URL, data=data, headers={"Content-Type": "application/json"})
+    with urllib.request.urlopen(req, timeout=60) as r:
+        return json.loads(r.read())["candidates"][0]["content"]["parts"][0]["text"]
 
-          mode_override = os.environ.get('MODE_OVERRIDE', '').strip()
-          if mode_override:
-              mode = mode_override
-          elif day_name == 'Sunday':
-              mode = 'sunday'
-          else:
-              mode = 'daily'
+today = datetime.date.today()
+day_name = today.strftime("%A")
+date_str = today.strftime("%Y-%m-%d")
 
-          VOICE = """
-          BRAND VOICE — SACRED LAW. Never deviate.
-          Voice: Sacred, tender, prophetic. Minister — never marketer.
-          Audience: Burned-out Christian women, 30-55, spiritual depletion or identity crisis.
-          Tone: Warmth, quiet authority, invitation. Never urgency, hype, or guilt.
-          FORBIDDEN: Hustle language, self-help jargon, pop-psychology, casual slang, emojis.
-          Ministry name: Sanctuary Grace Ministry.
-          Every piece closes with a soft CTA linking to: https://sanctuarygrace.store
-          """
+mode_override = os.environ.get("MODE_OVERRIDE", "").strip()
+if mode_override:
+    mode = mode_override
+elif day_name == "Sunday":
+    mode = "sunday"
+else:
+    mode = "daily"
 
-          if mode == 'sunday':
-              prompt = f"""{VOICE}
+VOICE = """
+BRAND VOICE — SACRED LAW. Never deviate.
+Voice: Sacred, tender, prophetic. Minister — never marketer.
+Audience: Burned-out Christian women, 30-55, spiritual depletion or identity crisis.
+Tone: Warmth, quiet authority, invitation. Never urgency, hype, or guilt.
+FORBIDDEN: Hustle language, self-help jargon, pop-psychology, casual slang, emojis, exclamation marks.
+Ministry: Sanctuary Grace Ministry.
+Every piece closes with: https://sanctuarygrace.store
+"""
 
-          Today: {date_str} ({day_name})
+if mode == "sunday":
+    prompt = f"""{VOICE}
 
-          Write the SUNDAY WEEKLY LETTER for The Quiet Authority Substack (600-800 words).
+Today: {date_str} ({day_name})
 
-          Structure:
-          - Title (sacred, not clickbait, no exclamation marks)
-          - Subtitle (one tender line)
-          - Personal opening (as if writing to a beloved friend — first-person, present tense)
-          - Central teaching (3-4 paragraphs, rooted in one scripture, prophetic and tender)
-          - Write the scripture verse in full (include book chapter:verse)
-          - Reflection questions (2-3, gentle — not demanding)
-          - Closing blessing or prayer
-          - Closing CTA (soft, one line): "If you are ready to begin, the door is open at https://sanctuarygrace.store"
+Write the SUNDAY WEEKLY LETTER for The Quiet Authority Substack (600-800 words).
 
-          Format as clean markdown. No emojis. No hype. No exclamation marks."""
+Structure:
+- Title (sacred, not clickbait, no exclamation marks)
+- Subtitle (one tender line)
+- Personal opening (first-person, as if writing to a beloved friend)
+- Central teaching (3-4 paragraphs, one scripture written in full with reference)
+- Reflection questions (2-3, gentle)
+- Closing blessing or prayer
+- Final line: "If you are ready to begin, the door is open at https://sanctuarygrace.store"
 
-          else:
-              prompt = f"""{VOICE}
+Format as clean markdown. No emojis. No hype."""
+else:
+    prompt = f"""{VOICE}
 
-          Today: {date_str} ({day_name})
+Today: {date_str} ({day_name})
 
-          Write a DAILY DEVOTION for The Quiet Authority Substack (200-300 words).
+Write a DAILY DEVOTION for The Quiet Authority Substack (200-300 words).
 
-          Structure:
-          - Title (sacred, tender — not clickbait, no exclamation marks)
-          - Scripture verse written in full (include reference: Book Chapter:Verse)
-          - Reflection (2-3 paragraphs, first-person, tender, speaks to spiritual exhaustion or identity)
-          - One invitation (one gentle thing the reader can receive or do today — not a command, an offering)
-          - Closing (soft, one line): "Come as you are. https://sanctuarygrace.store"
+Structure:
+- Title (sacred, tender, no exclamation marks)
+- Scripture verse written in full (include Book Chapter:Verse)
+- Reflection (2-3 paragraphs, first-person, tender, speaks to spiritual exhaustion or identity)
+- One invitation (gentle offering, not a command)
+- Final line: "Come as you are. https://sanctuarygrace.store"
 
-          Format as clean markdown. No emojis. No hype."""
+Format as clean markdown. No emojis. No hype."""
 
-          response = model.generate_content(prompt)
-          content = response.text
+content = call_gemini(prompt)
 
-          out_dir = pathlib.Path('workflows/output/substack-drafts')
-          out_dir.mkdir(parents=True, exist_ok=True)
-          out_file = out_dir / f'{date_str}.md'
-          out_file.write_text(
-              f'---\ndate: {date_str}\nmode: {mode}\nstatus: DRAFT — review before publishing\n---\n\n{content}\n'
-          )
+out_dir = pathlib.Path("workflows/output/substack-drafts")
+out_dir.mkdir(parents=True, exist_ok=True)
+out_file = out_dir / f"{date_str}.md"
+out_file.write_text(f"---\ndate: {date_str}\nmode: {mode}\nstatus: DRAFT — review before publishing\n---\n\n{content}\n")
 
-          log_file = pathlib.Path('workflows/output/substack-log.md')
-          log_entry = f'| {date_str} | {mode} | DRAFT SAVED | {out_file} |\n'
-          if log_file.exists():
-              log_file.write_text(log_file.read_text() + log_entry)
-          else:
-              log_file.write_text('| Date | Mode | Status | File |\n|---|---|---|---|\n' + log_entry)
+log_file = pathlib.Path("workflows/output/substack-log.md")
+entry = f"| {date_str} | {mode} | DRAFT SAVED | {out_file} |\n"
+if log_file.exists():
+    log_file.write_text(log_file.read_text() + entry)
+else:
+    log_file.write_text("| Date | Mode | Status | File |\n|---|---|---|---|\n" + entry)
 
-          print(f'Draft saved: {out_file}')
-          PYEOF
+print(f"Draft saved: {out_file}")
+PYEOF
+          python3 /tmp/substack_agent.py
 
       - name: Commit and push output
         run: |
