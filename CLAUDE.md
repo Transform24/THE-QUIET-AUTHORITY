@@ -1,6 +1,6 @@
 # THE QUIET AUTHORITY — AGENT SOP
 ## Sanctuary Grace Ministry · Transform24
-*Last updated: 2026-05-25 · This file is the law. Everything else defers to it.*
+*Last updated: 2026-05-27 · This file is the law. Everything else defers to it.*
 
 ---
 
@@ -17,6 +17,8 @@
 - **sanctuarygrace.store is the primary CTA** — all agent posts, app links, and CLAUDE.md updated from beacons.ai/sanctuarygrace to https://sanctuarygrace.store. Beacons still used for email sequences.
 - **Agents 01-06 GitHub Actions workflows built** — repurpose-agent.yml, storefront-sync.yml, lead-tracker.yml, weekly-report.yml, daily-checkin.yml created in .github/workflows/
 - **Pinterest Day 1 APPROVED** — Guilty Giver wall art. Caption approved by Grace 2026-05-25.
+- **Pinterest Developer App created 2026-05-27** — App name: "TQA Automated Agent for posting for Sanctuary Grace Ministry" · App ID: 1574878 · Trial access (Standard upgrade pending) · Redirect URI: https://transform24.github.io/THE-QUIET-AUTHORITY/ · Secret: `PINTEREST_ACCESS_TOKEN` in GitHub Secrets (Actions)
+- **privacy.html added** — `https://transform24.github.io/THE-QUIET-AUTHORITY/privacy.html` — required for Pinterest API registration and all future platform API apps.
 - **Approval gate** — all agents save drafts to output/ folder and push to agent-output/* branches. Grace reviews and merges. No agent posts to platforms without Grace seeing the draft first.
 
 ---
@@ -251,8 +253,23 @@ All links already in index.html SACRED_SPACE data. Do not modify link structure.
 | Amazon Associates | `sanctuarygrac-20` | All product links must include tag |
 | Beacons | https://sanctuarygrace.store | Email list, sequences, storefront |
 | YouTube | youtube.com/@TheQuietAuthority-f1z | Circle of Silence join link |
+| Pinterest API | App ID: `1574878` · Secret in GitHub: `PINTEREST_ACCESS_TOKEN` | Agent 07 pin posting |
 
 **Email engine: Beacons — not MailerLite, not Zapier.**
+
+### GitHub Actions Secrets Required (Settings → Secrets and variables → Actions)
+| Secret Name | Platform | Status |
+|---|---|---|
+| `ANTHROPIC_API_KEY` | All agents | SET ✅ |
+| `PINTEREST_ACCESS_TOKEN` | Agent 07 | Add after generating token |
+| `IG_ACCESS_TOKEN` | Agent 08 | Not yet added |
+| `IG_USER_ID` | Agent 08 | Not yet added |
+| `YOUTUBE_API_KEY` | Agent 09 | Not yet added |
+| `YOUTUBE_CLIENT_ID` | Agent 09 | Not yet added |
+| `YOUTUBE_CLIENT_SECRET` | Agent 09 | Not yet added |
+| `YOUTUBE_REFRESH_TOKEN` | Agent 09 | Not yet added |
+| `SUBSTACK_API_KEY` | Agent 10 | Not yet added |
+| `SUBSTACK_PUBLICATION_ID` | Agent 10 | Not yet added |
 
 ---
 
