@@ -1,7 +1,7 @@
 import urllib.request, json, os, datetime, pathlib
 
 API_KEY = os.environ["GEMINI_API_KEY"]
-URL = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={API_KEY}"
+URL = f"https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key={API_KEY}"
 
 def call_gemini(prompt):
     data = json.dumps({"contents": [{"parts": [{"text": prompt}]}]}).encode()
