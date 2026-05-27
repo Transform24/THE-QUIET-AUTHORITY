@@ -16,7 +16,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-      id-token: write
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -24,36 +23,111 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
 
-      - name: Run Substack Agent
-        uses: anthropics/claude-code-action@v1
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
-          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
-          prompt: |
-            You are running as the Substack Agent for Sanctuary Grace Ministry.
-            Read the full agent instructions at: workflows/agents/10-substack-agent.md
-            Then execute all steps exactly as written.
+          python-version: '3.11'
 
-            Environment:
-            - SUBSTACK_API_KEY is ${{ secrets.SUBSTACK_API_KEY != '' && 'SET' || 'NOT SET' }}
-            - SUBSTACK_PUBLICATION_ID is ${{ secrets.SUBSTACK_PUBLICATION_ID != '' && 'SET' || 'NOT SET' }}
-            - Mode override: "${{ github.event.inputs.mode }}"
+      - name: Install Gemini SDK
+        run: pip install google-generativeai
 
-            If API keys are not set, save the formatted draft to:
-            workflows/output/substack-drafts/$(date +%Y-%m-%d).md
-            and commit it so Grace can review and publish manually.
+      - name: Run Substack Agent
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          MODE_OVERRIDE: ${{ github.event.inputs.mode }}
+        run: |
+          python3 << 'PYEOF'
+          import google.generativeai as genai
+          import os, datetime, pathlib
 
-            Commit any output files with message: "Substack Agent: [date] [mode] devotion"
-          claude_args: |
-            --allowedTools Bash,Read,Write
+          genai.configure(api_key=os.environ['GEMINI_API_KEY'])
+          model = genai.GenerativeModel('gemini-1.5-flash')
 
-      - name: Commit output
+          today = datetime.date.today()
+          day_name = today.strftime('%A')
+          date_str = today.strftime('%Y-%m-%d')
+
+          mode_override = os.environ.get('MODE_OVERRIDE', '').strip()
+          if mode_override:
+              mode = mode_override
+          elif day_name == 'Sunday':
+              mode = 'sunday'
+          else:
+              mode = 'daily'
+
+          VOICE = """
+          BRAND VOICE — SACRED LAW. Never deviate.
+          Voice: Sacred, tender, prophetic. Minister — never marketer.
+          Audience: Burned-out Christian women, 30-55, spiritual depletion or identity crisis.
+          Tone: Warmth, quiet authority, invitation. Never urgency, hype, or guilt.
+          FORBIDDEN: Hustle language, self-help jargon, pop-psychology, casual slang, emojis.
+          Ministry name: Sanctuary Grace Ministry.
+          Every piece closes with a soft CTA linking to: https://sanctuarygrace.store
+          """
+
+          if mode == 'sunday':
+              prompt = f"""{VOICE}
+
+          Today: {date_str} ({day_name})
+
+          Write the SUNDAY WEEKLY LETTER for The Quiet Authority Substack (600-800 words).
+
+          Structure:
+          - Title (sacred, not clickbait, no exclamation marks)
+          - Subtitle (one tender line)
+          - Personal opening (as if writing to a beloved friend — first-person, present tense)
+          - Central teaching (3-4 paragraphs, rooted in one scripture, prophetic and tender)
+          - Write the scripture verse in full (include book chapter:verse)
+          - Reflection questions (2-3, gentle — not demanding)
+          - Closing blessing or prayer
+          - Closing CTA (soft, one line): "If you are ready to begin, the door is open at https://sanctuarygrace.store"
+
+          Format as clean markdown. No emojis. No hype. No exclamation marks."""
+
+          else:
+              prompt = f"""{VOICE}
+
+          Today: {date_str} ({day_name})
+
+          Write a DAILY DEVOTION for The Quiet Authority Substack (200-300 words).
+
+          Structure:
+          - Title (sacred, tender — not clickbait, no exclamation marks)
+          - Scripture verse written in full (include reference: Book Chapter:Verse)
+          - Reflection (2-3 paragraphs, first-person, tender, speaks to spiritual exhaustion or identity)
+          - One invitation (one gentle thing the reader can receive or do today — not a command, an offering)
+          - Closing (soft, one line): "Come as you are. https://sanctuarygrace.store"
+
+          Format as clean markdown. No emojis. No hype."""
+
+          response = model.generate_content(prompt)
+          content = response.text
+
+          out_dir = pathlib.Path('workflows/output/substack-drafts')
+          out_dir.mkdir(parents=True, exist_ok=True)
+          out_file = out_dir / f'{date_str}.md'
+          out_file.write_text(
+              f'---\ndate: {date_str}\nmode: {mode}\nstatus: DRAFT — review before publishing\n---\n\n{content}\n'
+          )
+
+          log_file = pathlib.Path('workflows/output/substack-log.md')
+          log_entry = f'| {date_str} | {mode} | DRAFT SAVED | {out_file} |\n'
+          if log_file.exists():
+              log_file.write_text(log_file.read_text() + log_entry)
+          else:
+              log_file.write_text('| Date | Mode | Status | File |\n|---|---|---|---|\n' + log_entry)
+
+          print(f'Draft saved: {out_file}')
+          PYEOF
+
+      - name: Commit and push output
         run: |
           git config user.name "TQA Agent"
           git config user.email "noreply@sanctuarygrace.com"
-          git add workflows/output/ || true
+          git add workflows/output/
           if ! git diff --staged --quiet; then
-            BRANCH="agent-output/$(date +%Y-%m-%d-%H%M%S)"
-            git checkout -b "$BRANCH"
-            git commit -m "Substack Agent: $(date +%Y-%m-%d) output"
-            git push -u origin "$BRANCH" || true
+            git commit -m "Substack Agent: $(date +%Y-%m-%d) devotion draft"
+            git push origin HEAD:main
+          else
+            echo "No new content to commit"
           fi

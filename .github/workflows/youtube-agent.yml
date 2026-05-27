@@ -2,9 +2,9 @@ name: YouTube Agent — Weekly Video + Community Post
 
 on:
   schedule:
-    # Wednesday 7:00 AM EST = 12:00 UTC (weekly video)
+    # Wednesday 7:00 AM EST = 12:00 UTC (video script)
     - cron: '0 12 * * 3'
-    # Sunday 7:00 AM EST = 12:00 UTC (Community tab post)
+    # Sunday 7:00 AM EST = 12:00 UTC (community post)
     - cron: '0 12 * * 0'
   workflow_dispatch:
     inputs:
@@ -18,7 +18,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-      id-token: write
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -26,33 +25,150 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0
 
-      - name: Run YouTube Agent
-        uses: anthropics/claude-code-action@v1
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
-          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
-          prompt: |
-            You are running as the YouTube Agent for Sanctuary Grace Ministry.
-            Read the full agent instructions at: workflows/agents/09-youtube-agent.md
-            Then execute all steps exactly as written.
+          python-version: '3.11'
 
-            Environment:
-            - YOUTUBE_API_KEY is ${{ secrets.YOUTUBE_API_KEY != '' && 'SET' || 'NOT SET' }}
-            - YOUTUBE_REFRESH_TOKEN is ${{ secrets.YOUTUBE_REFRESH_TOKEN != '' && 'SET' || 'NOT SET' }}
-            - Task override: "${{ github.event.inputs.task_override }}"
+      - name: Install Gemini SDK
+        run: pip install google-generativeai
 
-            If API keys not set, save complete package to:
-            workflows/output/yt-drafts/$(date +%Y-%m-%d).md
-          claude_args: |
-            --allowedTools Bash,Read,Write
+      - name: Run YouTube Agent
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+          TASK_OVERRIDE: ${{ github.event.inputs.task_override }}
+        run: |
+          python3 << 'PYEOF'
+          import google.generativeai as genai
+          import os, datetime, pathlib
 
-      - name: Commit output
+          genai.configure(api_key=os.environ['GEMINI_API_KEY'])
+          model = genai.GenerativeModel('gemini-1.5-flash')
+
+          today = datetime.date.today()
+          day_name = today.strftime('%A')
+          date_str = today.strftime('%Y-%m-%d')
+
+          task_override = os.environ.get('TASK_OVERRIDE', '').strip()
+          if task_override:
+              task = task_override
+          elif day_name == 'Wednesday':
+              task = 'video'
+          else:
+              task = 'community'
+
+          VOICE = """
+          BRAND VOICE — SACRED LAW. Never deviate.
+          Voice: Sacred, tender, prophetic. Minister — never marketer.
+          Audience: Burned-out Christian women, 30-55, spiritual depletion or identity crisis.
+          Tone: Warmth, quiet authority, invitation. Never urgency, hype, or guilt.
+          FORBIDDEN: Hustle language, self-help jargon, pop-psychology, casual slang, emojis in copy, exclamation marks.
+          Ministry: Sanctuary Grace Ministry.
+          Channel: youtube.com/@TheQuietAuthority-f1z
+          Every description and post ends with: https://sanctuarygrace.store
+          """
+
+          # Rotate through content series by week number
+          week_number = today.isocalendar()[1]
+          SERIES = ['Profile deep dive', '7-day practice walkthrough', 'Circle of Silence session', 'Scripture reflection']
+          series = SERIES[week_number % len(SERIES)]
+
+          if task == 'video':
+              prompt = f"""{VOICE}
+
+          Today: {date_str} ({day_name})
+          Content series this week: {series}
+
+          Write a complete VIDEO SCRIPT PACKAGE for The Quiet Authority YouTube channel.
+
+          ## VIDEO TITLE
+          Under 60 characters. Sacred, not clickbait. No exclamation marks.
+
+          ## VIDEO SCRIPT
+          Structure (total ~10-12 minutes spoken at unhurried pace):
+
+          OPENING STILLNESS (30 seconds):
+          Voiceover as the screen shows peaceful imagery. Invite the viewer to breathe, arrive, be present.
+
+          MAIN TEACHING (8-10 minutes):
+          Write in Grace's voice — first-person, tender, prophetic.
+          One central truth. One scripture (write it in full).
+          3-4 teaching sections, each building on the last.
+          Speak directly to the woman who is exhausted, questioning, or lost.
+
+          SILENCE INVITATION (2 minutes):
+          Invite the viewer into stillness. Guided breathing or prayer prompt.
+          Tender, unhurried. No pressure.
+
+          SOFT CLOSE (30 seconds):
+          One blessing. One invitation.
+          "When you are ready, the door is open at https://sanctuarygrace.store"
+
+          ## SEO DESCRIPTION
+          200-250 words. Sacred voice. Include: the spiritual need this addresses, one scripture reference,
+          mention of the free assessment, channel name, website.
+          End with: https://sanctuarygrace.store
+
+          ## TAGS
+          8-10 YouTube tags (no hashtag symbol). Mix broad and specific.
+          Examples: christian women, spiritual burnout, quiet time with God, faith encouragement
+
+          ## PINNED COMMENT
+          One tender line (under 100 words) inviting viewers to the assessment.
+          End with: https://sanctuarygrace.store
+
+          ## THUMBNAIL BRIEF
+          Canva brief: 1280x720px. Dark background. One profile image (B&W, high contrast).
+          One short line of text (Cinzel ALL CAPS, terra color #C1593C). Gold star accent.
+          """
+
+          else:
+              prompt = f"""{VOICE}
+
+          Today: {date_str} ({day_name})
+
+          Write a YOUTUBE COMMUNITY POST for The Quiet Authority channel.
+
+          Format:
+          - One scripture (write it in full with reference)
+          - 2-3 paragraphs of tender encouragement — first-person, prophetic, speaks to the week's spiritual theme
+          - Soft invitation to the assessment or devotional
+          - Final line: "https://sanctuarygrace.store"
+          - Total: 100-150 words
+          - No emojis. No hype. No exclamation marks.
+          """
+
+          response = model.generate_content(prompt)
+          content = response.text
+
+          out_dir = pathlib.Path('workflows/output/yt-drafts')
+          out_dir.mkdir(parents=True, exist_ok=True)
+          out_file = out_dir / f'{date_str}-{task}.md'
+          out_file.write_text(
+              f'---\ndate: {date_str}\ntask: {task}\nseries: {series}\nstatus: DRAFT — review before publishing\n---\n\n{content}\n'
+          )
+
+          log_file = pathlib.Path('workflows/output/yt-log.md')
+          log_entry = f'| {date_str} | {task} | {series} | DRAFT SAVED | {out_file} |\n'
+          if log_file.exists():
+              log_file.write_text(log_file.read_text() + log_entry)
+          else:
+              log_file.write_text('| Date | Task | Series | Status | File |\n|---|---|---|---|---|\n' + log_entry)
+
+          print(f'YouTube draft saved: {out_file}')
+          PYEOF
+
+      - name: Commit and push output
         run: |
           git config user.name "TQA Agent"
           git config user.email "noreply@sanctuarygrace.com"
-          git add workflows/output/ || true
+          git add workflows/output/
           if ! git diff --staged --quiet; then
-            BRANCH="agent-output/$(date +%Y-%m-%d-%H%M%S)"
-            git checkout -b "$BRANCH"
-            git commit -m "YouTube Agent: $(date +%Y-%m-%d) output"
-            git push -u origin "$BRANCH" || true
+            git commit -m "YouTube Agent: $(date +%Y-%m-%d) ${TASK_OVERRIDE:-auto} draft"
+            git push origin HEAD:main
+          else
+            echo "No new content to commit"
           fi
+        env:
+          TASK_OVERRIDE: ${{ github.event.inputs.task_override }}
