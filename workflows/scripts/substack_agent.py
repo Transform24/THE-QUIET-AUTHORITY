@@ -1,7 +1,6 @@
-import urllib.request, urllib.error, json, os, datetime, pathlib, sys
+import urllib.request, urllib.error, json, os, datetime, pathlib, sys, time
 
 print("=== Substack Agent starting ===", flush=True)
-print(f"Python: {sys.version}", flush=True)
 
 API_KEY = os.environ.get("GEMINI_API_KEY", "")
 if not API_KEY:
@@ -12,22 +11,28 @@ print(f"API key present: YES (length {len(API_KEY)})", flush=True)
 
 URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent"
 
-def call_gemini(prompt):
+def call_gemini(prompt, retries=3):
     full_url = f"{URL}?key={API_KEY}"
     payload = {"contents": [{"parts": [{"text": prompt}]}]}
     data = json.dumps(payload).encode()
-    req = urllib.request.Request(full_url, data=data, headers={"Content-Type": "application/json"})
-    try:
-        with urllib.request.urlopen(req, timeout=60) as r:
-            result = json.loads(r.read())
-            return result["candidates"][0]["content"]["parts"][0]["text"]
-    except urllib.error.HTTPError as e:
-        body = e.read().decode()
-        print(f"HTTP {e.code} error: {body}", flush=True)
-        raise
-    except Exception as e:
-        print(f"Error: {type(e).__name__}: {e}", flush=True)
-        raise
+    for attempt in range(1, retries + 1):
+        req = urllib.request.Request(full_url, data=data, headers={"Content-Type": "application/json"})
+        try:
+            with urllib.request.urlopen(req, timeout=60) as r:
+                result = json.loads(r.read())
+                return result["candidates"][0]["content"]["parts"][0]["text"]
+        except urllib.error.HTTPError as e:
+            body = e.read().decode()
+            print(f"Attempt {attempt}: HTTP {e.code} — {body[:200]}", flush=True)
+            if e.code == 429 and attempt < retries:
+                wait = 30 * attempt
+                print(f"Rate limited. Waiting {wait}s before retry...", flush=True)
+                time.sleep(wait)
+            else:
+                raise
+        except Exception as e:
+            print(f"Attempt {attempt}: {type(e).__name__}: {e}", flush=True)
+            raise
 
 today = datetime.date.today()
 day_name = today.strftime("%A")

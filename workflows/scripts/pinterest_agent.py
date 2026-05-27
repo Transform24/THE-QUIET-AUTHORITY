@@ -1,13 +1,24 @@
-import urllib.request, json, os, datetime, pathlib
+import urllib.request, urllib.error, json, os, datetime, pathlib, time
 
 API_KEY = os.environ["GEMINI_API_KEY"]
 URL = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={API_KEY}"
 
-def call_gemini(prompt):
+def call_gemini(prompt, retries=3):
     data = json.dumps({"contents": [{"parts": [{"text": prompt}]}]}).encode()
-    req = urllib.request.Request(URL, data=data, headers={"Content-Type": "application/json"})
-    with urllib.request.urlopen(req, timeout=60) as r:
-        return json.loads(r.read())["candidates"][0]["content"]["parts"][0]["text"]
+    for attempt in range(1, retries + 1):
+        req = urllib.request.Request(URL, data=data, headers={"Content-Type": "application/json"})
+        try:
+            with urllib.request.urlopen(req, timeout=60) as r:
+                return json.loads(r.read())["candidates"][0]["content"]["parts"][0]["text"]
+        except urllib.error.HTTPError as e:
+            body = e.read().decode()
+            print(f"Attempt {attempt}: HTTP {e.code} — {body[:200]}", flush=True)
+            if e.code == 429 and attempt < retries:
+                wait = 30 * attempt
+                print(f"Rate limited. Waiting {wait}s before retry...", flush=True)
+                time.sleep(wait)
+            else:
+                raise
 
 today = datetime.date.today()
 date_str = today.strftime("%Y-%m-%d")
