@@ -12,11 +12,17 @@ def call_gemini(prompt, retries=3):
                 return json.loads(r.read())["candidates"][0]["content"]["parts"][0]["text"]
         except urllib.error.HTTPError as e:
             body = e.read().decode()
-            print(f"Attempt {attempt}: HTTP {e.code} — {body[:200]}", flush=True)
-            if e.code == 429 and attempt < retries:
-                wait = 30 * attempt
-                print(f"Rate limited. Waiting {wait}s before retry...", flush=True)
-                time.sleep(wait)
+            print(f"Attempt {attempt}: HTTP {e.code} — {body[:300]}", flush=True)
+            if e.code == 429:
+                if "quota" in body.lower():
+                    print("Daily quota exceeded. Quota resets at midnight Pacific time. Re-run tomorrow or add a second GEMINI_API_KEY.", flush=True)
+                    import sys; sys.exit(1)
+                if attempt < retries:
+                    wait = 30 * attempt
+                    print(f"Rate limited. Waiting {wait}s before retry...", flush=True)
+                    time.sleep(wait)
+                else:
+                    raise
             else:
                 raise
 
