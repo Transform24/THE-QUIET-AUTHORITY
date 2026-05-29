@@ -1,6 +1,6 @@
 # THE QUIET AUTHORITY — AGENT SOP
 ## Sanctuary Grace Ministry · Transform24
-*Last updated: 2026-05-27 · This file is the law. Everything else defers to it.*
+*Last updated: 2026-05-29 · This file is the law. Everything else defers to it.*
 
 ---
 
@@ -20,6 +20,11 @@
 - **Pinterest Developer App created 2026-05-27** — App name: "TQA Automated Agent for posting for Sanctuary Grace Ministry" · App ID: 1574878 · Trial access (Standard upgrade pending) · Redirect URI: https://transform24.github.io/THE-QUIET-AUTHORITY/ · Secret: `PINTEREST_ACCESS_TOKEN` in GitHub Secrets (Actions)
 - **privacy.html added** — `https://transform24.github.io/THE-QUIET-AUTHORITY/privacy.html` — required for Pinterest API registration and all future platform API apps.
 - **Approval gate** — all agents save drafts to output/ folder and push to agent-output/* branches. Grace reviews and merges. No agent posts to platforms without Grace seeing the draft first.
+- **Agents 07-10 built (Gemini Flash)** — pinterest_agent.py, instagram_agent.py, youtube_agent.py, substack_agent.py all live in `workflows/scripts/`. Use `gemini-2.0-flash` via `v1beta` REST API. No pip install — stdlib only. Quota detection built in. `GEMINI_API_KEY` in GitHub Secrets. Drafts save to `workflows/output/` for Grace review before posting.
+- **Instagram account created 2026-05-29** — Username: `_thequietauthority_` · Professional account · Link: sanctuarygrace.store · 2 posts live.
+- **Substack publication exists** — Grace Turner · 2 subscribers · URL: 5apop2sotwm.substack.com · Needs rebrand to thequietauthority.substack.com · "The Art of Gratitude" series posted. Agent 10 generates daily devotions to `workflows/output/substack-drafts/` — Grace copies and publishes.
+- **Pinterest Day 1 manually posted 2026-05-29** — Guilty Giver wall art. Days 1-14 captions written and approved. Days 2, 4 need Canva build. Wall art days (1,3,5,7) upload directly from profile-A/B/C/D.png.
+- **Daily reference card saved to Drive** — "TQA Daily 15-Minute Morning Routine" — covers all 4 platforms, weekly rhythm, all product links.
 
 ---
 
@@ -261,7 +266,7 @@ All links already in index.html SACRED_SPACE data. Do not modify link structure.
 | Secret Name | Platform | Status |
 |---|---|---|
 | `ANTHROPIC_API_KEY` | All agents | SET ✅ |
-| `PINTEREST_ACCESS_TOKEN` | Agent 07 | Pending token generation |
+| `PINTEREST_ACCESS_TOKEN` | Agent 07 | Add after generating token |
 | `IG_ACCESS_TOKEN` | Agent 08 | Not yet added |
 | `IG_USER_ID` | Agent 08 | Not yet added |
 | `YOUTUBE_API_KEY` | Agent 09 | Not yet added |
