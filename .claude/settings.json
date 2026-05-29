@@ -1,7 +1,11 @@
 {
   "permissions": {
     "allow": [
-      "mcp__9b844449-9351-49c9-90d7-0dabf2e67ebf__download_file_content"
+      "mcp__9b844449-9351-49c9-90d7-0dabf2e67ebf__download_file_content",
+      "mcp__9b844449-9351-49c9-90d7-0dabf2e67ebf__search_files",
+      "mcp__9b844449-9351-49c9-90d7-0dabf2e67ebf__read_file_content",
+      "mcp__9b844449-9351-49c9-90d7-0dabf2e67ebf__get_file_metadata",
+      "mcp__9b844449-9351-49c9-90d7-0dabf2e67ebf__list_recent_files"
     ]
   },
   "hooks": {
