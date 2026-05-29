@@ -327,6 +327,24 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 .cowork-verse{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1rem;color:var(--gold-dim);margin:28px auto 6px;max-width:440px;line-height:1.7;}
 .cowork-ref{font-size:0.68rem;letter-spacing:0.18em;color:var(--text-muted);text-transform:uppercase;}
 .cos-block{margin:48px auto 0;max-width:520px;border-top:1px solid var(--border);padding-top:44px;}
+.cos-tiers{display:grid;grid-template-columns:1fr;gap:16px;margin:40px auto 0;max-width:520px;}
+.cos-tier{background:var(--surface);border:1px solid var(--border);padding:28px 24px;text-align:center;}
+.cos-tier.featured{border-color:var(--gold-dim);background:rgba(201,168,76,.04);}
+.cos-tier-badge{font-family:'Cinzel',serif;font-size:0.52rem;letter-spacing:0.38em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;}
+.cos-tier-name{font-family:'Cinzel',serif;font-size:0.72rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--cream);margin-bottom:8px;}
+.cos-tier-price{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--gold-light);font-weight:300;margin-bottom:20px;line-height:1;}
+.cos-tier-price span{font-size:0.75rem;color:var(--text-dim);font-family:'Jost',sans-serif;display:block;margin-top:4px;letter-spacing:0.08em;}
+.cos-tier-list{list-style:none;padding:0;margin:0 0 24px;text-align:left;}
+.cos-tier-list li{font-size:0.82rem;color:var(--text-dim);line-height:1.7;padding:4px 0;padding-left:16px;position:relative;}
+.cos-tier-list li::before{content:'—';position:absolute;left:0;color:var(--gold-dim);}
+.cos-tier-list li.highlight{color:var(--cream-dim);}
+.btn-tier{display:block;width:100%;padding:13px 20px;font-family:'Cinzel',serif;font-size:0.58rem;letter-spacing:0.28em;text-transform:uppercase;cursor:pointer;transition:all .3s;border:none;}
+.btn-tier.free{background:none;border:1px solid var(--border);color:var(--text-dim);}
+.btn-tier.free:hover{border-color:var(--border2);color:var(--cream);}
+.btn-tier.member{background:rgba(201,168,76,.1);border:1px solid var(--gold-dim);color:var(--gold-light);}
+.btn-tier.member:hover{background:rgba(201,168,76,.18);color:var(--gold-light);}
+.btn-tier.circle{background:var(--gold-dim);border:1px solid var(--gold-dim);color:var(--bg);}
+.btn-tier.circle:hover{background:var(--gold);border-color:var(--gold);}
 .cos-label{font-family:'Cinzel',serif;font-size:0.58rem;letter-spacing:0.38em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:20px;}
 .cos-schedule{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:32px;max-width:360px;margin-left:auto;margin-right:auto;}
 .cos-slot{background:var(--surface);border:1px solid var(--border);padding:12px 16px;text-align:left;}
@@ -1095,32 +1113,71 @@ body{top:0!important;}
       <h2 class="cowork-title">The Woman Who Pours</h2>
       <div class="cowork-subtitle">She does not pour from obligation. She pours from overflow.</div>
       <div class="cowork-divider"></div>
-      <p class="cowork-body">You came here depleted — striving, surviving, giving from empty, or lost in the noise. The silence has begun to fill you. Now there is a deeper invitation: to join a circle of women who gather weekly in sacred co-working silence, accountable to nothing but presence, and pouring into one another without a word spoken.</p>
-      <div class="cowork-features">
-        <div class="cowork-feat"><span class="cf-dot"></span>Weekly live silence sessions — hearts open, no speaking required</div>
-        <div class="cowork-feat"><span class="cf-dot"></span>Your Silence Profile guides every practice inside the Circle</div>
-        <div class="cowork-feat"><span class="cf-dot"></span>A community of women becoming who God called them to be — together</div>
-        <div class="cowork-feat"><span class="cf-dot"></span>The Woman Who Pours is not the loudest in the room. She is the most rooted.</div>
-      </div>
-      <div id="cosWaitlistWrap">
-        <div class="cos-waitlist-label">Reserve your place — we will reach out with your YouTube link.</div>
-        <div class="cos-waitlist-row">
-          <input id="cosWlName" type="text" placeholder="Your name" class="cos-wl-input" autocomplete="name" aria-label="Your first name">
-          <input id="cosWlEmail" type="email" placeholder="Your email" class="cos-wl-input" autocomplete="email" aria-label="Your email address">
-          <button class="btn-cowork" onclick="joinCircleWaitlist()">Reserve My Place</button>
+      <p class="cowork-body">You came here depleted. The silence has begun to fill you. Now there is a deeper invitation — a library of sessions, a community of women, and a live Kingdom book club where Grace opens the Word and the room opens with her. This is not a program. It is a practice you return to.</p>
+
+      <div class="cos-tiers">
+
+        <!-- FREE -->
+        <div class="cos-tier">
+          <div class="cos-tier-name">First Steps</div>
+          <div class="cos-tier-price">Free<span>no card required</span></div>
+          <ul class="cos-tier-list">
+            <li>Session 1 — your profile track</li>
+            <li>Profile-specific journal prompt</li>
+            <li>Daily scripture by email</li>
+            <li>Free YouTube silence sessions</li>
+          </ul>
+          <div id="cosWaitlistWrap">
+            <div class="cos-waitlist-row" style="display:flex;flex-direction:column;gap:.7rem;">
+              <input id="cosWlName" type="text" placeholder="Your name" class="cos-wl-input" autocomplete="name" aria-label="Your first name">
+              <input id="cosWlEmail" type="email" placeholder="Your email" class="cos-wl-input" autocomplete="email" aria-label="Your email address">
+              <button class="btn-tier free" onclick="joinCircleWaitlist()">Reserve My Free Place</button>
+            </div>
+            <div id="cosWaitlistConfirm" style="display:none;text-align:center;padding:1.2rem 0;font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;color:var(--gold-light);line-height:1.7;">Your place is reserved, beloved.<br><span style="font-size:.85rem;color:var(--text-dim);font-style:normal;">Grace will be in touch with your YouTube link.</span></div>
+          </div>
         </div>
-        <div id="cosWaitlistConfirm" style="display:none;text-align:center;padding:1.2rem 0;font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;color:var(--gold-light);line-height:1.7;">Your place is reserved, beloved.<br><span style="font-size:.85rem;color:var(--text-dim);font-style:normal;">Grace will be in touch with your YouTube link.</span></div>
+
+        <!-- MEMBER -->
+        <div class="cos-tier featured">
+          <div class="cos-tier-badge">Most Popular</div>
+          <div class="cos-tier-name">Member</div>
+          <div class="cos-tier-price">$17<span>per month · cancel anytime</span></div>
+          <ul class="cos-tier-list">
+            <li class="highlight">Full 28-session library — all 4 profiles</li>
+            <li class="highlight">Sessions 2–7 of your profile track</li>
+            <li>New session added every week</li>
+            <li>Session recording archive</li>
+            <li>Devotional companion for each session</li>
+            <li>Community — women in your profile</li>
+          </ul>
+          <button class="btn-tier member" onclick="goShop('https://buy.stripe.com/bJeeVd3gQggFdredeWcQU0t')">Join Member — $17/month →</button>
+        </div>
+
+        <!-- CIRCLE -->
+        <div class="cos-tier">
+          <div class="cos-tier-name">Circle</div>
+          <div class="cos-tier-price">$27<span>per month · cancel anytime</span></div>
+          <ul class="cos-tier-list">
+            <li>Everything in Member</li>
+            <li class="highlight">Kingdom Book Club — live on Zoom</li>
+            <li class="highlight">Bi-weekly discussion with Grace</li>
+            <li class="highlight">Chapter PDF delivered before each session</li>
+            <li>Your name prayed over live by Grace</li>
+            <li>First access to new library sessions</li>
+          </ul>
+          <button class="btn-tier circle" onclick="goShop('https://buy.stripe.com/eVq4gzg3C3tT5YMdeWcQU0u')">Join Circle — $27/month →</button>
+        </div>
+
       </div>
 
       <div class="cos-block">
-        <div class="cos-label">Session Schedule</div>
+        <div class="cos-label">Free Sessions on YouTube</div>
         <div class="cos-schedule">
           <div class="cos-slot"><div class="cos-day">Monday</div><div class="cos-time">7:00 AM</div><div class="cos-tz">EST</div></div>
           <div class="cos-slot"><div class="cos-day">Wednesday</div><div class="cos-time">7:00 AM</div><div class="cos-tz">EST</div></div>
           <div class="cos-slot"><div class="cos-day">Friday</div><div class="cos-time">7:00 AM</div><div class="cos-tz">EST</div></div>
           <div class="cos-slot"><div class="cos-day">Thursday</div><div class="cos-time">8:00 PM</div><div class="cos-tz">EST</div></div>
         </div>
-
         <div class="cos-live" id="cosLive">
           <span class="cos-live-dot"></span>
           <span class="cos-live-text">Session is Live</span>
@@ -1130,13 +1187,12 @@ body{top:0!important;}
           <div id="cosCountdown">--:--:--</div>
         </div>
         <button class="btn-cowork-join" id="cosJoinBtn" onclick="goShop('https://youtube.com/@TheQuietAuthority-f1z')">Join on YouTube →</button>
-
         <div class="cos-how">
-          <div class="cos-how-title">How It Works</div>
+          <div class="cos-how-title">Kingdom Book Club — How It Works</div>
           <div class="cos-steps">
-            <div class="cos-step"><span class="cos-step-num">1</span><span class="cos-step-body">Reserve your place at <span style="color:var(--cream);cursor:pointer;" onclick="goShop('https://sanctuarygrace.store')">sanctuarygrace.store</span></span></div>
-            <div class="cos-step"><span class="cos-step-num">2</span><span class="cos-step-body">Receive your YouTube link by email</span></div>
-            <div class="cos-step"><span class="cos-step-num">3</span><span class="cos-step-body">Show up. No words required. Just your presence.</span></div>
+            <div class="cos-step"><span class="cos-step-num">1</span><span class="cos-step-body">Join Circle — your chapter PDF arrives by email the Monday before each session</span></div>
+            <div class="cos-step"><span class="cos-step-num">2</span><span class="cos-step-body">Read. Sit with it. Bring one question.</span></div>
+            <div class="cos-step"><span class="cos-step-num">3</span><span class="cos-step-body">Join Grace on Zoom — bi-weekly, Thursday 7pm EST. No performance. Just the Word and the women.</span></div>
           </div>
         </div>
       </div>
@@ -3151,7 +3207,8 @@ function joinCircleWaitlist(){
     method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},
     body:JSON.stringify({_subject:'Circle of Silence — Waitlist',name:name,email:email,_replyto:email,source:'Circle of Silence Waitlist'})
   }).finally(()=>{
-    document.getElementById('cosWaitlistWrap').querySelector('.cos-waitlist-label').style.display='none';
+    const lbl=document.getElementById('cosWaitlistWrap').querySelector('.cos-waitlist-label');
+    if(lbl)lbl.style.display='none';
     document.getElementById('cosWaitlistWrap').querySelector('.cos-waitlist-row').style.display='none';
     document.getElementById('cosWaitlistConfirm').style.display='block';
   });
