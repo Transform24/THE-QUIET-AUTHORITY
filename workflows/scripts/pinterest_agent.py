@@ -67,7 +67,7 @@ Write ONLY the pin caption. No headers. No sections.
 - Final line: https://sanctuarygrace.store
 - Last line: 3-5 hashtags from: {HASHTAGS}"""
 
-gemini_url = f'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={GEMINI_API_KEY}'
+gemini_url = f'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={GEMINI_API_KEY}'
 gemini_payload = json.dumps({"contents": [{"parts": [{"text": prompt}]}]}).encode('utf-8')
 
 caption = None
@@ -82,13 +82,13 @@ for attempt in range(4):
     except urllib.error.HTTPError as e:
         if e.code == 429:
             wait = 30 * (attempt + 1)
-            print(f"Gemini 429 rate limit — waiting {wait}s before retry {attempt + 1}/4")
+            print(f"Gemini 429 — waiting {wait}s, retry {attempt + 1}/4")
             time.sleep(wait)
         else:
             raise
 
 if not caption:
-    raise RuntimeError('Gemini API failed after 4 attempts — quota exhausted. Try again in 1 hour.')
+    raise RuntimeError('Gemini API failed after 4 retries. Try again in 1 hour.')
 
 post_status = 'DRAFT'
 
@@ -141,18 +141,16 @@ if PINTEREST_ACCESS_TOKEN:
                 print(f"Pinterest error {e.code}: {error_body}")
             except Exception as e:
                 post_status = f'ERROR: {str(e)[:200]}'
-                print(f"Error: {e}")
         else:
-            post_status = f'DRAFT — board not found: {pin_data["board"]}. Verify board name matches exactly on Pinterest.'
+            post_status = f'DRAFT — board not found: {pin_data["board"]}'
     else:
-        post_status = 'DRAFT — Canva image required. Build in Canva then post manually.'
+        post_status = 'DRAFT — Canva image required.'
 else:
-    post_status = 'DRAFT — PINTEREST_ACCESS_TOKEN not set in GitHub Secrets'
+    post_status = 'DRAFT — PINTEREST_ACCESS_TOKEN not set'
 
 out_dir = pathlib.Path('workflows/output/pin-drafts')
 out_dir.mkdir(parents=True, exist_ok=True)
-out_file = out_dir / f'{date_str}.md'
-out_file.write_text(
+(out_dir / f'{date_str}.md').write_text(
     f'---\ndate: {date_str}\npinterest_day: {day_number}\npin: {pin_data["pin"]}\nboard: {pin_data["board"]}\nstatus: {post_status}\n---\n\n{caption}\n'
 )
 

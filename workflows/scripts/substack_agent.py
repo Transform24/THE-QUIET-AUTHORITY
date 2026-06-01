@@ -56,7 +56,7 @@ Structure:
 
 No markdown symbols. No emojis."""
 
-gemini_url = f'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={GEMINI_API_KEY}'
+gemini_url = f'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={GEMINI_API_KEY}'
 gemini_payload = json.dumps({"contents": [{"parts": [{"text": prompt}]}]}).encode('utf-8')
 
 content = None
@@ -71,13 +71,13 @@ for attempt in range(4):
     except urllib.error.HTTPError as e:
         if e.code == 429:
             wait = 30 * (attempt + 1)
-            print(f"Gemini 429 rate limit — waiting {wait}s before retry {attempt + 1}/4")
+            print(f"Gemini 429 — waiting {wait}s, retry {attempt + 1}/4")
             time.sleep(wait)
         else:
             raise
 
 if not content:
-    raise RuntimeError('Gemini API failed after 4 attempts — quota exhausted. Try again in 1 hour.')
+    raise RuntimeError('Gemini API failed after 4 retries. Try again in 1 hour.')
 
 lines = content.split('\n')
 title = lines[0].strip()
@@ -88,7 +88,6 @@ if mode == 'sunday' and len(lines) > 1:
     body_start = 2
 
 body_text = '\n'.join(lines[body_start:]).strip()
-
 paragraphs = []
 for para in body_text.split('\n\n'):
     para = para.strip()
@@ -134,15 +133,12 @@ if SUBSTACK_SESSION_COOKIE:
         print(f"Substack error {e.code}: {error_body}")
     except Exception as e:
         post_status = f'ERROR: {str(e)[:200]}'
-        print(f"Error: {e}")
 else:
-    post_status = 'DRAFT SAVED — add SUBSTACK_SESSION_COOKIE to GitHub Secrets to auto-create drafts in Substack'
-    print("SUBSTACK_SESSION_COOKIE not set")
+    post_status = 'DRAFT SAVED — add SUBSTACK_SESSION_COOKIE to GitHub Secrets'
 
 out_dir = pathlib.Path('workflows/output/substack-drafts')
 out_dir.mkdir(parents=True, exist_ok=True)
-out_file = out_dir / f'{date_str}.md'
-out_file.write_text(
+(out_dir / f'{date_str}.md').write_text(
     f'---\ndate: {date_str}\nmode: {mode}\nstatus: {post_status}\nurl: {post_url or "pending"}\n---\n\n{content}\n'
 )
 
