@@ -8,3 +8,4 @@
 | 2026-06-01 | Day 7 | The Lost Wanderer wall art | The Quiet Authority | DRAFT — PINTEREST_ACCESS_TOKEN not set |
 | 2026-06-01 | Day 7 | The Lost Wanderer wall art | The Quiet Authority | DRAFT — board not found: The Quiet Authority |
 | 2026-06-01 | Day 7 | The Lost Wanderer wall art | The Quiet Authority | DRAFT — board not found: The Quiet Authority |
+| 2026-06-01 | Day 7 | The Lost Wanderer wall art | The Quiet Authority for Women | DRAFT — board not found: The Quiet Authority for Women |
