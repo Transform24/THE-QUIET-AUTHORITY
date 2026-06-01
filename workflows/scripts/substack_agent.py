@@ -1,119 +1,147 @@
-import urllib.request, urllib.error, json, os, datetime, pathlib, sys, time
+import os, datetime, pathlib, json, urllib.request, urllib.error
 
-print("=== Substack Agent starting ===", flush=True)
-
-API_KEY = os.environ.get("GEMINI_API_KEY", "")
-if not API_KEY:
-    print("ERROR: GEMINI_API_KEY is not set or empty", flush=True)
-    sys.exit(1)
-
-print(f"API key present: YES (length {len(API_KEY)})", flush=True)
-
-URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent"
-
-def call_gemini(prompt, retries=3):
-    full_url = f"{URL}?key={API_KEY}"
-    payload = {"contents": [{"parts": [{"text": prompt}]}]}
-    data = json.dumps(payload).encode()
-    for attempt in range(1, retries + 1):
-        req = urllib.request.Request(full_url, data=data, headers={"Content-Type": "application/json"})
-        try:
-            with urllib.request.urlopen(req, timeout=60) as r:
-                result = json.loads(r.read())
-                return result["candidates"][0]["content"]["parts"][0]["text"]
-        except urllib.error.HTTPError as e:
-            body = e.read().decode()
-            print(f"Attempt {attempt}: HTTP {e.code} — {body[:300]}", flush=True)
-            if e.code == 429:
-                if "quota" in body.lower():
-                    print("Daily quota exceeded. Quota resets at midnight Pacific time. Re-run tomorrow or add a second GEMINI_API_KEY.", flush=True)
-                    sys.exit(1)
-                if attempt < retries:
-                    wait = 30 * attempt
-                    print(f"Rate limited. Waiting {wait}s before retry...", flush=True)
-                    time.sleep(wait)
-                else:
-                    raise
-            else:
-                raise
-        except Exception as e:
-            print(f"Attempt {attempt}: {type(e).__name__}: {e}", flush=True)
-            raise
+GEMINI_API_KEY = os.environ['GEMINI_API_KEY']
+SUBSTACK_SESSION_COOKIE = os.environ.get('SUBSTACK_SESSION_COOKIE', '').strip()
+SUBSTACK_PUBLICATION_URL = os.environ.get('SUBSTACK_PUBLICATION_URL', '5apop2sotwm.substack.com').strip()
+MODE_OVERRIDE = os.environ.get('MODE_OVERRIDE', '').strip()
 
 today = datetime.date.today()
-day_name = today.strftime("%A")
-date_str = today.strftime("%Y-%m-%d")
-print(f"Date: {date_str} ({day_name})", flush=True)
+day_name = today.strftime('%A')
+date_str = today.strftime('%Y-%m-%d')
 
-mode_override = os.environ.get("MODE_OVERRIDE", "").strip()
-if mode_override:
-    mode = mode_override
-elif day_name == "Sunday":
-    mode = "sunday"
-else:
-    mode = "daily"
+mode = MODE_OVERRIDE if MODE_OVERRIDE else ('sunday' if day_name == 'Sunday' else 'daily')
 
-print(f"Mode: {mode}", flush=True)
-
-VOICE = """
-BRAND VOICE — SACRED LAW. Never deviate.
-Voice: Sacred, tender, prophetic. Minister — never marketer.
-Audience: Burned-out Christian women, 30-55, spiritual depletion or identity crisis.
-Tone: Warmth, quiet authority, invitation. Never urgency, hype, or guilt.
-FORBIDDEN: Hustle language, self-help jargon, pop-psychology, casual slang, emojis, exclamation marks.
+VOICE = """BRAND VOICE: Sacred, tender, prophetic. Minister not marketer.
+Audience: Burned-out Christian women, 30-55.
 Ministry: Sanctuary Grace Ministry.
-Every piece closes with: https://sanctuarygrace.store
-"""
+FORBIDDEN: Hustle language, jargon, casual slang, emojis, exclamation marks.
+Every piece closes with: Come as you are. https://sanctuarygrace.store"""
 
-if mode == "sunday":
+if mode == 'sunday':
     prompt = f"""{VOICE}
-
 Today: {date_str} ({day_name})
 
-Write the SUNDAY WEEKLY LETTER for The Quiet Authority Substack (600-800 words).
+Write the SUNDAY WEEKLY LETTER for The Quiet Authority (600-800 words).
 
-Structure:
-- Title (sacred, not clickbait, no exclamation marks)
-- Subtitle (one tender line)
-- Personal opening (first-person, as if writing to a beloved friend)
+Format:
+Line 1: Title only (sacred, no exclamation marks)
+Line 2: Subtitle (one tender line)
+Line 3: blank
+Then the full letter body.
+
+Structure of body:
+- Personal opening (first-person, present tense, writing to a beloved friend)
 - Central teaching (3-4 paragraphs, one scripture written in full with reference)
 - Reflection questions (2-3, gentle)
-- Closing blessing or prayer
-- Final line: "If you are ready to begin, the door is open at https://sanctuarygrace.store"
+- Closing blessing
+- Final line: Come as you are. https://sanctuarygrace.store
 
-Format as clean markdown. No emojis. No hype."""
+No markdown symbols. No emojis. No exclamation marks."""
 else:
     prompt = f"""{VOICE}
-
 Today: {date_str} ({day_name})
 
-Write a DAILY DEVOTION for The Quiet Authority Substack (200-300 words).
+Write a DAILY DEVOTION for The Quiet Authority (200-300 words).
 
-Structure:
-- Title (sacred, tender, no exclamation marks)
+Format:
+Line 1: Title only (sacred, tender, no exclamation marks)
+Line 2: blank
+Then the devotion body.
+
+Structure of body:
 - Scripture verse written in full (include Book Chapter:Verse)
-- Reflection (2-3 paragraphs, first-person, tender, speaks to spiritual exhaustion or identity)
+- Reflection (2-3 paragraphs, first-person, tender)
 - One invitation (gentle offering, not a command)
-- Final line: "Come as you are. https://sanctuarygrace.store"
+- Final line: Come as you are. https://sanctuarygrace.store
 
-Format as clean markdown. No emojis. No hype."""
+No markdown symbols. No emojis."""
 
-print("Calling Gemini API...", flush=True)
-content = call_gemini(prompt)
-print(f"Response received ({len(content)} chars)", flush=True)
+gemini_url = f'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={GEMINI_API_KEY}'
+gemini_payload = json.dumps({"contents": [{"parts": [{"text": prompt}]}]}).encode('utf-8')
 
-out_dir = pathlib.Path("workflows/output/substack-drafts")
+req = urllib.request.Request(gemini_url, data=gemini_payload, headers={'Content-Type': 'application/json'}, method='POST')
+with urllib.request.urlopen(req, timeout=60) as resp:
+    result = json.loads(resp.read())
+    content = result['candidates'][0]['content']['parts'][0]['text'].strip()
+
+print(f"Devotion generated ({mode})")
+
+lines = content.split('\n')
+title = lines[0].strip()
+subtitle = ''
+body_start = 1
+if mode == 'sunday' and len(lines) > 1:
+    subtitle = lines[1].strip()
+    body_start = 2
+
+body_text = '\n'.join(lines[body_start:]).strip()
+
+paragraphs = []
+for para in body_text.split('\n\n'):
+    para = para.strip()
+    if para:
+        paragraphs.append({
+            "type": "paragraph",
+            "content": [{"type": "text", "text": para}]
+        })
+if not paragraphs:
+    paragraphs = [{"type": "paragraph", "content": [{"type": "text", "text": content}]}]
+
+body_doc = json.dumps({"type": "doc", "content": paragraphs})
+
+post_status = 'DRAFT'
+post_url = ''
+
+if SUBSTACK_SESSION_COOKIE:
+    payload = json.dumps({
+        "draft_title": title,
+        "draft_subtitle": subtitle,
+        "draft_body": body_doc,
+        "type": "newsletter",
+        "audience": "everyone",
+        "draft_section_id": None,
+        "section_chosen": False
+    }).encode('utf-8')
+
+    try:
+        post_req = urllib.request.Request(
+            f'https://{SUBSTACK_PUBLICATION_URL}/api/v1/posts',
+            data=payload,
+            headers={
+                'Content-Type': 'application/json',
+                'Cookie': f'substack-session={SUBSTACK_SESSION_COOKIE}'
+            },
+            method='POST'
+        )
+        with urllib.request.urlopen(post_req, timeout=30) as resp:
+            result = json.loads(resp.read())
+            post_id = result.get('id')
+            post_url = result.get('canonical_url', '')
+            post_status = f'DRAFT IN SUBSTACK — id: {post_id} — review and send from Substack dashboard'
+            print(f"Substack draft created: {post_id} — {post_url}")
+    except urllib.error.HTTPError as e:
+        error_body = e.read().decode()
+        post_status = f'SUBSTACK API ERROR {e.code}: {error_body[:300]}'
+        print(f"Substack error {e.code}: {error_body}")
+    except Exception as e:
+        post_status = f'ERROR: {str(e)[:200]}'
+        print(f"Error: {e}")
+else:
+    post_status = 'DRAFT SAVED — add SUBSTACK_SESSION_COOKIE to GitHub Secrets to create drafts in Substack automatically'
+    print("SUBSTACK_SESSION_COOKIE not set — saving draft to repo only")
+
+out_dir = pathlib.Path('workflows/output/substack-drafts')
 out_dir.mkdir(parents=True, exist_ok=True)
-out_file = out_dir / f"{date_str}.md"
+out_file = out_dir / f'{date_str}.md'
 out_file.write_text(
-    f"---\ndate: {date_str}\nmode: {mode}\nstatus: DRAFT — review before publishing\n---\n\n{content}\n"
+    f'---\ndate: {date_str}\nmode: {mode}\nstatus: {post_status}\nurl: {post_url or "pending"}\n---\n\n{content}\n'
 )
 
-log_file = pathlib.Path("workflows/output/substack-log.md")
-entry = f"| {date_str} | {mode} | DRAFT SAVED | {out_file} |\n"
+log_file = pathlib.Path('workflows/output/substack-log.md')
+log_entry = f'| {date_str} | {mode} | {post_status} |\n'
 if log_file.exists():
-    log_file.write_text(log_file.read_text() + entry)
+    log_file.write_text(log_file.read_text() + log_entry)
 else:
-    log_file.write_text("| Date | Mode | Status | File |\n|---|---|---|---|\n" + entry)
+    log_file.write_text('| Date | Mode | Status |\n|---|---|---|\n' + log_entry)
 
-print(f"=== Done. Draft saved: {out_file} ===", flush=True)
+print(f'Done. Status: {post_status}')

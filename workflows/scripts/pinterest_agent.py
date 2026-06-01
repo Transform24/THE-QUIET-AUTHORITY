@@ -1,128 +1,153 @@
-import urllib.request, urllib.error, json, os, datetime, pathlib, time
+import os, datetime, pathlib, json, urllib.request, urllib.error
 
-API_KEY = os.environ["GEMINI_API_KEY"]
-URL = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={API_KEY}"
+GEMINI_API_KEY = os.environ['GEMINI_API_KEY']
+PINTEREST_ACCESS_TOKEN = os.environ.get('PINTEREST_ACCESS_TOKEN', '').strip()
+DAY_OVERRIDE = os.environ.get('DAY_OVERRIDE', '').strip()
 
-def call_gemini(prompt, retries=3):
-    data = json.dumps({"contents": [{"parts": [{"text": prompt}]}]}).encode()
-    for attempt in range(1, retries + 1):
-        req = urllib.request.Request(URL, data=data, headers={"Content-Type": "application/json"})
-        try:
-            with urllib.request.urlopen(req, timeout=60) as r:
-                return json.loads(r.read())["candidates"][0]["content"]["parts"][0]["text"]
-        except urllib.error.HTTPError as e:
-            body = e.read().decode()
-            print(f"Attempt {attempt}: HTTP {e.code} — {body[:300]}", flush=True)
-            if e.code == 429:
-                if "quota" in body.lower():
-                    print("Daily quota exceeded. Quota resets at midnight Pacific time. Re-run tomorrow or add a second GEMINI_API_KEY.", flush=True)
-                    import sys; sys.exit(1)
-                if attempt < retries:
-                    wait = 30 * attempt
-                    print(f"Rate limited. Waiting {wait}s before retry...", flush=True)
-                    time.sleep(wait)
-                else:
-                    raise
-            else:
-                raise
+REPO_IMAGE_BASE = 'https://transform24.github.io/THE-QUIET-AUTHORITY'
 
 today = datetime.date.today()
-date_str = today.strftime("%Y-%m-%d")
-
+date_str = today.strftime('%Y-%m-%d')
 start_date = datetime.date(2026, 5, 26)
-day_override = os.environ.get("DAY_OVERRIDE", "").strip()
-if day_override and day_override.isdigit():
-    day_number = int(day_override)
+
+if DAY_OVERRIDE and DAY_OVERRIDE.isdigit():
+    day_number = int(DAY_OVERRIDE)
 else:
     day_number = ((today - start_date).days % 30) + 1
 
 SCHEDULE = {
-    1:  {"pin": "The Guilty Giver wall art", "board": "The Quiet Authority + Spiritual Rest for Women", "image": "profile-C.png", "type": "wall_art"},
-    2:  {"pin": "Sacred aesthetic — There is a stillness that heals what striving never could", "board": "Sacred Morning Practices", "image": "Canva", "type": "quote"},
-    3:  {"pin": "The Depleted Survivor wall art", "board": "The Quiet Authority", "image": "profile-B.png", "type": "wall_art"},
-    4:  {"pin": "Scripture pin — Matthew 11:28", "board": "Christian Women Encouragement", "image": "Canva", "type": "scripture"},
-    5:  {"pin": "The Striving Achiever wall art", "board": "The Quiet Authority", "image": "profile-A.png", "type": "wall_art"},
-    6:  {"pin": "Devotional Week 1 Vision cover", "board": "Sacred Morning Practices", "image": "Drive", "type": "devotional"},
-    7:  {"pin": "The Lost Wanderer wall art", "board": "The Quiet Authority", "image": "profile-D.png", "type": "wall_art"},
-    8:  {"pin": "Which type are you? — all 4 profiles listed", "board": "Spiritual Rest for Women", "image": "Canva", "type": "discovery"},
-    9:  {"pin": "Scripture + Guilty Giver quote", "board": "Christian Women Encouragement", "image": "Canva", "type": "scripture"},
-    10: {"pin": "Devotional Week 2 Renewal cover", "board": "Sacred Morning Practices", "image": "Drive", "type": "devotional"},
-    11: {"pin": "Re-pin Day 1 Guilty Giver", "board": "Spiritual Rest for Women", "image": "profile-C.png", "type": "repin"},
-    12: {"pin": "The assessment is free. The stillness is real.", "board": "The Quiet Authority", "image": "Canva", "type": "quote"},
-    13: {"pin": "Sacred aesthetic — You were not made to pour from empty", "board": "Christian Women Encouragement", "image": "Canva", "type": "quote"},
-    14: {"pin": "Circle of Silence — 15 minutes. Just you and God.", "board": "Sacred Morning Practices", "image": "Canva", "type": "silence"},
-    15: {"pin": "Start here — assessment overview", "board": "Spiritual Rest for Women", "image": "Canva", "type": "discovery"},
-    16: {"pin": "Devotional Week 3 Peace cover", "board": "Sacred Morning Practices", "image": "Drive", "type": "devotional"},
-    17: {"pin": "Re-pin Guilty Giver wall art", "board": "Christian Women Encouragement", "image": "profile-C.png", "type": "repin"},
-    18: {"pin": "Quote from Guilty Giver profile description", "board": "The Quiet Authority", "image": "Canva", "type": "quote"},
-    19: {"pin": "R.E.S.T. Workbook — Free. No catch. Just a path forward.", "board": "Spiritual Rest for Women", "image": "Canva", "type": "product"},
-    20: {"pin": "Scripture — Your exhaustion is not failure. It is an invitation.", "board": "Christian Women Encouragement", "image": "Canva", "type": "scripture"},
-    21: {"pin": "Devotional Week 4 Calling cover", "board": "Sacred Morning Practices", "image": "Drive", "type": "devotional"},
-    22: {"pin": "Re-pin top performer from Week 1", "board": "Spiritual Rest for Women", "image": "best", "type": "repin"},
-    23: {"pin": "Re-pin top performer from Week 2", "board": "Christian Women Encouragement", "image": "best", "type": "repin"},
-    24: {"pin": "Re-pin top performer from Weeks 1-2", "board": "Sacred Morning Practices", "image": "best", "type": "repin"},
-    25: {"pin": "Brand story — personal, links to assessment", "board": "Spiritual Rest for Women", "image": "Canva", "type": "story"},
-    26: {"pin": "Re-pin Guilty Giver wall art to all 4 boards", "board": "All boards", "image": "profile-C.png", "type": "repin"},
-    27: {"pin": "Devotional bundle — all 4 weeks", "board": "The Quiet Authority", "image": "Canva", "type": "product"},
-    28: {"pin": "Circle of Silence waitlist", "board": "Sacred Morning Practices", "image": "Canva", "type": "silence"},
-    29: {"pin": "Scripture from 7-day practice", "board": "Christian Women Encouragement", "image": "Canva", "type": "scripture"},
-    30: {"pin": "Month 2 review — top 3 pins to double down on", "board": "The Quiet Authority", "image": "Canva", "type": "review"},
+    1:  {"pin": "The Guilty Giver wall art", "board": "The Quiet Authority", "image_file": "profile-C.png"},
+    2:  {"pin": "Sacred aesthetic — There is a stillness that heals what striving never could", "board": "Sacred Morning Practices", "image_file": None},
+    3:  {"pin": "The Depleted Survivor wall art", "board": "The Quiet Authority", "image_file": "profile-B.png"},
+    4:  {"pin": "Scripture — Matthew 11:28", "board": "Christian Women Encouragement", "image_file": None},
+    5:  {"pin": "The Striving Achiever wall art", "board": "The Quiet Authority", "image_file": "profile-A.png"},
+    6:  {"pin": "Devotional Week 1 Vision cover", "board": "Sacred Morning Practices", "image_file": None},
+    7:  {"pin": "The Lost Wanderer wall art", "board": "The Quiet Authority", "image_file": "profile-D.png"},
+    8:  {"pin": "Which type are you — all 4 profiles listed", "board": "Spiritual Rest for Women", "image_file": None},
+    9:  {"pin": "Scripture and Guilty Giver quote", "board": "Christian Women Encouragement", "image_file": None},
+    10: {"pin": "Devotional Week 2 Renewal cover", "board": "Sacred Morning Practices", "image_file": None},
+    11: {"pin": "Re-pin Guilty Giver wall art", "board": "Spiritual Rest for Women", "image_file": "profile-C.png"},
+    12: {"pin": "The assessment is free. The stillness is real.", "board": "The Quiet Authority", "image_file": None},
+    13: {"pin": "You were not made to pour from empty", "board": "Christian Women Encouragement", "image_file": None},
+    14: {"pin": "Circle of Silence — 15 minutes. Just you and God.", "board": "Sacred Morning Practices", "image_file": None},
+    15: {"pin": "Start here — assessment overview", "board": "Spiritual Rest for Women", "image_file": None},
+    16: {"pin": "Devotional Week 3 Peace cover", "board": "Sacred Morning Practices", "image_file": None},
+    17: {"pin": "Re-pin Guilty Giver wall art", "board": "Christian Women Encouragement", "image_file": "profile-C.png"},
+    18: {"pin": "Quote from Guilty Giver profile", "board": "The Quiet Authority", "image_file": None},
+    19: {"pin": "R.E.S.T. Workbook — Free. No catch. Just a path forward.", "board": "Spiritual Rest for Women", "image_file": None},
+    20: {"pin": "Your exhaustion is not failure. It is an invitation.", "board": "Christian Women Encouragement", "image_file": None},
+    21: {"pin": "Devotional Week 4 Calling cover", "board": "Sacred Morning Practices", "image_file": None},
+    22: {"pin": "Re-pin top performer Week 1", "board": "Spiritual Rest for Women", "image_file": "profile-C.png"},
+    23: {"pin": "Re-pin top performer Week 2", "board": "Christian Women Encouragement", "image_file": "profile-B.png"},
+    24: {"pin": "Re-pin top performer", "board": "Sacred Morning Practices", "image_file": "profile-A.png"},
+    25: {"pin": "Brand story — personal, links to assessment", "board": "Spiritual Rest for Women", "image_file": None},
+    26: {"pin": "Re-pin Guilty Giver wall art", "board": "The Quiet Authority", "image_file": "profile-C.png"},
+    27: {"pin": "Devotional bundle — all 4 weeks", "board": "The Quiet Authority", "image_file": None},
+    28: {"pin": "Circle of Silence waitlist", "board": "Sacred Morning Practices", "image_file": None},
+    29: {"pin": "Scripture from 7-day practice", "board": "Christian Women Encouragement", "image_file": None},
+    30: {"pin": "Month 2 preview", "board": "The Quiet Authority", "image_file": None},
 }
 
-pin = SCHEDULE.get(day_number, SCHEDULE[1])
-
-VOICE = """
-BRAND VOICE — SACRED LAW. Never deviate.
-Voice: Sacred, tender, prophetic. Minister — never marketer.
-Audience: Burned-out Christian women, 30-55.
-FORBIDDEN: Hustle language, emojis, exclamation marks, urgency language.
-Ministry: Sanctuary Grace Ministry.
-"""
+pin_data = SCHEDULE.get(day_number, SCHEDULE[1])
 
 HASHTAGS = "#ChristianWomen #SpiritualRest #FaithAndWellness #QuietTime #SanctuaryGrace #SpiritualBurnout #FaithJourney #ScriptureForWomen #SacredSpace #HopeForWomen #ChristianMom #DailyDevotion"
 
-prompt = f"""{VOICE}
+prompt = f"""BRAND VOICE: Sacred, tender, prophetic. Minister not marketer.
+Audience: Burned-out Christian women, 30-55.
+FORBIDDEN: Hustle language, jargon, casual slang, emojis, exclamation marks.
 
 Today: {date_str}
 Pinterest Day: {day_number} of 30
-Pin: {pin["pin"]}
-Board(s): {pin["board"]}
-Image source: {pin["image"]}
-Type: {pin["type"]}
+Pin: {pin_data['pin']}
+Board: {pin_data['board']}
 
-Write the complete pin package:
+Write ONLY the pin caption. No headers. No sections.
+- 100-200 words, sacred TQA voice
+- No emojis. No exclamation marks.
+- Final line: https://sanctuarygrace.store
+- Last line: 3-5 hashtags from: {HASHTAGS}"""
 
-## PIN CAPTION
-100-200 words, sacred TQA voice. No emojis. No exclamation marks.
-Final line: https://sanctuarygrace.store
-Last line: 3-5 hashtags from: {HASHTAGS}
+gemini_url = f'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={GEMINI_API_KEY}'
+gemini_payload = json.dumps({"contents": [{"parts": [{"text": prompt}]}]}).encode('utf-8')
 
-## CANVA BRIEF
-Only if image source is "Canva". Skip if wall_art or repin.
-Specs: 1000x1500px, black background (#000000)
-All text: Cinzel font, ALL CAPS, color #C1593C (terra)
-Stars: 4-point starburst in #C9A84C (gold), left margin, 3 sizes
-Photo: B&W only, high contrast, no tint
-Provide: exact headline text (max 8 words), subtext if any, placement notes
+req = urllib.request.Request(gemini_url, data=gemini_payload, headers={'Content-Type': 'application/json'}, method='POST')
+with urllib.request.urlopen(req, timeout=60) as resp:
+    result = json.loads(resp.read())
+    caption = result['candidates'][0]['content']['parts'][0]['text'].strip()
 
-## POSTING NOTES
-Board placement, timing (8-11am or 7-9pm EST), notes for Grace.
-If wall art pin: image is at {pin["image"]} in repo root — no Canva needed."""
+print(f"Caption generated for Day {day_number}: {pin_data['pin']}")
 
-content = call_gemini(prompt)
+post_status = 'DRAFT'
 
-out_dir = pathlib.Path("workflows/output/pin-drafts")
+def get_board_id(token, board_name):
+    try:
+        req = urllib.request.Request(
+            'https://api.pinterest.com/v5/boards?page_size=100',
+            headers={'Authorization': f'Bearer {token}'}
+        )
+        with urllib.request.urlopen(req, timeout=30) as resp:
+            data = json.loads(resp.read())
+            for board in data.get('items', []):
+                if board['name'].lower().strip() == board_name.lower().strip():
+                    return board['id']
+    except Exception as e:
+        print(f"Board lookup error: {e}")
+    return None
+
+if PINTEREST_ACCESS_TOKEN:
+    image_file = pin_data.get('image_file')
+    if image_file:
+        image_url = f"{REPO_IMAGE_BASE}/{image_file}"
+        board_id = get_board_id(PINTEREST_ACCESS_TOKEN, pin_data['board'])
+        if board_id:
+            payload = json.dumps({
+                "board_id": board_id,
+                "media_source": {"source_type": "image_url", "url": image_url},
+                "title": pin_data['pin'][:100],
+                "description": caption[:500],
+                "link": "https://sanctuarygrace.store"
+            }).encode('utf-8')
+            try:
+                post_req = urllib.request.Request(
+                    'https://api.pinterest.com/v5/pins',
+                    data=payload,
+                    headers={
+                        'Authorization': f'Bearer {PINTEREST_ACCESS_TOKEN}',
+                        'Content-Type': 'application/json'
+                    },
+                    method='POST'
+                )
+                with urllib.request.urlopen(post_req, timeout=30) as resp:
+                    result = json.loads(resp.read())
+                    pin_id = result.get('id')
+                    post_status = f'POSTED — pin_id: {pin_id}'
+                    print(f"Posted to Pinterest: {pin_id}")
+            except urllib.error.HTTPError as e:
+                error_body = e.read().decode()
+                post_status = f'API ERROR {e.code}: {error_body[:300]}'
+                print(f"Pinterest error {e.code}: {error_body}")
+            except Exception as e:
+                post_status = f'ERROR: {str(e)[:200]}'
+                print(f"Error: {e}")
+        else:
+            post_status = f'DRAFT — board not found: {pin_data["board"]}. Check board name matches exactly on Pinterest.'
+    else:
+        post_status = 'DRAFT — Canva image required. Build in Canva then post manually.'
+else:
+    post_status = 'DRAFT — PINTEREST_ACCESS_TOKEN not set in GitHub Secrets'
+
+out_dir = pathlib.Path('workflows/output/pin-drafts')
 out_dir.mkdir(parents=True, exist_ok=True)
-out_file = out_dir / f"{date_str}.md"
+out_file = out_dir / f'{date_str}.md'
 out_file.write_text(
-    f"---\ndate: {date_str}\npinterest_day: {day_number}\npin: {pin['pin']}\nboard: {pin['board']}\nimage: {pin['image']}\nstatus: DRAFT — review before posting\n---\n\n{content}\n"
+    f'---\ndate: {date_str}\npinterest_day: {day_number}\npin: {pin_data["pin"]}\nboard: {pin_data["board"]}\nstatus: {post_status}\n---\n\n{caption}\n'
 )
 
-log_file = pathlib.Path("workflows/output/pin-log.md")
-entry = f"| {date_str} | Day {day_number} | {pin['pin']} | {pin['board']} | DRAFT |\n"
+log_file = pathlib.Path('workflows/output/pin-log.md')
+log_entry = f'| {date_str} | Day {day_number} | {pin_data["pin"]} | {pin_data["board"]} | {post_status} |\n'
 if log_file.exists():
-    log_file.write_text(log_file.read_text() + entry)
+    log_file.write_text(log_file.read_text() + log_entry)
 else:
-    log_file.write_text("| Date | Schedule Day | Pin | Board | Status |\n|---|---|---|---|---|\n" + entry)
+    log_file.write_text('| Date | Day | Pin | Board | Status |\n|---|---|---|---|---|\n' + log_entry)
 
-print(f"Pin draft saved: {out_file}")
+print(f'Done. Status: {post_status}')

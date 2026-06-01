@@ -2,6 +2,7 @@ name: Substack Agent — Daily Devotion
 
 on:
   schedule:
+    # 6:00 AM EST = 11:00 AM UTC
     - cron: '0 11 * * *'
   workflow_dispatch:
     inputs:
@@ -25,6 +26,8 @@ jobs:
       - name: Run Substack Agent
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          SUBSTACK_SESSION_COOKIE: ${{ secrets.SUBSTACK_SESSION_COOKIE }}
+          SUBSTACK_PUBLICATION_URL: ${{ secrets.SUBSTACK_PUBLICATION_URL }}
           MODE_OVERRIDE: ${{ github.event.inputs.mode }}
         run: python3 workflows/scripts/substack_agent.py
 
