@@ -56,28 +56,36 @@ Structure:
 
 No markdown symbols. No emojis."""
 
-gemini_url = f'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={GEMINI_API_KEY}'
-gemini_payload = json.dumps({"contents": [{"parts": [{"text": prompt}]}]}).encode('utf-8')
+MODELS = [
+    'gemini-1.5-flash',
+    'gemini-1.5-flash-8b',
+]
 
 content = None
-for attempt in range(4):
-    try:
-        req = urllib.request.Request(gemini_url, data=gemini_payload, headers={'Content-Type': 'application/json'}, method='POST')
-        with urllib.request.urlopen(req, timeout=60) as resp:
-            result = json.loads(resp.read())
-            content = result['candidates'][0]['content']['parts'][0]['text'].strip()
-            print(f"Devotion generated ({mode})")
-            break
-    except urllib.error.HTTPError as e:
-        if e.code == 429:
-            wait = 30 * (attempt + 1)
-            print(f"Gemini 429 — waiting {wait}s, retry {attempt + 1}/4")
-            time.sleep(wait)
-        else:
-            raise
+for model in MODELS:
+    gemini_url = f'https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={GEMINI_API_KEY}'
+    gemini_payload = json.dumps({"contents": [{"parts": [{"text": prompt}]}]}).encode('utf-8')
+    for attempt in range(3):
+        try:
+            req = urllib.request.Request(gemini_url, data=gemini_payload, headers={'Content-Type': 'application/json'}, method='POST')
+            with urllib.request.urlopen(req, timeout=60) as resp:
+                result = json.loads(resp.read())
+                content = result['candidates'][0]['content']['parts'][0]['text'].strip()
+                print(f"Devotion generated using {model}")
+                break
+        except urllib.error.HTTPError as e:
+            if e.code == 429:
+                wait = 10 * (attempt + 1)
+                print(f"{model} rate limited — waiting {wait}s")
+                time.sleep(wait)
+            else:
+                print(f"{model} error {e.code}")
+                break
+    if content:
+        break
 
 if not content:
-    raise RuntimeError('Gemini API failed after 4 retries. Try again in 1 hour.')
+    raise RuntimeError('All Gemini models rate limited. Try again in 60 minutes.')
 
 lines = content.split('\n')
 title = lines[0].strip()
