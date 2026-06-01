@@ -17,7 +17,7 @@ else:
 SCHEDULE = {
     1: {
         "pin": "The Guilty Giver wall art",
-        "board": "The Quiet Authority",
+        "board": "The Quiet Authority for Women",
         "image_file": "profile-C.png",
         "caption": """She gave until there was nothing left to give. Not because she was weak, but because she believed her worth was measured in what she could offer. She said yes when her body said no. She poured when the well was dry. She smiled through the silence of her own depletion.
 
@@ -51,7 +51,7 @@ https://sanctuarygrace.store
     },
     3: {
         "pin": "The Depleted Survivor wall art",
-        "board": "The Quiet Authority",
+        "board": "The Quiet Authority for Women",
         "image_file": "profile-B.png",
         "caption": """She survived things she never speaks about. She rebuilt herself more than once, quietly, without applause. She learned to function in crisis because crisis became familiar. And somewhere along the way, surviving became her identity — and rest became something she did not know how to trust.
 
@@ -85,7 +85,7 @@ https://sanctuarygrace.store
     },
     5: {
         "pin": "The Striving Achiever wall art",
-        "board": "The Quiet Authority",
+        "board": "The Quiet Authority for Women",
         "image_file": "profile-A.png",
         "caption": """She sets the alarm early. She finishes what others abandon. She believes that faithfulness looks like productivity and that rest must be earned before it can be received.
 
@@ -121,7 +121,7 @@ https://sanctuarygrace.store
     },
     7: {
         "pin": "The Lost Wanderer wall art",
-        "board": "The Quiet Authority",
+        "board": "The Quiet Authority for Women",
         "image_file": "profile-D.png",
         "caption": """She used to know who she was. She had a sense of direction, a sense of self, a sense that God was near and she was moving toward something meaningful.
 
@@ -208,7 +208,7 @@ https://sanctuarygrace.store
     },
     12: {
         "pin": "The assessment is free",
-        "board": "The Quiet Authority",
+        "board": "The Quiet Authority for Women",
         "image_file": None,
         "caption": """The assessment is free. The stillness it opens is real.
 
@@ -316,7 +316,7 @@ https://sanctuarygrace.store
     },
     18: {
         "pin": "Quote from Guilty Giver profile",
-        "board": "The Quiet Authority",
+        "board": "The Quiet Authority for Women",
         "image_file": None,
         "caption": """She did not know how to receive. Every gift felt like a debt. Every act of kindness toward her required immediate repayment. She had been taught, somewhere along the way, that needing was weakness and that the godly woman was always the one giving.
 
@@ -446,7 +446,7 @@ https://sanctuarygrace.store
     },
     26: {
         "pin": "Re-pin Guilty Giver wall art",
-        "board": "The Quiet Authority",
+        "board": "The Quiet Authority for Women",
         "image_file": "profile-C.png",
         "caption": """To the woman who has forgotten that she is allowed to have needs — this image was made for you.
 
@@ -462,7 +462,7 @@ https://sanctuarygrace.store
     },
     27: {
         "pin": "Devotional bundle",
-        "board": "The Quiet Authority",
+        "board": "The Quiet Authority for Women",
         "image_file": None,
         "caption": """Four weeks. Four movements. One direction.
 
@@ -517,7 +517,7 @@ https://sanctuarygrace.store
     },
     30: {
         "pin": "Month 2 preview",
-        "board": "The Quiet Authority",
+        "board": "The Quiet Authority for Women",
         "image_file": None,
         "caption": """A month of returning. And it is only the beginning.
 
@@ -548,7 +548,9 @@ def get_board_id(token, board_name):
         )
         with urllib.request.urlopen(req, timeout=30) as resp:
             data = json.loads(resp.read())
-            for board in data.get('items', []):
+            boards = data.get('items', [])
+            print(f"Available boards: {[b['name'] for b in boards]}")
+            for board in boards:
                 if board['name'].lower().strip() == board_name.lower().strip():
                     return board['id']
     except Exception as e:
