@@ -1,4 +1,4 @@
-import os, datetime, pathlib, json, urllib.request, urllib.error
+import os, datetime, pathlib, json, urllib.request, urllib.error, time
 
 GEMINI_API_KEY = os.environ['GEMINI_API_KEY']
 PINTEREST_ACCESS_TOKEN = os.environ.get('PINTEREST_ACCESS_TOKEN', '').strip()
@@ -67,15 +67,28 @@ Write ONLY the pin caption. No headers. No sections.
 - Final line: https://sanctuarygrace.store
 - Last line: 3-5 hashtags from: {HASHTAGS}"""
 
-gemini_url = f'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={GEMINI_API_KEY}'
+gemini_url = f'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={GEMINI_API_KEY}'
 gemini_payload = json.dumps({"contents": [{"parts": [{"text": prompt}]}]}).encode('utf-8')
 
-req = urllib.request.Request(gemini_url, data=gemini_payload, headers={'Content-Type': 'application/json'}, method='POST')
-with urllib.request.urlopen(req, timeout=60) as resp:
-    result = json.loads(resp.read())
-    caption = result['candidates'][0]['content']['parts'][0]['text'].strip()
+caption = None
+for attempt in range(4):
+    try:
+        req = urllib.request.Request(gemini_url, data=gemini_payload, headers={'Content-Type': 'application/json'}, method='POST')
+        with urllib.request.urlopen(req, timeout=60) as resp:
+            result = json.loads(resp.read())
+            caption = result['candidates'][0]['content']['parts'][0]['text'].strip()
+            print(f"Caption generated for Day {day_number}: {pin_data['pin']}")
+            break
+    except urllib.error.HTTPError as e:
+        if e.code == 429:
+            wait = 30 * (attempt + 1)
+            print(f"Gemini 429 rate limit — waiting {wait}s before retry {attempt + 1}/4")
+            time.sleep(wait)
+        else:
+            raise
 
-print(f"Caption generated for Day {day_number}: {pin_data['pin']}")
+if not caption:
+    raise RuntimeError('Gemini API failed after 4 attempts — quota exhausted. Try again in 1 hour.')
 
 post_status = 'DRAFT'
 
@@ -130,7 +143,7 @@ if PINTEREST_ACCESS_TOKEN:
                 post_status = f'ERROR: {str(e)[:200]}'
                 print(f"Error: {e}")
         else:
-            post_status = f'DRAFT — board not found: {pin_data["board"]}. Check board name matches exactly on Pinterest.'
+            post_status = f'DRAFT — board not found: {pin_data["board"]}. Verify board name matches exactly on Pinterest.'
     else:
         post_status = 'DRAFT — Canva image required. Build in Canva then post manually.'
 else:

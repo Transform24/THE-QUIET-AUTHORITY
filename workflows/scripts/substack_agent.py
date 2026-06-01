@@ -1,4 +1,4 @@
-import os, datetime, pathlib, json, urllib.request, urllib.error
+import os, datetime, pathlib, json, urllib.request, urllib.error, time
 
 GEMINI_API_KEY = os.environ['GEMINI_API_KEY']
 SUBSTACK_SESSION_COOKIE = os.environ.get('SUBSTACK_SESSION_COOKIE', '').strip()
@@ -29,8 +29,8 @@ Line 2: Subtitle (one tender line)
 Line 3: blank
 Then the full letter body.
 
-Structure of body:
-- Personal opening (first-person, present tense, writing to a beloved friend)
+Structure:
+- Personal opening (first-person, writing to a beloved friend)
 - Central teaching (3-4 paragraphs, one scripture written in full with reference)
 - Reflection questions (2-3, gentle)
 - Closing blessing
@@ -48,23 +48,36 @@ Line 1: Title only (sacred, tender, no exclamation marks)
 Line 2: blank
 Then the devotion body.
 
-Structure of body:
-- Scripture verse written in full (include Book Chapter:Verse)
+Structure:
+- Scripture verse written in full (Book Chapter:Verse)
 - Reflection (2-3 paragraphs, first-person, tender)
-- One invitation (gentle offering, not a command)
+- One invitation (gentle offering)
 - Final line: Come as you are. https://sanctuarygrace.store
 
 No markdown symbols. No emojis."""
 
-gemini_url = f'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={GEMINI_API_KEY}'
+gemini_url = f'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={GEMINI_API_KEY}'
 gemini_payload = json.dumps({"contents": [{"parts": [{"text": prompt}]}]}).encode('utf-8')
 
-req = urllib.request.Request(gemini_url, data=gemini_payload, headers={'Content-Type': 'application/json'}, method='POST')
-with urllib.request.urlopen(req, timeout=60) as resp:
-    result = json.loads(resp.read())
-    content = result['candidates'][0]['content']['parts'][0]['text'].strip()
+content = None
+for attempt in range(4):
+    try:
+        req = urllib.request.Request(gemini_url, data=gemini_payload, headers={'Content-Type': 'application/json'}, method='POST')
+        with urllib.request.urlopen(req, timeout=60) as resp:
+            result = json.loads(resp.read())
+            content = result['candidates'][0]['content']['parts'][0]['text'].strip()
+            print(f"Devotion generated ({mode})")
+            break
+    except urllib.error.HTTPError as e:
+        if e.code == 429:
+            wait = 30 * (attempt + 1)
+            print(f"Gemini 429 rate limit — waiting {wait}s before retry {attempt + 1}/4")
+            time.sleep(wait)
+        else:
+            raise
 
-print(f"Devotion generated ({mode})")
+if not content:
+    raise RuntimeError('Gemini API failed after 4 attempts — quota exhausted. Try again in 1 hour.')
 
 lines = content.split('\n')
 title = lines[0].strip()
@@ -80,10 +93,7 @@ paragraphs = []
 for para in body_text.split('\n\n'):
     para = para.strip()
     if para:
-        paragraphs.append({
-            "type": "paragraph",
-            "content": [{"type": "text", "text": para}]
-        })
+        paragraphs.append({"type": "paragraph", "content": [{"type": "text", "text": para}]})
 if not paragraphs:
     paragraphs = [{"type": "paragraph", "content": [{"type": "text", "text": content}]}]
 
@@ -102,7 +112,6 @@ if SUBSTACK_SESSION_COOKIE:
         "draft_section_id": None,
         "section_chosen": False
     }).encode('utf-8')
-
     try:
         post_req = urllib.request.Request(
             f'https://{SUBSTACK_PUBLICATION_URL}/api/v1/posts',
@@ -117,8 +126,8 @@ if SUBSTACK_SESSION_COOKIE:
             result = json.loads(resp.read())
             post_id = result.get('id')
             post_url = result.get('canonical_url', '')
-            post_status = f'DRAFT IN SUBSTACK — id: {post_id} — review and send from Substack dashboard'
-            print(f"Substack draft created: {post_id} — {post_url}")
+            post_status = f'DRAFT IN SUBSTACK — id: {post_id}'
+            print(f"Substack draft created: {post_id}")
     except urllib.error.HTTPError as e:
         error_body = e.read().decode()
         post_status = f'SUBSTACK API ERROR {e.code}: {error_body[:300]}'
@@ -127,8 +136,8 @@ if SUBSTACK_SESSION_COOKIE:
         post_status = f'ERROR: {str(e)[:200]}'
         print(f"Error: {e}")
 else:
-    post_status = 'DRAFT SAVED — add SUBSTACK_SESSION_COOKIE to GitHub Secrets to create drafts in Substack automatically'
-    print("SUBSTACK_SESSION_COOKIE not set — saving draft to repo only")
+    post_status = 'DRAFT SAVED — add SUBSTACK_SESSION_COOKIE to GitHub Secrets to auto-create drafts in Substack'
+    print("SUBSTACK_SESSION_COOKIE not set")
 
 out_dir = pathlib.Path('workflows/output/substack-drafts')
 out_dir.mkdir(parents=True, exist_ok=True)
