@@ -9,3 +9,4 @@
 | 2026-06-01 | Day 7 | The Lost Wanderer wall art | The Quiet Authority | DRAFT — board not found: The Quiet Authority |
 | 2026-06-01 | Day 7 | The Lost Wanderer wall art | The Quiet Authority | DRAFT — board not found: The Quiet Authority |
 | 2026-06-01 | Day 7 | The Lost Wanderer wall art | The Quiet Authority for Women | DRAFT — board not found: The Quiet Authority for Women |
+| 2026-06-02 | Day 8 | Which type are you | Spiritual Rest for Women | DRAFT — Canva image required for this day. |
