@@ -1,44 +1,164 @@
-name: Substack Agent — Daily Devotion
+"""
+Substack Agent — Daily Devotion
+Sanctuary Grace · The Quiet Authority
+Powered by Claude API (Anthropic)
+"""
 
-on:
-  schedule:
-    # 6:00 AM EST = 11:00 AM UTC
-    - cron: '0 11 * * *'
-  workflow_dispatch:
-    inputs:
-      mode:
-        description: 'Override mode (daily or sunday)'
-        required: false
-        default: ''
+import os
+import json
+import datetime
+import anthropic
+import urllib.request
+import urllib.parse
 
-jobs:
-  publish-devotion:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          fetch-depth: 0
+# ── CONFIG ───────────────────────────────────────────────────────────────────
+ANTHROPIC_API_KEY  = os.environ["ANTHROPIC_API_KEY"]
+SUBSTACK_API_KEY   = os.environ.get("SUBSTACK_API_KEY", "")
+SUBSTACK_PUB_URL   = os.environ.get("SUBSTACK_PUB_URL", "sanctuarygrace.substack.com")
 
-      - name: Run Substack Agent
-        env:
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          SUBSTACK_SESSION_COOKIE: ${{ secrets.SUBSTACK_SESSION_COOKIE }}
-          SUBSTACK_PUBLICATION_URL: ${{ secrets.SUBSTACK_PUBLICATION_URL }}
-          MODE_OVERRIDE: ${{ github.event.inputs.mode }}
-        run: python3 workflows/scripts/substack_agent.py
+client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
 
-      - name: Commit and push output
-        run: |
-          git config user.name "TQA Agent"
-          git config user.email "noreply@sanctuarygrace.com"
-          git add workflows/output/
-          if ! git diff --staged --quiet; then
-            git commit -m "Substack Agent: $(date +%Y-%m-%d) devotion draft"
-            git push origin HEAD:main
-          else
-            echo "No new content to commit"
-          fi
+# ── DEVOTION THEMES ──────────────────────────────────────────────────────────
+DEVOTION_THEMES = [
+    {"theme": "returning to stillness", "scripture": "Isaiah 30:15"},
+    {"theme": "be still and know", "scripture": "Psalm 46:10"},
+    {"theme": "the breath of God in you", "scripture": "Genesis 2:7"},
+    {"theme": "hearing God's voice", "scripture": "Isaiah 30:21"},
+    {"theme": "seeking with all your heart", "scripture": "Jeremiah 29:13"},
+    {"theme": "rest as trust", "scripture": "Matthew 11:28-30"},
+    {"theme": "peace that passes understanding", "scripture": "Philippians 4:7"},
+    {"theme": "your calling and purpose", "scripture": "Jeremiah 29:11"},
+    {"theme": "strength in quietness", "scripture": "Isaiah 30:15"},
+    {"theme": "God's presence in the silence", "scripture": "1 Kings 19:12"},
+    {"theme": "renewing your mind", "scripture": "Romans 12:2"},
+    {"theme": "walking in your identity", "scripture": "Ephesians 2:10"},
+    {"theme": "releasing what no longer serves", "scripture": "Philippians 3:13-14"},
+    {"theme": "the woman of quiet authority", "scripture": "Proverbs 31:25"},
+]
+
+def get_today_devotion():
+    day = datetime.date.today().toordinal()
+    return DEVOTION_THEMES[day % len(DEVOTION_THEMES)]
+
+def generate_devotion(theme_data):
+    theme = theme_data["theme"]
+    scripture = theme_data["scripture"]
+
+    message = client.messages.create(
+        model="claude-sonnet-4-20250514",
+        max_tokens=1500,
+        messages=[
+            {
+                "role": "user",
+                "content": f"""You are Grace Turner — The Quiet Authority. You write daily devotionals 
+for Sanctuary Grace, a faith-based meditation ministry for women. 
+
+Your writing voice is: deeply spiritual, warm, authoritative, rooted in scripture, 
+never performative. Think: a wise woman speaking directly to another woman's soul.
+
+Write a complete Substack devotional post with:
+- Theme: {theme}
+- Anchor scripture: {scripture}
+
+Structure:
+1. TITLE — evocative, not clickbait (under 10 words)
+2. OPENING — one powerful line that stops her scroll
+3. REFLECTION — 3 paragraphs of deep, honest teaching (not preachy)
+4. SCRIPTURE ANCHOR — quote the verse, then 1 paragraph unpacking it
+5. THE PRACTICE — one specific, simple thing to do today (2-3 sentences)
+6. CLOSING PRAYER — 3-4 sentences, intimate, not formal
+7. SOFT CTA — one line inviting her to The Circle of Silence
+
+Total length: 400-500 words
+Voice: The Quiet Authority — never loud, always true
+Do NOT use AI phrases. Write as Grace, in first person."""
+            }
+        ]
+    )
+    return message.content[0].text
+
+def publish_to_substack(title, content):
+    """
+    Publish devotion to Substack via their API or email draft.
+    Substack's API is limited — this creates a draft for review.
+    """
+    if not SUBSTACK_API_KEY:
+        print("No SUBSTACK_API_KEY — saving draft locally for manual publish.")
+        return {"status": "saved_locally"}
+
+    # Substack draft endpoint (if API access granted)
+    url = f"https://{SUBSTACK_PUB_URL}/api/v1/drafts"
+    headers = {
+        "Authorization": f"Bearer {SUBSTACK_API_KEY}",
+        "Content-Type": "application/json"
+    }
+    body = json.dumps({
+        "draft_title": title,
+        "draft_body": content,
+        "draft_section_id": None,
+        "audience": "everyone"
+    }).encode()
+
+    req = urllib.request.Request(url, data=body, method="POST", headers=headers)
+    try:
+        with urllib.request.urlopen(req, timeout=30) as r:
+            return json.loads(r.read())
+    except Exception as e:
+        print(f"Substack API error: {e}")
+        return {"status": "error", "message": str(e)}
+
+def extract_title(content):
+    """Extract title from generated content."""
+    lines = content.strip().split('\n')
+    for line in lines:
+        line = line.strip()
+        if line and not line.startswith('#'):
+            # Remove markdown bold/italic
+            title = line.replace('**', '').replace('*', '').replace('#', '').strip()
+            if len(title) < 100:
+                return title
+    return f"Daily Devotion — {datetime.date.today().strftime('%B %d, %Y')}"
+
+def save_output(theme_data, content):
+    """Save devotion to file."""
+    today = datetime.date.today().isoformat()
+    output = {
+        "date": today,
+        "theme": theme_data["theme"],
+        "scripture": theme_data["scripture"],
+        "content": content,
+        "platform": "substack"
+    }
+    os.makedirs("workflows/output", exist_ok=True)
+    with open(f"workflows/output/substack_{today}.json", "w") as f:
+        json.dump(output, f, indent=2)
+    print(f"Devotion saved to workflows/output/substack_{today}.json")
+
+def main():
+    print("Substack Agent — The Quiet Authority")
+    print("Powered by Claude API")
+    print("=" * 50)
+
+    theme_data = get_today_devotion()
+    print(f"Today's theme: {theme_data['theme']}")
+    print(f"Scripture: {theme_data['scripture']}")
+
+    print("\nGenerating devotion...")
+    content = generate_devotion(theme_data)
+    title = extract_title(content)
+
+    print(f"\nTitle: {title}")
+    print("\nContent preview:")
+    print("-" * 40)
+    print(content[:300] + "...")
+    print("-" * 40)
+
+    save_output(theme_data, content)
+
+    print("\nPublishing to Substack...")
+    result = publish_to_substack(title, content)
+    print(f"Result: {result}")
+    print("\nDone. ✓")
+
+if __name__ == "__main__":
+    main()
