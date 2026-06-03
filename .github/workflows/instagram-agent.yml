@@ -1,159 +1,37 @@
-"""
-Instagram Agent — Daily Post
-Sanctuary Grace · The Quiet Authority
-Powered by Claude API (Anthropic)
-"""
+name: Instagram Agent — Daily Post
 
-import os
-import json
-import datetime
-import anthropic
+on:
+  schedule:
+    - cron: '0 14 * * *'
+  workflow_dispatch:
 
-# ── CONFIG ──────────────────────────────────────────────────────────────────
-ANTHROPIC_API_KEY = os.environ["ANTHROPIC_API_KEY"]
-IG_ACCESS_TOKEN   = os.environ["INSTAGRAM_ACCESS_TOKEN"]
-IG_USER_ID        = os.environ["INSTAGRAM_USER_ID"]
+jobs:
+  post-content:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
 
-client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
 
-# ── CONTENT THEMES ───────────────────────────────────────────────────────────
-THEMES = [
-    "stillness and presence",
-    "faith over fear",
-    "sacred morning practice",
-    "the woman who goes inward",
-    "silence as strength",
-    "spiritual transformation",
-    "rest as an act of faith",
-    "the quiet authority within",
-    "scripture and reflection",
-    "becoming who God designed you to be",
-]
+      - name: Install dependencies
+        run: pip install anthropic
 
-def get_today_theme():
-    day = datetime.date.today().toordinal()
-    return THEMES[day % len(THEMES)]
+      - name: Run Instagram Agent
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
+          INSTAGRAM_USER_ID: ${{ secrets.INSTAGRAM_USER_ID }}
+          IG_DEFAULT_IMAGE_URL: ${{ secrets.IG_DEFAULT_IMAGE_URL }}
+        run: python workflows/scripts/instagram_agent.py
 
-def generate_caption(theme):
-    message = client.messages.create(
-        model="claude-sonnet-4-20250514",
-        max_tokens=1000,
-        messages=[
-            {
-                "role": "user",
-                "content": f"""You are Grace Turner — The Quiet Authority. You run Sanctuary Grace, 
-a faith-based meditation ministry for women. Your voice is warm, deeply spiritual, 
-authoritative without being loud, and rooted in scripture.
-
-Write an Instagram caption about: {theme}
-
-Requirements:
-- 150-200 words
-- Opens with a powerful one-line hook (no hashtag, no emoji at start)
-- 2-3 short paragraphs with breathing room
-- Includes one scripture reference woven naturally into the text
-- Ends with a soft call to action pointing to the Circle of Silence
-- 5-8 relevant hashtags at the bottom
-- Voice: The Quiet Authority — never performative, always real
-- Do NOT use phrases like "I am an AI" or "as an AI"
-- Write as Grace, in first person
-
-Format:
-[Hook line]
-
-[Body paragraph 1]
-
-[Body paragraph 2]
-
-[CTA line]
-
-[hashtags]"""
-            }
-        ]
-    )
-    return message.content[0].text
-
-def post_to_instagram(caption):
-    """
-    Post caption to Instagram via Graph API.
-    Note: Instagram requires an image URL for feed posts.
-    This posts as a text-based story or uses a default branded image.
-    """
-    import urllib.request
-    import urllib.parse
-
-    # For a real image post you would upload an image first
-    # This uses a placeholder branded image URL — replace with your Cloudinary or S3 URL
-    IMAGE_URL = os.environ.get("IG_DEFAULT_IMAGE_URL", "")
-
-    if not IMAGE_URL:
-        print("No IG_DEFAULT_IMAGE_URL set — skipping actual post, caption generated only.")
-        return {"caption_preview": caption[:100]}
-
-    # Step 1: Create media container
-    create_url = f"https://graph.facebook.com/v18.0/{IG_USER_ID}/media"
-    create_data = urllib.parse.urlencode({
-        "image_url": IMAGE_URL,
-        "caption": caption,
-        "access_token": IG_ACCESS_TOKEN
-    }).encode()
-
-    req = urllib.request.Request(create_url, data=create_data, method="POST")
-    with urllib.request.urlopen(req, timeout=30) as r:
-        container = json.loads(r.read())
-
-    container_id = container.get("id")
-    if not container_id:
-        raise RuntimeError(f"Failed to create media container: {container}")
-
-    # Step 2: Publish
-    publish_url = f"https://graph.facebook.com/v18.0/{IG_USER_ID}/media_publish"
-    publish_data = urllib.parse.urlencode({
-        "creation_id": container_id,
-        "access_token": IG_ACCESS_TOKEN
-    }).encode()
-
-    req2 = urllib.request.Request(publish_url, data=publish_data, method="POST")
-    with urllib.request.urlopen(req2, timeout=30) as r:
-        result = json.loads(r.read())
-
-    return result
-
-def save_output(theme, caption):
-    """Save generated caption to file for records."""
-    today = datetime.date.today().isoformat()
-    output = {
-        "date": today,
-        "theme": theme,
-        "caption": caption,
-        "platform": "instagram"
-    }
-    os.makedirs("workflows/output", exist_ok=True)
-    with open(f"workflows/output/instagram_{today}.json", "w") as f:
-        json.dump(output, f, indent=2)
-    print(f"Caption saved to workflows/output/instagram_{today}.json")
-
-def main():
-    print("Instagram Agent — The Quiet Authority")
-    print("Powered by Claude API")
-    print("=" * 50)
-
-    theme = get_today_theme()
-    print(f"Today's theme: {theme}")
-
-    print("Generating caption...")
-    caption = generate_caption(theme)
-    print("\nGenerated caption:")
-    print("-" * 40)
-    print(caption)
-    print("-" * 40)
-
-    save_output(theme, caption)
-
-    print("\nPosting to Instagram...")
-    result = post_to_instagram(caption)
-    print(f"Result: {result}")
-    print("\nDone. ✓")
-
-if __name__ == "__main__":
-    main()
+      - name: Commit and push output
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add workflows/output/
+          git diff --quiet && git diff --staged --quiet || git commit -m "Instagram post $(date +%Y-%m-%d)"
+          git push
