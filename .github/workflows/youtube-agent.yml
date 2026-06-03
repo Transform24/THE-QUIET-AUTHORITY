@@ -1,149 +1,35 @@
-"""
-YouTube Agent — Weekly Video
-Sanctuary Grace · The Quiet Authority
-Powered by Claude API (Anthropic)
-"""
+name: YouTube Agent — Weekly Video
 
-import os
-import json
-import datetime
-import anthropic
+on:
+  schedule:
+    - cron: '0 9 * * 1'
+  workflow_dispatch:
 
-# ── CONFIG ───────────────────────────────────────────────────────────────────
-ANTHROPIC_API_KEY = os.environ["ANTHROPIC_API_KEY"]
-YOUTUBE_API_KEY   = os.environ.get("YOUTUBE_API_KEY", "")
+jobs:
+  generate-script:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
 
-client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
 
-# ── VIDEO SERIES THEMES ──────────────────────────────────────────────────────
-VIDEO_THEMES = [
-    {"series": "Morning Practice", "topic": "How to begin a sacred morning in 5 minutes"},
-    {"series": "The Quiet Authority", "topic": "Why silence is not emptiness — it is preparation"},
-    {"series": "Faith & Stillness", "topic": "What happens when you stop performing your peace"},
-    {"series": "Scripture Deep Dive", "topic": "Isaiah 30:15 — the verse that changed everything"},
-    {"series": "The Circle of Silence", "topic": "What a faith-based meditation practice actually looks like"},
-    {"series": "Morning Practice", "topic": "The 3-breath prayer that anchors your whole day"},
-    {"series": "The Quiet Authority", "topic": "How to hear God when your life is too loud"},
-    {"series": "Faith & Stillness", "topic": "Rest is not laziness — it is an act of faith"},
-    {"series": "Scripture Deep Dive", "topic": "Psalm 46:10 — Be still and know"},
-    {"series": "The Circle of Silence", "topic": "Why I built a ministry around silence"},
-]
+      - name: Install dependencies
+        run: pip install anthropic
 
-def get_this_week_theme():
-    week = datetime.date.today().isocalendar()[1]
-    return VIDEO_THEMES[week % len(VIDEO_THEMES)]
+      - name: Run YouTube Agent
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+        run: python workflows/scripts/youtube_agent.py
 
-def generate_video_script(theme_data):
-    message = client.messages.create(
-        model="claude-sonnet-4-20250514",
-        max_tokens=2000,
-        messages=[
-            {
-                "role": "user",
-                "content": f"""You are Grace Turner — The Quiet Authority. You create YouTube videos 
-for Sanctuary Grace, a faith-based meditation ministry for women.
-
-Your on-camera voice is: warm, direct, deeply spiritual, never preachy. 
-Like a trusted mentor speaking truth over coffee.
-
-Write a complete YouTube video script for:
-Series: {theme_data['series']}
-Topic: {theme_data['topic']}
-
-Structure:
-1. HOOK (0-15 seconds) — one question or statement that stops the scroll
-2. INTRO (15-45 seconds) — who Grace is, what this channel is about
-3. MAIN TEACHING (2-4 minutes) — 3 clear points, scripture woven in naturally
-4. THE PRACTICE (30-60 seconds) — one thing to do right now or today
-5. CTA (30 seconds) — invite to The Circle of Silence, subscribe, comment prompt
-6. CLOSE — warm, not salesy
-
-Also provide:
-- VIDEO TITLE (SEO optimized, under 60 characters)
-- DESCRIPTION (150 words, includes link to sanctuary-grace-bridge.netlify.app)
-- TAGS (10-15 relevant tags)
-- THUMBNAIL TEXT (5 words max, bold statement)
-
-Total script length: 500-700 words
-Voice: The Quiet Authority — never loud, always true"""
-            }
-        ]
-    )
-    return message.content[0].text
-
-def generate_shorts_script(theme_data):
-    """Generate a 60-second YouTube Shorts version."""
-    message = client.messages.create(
-        model="claude-sonnet-4-20250514",
-        max_tokens=500,
-        messages=[
-            {
-                "role": "user",
-                "content": f"""You are Grace Turner — The Quiet Authority.
-
-Write a 60-second YouTube Shorts script about: {theme_data['topic']}
-
-Structure:
-- Hook (0-5s): Bold statement or question
-- Teaching (5-45s): One clear insight, one scripture
-- CTA (45-60s): Come find me at The Circle of Silence
-
-Under 150 words. Punchy. Real. No filler.
-Voice: The Quiet Authority."""
-            }
-        ]
-    )
-    return message.content[0].text
-
-def save_output(theme_data, script, shorts_script):
-    """Save scripts to file."""
-    today = datetime.date.today().isoformat()
-    week = datetime.date.today().isocalendar()[1]
-    output = {
-        "date": today,
-        "week": week,
-        "series": theme_data["series"],
-        "topic": theme_data["topic"],
-        "full_script": script,
-        "shorts_script": shorts_script,
-        "platform": "youtube"
-    }
-    os.makedirs("workflows/output", exist_ok=True)
-    filepath = f"workflows/output/youtube_week{week}_{today}.json"
-    with open(filepath, "w") as f:
-        json.dump(output, f, indent=2)
-    print(f"Scripts saved to {filepath}")
-    return filepath
-
-def main():
-    print("YouTube Agent — The Quiet Authority")
-    print("Powered by Claude API")
-    print("=" * 50)
-
-    theme_data = get_this_week_theme()
-    print(f"This week's series: {theme_data['series']}")
-    print(f"Topic: {theme_data['topic']}")
-
-    print("\nGenerating full video script...")
-    script = generate_video_script(theme_data)
-
-    print("\nGenerating Shorts script...")
-    shorts_script = generate_shorts_script(theme_data)
-
-    print("\nFull script preview:")
-    print("-" * 40)
-    print(script[:400] + "...")
-    print("-" * 40)
-
-    print("\nShorts script:")
-    print("-" * 40)
-    print(shorts_script)
-    print("-" * 40)
-
-    filepath = save_output(theme_data, script, shorts_script)
-    print(f"\nScripts ready for recording: {filepath}")
-    print("\nNext step: Record with Remotion or camera, upload to YouTube manually.")
-    print("\nDone. ✓")
-
-if __name__ == "__main__":
-    main()
+      - name: Commit and push output
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add workflows/output/
+          git diff --quiet && git diff --staged --quiet || git commit -m "YouTube script week $(date +%V)"
+          git push
