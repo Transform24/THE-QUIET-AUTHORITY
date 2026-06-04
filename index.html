@@ -793,6 +793,7 @@ body{top:0!important;}
   <div style="display:flex;align-items:center;gap:16px;">
     <span id="navProfileLabel"></span>
     <div class="nav-links">
+      <button class="nav-link" id="navContinue" style="display:none;color:var(--gold);border:1px solid var(--gold-dim);padding:6px 16px;" onclick="resumeProfile()">Continue My Journey →</button>
       <button class="nav-link" style="font-size:0.62rem;color:var(--text-muted);opacity:0.7;border:none;background:none;" onclick="startOver()">Start Over</button>
     </div>
   </div>
@@ -1824,13 +1825,16 @@ function showScreen(id){
     if(db)db.classList.add('visible');
     setActiveTab('dash');
   } else if(id==='screen-landing'){
-    // show return bar if a profile is saved
+    // show return bar & nav if a profile is saved
     try{
       const saved=JSON.parse(localStorage.getItem('tqa_profile')||'null');
       if(saved&&saved.profile&&PROFILES[saved.profile]){
         const prbName=document.getElementById('prbName');
         if(prbName)prbName.textContent=PROFILES[saved.profile].name;
         if(prb)prb.classList.add('visible');
+        const navContinue=document.getElementById('navContinue');
+        if(navContinue)navContinue.style.display='block';
+        if(nav)nav.classList.add('visible');
       }
     }catch(e){}
   }
