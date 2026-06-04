@@ -3160,7 +3160,7 @@ function openTestimonyForm(){
   const profile=localStorage.getItem('tqa_profile')?JSON.parse(localStorage.getItem('tqa_profile')).profile:'';
   const profileName=profile?PROFILES[profile]?.name:'';
   const prefill=`?usp=pp_url&entry.1=${encodeURIComponent(name)}&entry.2=${encodeURIComponent(profileName)}`;
-  window.open('https://docs.google.com/forms/d/e/1FAIpQLSdrY_BvP-z9-YB-4J0g9_qZq0RVZfx_JlB4e9aLpX5C8Zj9mA/viewform'+prefill,'_blank','width=800,height=600');
+  window.open('https://docs.google.com/forms/d/e/1COktWrXRfPZXZ90R6qrfOy2ZWIM63CciJLYrsfOUAg4/viewform'+prefill,'_blank','width=800,height=600');
 }
 
 function googleTranslateElementInit(){
