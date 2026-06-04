@@ -44,7 +44,7 @@ Voice: Sacred, tender, prophetic. Minister — never marketer.
 Audience: Burned-out Christian women, 30-55.
 FORBIDDEN: Hustle language, emojis in copy, exclamation marks, urgency language.
 Ministry: Sanctuary Grace Ministry. Channel: youtube.com/@TheQuietAuthority-f1z
-Every description ends with: https://sanctuarygrace.store
+Every description ends with: https://sanctuary-grace.com/
 """
 
 SERIES = ["Profile deep dive", "7-day practice walkthrough", "Circle of Silence session", "Scripture reflection"]
@@ -65,17 +65,17 @@ Under 60 characters. Sacred, not clickbait. No exclamation marks.
 OPENING STILLNESS (30 seconds): Voiceover inviting the viewer to breathe, arrive, be present.
 MAIN TEACHING (8-10 minutes): First-person, tender, prophetic. One central truth. One scripture written in full. 3-4 teaching sections. Speaks to the woman who is exhausted, questioning, or lost.
 SILENCE INVITATION (2 minutes): Guide the viewer into stillness. Tender, unhurried.
-SOFT CLOSE (30 seconds): One blessing. Soft CTA to https://sanctuarygrace.store
+SOFT CLOSE (30 seconds): One blessing. Soft CTA to https://sanctuary-grace.com/
 
 ## SEO DESCRIPTION
 200-250 words. Sacred voice. Mention the spiritual need, one scripture, the free assessment, the channel.
-End with: https://sanctuarygrace.store
+End with: https://sanctuary-grace.com/
 
 ## TAGS
 8-10 YouTube tags (no hash symbol). Mix broad and specific.
 
 ## PINNED COMMENT
-Under 100 words. Tender invitation to the assessment. End with: https://sanctuarygrace.store
+Under 100 words. Tender invitation to the assessment. End with: https://sanctuary-grace.com/
 
 ## THUMBNAIL BRIEF
 1280x720px. Dark background. One profile image (B&W, high contrast).
@@ -90,7 +90,7 @@ Write a YOUTUBE COMMUNITY POST for The Quiet Authority channel.
 - One scripture (written in full with reference)
 - 2-3 paragraphs of tender encouragement, first-person, prophetic
 - Soft invitation to the assessment or devotional
-- Final line: https://sanctuarygrace.store
+- Final line: https://sanctuary-grace.com/
 - Total: 100-150 words. No emojis. No exclamation marks."""
 
 content = call_gemini(prompt)

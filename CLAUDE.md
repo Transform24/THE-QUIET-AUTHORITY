@@ -14,14 +14,14 @@
 - **Automation** — Make.com (free, 1,000 ops/month) is the automation layer. Zapier is not used.
 - **7-day practice timers** — countdown timer on every day card, auto-marks complete at 00:00.
 - **UI/UX audit complete** — lazy loading, reduced motion, focus-visible, aria-labels, aria-live, aria-hidden, noreferrer all applied.
-- **sanctuarygrace.store is the primary CTA** — all agent posts, app links, and CLAUDE.md updated from beacons.ai/sanctuarygrace to https://sanctuarygrace.store. Beacons still used for email sequences.
+- **sanctuary-grace.com is the primary CTA** — all agent posts, app links, and CLAUDE.md updated to https://sanctuary-grace.com/. Beacons still used for email sequences. Domain migrated from sanctuarygrace.store 2026-06-04.
 - **Agents 01-06 GitHub Actions workflows built** — repurpose-agent.yml, storefront-sync.yml, lead-tracker.yml, weekly-report.yml, daily-checkin.yml created in .github/workflows/
 - **Pinterest Day 1 APPROVED** — Guilty Giver wall art. Caption approved by Grace 2026-05-25.
 - **Pinterest Developer App created 2026-05-27** — App name: "TQA Automated Agent for posting for Sanctuary Grace Ministry" · App ID: 1574878 · Trial access (Standard upgrade pending) · Redirect URI: https://transform24.github.io/THE-QUIET-AUTHORITY/ · Secret: `PINTEREST_ACCESS_TOKEN` in GitHub Secrets (Actions)
 - **privacy.html added** — `https://transform24.github.io/THE-QUIET-AUTHORITY/privacy.html` — required for Pinterest API registration and all future platform API apps.
 - **Approval gate** — all agents save drafts to output/ folder and push to agent-output/* branches. Grace reviews and merges. No agent posts to platforms without Grace seeing the draft first.
 - **Agents 07-10 built (Gemini Flash)** — pinterest_agent.py, instagram_agent.py, youtube_agent.py, substack_agent.py all live in `workflows/scripts/`. Use `gemini-2.0-flash` via `v1beta` REST API. No pip install — stdlib only. Quota detection built in. `GEMINI_API_KEY` in GitHub Secrets. Drafts save to `workflows/output/` for Grace review before posting.
-- **Instagram account created 2026-05-29** — Username: `_thequietauthority_` · Professional account · Link: sanctuarygrace.store · 2 posts live.
+- **Instagram account created 2026-05-29** — Username: `_thequietauthority_` · Professional account · Link: sanctuary-grace.com · 2 posts live.
 - **Substack publication exists** — Grace Turner · 2 subscribers · URL: 5apop2sotwm.substack.com · Needs rebrand to thequietauthority.substack.com · "The Art of Gratitude" series posted. Agent 10 generates daily devotions to `workflows/output/substack-drafts/` — Grace copies and publishes.
 - **Pinterest Day 1 manually posted 2026-05-29** — Guilty Giver wall art. Days 1-14 captions written and approved. Days 2, 4 need Canva build. Wall art days (1,3,5,7) upload directly from profile-A/B/C/D.png.
 - **Daily reference card saved to Drive** — "TQA Daily 15-Minute Morning Routine" — covers all 4 platforms, weekly rhythm, all product links.
