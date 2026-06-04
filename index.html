@@ -5,19 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Quiet Authority | Sanctuary Grace Ministry</title>
 <meta name="description" content="Discover what silence is teaching you. A sacred assessment for burned-out Christian women ready for breakthrough.">
-<link rel="canonical" href="https://transform24.github.io/THE-QUIET-AUTHORITY/">
+<link rel="canonical" href="https://https://sanctuary-grace.com/">
 <meta property="og:title" content="The Quiet Authority — What Is Silence Teaching You?">
 <meta property="og:description" content="8-question sacred assessment revealing your Silence Profile and breakthrough path.">
-<meta property="og:url" content="https://transform24.github.io/THE-QUIET-AUTHORITY/">
+<meta property="og:url" content="https://https://sanctuary-grace.com/">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://transform24.github.io/THE-QUIET-AUTHORITY/og-image.png">
+<meta property="og:image" content="https://https://sanctuary-grace.com/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:site_name" content="Sanctuary Grace Ministry">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="The Quiet Authority — What Is Silence Teaching You?">
 <meta name="twitter:description" content="A sacred 8-question assessment for burned-out Christian women. Discover your Silence Profile and the breakthrough path waiting in the stillness.">
-<meta name="twitter:image" content="https://transform24.github.io/THE-QUIET-AUTHORITY/og-image.png">
+<meta name="twitter:image" content="https://https://sanctuary-grace.com/og-image.png">
 <meta name="theme-color" content="#0d0d0d">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Jost:wght@200;300;400;500&family=Cinzel:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -845,7 +845,7 @@ body{top:0!important;}
 ══════════════════════════════════════ -->
 <div class="screen active" id="screen-landing">
   <div class="landing-banner">
-    <img class="banner-img" src="banner.png" alt="The Quiet Authority — Sanctuary Grace Ministry" data-pin-description="Burned out? Burned through? Discover what silence is teaching you. Take the free sacred assessment for Christian women — find your Silence Profile and your breakthrough path. ✦ Sanctuary Grace Ministry" data-pin-url="https://transform24.github.io/THE-QUIET-AUTHORITY/">
+    <img class="banner-img" src="banner.png" alt="The Quiet Authority — Sanctuary Grace Ministry" data-pin-description="Burned out? Burned through? Discover what silence is teaching you. Take the free sacred assessment for Christian women — find your Silence Profile and your breakthrough path. ✦ Sanctuary Grace Ministry" data-pin-url="https://https://sanctuary-grace.com/">
     <div class="banner-overlay"></div>
     <div class="landing-content">
       <div class="ministry-label">Sanctuary Grace Ministry</div>
@@ -1981,7 +1981,7 @@ function buildProfileText(p,days,name){
   days.forEach((d,i)=>{t+='Day '+(i+1)+': '+d.title+'\nPractice: '+d.practice+'\n'+d.scripture+'\n\n';});
   t+='━━━ JOURNAL PROMPT ━━━\n'+p.journal+'\n\n';
   t+='══════════════════════════════════════════\n';
-  t+='Sanctuary Grace Ministry\nhttps://transform24.github.io/THE-QUIET-AUTHORITY/';
+  t+='Sanctuary Grace Ministry\nhttps://https://sanctuary-grace.com/';
   return t;
 }
 
@@ -2912,7 +2912,7 @@ function downloadProfile(){
     else if(l.startsWith('══')||l===''||l.startsWith('THE QUIET')||l.startsWith('Beloved ')||l.startsWith('Your Profile')||l.startsWith('Date:')){/* skip — handled above */}
     else{out+='<p>'+l+'</p>';}
   });
-  out+='<div class="footer">Sanctuary Grace Ministry · <a href="https://transform24.github.io/THE-QUIET-AUTHORITY/" style="color:#C9A84C">transform24.github.io/THE-QUIET-AUTHORITY</a><br><span style="font-size:.65rem;color:#484840;">For spiritual encouragement &amp; informational purposes only. Not a substitute for professional mental health or medical advice. © 2026 Sanctuary Grace Ministry.</span></div>';
+  out+='<div class="footer">Sanctuary Grace Ministry · <a href="https://https://sanctuary-grace.com/" style="color:#C9A84C">https://sanctuary-grace.com</a><br><span style="font-size:.65rem;color:#484840;">For spiritual encouragement &amp; informational purposes only. Not a substitute for professional mental health or medical advice. © 2026 Sanctuary Grace Ministry.</span></div>';
   const blob=new Blob([html+out+'</body></html>'],{type:'text/html'});
   const url=URL.createObjectURL(blob);
   const a=document.createElement('a');
@@ -3066,7 +3066,7 @@ function downloadProfileCard(){
   ctx.fillStyle='rgba(201,168,76,.3)';ctx.fillRect(w/2-200,y,400,1);
   y+=18;
   ctx.fillStyle='#484840';ctx.font='16px Jost,sans-serif';
-  ctx.fillText('transform24.github.io/THE-QUIET-AUTHORITY',w/2,y);
+  ctx.fillText('https://sanctuary-grace.com',w/2,y);
 
   // open as viewable image in new tab — user can save from there
   const dataUrl=c.toDataURL('image/png');
@@ -3084,7 +3084,7 @@ function downloadProfileCard(){
 
 function shareProfile(){
   const p=PROFILES[currentProfile];
-  const text=(userName?userName+', discover ':'')+'"'+p.name+'" — '+p.tagline+'\n\nTake the free Silence Profile assessment → https://transform24.github.io/THE-QUIET-AUTHORITY/';
+  const text=(userName?userName+', discover ':'')+'"'+p.name+'" — '+p.tagline+'\n\nTake the free Silence Profile assessment → https://https://sanctuary-grace.com/';
   if(navigator.share){
     navigator.share({title:'My Silence Profile — The Quiet Authority',text:text}).catch(()=>{});
   } else {
