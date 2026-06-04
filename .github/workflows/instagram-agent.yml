@@ -28,10 +28,17 @@ jobs:
           IG_DEFAULT_IMAGE_URL: ${{ secrets.IG_DEFAULT_IMAGE_URL }}
         run: python workflows/scripts/instagram_agent.py
 
-      - name: Commit and push output
+      - name: Commit and push output to approval branch
         run: |
-          git config user.name "github-actions"
-          git config user.email "actions@github.com"
+          git config user.name "TQA Agent"
+          git config user.email "noreply@sanctuarygrace.com"
           git add workflows/output/
-          git diff --quiet && git diff --staged --quiet || git commit -m "Instagram post $(date +%Y-%m-%d)"
-          git push
+          if ! git diff --staged --quiet; then
+            BRANCH="agent-output/instagram-$(date +%Y-%m-%d)"
+            git checkout -b "$BRANCH"
+            git commit -m "Instagram Agent: $(date +%Y-%m-%d) post draft — ready for review"
+            git push -u origin "$BRANCH"
+            echo "Draft pushed to $BRANCH — Grace reviews and merges"
+          else
+            echo "No new content to commit"
+          fi

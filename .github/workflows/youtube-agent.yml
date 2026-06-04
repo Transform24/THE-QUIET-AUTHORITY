@@ -26,10 +26,17 @@ jobs:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
         run: python workflows/scripts/youtube_agent.py
 
-      - name: Commit and push output
+      - name: Commit and push output to approval branch
         run: |
-          git config user.name "github-actions"
-          git config user.email "actions@github.com"
+          git config user.name "TQA Agent"
+          git config user.email "noreply@sanctuarygrace.com"
           git add workflows/output/
-          git diff --quiet && git diff --staged --quiet || git commit -m "YouTube script week $(date +%V)"
-          git push
+          if ! git diff --staged --quiet; then
+            BRANCH="agent-output/youtube-$(date +%Y-%m-%d)"
+            git checkout -b "$BRANCH"
+            git commit -m "YouTube Agent: $(date +%Y-%m-%d) script draft — ready for review"
+            git push -u origin "$BRANCH"
+            echo "Draft pushed to $BRANCH — Grace reviews and merges"
+          else
+            echo "No new content to commit"
+          fi
