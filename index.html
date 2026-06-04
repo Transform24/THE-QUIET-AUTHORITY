@@ -1142,6 +1142,13 @@ body{top:0!important;}
         </div>
       </div>
 
+      <!-- TESTIMONY SUBMISSION -->
+      <div class="cos-block" style="border-top:1px solid var(--border2);padding-top:2rem;margin-top:2rem;">
+        <div class="cos-label">Share Your Transformation</div>
+        <p class="cowork-body" style="margin-bottom:1.5rem;font-size:0.95rem;">Your story is a doorway for other women. When you join the Circle, you become part of something bigger — your testimony becomes a light for those still finding their way out of the darkness.</p>
+        <button class="btn-cowork" onclick="openTestimonyForm()" style="width:100%;max-width:none;">Share My Story</button>
+      </div>
+
       <div class="cowork-verse">"She opens her hand to the poor and reaches out her hands to the needy."</div>
       <div class="cowork-ref">Proverbs 31:20 · The Woman Who Pours</div>
     </div>
@@ -3146,6 +3153,14 @@ function joinCircleWaitlist(){
     document.getElementById('cosWaitlistWrap').querySelector('.cos-waitlist-row').style.display='none';
     document.getElementById('cosWaitlistConfirm').style.display='block';
   });
+}
+
+function openTestimonyForm(){
+  const name=localStorage.getItem('tqa_profile')?JSON.parse(localStorage.getItem('tqa_profile')).name:'';
+  const profile=localStorage.getItem('tqa_profile')?JSON.parse(localStorage.getItem('tqa_profile')).profile:'';
+  const profileName=profile?PROFILES[profile]?.name:'';
+  const prefill=`?usp=pp_url&entry.1=${encodeURIComponent(name)}&entry.2=${encodeURIComponent(profileName)}`;
+  window.open('https://docs.google.com/forms/d/e/1FAIpQLSdrY_BvP-z9-YB-4J0g9_qZq0RVZfx_JlB4e9aLpX5C8Zj9mA/viewform'+prefill,'_blank','width=800,height=600');
 }
 
 function googleTranslateElementInit(){
