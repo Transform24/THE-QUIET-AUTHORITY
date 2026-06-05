@@ -27,7 +27,7 @@ The Guilty Giver is one of four spiritual profiles in The Quiet Authority — a 
 
 You were not made to pour from empty. You were made to receive.
 
-https://sanctuarygrace.store
+https://sanctuary-grace.com/
 
 #ChristianWomen #SpiritualBurnout #FaithAndWellness #SanctuaryGrace #ChristianMom"""
     },
@@ -45,7 +45,7 @@ If you have been waiting until things settle down to finally rest — the invita
 
 The Quiet Authority was created for women who are ready to stop waiting and begin returning to themselves.
 
-https://sanctuarygrace.store
+https://sanctuary-grace.com/
 
 #SpiritualRest #QuietTime #ChristianWomen #FaithJourney #SacredSpace"""
     },
@@ -61,7 +61,7 @@ But survival was never meant to be a permanent address.
 
 The Quiet Authority is a free spiritual profile assessment for women who are ready to move from surviving into something deeper. If this is you, the door is open.
 
-https://sanctuarygrace.store
+https://sanctuary-grace.com/
 
 #ChristianWomen #SpiritualBurnout #HopeForWomen #FaithAndWellness #SanctuaryGrace"""
     },
@@ -79,7 +79,7 @@ This is not a call to perform rest correctly. It is an invitation to stop perfor
 
 If you are weary today, this word is for you. You do not have to earn what He has already offered.
 
-https://sanctuarygrace.store
+https://sanctuary-grace.com/
 
 #ScriptureForWomen #ChristianWomen #FaithJourney #QuietTime #DailyDevotion"""
     },
@@ -97,7 +97,7 @@ But God is not measuring your productivity. He is calling you by name — not by
 
 The Quiet Authority is a free spiritual assessment for women who are ready to rest without guilt. If you recognize yourself here, begin at the link below.
 
-https://sanctuarygrace.store
+https://sanctuary-grace.com/
 
 #ChristianWomen #SpiritualBurnout #FaithAndWellness #SanctuaryGrace #ScriptureForWomen"""
     },
@@ -115,7 +115,7 @@ Five days of scripture, reflection, and invitation. Designed for the morning, be
 
 If you are ready to begin returning to yourself, this is a gentle place to start.
 
-https://sanctuarygrace.store
+https://sanctuary-grace.com/
 
 #DailyDevotion #ChristianWomen #SacredSpace #FaithJourney #SpiritualRest"""
     },
@@ -133,7 +133,7 @@ She has not been.
 
 The Quiet Authority is a free spiritual profile assessment for women who are ready to find their way back to themselves and to the One who has never stopped calling their name.
 
-https://sanctuarygrace.store
+https://sanctuary-grace.com/
 
 #ChristianWomen #FaithJourney #HopeForWomen #SpiritualRest #SanctuaryGrace"""
     },
@@ -154,7 +154,7 @@ The Quiet Authority is a free 8-question spiritual assessment that identifies yo
 
 Begin at the link below. It takes 8 minutes. What it opens may take your breath away.
 
-https://sanctuarygrace.store
+https://sanctuary-grace.com/
 
 #ChristianWomen #SpiritualBurnout #FaithAndWellness #SpiritualRest #HopeForWomen"""
     },
@@ -170,7 +170,7 @@ The Guilty Giver believes that receiving is selfish. That rest is earned. That h
 
 If this is your story, the assessment at The Quiet Authority was built for this moment.
 
-https://sanctuarygrace.store
+https://sanctuary-grace.com/
 
 #ScriptureForWomen #ChristianWomen #SpiritualBurnout #FaithAndWellness #ChristianMom"""
     },
@@ -186,7 +186,7 @@ This is not a self-improvement plan. It is an invitation to be renewed from the 
 
 Yours for $4.99. A gentle companion for the morning before everything begins.
 
-https://sanctuarygrace.store
+https://sanctuary-grace.com/
 
 #DailyDevotion #ChristianWomen #SacredSpace #SpiritualRest #FaithJourney"""
     },
@@ -202,7 +202,7 @@ The Guilty Giver is one of four profiles in The Quiet Authority — a free spiri
 
 If you have been confusing exhaustion with consecration, this is the invitation you have been waiting for.
 
-https://sanctuarygrace.store
+https://sanctuary-grace.com/
 
 #ChristianWomen #SpiritualRest #FaithAndWellness #SanctuaryGrace #HopeForWomen"""
     },
@@ -218,7 +218,7 @@ The Quiet Authority was created for the woman who knows something is wrong but c
 
 You do not have to figure this out alone. Begin at the link below. It costs nothing but a few minutes of honesty.
 
-https://sanctuarygrace.store
+https://sanctuary-grace.com/
 
 #ChristianWomen #SpiritualBurnout #FaithAndWellness #SanctuaryGrace #QuietTime"""
     },
@@ -234,7 +234,7 @@ Rest is not a reward for productivity. It is a design feature of the human soul.
 
 If any of this is familiar, The Quiet Authority was built for this moment. A free assessment, a gentle path, an invitation to return.
 
-https://sanctuarygrace.store
+https://sanctuary-grace.com/
 
 #ChristianWomen #SpiritualRest #HopeForWomen #FaithJourney #DailyDevotion"""
     },
@@ -254,7 +254,7 @@ You do not have to be good at silence to begin. You only have to be willing.
 
 Join us at the link below. The door is open, and the pace is yours.
 
-https://sanctuarygrace.store
+https://sanctuary-grace.com/
 
 #SacredSpace #ChristianWomen #QuietTime #SpiritualRest #FaithAndWellness"""
     },
@@ -274,7 +274,7 @@ You already know something is off. You have known it for a while. The assessment
 
 Begin at the link below. It is free. It is gentle. And it may be the most honest eight minutes you have spent in a long time.
 
-https://sanctuarygrace.store
+https://sanctuary-grace.com/
 
 #ChristianWomen #SpiritualBurnout #FaithAndWellness #HopeForWomen #SanctuaryGrace"""
     },
@@ -292,7 +292,7 @@ Five days. One scripture per day. One honest reflection. One invitation to recei
 
 Yours for $4.99. A companion for the morning before the day begins.
 
-https://sanctuarygrace.store
+https://sanctuary-grace.com/
 
 #DailyDevotion #ChristianWomen #SpiritualRest #FaithJourney #SacredSpace"""
     },
@@ -310,7 +310,7 @@ But the Father is not waiting for your next act of service. He is waiting for yo
 
 The Quiet Authority is a free spiritual assessment that identifies your pattern and opens a path toward something gentler. Begin at the link below.
 
-https://sanctuarygrace.store
+https://sanctuary-grace.com/
 
 #ChristianWomen #SpiritualBurnout #ChristianMom #FaithAndWellness #HopeForWomen"""
     },
@@ -328,7 +328,7 @@ If this is your story, you are not alone. The Quiet Authority was created for th
 
 The assessment is free. The path it opens is real. Begin at the link below.
 
-https://sanctuarygrace.store
+https://sanctuary-grace.com/
 
 #ChristianWomen #SpiritualRest #FaithJourney #SanctuaryGrace #DailyDevotion"""
     },
@@ -346,7 +346,7 @@ This is not a productivity system. It is not a 30-day transformation plan. It is
 
 Download it free at Sanctuary Grace. No email required. No strings attached. Just an offering.
 
-https://sanctuarygrace.store
+https://sanctuary-grace.com/
 
 #ChristianWomen #SpiritualRest #FaithAndWellness #SanctuaryGrace #HopeForWomen"""
     },
@@ -364,7 +364,7 @@ The woman who is tired of being tired is not beyond help. She is right at the be
 
 The Quiet Authority is a free spiritual profile assessment created for this exact moment. Eight questions. A result that meets you where you are. A path designed for where you need to go.
 
-https://sanctuarygrace.store
+https://sanctuary-grace.com/
 
 #ChristianWomen #SpiritualBurnout #HopeForWomen #FaithJourney #ScriptureForWomen"""
     },
@@ -380,7 +380,7 @@ The answer is yes. It has always been yes.
 
 This devotional is a gentle guide back to the thread of purpose that has been waiting for you all along. Yours for $4.99.
 
-https://sanctuarygrace.store
+https://sanctuary-grace.com/
 
 #DailyDevotion #ChristianWomen #FaithJourney #SacredSpace #SpiritualRest"""
     },
@@ -394,7 +394,7 @@ But faithfulness was never meant to cost you yourself. The Guilty Giver is one o
 
 Free. Eight minutes. A path designed for exactly where you are.
 
-https://sanctuarygrace.store
+https://sanctuary-grace.com/
 
 #ChristianWomen #SpiritualRest #SanctuaryGrace #FaithAndWellness #HopeForWomen"""
     },
@@ -408,7 +408,7 @@ But survival was never meant to be a permanent address.
 
 The Depleted Survivor is one of four spiritual profiles in The Quiet Authority. If you recognize yourself in this, the door is open. Free assessment. A gentle path forward.
 
-https://sanctuarygrace.store
+https://sanctuary-grace.com/
 
 #ChristianWomen #SpiritualBurnout #HopeForWomen #FaithJourney #SanctuaryGrace"""
     },
@@ -422,7 +422,7 @@ The Striving Achiever has confused doing with being. And no amount of accomplish
 
 The Quiet Authority is a free spiritual assessment for women who are ready to rest without guilt. Begin at the link below.
 
-https://sanctuarygrace.store
+https://sanctuary-grace.com/
 
 #ChristianWomen #SpiritualRest #FaithAndWellness #SacredSpace #SanctuaryGrace"""
     },
@@ -440,7 +440,7 @@ The Quiet Authority is an invitation to that same work. A free spiritual profile
 
 If any part of this story sounds familiar, the door is open. Begin at the link below.
 
-https://sanctuarygrace.store
+https://sanctuary-grace.com/
 
 #ChristianWomen #SpiritualBurnout #FaithAndWellness #SanctuaryGrace #HopeForWomen"""
     },
@@ -456,7 +456,7 @@ You cannot love from empty. You cannot serve from a place of hidden resentment a
 
 Begin the free assessment at The Quiet Authority. Eight questions. A path designed for the woman who has been giving herself away.
 
-https://sanctuarygrace.store
+https://sanctuary-grace.com/
 
 #ChristianWomen #SpiritualRest #ChristianMom #FaithJourney #SanctuaryGrace"""
     },
@@ -475,7 +475,7 @@ Week Four calls you back to purpose.
 
 All four weeks together for $19.96. A companion for the season ahead, written in the voice of a minister who has walked this path and knows it is possible to come through.
 
-https://sanctuarygrace.store
+https://sanctuary-grace.com/
 
 #DailyDevotion #ChristianWomen #FaithJourney #SpiritualRest #SanctuaryGrace"""
     },
@@ -493,7 +493,7 @@ The waitlist is open. There is no pressure and no deadline. Only an open door fo
 
 Add your name at the link below. The circle is forming.
 
-https://sanctuarygrace.store
+https://sanctuary-grace.com/
 
 #ChristianWomen #SacredSpace #SpiritualRest #FaithAndWellness #SanctuaryGrace"""
     },
@@ -511,7 +511,7 @@ If you have been running, this word is a hand on your shoulder. A quiet voice. A
 
 Lie down. The Shepherd is here.
 
-https://sanctuarygrace.store
+https://sanctuary-grace.com/
 
 #ScriptureForWomen #ChristianWomen #QuietTime #DailyDevotion #FaithJourney"""
     },
@@ -527,7 +527,7 @@ Month Two begins soon. The same voice. The same invitation. Deeper into the work
 
 If The Quiet Authority has been part of your morning this month, thank you for being here. The door remains open. The work continues.
 
-https://sanctuarygrace.store
+https://sanctuary-grace.com/
 
 #ChristianWomen #SpiritualRest #FaithAndWellness #SanctuaryGrace #FaithJourney"""
     },
@@ -568,7 +568,7 @@ if PINTEREST_ACCESS_TOKEN:
                 "media_source": {"source_type": "image_url", "url": image_url},
                 "title": pin_data['pin'][:100],
                 "description": caption[:500],
-                "link": "https://sanctuarygrace.store"
+                "link": "https://sanctuary-grace.com/"
             }).encode('utf-8')
             try:
                 post_req = urllib.request.Request(

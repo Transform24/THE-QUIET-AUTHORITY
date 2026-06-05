@@ -15,7 +15,7 @@ VOICE = """BRAND VOICE: Sacred, tender, prophetic. Minister not marketer.
 Audience: Burned-out Christian women, 30-55.
 Ministry: Sanctuary Grace Ministry.
 FORBIDDEN: Hustle language, jargon, casual slang, emojis, exclamation marks.
-Every piece closes with: Come as you are. https://sanctuarygrace.store"""
+Every piece closes with: Come as you are. https://sanctuary-grace.com/"""
 
 if mode == 'sunday':
     prompt = f"""{VOICE}
@@ -34,7 +34,7 @@ Structure:
 - Central teaching (3-4 paragraphs, one scripture written in full with reference)
 - Reflection questions (2-3, gentle)
 - Closing blessing
-- Final line: Come as you are. https://sanctuarygrace.store
+- Final line: Come as you are. https://sanctuary-grace.com/
 
 No markdown symbols. No emojis. No exclamation marks."""
 else:
@@ -52,7 +52,7 @@ Structure:
 - Scripture verse written in full (Book Chapter:Verse)
 - Reflection (2-3 paragraphs, first-person, tender)
 - One invitation (gentle offering)
-- Final line: Come as you are. https://sanctuarygrace.store
+- Final line: Come as you are. https://sanctuary-grace.com/
 
 No markdown symbols. No emojis."""
 

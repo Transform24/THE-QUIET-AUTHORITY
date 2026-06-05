@@ -47,7 +47,7 @@ Voice: Sacred, tender, prophetic. Minister — never marketer.
 Audience: Burned-out Christian women, 30-55.
 FORBIDDEN: Hustle language, emojis in copy, exclamation marks, urgency language.
 Ministry: Sanctuary Grace Ministry.
-Every caption ends with: https://sanctuarygrace.store
+Every caption ends with: https://sanctuary-grace.com/
 Max caption: 150 words.
 """
 
@@ -57,19 +57,19 @@ INSTRUCTIONS = {
     "carousel": """Write a PROFILE REVEAL CAROUSEL (5-7 slides).
 Each slide: 1-2 sentences, sacred and tender. Each ends on a turn — reader wants to swipe.
 Topic: one of the 4 profiles (The Striving Achiever, The Depleted Survivor, The Guilty Giver, or The Lost Wanderer).
-Final slide: soft CTA to https://sanctuarygrace.store
+Final slide: soft CTA to https://sanctuary-grace.com/
 
 Format:
 SLIDE 1: [text]
 ...
-CAPTION: [max 150 words, ends with https://sanctuarygrace.store]
+CAPTION: [max 150 words, ends with https://sanctuary-grace.com/]
 HASHTAGS: [5-8 from pool]
 CANVA BRIEF: [1080x1080px, black bg, Cinzel ALL CAPS, terra text #C1593C, per slide]""",
 
     "scripture": """Write a SCRIPTURE + REFLECTION post.
 Choose one scripture about spiritual exhaustion, rest, or identity in Christ. Write verse in full.
 Reflection: 2 paragraphs, first-person, tender, prophetic.
-Close with: https://sanctuarygrace.store
+Close with: https://sanctuary-grace.com/
 
 Format:
 SCRIPTURE: [Book Chapter:Verse — full text]
@@ -82,7 +82,7 @@ Hook (3 sec): One line that stops the scroll. Sacred, not clickbait.
 Beat 1 (10 sec): One true, tender statement.
 Beat 2 (10 sec): One true, tender statement.
 Beat 3 (10 sec): One true, tender statement.
-CTA (5 sec): soft close to https://sanctuarygrace.store
+CTA (5 sec): soft close to https://sanctuary-grace.com/
 
 Format:
 HOOK: [text]
@@ -90,23 +90,23 @@ BEAT 1: [text]
 BEAT 2: [text]
 BEAT 3: [text]
 CTA: [close]
-CAPTION: [max 150 words, ends with https://sanctuarygrace.store]
+CAPTION: [max 150 words, ends with https://sanctuary-grace.com/]
 HASHTAGS: [5-8 from pool]
 THUMBNAIL BRIEF: [Canva cover brief]""",
 
     "devotional": """Write a DEVOTIONAL PREVIEW post.
 One scripture. 2-3 sentences of teaching. Soft invitation.
-CTA: "Full devotional at https://sanctuarygrace.store"
+CTA: "Full devotional at https://sanctuary-grace.com/"
 
 Format:
-CAPTION: [max 150 words, ends with https://sanctuarygrace.store]
+CAPTION: [max 150 words, ends with https://sanctuary-grace.com/]
 HASHTAGS: [5-8 from pool]
 CANVA BRIEF: [devotional cover image brief]""",
 
     "silence": """Write a CIRCLE OF SILENCE invitation.
 Invite the reader into 15 minutes with God. Tender, unhurried.
 Link to: https://youtube.com/@TheQuietAuthority-f1z
-Also: https://sanctuarygrace.store
+Also: https://sanctuary-grace.com/
 
 Format:
 CAPTION: [max 150 words, links to YouTube + sanctuarygrace.store]

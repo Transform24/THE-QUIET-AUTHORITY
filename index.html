@@ -5,19 +5,19 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Quiet Authority | Sanctuary Grace Ministry</title>
 <meta name="description" content="Discover what silence is teaching you. A sacred assessment for burned-out Christian women ready for breakthrough.">
-<link rel="canonical" href="https://https://sanctuary-grace.com/">
+<link rel="canonical" href="https://sanctuary-grace.com/">
 <meta property="og:title" content="The Quiet Authority — What Is Silence Teaching You?">
 <meta property="og:description" content="8-question sacred assessment revealing your Silence Profile and breakthrough path.">
-<meta property="og:url" content="https://https://sanctuary-grace.com/">
+<meta property="og:url" content="https://sanctuary-grace.com/">
 <meta property="og:type" content="website">
-<meta property="og:image" content="https://https://sanctuary-grace.com/og-image.png">
+<meta property="og:image" content="https://sanctuary-grace.com/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:site_name" content="Sanctuary Grace Ministry">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="The Quiet Authority — What Is Silence Teaching You?">
 <meta name="twitter:description" content="A sacred 8-question assessment for burned-out Christian women. Discover your Silence Profile and the breakthrough path waiting in the stillness.">
-<meta name="twitter:image" content="https://https://sanctuary-grace.com/og-image.png">
+<meta name="twitter:image" content="https://sanctuary-grace.com/og-image.png">
 <meta name="theme-color" content="#0d0d0d">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Jost:wght@200;300;400;500&family=Cinzel:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -793,6 +793,7 @@ body{top:0!important;}
   <div style="display:flex;align-items:center;gap:16px;">
     <span id="navProfileLabel"></span>
     <div class="nav-links">
+      <button class="nav-link" id="navContinue" style="display:none;color:var(--gold);border:1px solid var(--gold-dim);padding:6px 16px;" onclick="resumeProfile()">Continue My Journey →</button>
       <button class="nav-link" style="font-size:0.62rem;color:var(--text-muted);opacity:0.7;border:none;background:none;" onclick="startOver()">Start Over</button>
     </div>
   </div>
@@ -845,7 +846,7 @@ body{top:0!important;}
 ══════════════════════════════════════ -->
 <div class="screen active" id="screen-landing">
   <div class="landing-banner">
-    <img class="banner-img" src="banner.png" alt="The Quiet Authority — Sanctuary Grace Ministry" data-pin-description="Burned out? Burned through? Discover what silence is teaching you. Take the free sacred assessment for Christian women — find your Silence Profile and your breakthrough path. ✦ Sanctuary Grace Ministry" data-pin-url="https://https://sanctuary-grace.com/">
+    <img class="banner-img" src="banner.png" alt="The Quiet Authority — Sanctuary Grace Ministry" data-pin-description="Burned out? Burned through? Discover what silence is teaching you. Take the free sacred assessment for Christian women — find your Silence Profile and your breakthrough path. ✦ Sanctuary Grace Ministry" data-pin-url="https://sanctuary-grace.com/">
     <div class="banner-overlay"></div>
     <div class="landing-content">
       <div class="ministry-label">Sanctuary Grace Ministry</div>
@@ -1134,11 +1135,18 @@ body{top:0!important;}
         <div class="cos-how">
           <div class="cos-how-title">How It Works</div>
           <div class="cos-steps">
-            <div class="cos-step"><span class="cos-step-num">1</span><span class="cos-step-body">Reserve your place at <span style="color:var(--cream);cursor:pointer;" onclick="goShop('https://beacons.ai/sanctuarygrace')">beacons.ai/sanctuarygrace</span></span></div>
+            <div class="cos-step"><span class="cos-step-num">1</span><span class="cos-step-body">Reserve your place at <span style="color:var(--cream);cursor:pointer;" onclick="goShop('https://sanctuary-grace.com/')">sanctuary-grace.com</span></span></div>
             <div class="cos-step"><span class="cos-step-num">2</span><span class="cos-step-body">Receive your Zoom link by email</span></div>
             <div class="cos-step"><span class="cos-step-num">3</span><span class="cos-step-body">Show up. Cameras on. No words required.</span></div>
           </div>
         </div>
+      </div>
+
+      <!-- TESTIMONY SUBMISSION -->
+      <div class="cos-block" style="border-top:1px solid var(--border2);padding-top:2rem;margin-top:2rem;">
+        <div class="cos-label">Share Your Transformation</div>
+        <p class="cowork-body" style="margin-bottom:1.5rem;font-size:0.95rem;">Your story is a doorway for other women. When you join the Circle, you become part of something bigger — your testimony becomes a light for those still finding their way out of the darkness.</p>
+        <button class="btn-cowork" onclick="openTestimonyForm()" style="width:100%;max-width:none;">Share My Story</button>
       </div>
 
       <div class="cowork-verse">"She opens her hand to the poor and reaches out her hands to the needy."</div>
@@ -1354,7 +1362,7 @@ body{top:0!important;}
       <div class="sacred-grid" id="sacredGrid"></div>
       <div class="sacred-cta">
         <p style="font-size:0.75rem;color:var(--text-muted);margin-bottom:16px;line-height:1.7;">Browse every collection — candles, journals, comfort, sips and more.</p>
-        <a class="sacred-store-link" href="https://beacons.ai/sanctuarygrace" target="_blank" rel="noopener noreferrer">Shop the Full Sanctuary Collection →</a>
+        <a class="sacred-store-link" href="https://sanctuary-grace.com/" target="_blank" rel="noopener noreferrer">Shop the Full Sanctuary Collection →</a>
       </div>
     </div>
   </div>
@@ -1412,7 +1420,7 @@ body{top:0!important;}
           <a href="https://www.pinterest.com/sanctuarygracefaith/" target="_blank" rel="noopener noreferrer" style="font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color 0.3s;font-family:'Jost',sans-serif;font-weight:300;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">Pinterest</a>
           <a href="https://youtube.com/@TheQuietAuthority-f1z" target="_blank" rel="noopener noreferrer" style="font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color 0.3s;font-family:'Jost',sans-serif;font-weight:300;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">YouTube</a>
           <a href="https://substack.com/@sapop2sotwm" target="_blank" rel="noopener noreferrer" style="font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color 0.3s;font-family:'Jost',sans-serif;font-weight:300;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-muted)'">Substack</a>
-          <a href="https://beacons.ai/sanctuarygrace" target="_blank" rel="noopener noreferrer" style="font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold-dim);text-decoration:none;transition:color 0.3s;font-family:'Jost',sans-serif;font-weight:300;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--gold-dim)'">Sanctuary Community →</a>
+          <a href="https://sanctuary-grace.com/" target="_blank" rel="noopener noreferrer" style="font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold-dim);text-decoration:none;transition:color 0.3s;font-family:'Jost',sans-serif;font-weight:300;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--gold-dim)'">Sanctuary Community →</a>
         </div>
       </div>
     </div>
@@ -1440,7 +1448,7 @@ body{top:0!important;}
           <p class="serif" style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.1rem;color:var(--cream);line-height:1.7;">You are on the list, beloved.<br><span style="font-size:0.9rem;color:var(--text-dim);">When the first door opens — you will be among the first to enter.</span></p>
         </div>
         <div style="margin-top:24px;border-top:1px solid var(--border);padding-top:20px;">
-          <a href="https://beacons.ai/sanctuarygrace" target="_blank" class="tier-btn-free">Begin with What Is Already Yours</a>
+          <a href="https://sanctuary-grace.com/" target="_blank" class="tier-btn-free">Begin with What Is Already Yours</a>
         </div>
       </div>
       <div style="margin-top:2rem">
@@ -1457,8 +1465,8 @@ body{top:0!important;}
       <a href="https://www.pinterest.com/sanctuarygracefaith/" target="_blank">Pinterest</a>
       <a href="https://youtube.com/@TheQuietAuthority-f1z" target="_blank">YouTube</a>
       <a href="https://substack.com/@sapop2sotwm" target="_blank">Substack</a>
-      <a href="https://beacons.ai/sanctuarygrace" target="_blank">Community</a>
-      <a href="https://beacons.ai/sanctuarygrace" target="_blank">Circle of Silence</a>
+      <a href="https://sanctuary-grace.com/" target="_blank">Community</a>
+      <a href="https://sanctuary-grace.com/" target="_blank">Circle of Silence</a>
     </div>
   </footer>
 
@@ -1824,13 +1832,16 @@ function showScreen(id){
     if(db)db.classList.add('visible');
     setActiveTab('dash');
   } else if(id==='screen-landing'){
-    // show return bar if a profile is saved
+    // show return bar & nav if a profile is saved
     try{
       const saved=JSON.parse(localStorage.getItem('tqa_profile')||'null');
       if(saved&&saved.profile&&PROFILES[saved.profile]){
         const prbName=document.getElementById('prbName');
         if(prbName)prbName.textContent=PROFILES[saved.profile].name;
         if(prb)prb.classList.add('visible');
+        const navContinue=document.getElementById('navContinue');
+        if(navContinue)navContinue.style.display='block';
+        if(nav)nav.classList.add('visible');
       }
     }catch(e){}
   }
@@ -1981,7 +1992,7 @@ function buildProfileText(p,days,name){
   days.forEach((d,i)=>{t+='Day '+(i+1)+': '+d.title+'\nPractice: '+d.practice+'\n'+d.scripture+'\n\n';});
   t+='━━━ JOURNAL PROMPT ━━━\n'+p.journal+'\n\n';
   t+='══════════════════════════════════════════\n';
-  t+='Sanctuary Grace Ministry\nhttps://https://sanctuary-grace.com/';
+  t+='Sanctuary Grace Ministry\nhttps://sanctuary-grace.com/';
   return t;
 }
 
@@ -2912,7 +2923,7 @@ function downloadProfile(){
     else if(l.startsWith('══')||l===''||l.startsWith('THE QUIET')||l.startsWith('Beloved ')||l.startsWith('Your Profile')||l.startsWith('Date:')){/* skip — handled above */}
     else{out+='<p>'+l+'</p>';}
   });
-  out+='<div class="footer">Sanctuary Grace Ministry · <a href="https://https://sanctuary-grace.com/" style="color:#C9A84C">https://sanctuary-grace.com</a><br><span style="font-size:.65rem;color:#484840;">For spiritual encouragement &amp; informational purposes only. Not a substitute for professional mental health or medical advice. © 2026 Sanctuary Grace Ministry.</span></div>';
+  out+='<div class="footer">Sanctuary Grace Ministry · <a href="https://sanctuary-grace.com/" style="color:#C9A84C">https://sanctuary-grace.com</a><br><span style="font-size:.65rem;color:#484840;">For spiritual encouragement &amp; informational purposes only. Not a substitute for professional mental health or medical advice. © 2026 Sanctuary Grace Ministry.</span></div>';
   const blob=new Blob([html+out+'</body></html>'],{type:'text/html'});
   const url=URL.createObjectURL(blob);
   const a=document.createElement('a');
@@ -3084,7 +3095,7 @@ function downloadProfileCard(){
 
 function shareProfile(){
   const p=PROFILES[currentProfile];
-  const text=(userName?userName+', discover ':'')+'"'+p.name+'" — '+p.tagline+'\n\nTake the free Silence Profile assessment → https://https://sanctuary-grace.com/';
+  const text=(userName?userName+', discover ':'')+'"'+p.name+'" — '+p.tagline+'\n\nTake the free Silence Profile assessment → https://sanctuary-grace.com/';
   if(navigator.share){
     navigator.share({title:'My Silence Profile — The Quiet Authority',text:text}).catch(()=>{});
   } else {
@@ -3142,6 +3153,14 @@ function joinCircleWaitlist(){
     document.getElementById('cosWaitlistWrap').querySelector('.cos-waitlist-row').style.display='none';
     document.getElementById('cosWaitlistConfirm').style.display='block';
   });
+}
+
+function openTestimonyForm(){
+  const name=localStorage.getItem('tqa_profile')?JSON.parse(localStorage.getItem('tqa_profile')).name:'';
+  const profile=localStorage.getItem('tqa_profile')?JSON.parse(localStorage.getItem('tqa_profile')).profile:'';
+  const profileName=profile?PROFILES[profile]?.name:'';
+  const prefill=`?usp=pp_url&entry.1=${encodeURIComponent(name)}&entry.2=${encodeURIComponent(profileName)}`;
+  window.open('https://docs.google.com/forms/d/e/1COktWrXRfPZXZ90R6qrfOy2ZWIM63CciJLYrsfOUAg4/viewform'+prefill,'_blank','width=800,height=600');
 }
 
 function googleTranslateElementInit(){

@@ -2,7 +2,7 @@ name: Substack Agent — Daily Devotion
 
 on:
   schedule:
-    - cron: '0 10 * * *'
+    - cron: '0 11 * * *'  # 6am PT = 11am UTC
   workflow_dispatch:
 
 jobs:
@@ -25,12 +25,19 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           SUBSTACK_API_KEY: ${{ secrets.SUBSTACK_API_KEY }}
           SUBSTACK_PUB_URL: ${{ secrets.SUBSTACK_PUB_URL }}
-        run: python workflows/scripts/substack_agent.py
+        run: python3 workflows/scripts/substack_agent.py
 
-      - name: Commit and push output
+      - name: Commit and push output to approval branch
         run: |
-          git config user.name "github-actions"
-          git config user.email "actions@github.com"
+          git config user.name "TQA Agent"
+          git config user.email "noreply@sanctuarygrace.com"
           git add workflows/output/
-          git diff --quiet && git diff --staged --quiet || git commit -m "Substack devotion $(date +%Y-%m-%d)"
-          git push
+          if ! git diff --staged --quiet; then
+            BRANCH="agent-output/substack-$(date +%Y-%m-%d)"
+            git checkout -b "$BRANCH"
+            git commit -m "Substack Agent: $(date +%Y-%m-%d) devotion draft — ready for review"
+            git push -u origin "$BRANCH"
+            echo "Draft pushed to $BRANCH — Grace reviews and publishes"
+          else
+            echo "No new content to commit"
+          fi
