@@ -1,8 +1,8 @@
-name: YouTube Agent — Weekly Video
+name: YouTube Agent — Weekly Video Script
 
 on:
   schedule:
-    - cron: '0 9 * * 1'
+    - cron: '0 9 * * 1'  # Monday 9am UTC
   workflow_dispatch:
 
 jobs:
@@ -23,8 +23,7 @@ jobs:
       - name: Run YouTube Agent
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
-        run: python workflows/scripts/youtube_agent.py
+        run: python3 workflows/scripts/youtube_agent.py
 
       - name: Commit and push output to approval branch
         run: |
@@ -34,9 +33,9 @@ jobs:
           if ! git diff --staged --quiet; then
             BRANCH="agent-output/youtube-$(date +%Y-%m-%d)"
             git checkout -b "$BRANCH"
-            git commit -m "YouTube Agent: $(date +%Y-%m-%d) script draft — ready for review"
+            git commit -m "YouTube Agent: $(date +%Y-%m-%d) script draft — ready for recording"
             git push -u origin "$BRANCH"
-            echo "Draft pushed to $BRANCH — Grace reviews and merges"
+            echo "Draft pushed to $BRANCH — Grace reviews and records"
           else
             echo "No new content to commit"
           fi
