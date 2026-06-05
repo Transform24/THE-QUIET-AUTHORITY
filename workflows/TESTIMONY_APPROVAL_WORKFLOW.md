@@ -25,7 +25,8 @@
 
 ## STEP 2: GRACE'S REVIEW (Weekly, Fridays)
 
-**Where:** `Testimonies` sheet in TQA Drive folder  
+**Where:** Google Sheet `19Not5fUa4dO-2Vmt6k5lmIo7tLnxUrDP1ZarlsuEEe8` (TQA Testimonies - Responses)  
+**Access:** https://docs.google.com/spreadsheets/d/19Not5fUa4dO-2Vmt6k5lmIo7tLnxUrDP1ZarlsuEEe8/edit  
 **Columns to assess:**
 | Column | Criteria | Action |
 |--------|----------|--------|
