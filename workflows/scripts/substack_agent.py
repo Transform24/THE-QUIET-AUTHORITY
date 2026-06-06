@@ -106,45 +106,13 @@ if not paragraphs:
 
 body_doc = json.dumps({"type": "doc", "content": paragraphs})
 
-post_status = 'DRAFT'
+post_status = 'DRAFT — Awaiting Grace approval'
 post_url = ''
 
-if SUBSTACK_SESSION_COOKIE:
-    payload = json.dumps({
-        "draft_title": title,
-        "draft_subtitle": subtitle,
-        "draft_body": body_doc,
-        "type": "newsletter",
-        "audience": "everyone",
-        "draft_section_id": None,
-        "section_chosen": False
-    }).encode('utf-8')
-    try:
-        post_req = urllib.request.Request(
-            f'https://{SUBSTACK_PUBLICATION_URL}/api/v1/posts',
-            data=payload,
-            headers={
-                'Content-Type': 'application/json',
-                'Cookie': f'substack-session={SUBSTACK_SESSION_COOKIE}'
-            },
-            method='POST'
-        )
-        with urllib.request.urlopen(post_req, timeout=30) as resp:
-            result = json.loads(resp.read())
-            post_id = result.get('id')
-            post_url = result.get('canonical_url', '')
-            post_status = f'DRAFT IN SUBSTACK — id: {post_id}'
-            print(f"Substack draft created: {post_id}")
-    except urllib.error.HTTPError as e:
-        error_body = e.read().decode()
-        post_status = f'SUBSTACK API ERROR {e.code}: {error_body[:300]}'
-        print(f"Substack error {e.code}: {error_body}")
-    except Exception as e:
-        post_status = f'ERROR: {str(e)[:200]}'
-else:
-    post_status = 'DRAFT SAVED — add SUBSTACK_SESSION_COOKIE to GitHub Secrets'
+# Approval gate: don't post directly, save for Grace to review
+# Deploy script will handle posting from substack-approved/ folder
 
-out_dir = pathlib.Path('workflows/output/substack-drafts')
+out_dir = pathlib.Path('workflows/output/substack-pending')
 out_dir.mkdir(parents=True, exist_ok=True)
 (out_dir / f'{date_str}.md').write_text(
     f'---\ndate: {date_str}\nmode: {mode}\nstatus: {post_status}\nurl: {post_url or "pending"}\n---\n\n{content}\n'

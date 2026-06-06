@@ -39,13 +39,8 @@ jobs:
         env:
           SUBSTACK_API_KEY: ${{ secrets.SUBSTACK_API_KEY }}
           SUBSTACK_PUBLICATION_ID: ${{ secrets.SUBSTACK_PUBLICATION_ID }}
-        run: |
-          # TODO: Create substack-deploy.py to:
-          # 1. Read devotion JSON from workflows/output/substack-approved/
-          # 2. Publish to Substack via API or email import
-          # 3. Log to workflows/substack-log.md
-          # 4. Archive to workflows/library/substack-headers/
-          echo "Substack deployment script coming next"
+          SUBSTACK_PUBLICATION_URL: ${{ secrets.SUBSTACK_PUBLICATION_URL }}
+        run: python3 workflows/scripts/substack-deploy.py
 
       - name: Commit deployment log
         run: |

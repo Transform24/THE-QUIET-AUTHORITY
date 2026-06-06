@@ -40,13 +40,7 @@ jobs:
         env:
           INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
           INSTAGRAM_USER_ID: ${{ secrets.INSTAGRAM_USER_ID }}
-        run: |
-          # TODO: Create instagram-deploy.py to:
-          # 1. Read caption + Reel MP4 from workflows/output/instagram-approved/
-          # 2. Post to Instagram Graph API
-          # 3. Log to workflows/instagram-log.md
-          # 4. Archive to workflows/library/instagram-reels/
-          echo "Instagram deployment script coming next"
+        run: python3 workflows/scripts/instagram-deploy.py
 
       - name: Commit deployment log
         run: |
