@@ -598,7 +598,7 @@ if PINTEREST_ACCESS_TOKEN:
 else:
     post_status = 'DRAFT — PINTEREST_ACCESS_TOKEN not set'
 
-out_dir = pathlib.Path('workflows/output/pin-drafts')
+out_dir = pathlib.Path('workflows/output/pinterest-pending')
 out_dir.mkdir(parents=True, exist_ok=True)
 (out_dir / f'{date_str}.md').write_text(
     f'---\ndate: {date_str}\npinterest_day: {day_number}\npin: {pin_data["pin"]}\nboard: {pin_data["board"]}\nstatus: {post_status}\n---\n\n{caption}\n'

@@ -23,6 +23,7 @@ jobs:
       - name: Run YouTube Agent
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python3 workflows/scripts/youtube_agent.py
 
       - name: Set up Node for Remotion rendering
