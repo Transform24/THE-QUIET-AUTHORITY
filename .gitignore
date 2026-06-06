@@ -4,3 +4,7 @@ package.json
 test-results/
 .env
 *.local
+workflows/output/pinterest-pending/
+workflows/output/youtube-pending/
+workflows/output/instagram-pending/
+workflows/output/substack-pending/

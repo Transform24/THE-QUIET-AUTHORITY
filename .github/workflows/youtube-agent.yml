@@ -23,19 +23,40 @@ jobs:
       - name: Run YouTube Agent
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python3 workflows/scripts/youtube_agent.py
+
+      - name: Install video rendering dependencies
+        run: |
+          apt-get update
+          apt-get install -y ffmpeg imagemagick
+
+      - name: Render YouTube video from script
+        run: |
+          SCRIPT_DIR=$(find workflows/output/youtube-pending -maxdepth 1 -type d | sort | tail -1)
+          if [ -d "$SCRIPT_DIR" ]; then
+            SCRIPT_FILE="$SCRIPT_DIR/script-video.md"
+            VIDEO_FILE="$SCRIPT_DIR/video.mp4"
+            if [ -f "$SCRIPT_FILE" ]; then
+              python3 workflows/scripts/render-youtube-video.py "$SCRIPT_FILE" "$VIDEO_FILE"
+            else
+              echo "⚠️  No script found in $SCRIPT_DIR"
+            fi
+          else
+            echo "⚠️  No youtube-pending folder found"
+          fi
 
       - name: Commit and push output to approval branch
         run: |
           git config user.name "TQA Agent"
           git config user.email "noreply@sanctuarygrace.com"
-          git add workflows/output/
+          git add workflows/output/youtube-pending/
           if ! git diff --staged --quiet; then
-            BRANCH="agent-output/youtube-$(date +%Y-%m-%d)"
+            BRANCH="agent-output/youtube-pending-$(date +%Y-%m-%d)"
             git checkout -b "$BRANCH"
-            git commit -m "YouTube Agent: $(date +%Y-%m-%d) script draft — ready for recording"
+            git commit -m "YouTube Agent: $(date +%Y-%m-%d) script + video → workflows/output/youtube-pending/ — ready for Grace approval"
             git push -u origin "$BRANCH"
-            echo "Draft pushed to $BRANCH — Grace reviews and records"
+            echo "✅ Script + video saved to workflows/output/youtube-pending/ → Grace reviews → moves to -approved/ → auto-uploads"
           else
             echo "No new content to commit"
           fi

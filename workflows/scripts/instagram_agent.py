@@ -125,7 +125,7 @@ Hashtag pool: {HASHTAGS}"""
 
 content = call_gemini(prompt)
 
-out_dir = pathlib.Path("workflows/output/ig-drafts")
+out_dir = pathlib.Path("workflows/output/instagram-pending")
 out_dir.mkdir(parents=True, exist_ok=True)
 out_file = out_dir / f"{date_str}.md"
 out_file.write_text(

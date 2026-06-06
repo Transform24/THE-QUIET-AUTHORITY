@@ -95,14 +95,14 @@ Write a YOUTUBE COMMUNITY POST for The Quiet Authority channel.
 
 content = call_gemini(prompt)
 
-out_dir = pathlib.Path("workflows/output/yt-drafts")
+out_dir = pathlib.Path(f"workflows/output/youtube-pending/{date_str}")
 out_dir.mkdir(parents=True, exist_ok=True)
-out_file = out_dir / f"{date_str}-{task}.md"
+out_file = out_dir / f"script-{task}.md"
 out_file.write_text(
     f"---\ndate: {date_str}\ntask: {task}\nseries: {series}\nstatus: DRAFT — review before publishing\n---\n\n{content}\n"
 )
 
-log_file = pathlib.Path("workflows/output/yt-log.md")
+log_file = pathlib.Path("workflows/output/youtube-log.md")
 entry = f"| {date_str} | {task} | {series} | DRAFT SAVED | {out_file} |\n"
 if log_file.exists():
     log_file.write_text(log_file.read_text() + entry)

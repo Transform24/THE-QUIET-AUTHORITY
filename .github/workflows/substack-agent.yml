@@ -23,6 +23,7 @@ jobs:
       - name: Run Substack Agent
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           SUBSTACK_API_KEY: ${{ secrets.SUBSTACK_API_KEY }}
           SUBSTACK_PUB_URL: ${{ secrets.SUBSTACK_PUB_URL }}
         run: python3 workflows/scripts/substack_agent.py
@@ -31,13 +32,13 @@ jobs:
         run: |
           git config user.name "TQA Agent"
           git config user.email "noreply@sanctuarygrace.com"
-          git add workflows/output/
+          git add workflows/output/substack-pending/
           if ! git diff --staged --quiet; then
-            BRANCH="agent-output/substack-$(date +%Y-%m-%d)"
+            BRANCH="agent-output/substack-pending-$(date +%Y-%m-%d)"
             git checkout -b "$BRANCH"
-            git commit -m "Substack Agent: $(date +%Y-%m-%d) devotion draft — ready for review"
+            git commit -m "Substack Agent: $(date +%Y-%m-%d) devotion draft → workflows/output/substack-pending/ — ready for Grace approval"
             git push -u origin "$BRANCH"
-            echo "Draft pushed to $BRANCH — Grace reviews and publishes"
+            echo "✅ Devotion saved to workflows/output/substack-pending/ → Grace reviews → moves to -approved/ → auto-publishes"
           else
             echo "No new content to commit"
           fi
