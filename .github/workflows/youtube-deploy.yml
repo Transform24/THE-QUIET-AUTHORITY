@@ -42,14 +42,7 @@ jobs:
           YOUTUBE_CLIENT_ID: ${{ secrets.YOUTUBE_CLIENT_ID }}
           YOUTUBE_CLIENT_SECRET: ${{ secrets.YOUTUBE_CLIENT_SECRET }}
           YOUTUBE_REFRESH_TOKEN: ${{ secrets.YOUTUBE_REFRESH_TOKEN }}
-        run: |
-          # TODO: Create youtube-deploy.py to:
-          # 1. Read MP4 + script from workflows/output/youtube-approved/
-          # 2. Upload to YouTube via Data API
-          # 3. Set title, description, tags, thumbnail
-          # 4. Log to workflows/youtube-log.md
-          # 5. Archive to workflows/library/youtube-renders/
-          echo "YouTube deployment script coming next"
+        run: python3 workflows/scripts/youtube-deploy.py
 
       - name: Commit deployment log
         run: |

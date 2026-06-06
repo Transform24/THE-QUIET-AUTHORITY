@@ -38,13 +38,7 @@ jobs:
       - name: Deploy to Pinterest
         env:
           PINTEREST_ACCESS_TOKEN: ${{ secrets.PINTEREST_ACCESS_TOKEN }}
-        run: |
-          # TODO: Create pinterest-deploy.py to:
-          # 1. Read captions from workflows/output/pinterest-approved/
-          # 2. Post to Pinterest API
-          # 3. Log to workflows/pin-log.md
-          # 4. Archive to workflows/library/pinterest-images/
-          echo "Pinterest deployment script coming next"
+        run: python3 workflows/scripts/pinterest-deploy.py
 
       - name: Commit deployment log
         run: |
