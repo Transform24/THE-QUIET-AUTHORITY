@@ -1,0 +1,58 @@
+name: Substack Deploy — Publish Approved Devotions
+
+on:
+  schedule:
+    - cron: '0 13 * * *'  # Daily 1pm UTC (6am PT publish)
+  workflow_dispatch:
+    inputs:
+      devotion_date:
+        description: 'Devotion date to deploy (YYYY-MM-DD) — leave blank for latest'
+        required: false
+        default: ''
+
+jobs:
+  deploy-devotion:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Check for approved devotions
+        run: |
+          if [ -d "workflows/output/substack-approved" ] && [ "$(ls -A workflows/output/substack-approved)" ]; then
+            echo "✅ Approved devotions found in workflows/output/substack-approved/"
+            ls -la workflows/output/substack-approved/
+          else
+            echo "⚠️  No approved devotions to deploy. Grace must move devotions from -pending/ to -approved/ first."
+            exit 0
+          fi
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install anthropic
+
+      - name: Deploy to Substack
+        env:
+          SUBSTACK_API_KEY: ${{ secrets.SUBSTACK_API_KEY }}
+          SUBSTACK_PUBLICATION_ID: ${{ secrets.SUBSTACK_PUBLICATION_ID }}
+        run: |
+          # TODO: Create substack-deploy.py to:
+          # 1. Read devotion JSON from workflows/output/substack-approved/
+          # 2. Publish to Substack via API or email import
+          # 3. Log to workflows/substack-log.md
+          # 4. Archive to workflows/library/substack-headers/
+          echo "Substack deployment script coming next"
+
+      - name: Commit deployment log
+        run: |
+          git config user.name "TQA Deploy Agent"
+          git config user.email "noreply@sanctuarygrace.com"
+          git add workflows/substack-log.md workflows/output/substack-approved/
+          if ! git diff --staged --quiet; then
+            git commit -m "Substack Deploy: Published approved devotions"
+            git push origin main
+          fi

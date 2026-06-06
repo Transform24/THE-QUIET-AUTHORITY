@@ -1,0 +1,62 @@
+name: YouTube Deploy — Upload Approved Videos
+
+on:
+  schedule:
+    - cron: '0 9 * * 1'  # Monday 9am UTC (weekly)
+  workflow_dispatch:
+    inputs:
+      video_week:
+        description: 'Week number to deploy (W1-W4) — leave blank for current week'
+        required: false
+        default: ''
+
+jobs:
+  deploy-video:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Check for approved videos
+        run: |
+          if [ -d "workflows/output/youtube-approved" ] && [ "$(ls -A workflows/output/youtube-approved)" ]; then
+            echo "✅ Approved videos found in workflows/output/youtube-approved/"
+            ls -la workflows/output/youtube-approved/
+          else
+            echo "⚠️  No approved videos to deploy. Grace must move videos from -pending/ to -approved/ first."
+            exit 0
+          fi
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install anthropic google-auth-oauthlib google-auth-httplib2 google-api-python-client
+
+      - name: Deploy to YouTube
+        env:
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+          YOUTUBE_CLIENT_ID: ${{ secrets.YOUTUBE_CLIENT_ID }}
+          YOUTUBE_CLIENT_SECRET: ${{ secrets.YOUTUBE_CLIENT_SECRET }}
+          YOUTUBE_REFRESH_TOKEN: ${{ secrets.YOUTUBE_REFRESH_TOKEN }}
+        run: |
+          # TODO: Create youtube-deploy.py to:
+          # 1. Read MP4 + script from workflows/output/youtube-approved/
+          # 2. Upload to YouTube via Data API
+          # 3. Set title, description, tags, thumbnail
+          # 4. Log to workflows/youtube-log.md
+          # 5. Archive to workflows/library/youtube-renders/
+          echo "YouTube deployment script coming next"
+
+      - name: Commit deployment log
+        run: |
+          git config user.name "TQA Deploy Agent"
+          git config user.email "noreply@sanctuarygrace.com"
+          git add workflows/youtube-log.md workflows/output/youtube-approved/
+          if ! git diff --staged --quiet; then
+            git commit -m "YouTube Deploy: Uploaded approved videos"
+            git push origin main
+          fi

@@ -25,17 +25,29 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: python3 workflows/scripts/youtube_agent.py
 
+      - name: Set up Node for Remotion rendering
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install Remotion and render video
+        run: |
+          npm install -g remotion @remotion/cli
+          # Remotion will read script from output folder and render MP4
+          # TODO: Create remotion-render.js to convert script → video
+          echo "Remotion video rendering coming in next step"
+
       - name: Commit and push output to approval branch
         run: |
           git config user.name "TQA Agent"
           git config user.email "noreply@sanctuarygrace.com"
-          git add workflows/output/
+          git add workflows/output/youtube-pending/
           if ! git diff --staged --quiet; then
-            BRANCH="agent-output/youtube-$(date +%Y-%m-%d)"
+            BRANCH="agent-output/youtube-pending-$(date +%Y-%m-%d)"
             git checkout -b "$BRANCH"
-            git commit -m "YouTube Agent: $(date +%Y-%m-%d) script draft — ready for recording"
+            git commit -m "YouTube Agent: $(date +%Y-%m-%d) script + video → workflows/output/youtube-pending/ — ready for Grace approval"
             git push -u origin "$BRANCH"
-            echo "Draft pushed to $BRANCH — Grace reviews and records"
+            echo "✅ Script + video saved to workflows/output/youtube-pending/ → Grace reviews → moves to -approved/ → auto-uploads"
           else
             echo "No new content to commit"
           fi

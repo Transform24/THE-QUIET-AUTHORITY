@@ -1,0 +1,57 @@
+name: Pinterest Deploy — Post Approved Pins
+
+on:
+  schedule:
+    - cron: '0 14 * * *'  # Daily 2pm UTC (matches current posting schedule)
+  workflow_dispatch:
+    inputs:
+      pin_date:
+        description: 'Pin date to deploy (YYYY-MM-DD) — leave blank for latest'
+        required: false
+        default: ''
+
+jobs:
+  deploy-pin:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Check for approved pins
+        run: |
+          if [ -d "workflows/output/pinterest-approved" ] && [ "$(ls -A workflows/output/pinterest-approved)" ]; then
+            echo "✅ Approved pins found in workflows/output/pinterest-approved/"
+            ls -la workflows/output/pinterest-approved/
+          else
+            echo "⚠️  No approved pins to deploy. Grace must move pins from -pending/ to -approved/ first."
+            exit 0
+          fi
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install anthropic
+
+      - name: Deploy to Pinterest
+        env:
+          PINTEREST_ACCESS_TOKEN: ${{ secrets.PINTEREST_ACCESS_TOKEN }}
+        run: |
+          # TODO: Create pinterest-deploy.py to:
+          # 1. Read captions from workflows/output/pinterest-approved/
+          # 2. Post to Pinterest API
+          # 3. Log to workflows/pin-log.md
+          # 4. Archive to workflows/library/pinterest-images/
+          echo "Pinterest deployment script coming next"
+
+      - name: Commit deployment log
+        run: |
+          git config user.name "TQA Deploy Agent"
+          git config user.email "noreply@sanctuarygrace.com"
+          git add workflows/pin-log.md workflows/output/pinterest-approved/
+          if ! git diff --staged --quiet; then
+            git commit -m "Pinterest Deploy: Posted approved pins"
+            git push origin main
+          fi
