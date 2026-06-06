@@ -4,3 +4,4 @@ package.json
 test-results/
 .env
 *.local
+!workflows/output/
