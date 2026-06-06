@@ -38,7 +38,7 @@ jobs:
             BRANCH="agent-output/pinterest-pending-$(date +%Y-%m-%d)"
             git checkout -b "$BRANCH"
             git commit -m "Pinterest Agent: $(date +%Y-%m-%d) pin draft → workflows/output/pinterest-pending/ — ready for Grace approval"
-            git push -u origin "$BRANCH"
+            git push -u origin "$BRANCH" --force
             echo "✅ Draft saved to workflows/output/pinterest-pending/ → Grace reviews → moves to -approved/ → auto-posts"
           else
             echo "No new content to commit"
