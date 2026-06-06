@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sanctuary Approval Gate</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Jost:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #0d0d0d;
+            color: #F5F0E8;
+            font-family: 'Jost', sans-serif;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 1px solid #272727;
+            padding-bottom: 20px;
+        }
+
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            color: #C9A84C;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #807870;
+            font-size: 0.95rem;
+        }
+
+        /* Login Screen */
+        .login-screen {
+            display: none;
+            max-width: 400px;
+            margin: 60px auto;
+            padding: 40px;
+            background: #111111;
+            border: 1px solid #272727;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .login-screen.active {
+            display: block;
+        }
+
+        .login-screen h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: #C9A84C;
+        }
+
+        .login-screen input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            background: #0d0d0d;
+            border: 1px solid #272727;
+            color: #F5F0E8;
+            font-family: 'Jost', sans-serif;
+            font-size: 1rem;
+            border-radius: 4px;
+        }
+
+        .login-screen button {
+            width: 100%;
+            padding: 12px;
+            background: #C9A84C;
+            color: #0d0d0d;
+            border: none;
+            font-family: 'Jost', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .login-screen button:hover {
+            opacity: 0.9;
+        }
+
+        /* Main Content */
+        .content {
+            display: none;
+        }
+
+        .content.active {
+            display: block;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #272727;
+        }
+
+        .counter {
+            color: #807870;
+            font-size: 0.9rem;
+        }
+
+        .logout-btn {
+            background: transparent;
+            color: #C9A84C;
+            border: 1px solid #C9A84C;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'Jost', sans-serif;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+
+        .logout-btn:hover {
+            background: #C9A84C;
+            color: #0d0d0d;
+        }
+
+        /* Item Display */
+        .item-card {
+            background: #111111;
+            border: 1px solid #272727;
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .platform-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            background: #C1593C;
+            color: #0d0d0d;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-family: 'Cinzel', serif;
+        }
+
+        .item-date {
+            color: #807870;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        .item-content {
+            background: #0d0d0d;
+            padding: 20px;
+            border-left: 3px solid #C9A84C;
+            border-radius: 4px;
+            margin-bottom: 30px;
+            max-height: 400px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* Buttons */
+        .actions {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 12px 32px;
+            border: none;
+            border-radius: 4px;
+            font-family: 'Jost', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            flex: 1;
+            max-width: 200px;
+        }
+
+        .btn-approve {
+            background: #7d8c6e;
+            color: #F5F0E8;
+        }
+
+        .btn-approve:hover {
+            opacity: 0.9;
+        }
+
+        .btn-reject {
+            background: #C1593C;
+            color: #F5F0E8;
+        }
+
+        .btn-reject:hover {
+            opacity: 0.9;
+        }
+
+        /* Status */
+        .status {
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 20px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .status.success {
+            background: #7d8c6e;
+            color: #0d0d0d;
+        }
+
+        .status.error {
+            background: #C1593C;
+            color: #0d0d0d;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #807870;
+        }
+
+        .empty-state h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #C9A84C;
+        }
+
+        /* Loading */
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #807870;
+        }
+
+        .spinner {
+            border: 2px solid #272727;
+            border-top: 2px solid #C9A84C;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 0.8s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8rem; }
+            .item-card { padding: 20px; }
+            .actions { flex-direction: column; }
+            .btn { max-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Sanctuary Approval Gate</h1>
+            <p class="subtitle">Review and approve content before it goes live</p>
+        </header>
+
+        <!-- Login Screen -->
+        <div class="login-screen active" id="loginScreen">
+            <h2>Welcome Back</h2>
+            <div style="margin-bottom: 20px; color: #807870; font-size: 0.9rem;">
+                <p style="margin-bottom: 10px;">First time? Use password: <strong>approve</strong></p>
+                <p>You can change it anytime.</p>
+            </div>
+            <input type="password" id="passwordInput" placeholder="Enter approval password" autocomplete="off">
+            <button onclick="login()">Access Gate</button>
+            <div id="loginError" style="color: #C1593C; margin-top: 15px; display: none;"></div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="content" id="content">
+            <div class="controls">
+                <div class="counter">
+                    <span id="itemCounter">Loading...</span>
+                </div>
+                <button class="logout-btn" onclick="logout()">← Back to Gate</button>
+            </div>
+
+            <div id="itemDisplay"></div>
+            <div id="statusMessage"></div>
+        </div>
+
+        <div id="loadingState" style="display: none;">
+            <div class="loading">
+                <p>Fetching pending items...</p>
+                <div class="spinner"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const GITHUB_REPO = 'transform24/THE-QUIET-AUTHORITY';
+        const GITHUB_API = 'https://api.github.com/repos/' + GITHUB_REPO;
+        const PLATFORMS = ['pinterest', 'substack', 'youtube', 'instagram'];
+
+        let pendingItems = [];
+        let currentIndex = 0;
+        let savedPassword = localStorage.getItem('approvalPassword') || 'approve';
+        let authenticated = false;
+
+        // Login
+        function login() {
+            const password = document.getElementById('passwordInput').value;
+            if (!password) {
+                showLoginError('Please enter a password');
+                return;
+            }
+            if (password !== savedPassword) {
+                showLoginError('Incorrect password');
+                return;
+            }
+            authenticated = true;
+            document.getElementById('loginScreen').classList.remove('active');
+            document.getElementById('content').classList.add('active');
+            loadPendingItems();
+        }
+
+        function showLoginError(msg) {
+            const err = document.getElementById('loginError');
+            err.textContent = msg;
+            err.style.display = 'block';
+            setTimeout(() => err.style.display = 'none', 3000);
+        }
+
+        // Logout
+        function logout() {
+            authenticated = false;
+            currentIndex = 0;
+            pendingItems = [];
+            document.getElementById('loginScreen').classList.add('active');
+            document.getElementById('content').classList.remove('active');
+            document.getElementById('passwordInput').value = '';
+            document.getElementById('passwordInput').focus();
+        }
+
+        // Load pending items
+        async function loadPendingItems() {
+            document.getElementById('loadingState').style.display = 'block';
+            pendingItems = [];
+
+            for (const platform of PLATFORMS) {
+                const folderPath = `workflows/output/${platform}-pending`;
+                try {
+                    const response = await fetch(`${GITHUB_API}/contents/${folderPath}`);
+                    if (response.ok) {
+                        const items = await response.json();
+                        if (Array.isArray(items)) {
+                            for (const item of items) {
+                                if (item.type === 'file' && item.name.endsWith('.md')) {
+                                    pendingItems.push({
+                                        platform,
+                                        name: item.name,
+                                        path: item.path,
+                                        downloadUrl: item.download_url,
+                                        sha: item.sha
+                                    });
+                                }
+                            }
+                        }
+                    }
+                } catch (e) {
+                    console.log(`Could not load ${platform} items:`, e.message);
+                }
+            }
+
+            document.getElementById('loadingState').style.display = 'none';
+
+            if (pendingItems.length === 0) {
+                document.getElementById('itemDisplay').innerHTML = `
+                    <div class="empty-state">
+                        <h2>All Clear</h2>
+                        <p>No pending items waiting for approval</p>
+                    </div>
+                `;
+                document.getElementById('itemCounter').textContent = 'No items';
+            } else {
+                showCurrentItem();
+            }
+        }
+
+        // Show current item
+        async function showCurrentItem() {
+            if (currentIndex >= pendingItems.length) {
+                currentIndex = 0;
+            }
+
+            const item = pendingItems[currentIndex];
+            document.getElementById('itemCounter').textContent =
+                `${currentIndex + 1} of ${pendingItems.length}`;
+
+            try {
+                const response = await fetch(item.downloadUrl);
+                const content = await response.text();
+
+                const display = `
+                    <div class="item-card">
+                        <div class="platform-badge">${item.platform.toUpperCase()}</div>
+                        <div class="item-date">${item.name}</div>
+                        <div class="item-content">${escapeHtml(content)}</div>
+                        <div class="actions">
+                            <button class="btn btn-approve" onclick="approveItem()">✓ APPROVE</button>
+                            <button class="btn btn-reject" onclick="rejectItem()">✗ REJECT</button>
+                        </div>
+                    </div>
+                `;
+
+                document.getElementById('itemDisplay').innerHTML = display;
+                document.getElementById('statusMessage').innerHTML = '';
+            } catch (e) {
+                document.getElementById('itemDisplay').innerHTML = `
+                    <div class="item-card">
+                        <p style="color: #C1593C;">Error loading item: ${e.message}</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Approve item
+        async function approveItem() {
+            const item = pendingItems[currentIndex];
+            showStatus('Processing...', 'loading');
+
+            try {
+                // Read file content
+                const response = await fetch(item.downloadUrl);
+                const content = await response.text();
+
+                // Need GitHub token for write operations
+                const token = prompt('GitHub token needed to approve. Paste your token (stored in browser session only):');
+                if (!token) return;
+
+                // Move file: delete from pending
+                await fetch(`${GITHUB_API}/contents/${item.path}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Authorization': `token ${token}`,
+                        'Accept': 'application/vnd.github.v3+json'
+                    },
+                    body: JSON.stringify({
+                        message: `Approved by Grace: ${item.name}`,
+                        sha: item.sha
+                    })
+                });
+
+                // Create in approved
+                const approvedPath = item.path.replace('-pending', '-approved');
+                await fetch(`${GITHUB_API}/contents/${approvedPath}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `token ${token}`,
+                        'Accept': 'application/vnd.github.v3+json'
+                    },
+                    body: JSON.stringify({
+                        message: `Grace approved: ${item.name}`,
+                        content: btoa(unescape(encodeURIComponent(content)))
+                    })
+                });
+
+                showStatus('✓ Approved and moved to deployment queue', 'success');
+                pendingItems.splice(currentIndex, 1);
+
+                if (pendingItems.length > 0) {
+                    if (currentIndex >= pendingItems.length) currentIndex = 0;
+                    setTimeout(showCurrentItem, 1500);
+                } else {
+                    document.getElementById('itemDisplay').innerHTML = `
+                        <div class="empty-state">
+                            <h2>All Clear</h2>
+                            <p>No more pending items</p>
+                        </div>
+                    `;
+                }
+            } catch (e) {
+                showStatus('Error: ' + e.message, 'error');
+            }
+        }
+
+        // Reject item
+        async function rejectItem() {
+            const item = pendingItems[currentIndex];
+            if (!confirm('Delete this draft permanently?')) return;
+
+            showStatus('Processing...', 'loading');
+
+            try {
+                const token = prompt('GitHub token needed to reject. Paste your token:');
+                if (!token) return;
+
+                await fetch(`${GITHUB_API}/contents/${item.path}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Authorization': `token ${token}`,
+                        'Accept': 'application/vnd.github.v3+json'
+                    },
+                    body: JSON.stringify({
+                        message: `Grace rejected: ${item.name}`,
+                        sha: item.sha
+                    })
+                });
+
+                showStatus('✓ Draft deleted', 'success');
+                pendingItems.splice(currentIndex, 1);
+
+                if (pendingItems.length > 0) {
+                    if (currentIndex >= pendingItems.length) currentIndex = 0;
+                    setTimeout(showCurrentItem, 1500);
+                } else {
+                    document.getElementById('itemDisplay').innerHTML = `
+                        <div class="empty-state">
+                            <h2>All Clear</h2>
+                            <p>No more pending items</p>
+                        </div>
+                    `;
+                }
+            } catch (e) {
+                showStatus('Error: ' + e.message, 'error');
+            }
+        }
+
+        // Status message
+        function showStatus(msg, type) {
+            const statusEl = document.getElementById('statusMessage');
+            statusEl.innerHTML = `<div class="status ${type}">${msg}</div>`;
+        }
+
+        // Helpers
+        function escapeHtml(text) {
+            const map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            };
+            return text.replace(/[&<>"']/g, m => map[m]);
+        }
+
+        // Auto-focus password on load
+        window.addEventListener('load', () => {
+            document.getElementById('passwordInput').focus();
+        });
+    </script>
+</body>
+</html>
