@@ -33,7 +33,7 @@ jobs:
         run: |
           git config user.name "TQA Agent"
           git config user.email "noreply@sanctuarygrace.com"
-          git add workflows/output/pinterest-pending/
+          git add -f workflows/output/pinterest-pending/
           if ! git diff --staged --quiet; then
             BRANCH="agent-output/pinterest-pending-$(date +%Y-%m-%d)"
             git checkout -b "$BRANCH"
