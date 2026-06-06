@@ -29,17 +29,15 @@ jobs:
           DAY_OVERRIDE: ${{ github.event.inputs.day_override }}
         run: python3 workflows/scripts/pinterest_agent.py
 
-      - name: Commit and push output to approval branch
+      - name: Commit and push output to main
         run: |
           git config user.name "TQA Agent"
           git config user.email "noreply@sanctuarygrace.com"
           git add -f workflows/output/pinterest-pending/
           if ! git diff --staged --quiet; then
-            BRANCH="agent-output/pinterest-pending-$(date +%Y-%m-%d)"
-            git checkout -b "$BRANCH"
-            git commit -m "Pinterest Agent: $(date +%Y-%m-%d) pin draft → workflows/output/pinterest-pending/ — ready for Grace approval"
-            git push -u origin "$BRANCH" --force
-            echo "✅ Draft saved to workflows/output/pinterest-pending/ → Grace reviews → moves to -approved/ → auto-posts"
+            git commit -m "Pinterest Agent: $(date +%Y-%m-%d) pin draft — ready for Grace approval"
+            git push origin main
+            echo "✅ Draft saved to workflows/output/pinterest-pending/ — visible in Approval Gate for Grace review"
           else
             echo "No new content to commit"
           fi
