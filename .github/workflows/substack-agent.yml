@@ -28,17 +28,15 @@ jobs:
           SUBSTACK_PUB_URL: ${{ secrets.SUBSTACK_PUB_URL }}
         run: python3 workflows/scripts/substack_agent.py
 
-      - name: Commit and push output to approval branch
+      - name: Commit and push output to main
         run: |
           git config user.name "TQA Agent"
           git config user.email "noreply@sanctuarygrace.com"
-          git add workflows/output/substack-pending/
+          git add -f workflows/output/substack-pending/
           if ! git diff --staged --quiet; then
-            BRANCH="agent-output/substack-pending-$(date +%Y-%m-%d)"
-            git checkout -b "$BRANCH"
-            git commit -m "Substack Agent: $(date +%Y-%m-%d) devotion draft → workflows/output/substack-pending/ — ready for Grace approval"
-            git push -u origin "$BRANCH"
-            echo "✅ Devotion saved to workflows/output/substack-pending/ → Grace reviews → moves to -approved/ → auto-publishes"
+            git commit -m "Substack Agent: $(date +%Y-%m-%d) devotion draft — ready for Grace approval"
+            git push origin main
+            echo "✅ Devotion saved to workflows/output/substack-pending/ — visible in Approval Gate for Grace review"
           else
             echo "No new content to commit"
           fi
