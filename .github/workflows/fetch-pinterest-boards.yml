@@ -1,0 +1,69 @@
+name: Fetch Pinterest Board IDs
+
+on:
+  workflow_dispatch:
+    inputs:
+      debug:
+        description: 'Show full API response'
+        required: false
+        default: 'false'
+
+jobs:
+  fetch-boards:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Fetch Pinterest Boards
+        env:
+          PINTEREST_ACCESS_TOKEN: ${{ secrets.PINTEREST_ACCESS_TOKEN }}
+        run: |
+          python3 << 'EOF'
+          import json
+          import urllib.request
+          import urllib.error
+          import os
+
+          token = os.environ.get('PINTEREST_ACCESS_TOKEN', '').strip()
+          if not token:
+              print("❌ PINTEREST_ACCESS_TOKEN not set in GitHub Secrets")
+              exit(1)
+
+          url = f"https://api.pinterest.com/v5/boards?access_token={token}&page_size=100"
+
+          try:
+              with urllib.request.urlopen(url, timeout=30) as response:
+                  result = json.loads(response.read())
+
+                  print("\n📌 Your Pinterest Boards:")
+                  print("=" * 70)
+
+                  boards = result.get('items', [])
+                  if not boards:
+                      print("⚠️  No boards found or API returned empty list")
+                      exit(0)
+
+                  for board in boards:
+                      board_id = board.get('id', 'UNKNOWN')
+                      board_name = board.get('name', 'UNKNOWN')
+                      print(f'  "{board_name}": "{board_id}",')
+
+                  print("=" * 70)
+                  print(f"\n✅ Found {len(boards)} board(s)")
+                  print("\nCopy the board mappings above and provide them to Claude")
+                  print("to build workflows/config/pinterest-boards.json")
+
+          except urllib.error.HTTPError as e:
+              error_body = e.read().decode()
+              print(f"❌ HTTP {e.code} — {error_body[:500]}")
+              exit(1)
+          except Exception as e:
+              print(f"❌ Error: {str(e)}")
+              exit(1)
+          EOF
