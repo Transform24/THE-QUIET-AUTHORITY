@@ -13,6 +13,8 @@ on:
 jobs:
   deploy-post:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     if: ${{ vars.INSTAGRAM_RESTRICTION_LIFTED == 'true' }}
     steps:
       - name: Checkout repo
