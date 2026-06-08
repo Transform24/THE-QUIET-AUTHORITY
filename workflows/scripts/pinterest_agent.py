@@ -1,4 +1,5 @@
-import os, datetime, pathlib, json, urllib.request, urllib.error
+import os, datetime, pathlib, json
+import requests
 
 """
 PRIMARY MANDATE — Luke 4:18:
@@ -603,17 +604,18 @@ post_status = 'DRAFT'
 
 def get_board_id(token, board_name):
     try:
-        req = urllib.request.Request(
+        resp = requests.get(
             'https://api.pinterest.com/v5/boards?page_size=100',
-            headers={'Authorization': f'Bearer {token}'}
+            headers={'Authorization': f'Bearer {token}'},
+            timeout=30
         )
-        with urllib.request.urlopen(req, timeout=30) as resp:
-            data = json.loads(resp.read())
-            boards = data.get('items', [])
-            print(f"Available boards: {[b['name'] for b in boards]}")
-            for board in boards:
-                if board['name'].lower().strip() == board_name.lower().strip():
-                    return board['id']
+        resp.raise_for_status()
+        data = resp.json()
+        boards = data.get('items', [])
+        print(f"Available boards: {[b['name'] for b in boards]}")
+        for board in boards:
+            if board['name'].lower().strip() == board_name.lower().strip():
+                return board['id']
     except Exception as e:
         print(f"Board lookup error: {e}")
     return None
@@ -624,32 +626,28 @@ if PINTEREST_ACCESS_TOKEN:
         image_url = f"{REPO_IMAGE_BASE}/{image_file}"
         board_id = get_board_id(PINTEREST_ACCESS_TOKEN, pin_data['board'])
         if board_id:
-            payload = json.dumps({
+            payload = {
                 "board_id": board_id,
                 "media_source": {"source_type": "image_url", "url": image_url},
                 "title": pin_data['pin'][:100],
                 "description": caption[:500],
                 "link": "https://sanctuary-grace.com/"
-            }).encode('utf-8')
+            }
             try:
-                post_req = urllib.request.Request(
+                resp = requests.post(
                     'https://api.pinterest.com/v5/pins',
-                    data=payload,
-                    headers={
-                        'Authorization': f'Bearer {PINTEREST_ACCESS_TOKEN}',
-                        'Content-Type': 'application/json'
-                    },
-                    method='POST'
+                    json=payload,
+                    headers={'Authorization': f'Bearer {PINTEREST_ACCESS_TOKEN}'},
+                    timeout=30
                 )
-                with urllib.request.urlopen(post_req, timeout=30) as resp:
-                    result = json.loads(resp.read())
-                    pin_id = result.get('id')
-                    post_status = f'POSTED — pin_id: {pin_id}'
-                    print(f"Posted to Pinterest: {pin_id}")
-            except urllib.error.HTTPError as e:
-                error_body = e.read().decode()
-                post_status = f'API ERROR {e.code}: {error_body[:300]}'
-                print(f"Pinterest error {e.code}: {error_body}")
+                resp.raise_for_status()
+                result = resp.json()
+                pin_id = result.get('id')
+                post_status = f'POSTED — pin_id: {pin_id}'
+                print(f"Posted to Pinterest: {pin_id}")
+            except requests.exceptions.HTTPError as e:
+                post_status = f'API ERROR {e.response.status_code}: {str(e)[:300]}'
+                print(f"Pinterest error: {post_status}")
             except Exception as e:
                 post_status = f'ERROR: {str(e)[:200]}'
         else:
