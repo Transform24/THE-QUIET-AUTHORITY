@@ -13,3 +13,4 @@
 | 2026-06-03 | Day 9 | Scripture and Guilty Giver quote | Christian Women Encouragement | DRAFT — Canva image required for this day. |
 | 2026-06-04 | Day 10 | Devotional Week 2 Renewal | Sacred Morning Practices | DRAFT — Canva image required for this day. |
 | 2026-06-05 | Day 11 | Re-pin Guilty Giver wall art | Spiritual Rest for Women | DRAFT — board not found: Spiritual Rest for Women |
+| 2026-06-08 | Day 14 | Circle of Silence | Sacred Morning Practices | DRAFT — PINTEREST_ACCESS_TOKEN not set |
