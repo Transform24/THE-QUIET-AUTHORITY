@@ -1,4 +1,4 @@
-name: YouTube Agent — Weekly Video Script
+name: YouTube Agent — Generate Video Script + MP4
 
 on:
   schedule:
@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  generate-script:
+  generate-video:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -19,24 +19,40 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install dependencies
-        run: pip install anthropic
+      - name: Install system dependencies
+        run: |
+          apt-get update
+          apt-get install -y ffmpeg ffprobe imagemagick
 
-      - name: Run YouTube Agent
+      - name: Install Python dependencies
+        run: |
+          pip install pillow gtts
+
+      - name: Run YouTube Agent (generates script + audio + slides + MP4)
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
         run: python3 workflows/scripts/youtube_agent.py
 
-      - name: Commit and push output to main
+      - name: Commit script metadata to main
         run: |
           git config user.name "TQA Agent"
           git config user.email "noreply@sanctuarygrace.com"
           git add -f workflows/output/youtube-pending/
+          git add -f workflows/output/youtube-log.md
           if ! git diff --staged --quiet; then
-            git commit -m "YouTube Agent: $(date +%Y-%m-%d) script — ready for Grace review and recording"
+            git commit -m "YouTube Agent: $(date +%Y-%m-%d) video script + MP4 ready — Grace downloads from Actions artifacts"
             git push origin main
-            echo "✅ Script saved to workflows/output/youtube-pending/ — visible in Approval Gate for Grace to review"
+            echo "✅ Script metadata saved to workflows/output/youtube-pending/"
           else
             echo "No new content to commit"
           fi
+
+      - name: Upload MP4 as artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: youtube-video-$(date +%Y-%m-%d)
+          path: workflows/output/youtube_video_*.mp4
+          retention-days: 30
