@@ -11,11 +11,17 @@ date_str = today.strftime('%Y-%m-%d')
 
 mode = MODE_OVERRIDE if MODE_OVERRIDE else ('sunday' if day_name == 'Sunday' else 'daily')
 
-VOICE = """BRAND VOICE: Sacred, tender, prophetic. Minister not marketer.
-Audience: Burned-out Christian women, 30-55.
-Ministry: Sanctuary Grace Ministry.
-FORBIDDEN: Hustle language, jargon, casual slang, emojis, exclamation marks.
-Every piece closes with: Come as you are. https://sanctuary-grace.com/"""
+VOICE = """MISSION: Reach burned-out women who sacrificed themselves empty, are in debt,
+can't sleep at night, and need to encounter Christ as their Redeemer (not self-help).
+
+VOICE: Sacred, tender, prophetic. Minister to her brokenness with Gospel clarity.
+Speak directly to: financial crisis, sleepless nights, pouring from empty, guilt, shame, loss of self.
+Point to CHRIST as Redemption — not as wellness strategy or life hack.
+
+Audience: Women, 30-55, exhausted, in crisis, praying in secret.
+Forbidden: Hustle language, wellness jargon, emojis, exclamation marks, urgency language, generic platitudes.
+Every piece: Names her burden specifically. Quotes Scripture directly. Invites her to surrender to Christ.
+Ends with: Come as you are. https://sanctuary-grace.com/"""
 
 if mode == 'sunday':
     prompt = f"""{VOICE}

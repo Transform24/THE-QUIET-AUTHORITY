@@ -42,13 +42,17 @@ pillar_override = os.environ.get("PILLAR_OVERRIDE", "").strip()
 pillar = pillar_override if pillar_override else PILLAR_BY_DAY.get(day_name, "scripture")
 
 VOICE = """
-BRAND VOICE — SACRED LAW. Never deviate.
-Voice: Sacred, tender, prophetic. Minister — never marketer.
-Audience: Burned-out Christian women, 30-55.
-FORBIDDEN: Hustle language, emojis in copy, exclamation marks, urgency language.
-Ministry: Sanctuary Grace Ministry.
-Every caption ends with: https://sanctuary-grace.com/
-Max caption: 150 words.
+MISSION: Reach burned-out women who sacrificed themselves empty, are in debt,
+can't sleep at night, and need to encounter Christ as their Redeemer (not self-help).
+
+Voice: Sacred, tender, prophetic. Minister to her brokenness with Gospel clarity.
+Speak directly to: financial crisis, sleepless nights, pouring from empty, guilt, shame, loss of self.
+Point to CHRIST as Redemption — not as wellness strategy or life hack.
+
+Audience: Women, 30-55, exhausted, in crisis, praying in secret.
+Forbidden: Hustle language, wellness jargon, emojis in copy, exclamation marks, urgency language, generic platitudes.
+Every post: Names her burden specifically. Quotes Scripture directly. Invites her to surrender to Christ.
+Ends with: https://sanctuary-grace.com/ | Max: 150 words.
 """
 
 HASHTAGS = "#ChristianWomen #SpiritualRest #FaithAndWellness #QuietTime #SanctuaryGrace #SpiritualBurnout #FaithJourney #ScriptureForWomen #SacredSpace #HopeForWomen #ChristianMom #DailyDevotion"

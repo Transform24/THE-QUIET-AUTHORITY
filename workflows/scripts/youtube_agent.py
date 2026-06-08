@@ -31,11 +31,17 @@ day_name = today.strftime("%A")
 date_str = today.strftime("%Y-%m-%d")
 
 VOICE = """
-BRAND VOICE — SACRED LAW.
-Voice: Sacred, tender, prophetic. Minister — never marketer.
-Audience: Burned-out Christian women, 30-55.
-FORBIDDEN: Hustle language, emojis, exclamation marks, urgency.
-Ministry: Sanctuary Grace Ministry.
+MISSION: Reach burned-out women who sacrificed themselves empty, are in debt,
+can't sleep at night, and need to encounter Christ as their Redeemer (not self-help).
+
+VOICE: Sacred, tender, prophetic. Minister to her brokenness with Gospel clarity.
+Speak directly to: financial crisis, sleepless nights, pouring from empty, guilt, shame, loss of self.
+Point to CHRIST as Redemption — not as wellness strategy or life hack.
+
+Audience: Women, 30-55, exhausted, in crisis, praying in secret.
+Forbidden: Hustle language, wellness jargon, emojis, exclamation marks, urgency language, generic platitudes.
+Every teaching: Names her burden specifically. Quotes Scripture directly. Invites her to surrender to Christ.
+Ends with: Come as you are. https://sanctuary-grace.com/
 """
 
 SERIES = ["Profile deep dive", "7-day practice walkthrough", "Circle of Silence session", "Scripture reflection"]

@@ -1,5 +1,18 @@
 import os, datetime, pathlib, json, urllib.request, urllib.error
 
+"""
+MISSION: Reach burned-out women who sacrificed themselves empty, are in debt,
+can't sleep at night, and need to encounter Christ as their Redeemer (not self-help).
+
+VOICE: Sacred, tender, prophetic. Minister to her brokenness with Gospel clarity.
+Speak directly to: financial crisis, sleepless nights, pouring from empty, guilt, shame, loss of self.
+Point to CHRIST as Redemption — not as wellness strategy or life hack.
+
+Audience: Women, 30-55, exhausted, in crisis, praying in secret.
+Forbidden: Hustle language, wellness jargon, emojis, exclamation marks, urgency language.
+Every pin: Names her burden. Quotes Scripture. Points to Christ's redemption.
+"""
+
 PINTEREST_ACCESS_TOKEN = os.environ.get('PINTEREST_ACCESS_TOKEN', '').strip()
 DAY_OVERRIDE = os.environ.get('DAY_OVERRIDE', '').strip()
 
@@ -19,35 +32,47 @@ SCHEDULE = {
         "pin": "The Guilty Giver wall art",
         "board": "The Quiet Authority for Women",
         "image_file": "profile-C.png",
-        "caption": """She gave until there was nothing left to give. Not because she was weak, but because she believed her worth was measured in what she could offer. She said yes when her body said no. She poured when the well was dry. She smiled through the silence of her own depletion.
+        "caption": """She gave until there was nothing left to give. She robbed Peter to pay Paul.
+She said yes when her body screamed no. She poured when the well was empty.
+And in the silence of her own depletion, she learned to believe that her worth lived in her sacrifice.
 
-But God did not design you to be emptied. He designed you to be filled.
+But listen: God did not create you to be emptied.
 
-The Guilty Giver is one of four spiritual profiles in The Quiet Authority — a free assessment created for women who are tired of carrying more than they were called to carry. If you have ever felt that your rest was selfish, that your needs were inconvenient, that your exhaustion was a spiritual failure — this is for you.
+You are not redeemed by what you give. You are redeemed by what Christ gave.
+You are not restored by pouring out. You are restored by receiving His grace.
 
-You were not made to pour from empty. You were made to receive.
+The Guilty Giver is one of four spiritual profiles in The Quiet Authority — a free assessment
+for women ready to know their identity in Christ, not in their sacrifice.
+
+If you have ever believed your exhaustion was spiritual faithfulness — come home to the Gospel.
 
 https://sanctuary-grace.com/
 
-#ChristianWomen #SpiritualBurnout #FaithAndWellness #SanctuaryGrace #ChristianMom"""
+#ChristianWomen #RedemptionInChrist #GospelForWomen #SanctuaryGrace #IdentityInChrist"""
     },
     2: {
         "pin": "Sacred aesthetic",
         "board": "Sacred Morning Practices",
         "image_file": None,
-        "caption": """There is a stillness that heals what striving never could.
+        "caption": """You cannot sleep. The numbers don't add up. You have given what you don't have to give.
+And in the hours when the house is dark, you pray prayers nobody hears.
 
-Not the stillness of an empty calendar or a cleared inbox. Not the quiet of a world that has finally stopped demanding. But the stillness that meets you in the middle of the noise — the kind that rises from somewhere deeper than circumstance.
+Listen to Jesus: "Come to me, all you who are weary and burdened, and I will give you rest."
 
-This is what God offers the woman who is tired of running. Not a solution to every problem. Not a rescue from every responsibility. But a presence that holds her while everything continues to move.
+Not rest earned. Not rest you manufacture. Not rest you deserve.
+Rest He gives. Rest He promises. Rest in His finished work on the cross.
 
-If you have been waiting until things settle down to finally rest — the invitation is here now. In this moment. Before the day begins.
+Your exhaustion is not your shame. It is an invitation.
+An invitation to stop carrying what was never meant for your shoulders.
+An invitation to know that you are not redeemed by your output — you are redeemed by His blood.
 
-The Quiet Authority was created for women who are ready to stop waiting and begin returning to themselves.
+Come as you are. Weary. Afraid. In debt. Unseen.
+
+The Quiet Authority is for women ready to encounter Christ's redemption, not self-improvement.
 
 https://sanctuary-grace.com/
 
-#SpiritualRest #QuietTime #ChristianWomen #FaithJourney #SacredSpace"""
+#ComeAsYouAre #RedeemmedByChrist #GospelTruth #ChristianWomen #BurdenBearer"""
     },
     3: {
         "pin": "The Depleted Survivor wall art",
