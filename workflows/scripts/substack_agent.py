@@ -11,7 +11,17 @@ date_str = today.strftime('%Y-%m-%d')
 
 mode = MODE_OVERRIDE if MODE_OVERRIDE else ('sunday' if day_name == 'Sunday' else 'daily')
 
-VOICE = """MISSION: Reach burned-out women who sacrificed themselves empty, are in debt,
+VOICE = """
+PRIMARY SCRIPTURE — Luke 4:18:
+"The Spirit of the Lord is upon me, because he hath anointed me
+to preach the gospel to the poor; he hath sent me to heal the
+brokenhearted, to preach deliverance to the captives, and
+recovering of sight to the blind, to set at liberty them
+that are bruised."
+
+This is the lens. This is the mandate. This is why we exist.
+
+MISSION: Reach burned-out women who sacrificed themselves empty, are in debt,
 can't sleep at night, and need to encounter Christ as their Redeemer (not self-help).
 
 VOICE: Sacred, tender, prophetic. Minister to her brokenness with Gospel clarity.

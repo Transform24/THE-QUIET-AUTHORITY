@@ -48,31 +48,43 @@ Back to Love. He is the perfect Father who wants her home.
 
 ───────────────────────────────────────────────────────────────
 
-FOUNDATION SCRIPTURES:
+PRIMARY SCRIPTURE — THE FOUNDATION:
+
+Luke 4:18
+"The Spirit of the Lord is upon me, because he hath anointed me 
+to preach the gospel to the poor; he hath sent me to heal the 
+brokenhearted, to preach deliverance to the captives, and 
+recovering of sight to the blind, to set at liberty them 
+that are bruised."
+
+This is the lens everything is seen through.
+This is the mandate for every piece of content.
+This is why we exist.
+
+───────────────────────────────────────────────────────────────
+
+SUPPORTING SCRIPTURES:
 Anchor every piece of content in Scripture.
 
-1. Luke 4:18 — "preach to poor, heal brokenhearted, 
-   deliverance to captives, sight to blind, liberty to bruised"
-
-2. Proverbs 3:5-6 — "trust with all your heart, 
+1. Proverbs 3:5-6 — "trust with all your heart, 
    lean not on your own understanding"
 
-3. Revelation 3:14-22 — Laodicea, lukewarm, 
+2. Revelation 3:14-22 — Laodicea, lukewarm, 
    being refined by fire
 
-4. Psalm 27:14 — "wait on the Lord, 
+3. Psalm 27:14 — "wait on the Lord, 
    I had fainted unless I had believed"
 
-5. Matthew 6:33 — "seek first the kingdom of God 
+4. Matthew 6:33 — "seek first the kingdom of God 
    and his righteousness"
 
-6. Psalm 22:6 — the crimson worm, 
+5. Psalm 22:6 — the crimson worm, 
    Christ becoming nothing so we become everything
 
-7. Romans 8:28-29 — "all things work together for good 
+6. Romans 8:28-29 — "all things work together for good 
    to those who are called according to his purpose"
 
-8. John 12:32 — "if I be lifted up, I will draw all men unto me"
+7. John 12:32 — "if I be lifted up, I will draw all men unto me"
 
 ───────────────────────────────────────────────────────────────
 
