@@ -30,14 +30,6 @@ today = datetime.date.today()
 day_name = today.strftime("%A")
 date_str = today.strftime("%Y-%m-%d")
 
-task_override = os.environ.get("TASK_OVERRIDE", "").strip()
-if task_override:
-    task = task_override
-elif day_name == "Wednesday":
-    task = "video"
-else:
-    task = "community"
-
 VOICE = """
 BRAND VOICE — SACRED LAW. Never deviate.
 Voice: Sacred, tender, prophetic. Minister — never marketer.
@@ -50,63 +42,59 @@ Every description ends with: https://sanctuary-grace.com/
 SERIES = ["Profile deep dive", "7-day practice walkthrough", "Circle of Silence session", "Scripture reflection"]
 series = SERIES[today.isocalendar()[1] % len(SERIES)]
 
-if task == "video":
-    prompt = f"""{VOICE}
+prompt = f"""{VOICE}
 
 Today: {date_str} ({day_name})
 Content series: {series}
 
 Write a complete VIDEO SCRIPT PACKAGE for The Quiet Authority YouTube channel.
+Grace will read this script on camera herself (no AI voiceover).
 
-## VIDEO TITLE
+## SCRIPT TITLE
 Under 60 characters. Sacred, not clickbait. No exclamation marks.
 
-## VIDEO SCRIPT
-OPENING STILLNESS (30 seconds): Voiceover inviting the viewer to breathe, arrive, be present.
-MAIN TEACHING (8-10 minutes): First-person, tender, prophetic. One central truth. One scripture written in full. 3-4 teaching sections. Speaks to the woman who is exhausted, questioning, or lost.
-SILENCE INVITATION (2 minutes): Guide the viewer into stillness. Tender, unhurried.
-SOFT CLOSE (30 seconds): One blessing. Soft CTA to https://sanctuary-grace.com/
+## FULL VIDEO SCRIPT
+Grace reads this aloud on camera. She will record herself, so write it conversationally and naturally.
+OPENING (30 seconds): Invite the viewer to breathe, arrive, be present. First-person.
+MAIN TEACHING (8-10 minutes): Tender, prophetic, first-person. One central spiritual truth. One full scripture verse written out with reference. 3-4 teaching sections. Speaks to exhaustion, questioning, being lost.
+SILENCE INVITATION (2 minutes): Guide into stillness. Tender, unhurried.
+CLOSING (30 seconds): One blessing. Soft CTA to https://sanctuary-grace.com/
 
 ## SEO DESCRIPTION
-200-250 words. Sacred voice. Mention the spiritual need, one scripture, the free assessment, the channel.
-End with: https://sanctuary-grace.com/
+200-250 words. Write as if describing what Grace teaches in the video. Sacred voice. Mention the spiritual need, the scripture, free assessment. End with: https://sanctuary-grace.com/
 
 ## TAGS
-8-10 YouTube tags (no hash symbol). Mix broad and specific.
+10-12 YouTube tags (no hash symbol, no quotes). Mix broad and niche. Examples: ChristianWomen, SpiritualRest, FaithAndWellness, QuietTime, SanctuaryGrace, Devotional, BibleStudy, WomenInFaith, ChristianMinistry, FaithJourney, SpiritualPeace, WomenOfFaith
 
-## PINNED COMMENT
-Under 100 words. Tender invitation to the assessment. End with: https://sanctuary-grace.com/
-
-## THUMBNAIL BRIEF
-1280x720px. Dark background. One profile image (B&W, high contrast).
-One short Cinzel ALL CAPS line in terra #C1593C. Gold star accent."""
-
-else:
-    prompt = f"""{VOICE}
-
-Today: {date_str} ({day_name})
-
-Write a YOUTUBE COMMUNITY POST for The Quiet Authority channel.
-- One scripture (written in full with reference)
-- 2-3 paragraphs of tender encouragement, first-person, prophetic
-- Soft invitation to the assessment or devotional
-- Final line: https://sanctuary-grace.com/
-- Total: 100-150 words. No emojis. No exclamation marks."""
+## THUMBNAIL CONCEPT
+One sentence describing the thumbnail. Example: "Woman with eyes closed in peaceful prayer, dark background, gold Cinzel text saying 'FIND YOUR REST'"
+"""
 
 content = call_gemini(prompt)
 
-out_dir = pathlib.Path(f"workflows/output/youtube-pending/{date_str}")
+# Output as a single markdown file with all sections
+out_dir = pathlib.Path("workflows/output/youtube-pending")
 out_dir.mkdir(parents=True, exist_ok=True)
-out_file = out_dir / f"script-{task}.md"
-out_file.write_text(
-    f"---\ndate: {date_str}\ntask: {task}\nseries: {series}\nstatus: DRAFT — review before publishing\n---\n\n{content}\n"
-)
+out_file = out_dir / f"{date_str}.md"
+
+# Format with frontmatter + content
+output_text = f"""---
+date: {date_str}
+series: {series}
+status: DRAFT — Grace reviews and records
+---
+
+{content}
+"""
+
+out_file.write_text(output_text)
 
 log_file = pathlib.Path("workflows/output/youtube-log.md")
-entry = f"| {date_str} | {task} | {series} | DRAFT SAVED | {out_file} |\n"
+entry = f"| {date_str} | Script draft | {series} | PENDING GRACE REVIEW | {out_file} |\n"
 if log_file.exists():
     log_file.write_text(log_file.read_text() + entry)
 else:
-    log_file.write_text("| Date | Task | Series | Status | File |\n|---|---|---|---|---|\n" + entry)
+    log_file.write_text("| Date | Content | Series | Status | File |\n|---|---|---|---|---|\n" + entry)
 
-print(f"YouTube draft saved: {out_file}")
+print(f"✅ YouTube script draft saved: {out_file}")
+print(f"   Grace will review in Approval Gate, record herself reading the script, and upload to YouTube")
