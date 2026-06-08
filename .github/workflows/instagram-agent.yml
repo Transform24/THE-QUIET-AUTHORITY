@@ -1,8 +1,8 @@
-name: Instagram Agent — Daily Post (PAUSED)
+name: Instagram Agent — Weekly Post (Paused)
 
 on:
   schedule:
-    - cron: '0 14 * * *'  # 2pm UTC
+    - cron: '0 14 * * 3'  # Wednesday 2pm UTC
   workflow_dispatch:
 
 jobs:

@@ -1,4 +1,5 @@
-import os, datetime, pathlib, json, urllib.request, urllib.error
+import os, datetime, pathlib, json
+from anthropic import Anthropic
 
 ANTHROPIC_API_KEY = os.environ['ANTHROPIC_API_KEY']
 SUBSTACK_SESSION_COOKIE = os.environ.get('SUBSTACK_SESSION_COOKIE', '').strip()
@@ -100,31 +101,19 @@ Structure:
 
 No markdown symbols. No emojis."""
 
-anthropic_url = 'https://api.anthropic.com/v1/messages'
-anthropic_payload = json.dumps({
-    "model": "claude-3-5-sonnet-20241022",
-    "max_tokens": 1024,
-    "messages": [{"role": "user", "content": prompt}]
-}).encode('utf-8')
+client = Anthropic(api_key=ANTHROPIC_API_KEY)
 
 content = None
 try:
-    req = urllib.request.Request(
-        anthropic_url,
-        data=anthropic_payload,
-        headers={
-            'Content-Type': 'application/json',
-            'x-api-key': ANTHROPIC_API_KEY,
-            'anthropic-version': '2023-06-01'
-        },
-        method='POST'
+    message = client.messages.create(
+        model="claude-opus-4-8",
+        max_tokens=1024,
+        messages=[{"role": "user", "content": prompt}]
     )
-    with urllib.request.urlopen(req, timeout=60) as resp:
-        result = json.loads(resp.read())
-        content = result['content'][0]['text'].strip()
-        print(f"Devotion generated using Claude")
-except urllib.error.HTTPError as e:
-    raise RuntimeError(f'Claude API error {e.code}: {e.reason}')
+    content = message.content[0].text.strip()
+    print(f"Devotion generated using Claude")
+except Exception as e:
+    raise RuntimeError(f'Claude API error: {str(e)}')
 
 lines = content.split('\n')
 title = lines[0].strip()

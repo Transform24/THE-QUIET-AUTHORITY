@@ -1,30 +1,20 @@
-import urllib.request, urllib.error, json, os, datetime, pathlib, time
+import json, os, datetime, pathlib
+from anthropic import Anthropic
 
-API_KEY = os.environ["GEMINI_API_KEY"]
-URL = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={API_KEY}"
+ANTHROPIC_API_KEY = os.environ['ANTHROPIC_API_KEY']
+client = Anthropic(api_key=ANTHROPIC_API_KEY)
 
-def call_gemini(prompt, retries=3):
-    data = json.dumps({"contents": [{"parts": [{"text": prompt}]}]}).encode()
-    for attempt in range(1, retries + 1):
-        req = urllib.request.Request(URL, data=data, headers={"Content-Type": "application/json"})
-        try:
-            with urllib.request.urlopen(req, timeout=60) as r:
-                return json.loads(r.read())["candidates"][0]["content"]["parts"][0]["text"]
-        except urllib.error.HTTPError as e:
-            body = e.read().decode()
-            print(f"Attempt {attempt}: HTTP {e.code} — {body[:300]}", flush=True)
-            if e.code == 429:
-                if "quota" in body.lower():
-                    print("Daily quota exceeded. Quota resets at midnight Pacific time. Re-run tomorrow or add a second GEMINI_API_KEY.", flush=True)
-                    import sys; sys.exit(1)
-                if attempt < retries:
-                    wait = 30 * attempt
-                    print(f"Rate limited. Waiting {wait}s before retry...", flush=True)
-                    time.sleep(wait)
-                else:
-                    raise
-            else:
-                raise
+def call_claude(prompt):
+    try:
+        message = client.messages.create(
+            model="claude-opus-4-8",
+            max_tokens=1024,
+            messages=[{"role": "user", "content": prompt}]
+        )
+        return message.content[0].text
+    except Exception as e:
+        print(f"Claude API error: {str(e)}", flush=True)
+        raise
 
 today = datetime.date.today()
 day_name = today.strftime("%A")
@@ -164,7 +154,7 @@ Content pillar: {pillar}
 
 Hashtag pool: {HASHTAGS}"""
 
-content = call_gemini(prompt)
+content = call_claude(prompt)
 
 out_dir = pathlib.Path("workflows/output/instagram-pending")
 out_dir.mkdir(parents=True, exist_ok=True)
