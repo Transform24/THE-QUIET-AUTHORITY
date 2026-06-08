@@ -1,6 +1,16 @@
 # THE QUIET AUTHORITY — AGENT SOP
 ## Sanctuary Grace Ministry · Transform24
-*Last updated: 2026-05-29 · This file is the law. Everything else defers to it.*
+*Last updated: 2026-06-08 · This file is the law. Everything else defers to it.*
+
+---
+
+## GIT WORKFLOW — STRICT PROTOCOL
+
+- **Always work on `main` branch.** Never create feature branches unless explicitly permitted.
+- **Never switch branches or directories** without asking first.
+- **All work happens in `/home/user/THE-QUIET-AUTHORITY` root.** No navigation unless explicitly requested.
+- **Single source of truth:** `main` branch only. All commits go directly to `main`.
+- If a feature branch exists, merge it into `main` immediately and delete it.
 
 ---
 
