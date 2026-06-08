@@ -5,7 +5,7 @@ URL = "https://api.anthropic.com/v1/messages"
 
 def call_claude(prompt, retries=3):
     payload = json.dumps({
-        "model": "claude-3-5-sonnet-20241022",
+        "model": "claude-sonnet-4-5",
         "max_tokens": 1024,
         "messages": [{"role": "user", "content": prompt}]
     }).encode('utf-8')
