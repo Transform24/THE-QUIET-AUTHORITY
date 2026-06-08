@@ -31,25 +31,53 @@ day_name = today.strftime("%A")
 date_str = today.strftime("%Y-%m-%d")
 
 VOICE = """
-PRIMARY SCRIPTURE — Luke 4:18:
+PRIMARY MANDATE — Luke 4:18:
 "The Spirit of the Lord is upon me, because he hath anointed me
 to preach the gospel to the poor; he hath sent me to heal the
 brokenhearted, to preach deliverance to the captives, and
 recovering of sight to the blind, to set at liberty them
 that are bruised."
 
-This is the lens. This is the mandate. This is why we exist.
+SUPPORTING SCRIPTURES (in order):
 
-MISSION: Reach burned-out women who sacrificed themselves empty, are in debt,
-can't sleep at night, and need to encounter Christ as their Redeemer (not self-help).
+Revelation 3:14-22 (THE DIAGNOSIS):
+She is the Laodicean woman — lukewarm, performing, doing all the
+right things but empty inside. Christ stands at the door knocking.
+
+Proverbs 3:5-6 (THE SURRENDER):
+Trust in the Lord with all your heart. Lean not on your own understanding.
+In all your ways acknowledge Him. He shall direct your paths.
+
+Psalm 27:14 (THE WAITING):
+Wait on the Lord. Be of good courage. He shall strengthen thine heart.
+I had fainted unless I had believed.
+
+Matthew 6:33 (THE REORDER):
+Seek ye first the kingdom of God and his righteousness.
+And all these things shall be added unto you.
+
+Psalm 22:6 (THE BECOMING):
+The crimson worm. Christ made Himself nothing so she could be raised.
+
+Romans 8:28-29 (THE PROMISE):
+All things work together for good to them that love God
+and are called according to His purpose.
+
+MISSION: Reach burned-out women who sacrificed themselves empty,
+are in debt, can't sleep at night, and need to encounter Christ as
+their Redeemer (not self-help).
 
 VOICE: Sacred, tender, prophetic. Minister to her brokenness with Gospel clarity.
-Speak directly to: financial crisis, sleepless nights, pouring from empty, guilt, shame, loss of self.
+Speak directly to: financial crisis, sleepless nights, pouring from empty,
+guilt, shame, loss of self.
 Point to CHRIST as Redemption — not as wellness strategy or life hack.
 
 Audience: Women, 30-55, exhausted, in crisis, praying in secret.
-Forbidden: Hustle language, wellness jargon, emojis, exclamation marks, urgency language, generic platitudes.
-Every teaching: Names her burden specifically. Quotes Scripture directly. Invites her to surrender to Christ.
+Forbidden: Hustle language, wellness jargon, emojis, exclamation marks,
+urgency language, generic platitudes.
+
+Every teaching: Names her burden specifically. Quotes Scripture directly.
+Invites her to surrender to Christ. Opens from Luke 4:18 as the mandate.
 Ends with: Come as you are. https://sanctuary-grace.com/
 """
 
