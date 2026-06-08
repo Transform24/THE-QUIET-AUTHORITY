@@ -1,21 +1,35 @@
 import urllib.request, urllib.error, json, os, datetime, pathlib, time
 
-API_KEY = os.environ["GEMINI_API_KEY"]
-URL = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={API_KEY}"
+API_KEY = os.environ["ANTHROPIC_API_KEY"]
+URL = "https://api.anthropic.com/v1/messages"
 
-def call_gemini(prompt, retries=3):
-    data = json.dumps({"contents": [{"parts": [{"text": prompt}]}]}).encode()
+def call_claude(prompt, retries=3):
+    payload = json.dumps({
+        "model": "claude-3-5-sonnet-20241022",
+        "max_tokens": 1024,
+        "messages": [{"role": "user", "content": prompt}]
+    }).encode('utf-8')
+
     for attempt in range(1, retries + 1):
-        req = urllib.request.Request(URL, data=data, headers={"Content-Type": "application/json"})
+        req = urllib.request.Request(
+            URL,
+            data=payload,
+            headers={
+                'Content-Type': 'application/json',
+                'x-api-key': API_KEY,
+                'anthropic-version': '2023-06-01'
+            },
+            method='POST'
+        )
         try:
             with urllib.request.urlopen(req, timeout=60) as r:
-                return json.loads(r.read())["candidates"][0]["content"]["parts"][0]["text"]
+                return json.loads(r.read())['content'][0]['text']
         except urllib.error.HTTPError as e:
             body = e.read().decode()
             print(f"Attempt {attempt}: HTTP {e.code}", flush=True)
             if e.code == 429:
-                if "quota" in body.lower():
-                    print("Daily quota exceeded. Re-run tomorrow.", flush=True)
+                if "quota" in body.lower() or "overloaded" in body.lower():
+                    print("Rate limited or overloaded. Re-run later.", flush=True)
                     import sys; sys.exit(1)
                 if attempt < retries:
                     wait = 30 * attempt
@@ -110,7 +124,7 @@ One sentence. Example: "Woman in peaceful prayer, dark background, gold text 'FI
 """
 
 print(f"Generating script...")
-content = call_gemini(prompt)
+content = call_claude(prompt)
 
 # Save to approval gate
 out_dir = pathlib.Path("workflows/output/youtube-pending")
