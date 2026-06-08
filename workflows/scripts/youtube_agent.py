@@ -43,6 +43,33 @@ def call_claude(prompt, retries=3):
 today = datetime.date.today()
 day_name = today.strftime("%A")
 date_str = today.strftime("%Y-%m-%d")
+week_start = today - datetime.timedelta(days=today.weekday())
+week_end = week_start + datetime.timedelta(days=6)
+week_date_str = f"{week_start.strftime('%Y-%m-%d')} to {week_end.strftime('%Y-%m-%d')}"
+
+# Read latest Substack devotion from substack-pending/
+substack_dir = pathlib.Path("workflows/output/substack-pending")
+substack_title = ""
+substack_intro = ""
+
+if substack_dir.exists():
+    pending_files = sorted(substack_dir.glob("*.md"), reverse=True)
+    if pending_files:
+        latest_substack = pending_files[0].read_text()
+        lines = latest_substack.split('\n')
+        for i, line in enumerate(lines):
+            if line.startswith('---'):
+                body_start = i + 1
+                break
+        if body_start < len(lines):
+            body = '\n'.join(lines[body_start:]).strip()
+            body_lines = body.split('\n')
+            if body_lines:
+                substack_title = body_lines[0].strip()
+                for j in range(1, len(body_lines)):
+                    if body_lines[j].strip():
+                        substack_intro = body_lines[j].strip()
+                        break
 
 VOICE = """
 PRIMARY MANDATE — Luke 4:18:
@@ -95,15 +122,14 @@ Invites her to surrender to Christ. Opens from Luke 4:18 as the mandate.
 Ends with: Come as you are. https://sanctuary-grace.com/
 """
 
-SERIES = ["Profile deep dive", "7-day practice walkthrough", "Circle of Silence session", "Scripture reflection"]
-series = SERIES[today.isocalendar()[1] % len(SERIES)]
-
 prompt = f"""{VOICE}
 
-Today: {date_str} ({day_name})
-Series: {series}
+Foundation: {substack_title}
+
+Opening line: {substack_intro}
 
 Write a VIDEO SCRIPT for The Quiet Authority YouTube (2-3 minutes of speaking time).
+Build from the Substack foundation above — open with the topic, deepen with teaching.
 
 ## SCRIPT TITLE
 Under 60 characters. Sacred, not clickbait.
@@ -123,7 +149,7 @@ Structure: Opening (30s) → Teaching (2 min) → Close (30s).
 One sentence. Example: "Woman in peaceful prayer, dark background, gold text 'FIND REST'"
 """
 
-print(f"Generating script...")
+print(f"Generating script from Substack foundation...")
 content = call_claude(prompt)
 
 # Save to approval gate
@@ -131,33 +157,48 @@ out_dir = pathlib.Path("workflows/output/youtube-pending")
 out_dir.mkdir(parents=True, exist_ok=True)
 out_file = out_dir / f"{date_str}.md"
 
+scrolling_ticker = """---SCROLLING TICKER---
+Romans 10:9-10 (KJV)
+That if thou shalt confess with thy mouth the Lord Jesus, and shalt believe in thine heart that God hath raised him from the dead, thou shalt be saved. For with the heart man believeth unto righteousness; and with the mouth confession is made unto salvation.
+---END TICKER---"""
+
 output_text = f"""---
+week: {week_date_str}
 date: {date_str}
-series: {series}
-status: SCRIPT READY — Grace records and uploads to YouTube
+substack_title: {substack_title}
+canva_candidate_id: dg-db32bf4c-9d45-4ee1-83f4-a45ccd878cce
+canva_template: Dark background, 3 rings, gold typography
+status: DRAFT
 ---
+
+## VIDEO SCRIPT
 
 {content}
 
+## SCROLLING TICKER FOR CANVA
+
+{scrolling_ticker}
+
 ---
 
-**How to use this script:**
-1. Download this script from the Approval Gate
-2. Record yourself reading the script (phone, webcam, or camera — 2-3 minutes)
-3. Use Canva or simple slides to create visuals while recording
-4. Export as MP4
-5. Upload to YouTube with the SEO description and tags provided above
+**Canva instructions:**
+- Use candidate template: dg-db32bf4c-9d45-4ee1-83f4-a45ccd878cce
+- Design: Dark background with 3 rings (gold accent)
+- Add scrolling ticker at bottom with Romans 10:9-10
+- Export as MP4 ready for Grace to record voiceover
 """
 
 out_file.write_text(output_text)
 
 # Log
 log_file = pathlib.Path("workflows/output/youtube-log.md")
-entry = f"| {date_str} | Script ready | {series} | PENDING GRACE RECORDING |\n"
+entry = f"| {date_str} | {substack_title[:30]}... | Substack foundation | DRAFT |\n"
 if log_file.exists():
     log_file.write_text(log_file.read_text() + entry)
 else:
-    log_file.write_text("| Date | Content | Series | Status |\n|---|---|---|---|\n" + entry)
+    log_file.write_text("| Date | Substack Title | Foundation | Status |\n|---|---|---|---|\n" + entry)
 
 print(f"✅ Script saved: {out_file}")
-print(f"   Grace downloads from Approval Gate and records herself")
+print(f"   Substack title: {substack_title}")
+print(f"   Canva template: dg-db32bf4c-9d45-4ee1-83f4-a45ccd878cce")
+print(f"   Ticker: Romans 10:9-10")
