@@ -1,6 +1,6 @@
-import os, datetime, pathlib, json, urllib.request, urllib.error, time
+import os, datetime, pathlib, json, urllib.request, urllib.error
 
-GEMINI_API_KEY = os.environ['GEMINI_API_KEY']
+ANTHROPIC_API_KEY = os.environ['ANTHROPIC_API_KEY']
 SUBSTACK_SESSION_COOKIE = os.environ.get('SUBSTACK_SESSION_COOKIE', '').strip()
 SUBSTACK_PUBLICATION_URL = os.environ.get('SUBSTACK_PUBLICATION_URL', '5apop2sotwm.substack.com').strip()
 MODE_OVERRIDE = os.environ.get('MODE_OVERRIDE', '').strip()
@@ -100,36 +100,31 @@ Structure:
 
 No markdown symbols. No emojis."""
 
-MODELS = [
-    'gemini-1.5-flash',
-    'gemini-1.5-flash-8b',
-]
+anthropic_url = 'https://api.anthropic.com/v1/messages'
+anthropic_payload = json.dumps({
+    "model": "claude-3-5-sonnet-20241022",
+    "max_tokens": 1024,
+    "messages": [{"role": "user", "content": prompt}]
+}).encode('utf-8')
 
 content = None
-for model in MODELS:
-    gemini_url = f'https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={GEMINI_API_KEY}'
-    gemini_payload = json.dumps({"contents": [{"parts": [{"text": prompt}]}]}).encode('utf-8')
-    for attempt in range(3):
-        try:
-            req = urllib.request.Request(gemini_url, data=gemini_payload, headers={'Content-Type': 'application/json'}, method='POST')
-            with urllib.request.urlopen(req, timeout=60) as resp:
-                result = json.loads(resp.read())
-                content = result['candidates'][0]['content']['parts'][0]['text'].strip()
-                print(f"Devotion generated using {model}")
-                break
-        except urllib.error.HTTPError as e:
-            if e.code == 429:
-                wait = 10 * (attempt + 1)
-                print(f"{model} rate limited — waiting {wait}s")
-                time.sleep(wait)
-            else:
-                print(f"{model} error {e.code}")
-                break
-    if content:
-        break
-
-if not content:
-    raise RuntimeError('All Gemini models rate limited. Try again in 60 minutes.')
+try:
+    req = urllib.request.Request(
+        anthropic_url,
+        data=anthropic_payload,
+        headers={
+            'Content-Type': 'application/json',
+            'x-api-key': ANTHROPIC_API_KEY,
+            'anthropic-version': '2023-06-01'
+        },
+        method='POST'
+    )
+    with urllib.request.urlopen(req, timeout=60) as resp:
+        result = json.loads(resp.read())
+        content = result['content'][0]['text'].strip()
+        print(f"Devotion generated using Claude")
+except urllib.error.HTTPError as e:
+    raise RuntimeError(f'Claude API error {e.code}: {e.reason}')
 
 lines = content.split('\n')
 title = lines[0].strip()

@@ -19,15 +19,9 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install dependencies
-        run: pip install anthropic
-
       - name: Run Substack Agent
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-          SUBSTACK_API_KEY: ${{ secrets.SUBSTACK_API_KEY }}
-          SUBSTACK_PUB_URL: ${{ secrets.SUBSTACK_PUB_URL }}
         run: python3 workflows/scripts/substack_agent.py
 
       - name: Commit and push output to main
