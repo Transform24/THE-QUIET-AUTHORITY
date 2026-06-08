@@ -28,7 +28,7 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python3 workflows/scripts/youtube_agent.py
 
-      - name: Commit script to main
+      - name: Commit script and push
         run: |
           git config user.name "TQA Agent"
           git config user.email "noreply@sanctuarygrace.com"
@@ -36,7 +36,7 @@ jobs:
           git add -f workflows/output/youtube-log.md
           if ! git diff --staged --quiet; then
             git commit -m "YouTube Agent: $(date +%Y-%m-%d) script — ready for Grace to record and upload"
-            git push origin main
+            git push origin HEAD
             echo "✅ Script saved to workflows/output/youtube-pending/"
           else
             echo "No new content to commit"

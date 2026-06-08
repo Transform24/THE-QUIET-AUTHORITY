@@ -24,14 +24,14 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: python3 workflows/scripts/substack_agent.py
 
-      - name: Commit and push output to main
+      - name: Commit and push output
         run: |
           git config user.name "TQA Agent"
           git config user.email "noreply@sanctuarygrace.com"
           git add -f workflows/output/substack-pending/
           if ! git diff --staged --quiet; then
             git commit -m "Substack Agent: $(date +%Y-%m-%d) devotion draft — ready for Grace approval"
-            git push origin main
+            git push origin HEAD
             echo "✅ Devotion saved to workflows/output/substack-pending/ — visible in Approval Gate for Grace review"
           else
             echo "No new content to commit"
