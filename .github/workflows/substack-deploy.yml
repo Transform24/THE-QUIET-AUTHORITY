@@ -39,8 +39,7 @@ jobs:
 
       - name: Deploy to Substack
         env:
-          SUBSTACK_API_KEY: ${{ secrets.SUBSTACK_API_KEY }}
-          SUBSTACK_PUBLICATION_ID: ${{ secrets.SUBSTACK_PUBLICATION_ID }}
+          SUBSTACK_SESSION_COOKIE: ${{ secrets.SUBSTACK_SESSION_COOKIE }}
           SUBSTACK_PUBLICATION_URL: ${{ secrets.SUBSTACK_PUBLICATION_URL }}
         run: python3 workflows/scripts/substack-deploy.py
 
