@@ -10,7 +10,7 @@ Archives to: workflows/library/substack-headers/
 import json, os, pathlib, datetime, urllib.request, urllib.error
 
 SUBSTACK_API_KEY = os.environ.get('SUBSTACK_API_KEY', '').strip()
-SUBSTACK_PUBLICATION_ID = os.environ.get('SUBSTACK_PUBLICATION_ID', '').strip()
+SUBSTACK_PUBLICATION_ID = os.environ.get('SUBSTACK_PUBLICATION_ID', 'sapop2sotwm').strip()
 SUBSTACK_PUBLICATION_URL = os.environ.get('SUBSTACK_PUBLICATION_URL', 'thequietauthority.substack.com').strip()
 
 APPROVED_DIR = pathlib.Path('workflows/output/substack-approved')
