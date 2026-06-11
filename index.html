@@ -918,7 +918,43 @@ body{top:0!important;}
   </div>
 </div>
 
-<!-- screen-email removed: assessment flows directly to profile reveal -->
+<!-- ══════════════════════════════════════
+     SCREEN 3: EMAIL CAPTURE — Beacons embed
+══════════════════════════════════════ -->
+<div class="screen" id="screen-email">
+  <div class="email-wrap">
+    <div class="email-dove">✉</div>
+    <h2 class="email-title">Keep Your Profile</h2>
+    <p class="email-sub">Your Silence Profile is sacred. We'll send it to you + guide you into the first week of practice.</p>
+
+    <div id="14b07084-af74-4653-8f79-54311df3a69a"></div>
+    <script>
+    (function () {
+      function loadBeaconsEmailFormEmbed() {
+        var s = document.createElement("script");
+        var t = Math.floor(new Date().getTime() / 120000);
+        s.type = "module";
+        s.async = 1;
+        s.src = `https://beacons.ai/embeds/emailForm.js?v=${t}&b=sanctuarygrace&f=14b07084-af74-4653-8f79-54311df3a69a`;
+        (document.head || document.body || document.documentElement).appendChild(s);
+      }
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", loadBeaconsEmailFormEmbed, { once: true });
+        return;
+      }
+      loadBeaconsEmailFormEmbed();
+    })();
+    </script>
+
+    <div style="margin-top:28px;">
+      <button class="btn-begin" onclick="calculateAndReveal()" style="width:100%;"><span>Reveal My Profile →</span></button>
+    </div>
+
+    <input type="hidden" id="inputName" value="">
+    <input type="hidden" id="inputEmail" value="">
+    <p class="email-privacy">We respect your privacy. Unsubscribe anytime.</p>
+  </div>
+</div>
 
 <!-- ══════════════════════════════════════
      SCREEN 4: PROFILE REVEAL — new ceremony
@@ -1974,7 +2010,7 @@ function goBack(){if(currentQ>0){currentQ--;renderQuestion();}}
 function nextQ(){
   if(answers[currentQ]===undefined)return;
   if(currentQ<QUESTIONS.length-1){currentQ++;renderQuestion();}
-  else{calculateAndReveal();}
+  else{showScreen('screen-email');}
 }
 
 // ── EMAIL & SUBMIT ────────────────────────────────────────────
