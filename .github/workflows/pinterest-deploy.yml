@@ -33,6 +33,7 @@ jobs:
         run: |
           git config user.name "TQA Deploy Agent"
           git config user.email "noreply@sanctuarygrace.com"
+          touch workflows/output/pin-log.md
           git add workflows/output/pin-log.md
           if ! git diff --staged --quiet; then
             git commit -m "Pinterest Agent: Auto posted pin"
