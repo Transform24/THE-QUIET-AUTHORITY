@@ -1,17 +1,12 @@
-name: Pinterest Deploy — Post Approved Pins
+name: Pinterest Agent — Auto Post Daily
 
 on:
   schedule:
-    - cron: '0 14 * * *'  # Daily 2pm UTC (matches current posting schedule)
+    - cron: '0 14 * * *'  # Daily 2pm UTC (9am EST)
   workflow_dispatch:
-    inputs:
-      pin_date:
-        description: 'Pin date to deploy (YYYY-MM-DD) — leave blank for latest'
-        required: false
-        default: ''
 
 jobs:
-  deploy-pin:
+  post-pin:
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -19,35 +14,27 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Check for approved pins
-        run: |
-          if [ -d "workflows/output/pinterest-approved" ] && [ "$(ls -A workflows/output/pinterest-approved)" ]; then
-            echo "✅ Approved pins found in workflows/output/pinterest-approved/"
-            ls -la workflows/output/pinterest-approved/
-          else
-            echo "⚠️  No approved pins to deploy. Grace must move pins from -pending/ to -approved/ first."
-            exit 0
-          fi
-
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install anthropic
+        run: pip install anthropic requests
 
-      - name: Deploy to Pinterest
+      - name: Run Pinterest Agent
         env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           PINTEREST_ACCESS_TOKEN: ${{ secrets.PINTEREST_ACCESS_TOKEN }}
+          PINTEREST_BOARD_ID: ${{ secrets.PINTEREST_BOARD_ID }}
         run: python3 workflows/scripts/pinterest-deploy.py
 
-      - name: Commit deployment log
+      - name: Commit log
         run: |
           git config user.name "TQA Deploy Agent"
           git config user.email "noreply@sanctuarygrace.com"
-          git add workflows/pin-log.md workflows/output/pinterest-approved/
+          git add workflows/output/pin-log.md
           if ! git diff --staged --quiet; then
-            git commit -m "Pinterest Deploy: Posted approved pins"
+            git commit -m "Pinterest Agent: Auto posted pin"
             git push origin main
           fi
