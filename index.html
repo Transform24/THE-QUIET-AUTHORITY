@@ -957,31 +957,6 @@ body{top:0!important;}
     <div class="r-badge">Your Silence Profile</div>
     <h1 class="r-name serif" id="rName"></h1>
     <p class="r-tagline serif" id="rTagline"></p>
-
-    <!-- Product Offers by Profile -->
-    <div id="profileOffers" style="margin-top:28px;display:flex;flex-direction:column;gap:8px;align-items:center;max-width:320px;margin-left:auto;margin-right:auto;">
-      <!-- Profile A: Striving Achiever -->
-      <div id="offers-A" style="display:none;width:100%;display:flex;flex-direction:column;gap:8px;">
-        <button onclick="goShop('https://buy.stripe.com/14AbJ1bNm3tT9aY3EmcQU0n')" style="padding:12px 24px;background:var(--bg);border:1px solid var(--gold);color:var(--cream);font-family:'Jost',sans-serif;font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;transition:all 0.3s;font-weight:300;">Get Your Wall Art Print — $9.99</button>
-        <button onclick="goShop('https://buy.stripe.com/cNieVdbNm6G586UdeWcQU03')" style="padding:12px 24px;background:var(--bg);border:1px solid var(--gold);color:var(--cream);font-family:'Jost',sans-serif;font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;transition:all 0.3s;font-weight:300;">Get Your Sacred Workbook — $4.99</button>
-      </div>
-      <!-- Profile B: Depleted Survivor -->
-      <div id="offers-B" style="display:none;width:100%;display:flex;flex-direction:column;gap:8px;">
-        <button onclick="goShop('https://buy.stripe.com/dRm9ATg3Cc0p2MA2AicQU0r')" style="padding:12px 24px;background:var(--bg);border:1px solid var(--gold);color:var(--cream);font-family:'Jost',sans-serif;font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;transition:all 0.3s;font-weight:300;">Get Your Wall Art Print — $9.99</button>
-        <button onclick="goShop('https://buy.stripe.com/3cI7sL18I7K9evi1wecQU04')" style="padding:12px 24px;background:var(--bg);border:1px solid var(--gold);color:var(--cream);font-family:'Jost',sans-serif;font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;transition:all 0.3s;font-weight:300;">Get Your Sacred Workbook — $4.99</button>
-      </div>
-      <!-- Profile C: Guilty Giver -->
-      <div id="offers-C" style="display:none;width:100%;display:flex;flex-direction:column;gap:8px;">
-        <button onclick="goShop('https://buy.stripe.com/7sYdR95oY3tT1IwdeWcQU0q')" style="padding:12px 24px;background:var(--bg);border:1px solid var(--gold);color:var(--cream);font-family:'Jost',sans-serif;font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;transition:all 0.3s;font-weight:300;">Get Your Wall Art Print — $9.99</button>
-        <button onclick="goShop('https://buy.stripe.com/14A7sL8Ba4xX9aY7UCcQU06')" style="padding:12px 24px;background:var(--bg);border:1px solid var(--gold);color:var(--cream);font-family:'Jost',sans-serif;font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;transition:all 0.3s;font-weight:300;">Get Your Sacred Workbook — $4.99</button>
-      </div>
-      <!-- Profile D: Lost Wanderer -->
-      <div id="offers-D" style="display:none;width:100%;display:flex;flex-direction:column;gap:8px;">
-        <button onclick="goShop('https://buy.stripe.com/5kQdR92cM5C1af23EmcQU0o')" style="padding:12px 24px;background:var(--bg);border:1px solid var(--gold);color:var(--cream);font-family:'Jost',sans-serif;font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;transition:all 0.3s;font-weight:300;">Get Your Wall Art Print — $9.99</button>
-        <button onclick="goShop('https://buy.stripe.com/eVqeVd7x66G5gDq0sacQU02')" style="padding:12px 24px;background:var(--bg);border:1px solid var(--gold);color:var(--cream);font-family:'Jost',sans-serif;font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer;transition:all 0.3s;font-weight:300;">Get Your Sacred Workbook — $4.99</button>
-      </div>
-    </div>
-
     <div style="margin-top:28px;display:flex;flex-direction:column;gap:10px;align-items:center;max-width:320px;margin-left:auto;margin-right:auto;">
       <button class="btn-session gold" onclick="openJournalModal()" style="font-size:0.68rem;padding:13px 28px;width:100%;">✦ Write in My Journal</button>
       <button class="btn-session gold" onclick="downloadProfileCard()" style="font-size:0.65rem;padding:11px 16px;width:100%;">⬇ Download My Profile Card</button>
@@ -1377,7 +1352,7 @@ body{top:0!important;}
 
 
   <!-- SACRED SPACE -->
-  <div class="sacred-section" style="display:none">
+  <div class="sacred-section">
     <div class="sacred-inner">
       <div class="r-label">Sanctuary Essentials — Amazon Curated</div>
       <h2 class="sacred-title serif" id="sacredHeading">Curated Just for You</h2>
@@ -2157,13 +2132,6 @@ function showResults(){
   // Show email delivery notice — pull from localStorage if returning user
   const edn=document.getElementById('emailDeliveryNotice');
   if(edn)edn.style.display='block';
-
-  // Show the correct profile offers
-  const profileLetters=['A','B','C','D'];
-  profileLetters.forEach(letter=>{
-    const offersDiv=document.getElementById('offers-'+letter);
-    if(offersDiv)offersDiv.style.display=letter===profileLetters[currentProfile]?'flex':'none';
-  });
 
   renderSacredSpace();
   renderShopOffers();
