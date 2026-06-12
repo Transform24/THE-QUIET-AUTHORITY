@@ -943,6 +943,16 @@ body{top:0!important;}
     <div class="reveal-practice-tag" id="revealPracticeTag"></div>
     <div class="reveal-cta-group">
       <button class="btn-begin" onclick="enterResults()" style="padding:14px 44px;"><span>Enter My Sanctuary →</span></button>
+      <div id="revealProductOffer" style="margin-top:24px;display:none;">
+        <a id="revealWallArtBtn" href="#" target="_blank" rel="noopener"
+           style="display:block;margin-bottom:12px;padding:14px 44px;border:1px solid #C9A84C;color:#F5F0E8;background:transparent;text-align:center;font-family:Georgia,serif;font-size:13px;letter-spacing:2px;text-decoration:none;">
+           Get Your Sacred Wall Art — $9.99
+        </a>
+        <a id="revealWorkbookBtn" href="#" target="_blank" rel="noopener"
+           style="display:block;padding:14px 44px;border:1px solid #C9A84C44;color:#C9A84C;background:transparent;text-align:center;font-family:Georgia,serif;font-size:13px;letter-spacing:2px;text-decoration:none;">
+           Get Your Sacred Workbook — $4.99
+        </a>
+      </div>
     </div>
     <div class="match-breakdown" id="revealMatch"></div>
   </div>
@@ -2084,6 +2094,20 @@ function calculateAndReveal(){
   // Practice tag
   const rpt=document.getElementById('revealPracticeTag');
   if(rpt)rpt.textContent=p.practiceTag;
+
+  // Product offers
+  const offers = {
+    A: { art: 'https://buy.stripe.com/14AbJ1bNm3tT9aY3EmcQU0n', book: 'https://buy.stripe.com/cNieVdbNm6G586UdeWcQU03' },
+    B: { art: 'https://buy.stripe.com/dRm9ATg3Cc0p2MA2AicQU0r', book: 'https://buy.stripe.com/3cI7sL18I7K9evi1wecQU04' },
+    C: { art: 'https://buy.stripe.com/7sYdR95oY3tT1IwdeWcQU0q', book: 'https://buy.stripe.com/14A7sL8Ba4xX9aY7UCcQU06' },
+    D: { art: 'https://buy.stripe.com/5kQdR92cM5C1af23EmcQU0o', book: 'https://buy.stripe.com/eVqeVd7x66G5gDq0sacQU02' }
+  };
+  const offer = offers[currentProfile];
+  if (offer) {
+    document.getElementById('revealWallArtBtn').href = offer.art;
+    document.getElementById('revealWorkbookBtn').href = offer.book;
+    document.getElementById('revealProductOffer').style.display = 'block';
+  }
 
   // Match breakdown bars
   const scores=getProfileScores();
