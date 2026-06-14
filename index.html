@@ -953,26 +953,6 @@ body{top:0!important;}
            Get Your Sacred Workbook — $4.99
         </a>
       </div>
-      <div id="emailCapture" style="margin-top:32px;padding:20px;border:1px solid #C9A84C;border-radius:8px;background:rgba(201,168,76,0.04);">
-        <p style="color:#F5F0E8;font-family:Georgia,serif;font-size:13px;margin:0 0 14px;text-align:center;">Next Steps</p>
-        <form id="emailForm" style="display:flex;flex-direction:column;gap:12px;">
-          <input
-            type="email"
-            id="userEmailCapture"
-            name="email"
-            placeholder="your email"
-            required
-            style="padding:10px 12px;background:#0d0d0d;border:1px solid #C9A84C;color:#F5F0E8;font-family:Georgia,serif;font-size:12px;border-radius:4px;"
-          />
-          <button
-            type="submit"
-            style="padding:10px;background:#C9A84C;color:#0d0d0d;border:none;font-family:Georgia,serif;font-size:12px;letter-spacing:1px;cursor:pointer;border-radius:4px;font-weight:600;"
-          >
-            Send Me Next Steps
-          </button>
-        </form>
-        <p id="emailStatus" style="color:#C4A47C;font-family:Georgia,serif;font-size:10px;margin:8px 0 0;text-align:center;"></p>
-      </div>
     </div>
     <div class="match-breakdown" id="revealMatch"></div>
   </div>
@@ -2155,33 +2135,6 @@ function calculateAndReveal(){
   }
 
   showScreen('screen-reveal');
-}
-
-// Reveal screen — "Next Steps" email capture
-const emailCaptureForm=document.getElementById('emailForm');
-if(emailCaptureForm){
-  emailCaptureForm.addEventListener('submit', function(e){
-    e.preventDefault();
-    const email=document.getElementById('userEmailCapture').value;
-    const profile=currentProfile;
-
-    fetch('https://formspree.io/f/xzdkgbbq',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({
-        email:email,
-        profile:profile,
-        timestamp:new Date().toISOString()
-      })
-    })
-    .then(response=>{
-      document.getElementById('emailStatus').textContent='Thank you. Check your email.';
-      document.getElementById('userEmailCapture').value='';
-    })
-    .catch(error=>{
-      document.getElementById('emailStatus').textContent='Error. Try again.';
-    });
-  });
 }
 
 function enterResults(){
