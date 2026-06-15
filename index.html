@@ -2066,6 +2066,22 @@ function getProfileScores(){
 function calculateAndReveal(){
   currentProfile=calculateProfile();
 
+  const beaconsLinks = {
+    A: 'https://beacons.ai/sanctuarygrace',
+    B: 'https://beacons.ai/sanctuarygrace',
+    C: 'https://beacons.ai/sanctuarygrace',
+    D: 'https://beacons.ai/sanctuarygrace'
+  };
+
+  const beaconsBtn = document.createElement('a');
+  beaconsBtn.href = beaconsLinks[currentProfile];
+  beaconsBtn.target = '_blank';
+  beaconsBtn.rel = 'noopener';
+  beaconsBtn.innerText = 'Get Your Next Steps →';
+  beaconsBtn.style.cssText = 'display:block;margin-top:20px;padding:14px 44px;border:1px solid #C9A84C;color:#F5F0E8;background:transparent;text-align:center;font-family:Georgia,serif;font-size:13px;letter-spacing:2px;text-decoration:none;';
+
+  document.getElementById('revealProductOffer').appendChild(beaconsBtn);
+
   try{
     localStorage.setItem('tqa_profile_complete','1');
     localStorage.setItem('tqa_profile',JSON.stringify({
