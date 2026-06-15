@@ -2125,6 +2125,15 @@ function calculateAndReveal(){
     document.getElementById('revealProductOffer').style.display = 'block';
   }
 
+  const affiliateBtn = document.createElement('a');
+  affiliateBtn.href = 'https://www.digistore24.com/redir/512623/tdwdemp/';
+  affiliateBtn.target = '_blank';
+  affiliateBtn.rel = 'noopener';
+  affiliateBtn.innerText = 'Harmony Within — Faith & Resilience Guide →';
+  affiliateBtn.style.cssText = 'display:block;margin-top:12px;padding:14px 44px;border:1px solid #C4A47C;color:#C4A47C;background:transparent;text-align:center;font-family:Georgia,serif;font-size:12px;letter-spacing:2px;text-decoration:none;';
+
+  document.getElementById('revealProductOffer').appendChild(affiliateBtn);
+
   // Match breakdown bars
   const scores=getProfileScores();
   const rm=document.getElementById('revealMatch');
