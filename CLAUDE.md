@@ -251,6 +251,11 @@ Wall art images: wall-art-WOMT9.jpg (A) · wall-art-WOMT8.jpg (B) · wall-art-WO
 Weighted fleece throw · Travel mug · Prayer journal · Flameless candles · Butterfly mug · Diffuser · Leather journal · Parallel Bible
 All links already in index.html SACRED_SPACE data. Do not modify link structure.
 
+### Digistore24 Affiliate
+| Product | Platform | Price | Commission | Link |
+|---|---|---|---|---|
+| Harmony Within — Faith & Resilience Guide | DigiStore24 Affiliate | $15.03 | $8.26 commission | https://www.digistore24.com/redir/512623/tdwdemp/ |
+
 ---
 
 ## 10. STRIPE INTEGRATION
