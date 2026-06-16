@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Are You A Striving Achiever? | Sanctuary Grace Ministry</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#0d0d0d;color:#F5F0E8;font-family:'Cormorant Garamond',Georgia,serif;min-height:100vh}
+.wrap{max-width:680px;margin:0 auto;padding:0 24px}
+.hero{padding:64px 0 48px;text-align:center;border-bottom:1px solid #C9A84C22}
+.eyebrow{font-size:11px;letter-spacing:4px;color:#C9A84C;text-transform:uppercase;margin-bottom:28px;font-family:sans-serif;font-weight:400}
+.hero h1{font-size:clamp(38px,8vw,68px);font-weight:300;line-height:1.05;color:#F5F0E8}
+.hero h1 em{color:#C9A84C;font-style:italic}
+.hero-sub{font-size:clamp(16px,2.5vw,21px);color:#C9A84C;font-style:italic;margin:22px 0 18px;line-height:1.5}
+.hero-body{font-size:clamp(14px,2vw,16px);color:#F5F0E877;max-width:500px;margin:0 auto 32px;line-height:1.9;font-family:sans-serif;font-weight:300}
+.verse{border-left:2px solid #C9A84C;padding:16px 24px;margin:28px auto;max-width:460px;text-align:left}
+.verse p{font-style:italic;font-size:19px;color:#F5F0E8;line-height:1.75}
+.verse cite{font-size:12px;letter-spacing:2px;color:#C9A84C;text-transform:uppercase;font-style:normal;font-family:sans-serif;display:block;margin-top:10px;font-weight:400}
+.btn{display:inline-block;background:transparent;border:1px solid #C9A84C;color:#C9A84C;font-family:'Cormorant Garamond',Georgia,serif;font-size:13px;letter-spacing:3px;text-transform:uppercase;padding:15px 40px;cursor:pointer;transition:all 0.3s;margin-top:8px;text-decoration:none}
+.btn:hover{background:#C9A84C;color:#0d0d0d}
+.section{display:none;padding:48px 0}.section.active{display:block}
+.prog-bar{background:#1a1a1a;height:1px;margin-bottom:44px}
+.prog-fill{background:#C9A84C;height:1px;transition:width 0.4s}
+.q-count{font-size:10px;letter-spacing:3px;color:#C9A84C44;font-family:sans-serif;text-transform:uppercase;margin-bottom:18px}
+.q-text{font-size:clamp(19px,3vw,26px);color:#F5F0E8;line-height:1.5;margin-bottom:36px;font-weight:300}
+.q-opts{display:flex;flex-direction:column;gap:12px}
+.q-opt{background:transparent;border:1px solid #F5F0E81a;color:#F5F0E8aa;font-family:'Cormorant Garamond',Georgia,serif;font-size:17px;padding:15px 22px;text-align:left;cursor:pointer;transition:all 0.25s;line-height:1.4}
+.q-opt:hover{border-color:#C9A84C66;color:#F5F0E8}
+.q-opt.sel{border-color:#C9A84C;color:#C9A84C;background:#C9A84C08}
+.q-nav{display:flex;justify-content:space-between;align-items:center;margin-top:36px}
+.back-btn{background:transparent;border:none;color:#F5F0E833;font-family:sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;padding:8px 0;transition:color 0.2s}
+.back-btn:hover{color:#F5F0E8}
+.result-center{text-align:center;padding-bottom:16px}
+.result-label{font-size:10px;letter-spacing:4px;color:#C9A84C;text-transform:uppercase;font-family:sans-serif;margin-bottom:18px}
+.result-name{font-size:clamp(30px,5vw,52px);font-weight:300;color:#F5F0E8;line-height:1.15}
+.result-name em{color:#C9A84C;font-style:italic}
+.result-desc{font-size:17px;color:#F5F0E8bb;line-height:1.85;max-width:520px;margin:28px auto;font-family:sans-serif;font-weight:300}
+.insights-box{background:#0a0a0a;border:1px solid #C9A84C1a;padding:28px 32px;margin:32px 0}
+.insights-box h3{font-size:10px;letter-spacing:3px;color:#C9A84C;text-transform:uppercase;font-family:sans-serif;margin-bottom:18px}
+.insights-box ul{list-style:none;display:flex;flex-direction:column;gap:12px}
+.insights-box li{font-size:15px;color:#F5F0E899;font-family:sans-serif;font-weight:300;line-height:1.65;padding-left:18px;position:relative}
+.insights-box li::before{content:'—';position:absolute;left:0;color:#C9A84C44}
+.gate{background:#0a0a0a;border:1px solid #C9A84C33;padding:40px 36px;text-align:center;margin-top:8px}
+.gate-eyebrow{font-size:10px;letter-spacing:4px;color:#C9A84C;text-transform:uppercase;font-family:sans-serif;margin-bottom:20px}
+.gate h2{font-size:clamp(22px,4vw,34px);font-weight:300;color:#F5F0E8;margin-bottom:12px;line-height:1.3}
+.gate h2 em{color:#C9A84C;font-style:italic}
+.gate p{font-size:14px;color:#F5F0E855;font-family:sans-serif;font-weight:300;line-height:1.75;margin-bottom:28px;max-width:420px;margin-left:auto;margin-right:auto}
+.gate-form{display:flex;flex-direction:column;gap:14px;max-width:380px;margin:0 auto}
+.gate-input{background:#111;border:1px solid #F5F0E81a;color:#F5F0E8;font-family:sans-serif;font-size:14px;font-weight:300;padding:14px 18px;outline:none;transition:border-color 0.2s;width:100%}
+.gate-input::placeholder{color:#F5F0E833}
+.gate-input:focus{border-color:#C9A84C44}
+.gate-submit{background:#C9A84C;border:none;color:#0d0d0d;font-family:sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;padding:15px 32px;cursor:pointer;transition:opacity 0.2s;width:100%}
+.gate-submit:hover{opacity:0.88}
+.gate-privacy{font-size:11px;color:#F5F0E822;font-family:sans-serif;margin-top:8px}
+.gate-skip{background:transparent;border:none;color:#F5F0E822;font-family:sans-serif;font-size:11px;letter-spacing:1px;cursor:pointer;margin-top:12px;text-decoration:underline;display:block;text-align:center}
+.gate-skip:hover{color:#F5F0E855}
+.sec-title{font-size:10px;letter-spacing:4px;color:#C9A84C;text-transform:uppercase;font-family:sans-serif;margin-bottom:36px;padding-bottom:16px;border-bottom:1px solid #C9A84C1a}
+.h2{font-size:clamp(22px,4vw,34px);font-weight:300;color:#F5F0E8;margin-bottom:28px;line-height:1.3}
+.plan-day{border-bottom:1px solid #F5F0E808;padding:22px 0}.plan-day:last-child{border-bottom:none}
+.day-label{font-size:10px;letter-spacing:3px;color:#C9A84C;text-transform:uppercase;font-family:sans-serif;margin-bottom:8px}
+.day-title{font-size:19px;color:#F5F0E8;margin-bottom:8px;font-weight:400}
+.day-body{font-size:14px;color:#F5F0E866;font-family:sans-serif;font-weight:300;line-height:1.75}
+.affirm-intro{font-size:14px;color:#F5F0E844;font-family:sans-serif;font-weight:300;line-height:1.75;margin-bottom:28px}
+.affirm-grid{display:flex;flex-direction:column;gap:18px}
+.affirm-item{border-left:1px solid #C9A84C33;padding:14px 22px;font-size:18px;font-style:italic;color:#F5F0E8aa;line-height:1.65}
+.affirm-ref{font-size:10px;letter-spacing:2px;color:#C9A84C66;font-family:sans-serif;font-style:normal;margin-top:8px;text-transform:uppercase}
+.cta-block{background:#0a0a0a;border:1px solid #C9A84C22;padding:40px 32px;text-align:center;margin-top:48px}
+.cta-block p{font-size:15px;color:#F5F0E855;font-family:sans-serif;font-weight:300;margin-bottom:24px;line-height:1.8;max-width:440px;margin-left:auto;margin-right:auto}
+.cta-link{display:inline-block;background:#C9A84C;color:#0d0d0d;font-family:sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;padding:15px 36px;text-decoration:none;cursor:pointer;transition:opacity 0.2s}
+.cta-link:hover{opacity:0.85}
+.footer{text-align:center;padding:40px 0 32px;font-size:11px;color:#F5F0E822;font-family:sans-serif;letter-spacing:1px}
+
+/* REVEAL ANIMATION */
+.rings{width:110px;height:110px;margin:0 auto 28px;position:relative}
+.ring{position:absolute;border-radius:50%;border:1px solid #C9A84C;top:50%;left:50%;transform:translate(-50%,-50%);animation:ringPulse 3s ease-in-out infinite}
+.ring-1{width:56px;height:56px;animation-delay:0s}
+.ring-2{width:84px;height:84px;animation-delay:0.4s;border-color:#C9A84C55}
+.ring-3{width:110px;height:110px;animation-delay:0.8s;border-color:#C9A84C22}
+@keyframes ringPulse{0%,100%{opacity:1;transform:translate(-50%,-50%) scale(1)}50%{opacity:0.5;transform:translate(-50%,-50%) scale(1.05)}}
+.anim-0{opacity:0;animation:revealUp 0.7s ease 0.3s forwards}
+.anim-1{opacity:0;animation:revealUp 0.8s ease 0.7s forwards}
+.anim-2{opacity:0;animation:revealUp 0.9s ease 1.1s forwards}
+.anim-3{width:0;height:1px;background:#C9A84C22;margin:24px auto;animation:expandLine 0.8s ease 1.5s forwards}
+.anim-4{opacity:0;animation:revealUp 0.8s ease 1.7s forwards}
+.anim-5{opacity:0;animation:revealUp 0.8s ease 2.1s forwards}
+.anim-6{opacity:0;animation:revealUp 0.8s ease 2.5s forwards}
+.anim-7{opacity:0;animation:revealUp 0.8s ease 2.9s forwards}
+@keyframes revealUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes expandLine{to{width:180px}}
+/* FIELD VISIBILITY */
+.gate-input{background:#1a1a1a!important;border:1px solid #C9A84C44!important;font-size:15px!important}
+.gate-input::placeholder{color:#F5F0E866!important}
+.gate-input:focus{border-color:#C9A84C!important;outline:none}
+.result-desc{font-size:17px!important;line-height:1.9!important}
+.insights-box li{font-size:16px!important;line-height:1.7!important}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="section active" id="s-home">
+  <div class="hero">
+    <p class="eyebrow">Sanctuary Grace Ministry</p>
+    <h1>Are You A<br><em>Striving Achiever?</em></h1>
+    <p class="hero-sub">You have built a life others admire. So why does it never feel like enough?</p>
+    <p class="hero-body">You work hard. You deliver. You hit your goals — then immediately reach for higher ones. Beneath the productivity is a question you do not say aloud: Am I enough if I stop? This is for you.</p>
+    <div class="verse"><p>"Be still, and know that I am God."</p><cite>Psalm 46:10 — KJV</cite></div>
+    <button class="btn" onclick="startQuiz()">Take the Assessment</button>
+  </div>
+</div>
+<div class="section" id="s-quiz">
+  <div class="prog-bar"><div class="prog-fill" id="prog"></div></div>
+  <p class="q-count" id="q-count">Question 1 of 10</p>
+  <p class="q-text" id="q-text"></p>
+  <div class="q-opts" id="q-opts"></div>
+  <div class="q-nav"><button class="back-btn" id="back-btn" onclick="goBack()">← Back</button><span></span></div>
+</div>
+<div class="section" id="s-result">
+  <div class="result-center">
+      <div class="rings anim-0" style="text-align:center">
+    <div class="ring ring-1"></div>
+    <div class="ring ring-2"></div>
+    <div class="ring ring-3"></div>
+  </div>
+<p class="result-label anim-0">Your Profile</p>
+    <h2 class="result-name anim-1" id="r-name"></h2>
+    <div class="anim-3"></div><div class="verse anim-4" id="r-verse" style="max-width:520px;margin:0 auto;font-size:19px;color:#F5F0E8"></div>
+    <p class="result-desc anim-5" id="r-desc"></p>
+  </div>
+  <div class="insights-box anim-6"><h3>What this reveals</h3><ul id="r-insights"></ul></div>
+  <div class="gate anim-7">
+    <p class="gate-eyebrow">Your next step</p>
+    <h2><em>Receive</em> your 7-day plan</h2>
+    <p>Enter your name and email and I will send your personalized 7-day reset directly to you — along with a devotion written specifically for where you are right now.</p>
+    <div class="gate-form">
+      <input class="gate-input" type="text" id="g-name" placeholder="First name">
+      <input class="gate-input" type="email" id="g-email" placeholder="Email address">
+      <button class="gate-submit" onclick="submitEmail()">Send My Plan</button>
+      <p class="gate-privacy">No spam. No selling. Just sacred space.</p>
+    </div>
+    <button class="gate-skip" onclick="skipGate()">Continue without email →</button>
+  </div>
+</div>
+<div class="section" id="s-plan">
+  <p class="sec-title">Your 7-Day Reset</p>
+  <h2 class="h2" id="plan-title"></h2>
+  <div id="plan-days"></div>
+  <div style="margin-top:36px;text-align:center"><button class="btn" onclick="showSec('s-affirm')">Continue to Declarations →</button></div>
+</div>
+<div class="section" id="s-affirm">
+  <p class="sec-title">Speak Over Yourself</p>
+  <h2 class="h2">Declarations for the <em style="color:#C9A84C">Striving Achiever</em></h2>
+  <p class="affirm-intro">Not mantras. Not self-talk. Declarations rooted in what God established about who you are — before you did anything.</p>
+  <div class="affirm-grid" id="affirm-list"></div>
+  <div class="cta-block">
+    <p>The striving was never the calling. The Quiet Authority is where women who have been running come to hear the voice of God again — in the silence.</p>
+    <a class="cta-link" href="https://sanctuary-grace.com">Enter the Sanctuary</a>
+  </div>
+</div>
+<div class="footer">© 2026 Sanctuary Grace Ministry · sanctuary-grace.com</div>
+</div>
+<script>
+const PROFILE_TAG='striving-achiever';
+const Qs=[
+  {t:"When you complete a significant goal, you feel…",o:["Genuinely satisfied and at rest","Proud, but already thinking about what is next","A brief high, then a quiet emptiness","Relieved — and immediately anxious about maintaining it"]},
+  {t:"Your to-do list is…",o:["A helpful tool I control","Long but manageable","The thing that runs my life","Never finished — there is always more"]},
+  {t:"When you rest or do nothing productive, you…",o:["Enjoy it fully without guilt","Relax but feel a small pull toward doing","Feel guilty and restless","Cannot remember the last time you truly rested"]},
+  {t:"Your sense of worth is most connected to…",o:["Who I am as a child of God","A mix of being and doing","Mostly what I produce and achieve","Entirely what I accomplish — I cannot separate them"]},
+  {t:"When you receive a compliment on your work, you…",o:["Receive it with gratitude","Say thank you but immediately downplay it","Focus on what you did not do well","Already feel pressure to do better next time"]},
+  {t:"When you fail or underperform, you…",o:["Learn from it and move forward in peace","Feel bad briefly then recover","Replay it for days","Question your entire worth as a person"]},
+  {t:"The idea of slowing down feels…",o:["Welcome — rest is a gift from God","Possible with intention","Threatening","Like failure"]},
+  {t:"Saying 'I need help' feels…",o:["Normal and wise","A little uncomfortable","Embarrassing","Unacceptable — I should already know"]},
+  {t:"What other people think of your success…",o:["Matters very little to me","Is nice but not essential","Matters more than I admit","Drives nearly everything I do"]},
+  {t:"If God told you to rest for a month — no projects, no goals — you would feel…",o:["Grateful and obedient","Uncertain but willing","Anxious about falling behind","Like that cannot be God — there is too much to do"]}
+];
+const Rs=[
+  {range:[10,19],name:"The <em>Purposeful</em> Achiever",verse:{t:"And whatsoever ye do, do it heartily, as to the Lord, and not unto men.",r:"Colossians 3:23 — KJV"},desc:"You are ambitious and self-aware. You achieve with purpose and understand that your worth is rooted in Christ, not your output. Your drive is a gift — protect it by keeping rest in your rhythm.",ins:["You achieve from a place of security, not fear — that is rare and worth protecting.","Watch for seasons when the balance begins to shift slowly. They come quietly.","Your example gives other high-achieving women permission to rest without shame."]},
+  {range:[20,29],name:"The <em>Driven</em> Overachiever",verse:{t:"It is vain for you to rise up early, to sit up late, to eat the bread of sorrows: for so he giveth his beloved sleep.",r:"Psalm 127:2 — KJV"},desc:"You are highly capable and getting results — but the pace is costing you more than you count. God built rest into creation before the work began. That was not an accident.",ins:["The goalpost keeps moving because accomplishment alone cannot fill what only God can.","Your body is keeping score even when your calendar does not show it.","High performance requires high recovery. That is not weakness — it is wisdom."]},
+  {range:[30,39],name:"The <em>Approval</em> Seeker",verse:{t:"For do I now persuade men, or God? or do I seek to please men? for if I yet pleased men, I should not be the servant of Christ.",r:"Galatians 1:10 — KJV"},desc:"Every achievement is quietly asking: Do you see me now? Do I matter? The answer you are looking for cannot be found in another accomplishment. It was settled at the cross.",ins:["The validation you chase is a moving target that was never meant to carry your worth.","You are working for an audience that can never fully satisfy — that place belongs to God alone.","Your worth was never in the résumé. It was established before you did a single thing."]},
+  {range:[40,40],name:"The <em>Burnout</em> Perfectionist",verse:{t:"For my yoke is easy, and my burden is light.",r:"Matthew 11:30 — KJV"},desc:"You have been running at full speed for so long that stopping feels dangerous. You are not a machine. You are a woman God made. And she needs to come home.",ins:["Perfectionism is fear wearing a productivity disguise.","Burnout is not a badge — it is a bill that has come due. God is not impressed by your depletion.","The world will not fall apart if you rest. But you might, if you do not."]}
+];
+const Plans=[
+  {title:"The Purposeful Achiever — 7-Day Deepening",days:[{l:"Day 1",t:"The Stewardship Audit",b:"Ask God: where am I achieving for His glory, and where am I achieving for my own security? Write what He shows you."},{l:"Day 2",t:"Sabbath Practice",b:"Take one full hour in intentional, unproductive rest. Let your body remember that rest was God's idea — before the fall."},{l:"Day 3",t:"Celebrate Without Moving On",b:"Name one accomplishment you moved past too quickly. Sit with it today. Thank God for it. Let it be enough."},{l:"Day 4",t:"Ask for Help",b:"Ask one person for help with something you would normally handle alone. Receive it without guilt."},{l:"Day 5",t:"The Identity Anchor",b:"Read Ephesians 1:3-6 slowly. Write down who God says you are — before any achievement is mentioned."},{l:"Day 6",t:"Guard the Rhythm",b:"Identify one place where your rest rhythm is beginning to slip. Name it. Recommit to protecting it."},{l:"Day 7",t:"Declaration",b:"Speak aloud: I achieve because I am secure in Christ, not to become secure. My rest glorifies God as much as my work."}]},
+  {title:"The Driven Overachiever — 7-Day Recalibration",days:[{l:"Day 1",t:"The Unplugged Hour",b:"One hour today with no productivity. No phone, no tasks, no planning. Just exist. Notice what rises when you stop."},{l:"Day 2",t:"The Cost Inventory",b:"Write down what the pace has cost you — relationships, health, peace, presence. Name what the striving has taken."},{l:"Day 3",t:"Read Psalm 127",b:"Read it three times. Ask God: what am I building that He has not asked me to build? Sit with the answer."},{l:"Day 4",t:"Do Less on Purpose",b:"Deliberately remove one item from today's list. Not because you failed — because you chose to. Practice the authority of enough."},{l:"Day 5",t:"Body Rest",b:"Sleep an extra hour. Or nap. Your body is not a machine to be optimized. It is a temple to be tended."},{l:"Day 6",t:"The Worth Question",b:"Write and answer honestly: I believe I am only valuable when I ___. Finish the sentence. Then bring it to God."},{l:"Day 7",t:"Declaration",b:"Speak aloud: God is not glorified by my exhaustion. He is glorified by my trust. I trust Him enough to rest."}]},
+  {title:"The Approval Seeker — 7-Day Grounding",days:[{l:"Day 1",t:"The Audience Question",b:"Ask yourself honestly: who am I performing for? Write the names. Then write what God says about you that requires no performance."},{l:"Day 2",t:"Read Galatians 1:10",b:"Ask God: where am I seeking to please people more than You? Write what He reveals without defending it."},{l:"Day 3",t:"The Being Audit",b:"List ten things you are — not what you do, not your titles. Who are you when the applause stops?"},{l:"Day 4",t:"Receive Without Earning",b:"Accept one compliment today without deflecting or immediately doing more. Let someone's kindness reach you."},{l:"Day 5",t:"The Settled Question",b:"Read Romans 8:1. You are not condemned. Read Romans 8:38-39. Nothing can separate you from His love. Write what that means."},{l:"Day 6",t:"Release the Metric",b:"Identify one metric you are using to measure your worth that God never asked you to track. Release it in prayer."},{l:"Day 7",t:"Declaration",b:"Speak aloud: My worth was settled before I did a single thing. I do not have to earn what was already given."}]},
+  {title:"The Burnout Perfectionist — 7-Day Return",days:[{l:"Day 1",t:"Stop",b:"Today, you do only what is essential. God commanded rest. Receiving it is not failure — it is faith."},{l:"Day 2",t:"Name the Fear",b:"Write what you are afraid will happen if you stop achieving. All of it. Then ask God: is any of this actually true?"},{l:"Day 3",t:"Read Matthew 11:28-30",b:"His yoke is easy. His burden is light. Sit with the contrast between that and what you have been carrying."},{l:"Day 4",t:"Twenty Minutes of Silence",b:"No agenda. No prayer list. No worship music. Just come before God as you are — worn, tired, honest — and let Him speak."},{l:"Day 5",t:"One Imperfect Thing",b:"Do one thing today without trying to do it perfectly. Let it be enough as it is."},{l:"Day 6",t:"Let Someone In",b:"Tell one safe person the truth about how tired you are. You were never meant to carry this hidden."},{l:"Day 7",t:"Declaration",b:"Speak aloud: I am not my productivity. I am God's. And God's does not have to earn rest. I receive it now."}]}
+];
+const Affirms=[
+  ["I am not what I produce. I am who God says I am — and He said it before I did anything.","For we are his workmanship. — Ephesians 2:10"],
+  ["Rest is not a reward for finishing. It is a command I am free to obey.","Be still, and know that I am God. — Psalm 46:10"],
+  ["My worth is not a performance review.",""],
+  ["The goalpost was never meant to move. God established my value once, at the cross.",""],
+  ["Slowing down is not falling behind. It is keeping pace with the One who leads me.",""],
+  ["I do not have to earn my place. I was placed.",""],
+  ["Enough is not a destination. It is a decision I make in trust.",""],
+  ["I can be purposeful and at peace at the same time. God never asked me to choose.",""],
+  ["Asking for help is not weakness. It is how the body of Christ was designed to work.",""],
+  ["My best is enough — even when it does not look like last time.",""],
+  ["I am not running from God. I am resting in Him.",""],
+  ["I give myself permission to be a human being, not only a human doing.",""]
+];
+let cur=0,scores=[];
+function showSec(id){document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}
+function startQuiz(){showSec('s-quiz');cur=0;scores=[];renderQ();}
+function renderQ(){
+  const q=Qs[cur];
+  document.getElementById('q-count').textContent=`Question ${cur+1} of ${Qs.length}`;
+  document.getElementById('prog').style.width=`${(cur/Qs.length)*100}%`;
+  document.getElementById('q-text').textContent=q.t;
+  const bb=document.getElementById('back-btn');bb.style.opacity=cur===0?'0':'1';bb.style.pointerEvents=cur===0?'none':'auto';
+  const opts=document.getElementById('q-opts');opts.innerHTML='';
+  q.o.forEach((o,i)=>{const b=document.createElement('button');b.className='q-opt';b.textContent=o;b.onclick=()=>{document.querySelectorAll('.q-opt').forEach(x=>x.classList.remove('sel'));b.classList.add('sel');setTimeout(()=>{if(scores.length>cur)scores[cur]=i+1;else scores.push(i+1);if(cur<Qs.length-1){cur++;renderQ();}else showResult();},300);};opts.appendChild(b);});
+}
+function goBack(){if(cur>0){cur--;scores.pop();renderQ();}}
+function showResult(){
+  const total=scores.reduce((a,b)=>a+b,0);
+  let ri=Rs.findIndex(r=>total<=r.range[1]);if(ri<0)ri=Rs.length-1;
+  const r=Rs[ri];
+  document.getElementById('r-name').innerHTML=r.name;
+  document.getElementById('r-verse').innerHTML=`<p>"${r.verse.t}"</p><cite>${r.verse.r}</cite>`;
+  document.getElementById('r-desc').textContent=r.desc;
+  document.getElementById('r-insights').innerHTML=r.ins.map(i=>`<li>${i}</li>`).join('');
+  const p=Plans[ri];
+  document.getElementById('plan-title').textContent=p.title;
+  document.getElementById('plan-days').innerHTML=p.days.map(d=>`<div class="plan-day"><p class="day-label">${d.l}</p><p class="day-title">${d.t}</p><p class="day-body">${d.b}</p></div>`).join('');
+  document.getElementById('affirm-list').innerHTML=Affirms.map(a=>`<div class="affirm-item">${a[0]}${a[1]?`<div class="affirm-ref">${a[1]}</div>`:''}</div>`).join('');
+  // reset animations for replay
+  document.querySelectorAll('.anim-0,.anim-1,.anim-2,.anim-3,.anim-4,.anim-5,.anim-6,.anim-7,.rings').forEach(el=>{
+    el.style.animation='none';
+    void el.offsetWidth;
+    el.style.animation='';
+  });
+  showSec('s-result');
+}
+function submitEmail(){
+  const name=document.getElementById('g-name').value.trim();
+  const email=document.getElementById('g-email').value.trim();
+  if(!email||!email.includes('@')){document.getElementById('g-email').style.borderColor='#C1593C';return;}
+  fetch('https://hook.us2.make.com/r4tscqqr8qzff82pr3dcxi1a3w5yn7xy',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,email,profile:PROFILE_TAG,source:'striving-achiever-lead-magnet'})}).catch(()=>{});
+  showSec('s-plan');
+}
+function skipGate(){showSec('s-plan');}
+</script>
+</body>
+</html>

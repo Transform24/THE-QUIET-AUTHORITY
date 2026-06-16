@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Are You A Lost Wanderer? | Sanctuary Grace Ministry</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#0d0d0d;color:#F5F0E8;font-family:'Cormorant Garamond',Georgia,serif;min-height:100vh}
+.wrap{max-width:680px;margin:0 auto;padding:0 24px}
+.hero{padding:64px 0 48px;text-align:center;border-bottom:1px solid #C9A84C22}
+.eyebrow{font-size:11px;letter-spacing:4px;color:#C9A84C;text-transform:uppercase;margin-bottom:28px;font-family:sans-serif;font-weight:400}
+.hero h1{font-size:clamp(38px,8vw,68px);font-weight:300;line-height:1.05;color:#F5F0E8}
+.hero h1 em{color:#C9A84C;font-style:italic}
+.hero-sub{font-size:clamp(16px,2.5vw,21px);color:#C9A84C;font-style:italic;margin:22px 0 18px;line-height:1.5}
+.hero-body{font-size:clamp(14px,2vw,16px);color:#F5F0E877;max-width:500px;margin:0 auto 32px;line-height:1.9;font-family:sans-serif;font-weight:300}
+.verse{border-left:2px solid #C9A84C;padding:16px 24px;margin:28px auto;max-width:460px;text-align:left}
+.verse p{font-style:italic;font-size:19px;color:#F5F0E8;line-height:1.75}
+.verse cite{font-size:12px;letter-spacing:2px;color:#C9A84C;text-transform:uppercase;font-style:normal;font-family:sans-serif;display:block;margin-top:10px;font-weight:400}
+.btn{display:inline-block;background:transparent;border:1px solid #C9A84C;color:#C9A84C;font-family:'Cormorant Garamond',Georgia,serif;font-size:13px;letter-spacing:3px;text-transform:uppercase;padding:15px 40px;cursor:pointer;transition:all 0.3s;margin-top:8px;text-decoration:none}
+.btn:hover{background:#C9A84C;color:#0d0d0d}
+.section{display:none;padding:48px 0}.section.active{display:block}
+.prog-bar{background:#1a1a1a;height:1px;margin-bottom:44px}
+.prog-fill{background:#C9A84C;height:1px;transition:width 0.4s}
+.q-count{font-size:10px;letter-spacing:3px;color:#C9A84C44;font-family:sans-serif;text-transform:uppercase;margin-bottom:18px}
+.q-text{font-size:clamp(19px,3vw,26px);color:#F5F0E8;line-height:1.5;margin-bottom:36px;font-weight:300}
+.q-opts{display:flex;flex-direction:column;gap:12px}
+.q-opt{background:transparent;border:1px solid #F5F0E81a;color:#F5F0E8aa;font-family:'Cormorant Garamond',Georgia,serif;font-size:17px;padding:15px 22px;text-align:left;cursor:pointer;transition:all 0.25s;line-height:1.4}
+.q-opt:hover{border-color:#C9A84C66;color:#F5F0E8}
+.q-opt.sel{border-color:#C9A84C;color:#C9A84C;background:#C9A84C08}
+.q-nav{display:flex;justify-content:space-between;align-items:center;margin-top:36px}
+.back-btn{background:transparent;border:none;color:#F5F0E833;font-family:sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;padding:8px 0;transition:color 0.2s}
+.back-btn:hover{color:#F5F0E8}
+.result-center{text-align:center;padding-bottom:16px}
+.result-label{font-size:10px;letter-spacing:4px;color:#C9A84C;text-transform:uppercase;font-family:sans-serif;margin-bottom:18px}
+.result-name{font-size:clamp(30px,5vw,52px);font-weight:300;color:#F5F0E8;line-height:1.15}
+.result-name em{color:#C9A84C;font-style:italic}
+.result-desc{font-size:17px;color:#F5F0E8bb;line-height:1.85;max-width:520px;margin:28px auto;font-family:sans-serif;font-weight:300}
+.insights-box{background:#0a0a0a;border:1px solid #C9A84C1a;padding:28px 32px;margin:32px 0}
+.insights-box h3{font-size:10px;letter-spacing:3px;color:#C9A84C;text-transform:uppercase;font-family:sans-serif;margin-bottom:18px}
+.insights-box ul{list-style:none;display:flex;flex-direction:column;gap:12px}
+.insights-box li{font-size:15px;color:#F5F0E899;font-family:sans-serif;font-weight:300;line-height:1.65;padding-left:18px;position:relative}
+.insights-box li::before{content:'—';position:absolute;left:0;color:#C9A84C44}
+.gate{background:#0a0a0a;border:1px solid #C9A84C33;padding:40px 36px;text-align:center;margin-top:8px}
+.gate-eyebrow{font-size:10px;letter-spacing:4px;color:#C9A84C;text-transform:uppercase;font-family:sans-serif;margin-bottom:20px}
+.gate h2{font-size:clamp(22px,4vw,34px);font-weight:300;color:#F5F0E8;margin-bottom:12px;line-height:1.3}
+.gate h2 em{color:#C9A84C;font-style:italic}
+.gate p{font-size:14px;color:#F5F0E855;font-family:sans-serif;font-weight:300;line-height:1.75;margin-bottom:28px;max-width:420px;margin-left:auto;margin-right:auto}
+.gate-form{display:flex;flex-direction:column;gap:14px;max-width:380px;margin:0 auto}
+.gate-input{background:#111;border:1px solid #F5F0E81a;color:#F5F0E8;font-family:sans-serif;font-size:14px;font-weight:300;padding:14px 18px;outline:none;transition:border-color 0.2s;width:100%}
+.gate-input::placeholder{color:#F5F0E833}
+.gate-input:focus{border-color:#C9A84C44}
+.gate-submit{background:#C9A84C;border:none;color:#0d0d0d;font-family:sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;padding:15px 32px;cursor:pointer;transition:opacity 0.2s;width:100%}
+.gate-submit:hover{opacity:0.88}
+.gate-privacy{font-size:11px;color:#F5F0E822;font-family:sans-serif;margin-top:8px}
+.gate-skip{background:transparent;border:none;color:#F5F0E822;font-family:sans-serif;font-size:11px;letter-spacing:1px;cursor:pointer;margin-top:12px;text-decoration:underline;display:block;text-align:center}
+.gate-skip:hover{color:#F5F0E855}
+.sec-title{font-size:10px;letter-spacing:4px;color:#C9A84C;text-transform:uppercase;font-family:sans-serif;margin-bottom:36px;padding-bottom:16px;border-bottom:1px solid #C9A84C1a}
+.h2{font-size:clamp(22px,4vw,34px);font-weight:300;color:#F5F0E8;margin-bottom:28px;line-height:1.3}
+.plan-day{border-bottom:1px solid #F5F0E808;padding:22px 0}.plan-day:last-child{border-bottom:none}
+.day-label{font-size:10px;letter-spacing:3px;color:#C9A84C;text-transform:uppercase;font-family:sans-serif;margin-bottom:8px}
+.day-title{font-size:19px;color:#F5F0E8;margin-bottom:8px;font-weight:400}
+.day-body{font-size:14px;color:#F5F0E866;font-family:sans-serif;font-weight:300;line-height:1.75}
+.affirm-intro{font-size:14px;color:#F5F0E844;font-family:sans-serif;font-weight:300;line-height:1.75;margin-bottom:28px}
+.affirm-grid{display:flex;flex-direction:column;gap:18px}
+.affirm-item{border-left:1px solid #C9A84C33;padding:14px 22px;font-size:18px;font-style:italic;color:#F5F0E8aa;line-height:1.65}
+.affirm-ref{font-size:10px;letter-spacing:2px;color:#C9A84C66;font-family:sans-serif;font-style:normal;margin-top:8px;text-transform:uppercase}
+.cta-block{background:#0a0a0a;border:1px solid #C9A84C22;padding:40px 32px;text-align:center;margin-top:48px}
+.cta-block p{font-size:15px;color:#F5F0E855;font-family:sans-serif;font-weight:300;margin-bottom:24px;line-height:1.8;max-width:440px;margin-left:auto;margin-right:auto}
+.cta-link{display:inline-block;background:#C9A84C;color:#0d0d0d;font-family:sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;padding:15px 36px;text-decoration:none;cursor:pointer;transition:opacity 0.2s}
+.cta-link:hover{opacity:0.85}
+.footer{text-align:center;padding:40px 0 32px;font-size:11px;color:#F5F0E822;font-family:sans-serif;letter-spacing:1px}
+
+/* REVEAL ANIMATION */
+.rings{width:110px;height:110px;margin:0 auto 28px;position:relative}
+.ring{position:absolute;border-radius:50%;border:1px solid #C9A84C;top:50%;left:50%;transform:translate(-50%,-50%);animation:ringPulse 3s ease-in-out infinite}
+.ring-1{width:56px;height:56px;animation-delay:0s}
+.ring-2{width:84px;height:84px;animation-delay:0.4s;border-color:#C9A84C55}
+.ring-3{width:110px;height:110px;animation-delay:0.8s;border-color:#C9A84C22}
+@keyframes ringPulse{0%,100%{opacity:1;transform:translate(-50%,-50%) scale(1)}50%{opacity:0.5;transform:translate(-50%,-50%) scale(1.05)}}
+.anim-0{opacity:0;animation:revealUp 0.7s ease 0.3s forwards}
+.anim-1{opacity:0;animation:revealUp 0.8s ease 0.7s forwards}
+.anim-2{opacity:0;animation:revealUp 0.9s ease 1.1s forwards}
+.anim-3{width:0;height:1px;background:#C9A84C22;margin:24px auto;animation:expandLine 0.8s ease 1.5s forwards}
+.anim-4{opacity:0;animation:revealUp 0.8s ease 1.7s forwards}
+.anim-5{opacity:0;animation:revealUp 0.8s ease 2.1s forwards}
+.anim-6{opacity:0;animation:revealUp 0.8s ease 2.5s forwards}
+.anim-7{opacity:0;animation:revealUp 0.8s ease 2.9s forwards}
+@keyframes revealUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes expandLine{to{width:180px}}
+/* FIELD VISIBILITY */
+.gate-input{background:#1a1a1a!important;border:1px solid #C9A84C44!important;font-size:15px!important}
+.gate-input::placeholder{color:#F5F0E866!important}
+.gate-input:focus{border-color:#C9A84C!important;outline:none}
+.result-desc{font-size:17px!important;line-height:1.9!important}
+.insights-box li{font-size:16px!important;line-height:1.7!important}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="section active" id="s-home">
+  <div class="hero">
+    <p class="eyebrow">Sanctuary Grace Ministry</p>
+    <h1>Are You A<br><em>Lost Wanderer?</em></h1>
+    <p class="hero-sub">Somewhere along the way, you drifted from yourself. God knows the way back.</p>
+    <p class="hero-body">You have played the roles — the mother, the wife, the strong one. But somewhere beneath all of it: who are you? If that question lands with a hollow feeling, this was made for you.</p>
+    <div class="verse"><p>"I am the way, the truth, and the life."</p><cite>John 14:6 — KJV</cite></div>
+    <button class="btn" onclick="startQuiz()">Take the Assessment</button>
+  </div>
+</div>
+<div class="section" id="s-quiz">
+  <div class="prog-bar"><div class="prog-fill" id="prog"></div></div>
+  <p class="q-count" id="q-count">Question 1 of 10</p>
+  <p class="q-text" id="q-text"></p>
+  <div class="q-opts" id="q-opts"></div>
+  <div class="q-nav"><button class="back-btn" id="back-btn" onclick="goBack()">← Back</button><span></span></div>
+</div>
+<div class="section" id="s-result">
+  <div class="result-center">
+      <div class="rings anim-0" style="text-align:center">
+    <div class="ring ring-1"></div>
+    <div class="ring ring-2"></div>
+    <div class="ring ring-3"></div>
+  </div>
+<p class="result-label anim-0">Your Profile</p>
+    <h2 class="result-name anim-1" id="r-name"></h2>
+    <div class="anim-3"></div><div class="verse anim-4" id="r-verse" style="max-width:520px;margin:0 auto;font-size:19px;color:#F5F0E8"></div>
+    <p class="result-desc anim-5" id="r-desc"></p>
+  </div>
+  <div class="insights-box anim-6"><h3>What this reveals</h3><ul id="r-insights"></ul></div>
+  <div class="gate anim-7">
+    <p class="gate-eyebrow">Your next step</p>
+    <h2><em>Receive</em> your 7-day plan</h2>
+    <p>Enter your name and email and I will send your personalized 7-day reset directly to you — along with a devotion written specifically for where you are right now.</p>
+    <div class="gate-form">
+      <input class="gate-input" type="text" id="g-name" placeholder="First name">
+      <input class="gate-input" type="email" id="g-email" placeholder="Email address">
+      <button class="gate-submit" onclick="submitEmail()">Send My Plan</button>
+      <p class="gate-privacy">No spam. No selling. Just sacred space.</p>
+    </div>
+    <button class="gate-skip" onclick="skipGate()">Continue without email →</button>
+  </div>
+</div>
+<div class="section" id="s-plan">
+  <p class="sec-title">Your 7-Day Reset</p>
+  <h2 class="h2" id="plan-title"></h2>
+  <div id="plan-days"></div>
+  <div style="margin-top:36px;text-align:center"><button class="btn" onclick="showSec('s-affirm')">Continue to Declarations →</button></div>
+</div>
+<div class="section" id="s-affirm">
+  <p class="sec-title">Speak Over Yourself</p>
+  <h2 class="h2">Declarations for the <em style="color:#C9A84C">Lost Wanderer</em></h2>
+  <p class="affirm-intro">You are not lost to God. He has always known where you are. These declarations are an invitation to come home.</p>
+  <div class="affirm-grid" id="affirm-list"></div>
+  <div class="cta-block">
+    <p>The way back to yourself runs through the presence of God. The Quiet Authority is a space where women who have drifted come to be still — and hear His voice call them home.</p>
+    <a class="cta-link" href="https://sanctuary-grace.com">Enter the Sanctuary</a>
+  </div>
+</div>
+<div class="footer">© 2026 Sanctuary Grace Ministry · sanctuary-grace.com</div>
+</div>
+<script>
+const PROFILE_TAG='lost-wanderer';
+const Qs=[
+  {t:"When someone asks what you want, you…",o:["Answer quickly and with confidence","Think about it and usually find an answer","Deflect to what others want or need","Genuinely do not know — and have not for a while"]},
+  {t:"Your sense of who you are feels…",o:["Clear and rooted in Christ","Mostly stable with some open questions","Tied mostly to your roles — mother, wife, worker","Like a question you have stopped asking"]},
+  {t:"Making decisions for yourself feels…",o:["Natural and grounded","A little effortful but possible","Hard — you overthink everything","Almost impossible — you fear choosing wrong"]},
+  {t:"When you have time that is truly your own, you…",o:["Know exactly what fills you up","Have some ideas and try them","Feel a bit lost and end up doing nothing","Feel anxious — free time feels unfamiliar or wrong"]},
+  {t:"The last time you felt truly like yourself was…",o:["Recently — I know who I am","Within the past year","Years ago","You cannot remember"]},
+  {t:"Your daily life feels…",o:["Purposeful and anchored","Good enough","Like going through the motions","Like someone else's life that you are managing"]},
+  {t:"Your passions and interests…",o:["Are alive and I pursue them","Exist but get very little time","Have faded into vague memories","You cannot name them anymore"]},
+  {t:"When you look in the mirror, you see…",o:["Yourself, clearly","A version of yourself you recognize","Someone who looks familiar but feels far away","A stranger you have been meaning to meet"]},
+  {t:"Your relationship with God feels…",o:["Close and active","Present but sometimes distant","Like you know He is there but you cannot find Him","Like you have wandered too far to find your way back"]},
+  {t:"What you most want right now is…",o:["To deepen who I already know I am","Direction and a little clarity","Someone to help me find my way back","To remember who I was before I disappeared"]}
+];
+const Rs=[
+  {range:[10,19],name:"The <em>Curious</em> Seeker",verse:{t:"Trust in the Lord with all thine heart; and lean not unto thine own understanding. In all thy ways acknowledge him, and he shall direct thy paths.",r:"Proverbs 3:5-6 — KJV"},desc:"You know yourself better than you think. You are in a season of growth and holy questioning. The wondering is not weakness — it is the beginning of wisdom. God is not alarmed by your questions. He is in them.",ins:["Transition seasons feel like being lost. They are often the beginning of being found.","Your curiosity is a compass God placed in you. Follow it toward Him.","You have not lost yourself — you are outgrowing an old version. That is a gift."]},
+  {range:[20,29],name:"The <em>Gentle</em> Drifter",verse:{t:"Return unto me, and I will return unto you, saith the Lord of hosts.",r:"Malachi 3:7 — KJV"},desc:"You are moving through life but not quite steering it. Your sense of self has grown quieter — not gone, just muffled beneath the noise of responsibilities and roles. God is calling you back.",ins:["Drifting often happens when we stop choosing and start only managing.","Your identity is not gone — it has simply stopped being invited to the table.","Small intentional choices begin to rebuild what gradual drift has worn away."]},
+  {range:[30,39],name:"The <em>Invisible</em> Woman",verse:{t:"Fear not: for I have redeemed thee, I have called thee by thy name; thou art mine.",r:"Isaiah 43:1 — KJV"},desc:"You have poured yourself so completely into others that you have nearly disappeared from your own life. God knows your name. He has not forgotten who you are, even when you have.",ins:["You have confused self-erasure with faithfulness. They are not the same thing.","The roles you played were real — but they were never all of you.","It is not too late to reintroduce yourself to yourself — and to God."]},
+  {range:[40,40],name:"The <em>Ghost</em> of Herself",verse:{t:"For I know the thoughts that I think toward you, saith the Lord, thoughts of peace, and not of evil, to give you an expected end.",r:"Jeremiah 29:11 — KJV"},desc:"She is not gone. She has been waiting — quietly, patiently — for you to come looking. And God has been waiting with her.",ins:["Identity loss is not permanent. It is an invitation to rebuild — deliberately and with God.","The woman you were is the foundation. The woman you are becoming is the masterpiece.","You are allowed to start again. God is the God of new beginnings."]}
+];
+const Plans=[
+  {title:"The Curious Seeker — 7-Day Deepening",days:[{l:"Day 1",t:"Name What You Know",b:"Write ten things you know to be true about yourself — not your roles, not your history. Who are you? What do you love?"},{l:"Day 2",t:"Ask God Who He Says You Are",b:"Sit in silence for fifteen minutes with one question: God, who do You say I am? Write what comes."},{l:"Day 3",t:"One Old Love",b:"Do one thing today you used to love but drifted from. Not to perform it — just to remember."},{l:"Day 4",t:"The Interest Inventory",b:"List ten things you are genuinely curious about right now. They do not have to be serious. Curiosity is the path."},{l:"Day 5",t:"Read Proverbs 3:5-6",b:"Ask God: what does it look like to trust You with the parts of my identity I cannot see clearly yet?"},{l:"Day 6",t:"Future Self Vision",b:"Write about the woman you are becoming. Not who you were — who she is. What does she know? How does she carry herself?"},{l:"Day 7",t:"Declaration",b:"Speak aloud: I am not lost. I am in transition. God knows exactly where I am and He is with me in it."}]},
+  {title:"The Gentle Drifter — 7-Day Return",days:[{l:"Day 1",t:"The Preference Practice",b:"Make five small choices today based entirely on what YOU want. Coffee or tea. This route or that one. Train the muscle of choosing yourself."},{l:"Day 2",t:"Read Malachi 3:7",b:"God says: return to me. Ask Him honestly — where have I drifted, and what would returning look like? Write what He shows you."},{l:"Day 3",t:"Name Your Values",b:"Without searching, write the five things that matter most to you. Not what should matter. What actually does."},{l:"Day 4",t:"One Intentional Yes",b:"Say yes to one thing today that is purely for you — not because it serves anyone else, but because it is life to you."},{l:"Day 5",t:"The Steering Question",b:"Ask yourself: where in my life have I stopped choosing and started only managing? Write what comes honestly."},{l:"Day 6",t:"Introduce Yourself",b:"Write a paragraph introducing yourself — with no roles, no titles, no relationships. Just you. Who are you when no one needs anything from you?"},{l:"Day 7",t:"Declaration",b:"Speak aloud: I am not drifting. I am returning. God called me by name and I am answering."}]},
+  {title:"The Invisible Woman — 7-Day Reclaiming",days:[{l:"Day 1",t:"Be Named",b:"Read Isaiah 43:1 aloud three times. God called you by name. Write your name. Then write: I am known. I am His. I have not disappeared."},{l:"Day 2",t:"Who Was She?",b:"Write about a version of yourself you loved — before the roles, before the losses. What did she love? What made her come alive?"},{l:"Day 3",t:"One Boundary",b:"Identify one place where you have been invisible to yourself. Name one small way to show up for yourself there today."},{l:"Day 4",t:"Receive Something",b:"Let one person do something for you today without deflecting, minimizing, or immediately reciprocating. Let yourself be seen."},{l:"Day 5",t:"The Erasure Audit",b:"Ask honestly: where have I confused disappearing with faithfulness? Write what God shows you without defending it."},{l:"Day 6",t:"One Thing Only for You",b:"Do one thing today that has nothing to do with anyone else's need. No justification required."},{l:"Day 7",t:"Declaration",b:"Speak aloud: I am not required to disappear in order to love well. I am seen by God. I choose to see myself."}]},
+  {title:"The Ghost of Herself — 7-Day Finding",days:[{l:"Day 1",t:"She Is Still Here",b:"Write this: I am still here. I have not disappeared. Then write everything you remember about the woman you were before you went quiet."},{l:"Day 2",t:"Read Jeremiah 29:11",b:"God has a plan for you — not just to survive, but to have a future and a hope. Ask Him: what does that future look like for me now?"},{l:"Day 3",t:"One Old Spark",b:"Do one thing today that once made you feel fully alive. No performance. No audience. Just you and the spark."},{l:"Day 4",t:"Twenty Minutes of Stillness",b:"Sit in silence before God. No agenda. No questions. Just come. Let Him find you where you are."},{l:"Day 5",t:"Write to Her",b:"Write a letter to the woman you have been missing. Tell her you have been looking. Tell her it is safe to come back."},{l:"Day 6",t:"Name Five Desires",b:"Write five things you genuinely desire for your life — not for your family, your ministry, your roles. For you. Let yourself want."},{l:"Day 7",t:"Declaration",b:"Speak aloud: I am still here. God has always known where I am. I am not too far. I am not too lost. I am coming home."}]}
+];
+const Affirms=[
+  ["I am not lost to God. He has called me by name and He knows exactly where I am.","Fear not: for I have redeemed thee, I have called thee by thy name. — Isaiah 43:1"],
+  ["My identity is not my roles. It never was.",""],
+  ["I am allowed to want things that have nothing to do with anyone else's need.",""],
+  ["Rediscovering myself is not starting over. It is coming home.",""],
+  ["The woman I was is the foundation. The woman I am becoming is what God is building.",""],
+  ["I am allowed to be a beginner at my own life.",""],
+  ["God has thoughts of peace toward me — to give me a future and a hope.","For I know the thoughts that I think toward you. — Jeremiah 29:11"],
+  ["I choose myself — not instead of others, but alongside them.",""],
+  ["My preferences matter. My desires matter. I matter to God.",""],
+  ["It is never too late to become who God created me to be.",""],
+  ["I am not wandering. I am being led — even when I cannot see the path.","He shall direct thy paths. — Proverbs 3:6"],
+  ["I am coming home to myself. God has been keeping the light on.",""]
+];
+let cur=0,scores=[];
+function showSec(id){document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}
+function startQuiz(){showSec('s-quiz');cur=0;scores=[];renderQ();}
+function renderQ(){
+  const q=Qs[cur];
+  document.getElementById('q-count').textContent=`Question ${cur+1} of ${Qs.length}`;
+  document.getElementById('prog').style.width=`${(cur/Qs.length)*100}%`;
+  document.getElementById('q-text').textContent=q.t;
+  const bb=document.getElementById('back-btn');bb.style.opacity=cur===0?'0':'1';bb.style.pointerEvents=cur===0?'none':'auto';
+  const opts=document.getElementById('q-opts');opts.innerHTML='';
+  q.o.forEach((o,i)=>{const b=document.createElement('button');b.className='q-opt';b.textContent=o;b.onclick=()=>{document.querySelectorAll('.q-opt').forEach(x=>x.classList.remove('sel'));b.classList.add('sel');setTimeout(()=>{if(scores.length>cur)scores[cur]=i+1;else scores.push(i+1);if(cur<Qs.length-1){cur++;renderQ();}else showResult();},300);};opts.appendChild(b);});
+}
+function goBack(){if(cur>0){cur--;scores.pop();renderQ();}}
+function showResult(){
+  const total=scores.reduce((a,b)=>a+b,0);
+  let ri=Rs.findIndex(r=>total<=r.range[1]);if(ri<0)ri=Rs.length-1;
+  const r=Rs[ri];
+  document.getElementById('r-name').innerHTML=r.name;
+  document.getElementById('r-verse').innerHTML=`<p>"${r.verse.t}"</p><cite>${r.verse.r}</cite>`;
+  document.getElementById('r-desc').textContent=r.desc;
+  document.getElementById('r-insights').innerHTML=r.ins.map(i=>`<li>${i}</li>`).join('');
+  const p=Plans[ri];
+  document.getElementById('plan-title').textContent=p.title;
+  document.getElementById('plan-days').innerHTML=p.days.map(d=>`<div class="plan-day"><p class="day-label">${d.l}</p><p class="day-title">${d.t}</p><p class="day-body">${d.b}</p></div>`).join('');
+  document.getElementById('affirm-list').innerHTML=Affirms.map(a=>`<div class="affirm-item">${a[0]}${a[1]?`<div class="affirm-ref">${a[1]}</div>`:''}</div>`).join('');
+  // reset animations for replay
+  document.querySelectorAll('.anim-0,.anim-1,.anim-2,.anim-3,.anim-4,.anim-5,.anim-6,.anim-7,.rings').forEach(el=>{
+    el.style.animation='none';
+    void el.offsetWidth;
+    el.style.animation='';
+  });
+  showSec('s-result');
+}
+function submitEmail(){
+  const name=document.getElementById('g-name').value.trim();
+  const email=document.getElementById('g-email').value.trim();
+  if(!email||!email.includes('@')){document.getElementById('g-email').style.borderColor='#C1593C';return;}
+  fetch('https://hook.us2.make.com/r4tscqqr8qzff82pr3dcxi1a3w5yn7xy',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,email,profile:PROFILE_TAG,source:'lost-wanderer-lead-magnet'})}).catch(()=>{});
+  showSec('s-plan');
+}
+function skipGate(){showSec('s-plan');}
+</script>
+</body>
+</html>

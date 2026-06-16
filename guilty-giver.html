@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Are You A Guilty Giver? | Sanctuary Grace Ministry</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#0d0d0d;color:#F5F0E8;font-family:'Cormorant Garamond',Georgia,serif;min-height:100vh}
+.wrap{max-width:680px;margin:0 auto;padding:0 24px}
+/* HERO */
+.hero{padding:64px 0 48px;text-align:center;border-bottom:1px solid #C9A84C22}
+.eyebrow{font-size:11px;letter-spacing:4px;color:#C9A84C;text-transform:uppercase;margin-bottom:28px;font-family:sans-serif;font-weight:400}
+.hero h1{font-size:clamp(38px,8vw,68px);font-weight:300;line-height:1.05;color:#F5F0E8;margin-bottom:4px}
+.hero h1 em{color:#C9A84C;font-style:italic}
+.hero-sub{font-size:clamp(16px,2.5vw,21px);color:#C9A84C;font-style:italic;margin:22px 0 18px;line-height:1.5}
+.hero-body{font-size:clamp(14px,2vw,16px);color:#F5F0E877;max-width:500px;margin:0 auto 32px;line-height:1.9;font-family:sans-serif;font-weight:300}
+.verse{border-left:2px solid #C9A84C;padding:16px 24px;margin:28px auto;max-width:460px;text-align:left}
+.verse p{font-style:italic;font-size:19px;color:#F5F0E8;line-height:1.75}
+.verse cite{font-size:12px;letter-spacing:2px;color:#C9A84C;text-transform:uppercase;font-style:normal;font-family:sans-serif;display:block;margin-top:10px;font-weight:400}
+.btn{display:inline-block;background:transparent;border:1px solid #C9A84C;color:#C9A84C;font-family:'Cormorant Garamond',Georgia,serif;font-size:13px;letter-spacing:3px;text-transform:uppercase;padding:15px 40px;cursor:pointer;transition:all 0.3s;margin-top:8px;text-decoration:none}
+.btn:hover{background:#C9A84C;color:#0d0d0d}
+/* SECTIONS */
+.section{display:none;padding:48px 0}
+.section.active{display:block}
+/* QUIZ */
+.prog-bar{background:#1a1a1a;height:1px;margin-bottom:44px}
+.prog-fill{background:#C9A84C;height:1px;transition:width 0.4s}
+.q-count{font-size:10px;letter-spacing:3px;color:#C9A84C44;font-family:sans-serif;text-transform:uppercase;margin-bottom:18px}
+.q-text{font-size:clamp(19px,3vw,26px);color:#F5F0E8;line-height:1.5;margin-bottom:36px;font-weight:300}
+.q-opts{display:flex;flex-direction:column;gap:12px}
+.q-opt{background:transparent;border:1px solid #F5F0E81a;color:#F5F0E8aa;font-family:'Cormorant Garamond',Georgia,serif;font-size:17px;padding:15px 22px;text-align:left;cursor:pointer;transition:all 0.25s;line-height:1.4}
+.q-opt:hover{border-color:#C9A84C66;color:#F5F0E8}
+.q-opt.sel{border-color:#C9A84C;color:#C9A84C;background:#C9A84C08}
+.q-nav{display:flex;justify-content:space-between;align-items:center;margin-top:36px}
+.back-btn{background:transparent;border:none;color:#F5F0E833;font-family:sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;padding:8px 0;transition:color 0.2s}
+.back-btn:hover{color:#F5F0E8}
+/* RESULT */
+.result-center{text-align:center;padding-bottom:16px}
+.result-label{font-size:10px;letter-spacing:4px;color:#C9A84C;text-transform:uppercase;font-family:sans-serif;margin-bottom:18px}
+.result-name{font-size:clamp(30px,5vw,52px);font-weight:300;color:#F5F0E8;line-height:1.15;margin-bottom:4px}
+.result-name em{color:#C9A84C;font-style:italic}
+.result-desc{font-size:17px;color:#F5F0E8bb;line-height:1.85;max-width:520px;margin:28px auto;font-family:sans-serif;font-weight:300}
+.insights-box{background:#0a0a0a;border:1px solid #C9A84C1a;padding:28px 32px;margin:32px 0}
+.insights-box h3{font-size:10px;letter-spacing:3px;color:#C9A84C;text-transform:uppercase;font-family:sans-serif;margin-bottom:18px}
+.insights-box ul{list-style:none;display:flex;flex-direction:column;gap:12px}
+.insights-box li{font-size:15px;color:#F5F0E899;font-family:sans-serif;font-weight:300;line-height:1.65;padding-left:18px;position:relative}
+.insights-box li::before{content:'—';position:absolute;left:0;color:#C9A84C44}
+/* EMAIL GATE */
+.gate{background:#0a0a0a;border:1px solid #C9A84C33;padding:40px 36px;text-align:center;margin-top:8px}
+.gate-eyebrow{font-size:10px;letter-spacing:4px;color:#C9A84C;text-transform:uppercase;font-family:sans-serif;margin-bottom:20px}
+.gate h2{font-size:clamp(22px,4vw,34px);font-weight:300;color:#F5F0E8;margin-bottom:12px;line-height:1.3}
+.gate h2 em{color:#C9A84C;font-style:italic}
+.gate p{font-size:14px;color:#F5F0E855;font-family:sans-serif;font-weight:300;line-height:1.75;margin-bottom:28px;max-width:420px;margin-left:auto;margin-right:auto}
+.gate-form{display:flex;flex-direction:column;gap:14px;max-width:380px;margin:0 auto}
+.gate-input{background:#111;border:1px solid #F5F0E81a;color:#F5F0E8;font-family:sans-serif;font-size:14px;font-weight:300;padding:14px 18px;outline:none;transition:border-color 0.2s;width:100%}
+.gate-input::placeholder{color:#F5F0E833}
+.gate-input:focus{border-color:#C9A84C44}
+.gate-submit{background:#C9A84C;border:none;color:#0d0d0d;font-family:sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;padding:15px 32px;cursor:pointer;transition:opacity 0.2s;width:100%}
+.gate-submit:hover{opacity:0.88}
+.gate-privacy{font-size:11px;color:#F5F0E822;font-family:sans-serif;margin-top:8px}
+.gate-skip{background:transparent;border:none;color:#F5F0E822;font-family:sans-serif;font-size:11px;letter-spacing:1px;cursor:pointer;margin-top:12px;text-decoration:underline;display:block;text-align:center}
+.gate-skip:hover{color:#F5F0E855}
+/* PLAN */
+.sec-title{font-size:10px;letter-spacing:4px;color:#C9A84C;text-transform:uppercase;font-family:sans-serif;margin-bottom:36px;padding-bottom:16px;border-bottom:1px solid #C9A84C1a}
+.h2{font-size:clamp(22px,4vw,34px);font-weight:300;color:#F5F0E8;margin-bottom:28px;line-height:1.3}
+.plan-day{border-bottom:1px solid #F5F0E808;padding:22px 0}
+.plan-day:last-child{border-bottom:none}
+.day-label{font-size:10px;letter-spacing:3px;color:#C9A84C;text-transform:uppercase;font-family:sans-serif;margin-bottom:8px}
+.day-title{font-size:19px;color:#F5F0E8;margin-bottom:8px;font-weight:400}
+.day-body{font-size:14px;color:#F5F0E866;font-family:sans-serif;font-weight:300;line-height:1.75}
+/* AFFIRMATIONS */
+.affirm-intro{font-size:14px;color:#F5F0E844;font-family:sans-serif;font-weight:300;line-height:1.75;margin-bottom:28px}
+.affirm-grid{display:flex;flex-direction:column;gap:18px}
+.affirm-item{border-left:1px solid #C9A84C33;padding:14px 22px;font-size:18px;font-style:italic;color:#F5F0E8aa;line-height:1.65}
+.affirm-ref{font-size:10px;letter-spacing:2px;color:#C9A84C66;font-family:sans-serif;font-style:normal;margin-top:8px;text-transform:uppercase}
+/* CTA */
+.cta-block{background:#0a0a0a;border:1px solid #C9A84C22;padding:40px 32px;text-align:center;margin-top:48px}
+.cta-block p{font-size:15px;color:#F5F0E855;font-family:sans-serif;font-weight:300;margin-bottom:24px;line-height:1.8;max-width:440px;margin-left:auto;margin-right:auto}
+.cta-link{display:inline-block;background:#C9A84C;color:#0d0d0d;font-family:sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;padding:15px 36px;text-decoration:none;cursor:pointer;transition:opacity 0.2s}
+.cta-link:hover{opacity:0.85}
+.footer{text-align:center;padding:40px 0 32px;font-size:11px;color:#F5F0E822;font-family:sans-serif;letter-spacing:1px}
+
+/* REVEAL ANIMATION */
+.rings{width:110px;height:110px;margin:0 auto 28px;position:relative}
+.ring{position:absolute;border-radius:50%;border:1px solid #C9A84C;top:50%;left:50%;transform:translate(-50%,-50%);animation:ringPulse 3s ease-in-out infinite}
+.ring-1{width:56px;height:56px;animation-delay:0s}
+.ring-2{width:84px;height:84px;animation-delay:0.4s;border-color:#C9A84C55}
+.ring-3{width:110px;height:110px;animation-delay:0.8s;border-color:#C9A84C22}
+@keyframes ringPulse{0%,100%{opacity:1;transform:translate(-50%,-50%) scale(1)}50%{opacity:0.5;transform:translate(-50%,-50%) scale(1.05)}}
+.anim-0{opacity:0;animation:revealUp 0.7s ease 0.3s forwards}
+.anim-1{opacity:0;animation:revealUp 0.8s ease 0.7s forwards}
+.anim-2{opacity:0;animation:revealUp 0.9s ease 1.1s forwards}
+.anim-3{width:0;height:1px;background:#C9A84C22;margin:24px auto;animation:expandLine 0.8s ease 1.5s forwards}
+.anim-4{opacity:0;animation:revealUp 0.8s ease 1.7s forwards}
+.anim-5{opacity:0;animation:revealUp 0.8s ease 2.1s forwards}
+.anim-6{opacity:0;animation:revealUp 0.8s ease 2.5s forwards}
+.anim-7{opacity:0;animation:revealUp 0.8s ease 2.9s forwards}
+@keyframes revealUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes expandLine{to{width:180px}}
+/* FIELD VISIBILITY */
+.gate-input{background:#1a1a1a!important;border:1px solid #C9A84C44!important;font-size:15px!important}
+.gate-input::placeholder{color:#F5F0E866!important}
+.gate-input:focus{border-color:#C9A84C!important;outline:none}
+.result-desc{font-size:17px!important;line-height:1.9!important}
+.insights-box li{font-size:16px!important;line-height:1.7!important}
+
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+<!-- HOME -->
+<div class="section active" id="s-home">
+  <div class="hero">
+    <p class="eyebrow">Sanctuary Grace Ministry</p>
+    <h1>Are You A<br><em>Guilty Giver?</em></h1>
+    <p class="hero-sub">The free guide that names what has been draining you — and points you to the only rest that restores.</p>
+    <p class="hero-body">You give until there is nothing left. Then you feel guilty for even thinking about your own needs. This was made for you.</p>
+    <div class="verse">
+      <p>"Come unto me, all ye that labour and are heavy laden, and I will give you rest."</p>
+      <cite>Matthew 11:28 — KJV</cite>
+    </div>
+    <button class="btn" onclick="startQuiz()">Take the Assessment</button>
+  </div>
+</div>
+
+<!-- QUIZ -->
+<div class="section" id="s-quiz">
+  <div class="prog-bar"><div class="prog-fill" id="prog"></div></div>
+  <p class="q-count" id="q-count">Question 1 of 10</p>
+  <p class="q-text" id="q-text"></p>
+  <div class="q-opts" id="q-opts"></div>
+  <div class="q-nav">
+    <button class="back-btn" id="back-btn" onclick="goBack()">← Back</button>
+    <span></span>
+  </div>
+</div>
+
+<!-- RESULT -->
+<div class="section" id="s-result">
+  <div class="result-center">
+      <div class="rings anim-0" style="text-align:center">
+    <div class="ring ring-1"></div>
+    <div class="ring ring-2"></div>
+    <div class="ring ring-3"></div>
+  </div>
+<p class="result-label anim-0">Your Profile</p>
+    <h2 class="result-name anim-1" id="r-name"></h2>
+    <div class="anim-3"></div><div class="verse anim-4" id="r-verse" style="max-width:520px;margin:0 auto;font-size:19px;color:#F5F0E8"></div>
+    <p class="result-desc anim-5" id="r-desc"></p>
+  </div>
+  <div class="insights-box anim-6">
+    <h3>What this reveals</h3>
+    <ul id="r-insights"></ul>
+  </div>
+  <!-- EMAIL GATE -->
+  <div class="gate anim-7">
+    <p class="gate-eyebrow">Your next step</p>
+    <h2><em>Receive</em> your 7-day plan</h2>
+    <p>Enter your name and email and I will send your personalized 7-day reset directly to you — along with a devotion written specifically for where you are right now.</p>
+    <div class="gate-form">
+      <input class="gate-input" type="text" id="g-name" placeholder="First name" autocomplete="given-name">
+      <input class="gate-input" type="email" id="g-email" placeholder="Email address" autocomplete="email">
+      <button class="gate-submit" onclick="submitEmail()">Send My Plan</button>
+      <p class="gate-privacy">No spam. No selling. Just sacred space.</p>
+    </div>
+    <button class="gate-skip" onclick="skipGate()">Continue without email →</button>
+  </div>
+</div>
+
+<!-- PLAN -->
+<div class="section" id="s-plan">
+  <p class="sec-title">Your 7-Day Reset</p>
+  <h2 class="h2" id="plan-title"></h2>
+  <div id="plan-days"></div>
+  <div style="margin-top:36px;text-align:center">
+    <button class="btn" onclick="showSec('s-affirm')">Continue to Declarations →</button>
+  </div>
+</div>
+
+<!-- AFFIRMATIONS -->
+<div class="section" id="s-affirm">
+  <p class="sec-title">Speak Over Yourself</p>
+  <h2 class="h2">Declarations for the <em style="color:#C9A84C">Guilty Giver</em></h2>
+  <p class="affirm-intro">Read these aloud. Not as affirmations rooted in self — but as declarations rooted in what God has already said about you.</p>
+  <div class="affirm-grid" id="affirm-list"></div>
+  <div class="cta-block">
+    <p>You were not made to carry this alone. The Quiet Authority is a space where burned-out women return to the voice of God — through sacred silence.</p>
+    <a class="cta-link" href="https://sanctuary-grace.com">Enter the Sanctuary</a>
+  </div>
+</div>
+
+<div class="footer">© 2026 Sanctuary Grace Ministry · sanctuary-grace.com</div>
+
+</div><!-- /wrap -->
+
+<script>
+const BREVO_LIST_ID = 3; // UPDATE: Guilty Giver list ID in Brevo
+const PROFILE_TAG = 'guilty-giver';
+
+const Qs=[
+  {t:"When someone asks for your help, you feel…",o:["Free to say yes or no without guilt","Glad to help when I genuinely can","Obligated — saying no feels wrong","Like no is not an option, no matter the cost"]},
+  {t:"After you help someone, you typically feel…",o:["Satisfied and at peace","Good, though sometimes drained","Resentful, but you don't say it","Empty — like you gave what you didn't have"]},
+  {t:"When you think about your own needs, you feel…",o:["Comfortable attending to them","Aware of them and mostly meet them","Guilty for even noticing them","Like your needs matter less than everyone else's"]},
+  {t:"The word 'no' feels…",o:["Like a complete sentence","Uncomfortable but possible","Like a betrayal of people who need me","Like a sin I have to confess"]},
+  {t:"When you have unscheduled time for yourself, you…",o:["Enjoy it without guilt","Relax but feel a small pull to be useful","Fill it immediately with someone else's need","Feel anxious — rest feels like laziness"]},
+  {t:"You believe God is pleased with you when…",o:["I simply walk with Him","I live faithfully in what He has given me","I am sacrificing and serving others","I have done enough — and enough never comes"]},
+  {t:"The people closest to you would say…",o:["You know how to receive as well as give","You are generous but take care of yourself","You give everything and keep nothing","They worry about you but you never let them help"]},
+  {t:"When you set a boundary, you feel…",o:["Clear and grounded in it","A little uncomfortable but okay","Guilty and anxious about it for days","Unable to hold it — you cave every time"]},
+  {t:"Rest, to you, feels…",o:["Like a gift from God","Necessary, though I don't take enough","Like something I have to earn","Like abandonment — someone always needs me"]},
+  {t:"If Jesus sat across from you today and asked what you need, you would say…",o:["I know what I need and I receive it","I'm okay, just a little tired","I don't know — I've forgotten how to need","Nothing. Asking feels selfish."]}
+];
+
+const Rs=[
+  {range:[10,19],name:"The <em>Grounded</em> Giver",verse:{t:"I can do all things through Christ which strengtheneth me.",r:"Philippians 4:13 — KJV"},desc:"You give from a place of genuine overflow. You understand that caring for yourself is not selfishness — it is stewardship. Stay rooted in this truth. The enemy's strategy is slow erosion.",ins:["You have developed healthy rhythms of giving and receiving.","Watch for seasons of depletion — they come quietly.","Your example gives other women permission to do the same."]},
+  {range:[20,29],name:"The <em>Weary</em> Giver",verse:{t:"The Lord is my shepherd; I shall not want. He maketh me to lie down in green pastures.",r:"Psalm 23:1-2 — KJV"},desc:"You give generously — but the pace has begun to cost you more than you count. You are not broken. You are tired. And tired is not the same as failing.",ins:["You may be giving from obligation more than overflow.","Rest feels unnatural because being needed has become your normal.","God is not asking for your depletion. He is asking for your trust."]},
+  {range:[30,39],name:"The <em>Hollow</em> Giver",verse:{t:"But they that wait upon the Lord shall renew their strength; they shall mount up with wings as eagles.",r:"Isaiah 40:31 — KJV"},desc:"On the outside you hold everything together. On the inside there is a quiet emptiness you have learned not to mention. You have confused self-erasure with faithfulness. They are not the same.",ins:["You have mastered the performance of 'I'm fine.'","Giving has become a way to avoid the quieter question: who am I when I stop?","Healing begins the moment you let someone see the real weight you carry."]},
+  {range:[40,40],name:"The <em>Depleted</em> Giver",verse:{t:"He giveth power to the faint; and to them that have no might he increaseth strength.",r:"Isaiah 40:29 — KJV"},desc:"You have given yourself away in pieces until you could no longer find the whole. This is not virtue — it is a wound that has gone unnamed. God sees you. And He is not asking you to give more. He is asking you to receive.",ins:["Your depletion is a signal, not a sentence.","You cannot pour from a vessel that has never been filled.","The most sacred thing you can do right now is let God tend to you."]}
+];
+
+const Plans=[
+  {title:"The Grounded Giver — 7-Day Deepening",days:[
+    {l:"Day 1",t:"Stewardship Audit",b:"Ask God: where in my life am I giving from overflow and where am I giving from striving? Write what He shows you."},
+    {l:"Day 2",t:"Receive Something",b:"Let one person care for you today without deflecting or minimizing it. Receiving is an act of trust."},
+    {l:"Day 3",t:"Teach It",b:"Speak one truth about healthy boundaries to a woman in your life who needs to hear it. What you live, you can give."},
+    {l:"Day 4",t:"Sabbath Practice",b:"Take one full hour in intentional rest — no productivity. Let your body remember that rest is a command, not a reward."},
+    {l:"Day 5",t:"Gratitude Inventory",b:"Write 10 specific ways God has replenished you in the last month. Thankfulness anchors overflow."},
+    {l:"Day 6",t:"The Guard",b:"Identify one place where your boundaries are beginning to soften. Name it. Recommit."},
+    {l:"Day 7",t:"Declaration",b:"Speak aloud: I give because I am filled, not to be filled. I am a vessel, not a source."}
+  ]},
+  {title:"The Weary Giver — 7-Day Rest",days:[
+    {l:"Day 1",t:"Name the Weight",b:"Write down everything you are currently carrying for other people. All of it. Then ask: which of these did God actually assign to me?"},
+    {l:"Day 2",t:"One Hour for You",b:"Do one thing today purely because it fills you. No productivity. No purpose. Just rest as an act of faith."},
+    {l:"Day 3",t:"The Obligation Check",b:"List three things you are doing out of guilt rather than calling. Ask God what He actually wants you to release."},
+    {l:"Day 4",t:"Receive Care",b:"Let one person care for you today — a meal, a prayer, a conversation. Do not redirect it. Let it land."},
+    {l:"Day 5",t:"Sit in Silence",b:"Set a timer for 15 minutes. No worship music, no journaling, no prayer list. Just be still before God."},
+    {l:"Day 6",t:"The Permission Letter",b:"Write a letter from God to you — one that gives you permission to rest. Write what you need to hear."},
+    {l:"Day 7",t:"Declaration",b:"Speak aloud: Rest is not abandonment. It is obedience. God tends what I lay down."}
+  ]},
+  {title:"The Hollow Giver — 7-Day Return",days:[
+    {l:"Day 1",t:"Drop the Performance",b:"Write one honest sentence about how you are actually doing. Not how you say you are doing. What is true?"},
+    {l:"Day 2",t:"Let Someone In",b:"Tell one safe person one true thing about your exhaustion. You do not have to carry this in hiding."},
+    {l:"Day 3",t:"The Emptiness Question",b:"Sit with this: what am I afraid will happen if I stop being the one who holds everything together?"},
+    {l:"Day 4",t:"Scripture Soaking",b:"Read Isaiah 40:28-31 slowly, three times. Let it be medicine. Write one line that reaches you."},
+    {l:"Day 5",t:"Grieve What It Cost",b:"Allow yourself 10 minutes to grieve what your giving has cost you. Set a timer. Feel it. Then close it."},
+    {l:"Day 6",t:"One True Need",b:"Name one real need you have that you have been ignoring. Ask God — and one trusted person — to help you meet it."},
+    {l:"Day 7",t:"Declaration",b:"Speak aloud: My obedience to God does not require my disappearance. I am allowed to exist in full."}
+  ]},
+  {title:"The Depleted Giver — 7-Day Receiving",days:[
+    {l:"Day 1",t:"Stop",b:"Today you do only what is essential. Nothing extra. This is not failure. This is triage. Your body needs to know it is safe to slow down."},
+    {l:"Day 2",t:"Drink from the Well",b:"Read John 4:13-14. Sit with it. Ask God: where have I been drawing from the wrong well? Write what He shows you."},
+    {l:"Day 3",t:"Name the Wound",b:"Write the sentence you have never said aloud: I am exhausted. I have been giving what I do not have. I need help."},
+    {l:"Day 4",t:"Receive from God",b:"Spend 20 minutes in silence — not asking, not interceding. Only receiving. Let Him tend to you."},
+    {l:"Day 5",t:"One Small Yes to Yourself",b:"Do one thing today that is only for you. Not for your family. Not for your ministry. Just for you."},
+    {l:"Day 6",t:"Release a Responsibility",b:"Identify one thing you are carrying that belongs to someone else. Release it — in prayer and in practice."},
+    {l:"Day 7",t:"Declaration",b:"Speak aloud: God does not need my depletion. He needs my surrender. I receive His strength today."}
+  ]}
+];
+
+const Affirms=[
+  ["I am not a machine. I am a woman made in the image of God.",""],
+  ["Saying no is not a sin. It is sometimes the most faithful thing I can do.",""],
+  ["I am allowed to have needs. Jesus had needs. He rested. He wept. He withdrew.",""],
+  ["My worth is not measured by how much I sacrifice.","For by grace are ye saved through faith — not of works. — Ephesians 2:8"],
+  ["Boundaries are not walls. They are the edges of a life God gave me to steward.",""],
+  ["I do not have to earn rest. God commands it.","He maketh me to lie down. — Psalm 23:2"],
+  ["Guilt is not the voice of God. His voice brings conviction that leads to peace.",""],
+  ["I am a vessel. I am not the source. Only God is the source.",""],
+  ["Receiving care is not weakness. It is trust.",""],
+  ["What I pour out, God can restore. But I must bring my emptiness to Him.","Come unto me… and I will give you rest. — Matthew 11:28"],
+  ["My depletion does not glorify God. My wholeness does.",""],
+  ["I am allowed to come home to myself.",""]
+];
+
+let cur=0, scores=[], resultIdx=0;
+
+function showSec(id){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function startQuiz(){showSec('s-quiz');cur=0;scores=[];renderQ();}
+
+function renderQ(){
+  const q=Qs[cur];
+  document.getElementById('q-count').textContent=`Question ${cur+1} of ${Qs.length}`;
+  document.getElementById('prog').style.width=`${(cur/Qs.length)*100}%`;
+  document.getElementById('q-text').textContent=q.t;
+  const bb=document.getElementById('back-btn');
+  bb.style.opacity=cur===0?'0':'1';
+  bb.style.pointerEvents=cur===0?'none':'auto';
+  const opts=document.getElementById('q-opts');
+  opts.innerHTML='';
+  q.o.forEach((o,i)=>{
+    const b=document.createElement('button');
+    b.className='q-opt'; b.textContent=o;
+    b.onclick=()=>{
+      document.querySelectorAll('.q-opt').forEach(x=>x.classList.remove('sel'));
+      b.classList.add('sel');
+      setTimeout(()=>{
+        if(scores.length>cur) scores[cur]=i+1; else scores.push(i+1);
+        if(cur<Qs.length-1){cur++;renderQ();}else showResult();
+      },300);
+    };
+    opts.appendChild(b);
+  });
+}
+
+function goBack(){if(cur>0){cur--;scores.pop();renderQ();}}
+
+function showResult(){
+  const total=scores.reduce((a,b)=>a+b,0);
+  let ri=Rs.findIndex(r=>total<=r.range[1]);
+  if(ri<0) ri=Rs.length-1;
+  resultIdx=ri;
+  const r=Rs[ri];
+  document.getElementById('r-name').innerHTML=r.name;
+  document.getElementById('r-verse').innerHTML=`<p>"${r.verse.t}"</p><cite>${r.verse.r}</cite>`;
+  document.getElementById('r-desc').textContent=r.desc;
+  document.getElementById('r-insights').innerHTML=r.ins.map(i=>`<li>${i}</li>`).join('');
+  // Pre-load plan
+  const p=Plans[ri];
+  document.getElementById('plan-title').textContent=p.title;
+  document.getElementById('plan-days').innerHTML=p.days.map(d=>`<div class="plan-day"><p class="day-label">${d.l}</p><p class="day-title">${d.t}</p><p class="day-body">${d.b}</p></div>`).join('');
+  document.getElementById('affirm-list').innerHTML=Affirms.map(a=>`<div class="affirm-item">${a[0]}${a[1]?`<div class="affirm-ref">${a[1]}</div>`:''}</div>`).join('');
+  // reset animations for replay
+  document.querySelectorAll('.anim-0,.anim-1,.anim-2,.anim-3,.anim-4,.anim-5,.anim-6,.anim-7,.rings').forEach(el=>{
+    el.style.animation='none';
+    void el.offsetWidth;
+    el.style.animation='';
+  });
+  showSec('s-result');
+}
+
+function submitEmail(){
+  const name=document.getElementById('g-name').value.trim();
+  const email=document.getElementById('g-email').value.trim();
+  if(!email||!email.includes('@')){
+    document.getElementById('g-email').style.borderColor='#C1593C';
+    return;
+  }
+  // POST to Brevo API via your backend/Make webhook
+  // Replace WEBHOOK_URL with your Make.com scenario webhook
+  const WEBHOOK_URL='https://hook.us2.make.com/r4tscqqr8qzff82pr3dcxi1a3w5yn7xy';
+  fetch(WEBHOOK_URL,{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({name,email,profile:PROFILE_TAG,list_id:BREVO_LIST_ID,source:'guilty-giver-lead-magnet'})
+  }).catch(()=>{}); // silent fail — user still proceeds
+  showSec('s-plan');
+}
+
+function skipGate(){showSec('s-plan');}
+</script>
+</body>
+</html>
