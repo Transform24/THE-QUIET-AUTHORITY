@@ -32,7 +32,7 @@ You do not have to figure out how to feel less burdened before you come to him. 
 
 Lay it down today. Not because you have the strength to carry it any further. But because the One who holds the universe is asking you to let him hold you.
 
-Come as you are. https://sanctuarygrace.store"""
+Come as you are. https://sanctuary-grace.com/"""
     },
     2: {
         "title": "Permission to Stop",
@@ -52,7 +52,7 @@ Today, stop for five minutes. Not to pray a perfect prayer. Not to read a chapte
 
 You have permission to stop. You always did.
 
-Come as you are. https://sanctuarygrace.store"""
+Come as you are. https://sanctuary-grace.com/"""
     },
     3: {
         "title": "When You Have Given Everything Away",
@@ -68,7 +68,7 @@ You are not too far gone for the Shepherd to reach. You are not too depleted for
 
 Today, let him be enough. You do not have to produce anything. You only have to follow.
 
-Come as you are. https://sanctuarygrace.store"""
+Come as you are. https://sanctuary-grace.com/"""
     },
     4: {
         "title": "The Lie That Rest Must Be Earned",
@@ -86,7 +86,7 @@ The weariness you feel today is not a sign of spiritual failure. It is a sign th
 
 Come. He is not waiting for a better version of you.
 
-Come as you are. https://sanctuarygrace.store"""
+Come as you are. https://sanctuary-grace.com/"""
     },
     5: {
         "title": "Surviving Is Not Enough",
@@ -102,7 +102,7 @@ But the life Jesus offers is not fragile. It does not depend on your circumstanc
 
 You deserve more than survival. Not because you earned it. Because the One who holds your life is not a God of bare minimum.
 
-Come as you are. https://sanctuarygrace.store"""
+Come as you are. https://sanctuary-grace.com/"""
     },
     6: {
         "title": "The Woman Who Cannot Be Still",
@@ -118,7 +118,7 @@ Return. That is the word. Not arrive somewhere new. Return — to the place you 
 
 The Lord has been good to you. Even in the hard seasons. Even when you could not feel it. The goodness is the reason you can return. Not your own worthiness. His faithfulness.
 
-Come as you are. https://sanctuarygrace.store"""
+Come as you are. https://sanctuary-grace.com/"""
     },
     7: {
         "title": "Your Needs Are Not Inconvenient",
@@ -134,7 +134,7 @@ Your needs are not inconvenient to God. He is not burdened by your hunger. He is
 
 Name what you need today. You do not have to fix it. Just name it — to yourself, to him. Honesty is the beginning of being filled.
 
-Come as you are. https://sanctuarygrace.store"""
+Come as you are. https://sanctuary-grace.com/"""
     },
     8: {
         "title": "When Faith Feels Far Away",
@@ -152,7 +152,7 @@ It will be enough. Not because of your grip. Because of his.
 
 You do not have to feel his presence for it to be real. You do not have to manufacture the joy. Just stay. Keep showing up, even when it feels hollow. He is closer than the silence feels.
 
-Come as you are. https://sanctuarygrace.store"""
+Come as you are. https://sanctuary-grace.com/"""
     },
     9: {
         "title": "The Slow Work of Healing",
@@ -168,7 +168,7 @@ He is not finished with you. The fact that you are still in the middle does not 
 
 Be patient with yourself today. You are not behind. You are healing. Those are not the same thing.
 
-Come as you are. https://sanctuarygrace.store"""
+Come as you are. https://sanctuary-grace.com/"""
     },
     10: {
         "title": "You Were Made for More Than This Exhaustion",
@@ -184,7 +184,7 @@ You were not made for permanent exhaustion. The weariness you feel is real, but 
 
 But she is found in the waiting. In the hoping. In the quiet turning toward the One who renews.
 
-Come as you are. https://sanctuarygrace.store"""
+Come as you are. https://sanctuary-grace.com/"""
     },
     11: {
         "title": "Grief Does Not Disqualify You",
@@ -200,7 +200,7 @@ You cannot be comforted in a wound you refuse to acknowledge. The comfort is rea
 
 Mourn what needs to be mourned. You are not weak. You are human. And the Comforter is near.
 
-Come as you are. https://sanctuarygrace.store"""
+Come as you are. https://sanctuary-grace.com/"""
     },
     12: {
         "title": "The God Who Does Not Require Performance",
@@ -218,7 +218,7 @@ Today, try not to perform. Sit quietly. Say nothing if nothing comes. Let the lo
 
 He is not grading the session. He is glad you are here.
 
-Come as you are. https://sanctuarygrace.store"""
+Come as you are. https://sanctuary-grace.com/"""
     },
     13: {
         "title": "When You Cannot Pray",
@@ -236,7 +236,7 @@ Sometimes the prayer is just being present. Sometimes it is just sitting in the 
 
 You are not doing it wrong. You are exactly where prayer sometimes lives.
 
-Come as you are. https://sanctuarygrace.store"""
+Come as you are. https://sanctuary-grace.com/"""
     },
     14: {
         "title": "Enough for Today",
@@ -252,7 +252,7 @@ What do you need today? Not eventually. Today. Ask for that. Receive that. Trust
 
 Today's bread is enough for today. You do not have to secure next month's supply before you can rest.
 
-Come as you are. https://sanctuarygrace.store"""
+Come as you are. https://sanctuary-grace.com/"""
     },
     15: {
         "title": "The Gift of Limitations",
@@ -268,7 +268,7 @@ Today, instead of fighting your limitations, try befriending one. Acknowledge wh
 
 You are dust. And dust, held in the hands of God, becomes something breathtaking.
 
-Come as you are. https://sanctuarygrace.store"""
+Come as you are. https://sanctuary-grace.com/"""
     },
     16: {
         "title": "Identity Beneath the Doing",
@@ -286,7 +286,7 @@ The spiritual work is not to achieve this status. It is to believe it. To let it
 
 You are beloved. Today. Before you have done a single thing.
 
-Come as you are. https://sanctuarygrace.store"""
+Come as you are. https://sanctuary-grace.com/"""
     },
     17: {
         "title": "The Courage to Receive",
@@ -304,7 +304,7 @@ Today, practice receiving one small thing without deflecting. A compliment. An o
 
 The Father gives good gifts. You are allowed to open them.
 
-Come as you are. https://sanctuarygrace.store"""
+Come as you are. https://sanctuary-grace.com/"""
     },
     18: {
         "title": "A New Thing in the Wilderness",
@@ -320,7 +320,7 @@ You are not stuck in this season forever. The God who parts seas and opens river
 
 Look up. Do you perceive it?
 
-Come as you are. https://sanctuarygrace.store"""
+Come as you are. https://sanctuary-grace.com/"""
     },
     19: {
         "title": "Safe to Be Honest",
@@ -336,7 +336,7 @@ You are safe to be honest with him. He will not be shocked. He will not love you
 
 Bring the real thing today. All of it. Let him search what you have been hiding and find you there.
 
-Come as you are. https://sanctuarygrace.store"""
+Come as you are. https://sanctuary-grace.com/"""
     },
     20: {
         "title": "When You Are Too Tired to Be Faithful",
@@ -352,7 +352,7 @@ You do not have to perform faithfulness when you are this tired. You only have t
 
 The strength you need is not stored inside you. It flows from outside, from the One who does not weary, who does not grow faint, who is never running low.
 
-Come as you are. https://sanctuarygrace.store"""
+Come as you are. https://sanctuary-grace.com/"""
     },
     21: {
         "title": "The Practice of Not Knowing",
@@ -368,7 +368,7 @@ Leaning not on your own understanding does not mean becoming passive or uninform
 
 You do not have to understand it to survive it. You only have to trust the One who does.
 
-Come as you are. https://sanctuarygrace.store"""
+Come as you are. https://sanctuary-grace.com/"""
     },
     22: {
         "title": "What You Carry in Secret",
@@ -386,7 +386,7 @@ You do not have to explain it perfectly. You do not have to understand it. You o
 
 He is waiting. And he has never turned away the one who came honestly.
 
-Come as you are. https://sanctuarygrace.store"""
+Come as you are. https://sanctuary-grace.com/"""
     },
     23: {
         "title": "The Long Middle",
@@ -402,7 +402,7 @@ The middle is not a failure. It is the work. It is the place where character is 
 
 You are in the middle. Stay. Keep doing the quiet, faithful thing no one is watching. The proper time has not been canceled. It is coming.
 
-Come as you are. https://sanctuarygrace.store"""
+Come as you are. https://sanctuary-grace.com/"""
     },
     24: {
         "title": "Fear and the Open Hand",
@@ -418,7 +418,7 @@ You are allowed to live from that spirit. You are not required to obey the fear.
 
 Today, notice where fear has been making decisions you thought you were making. And choose, once, to act from love and power instead.
 
-Come as you are. https://sanctuarygrace.store"""
+Come as you are. https://sanctuary-grace.com/"""
     },
     25: {
         "title": "The Faithful Witness of Your Own Life",
@@ -436,7 +436,7 @@ The laughter at days to come is not naivety. It is the confidence of a woman who
 
 You are clothed in more than you know.
 
-Come as you are. https://sanctuarygrace.store"""
+Come as you are. https://sanctuary-grace.com/"""
     },
     26: {
         "title": "A Tenderness Toward Yourself",
@@ -454,7 +454,7 @@ Today, try one act of tenderness toward yourself. A rest you did not earn. A gra
 
 You are your own neighbor too.
 
-Come as you are. https://sanctuarygrace.store"""
+Come as you are. https://sanctuary-grace.com/"""
     },
     27: {
         "title": "When the Calling Feels Buried",
@@ -470,7 +470,7 @@ You have not been disqualified. You have not missed the window. The God who made
 
 The calling is not buried. It is waiting. And you are not behind — you are becoming.
 
-Come as you are. https://sanctuarygrace.store"""
+Come as you are. https://sanctuary-grace.com/"""
     },
     28: {
         "title": "Held in the Hard Season",
@@ -488,7 +488,7 @@ You are not alone in the valley. You have never been alone in the valley.
 
 Fear no evil. Not because nothing bad can happen. But because the One who walks with you is larger than what pursues you.
 
-Come as you are. https://sanctuarygrace.store"""
+Come as you are. https://sanctuary-grace.com/"""
     },
     29: {
         "title": "The Woman You Are Becoming",
@@ -508,7 +508,7 @@ The glory is increasing even when you cannot see it. The transformation is happe
 
 Trust the process. Trust the One who holds it.
 
-Come as you are. https://sanctuarygrace.store"""
+Come as you are. https://sanctuary-grace.com/"""
     },
     30: {
         "title": "An Invitation to Begin Again",
@@ -526,7 +526,7 @@ Whatever yesterday held — whatever the last season held — this morning is a 
 
 You are allowed to begin again. You always were.
 
-Come as you are. https://sanctuarygrace.store"""
+Come as you are. https://sanctuary-grace.com/"""
     },
 }
 
@@ -561,7 +561,7 @@ You are not alone in this.
 With love and solidarity,
 Grace
 
-Come as you are. https://sanctuarygrace.store"""
+Come as you are. https://sanctuary-grace.com/"""
     },
     1: {
         "title": "The Return",
@@ -589,7 +589,7 @@ You are not too far gone. The path back to yourself is shorter than you fear.
 With tenderness,
 Grace
 
-Come as you are. https://sanctuarygrace.store"""
+Come as you are. https://sanctuary-grace.com/"""
     },
     2: {
         "title": "What Stays When Everything Else Goes",
@@ -621,7 +621,7 @@ You are not starting over. You are starting from something more solid than you k
 With love,
 Grace
 
-Come as you are. https://sanctuarygrace.store"""
+Come as you are. https://sanctuary-grace.com/"""
     },
     3: {
         "title": "The Permission You Have Been Waiting For",
@@ -655,7 +655,7 @@ You are allowed. All of it. Come as you are.
 With love and a kind of fierce protectiveness,
 Grace
 
-Come as you are. https://sanctuarygrace.store"""
+Come as you are. https://sanctuary-grace.com/"""
     },
     4: {
         "title": "A Letter for the Long Road",
@@ -683,7 +683,7 @@ Keep walking. With a little more patience for yourself if you can manage it. And
 With love for the journey,
 Grace
 
-Come as you are. https://sanctuarygrace.store"""
+Come as you are. https://sanctuary-grace.com/"""
     },
 }
 
