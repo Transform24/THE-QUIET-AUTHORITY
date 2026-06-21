@@ -750,7 +750,7 @@ if SUBSTACK_SESSION_COOKIE:
 else:
     post_status = 'DRAFT SAVED — add SUBSTACK_SESSION_COOKIE to GitHub Secrets to auto-create drafts'
 
-out_dir = pathlib.Path('workflows/output/substack-drafts')
+out_dir = pathlib.Path('workflows/output/substack-pending')
 out_dir.mkdir(parents=True, exist_ok=True)
 (out_dir / f'{date_str}.md').write_text(
     f'---\ndate: {date_str}\nmode: {mode}\nday: {day_number}\nstatus: {post_status}\nurl: {post_url or "pending"}\n---\n\n# {title}\n\n{("*" + subtitle + "*" + chr(10) + chr(10)) if subtitle else ""}{body_text}\n'
