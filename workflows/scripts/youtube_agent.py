@@ -43,7 +43,7 @@ The question is not whether you are behind. The question is whether you are will
 
 You do not have to fix yourself before you come to Christ. Coming to Christ is how the fixing begins.
 
-Come as you are. https://sanctuarygrace.store
+Come as you are. https://sanctuary-grace.com/
 
 ## SEO DESCRIPTION
 
@@ -57,7 +57,7 @@ Begin with our free spiritual profile assessment — eight questions that identi
 
 Sanctuary Grace Ministry exists to reach the woman who gave everything she had and forgot to keep something for herself. You are not too far gone. You are not too late. You are simply invited.
 
-Come as you are. https://sanctuarygrace.store
+Come as you are. https://sanctuary-grace.com/
 
 ## TAGS
 ChristianWomen, SpiritualRest, DailyDevotion, BibleStudy, WomenInFaith, ChristianMinistry, FaithJourney, SpiritualPeace, WomenOfFaith, BurnoutRecovery
@@ -98,7 +98,7 @@ Press through the silence. Press through the doubt. Press through the crowd of t
 
 Because He feels the reaching. Even when you cannot feel Him.
 
-Come as you are. https://sanctuarygrace.store
+Come as you are. https://sanctuary-grace.com/
 
 ## SEO DESCRIPTION
 
@@ -114,7 +114,7 @@ Begin your journey with our free spiritual profile assessment at the link below.
 
 Sanctuary Grace Ministry speaks the Gospel to women in the quiet — not to perform, not to impress, but because the Gospel is the only thing that reaches the places self-help cannot.
 
-Come as you are. https://sanctuarygrace.store
+Come as you are. https://sanctuary-grace.com/
 
 ## TAGS
 ChristianWomen, SpiritualDryness, FaithJourney, WomenInFaith, ChristianMinistry, SpiritualRest, DailyDevotion, BibleStudy, WomenOfFaith, TrustingGod
@@ -163,7 +163,7 @@ Not because you have figured out how. Not because you are ready. But because He 
 
 You do not need to be better to begin. You only need to be willing to come.
 
-Come as you are. https://sanctuarygrace.store
+Come as you are. https://sanctuary-grace.com/
 
 ## SEO DESCRIPTION
 
@@ -179,7 +179,7 @@ The Quiet Authority exists for the woman who loves God and is exhausted by that 
 
 Sanctuary Grace Ministry speaks the Gospel tenderly and honestly to women who are done performing. If any part of this message met you today, the door is open.
 
-Come as you are. https://sanctuarygrace.store
+Come as you are. https://sanctuary-grace.com/
 
 ## TAGS
 ChristianWomen, SpiritualRest, Devotional, BibleStudy, WomenInFaith, FaithJourney, RestInGod, WomenOfFaith, GospelTruth, BurnoutRecovery
@@ -228,7 +228,7 @@ Your calling has not expired.
 
 It is waiting. And you are allowed to return to it.
 
-Come as you are. https://sanctuarygrace.store
+Come as you are. https://sanctuary-grace.com/
 
 ## SEO DESCRIPTION
 
@@ -246,7 +246,7 @@ Begin with our free spiritual profile assessment. Eight questions. Eight minutes
 
 Sanctuary Grace Ministry speaks tenderly and honestly to women who are done pretending they are fine. If any part of this message reached you today, the door is open.
 
-Come as you are. https://sanctuarygrace.store
+Come as you are. https://sanctuary-grace.com/
 
 ## TAGS
 ChristianWomen, CalledByGod, FaithJourney, WomenInFaith, ChristianMinistry, SpiritualPurpose, DailyDevotion, WomenOfFaith, BibleStudy, HopeForWomen
