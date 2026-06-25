@@ -1,0 +1,173 @@
+name: Gate Buyer → Systeme.io Tagger
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'   # Every 15 minutes
+  workflow_dispatch:           # Manual run from Actions tab
+
+jobs:
+  sync-gate-buyers:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Sync Gate 1 Buyers to Systeme.io
+        env:
+          STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
+          SYSTEME_API_KEY: ${{ secrets.SYSTEME_MAKE_KEY }}
+        run: |
+          python3 << 'PYEOF'
+          import os, sys, time, json, requests
+
+          STRIPE_KEY    = os.environ["STRIPE_SECRET_KEY"]
+          SYSTEME_KEY   = os.environ["SYSTEME_API_KEY"]
+
+          # ── Gate definitions ──────────────────────────────────────────────
+          GATES = [
+              {
+                  "product_id": "prod_Ul9eX4XJZNXIem",
+                  "tag":        "gate-1-buyer",
+                  "access_url": "https://transform24.github.io/THE-QUIET-AUTHORITY/gate-one.html?purchased=gate1",
+              },
+              # Add gate 2–6 here when ready:
+              # { "product_id": "prod_XXXXX", "tag": "gate-2-buyer", "access_url": "..." },
+          ]
+
+          STRIPE_BASE  = "https://api.stripe.com/v1"
+          SYSTEME_BASE = "https://api.systeme.io/api"
+          STRIPE_HDR   = {"Authorization": f"Bearer {STRIPE_KEY}"}
+          SYSTEME_HDR  = {"X-API-Key": SYSTEME_KEY, "Content-Type": "application/json"}
+
+          LOOKBACK = 20 * 60   # 20 minutes (overlaps the 15-min schedule)
+
+          # ── 1. Fetch recent checkout.session.completed events from Stripe ─
+          since = int(time.time()) - LOOKBACK
+          params = {
+              "type":           "checkout.session.completed",
+              "created[gte]":   since,
+              "limit":          100,
+          }
+          r = requests.get(f"{STRIPE_BASE}/events", headers=STRIPE_HDR, params=params)
+          r.raise_for_status()
+          events = r.json().get("data", [])
+          print(f"Found {len(events)} checkout event(s) in last {LOOKBACK//60} min.")
+
+          if not events:
+              sys.exit(0)
+
+          # ── Helper: get or create Systeme.io tag, return tag ID ───────────
+          _tag_cache = {}
+
+          def get_or_create_tag(name):
+              if name in _tag_cache:
+                  return _tag_cache[name]
+              # Search existing tags
+              r = requests.get(f"{SYSTEME_BASE}/tags", headers=SYSTEME_HDR)
+              r.raise_for_status()
+              for tag in r.json().get("items", []):
+                  if tag["name"] == name:
+                      _tag_cache[name] = tag["id"]
+                      return tag["id"]
+              # Create if not found
+              r = requests.post(f"{SYSTEME_BASE}/tags", headers=SYSTEME_HDR,
+                                json={"name": name})
+              r.raise_for_status()
+              tag_id = r.json()["id"]
+              _tag_cache[name] = tag_id
+              print(f"  Created tag '{name}' → id {tag_id}")
+              return tag_id
+
+          # ── Helper: get or create Systeme.io contact, return contact ID ──
+          def get_or_create_contact(email, first_name="", last_name=""):
+              r = requests.get(f"{SYSTEME_BASE}/contacts",
+                               headers=SYSTEME_HDR,
+                               params={"email": email})
+              r.raise_for_status()
+              items = r.json().get("items", [])
+              if items:
+                  return items[0]["id"]
+              payload = {"email": email}
+              if first_name: payload["firstName"] = first_name
+              if last_name:  payload["lastName"]  = last_name
+              r = requests.post(f"{SYSTEME_BASE}/contacts", headers=SYSTEME_HDR,
+                                json=payload)
+              r.raise_for_status()
+              contact_id = r.json()["id"]
+              print(f"  Created contact {email} → id {contact_id}")
+              return contact_id
+
+          # ── Helper: check if contact already has a tag ────────────────────
+          def contact_has_tag(contact_id, tag_id):
+              r = requests.get(f"{SYSTEME_BASE}/contacts/{contact_id}/tags",
+                               headers=SYSTEME_HDR)
+              r.raise_for_status()
+              for t in r.json().get("items", []):
+                  if t["id"] == tag_id:
+                      return True
+              return False
+
+          # ── Helper: add tag to contact ────────────────────────────────────
+          def add_tag(contact_id, tag_id):
+              r = requests.post(f"{SYSTEME_BASE}/contacts/{contact_id}/tags",
+                                headers=SYSTEME_HDR,
+                                json={"tagId": tag_id})
+              r.raise_for_status()
+
+          # ── 2. Process each event ─────────────────────────────────────────
+          gate_map = {g["product_id"]: g for g in GATES}
+
+          for event in events:
+              session = event["data"]["object"]
+              session_id = session["id"]
+              email = (session.get("customer_details") or {}).get("email") \
+                   or session.get("customer_email") or ""
+
+              if not email:
+                  print(f"  Skipping session {session_id} — no email found.")
+                  continue
+
+              # Fetch line items to identify the product
+              r = requests.get(
+                  f"{STRIPE_BASE}/checkout/sessions/{session_id}/line_items",
+                  headers=STRIPE_HDR,
+                  params={"limit": 10, "expand[]": "data.price.product"},
+              )
+              r.raise_for_status()
+              line_items = r.json().get("data", [])
+
+              for item in line_items:
+                  product = (item.get("price") or {}).get("product")
+                  if isinstance(product, dict):
+                      product_id = product.get("id")
+                  else:
+                      product_id = product
+
+                  if product_id not in gate_map:
+                      continue
+
+                  gate    = gate_map[product_id]
+                  tag_name = gate["tag"]
+
+                  print(f"  Gate purchase: {email} bought {tag_name} (session {session_id})")
+
+                  # Get name from Stripe session if available
+                  details   = session.get("customer_details") or {}
+                  full_name = details.get("name") or ""
+                  parts     = full_name.split(" ", 1)
+                  first     = parts[0] if parts else ""
+                  last      = parts[1] if len(parts) > 1 else ""
+
+                  try:
+                      tag_id     = get_or_create_tag(tag_name)
+                      contact_id = get_or_create_contact(email, first, last)
+
+                      if contact_has_tag(contact_id, tag_id):
+                          print(f"    → Already tagged. Skipping.")
+                      else:
+                          add_tag(contact_id, tag_id)
+                          print(f"    → Tagged ✓  (triggers Systeme.io automation → sends gate email)")
+                  except Exception as e:
+                      print(f"    ERROR processing {email}: {e}")
+                      sys.exit(1)
+
+          print("Done.")
+          PYEOF
