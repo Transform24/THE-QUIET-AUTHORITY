@@ -1,0 +1,56 @@
+name: Setup Gate Pipeline
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: 'Type SETUP to confirm'
+        required: true
+jobs:
+  create-tags:
+    runs-on: ubuntu-latest
+    if: github.event.inputs.confirm == 'SETUP'
+    steps:
+      - name: Create all 6 gate tags in Systeme.io
+        env:
+          SYSTEME_API_KEY: ${{ secrets.SYSTEME_MAKE_KEY }}
+        run: |
+          create_tag() {
+            local name="$1"
+            local result=$(curl -s -X POST \
+              "https://api.systeme.io/api/tags" \
+              -H "X-API-Key: $SYSTEME_API_KEY" \
+              -H "Content-Type: application/json" \
+              -d "{\"name\": \"$name\"}")
+            local id=$(echo $result | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('id','ERROR'))")
+            echo "$name tag ID: $id"
+          }
+          echo "=== CREATING SYSTEME.IO GATE TAGS ==="
+          create_tag "gate-1-buyer"
+          create_tag "gate-2-buyer"
+          create_tag "gate-3-buyer"
+          create_tag "gate-4-buyer"
+          create_tag "gate-5-buyer"
+          create_tag "gate-6-buyer"
+          echo "=== DONE ==="
+  register-stripe-webhook:
+    runs-on: ubuntu-latest
+    if: github.event.inputs.confirm == 'SETUP'
+    steps:
+      - name: Register Stripe webhook to Systeme.io
+        env:
+          STRIPE_KEY: ${{ secrets.STRIPE_TQACOS_KEY }}
+        run: |
+          echo "=== REGISTERING STRIPE WEBHOOK ==="
+          RESULT=$(curl -s -X POST \
+            "https://api.stripe.com/v1/webhook_endpoints" \
+            -u "$STRIPE_KEY:" \
+            -d "url=https://api.systeme.io/api/stripe-webhook" \
+            -d "enabled_events[]=checkout.session.completed" \
+            -d "description=Circle of Silence gate automation")
+          echo $RESULT | python3 -c "
+          import sys,json
+          d=json.load(sys.stdin)
+          print('Webhook ID:', d.get('id','ERROR'))
+          print('Status:', d.get('status','ERROR'))
+          print('URL:', d.get('url','ERROR'))
+          "
