@@ -25,7 +25,7 @@ jobs:
     steps:
       - name: Sync Gate Buyers to Systeme.io
         env:
-          STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
+          STRIPE_SECRET_KEY: ${{ secrets.STRIPE_TQACOS_KEY }}
           SYSTEME_API_KEY: ${{ secrets.SYSTEME_MAKE_KEY }}
         run: |
           python3 << 'PYEOF'
@@ -70,19 +70,19 @@ jobs:
 
           LOOKBACK = 20 * 60   # 20 minutes (overlaps the 15-min schedule)
 
-          # ── 1. Fetch recent checkout.session.completed events from Stripe ─
+          # ── 1. Fetch recent completed checkout sessions from Stripe ──────
           since = int(time.time()) - LOOKBACK
           params = {
-              "type":           "checkout.session.completed",
-              "created[gte]":   since,
-              "limit":          100,
+              "created[gte]": since,
+              "status":        "complete",
+              "limit":         100,
           }
-          r = requests.get(f"{STRIPE_BASE}/events", headers=STRIPE_HDR, params=params)
+          r = requests.get(f"{STRIPE_BASE}/checkout/sessions", headers=STRIPE_HDR, params=params)
           r.raise_for_status()
-          events = r.json().get("data", [])
-          print(f"Found {len(events)} checkout event(s) in last {LOOKBACK//60} min.")
+          sessions = r.json().get("data", [])
+          print(f"Found {len(sessions)} completed checkout session(s) in last {LOOKBACK//60} min.")
 
-          if not events:
+          if not sessions:
               sys.exit(0)
 
           # ── Helper: add tag to contact by known tag ID ────────────────────
@@ -119,11 +119,10 @@ jobs:
                                 json={"tagId": tag_id})
               r.raise_for_status()
 
-          # ── 2. Process each event ─────────────────────────────────────────
+          # ── 2. Process each session ───────────────────────────────────────
           gate_map = {g["product_id"]: g for g in GATES}
 
-          for event in events:
-              session = event["data"]["object"]
+          for session in sessions:
               session_id = session["id"]
               email = (session.get("customer_details") or {}).get("email") \
                    or session.get("customer_email") or ""
