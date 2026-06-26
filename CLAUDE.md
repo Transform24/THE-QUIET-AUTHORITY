@@ -565,3 +565,34 @@ Agent 07 + Pinterest API connection = full automation. Still needed:
 - [x] Shop order: Stripe first, Amazon after (verify current order)
 - [x] platform-stack.md updated (Beacons replaces MailerLite)
 - [x] Wall art WOMT images uploaded to repo root (WOMT9/8/cover1/profile2/profile3)
+
+---
+
+## Circle of Silence — Pipeline Configuration
+Last updated: 2026-06-25
+
+### Systeme.io Gate Tags
+- gate-1-buyer: 2068973
+- gate-2-buyer: 2068974
+- gate-3-buyer: 2068975
+- gate-4-buyer: 2068976
+- gate-5-buyer: 2068977
+- gate-6-buyer: 2068978
+- secret-place-buyer: 2057950 (existing)
+
+### Stripe
+- Webhook ID: we_1TmPsDDvGX7GhwdzZ15UzERO
+- Webhook URL: https://api.systeme.io/api/stripe-webhook
+- Webhook events: checkout.session.completed
+- Gate 1 Product ID: prod_Ul9eX4XJZNXIem
+- Gate 2-6 Product IDs: to be added when products created in Stripe
+
+### GitHub Actions Workflows
+- setup-gate-pipeline.yml: run once — DONE
+- gate-buyer-sync.yml: runs every 15 min — ACTIVE
+- Stripe → Systeme.io direct (no Make.com)
+
+### Next Steps
+- Create Gate 2-6 products in Stripe and add product IDs to gate-buyer-sync.yml
+- Create automation rules in Systeme.io for gates 1-6
+- Push gate-one.html to the-circle-of-silence repo

@@ -8,9 +8,22 @@ on:
 jobs:
   sync-gate-buyers:
     runs-on: ubuntu-latest
+    env:
+      GATE_1_TAG_ID: '2068973'
+      GATE_2_TAG_ID: '2068974'
+      GATE_3_TAG_ID: '2068975'
+      GATE_4_TAG_ID: '2068976'
+      GATE_5_TAG_ID: '2068977'
+      GATE_6_TAG_ID: '2068978'
+      GATE_1_PRODUCT_ID: 'prod_Ul9eX4XJZNXIem'
+      GATE_2_PRODUCT_ID: ''
+      GATE_3_PRODUCT_ID: ''
+      GATE_4_PRODUCT_ID: ''
+      GATE_5_PRODUCT_ID: ''
+      GATE_6_PRODUCT_ID: ''
 
     steps:
-      - name: Sync Gate 1 Buyers to Systeme.io
+      - name: Sync Gate Buyers to Systeme.io
         env:
           STRIPE_SECRET_KEY: ${{ secrets.STRIPE_SECRET_KEY }}
           SYSTEME_API_KEY: ${{ secrets.SYSTEME_MAKE_KEY }}
@@ -21,15 +34,33 @@ jobs:
           STRIPE_KEY    = os.environ["STRIPE_SECRET_KEY"]
           SYSTEME_KEY   = os.environ["SYSTEME_API_KEY"]
 
-          # ── Gate definitions ──────────────────────────────────────────────
+          # ── Gate definitions (built from env vars) ────────────────────────
+          TAG_IDS = {
+              1: os.environ.get("GATE_1_TAG_ID", ""),
+              2: os.environ.get("GATE_2_TAG_ID", ""),
+              3: os.environ.get("GATE_3_TAG_ID", ""),
+              4: os.environ.get("GATE_4_TAG_ID", ""),
+              5: os.environ.get("GATE_5_TAG_ID", ""),
+              6: os.environ.get("GATE_6_TAG_ID", ""),
+          }
+          PRODUCT_IDS = {
+              1: os.environ.get("GATE_1_PRODUCT_ID", ""),
+              2: os.environ.get("GATE_2_PRODUCT_ID", ""),
+              3: os.environ.get("GATE_3_PRODUCT_ID", ""),
+              4: os.environ.get("GATE_4_PRODUCT_ID", ""),
+              5: os.environ.get("GATE_5_PRODUCT_ID", ""),
+              6: os.environ.get("GATE_6_PRODUCT_ID", ""),
+          }
+
           GATES = [
               {
-                  "product_id": "prod_Ul9eX4XJZNXIem",
-                  "tag":        "gate-1-buyer",
-                  "access_url": "https://transform24.github.io/THE-QUIET-AUTHORITY/gate-one.html?purchased=gate1",
-              },
-              # Add gate 2–6 here when ready:
-              # { "product_id": "prod_XXXXX", "tag": "gate-2-buyer", "access_url": "..." },
+                  "product_id": PRODUCT_IDS[n],
+                  "tag_id":     int(TAG_IDS[n]),
+                  "tag":        f"gate-{n}-buyer",
+                  "access_url": f"https://transform24.github.io/THE-QUIET-AUTHORITY/gate-{['one','two','three','four','five','six'][n-1]}.html?purchased=gate{n}",
+              }
+              for n in range(1, 7)
+              if PRODUCT_IDS[n]  # skip gates with no product ID yet
           ]
 
           STRIPE_BASE  = "https://api.stripe.com/v1"
@@ -54,29 +85,7 @@ jobs:
           if not events:
               sys.exit(0)
 
-          # ── Helper: get or create Systeme.io tag, return tag ID ───────────
-          _tag_cache = {}
-
-          def get_or_create_tag(name):
-              if name in _tag_cache:
-                  return _tag_cache[name]
-              # Search existing tags
-              r = requests.get(f"{SYSTEME_BASE}/tags", headers=SYSTEME_HDR)
-              r.raise_for_status()
-              for tag in r.json().get("items", []):
-                  if tag["name"] == name:
-                      _tag_cache[name] = tag["id"]
-                      return tag["id"]
-              # Create if not found
-              r = requests.post(f"{SYSTEME_BASE}/tags", headers=SYSTEME_HDR,
-                                json={"name": name})
-              r.raise_for_status()
-              tag_id = r.json()["id"]
-              _tag_cache[name] = tag_id
-              print(f"  Created tag '{name}' → id {tag_id}")
-              return tag_id
-
-          # ── Helper: get or create Systeme.io contact, return contact ID ──
+          # ── Helper: add tag to contact by known tag ID ────────────────────
           def get_or_create_contact(email, first_name="", last_name=""):
               r = requests.get(f"{SYSTEME_BASE}/contacts",
                                headers=SYSTEME_HDR,
@@ -95,7 +104,6 @@ jobs:
               print(f"  Created contact {email} → id {contact_id}")
               return contact_id
 
-          # ── Helper: check if contact already has a tag ────────────────────
           def contact_has_tag(contact_id, tag_id):
               r = requests.get(f"{SYSTEME_BASE}/contacts/{contact_id}/tags",
                                headers=SYSTEME_HDR)
@@ -105,7 +113,6 @@ jobs:
                       return True
               return False
 
-          # ── Helper: add tag to contact ────────────────────────────────────
           def add_tag(contact_id, tag_id):
               r = requests.post(f"{SYSTEME_BASE}/contacts/{contact_id}/tags",
                                 headers=SYSTEME_HDR,
@@ -125,7 +132,6 @@ jobs:
                   print(f"  Skipping session {session_id} — no email found.")
                   continue
 
-              # Fetch line items to identify the product
               r = requests.get(
                   f"{STRIPE_BASE}/checkout/sessions/{session_id}/line_items",
                   headers=STRIPE_HDR,
@@ -144,12 +150,12 @@ jobs:
                   if product_id not in gate_map:
                       continue
 
-                  gate    = gate_map[product_id]
+                  gate     = gate_map[product_id]
                   tag_name = gate["tag"]
+                  tag_id   = gate["tag_id"]
 
                   print(f"  Gate purchase: {email} bought {tag_name} (session {session_id})")
 
-                  # Get name from Stripe session if available
                   details   = session.get("customer_details") or {}
                   full_name = details.get("name") or ""
                   parts     = full_name.split(" ", 1)
@@ -157,14 +163,13 @@ jobs:
                   last      = parts[1] if len(parts) > 1 else ""
 
                   try:
-                      tag_id     = get_or_create_tag(tag_name)
                       contact_id = get_or_create_contact(email, first, last)
 
                       if contact_has_tag(contact_id, tag_id):
                           print(f"    → Already tagged. Skipping.")
                       else:
                           add_tag(contact_id, tag_id)
-                          print(f"    → Tagged ✓  (triggers Systeme.io automation → sends gate email)")
+                          print(f"    → Tagged ✓  (tag_id={tag_id}, triggers Systeme.io automation → sends gate email)")
                   except Exception as e:
                       print(f"    ERROR processing {email}: {e}")
                       sys.exit(1)
