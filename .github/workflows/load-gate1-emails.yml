@@ -1,0 +1,85 @@
+name: Load Gate 1 Emails to Systeme.io
+on:
+  workflow_dispatch:
+jobs:
+  load-emails:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create Gate 1 Campaign and Load All 6 Emails
+        env:
+          SYSTEME_API_KEY: ${{ secrets.SYSTEME_API_KEY }}
+        run: |
+          echo "=== Creating Gate 1 Campaign ==="
+          
+          CAMPAIGN=$(curl -s -X POST "https://api.systeme.io/api/email_campaigns" \
+            -H "X-API-Key: $SYSTEME_API_KEY" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "name": "Gate 1 — The Call — Guilty Giver",
+              "sender_name": "Grace Turner",
+              "sender_email": "grace@sanctuary-grace.com"
+            }')
+          
+          echo "Campaign response: $CAMPAIGN"
+          CAMPAIGN_ID=$(echo $CAMPAIGN | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('id', d.get('data',{}).get('id','ERROR')))")
+          echo "Campaign ID: $CAMPAIGN_ID"
+          if [ "$CAMPAIGN_ID" = "ERROR" ] || [ -z "$CAMPAIGN_ID" ]; then
+            echo "Failed to create campaign. Full response: $CAMPAIGN"
+            exit 1
+          fi
+          echo "=== Loading Email 1 — Day 0 ==="
+          curl -s -X POST "https://api.systeme.io/api/email_campaigns/$CAMPAIGN_ID/emails" \
+            -H "X-API-Key: $SYSTEME_API_KEY" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "subject": "You are not here by accident",
+              "body": "<p>You did not choose this season.</p><p>Something stopped you. A breaking point. A body that finally said no. A door that closed before you could catch it.</p><p>And every woman who has ever been stopped believes the same thing at first — that she did something wrong.</p><p><em>He healeth the broken in heart, and bindeth up their wounds. — Psalm 147:3, KJV</em></p><p>You did not break because you failed. You were stopped because He had something to say that you could not hear while you were still moving.</p><p>The Calling does not always come in the quiet. Sometimes it comes in the interruption.</p><p>You are in Gate 1: HaKria. The Calling. The Summoning.</p><p>Over the next days, I will walk with you through what this gate holds. Stay close.</p><p>Come as you are.<br>Grace</p>",
+              "delay_in_days": 0
+            }'
+          echo "=== Loading Email 2 — Day 3 ==="
+          curl -s -X POST "https://api.systeme.io/api/email_campaigns/$CAMPAIGN_ID/emails" \
+            -H "X-API-Key: $SYSTEME_API_KEY" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "subject": "The woman who could not stop",
+              "body": "<p>She was doing everything right.</p><p>She opened her home. She served. She prepared. She made sure everything was in order while everyone else sat still.</p><p>And Jesus looked at her and said her name twice.</p><p>Martha. Martha.</p><p><em>Thou art careful and troubled about many things: but one thing is needful. — Luke 10:41-42, KJV</em></p><p>He was not scolding her. He was trying to reach her through the noise of her own doing.</p><p>You are allowed to sit at His feet now. That is not laziness. That is obedience.</p><p>Come as you are.<br>Grace</p>",
+              "delay_in_days": 3
+            }'
+          echo "=== Loading Email 3 — Day 5 ==="
+          curl -s -X POST "https://api.systeme.io/api/email_campaigns/$CAMPAIGN_ID/emails" \
+            -H "X-API-Key: $SYSTEME_API_KEY" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "subject": "What you have been carrying was never yours to carry alone",
+              "body": "<p><em>Cast thy burden upon the LORD, and he shall sustain thee. — Psalm 55:22, KJV</em></p><p>He did not say reduce your burden. He did not say manage it better or carry it more efficiently.</p><p>He said cast it.</p><p>The Guilty Giver does not know how to cast. She knows how to redistribute. She moves the weight from one shoulder to the other and calls it rest.</p><p>This gate is where you learn the difference.</p><p>What have you been holding that He has been asking for?</p><p><em>Come unto me, all ye that labour and are heavy laden, and I will give you rest. — Matthew 11:28, KJV</em></p><p>Come as you are.<br>Grace</p>",
+              "delay_in_days": 5
+            }'
+          echo "=== Loading Email 4 — Day 7 ==="
+          curl -s -X POST "https://api.systeme.io/api/email_campaigns/$CAMPAIGN_ID/emails" \
+            -H "X-API-Key: $SYSTEME_API_KEY" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "subject": "Your brain dump — a quiet place to name what you have been carrying",
+              "body": "<p>Today is not a teaching day. Today is a naming day.</p><p><em>And the LORD answered me, and said, Write the vision, and make it plain. — Habakkuk 2:2, KJV</em></p><p>Inside Gate 1, you have your Brain Dump tool. A quiet space to name what you noticed. What stopped you. What you have been carrying that no one else sees.</p><p>You do not need the right words. You just need to name it.</p><p>He already knows. He is just waiting for you to put it into words so He can begin to heal it.</p><p>Come as you are.<br>Grace</p>",
+              "delay_in_days": 7
+            }'
+          echo "=== Loading Email 5 — Day 10 ==="
+          curl -s -X POST "https://api.systeme.io/api/email_campaigns/$CAMPAIGN_ID/emails" \
+            -H "X-API-Key: $SYSTEME_API_KEY" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "subject": "12 declarations for the woman who is done proving",
+              "body": "<p>There is a practice waiting for you inside Gate 1.</p><p>Twelve declarations. Spoken aloud — because the voice that has been silenced by serving everyone else needs to hear herself speak truth again.</p><p><em>Death and life are in the power of the tongue. — Proverbs 18:21, KJV</em></p><p>These are not affirmations. They are the Word of God spoken over the specific wound the Guilty Giver carries.</p><p>Speak them this week. One each morning. Out loud. Not because you feel them yet. Because He said them first.</p><p>Come as you are.<br>Grace</p>",
+              "delay_in_days": 10
+            }'
+          echo "=== Loading Email 6 — Day 14 ==="
+          curl -s -X POST "https://api.systeme.io/api/email_campaigns/$CAMPAIGN_ID/emails" \
+            -H "X-API-Key: $SYSTEME_API_KEY" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "subject": "The next room is ready when you are",
+              "body": "<p>You have been in Gate 1 for two weeks now.</p><p><em>The LORD hath appeared of old unto me, saying, Yea, I have loved thee with an everlasting love: therefore with lovingkindness have I drawn thee. — Jeremiah 31:3, KJV</em></p><p>He drew you. Not pushed. Drew.</p><p>Gate 2 is Sheket — Stillness. Once you stop running, something begins. The next room is where you learn to sit in what you find — and discover that the silence is not empty. It is where He speaks.</p><p><em>Be still, and know that I am God. — Psalm 46:10, KJV</em></p><p>When you are ready, Gate 2 is waiting.</p><p>Come as you are.<br>Grace</p>",
+              "delay_in_days": 14
+            }'
+          echo "=== All 6 emails loaded. Campaign ID: $CAMPAIGN_ID ==="
+          echo "Next: Create automation rule in Systeme.io to trigger this campaign when gate-1-buyer tag (ID 2068973) is added."
