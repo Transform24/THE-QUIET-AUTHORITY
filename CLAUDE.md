@@ -4,6 +4,18 @@
 
 ---
 
+## ROUTING TABLE — READ THIS FIRST. SKIP EVERYTHING ELSE.
+| Task | Read |
+|---|---|
+| Gate 1 or emails | context/gate-1.md |
+| Pinterest | context/channels.md |
+| Substack | context/channels.md |
+| YouTube | context/channels.md |
+| Products or Stripe | context/products.md |
+| Infrastructure or tools | context/system.md |
+
+---
+
 ## GIT WORKFLOW — STRICT PROTOCOL
 
 - **Always work on `main` branch.** Never create feature branches unless explicitly permitted.
