@@ -918,7 +918,22 @@ body{top:0!important;}
   </div>
 </div>
 
-<!-- screen-email removed: assessment flows directly to profile reveal -->
+<!-- ══════════════════════════════════════
+     SCREEN 3: EMAIL CAPTURE
+══════════════════════════════════════ -->
+<div class="screen" id="screen-email">
+  <div class="email-wrap">
+    <div class="email-dove" aria-hidden="true">✦</div>
+    <h2 class="email-title">Your profile is ready, beloved.</h2>
+    <p class="email-sub">Enter your name and email to receive your sacred silence profile — and a free path forward.</p>
+    <div class="form-group">
+      <input class="form-input" id="inputName" type="text" placeholder="Your first name" autocomplete="given-name" aria-label="First name" />
+      <input class="form-input" id="inputEmail" type="email" placeholder="Your email address" autocomplete="email" aria-label="Email address" />
+    </div>
+    <button class="btn-begin" onclick="submitAndReveal()"><span>Reveal My Profile →</span></button>
+    <p class="email-privacy">Your information is sacred. No spam, ever. Unsubscribe any time.</p>
+  </div>
+</div>
 
 <!-- ══════════════════════════════════════
      SCREEN 4: PROFILE REVEAL — new ceremony
@@ -1969,7 +1984,7 @@ function selectAnswer(i){
   setTimeout(()=>{
     if(answers[currentQ]!==undefined){
       if(currentQ<QUESTIONS.length-1){currentQ++;renderQuestion();}
-      else{calculateAndReveal();}
+      else{showScreen('screen-email');}
     }
   },420);
 }
@@ -1979,7 +1994,7 @@ function goBack(){if(currentQ>0){currentQ--;renderQuestion();}}
 function nextQ(){
   if(answers[currentQ]===undefined)return;
   if(currentQ<QUESTIONS.length-1){currentQ++;renderQuestion();}
-  else{calculateAndReveal();}
+  else{showScreen('screen-email');}
 }
 
 // ── EMAIL & SUBMIT ────────────────────────────────────────────
@@ -2038,7 +2053,9 @@ function submitAndReveal(){
     })
   }).catch(()=>{});
 
+  currentProfile=profileKey;
   calculateAndReveal();
+  setTimeout(()=>{downloadProfileCard();},800);
 }
 
 function calculateProfile(){
