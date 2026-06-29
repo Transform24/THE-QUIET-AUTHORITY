@@ -1755,6 +1755,21 @@ const SILENCE_QUOTES=[
 let currentQ=0,answers=[],userName='',userEmail='',currentProfile='A';
 let voPlaying=false,timerInterval=null,breathInterval=null,timerSeconds=900,paused=false,sessionPhase='idle',selectedTrack=-1,silenceQuoteInterval=null,silenceQuoteIdx=0;
 
+// ── SYSTEME.IO ────────────────────────────────────────────────
+const SYSTEME_API_KEY='SYSTEME_API_KEY_HERE'; // replace with key from Systeme.io dashboard
+function addToSysteme(email,firstName,tag){
+  if(!email||SYSTEME_API_KEY==='SYSTEME_API_KEY_HERE')return;
+  fetch('https://api.systeme.io/api/contacts',{
+    method:'POST',
+    headers:{'Content-Type':'application/json','X-API-Key':SYSTEME_API_KEY},
+    body:JSON.stringify({
+      email:email,
+      fields:[{slug:'first_name',value:firstName||''}],
+      tags:[{name:tag}]
+    })
+  }).catch(()=>{});
+}
+
 // ── INIT ──────────────────────────────────────────────────────
 (function init(){
   // Gate — returning users skip landing entirely
@@ -2039,6 +2054,7 @@ function submitAndReveal(){
       source:'TQA Assessment'
     })
   }).catch(()=>{});
+  addToSysteme(email,name,'tqa-assessment-complete');
 
   // Route to Make.com — triggers correct email sequence by profile
   fetch('https://hook.us2.make.com/r4tscqqr8qzff82pr3dcxi1a3w5yn7xy',{
@@ -2527,6 +2543,7 @@ function joinWaitlist(){
     headers:{'Content-Type':'application/json','Accept':'application/json'},
     body:JSON.stringify({_subject:'⭕ Circle Waitlist — '+name,name:name,email:email,_replyto:email,profile:PROFILES[currentProfile]?.name||'',source:'Circle of Silence Waitlist'})
   }).catch(()=>{});
+  addToSysteme(email,name,'cos-waitlist');
   document.getElementById('waitlistForm').style.display='none';
   document.getElementById('waitlistConfirm').style.display='block';
 }
@@ -2544,6 +2561,7 @@ function joinGalleryList(){
     headers:{'Content-Type':'application/json','Accept':'application/json'},
     body:JSON.stringify({_subject:'🎨 Gallery Preview List — '+name,name:name,email:email,_replyto:email,source:'Gallery Wall Art Preview List'})
   }).catch(()=>{});
+  addToSysteme(email,name,'gallery-preview');
   document.getElementById('galleryForm').style.display='none';
   document.getElementById('galleryConfirm').style.display='block';
 }
@@ -3157,6 +3175,7 @@ function submitWWPWaitlist(){
     document.getElementById('wwpWaitlistWrap').querySelector('div[style*="flex-direction"]').style.display='none';
     document.getElementById('wwpConfirm').style.display='block';
   });
+  addToSysteme(email,name,'wwp-waitlist');
 }
 
 function joinCircleWaitlist(){
@@ -3174,6 +3193,7 @@ function joinCircleWaitlist(){
     document.getElementById('cosWaitlistWrap').querySelector('.cos-waitlist-row').style.display='none';
     document.getElementById('cosWaitlistConfirm').style.display='block';
   });
+  addToSysteme(email,name,'cos-waitlist');
 }
 
 function openTestimonyForm(){
