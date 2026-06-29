@@ -918,7 +918,22 @@ body{top:0!important;}
   </div>
 </div>
 
-<!-- screen-email removed: assessment flows directly to profile reveal -->
+<!-- ══════════════════════════════════════
+     SCREEN 3: EMAIL CAPTURE
+══════════════════════════════════════ -->
+<div class="screen" id="screen-email">
+  <div class="email-wrap">
+    <div class="email-dove" aria-hidden="true">✦</div>
+    <h2 class="email-title">Your Silence Profile Is Ready</h2>
+    <p class="email-sub">Enter your name and email to receive your sacred silence profile — and a free path forward.</p>
+    <div class="form-group">
+      <input class="form-input" id="inputName" type="text" placeholder="Your first name" autocomplete="given-name" aria-label="First name" />
+      <input class="form-input" id="inputEmail" type="email" placeholder="Your email address" autocomplete="email" aria-label="Email address" />
+    </div>
+    <button class="btn-begin" onclick="submitAndReveal()"><span>Reveal My Profile →</span></button>
+    <p class="email-privacy">Your information is sacred. No spam, ever. Unsubscribe any time.</p>
+  </div>
+</div>
 
 <!-- ══════════════════════════════════════
      SCREEN 4: PROFILE REVEAL — new ceremony
@@ -941,18 +956,12 @@ body{top:0!important;}
     <span class="reveal-scripture-ref" id="revealScriptureRef"></span>
     <div class="reveal-truths" id="revealTruths"></div>
     <div class="reveal-practice-tag" id="revealPracticeTag"></div>
-    <div class="reveal-cta-group">
-      <button class="btn-begin" onclick="enterResults()" style="padding:14px 44px;"><span>Enter My Sanctuary →</span></button>
-      <div id="revealProductOffer" style="margin-top:24px;display:none;">
-        <a id="revealWallArtBtn" href="#" target="_blank" rel="noopener"
-           style="display:block;margin-bottom:12px;padding:14px 44px;border:1px solid #C9A84C;color:#F5F0E8;background:transparent;text-align:center;font-family:Georgia,serif;font-size:13px;letter-spacing:2px;text-decoration:none;">
-           Get Your Sacred Wall Art — $9.99
-        </a>
-        <a id="revealWorkbookBtn" href="#" target="_blank" rel="noopener"
-           style="display:block;padding:14px 44px;border:1px solid #C9A84C44;color:#C9A84C;background:transparent;text-align:center;font-family:Georgia,serif;font-size:13px;letter-spacing:2px;text-decoration:none;">
-           Get Your Sacred Workbook — $4.99
-        </a>
-      </div>
+    <div class="reveal-cta-group" style="flex-direction:column;align-items:center;gap:16px;">
+      <button class="btn-begin" onclick="downloadProfileCard()" style="padding:14px 44px;"><span>Download Your Profile Card</span></button>
+      <a href="https://sanctuary-grace.com/" target="_blank" rel="noopener noreferrer"
+         style="display:inline-block;padding:14px 44px;border:1px solid rgba(201,169,110,0.45);color:var(--cream-dim);background:transparent;text-align:center;font-family:'Jost',sans-serif;font-size:0.72rem;letter-spacing:0.22em;text-transform:uppercase;text-decoration:none;transition:all 0.3s ease;"
+         onmouseover="this.style.borderColor='var(--gold)';this.style.color='var(--cream)';"
+         onmouseout="this.style.borderColor='rgba(201,169,110,0.45)';this.style.color='var(--cream-dim)';">Enter The Sanctuary →</a>
     </div>
     <div class="match-breakdown" id="revealMatch"></div>
   </div>
@@ -1969,7 +1978,10 @@ function selectAnswer(i){
   setTimeout(()=>{
     if(answers[currentQ]!==undefined){
       if(currentQ<QUESTIONS.length-1){currentQ++;renderQuestion();}
-      else{calculateAndReveal();}
+      else{
+        if(localStorage.getItem('tqa_profile_complete')==='1'){calculateAndReveal();}
+        else{showScreen('screen-email');}
+      }
     }
   },420);
 }
@@ -1979,7 +1991,10 @@ function goBack(){if(currentQ>0){currentQ--;renderQuestion();}}
 function nextQ(){
   if(answers[currentQ]===undefined)return;
   if(currentQ<QUESTIONS.length-1){currentQ++;renderQuestion();}
-  else{calculateAndReveal();}
+  else{
+    if(localStorage.getItem('tqa_profile_complete')==='1'){calculateAndReveal();}
+    else{showScreen('screen-email');}
+  }
 }
 
 // ── EMAIL & SUBMIT ────────────────────────────────────────────
@@ -2038,6 +2053,7 @@ function submitAndReveal(){
     })
   }).catch(()=>{});
 
+  currentProfile=profileKey;
   calculateAndReveal();
 }
 
@@ -2060,22 +2076,6 @@ function getProfileScores(){
 // ── REVEAL CEREMONY ───────────────────────────────────────────
 function calculateAndReveal(){
   currentProfile=calculateProfile();
-
-  const beaconsLinks = {
-    A: 'https://beacons.ai/sanctuarygrace',
-    B: 'https://beacons.ai/sanctuarygrace',
-    C: 'https://beacons.ai/sanctuarygrace',
-    D: 'https://beacons.ai/sanctuarygrace'
-  };
-
-  const beaconsBtn = document.createElement('a');
-  beaconsBtn.href = beaconsLinks[currentProfile];
-  beaconsBtn.target = '_blank';
-  beaconsBtn.rel = 'noopener';
-  beaconsBtn.innerText = 'Get Your Next Steps →';
-  beaconsBtn.style.cssText = 'display:block;margin-top:20px;padding:14px 44px;border:1px solid #C9A84C;color:#F5F0E8;background:transparent;text-align:center;font-family:Georgia,serif;font-size:13px;letter-spacing:2px;text-decoration:none;';
-
-  document.getElementById('revealProductOffer').appendChild(beaconsBtn);
 
   try{
     localStorage.setItem('tqa_profile_complete','1');
@@ -2105,29 +2105,6 @@ function calculateAndReveal(){
   // Practice tag
   const rpt=document.getElementById('revealPracticeTag');
   if(rpt)rpt.textContent=p.practiceTag;
-
-  // Product offers
-  const offers = {
-    A: { art: 'https://buy.stripe.com/14AbJ1bNm3tT9aY3EmcQU0n', book: 'https://buy.stripe.com/cNieVdbNm6G586UdeWcQU03' },
-    B: { art: 'https://buy.stripe.com/dRm9ATg3Cc0p2MA2AicQU0r', book: 'https://buy.stripe.com/3cI7sL18I7K9evi1wecQU04' },
-    C: { art: 'https://buy.stripe.com/7sYdR95oY3tT1IwdeWcQU0q', book: 'https://buy.stripe.com/14A7sL8Ba4xX9aY7UCcQU06' },
-    D: { art: 'https://buy.stripe.com/5kQdR92cM5C1af23EmcQU0o', book: 'https://buy.stripe.com/eVqeVd7x66G5gDq0sacQU02' }
-  };
-  const offer = offers[currentProfile];
-  if (offer) {
-    document.getElementById('revealWallArtBtn').href = offer.art;
-    document.getElementById('revealWorkbookBtn').href = offer.book;
-    document.getElementById('revealProductOffer').style.display = 'block';
-  }
-
-  const affiliateBtn = document.createElement('a');
-  affiliateBtn.href = 'https://www.digistore24.com/redir/512623/tdwdemp/';
-  affiliateBtn.target = '_blank';
-  affiliateBtn.rel = 'noopener';
-  affiliateBtn.innerHTML = '<img src="images/EBOOK%20COVER%20FOR%201ST%20AFFILIATE%20LINK%20(1).png" alt="Harmony Within" style="width:100%;max-width:280px;display:block;margin:0 auto 8px;border:1px solid #C9A84C44;"/><span style="display:block;text-align:center;color:#C9A84C;font-family:Georgia,serif;font-size:14px;letter-spacing:2px;margin-top:8px;">Click to Order →</span>';
-  affiliateBtn.style.cssText = 'display:block;margin-top:24px;text-decoration:none;';
-
-  document.getElementById('revealProductOffer').appendChild(affiliateBtn);
 
   // Match breakdown bars
   const scores=getProfileScores();
