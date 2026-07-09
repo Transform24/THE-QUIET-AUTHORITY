@@ -1,9 +1,0 @@
-{
-  "board_mapping": {
-    "The Quiet Authority": "PLACEHOLDER_BOARD_ID_1",
-    "Spiritual Rest for Women": "PLACEHOLDER_BOARD_ID_2",
-    "Christian Women Encouragement": "PLACEHOLDER_BOARD_ID_3",
-    "Sacred Morning Practices": "PLACEHOLDER_BOARD_ID_4"
-  },
-  "notes": "Replace PLACEHOLDER_BOARD_ID_* with actual numeric IDs from Pinterest API once Standard access is approved. IDs are numeric strings like '123456789'."
-}
