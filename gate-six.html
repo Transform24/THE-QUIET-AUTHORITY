@@ -179,6 +179,13 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 </div>
 </div>
 
+<div class="hero" style="padding:56px 0;border-top:none">
+<p class="eyebrow">My Story</p>
+<h2 style="font-size:clamp(22px,4vw,32px);font-weight:300;color:#F5F0E8;margin-bottom:20px">I still walk with the limp, and I no longer want it gone.</h2>
+<p class="hero-body">Every gate you just walked through became a kind of school for me first. God revealed something. I understood it. I moved to the next place. That is the whole pattern, repeated six times, and it is still how it works for me today. Jacob walked away from his wrestling match with a blessing and a limp, in that order, and the limp was not a punishment. It was proof something real had happened. I carry mine the same way now.</p>
+<p class="hero-body" style="margin-top:8px">Hithavut, from the Hebrew הִתְהַוּות, means becoming, an ongoing state of coming into being, not a finished one. There is no moment where the word stops. There is only the next gate, the next school, the next place you did not know you were being formed for until you arrived.</p>
+</div>
+
 <!-- AUDIO FROM GRACE -->
 <div class="audio-section">
 <p class="audio-label">A word from Grace</p>
@@ -374,7 +381,7 @@ var s = timerSeconds % 60;
 document.getElementById('timer-display').textContent = m + ':' + (s < 10 ? '0' : '') + s;
 if (timerSeconds <= 0) {
 clearInterval(timerInterval);
-document.getElementById('timer-display').textContent = '—';
+document.getElementById('timer-display').textContent = '0:00';
 document.getElementById('timer-state').textContent = 'The silence has been kept.';
 document.getElementById('timer-complete').style.display = 'block';
 }
