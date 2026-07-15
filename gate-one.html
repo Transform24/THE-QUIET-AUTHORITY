@@ -112,6 +112,14 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 .timer-btn:disabled{opacity:0.3;cursor:default;pointer-events:none}
 .timer-complete{display:none;font-size:18px;color:#C9A84C;font-style:italic;margin-top:32px;line-height:1.7}
 
+/* TOOL 5 - POCKETS OF PEACE */
+.pockets{display:grid;gap:10px;margin-bottom:20px}
+.pocket-option{display:block;padding:16px 18px;border:1px solid #C9A84C1a;border-radius:3px;cursor:pointer;font-size:15px;font-family:sans-serif;font-weight:300;color:#F5F0E8cc;transition:all 0.2s}
+.pocket-option:hover{background:#C9A84C08;border-color:#C9A84C33}
+.pocket-option input{accent-color:#C9A84C;margin-right:10px}
+.pocket-rings{display:none;text-align:center;padding-top:24px}
+.pocket-rings.active{display:block;animation:fadeUp 0.6s ease forwards}
+
 /* TOOL 4 - DECLARATION */
 .declaration{border-left:2px solid #C9A84C;padding:18px 24px;margin-top:32px;text-align:left}
 .declaration p{font-style:italic;font-size:18px;color:#C9A84C;line-height:1.75}
@@ -176,6 +184,13 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 <p>"The Spirit of the Lord is upon me, because he hath anointed me to preach the gospel to the poor; he hath sent me to heal the brokenhearted, to preach deliverance to the captives, and recovering of sight to the blind, to set at liberty them that are bruised."</p>
 <cite>Luke 4:18, KJV</cite>
 </div>
+</div>
+
+<div class="hero" style="padding:56px 0;border-top:none">
+<p class="eyebrow">My Story</p>
+<h2 style="font-size:clamp(22px,4vw,32px);font-weight:300;color:#F5F0E8;margin-bottom:20px">I was the Guilty Giver.</h2>
+<p class="hero-body">Raising my children the majority of their lives as a single parent, I gave and gave and gave until there was nothing left to give. I did not call it a wound. I called it love. It took years, and a broken ankle, before I understood the difference.</p>
+<p class="hero-body" style="margin-top:8px">HaKria, from the Hebrew הַקְּרִיאָה, means the calling, the summoning. Not a gentle suggestion, a name spoken aloud that expects an answer. When God calls Samuel in the night, He does not explain first. He calls, and Samuel has to decide to answer before he understands why. Your interruption was the same kind of call.</p>
 </div>
 
 <!-- AUDIO FROM GRACE -->
@@ -304,6 +319,31 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 </div>
 </div>
 
+<!-- TOOL 5 - POCKETS OF PEACE FINDER -->
+<div class="tool-section">
+<div class="tool-box">
+<p class="eyebrow" style="text-align:center">Tool Five</p>
+<h3 class="tool-title">Pockets Of Peace Finder</h3>
+<p class="tool-sub">Identify your 15 to 30 minute window, the one that is actually yours. Choose it, then try 60 seconds of it right now.</p>
+<div class="pockets" id="pockets-group">
+<label class="pocket-option"><input type="radio" name="pocket" value="early-morning" onchange="selectPocket(this)"> Early morning, before the house wakes</label>
+<label class="pocket-option"><input type="radio" name="pocket" value="late-night" onchange="selectPocket(this)"> Late night, after everyone is asleep</label>
+<label class="pocket-option"><input type="radio" name="pocket" value="lunch-break" onchange="selectPocket(this)"> The lunch break that is actually yours</label>
+</div>
+<div class="pocket-rings" id="pocket-rings">
+<div class="rings">
+<div class="ring ring-1"></div>
+<div class="ring ring-2"></div>
+<div class="ring ring-3"></div>
+</div>
+<div class="timer-display" id="pocket-timer-display">1:00</div>
+<p class="timer-state" id="pocket-timer-state">This is what your pocket feels like</p>
+<button class="timer-btn" id="pocket-timer-btn" onclick="startPocketTimer()">Try It Now</button>
+</div>
+<p class="save-note">Saved automatically, only visible to you</p>
+</div>
+</div>
+
 </div><!-- /toolkit-section -->
 
 <!-- GATE 2 PREVIEW - always visible -->
@@ -375,7 +415,7 @@ var s = timerSeconds % 60;
 document.getElementById('timer-display').textContent = m + ':' + (s < 10 ? '0' : '') + s;
 if (timerSeconds <= 0) {
 clearInterval(timerInterval);
-document.getElementById('timer-display').textContent = '—';
+document.getElementById('timer-display').textContent = '0:00';
 document.getElementById('timer-state').textContent = 'The silence has been kept.';
 document.getElementById('timer-complete').style.display = 'block';
 }
@@ -388,6 +428,42 @@ document.getElementById('timer-complete').style.display = 'block';
 var el = document.getElementById(k);
 if (el) { try { el.value = localStorage.getItem(k) || ''; } catch(e) {} }
 });
+})();
+
+function selectPocket(el) {
+try { localStorage.setItem('gate1_pocket', el.value); } catch(e) {}
+document.getElementById('pocket-rings').classList.add('active');
+}
+
+var pocketTimerInterval = null;
+var pocketTimerSeconds = 60;
+var pocketTimerRunning = false;
+function startPocketTimer() {
+if (pocketTimerRunning) return;
+pocketTimerRunning = true;
+document.getElementById('pocket-timer-btn').disabled = true;
+document.getElementById('pocket-timer-state').textContent = 'Be still, just for this minute.';
+pocketTimerInterval = setInterval(function() {
+pocketTimerSeconds--;
+var m = Math.floor(pocketTimerSeconds / 60);
+var s = pocketTimerSeconds % 60;
+document.getElementById('pocket-timer-display').textContent = m + ':' + (s < 10 ? '0' : '') + s;
+if (pocketTimerSeconds <= 0) {
+clearInterval(pocketTimerInterval);
+document.getElementById('pocket-timer-display').textContent = '0:00';
+document.getElementById('pocket-timer-state').textContent = 'That is your pocket. Find it today.';
+}
+}, 1000);
+}
+
+(function() {
+try {
+var savedPocket = localStorage.getItem('gate1_pocket');
+if (savedPocket) {
+var r = document.querySelector('#pockets-group input[value="' + savedPocket + '"]');
+if (r) { r.checked = true; document.getElementById('pocket-rings').classList.add('active'); }
+}
+} catch(e) {}
 })();
 
 // Gate state - matches gate-zero.html param check logic exactly
