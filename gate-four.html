@@ -178,6 +178,13 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 </div>
 </div>
 
+<div class="hero" style="padding:56px 0;border-top:none">
+<p class="eyebrow">My Story</p>
+<h2 style="font-size:clamp(22px,4vw,32px);font-weight:300;color:#F5F0E8;margin-bottom:20px">I had to learn to let people help me.</h2>
+<p class="hero-body">I was always the one giving, driving, carrying, showing up for everyone else. A broken ankle took that identity away overnight. I had to let people bring meals to my door, drive me to appointments, do things I had built my whole sense of worth around doing myself. Surrendering control was not one decision. It was a decision I had to make again every single day someone knocked on my door to help.</p>
+<p class="hero-body" style="margin-top:8px">Hitkania, from the Hebrew הִתְכַּנְּעוּ, means to surrender, to yield, to bow the will. It is not a passive word. It is not something that happens to you. It is something you choose, on purpose, over and over, until the choosing becomes who you are.</p>
+</div>
+
 <!-- AUDIO FROM GRACE -->
 <div class="audio-section">
 <p class="audio-label">A word from Grace</p>
@@ -365,7 +372,7 @@ var s = timerSeconds % 60;
 document.getElementById('timer-display').textContent = m + ':' + (s < 10 ? '0' : '') + s;
 if (timerSeconds <= 0) {
 clearInterval(timerInterval);
-document.getElementById('timer-display').textContent = '—';
+document.getElementById('timer-display').textContent = '0:00';
 document.getElementById('timer-state').textContent = 'The silence has been kept.';
 document.getElementById('timer-complete').style.display = 'block';
 }
