@@ -1,0 +1,327 @@
+Here's the exact code — select all, copy, paste into GitHub's file editor after naming the file `habit-engine/index.html`:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Armor of God Habit Engine — The Quiet Authority</title>
+    <style>
+        :root {
+            /* Sanctuary Grace locked brand palette */
+            --bg-color: #0d0d0d;
+            --card-bg: #141414;
+            --border-color: #2a2a2a;
+            --primary-text: #F5F0E8;
+            --accent-gold: #C9A84C;
+            --accent-terracotta: #C1593C;
+            --text-muted: #8a8a8a;
+        }
+
+        body {
+            font-family: 'Cormorant Garamond', 'Georgia', serif;
+            background-color: var(--bg-color);
+            color: var(--primary-text);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            max-width: 500px;
+            letter-spacing: 2px;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            font-weight: 400;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            color: var(--primary-text);
+        }
+
+        .header p {
+            font-family: 'Lato', 'Helvetica Neue', Arial, sans-serif;
+            font-size: 11px;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin: 0;
+        }
+
+        .engine-container {
+            width: 100%;
+            max-width: 440px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .section-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 26px;
+        }
+
+        .section-title {
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 12px;
+            margin-top: 0;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--accent-gold);
+        }
+
+        .section-time {
+            font-family: 'Lato', 'Helvetica Neue', Arial, sans-serif;
+            font-size: 10px;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+        }
+
+        .habit-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .habit-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .checkbox-wrapper {
+            display: flex;
+            align-items: center;
+            margin-top: 2px;
+            position: relative;
+        }
+
+        .habit-checkbox {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 1px solid var(--accent-gold);
+            background-color: transparent;
+            cursor: pointer;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .habit-checkbox:checked {
+            background-color: var(--accent-gold);
+            border-color: var(--accent-gold);
+        }
+
+        .habit-checkbox:checked::after {
+            content: '\2713';
+            font-size: 12px;
+            color: var(--bg-color);
+            position: absolute;
+            left: 4px;
+            top: 1px;
+        }
+
+        .habit-details {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .habit-label {
+            font-size: 15px;
+            font-weight: 400;
+            line-height: 1.5;
+            color: var(--primary-text);
+            transition: color 0.3s ease;
+        }
+
+        .habit-checkbox:checked ~ .habit-details .habit-label {
+            color: var(--text-muted);
+            text-decoration: line-through;
+        }
+
+        .scripture-box {
+            font-style: italic;
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            border-left: 1px solid var(--accent-terracotta);
+            padding-left: 10px;
+            margin-top: 4px;
+        }
+
+        .habit-armor {
+            font-family: 'Lato', 'Helvetica Neue', Arial, sans-serif;
+            font-size: 10px;
+            color: var(--accent-gold);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-top: 2px;
+        }
+
+        .footer-note {
+            text-align: center;
+            font-family: 'Lato', 'Helvetica Neue', Arial, sans-serif;
+            font-size: 10px;
+            color: var(--text-muted);
+            margin-top: 40px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .reset-note {
+            font-family: 'Lato', 'Helvetica Neue', Arial, sans-serif;
+            font-size: 9px;
+            color: var(--text-muted);
+            text-align: center;
+            margin-top: 8px;
+            letter-spacing: 0.5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Habit Engine</h1>
+        <p>The Quiet Authority</p>
+    </div>
+
+    <div class="engine-container">
+        <!-- Morning Alignment -->
+        <div class="section-card">
+            <div class="section-title">
+                <span>Morning Alignment</span>
+                <span class="section-time">06:00 AM</span>
+            </div>
+            <div class="habit-list">
+                <label class="habit-item">
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" class="habit-checkbox" data-habit="belt-of-truth">
+                    </div>
+                    <div class="habit-details">
+                        <span class="habit-label">Stand fast in uncompromised truth over emotion.</span>
+                        <div class="scripture-box">"Stand therefore, having your loins girt about with truth..." — Ephesians 6:14a</div>
+                        <span class="habit-armor">The Belt of Truth</span>
+                    </div>
+                </label>
+                <label class="habit-item">
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" class="habit-checkbox" data-habit="breastplate">
+                    </div>
+                    <div class="habit-details">
+                        <span class="habit-label">Guard your identity under His sovereign approval.</span>
+                        <div class="scripture-box">"...and having on the breastplate of righteousness;" — Ephesians 6:14b</div>
+                        <span class="habit-armor">The Breastplate of Righteousness</span>
+                    </div>
+                </label>
+            </div>
+        </div>
+
+        <!-- Midday Defense -->
+        <div class="section-card">
+            <div class="section-title">
+                <span>Midday Defense</span>
+                <span class="section-time">12:00 PM</span>
+            </div>
+            <div class="habit-list">
+                <label class="habit-item">
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" class="habit-checkbox" data-habit="shoes-of-peace">
+                    </div>
+                    <div class="habit-details">
+                        <span class="habit-label">Walk calmly through dynamic operational chaos.</span>
+                        <div class="scripture-box">"And your feet shod with the preparation of the gospel of peace;" — Ephesians 6:15</div>
+                        <span class="habit-armor">The Shoes of Peace</span>
+                    </div>
+                </label>
+                <label class="habit-item">
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" class="habit-checkbox" data-habit="shield-of-faith">
+                    </div>
+                    <div class="habit-details">
+                        <span class="habit-label">Quench sudden arrows of exhaustion and self-doubt.</span>
+                        <div class="scripture-box">"Above all, taking the shield of faith, wherewith ye shall be able to quench all the fiery darts of the wicked." — Ephesians 6:16</div>
+                        <span class="habit-armor">The Shield of Faith</span>
+                    </div>
+                </label>
+            </div>
+        </div>
+
+        <!-- Evening Intimacy -->
+        <div class="section-card">
+            <div class="section-title">
+                <span>Evening Intimacy</span>
+                <span class="section-time">08:00 PM</span>
+            </div>
+            <div class="habit-list">
+                <label class="habit-item">
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" class="habit-checkbox" data-habit="helmet-of-salvation">
+                    </div>
+                    <div class="habit-details">
+                        <span class="habit-label">Rest your intellect entirely under His protective execution.</span>
+                        <div class="scripture-box">"And take the helmet of salvation..." — Ephesians 6:17a</div>
+                        <span class="habit-armor">The Helmet of Salvation</span>
+                    </div>
+                </label>
+                <label class="habit-item">
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" class="habit-checkbox" data-habit="sword-of-the-spirit">
+                    </div>
+                    <div class="habit-details">
+                        <span class="habit-label">Execute deep authoritative decrees in the secret place.</span>
+                        <div class="scripture-box">"...and the sword of the Spirit, which is the word of God:" — Ephesians 6:17b</div>
+                        <span class="habit-armor">The Sword of the Spirit</span>
+                    </div>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-note">The Quiet Authority &middot; Sanctuary Grace Ministry</div>
+    <div class="reset-note">Your armor resets each morning at 6:00 AM.</div>
+
+    <script>
+        // Persistence: today's date is the storage key, so armor
+        // automatically resets each new day without deleting history.
+        (function () {
+            const todayKey = 'armor-of-god-' + new Date().toISOString().slice(0, 10);
+            const checkboxes = document.querySelectorAll('.habit-checkbox');
+            let saved = {};
+            try {
+                saved = JSON.parse(localStorage.getItem(todayKey)) || {};
+            } catch (e) {
+                saved = {};
+            }
+
+            checkboxes.forEach(function (box) {
+                const key = box.dataset.habit;
+                if (saved[key]) box.checked = true;
+                box.addEventListener('change', function () {
+                    saved[key] = box.checked;
+                    localStorage.setItem(todayKey, JSON.stringify(saved));
+                });
+            });
+        })();
+    </script>
+</body>
+</html>
+```
+
+Once that's committed, send me the live URL and I'll build the 7-day dashboard and the Matthew 6:9-13 bridge page to link in right after it.
