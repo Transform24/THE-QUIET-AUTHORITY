@@ -1756,18 +1756,14 @@ const SILENCE_QUOTES=[
 let currentQ=0,answers=[],userName='',userEmail='',currentProfile='A';
 let voPlaying=false,timerInterval=null,breathInterval=null,timerSeconds=900,paused=false,sessionPhase='idle',selectedTrack=-1,silenceQuoteInterval=null,silenceQuoteIdx=0;
 
-// ── SYSTEME.IO ────────────────────────────────────────────────
-const SYSTEME_API_KEY='3keif9ycq9fkvsbilxze8k6nlr3pwe5agrlde1epr98maeq1c5f9jwdf9kvm4rzb'; // replace with key from Systeme.io dashboard
-function addToSysteme(email,firstName,tag){
-  if(!email||SYSTEME_API_KEY==='SYSTEME_API_KEY_HERE')return;
-  fetch('https://api.systeme.io/api/contacts',{
+// ── MAILERLITE (via Worker proxy) ───────────────────────────────
+const WORKER_URL='https://lively-dew-924c.tdwdemp.workers.dev';
+function addToMailerLite(email,firstName,groupKey){
+  if(!email)return;
+  fetch(WORKER_URL+'/mailerlite-subscribe',{
     method:'POST',
-    headers:{'Content-Type':'application/json','X-API-Key':SYSTEME_API_KEY},
-    body:JSON.stringify({
-      email:email,
-      fields:[{slug:'first_name',value:firstName||''}],
-      tags:[{name:tag}]
-    })
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({email:email,name:firstName||'',groupKey:groupKey})
   }).catch(()=>{});
 }
 
@@ -2055,20 +2051,9 @@ function submitAndReveal(){
       source:'TQA Assessment'
     })
   }).catch(()=>{});
-  addToSysteme(email,name,'tqa-assessment-complete');
+ addToMailerLite(email,name,profileKey);
 
-  // Route to Make.com, triggers correct email sequence by profile
-  fetch('https://hook.us2.make.com/r4tscqqr8qzff82pr3dcxi1a3w5yn7xy',{
-    method:'POST',
-    headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({
-      name:name,
-      email:email,
-      profile_key:profileKey,
-      profile_name:p.name,
-      source:'TQA Assessment'
-    })
-  }).catch(()=>{});
+ 
 
   currentProfile=profileKey;
   calculateAndReveal();
