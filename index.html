@@ -2513,6 +2513,7 @@ function acceptJesus(){
       profile:PROFILES[currentProfile]?.name||''
     })
   }).catch(()=>{});
+  addToMailerLite(userEmail,userName,'NB');
 }
 
 // ── WAITLISTS ─────────────────────────────────────────────────
