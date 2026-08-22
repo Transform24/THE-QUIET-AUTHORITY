@@ -14,7 +14,7 @@ Was wired to Systeme.io (tag `gate-1-buyer`, ID 2068973, campaign "Gate 1 — Th
 
 The 6-email sequence itself is written and ready (KJV, Guilty Giver profile, sender Grace Turner `grace@sanctuary-grace.com`) — the copy isn't lost, just homeless. `_system/integrations.md` lists MailerLite as the current live email engine; migrating this sequence there is the likely next step but hasn't been done.
 
-Also note: `.github/workflows/gate-buyer-sync.yml` still runs every 15 minutes and tags Stripe buyers in Systeme.io — since the account is gone, this is presumably a no-op or failing silently. See `_system/status.md` for the flag on this.
+`.github/workflows/gate-buyer-sync.yml` (tagged Stripe buyers in Systeme.io every 15 minutes) has been **deleted** (2026-08-22), along with `load-gate1-emails.yml` and `setup-gate-pipeline.yml` — the account they called is permanently gone. See `_system/status.md`.
 
 ## Email Sequence — content ready, not yet loaded anywhere live
 - Email 1: Day 0 — You are not here by accident
@@ -23,7 +23,7 @@ Also note: `.github/workflows/gate-buyer-sync.yml` still runs every 15 minutes a
 - Email 4: Day 7 — Your brain dump
 - Email 5: Day 10 — 12 declarations for the woman who is done proving
 - Email 6: Day 14 — The next room is ready when you are
-- Full body text: `.github/workflows/load-gate1-emails.yml` (the old Systeme.io API call payloads — still has the copy, just the wrong destination)
+- Full body text: preserved verbatim in `_archive/systeme-io-shutdown-2026-08.md` (the workflow that used to hold it, `load-gate1-emails.yml`, is deleted)
 
 ## gate-one.html
 - Committed: THE-QUIET-AUTHORITY commit 9be7a60
