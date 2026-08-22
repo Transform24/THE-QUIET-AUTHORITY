@@ -11,7 +11,7 @@ devotional covers, and discovery pins on schedule. All traffic flows to
 https://sanctuarygrace.store. Grace never opens Pinterest.
 
 ## Permission Level
-- READ: CLAUDE.md Section 13 (30-day pin schedule, brand specs)
+- READ: `content-ops/02_pinterest/CONTEXT.md` (30-day pin schedule, brand specs, verified board names)
 - READ: repo root `profile-A/B/C/D.png` (profile portrait images — use for Pinterest profile pins only)
 - READ: repo root `wall-art-WOMT9.jpg`, `wall-art-WOMT8.jpg`, `wall-art-WOMT-profile3.jpg`, `wall-art-WOMT-profile2.jpg` (wall art product images)
 - READ: Drive `/content-queue/` (approved devotional covers)
@@ -21,7 +21,7 @@ https://sanctuarygrace.store. Grace never opens Pinterest.
 - NEVER: edits index.html, touches Stripe, posts to other platforms
 
 ## Trigger
-Cron: per 30-day schedule in CLAUDE.md Section 13
+Cron: per 30-day schedule in content-ops/02_pinterest/CONTEXT.md
 Recommended: `0 14 * * *` (9:00 AM EST = 14:00 UTC) — peak Pinterest engagement
 
 ---
@@ -41,7 +41,7 @@ Next day to post = last day + 1. If log is empty, start at Day 1.
 If today's day is already logged, exit gracefully (do not double-post).
 
 STEP 2 — GET TODAY'S PIN SPEC
-Read CLAUDE.md Section 13 → 30-Day Pin Schedule.
+Read content-ops/02_pinterest/CONTEXT.md → 30-Day Pin Schedule.
 Find the row for today's day number. Note:
 - Pin description/concept
 - Board name
