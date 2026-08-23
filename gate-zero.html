@@ -72,7 +72,8 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 .gate-input{display:block;margin:0 auto 14px;width:100%;max-width:380px;padding:15px 18px;background:#0d0d0d;border:1px solid #C9A84C55;color:#F5F0E8;font-family:sans-serif;font-size:13px;font-weight:300;outline:none;transition:border-color 0.25s}
 .gate-input::placeholder{color:#F5F0E855}
 .gate-input:focus{border-color:#C9A84C}
-.gate-confirm{font-size:13px;color:#C9A84C;font-family:sans-serif;font-weight:300;letter-spacing:0.02em}
+.gate-confirm{display:none;font-size:14px;color:#C9A84C;font-family:sans-serif;font-weight:400;letter-spacing:0.02em;max-width:380px;margin:8px auto 0;padding:16px;border:1px solid #C9A84C55;background:#C9A84C14;text-align:center}
+.gate-error{display:none;font-size:13px;color:#F5F0E8;font-family:sans-serif;font-weight:300;letter-spacing:0.02em;max-width:380px;margin:8px auto 0;padding:14px;border:1px solid #C1593C88;background:#C1593C1a;text-align:center}
 .gate-price{font-size:11px;color:#F5F0E822;font-family:sans-serif;margin-top:14px;letter-spacing:1px}
 
 .tool-section{padding:48px 0 0}
@@ -204,7 +205,8 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 <p class="buy-sub">Your Brain Dump and Checklist below are only saved on this device. Enter your email and I will send you a copy to keep, along with a preview of what is next.</p>
 <input type="email" class="gate-input" id="progressEmail" placeholder="Your email address">
 <button type="button" class="gate-btn" id="progressBtn" onclick="saveProgress()">Save My Progress</button>
-<p class="gate-confirm" id="progressConfirm" style="display:none">Check your inbox — your copy is on its way.</p>
+<p class="gate-confirm" id="progressConfirm">You're in — check your inbox.</p>
+<p class="gate-error" id="progressError">Something went wrong saving that. Please try again.</p>
 </div>
 </div>
 
@@ -345,22 +347,36 @@ document.querySelectorAll('#pockets-group input[type="radio"]').forEach(function
 
 const WORKER_URL = 'https://lively-dew-924c.tdwdemp.workers.dev';
 function addToMailerLite(email, name, groupKey) {
-  if (!email) return;
-  fetch(WORKER_URL + '/mailerlite-subscribe', {
+  if (!email) return Promise.resolve(false);
+  return fetch(WORKER_URL + '/mailerlite-subscribe', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ email: email, name: name || '', groupKey: groupKey })
-  }).catch(function() {});
+  }).then(function(res) { return res.ok; }).catch(function() { return false; });
 }
 
 function saveProgress() {
   const emailField = document.getElementById('progressEmail');
+  const btn = document.getElementById('progressBtn');
   const email = emailField.value.trim();
   if (!email || !email.includes('@')) { emailField.style.borderColor = '#C1593C'; return; }
-  addToMailerLite(email, '', 'gate0');
-  emailField.style.display = 'none';
-  document.getElementById('progressBtn').style.display = 'none';
-  document.getElementById('progressConfirm').style.display = 'block';
+
+  document.getElementById('progressError').style.display = 'none';
+  btn.disabled = true;
+  const originalLabel = btn.textContent;
+  btn.textContent = 'Saving…';
+
+  addToMailerLite(email, '', 'gate0').then(function(ok) {
+    if (ok) {
+      emailField.style.display = 'none';
+      btn.style.display = 'none';
+      document.getElementById('progressConfirm').style.display = 'block';
+    } else {
+      btn.disabled = false;
+      btn.textContent = originalLabel;
+      document.getElementById('progressError').style.display = 'block';
+    }
+  });
 }
 </script>
 </body>
