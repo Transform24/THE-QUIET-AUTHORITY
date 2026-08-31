@@ -7,7 +7,7 @@ the date it was last confirmed true — if an entry looks stale, verify it again
 live system before trusting it; don't assume this file is current just because it
 exists.*
 
-*Maintained by: sessions working across both repos. Last full pass: 2026-08-30.*
+*Maintained by: sessions working across both repos. Last full pass: 2026-08-31.*
 
 ---
 
@@ -59,9 +59,14 @@ No PRs open in either repo as of 2026-08-30.
   confirms `emails_designed: 6, emails_undesigned: 0`.
 - **Live status: DISABLED.** The automation has not been turned on. Buyers joining
   the group today receive nothing. Turning it on is a decision for Grace, not yet made.
-- **Known content gap — needs a decision (see below):** two of the six emails
-  reference tools that do not exist on the live `gate-one.html`. Details in the
-  "Awaiting decision" section.
+- **Content gap — resolved 2026-08-31.** Tool Four ("The Response") now carries
+  the full twelve declarations email 5 promises, and Tool One is renamed "Brain
+  Dump" to match email 4's framing (see "Resolved 2026-08-31" below). Email 5's
+  builder HTML and plain text were also updated directly in MailerLite to add
+  the "Silence of Verdicts" (John 8) devotional depth Grace flagged — same
+  automation, same email, no new email added. **Automation is still DISABLED**
+  — this pass did not turn it on; that decision is still Grace's (see item 1
+  below).
 - Docs that are now **stale** on this topic and should not be trusted over this
   entry: `_system/status.md`'s "Gate 1's email sequence has no live delivery
   mechanism" line, and `circle-of-silence/gate-1-hakria.md`'s "EMAIL DELIVERY
@@ -78,13 +83,33 @@ No PRs open in either repo as of 2026-08-30.
   correctly and in real time via the Worker's `/verify-purchase` route (see above).
   A cron-based replacement would duplicate that, not fix anything.
 
+## Resolved 2026-08-31
+
+- **Philippians 4:6 → 1:6 citation, fixed directly on TQA's live `gate-one.html`
+  (commit `104ad4b`).** The paraphrased single declaration that carried the bad
+  citation was removed as part of the Tool Four rebuild below, not patched in
+  place — there is no more "Philippians 4:6" (or 1:6) reference on the page.
+- **Tool Four ("The Response") rebuilt with the twelve declarations** email 5
+  promises, replacing the single leftover declaration. Same `.declaration`
+  markup, repeated twelve times, KJV-verified against `Romans 8:1`,
+  `Psalm 103:12`, `John 8:11`, `Psalm 86:5`, `Isaiah 43:25`, `Micah 7:19`,
+  `1 John 1:9`, `Psalm 32:1`, `Colossians 2:14`, `Hebrews 10:17`, `Romans 8:34`,
+  `John 8:36`.
+- **Tool One renamed "The Interruption" → "Brain Dump"** (label only — id
+  `gate1_interruption` and all functionality untouched) to match what emails 4
+  and the pre-purchase tool list already call it.
+- **Email 5 ("12 declarations for the woman who is done proving") given the
+  depth Grace flagged.** Added the "Silence of Verdicts" devotional (the John 8
+  woman-caught-in-adultery narrative, Salah/pardon, Romans 8:1) ahead of the
+  existing closing paragraphs, styled to match the automation's existing dark/
+  gold/serif template (verified against the email's rendered screenshot before
+  and after). Updated via MailerLite directly (`update_automation_email_content`
+  / `update_automation_email` on automation `193979382021227889`, step index 4,
+  email id `194025819674249165`) — not a repo file, so no gate-*.html change
+  carries this content. Automation left disabled.
+
 ## Known bugs still open on the live site (confirmed 2026-08-30)
 
-- **TQA's `gate-one.html` still cites "Philippians 4:6"** for the on-page
-  declaration ("He that began a good work in me is faithful to complete it" is
-  Philippians 1:6). This was fixed in CoS's copy of the same file, but that copy
-  was then deleted as part of Option B before the fix ever reached TQA — the
-  only copy that's actually live still has the wrong citation. **Not yet fixed.**
 - `circle-of-silence/CONTEXT.md`'s "Access" section describes gate access as
   `?purchased=gateN` after checkout. That's the old client-only bypass this
   whole incident was about — the live mechanism is now server-verified via
@@ -93,23 +118,13 @@ No PRs open in either repo as of 2026-08-30.
 ## Awaiting Grace's decision
 
 1. **Enable the Gate 1 MailerLite automation?** Content is correct and complete
-   per the archive; it's just switched off. (confirmed 2026-08-30)
-2. **Gate 1 email content gap — build or cut?** Checked TQA's live `gate-one.html`
-   directly on 2026-08-30:
-   - Email 4 ("Your brain dump") tells buyers "Inside Gate 1, you have your Brain
-     Dump tool" — **no tool by that name exists.** The closest thing is Tool One,
-     "The Interruption" (a single open textarea, no "brain dump" framing).
-   - Email 5 ("12 declarations for the woman who is done proving") tells buyers
-     "there is a practice waiting for you inside Gate 1: twelve declarations" —
-     **no such practice exists.** Tool Four, "The Response," contains exactly one
-     declaration sentence, not twelve.
-   - Not building placeholders for either. Needs a call: write the missing
-     Brain Dump tool and 12-declarations practice into `gate-one.html`, or rewrite/
-     cut the two emails so they stop promising something buyers won't find.
-3. **Philippians 4:6 → 1:6 on TQA's live `gate-one.html`** — same fix already made
-   and lost in CoS, needs to be reapplied directly to TQA. Small, mechanical, no
-   real ambiguity — flagged here rather than made unilaterally since it wasn't
-   part of this pass's task list.
+   per the archive, email 5 now has the added depth, and both tools email 4/5
+   promise now exist on `gate-one.html` — it's just switched off. Still Grace's
+   call; not turned on by the 2026-08-31 pass either. (confirmed 2026-08-31)
+2. ~~Gate 1 email content gap — build or cut?~~ **Resolved 2026-08-31** — built,
+   not cut. See "Resolved 2026-08-31" above.
+3. ~~Philippians 4:6 → 1:6 on TQA's live `gate-one.html`~~ **Resolved 2026-08-31.**
+   See "Resolved 2026-08-31" above.
 4. **Carried over from TQA's own docs, unrelated to this pass:** Gates 2–6 have no
    Stripe products yet and are marked "Not yet built" in
    `circle-of-silence/CONTEXT.md`. Not touched in this pass.
