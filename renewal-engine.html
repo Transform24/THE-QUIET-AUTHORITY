@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Renewal Engine: The Secret Place</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Cinzel:wght@500;600&family=Jost:wght@300;400;500&display=swap');
+        :root {
+            /* Sanctuary Grace locked brand palette */
+            --bg-color: #0d0d0d;
+            --card-bg: #141414;
+            --border-color: #2a2a2a;
+            --primary-text: #F5F0E8;
+            --accent-gold: #C9A84C;
+            --accent-terracotta: #C1593C;
+            --text-muted: #8a8a8a;
+        }
+        body {
+            font-family: 'Cormorant Garamond', 'Georgia', serif;
+            background-color: var(--bg-color);
+            color: var(--primary-text);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            -webkit-font-smoothing: antialiased;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 22px;
+            max-width: 500px;
+            letter-spacing: 2px;
+        }
+        .header h1 {
+            font-family: 'Cormorant Garamond', 'Georgia', serif;
+            font-size: 30px;
+            font-weight: 600;
+            font-style: italic;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+            color: var(--primary-text);
+        }
+        .header p {
+            font-family: 'Cinzel', 'Georgia', serif;
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin: 0;
+        }
+        .header-ornament {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 18px auto 34px;
+        }
+        .header-ornament .ln {
+            width: 56px;
+            height: 1px;
+            background: var(--accent-gold);
+        }
+        .header-ornament .dot {
+            width: 6px;
+            height: 6px;
+            background: var(--accent-gold);
+            transform: rotate(45deg);
+        }
+        .engine-container {
+            width: 100%;
+            max-width: 440px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        .section-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 26px;
+        }
+        .section-title {
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 12px;
+            margin-top: 0;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--accent-gold);
+        }
+        .section-time {
+            font-family: 'Jost', 'Helvetica Neue', Arial, sans-serif;
+            font-size: 10px;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+        }
+        .habit-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .habit-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            cursor: pointer;
+            position: relative;
+        }
+        .checkbox-wrapper {
+            display: flex;
+            align-items: center;
+            margin-top: 2px;
+            position: relative;
+        }
+        .habit-checkbox {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 1px solid var(--accent-gold);
+            background-color: transparent;
+            cursor: pointer;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        .habit-checkbox:checked {
+            background-color: var(--accent-gold);
+            border-color: var(--accent-gold);
+        }
+        .habit-checkbox:checked::after {
+            content: '\2713';
+            font-size: 12px;
+            color: var(--bg-color);
+            position: absolute;
+            left: 4px;
+            top: 1px;
+        }
+        .habit-details {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .habit-label {
+            font-size: 15px;
+            font-weight: 400;
+            line-height: 1.5;
+            color: var(--primary-text);
+            transition: color 0.3s ease;
+        }
+        .habit-checkbox:checked ~ .habit-details .habit-label {
+            color: var(--text-muted);
+            text-decoration: line-through;
+        }
+        .scripture-box {
+            font-style: italic;
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            border-left: 1px solid var(--accent-terracotta);
+            padding-left: 10px;
+            margin-top: 4px;
+        }
+        .habit-armor {
+            font-family: 'Cinzel', 'Georgia', serif;
+            font-weight: 500;
+            font-size: 10px;
+            color: var(--accent-gold);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-top: 2px;
+        }
+        .footer-ornament {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 44px auto 14px;
+        }
+        .footer-ornament .ln {
+            width: 40px;
+            height: 1px;
+            background: var(--accent-gold);
+            opacity: 0.6;
+        }
+        .footer-ornament .dot {
+            width: 5px;
+            height: 5px;
+            background: var(--accent-gold);
+            transform: rotate(45deg);
+            opacity: 0.6;
+        }
+        .footer-note {
+            text-align: center;
+            font-family: 'Cinzel', 'Georgia', serif;
+            font-weight: 500;
+            font-size: 10px;
+            color: var(--text-muted);
+            margin-top: 0;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .reset-note {
+            font-family: 'Jost', 'Helvetica Neue', Arial, sans-serif;
+            font-size: 9px;
+            color: var(--text-muted);
+            text-align: center;
+            margin-top: 8px;
+            letter-spacing: 0.5px;
+        }
+        .prep-card {
+            width: 100%;
+            max-width: 440px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-left: 2px solid var(--accent-terracotta);
+            padding: 28px 26px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+        .prep-eyebrow {
+            font-family: 'Cinzel', 'Georgia', serif;
+            font-weight: 500;
+            font-size: 10px;
+            color: var(--accent-terracotta);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+        .prep-verse {
+            font-style: italic;
+            font-size: 14px;
+            color: var(--primary-text);
+            opacity: 0.92;
+            line-height: 1.75;
+            margin: 0 0 14px;
+        }
+        .prep-verse cite {
+            display: block;
+            font-style: normal;
+            font-family: 'Jost', 'Helvetica Neue', Arial, sans-serif;
+            font-size: 10px;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+            margin-top: 10px;
+        }
+        .prep-body {
+            font-size: 14px;
+            line-height: 1.65;
+            color: var(--text-muted);
+            margin: 0 0 20px;
+        }
+        .braindump-label {
+            display: block;
+            font-family: 'Cinzel', 'Georgia', serif;
+            font-weight: 500;
+            font-size: 10px;
+            color: var(--accent-gold);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+        .braindump {
+            width: 100%;
+            min-height: 74px;
+            background-color: var(--bg-color);
+            border: 1px solid var(--border-color);
+            color: var(--primary-text);
+            font-family: 'Cormorant Garamond', 'Georgia', serif;
+            font-size: 15px;
+            padding: 12px 14px;
+            resize: vertical;
+            outline: none;
+        }
+        .braindump:focus {
+            border-color: var(--accent-gold);
+        }
+        .braindump::placeholder {
+            color: var(--text-muted);
+            font-style: italic;
+        }
+        .week-tracker {
+            width: 100%;
+            max-width: 440px;
+            text-align: center;
+            margin: 0 auto 34px;
+        }
+        .week-label {
+            font-family: 'Cinzel', 'Georgia', serif;
+            font-weight: 500;
+            font-size: 10px;
+            color: var(--text-muted);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+        .week-caption {
+            font-family: 'Jost', 'Helvetica Neue', Arial, sans-serif;
+            font-size: 10px;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+            margin-top: 12px;
+        }
+        .week-dots {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+        }
+        .week-dot {
+            width: 11px;
+            height: 11px;
+            border: 1px solid var(--accent-gold);
+            transform: rotate(45deg);
+            background: transparent;
+        }
+        .week-dot.filled {
+            background: var(--accent-gold);
+        }
+        .week-dot.today {
+            border-color: var(--accent-terracotta);
+        }
+        .next-step {
+            width: 100%;
+            max-width: 440px;
+            text-align: center;
+            border: 1px solid var(--accent-gold);
+            padding: 30px 26px;
+            margin-top: 6px;
+        }
+        .next-step .ns-label {
+            font-family: 'Cinzel', 'Georgia', serif;
+            font-weight: 500;
+            font-size: 10px;
+            color: var(--accent-terracotta);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+        .next-step .ns-verse {
+            font-style: italic;
+            font-size: 14px;
+            color: var(--primary-text);
+            line-height: 1.7;
+            margin: 0 0 18px;
+        }
+        .next-step .ns-verse cite {
+            display: block;
+            font-style: normal;
+            font-family: 'Jost', 'Helvetica Neue', Arial, sans-serif;
+            font-size: 10px;
+            color: var(--text-muted);
+            letter-spacing: 0.5px;
+            margin-top: 8px;
+        }
+        .next-step a.ns-cta {
+            display: inline-block;
+            font-family: 'Cinzel', 'Georgia', serif;
+            font-weight: 500;
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent-gold);
+            text-decoration: none;
+            border-bottom: 1px solid var(--accent-gold);
+            padding-bottom: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Renewal Engine</h1>
+        <p>The Secret Place</p>
+        <div class="header-ornament"><span class="ln"></span><span class="dot"></span><span class="ln"></span></div>
+    </div>
+    <div class="prep-card">
+        <div class="prep-eyebrow">Before The Armor</div>
+        <p class="prep-verse">
+            &ldquo;Finally, my brethren, be strong in the Lord, and in the power of his might. Put on
+            the whole armour of God, that ye may be able to stand against the wiles of the devil.
+            For we wrestle not against flesh and blood, but against principalities, against powers,
+            against the rulers of the darkness of this world, against spiritual wickedness in high
+            places. Wherefore take unto you the whole armour of God, that ye may be able to
+            withstand in the evil day, and having done all, to stand.&rdquo;
+            <cite>Ephesians 6:10-13, King James Version</cite>
+        </p>
+        <p class="prep-body">
+            Before you put on anything, empty your hands. Name what is actually crowding you today,
+            so you can tell the difference between the people in front of you and the real fight
+            behind them.
+        </p>
+        <label class="braindump-label" for="braindump">Brain Dump</label>
+        <textarea id="braindump" class="braindump" placeholder="What's crowding your mind right now? Let it out here before you go on."></textarea>
+    </div>
+    <div class="week-tracker">
+        <div class="week-label">This Week</div>
+        <div class="week-dots" id="weekDots"></div>
+        <div class="week-caption">Six pieces, put on new each day.</div>
+    </div>
+    <div class="engine-container">
+        <!-- Morning Alignment -->
+        <div class="section-card">
+            <div class="section-title">
+                <span>Morning Alignment</span>
+                <span class="section-time">06:00 AM</span>
+            </div>
+            <div class="habit-list">
+                <label class="habit-item">
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" class="habit-checkbox" data-habit="belt-of-truth">
+                    </div>
+                    <div class="habit-details">
+                        <span class="habit-label">Stand fast in uncompromised truth over emotion.</span>
+                        <div class="scripture-box">"Stand therefore, having your loins girt about with truth..." Ephesians 6:14a, King James Version</div>
+                        <span class="habit-armor">The Belt of Truth</span>
+                    </div>
+                </label>
+                <label class="habit-item">
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" class="habit-checkbox" data-habit="breastplate">
+                    </div>
+                    <div class="habit-details">
+                        <span class="habit-label">Guard your identity under His sovereign approval.</span>
+                        <div class="scripture-box">"...and having on the breastplate of righteousness;" Ephesians 6:14b, King James Version</div>
+                        <span class="habit-armor">The Breastplate of Righteousness</span>
+                    </div>
+                </label>
+            </div>
+        </div>
+        <!-- Midday Defense -->
+        <div class="section-card">
+            <div class="section-title">
+                <span>Midday Defense</span>
+                <span class="section-time">12:00 PM</span>
+            </div>
+            <div class="habit-list">
+                <label class="habit-item">
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" class="habit-checkbox" data-habit="shoes-of-peace">
+                    </div>
+                    <div class="habit-details">
+                        <span class="habit-label">Walk calmly through dynamic operational chaos.</span>
+                        <div class="scripture-box">"And your feet shod with the preparation of the gospel of peace;" Ephesians 6:15, King James Version</div>
+                        <span class="habit-armor">The Shoes of Peace</span>
+                    </div>
+                </label>
+                <label class="habit-item">
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" class="habit-checkbox" data-habit="shield-of-faith">
+                    </div>
+                    <div class="habit-details">
+                        <span class="habit-label">Quench sudden arrows of exhaustion and self-doubt.</span>
+                        <div class="scripture-box">"Above all, taking the shield of faith, wherewith ye shall be able to quench all the fiery darts of the wicked." Ephesians 6:16, King James Version</div>
+                        <span class="habit-armor">The Shield of Faith</span>
+                    </div>
+                </label>
+            </div>
+        </div>
+        <!-- Evening Intimacy -->
+        <div class="section-card">
+            <div class="section-title">
+                <span>Evening Intimacy</span>
+                <span class="section-time">08:00 PM</span>
+            </div>
+            <div class="habit-list">
+                <label class="habit-item">
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" class="habit-checkbox" data-habit="helmet-of-salvation">
+                    </div>
+                    <div class="habit-details">
+                        <span class="habit-label">Rest your intellect entirely under His protective execution.</span>
+                        <div class="scripture-box">"And take the helmet of salvation..." Ephesians 6:17a, King James Version</div>
+                        <span class="habit-armor">The Helmet of Salvation</span>
+                    </div>
+                </label>
+                <label class="habit-item">
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" class="habit-checkbox" data-habit="sword-of-the-spirit">
+                    </div>
+                    <div class="habit-details">
+                        <span class="habit-label">Execute deep authoritative decrees in the secret place.</span>
+                        <div class="scripture-box">"...and the sword of the Spirit, which is the word of God:" Ephesians 6:17b, King James Version</div>
+                        <span class="habit-armor">The Sword of the Spirit</span>
+                    </div>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="next-step">
+        <div class="ns-label">When The Armor Is On</div>
+        <p class="ns-verse">
+            &ldquo;Praying always with all prayer and supplication in the Spirit, and watching thereunto
+            with all perseverance and supplication for all saints.&rdquo;
+            <cite>Ephesians 6:18, King James Version</cite>
+        </p>
+        <a class="ns-cta" href="lord-teach-us-to-pray.html">Continue to Lord, Teach Us to Pray &rarr;</a>
+    </div>
+
+    <div class="footer-ornament"><span class="ln"></span><span class="dot"></span><span class="ln"></span></div>
+    <div class="footer-note">The Secret Place &middot; Sanctuary Grace Ministry</div>
+    <div class="reset-note">Your armor resets each morning at 6:00 AM.</div>
+    <script>
+        // Persistence: today's date is the storage key, so armor
+        // automatically resets each new day without deleting history.
+        // The same keys power the week tracker above, which shows the
+        // last 7 calendar days: a day counts as complete once all six
+        // armor pieces are checked that day.
+        (function () {
+            const ARMOR_KEYS = ['belt-of-truth', 'breastplate', 'shoes-of-peace', 'shield-of-faith', 'helmet-of-salvation', 'sword-of-the-spirit'];
+            const dateStr = new Date().toISOString().slice(0, 10);
+            const todayKey = 'armor-of-god-' + dateStr;
+            const braindumpKey = 'armor-of-god-braindump-' + dateStr;
+            const braindump = document.getElementById('braindump');
+            if (braindump) {
+                try {
+                    braindump.value = localStorage.getItem(braindumpKey) || '';
+                } catch (e) { /* ignore */ }
+                braindump.addEventListener('input', function () {
+                    try {
+                        localStorage.setItem(braindumpKey, braindump.value);
+                    } catch (e) { /* ignore */ }
+                });
+            }
+            const checkboxes = document.querySelectorAll('.habit-checkbox');
+            let saved = {};
+            try {
+                saved = JSON.parse(localStorage.getItem(todayKey)) || {};
+            } catch (e) {
+                saved = {};
+            }
+
+            function dayComplete(key) {
+                try {
+                    const day = JSON.parse(localStorage.getItem(key)) || {};
+                    return ARMOR_KEYS.every(function (k) { return day[k]; });
+                } catch (e) {
+                    return false;
+                }
+            }
+
+            function renderWeek() {
+                const wrap = document.getElementById('weekDots');
+                wrap.innerHTML = '';
+                for (let i = 6; i >= 0; i--) {
+                    const d = new Date();
+                    d.setDate(d.getDate() - i);
+                    const key = 'armor-of-god-' + d.toISOString().slice(0, 10);
+                    const dot = document.createElement('span');
+                    dot.className = 'week-dot' + (dayComplete(key) ? ' filled' : '') + (i === 0 ? ' today' : '');
+                    wrap.appendChild(dot);
+                }
+            }
+
+            checkboxes.forEach(function (box) {
+                const key = box.dataset.habit;
+                if (saved[key]) box.checked = true;
+                box.addEventListener('change', function () {
+                    saved[key] = box.checked;
+                    localStorage.setItem(todayKey, JSON.stringify(saved));
+                    renderWeek();
+                });
+            });
+
+            renderWeek();
+        })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lord, Teach Us to Pray: Sanctuary Grace Ministry</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Cinzel:wght@500;600&family=Jost:wght@300;400;500&display=swap');
+        :root {
+            --bg-color: #0d0d0d;
+            --card-bg: #141414;
+            --border-color: #2a2a2a;
+            --rule: rgba(201,168,76,0.22);
+            --primary-text: #F5F0E8;
+            --accent-gold: #C9A84C;
+            --accent-terracotta: #C1593C;
+            --parchment: #C4A47C;
+            --text-muted: #8a8a8a;
+        }
+        * { box-sizing: border-box; }
+        body {
+            font-family: 'Jost', 'Helvetica Neue', Arial, sans-serif;
+            font-weight: 300;
+            background-color: var(--bg-color);
+            color: var(--primary-text);
+            margin: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+        .wrap { max-width: 640px; margin: 0 auto; padding: 0 24px; }
+        h1, h2 { font-family: 'Cormorant Garamond', 'Georgia', serif; font-weight: 600; margin: 0; color: var(--primary-text); }
+        .label { font-family: 'Cinzel', 'Georgia', serif; letter-spacing: 0.2em; text-transform: uppercase; font-size: 11px; color: var(--parchment); }
+
+        .topbar { text-align: center; padding: 30px 0 0; }
+        .brandmark { font-family: 'Cinzel', 'Georgia', serif; letter-spacing: 0.14em; font-size: 12px; color: var(--text-muted); text-transform: uppercase; }
+
+        .hero { padding: 54px 0 50px; text-align: center; border-bottom: 1px solid var(--rule); }
+        .ornament { display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 22px; }
+        .ornament .ln { width: 60px; height: 1px; background: var(--accent-gold); }
+        .ornament .dot { width: 6px; height: 6px; background: var(--accent-gold); transform: rotate(45deg); }
+        .hero .eyebrow { margin-bottom: 16px; }
+        .hero h1 { font-size: clamp(34px, 7vw, 50px); font-style: italic; line-height: 1.15; }
+        .hero .lede {
+            max-width: 480px; margin: 26px auto 0; font-size: 16px; line-height: 1.8; color: var(--primary-text); opacity: 0.9;
+        }
+        .hero .lede cite {
+            display: block; font-style: normal; font-family: 'Jost', sans-serif; font-size: 11px; color: var(--text-muted);
+            letter-spacing: 0.06em; margin-top: 10px;
+        }
+
+        .petitions { padding: 50px 0; }
+        .petition { padding: 30px 0; border-bottom: 1px solid var(--border-color); }
+        .petition:last-child { border-bottom: none; }
+        .petition .pnum { font-family: 'Cinzel', 'Georgia', serif; font-size: 10px; color: var(--accent-terracotta); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 10px; }
+        .petition .pverse { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 21px; color: var(--accent-gold); line-height: 1.6; margin: 0 0 14px; }
+        .petition .pbody { font-size: 15px; line-height: 1.8; color: var(--primary-text); opacity: 0.9; margin: 0; }
+
+        .full-prayer {
+            background: var(--card-bg); border: 1px solid var(--border-color); padding: 34px 30px; margin: 10px 0 50px;
+        }
+        .full-prayer .fp-label { text-align: center; margin-bottom: 18px; }
+        .full-prayer p { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 17px; line-height: 1.9; color: var(--primary-text); text-align: center; margin: 0; }
+        .full-prayer cite { display: block; font-style: normal; font-family: 'Jost', sans-serif; font-size: 11px; color: var(--text-muted); letter-spacing: 0.06em; margin-top: 18px; text-align: center; }
+
+        .gate-cta {
+            border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+            padding: 56px 0; text-align: center; background: linear-gradient(180deg, rgba(201,168,76,0.04), transparent);
+        }
+        .gate-cta .label { margin-bottom: 16px; }
+        .gate-cta h2 { font-size: 26px; max-width: 460px; margin: 0 auto 18px; font-weight: 500; }
+        .gate-cta p { max-width: 440px; margin: 0 auto; font-size: 14.5px; line-height: 1.75; color: var(--primary-text); opacity: 0.85; }
+        .gate-cta .cta {
+            display: inline-block; margin-top: 28px; padding: 13px 32px; border: 1px solid var(--accent-gold);
+            font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 0.16em; color: var(--accent-gold);
+            text-transform: uppercase; text-decoration: none;
+        }
+        .gate-cta .cta:hover { background: var(--accent-gold); color: var(--bg-color); }
+
+        footer { padding: 44px 0 56px; text-align: center; }
+        footer .verse-small {
+            font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 15px; color: var(--parchment);
+            max-width: 460px; margin: 0 auto 18px; line-height: 1.6;
+        }
+        footer .fine { font-size: 11px; color: var(--text-muted); letter-spacing: 0.04em; }
+        footer .fine a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--rule); }
+    </style>
+</head>
+<body>
+
+    <div class="wrap topbar">
+        <div class="brandmark">Sanctuary Grace Ministry</div>
+    </div>
+
+    <section class="hero wrap">
+        <div class="ornament"><span class="ln"></span><span class="dot"></span><span class="ln"></span></div>
+        <div class="label eyebrow">The Bridge &middot; Between The Armor And The Gates</div>
+        <h1>Lord, Teach Us to Pray</h1>
+        <p class="lede">
+            The armor is not the end of the passage. Paul closes it with prayer, not a sword.
+            Long before Paul wrote that, the disciples watched Jesus pray and asked him for the
+            same thing you are being handed now.
+            <cite>"Lord, teach us to pray..." Luke 11:1, King James Version</cite>
+        </p>
+    </section>
+
+    <section class="petitions wrap">
+        <div class="petition">
+            <div class="pnum">The Address</div>
+            <p class="pverse">&ldquo;Our Father which art in heaven, Hallowed be thy name.&rdquo;</p>
+            <p class="pbody">You do not open this prayer by asking for anything. You open it by naming who
+                you are speaking to. Father, not a force. In heaven, not far off. Holy, not casual.
+                Everything you are about to ask for gets weighed against who He already is.</p>
+        </div>
+        <div class="petition">
+            <div class="pnum">The Surrender</div>
+            <p class="pverse">&ldquo;Thy kingdom come. Thy will be done in earth, as it is in heaven.&rdquo;</p>
+            <p class="pbody">This is the same posture the armor put you in. You put on truth and
+                righteousness and peace so you could stand, and now you use that standing to ask for
+                His will instead of your own. Surrender is not weakness here. It is the whole point
+                of being armored in the first place.</p>
+        </div>
+        <div class="petition">
+            <div class="pnum">The Dependence</div>
+            <p class="pverse">&ldquo;Give us this day our daily bread.&rdquo;</p>
+            <p class="pbody">Not this week's bread. Not this year's. Today's. You come back to this prayer
+                tomorrow needing it again, and that repetition is not a failure to graduate past
+                needing Him. It is the practice.</p>
+        </div>
+        <div class="petition">
+            <div class="pnum">The Reckoning</div>
+            <p class="pverse">&ldquo;And forgive us our debts, as we forgive our debtors.&rdquo;</p>
+            <p class="pbody">You cannot ask to be forgiven with one hand and hold a grudge with the other.
+                This line will not let you. It ties your own forgiveness to what you are willing to
+                release, every single time you pray it.</p>
+        </div>
+        <div class="petition">
+            <div class="pnum">The Deliverance</div>
+            <p class="pverse">&ldquo;And lead us not into temptation, but deliver us from evil: For thine
+                is the kingdom, and the power, and the glory, for ever. Amen.&rdquo;</p>
+            <p class="pbody">The prayer ends where the armor began, standing against what wants to
+                take you down, except now you are not standing alone. The kingdom, the power, and
+                the glory were never yours to carry. They were always His.</p>
+        </div>
+    </section>
+
+    <div class="full-prayer wrap" style="max-width:592px; margin-left:auto; margin-right:auto;">
+        <div class="fp-label label">The Whole Prayer</div>
+        <p>
+            Our Father which art in heaven, Hallowed be thy name. Thy kingdom come, Thy will be done
+            in earth, as it is in heaven. Give us this day our daily bread. And forgive us our debts,
+            as we forgive our debtors. And lead us not into temptation, but deliver us from evil:
+            For thine is the kingdom, and the power, and the glory, for ever. Amen.
+        </p>
+        <cite>Matthew 6:9-13, King James Version</cite>
+    </div>
+
+    <section class="gate-cta wrap">
+        <div class="label">The Next Threshold</div>
+        <h2>The armor was for standing. The prayer was for surrendering. Now comes the asking.</h2>
+        <p>
+            "The effectual fervent prayer of a righteous man availeth much." James 5:16, King James
+            Version. Circle of Silence opens at Gate Zero, HaPetach, the threshold before the six
+            gates, free, no payment required, where the prayer you just prayed becomes a practice.
+        </p>
+        <a class="cta" href="gate-zero.html">Enter Gate Zero &rarr;</a>
+    </section>
+
+    <footer class="wrap">
+        <p class="verse-small">
+            &ldquo;The Spirit of the Lord is upon me... to heal the brokenhearted... to set at liberty
+            them that are bruised.&rdquo; Luke 4:18, King James Version
+        </p>
+        <div class="fine">
+            Sanctuary Grace Ministry &middot; <a href="https://sanctuary-grace.com">sanctuary-grace.com</a>
+        </div>
+    </footer>
+
+</body>
+</html>
