@@ -15,9 +15,24 @@ For each of the 5 pin titles + descriptions:
 
 1. FORMAT the pin as follows:
    - Title: [pin title]
-   - Description: [pin description] + " Take the free assessment: [ASSESSMENT URL]"
-   - Link: https://transform24.github.io/THE-QUIET-AUTHORITY/
+   - Description: [pin description] + CTA matching the Link below (see step 1a)
+   - Link: see step 1a
    - Board: [select most relevant board from list below]
+
+1a. CHOOSE the Link based on what the pin is actually selling:
+   - Pin's CTA is the 8-question assessment/quiz itself (title/copy says
+     "take the assessment", "which profile are you", etc.) →
+     `https://sanctuary-grace.com/` (the assessment lives at index.html,
+     pinned at the domain root — unchanged). Description CTA: "Take the
+     free assessment: https://sanctuary-grace.com/"
+   - Pin introduces the ministry broadly instead of pushing the quiz
+     specifically — brand story, Circle of Silence, a devotional/product
+     pin, a scripture-only pin with no specific CTA — →
+     `https://sanctuary-grace.com/foyer.html` (The Foyer, the four-doors
+     entry point: the assessment, The Secret Place, Circle of Silence, and
+     The Library). Description CTA: "Begin here: https://sanctuary-grace.com/foyer.html"
+   - When genuinely unsure which a new pin is, default to The Foyer — it's
+     the front door to everything, so it's never a dead end.
 
 2. BOARDS (assign each pin to best match):
    - "Sacred Space & Stillness" → atmosphere, quiet, prayer, candles
@@ -44,4 +59,6 @@ For each of the 5 pin titles + descriptions:
 ## Notes
 - One pin per day maximum to avoid spam flags
 - Use Canva or image templates for pin visuals (see templates/pin-visual-guide.md)
-- Always link to assessment or Beacons storefront
+- Link to the assessment (step 1a) only for pins that are actually pitching
+  the quiz; link to The Foyer for anything introducing the ministry more
+  broadly. Never the bare domain undecorated by which page it resolves to.
