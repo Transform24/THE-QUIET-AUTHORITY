@@ -1157,7 +1157,7 @@ onmouseout="this.style.borderColor='rgba(201,169,110,0.45)';this.style.color='va
         <div class="cos-how">
           <div class="cos-how-title">How It Works</div>
           <div class="cos-steps">
-            <div class="cos-step"><span class="cos-step-num">1</span><span class="cos-step-body">Reserve your place at <span style="color:var(--cream);cursor:pointer;" onclick="goShop('https://sanctuary-grace.com/')">sanctuary-grace.com</span></span></div>
+            <div class="cos-step"><span class="cos-step-num">1</span><span class="cos-step-body">Reserve your place at <span style="color:var(--cream);cursor:pointer;" onclick="goShop('https://sanctuary-grace.com/gate-zero.html')">sanctuary-grace.com</span></span></div>
             <div class="cos-step"><span class="cos-step-num">2</span><span class="cos-step-body">Receive your Zoom link by email</span></div>
             <div class="cos-step"><span class="cos-step-num">3</span><span class="cos-step-body">Show up. Cameras on. No words required.</span></div>
           </div>
@@ -1481,7 +1481,7 @@ onmouseout="this.style.borderColor='rgba(201,169,110,0.45)';this.style.color='va
       <a href="https://youtube.com/@TheQuietAuthority-f1z" target="_blank">YouTube</a>
       <a href="https://substack.com/@sapop2sotwm" target="_blank">Substack</a>
       <a href="https://sanctuary-grace.com/" target="_blank">Community</a>
-      <a href="https://sanctuary-grace.com/" target="_blank">Circle of Silence</a>
+      <a href="https://sanctuary-grace.com/gate-zero.html" target="_blank">Circle of Silence</a>
     </div>
   </footer>
 
@@ -1769,6 +1769,22 @@ function addToMailerLite(email,firstName,groupKey){
 
 // ── INIT ──────────────────────────────────────────────────────
 (function init(){
+  // Deep-link entry: external links (e.g. from The Library) can jump straight to
+  // Shop or the Silence session, e.g. index.html?view=shop or ?view=silence
+  const _viewParam=new URLSearchParams(location.search).get('view');
+  if(_viewParam==='shop'||_viewParam==='silence'){
+    if(localStorage.getItem('tqa_profile_complete')==='1'){
+      const _s=JSON.parse(localStorage.getItem('tqa_profile')||'null');
+      currentProfile=(_s&&_s.profile&&PROFILES[_s.profile])?_s.profile:Object.keys(PROFILES)[0];
+    } else {
+      currentProfile=Object.keys(PROFILES)[0];
+    }
+    showResults();
+    initCoworkCountdown();initLangBar();
+    setTimeout(()=>{tabNav(_viewParam);},600);
+    return;
+  }
+
   // Gate, returning users skip landing entirely
   if(localStorage.getItem('tqa_profile_complete')==='1'){
     try{
@@ -3133,6 +3149,7 @@ function shareProfile(){
 }
 
 function showCosPopup(){
+  return; // PAUSED 2026-09-06: R.E.S.T. book manuscript not finished, remove this line to re-enable
   const seen=sessionStorage.getItem('tqa_cos_popup_seen');
   if(seen)return;
   sessionStorage.setItem('tqa_cos_popup_seen','1');
