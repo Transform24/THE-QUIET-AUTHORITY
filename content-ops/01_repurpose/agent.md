@@ -27,7 +27,12 @@ OUTPUT: Create a file at workflows/output/repurposed-[DATE].md containing:
 5.
 
 ## 5 Pinterest Pin Descriptions
-(150–300 characters. Include: keyword phrase, emotional hook, CTA to assessment or Beacons.)
+(150–300 characters. Include: keyword phrase, emotional hook, and a CTA to
+whichever is actually true of this piece — the assessment
+[https://sanctuary-grace.com/] if it's pitching the quiz specifically, or
+The Foyer [https://sanctuary-grace.com/foyer.html] if it's introducing the
+ministry more broadly. Note which one you used so Agent 02 sets the pin's
+Link field to match.)
 1.
 2.
 3.
@@ -41,10 +46,13 @@ Caption 2:
 Caption 3:
 
 ## 1 Email/Newsletter Segment
-(200–300 words. Opens with a question or scripture. Ends with soft CTA to assessment.)
+(200–300 words. Opens with a question or scripture. Ends with a soft CTA to
+the assessment if the piece is quiz-specific, or to The Foyer if it's
+introducing the ministry more broadly.)
 
 ## YouTube Short Description
-(Under 200 characters. Include link placeholder: [ASSESSMENT LINK])
+(Under 200 characters. Include link placeholder: [ASSESSMENT LINK] for a
+quiz-specific piece, or [FOYER LINK] for a broader ministry introduction.)
 
 ## Suggested Hashtags (master list)
 (20 relevant hashtags for this content piece)
