@@ -191,15 +191,15 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 <h3 class="audio-title">The wilderness was never wasted time.</h3>
 <p class="audio-sub">It was the making of you.</p>
 <div class="audio-placeholder">
-<button class="play-btn" onclick="alert('Audio coming soon. Grace is recording this for you.')">
+<button class="play-btn" onclick="toggleGateAudio('gate3-audio', this)">
 <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
 </button>
 <div class="audio-text">
 <strong>The Wilderness · Gate Three Audio</strong>
-<span>15 minutes · Coming soon</span>
+<span>1:34 · A word from Grace</span>
 </div>
 </div>
-<p class="audio-coming">Audio recording in progress</p>
+<audio id="gate3-audio" src="assets/audio/gate-3-voice.mp3" preload="none"></audio>
 </div>
 
 <!-- BUY SECTION (hidden after purchase) -->
@@ -364,6 +364,21 @@ document.getElementById('wound-' + id).classList.add('active');
 
 function saveField(key, value) {
 try { localStorage.setItem(key, value); } catch(e) {}
+}
+
+var PLAY_ICON = '<path d="M8 5v14l11-7z"/>';
+var PAUSE_ICON = '<path d="M6 5h4v14H6zM14 5h4v14h-4z"/>';
+function toggleGateAudio(audioId, btn) {
+var audio = document.getElementById(audioId);
+var svg = btn.querySelector('svg');
+if (audio.paused) {
+audio.play().catch(function() {});
+svg.innerHTML = PAUSE_ICON;
+} else {
+audio.pause();
+svg.innerHTML = PLAY_ICON;
+}
+audio.onended = function() { svg.innerHTML = PLAY_ICON; };
 }
 
 var timerInterval = null;
