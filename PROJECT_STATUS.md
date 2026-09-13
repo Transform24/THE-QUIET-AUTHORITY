@@ -11,6 +11,22 @@ exists.*
 
 ---
 
+## Gate voiceover audio — real recordings live (confirmed 2026-09-13)
+
+- **Gates 1, 3, 4, 5:** the "A word from Grace" placeholder on each gate's landing
+  section (`.audio-section` / `.audio-placeholder` / `.play-btn`) now plays a real
+  ElevenLabs recording (voice: Matilda), replacing the `alert('Audio coming soon...')`
+  stub. Files added at `assets/audio/gate-1-voice.mp3` (79s), `gate-3-voice.mp3` (94s),
+  `gate-4-voice.mp3` (87s), `gate-5-voice.mp3` (76s). Committed to TQA `main`
+  (commit `7e2e866`); GitHub Pages build/deploy for that commit completed
+  successfully. Note: this "A word from Grace" audio-section teaser is a separate
+  element from Tool Three ("The Voice of God in This Season"), which is a silent
+  3-minute stillness timer with no audio player — it was not touched.
+- **Gates 2, 6:** still pending — no audio recorded yet, and both pages are still
+  404 pending their own rebuild. Not touched in this pass.
+
+---
+
 ## Hosting — who serves what (confirmed 2026-08-30)
 
 - **TQA is the single live site.** It owns `CNAME` → `sanctuary-grace.com` and is the
