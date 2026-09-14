@@ -192,15 +192,15 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 <h3 class="audio-title">You did not just survive this. You became something.</h3>
 <p class="audio-sub">And what you became is not finished revealing itself.</p>
 <div class="audio-placeholder">
-<button class="play-btn" onclick="alert('Audio coming soon. Grace is recording this for you.')">
+<button class="play-btn" onclick="toggleGateAudio('gate6-audio', this)">
 <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
 </button>
 <div class="audio-text">
 <strong>Becoming · Gate Six Audio</strong>
-<span>15 minutes · Coming soon</span>
+<span>1:50 · A word from Grace</span>
 </div>
 </div>
-<p class="audio-coming">Audio recording in progress</p>
+<audio id="gate6-audio" src="assets/audio/gate-6-voice.mp3" preload="none"></audio>
 </div>
 
 <!-- BUY SECTION (hidden after purchase) -->
@@ -326,6 +326,16 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 </div>
 </div>
 
+<!-- SHARE YOUR STORY - closing invitation, no purchase gateway forward, this is the last gate -->
+<div class="tool-section">
+<div class="tool-box">
+<p class="eyebrow" style="text-align:center">Before You Go</p>
+<h3 class="tool-title">Your New Name Is Someone Else's Door</h3>
+<p class="tool-sub">You are not the same woman who entered. The Circle of Silence is not finished with you. Return whenever the world gets loud. The door is always open.</p>
+<p class="tool-footer">If you are willing, share your new name, publicly or with someone who needs to hear it. It may be the reason the next woman walks through Gate Zero.</p>
+</div>
+</div>
+
 <div class="footer">
 © 2026 Sanctuary Grace Ministry ·
 <a href="https://sanctuary-grace.com">sanctuary-grace.com</a>
@@ -363,6 +373,21 @@ document.getElementById('wound-' + id).classList.add('active');
 
 function saveField(key, value) {
 try { localStorage.setItem(key, value); } catch(e) {}
+}
+
+var PLAY_ICON = '<path d="M8 5v14l11-7z"/>';
+var PAUSE_ICON = '<path d="M6 5h4v14H6zM14 5h4v14h-4z"/>';
+function toggleGateAudio(audioId, btn) {
+var audio = document.getElementById(audioId);
+var svg = btn.querySelector('svg');
+if (audio.paused) {
+audio.play().catch(function() {});
+svg.innerHTML = PAUSE_ICON;
+} else {
+audio.pause();
+svg.innerHTML = PLAY_ICON;
+}
+audio.onended = function() { svg.innerHTML = PLAY_ICON; };
 }
 
 var timerInterval = null;

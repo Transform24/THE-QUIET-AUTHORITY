@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Daily Sanctuary | Sanctuary Grace Ministry</title>
+<meta name="description" content="Four short moments of stillness for four moments in your day: Morning, Midday, Drive Home, Bedside. Free, guided by Grace.">
+<link rel="canonical" href="https://sanctuary-grace.com/daily-sanctuary.html">
+<meta property="og:title" content="The Daily Sanctuary | Sanctuary Grace Ministry">
+<meta property="og:description" content="Four short moments of stillness for four moments in your day. Free, guided by Grace.">
+<meta property="og:url" content="https://sanctuary-grace.com/daily-sanctuary.html">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0d0d0d">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#0d0d0d;color:#F5F0E8;font-family:'Cormorant Garamond',Georgia,serif;min-height:100vh}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:0.4}
+
+.wrap{max-width:680px;margin:0 auto;padding:0 24px}
+.screen{display:flex;min-height:100vh;flex-direction:column;padding-bottom:80px;animation:fadeUp 0.9s ease forwards}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+.rings{width:110px;height:110px;margin:0 auto 40px;position:relative}
+.ring{position:absolute;border-radius:50%;border:1px solid #C9A84C;top:50%;left:50%;transform:translate(-50%,-50%);animation:ringPulse 3s ease-in-out infinite}
+.ring-1{width:56px;height:56px;animation-delay:0s}
+.ring-2{width:84px;height:84px;animation-delay:0.4s;border-color:#C9A84C55}
+.ring-3{width:110px;height:110px;animation-delay:0.8s;border-color:#C9A84C22}
+@keyframes ringPulse{0%,100%{opacity:1;transform:translate(-50%,-50%) scale(1)}50%{opacity:0.5;transform:translate(-50%,-50%) scale(1.05)}}
+
+.gold-rule{width:48px;height:1px;background:linear-gradient(90deg,transparent,#C9A84C,transparent);margin:32px auto}
+.eyebrow{font-size:10px;letter-spacing:4px;color:#C9A84C;text-transform:uppercase;font-family:sans-serif;font-weight:400;margin-bottom:16px}
+
+.hero{padding:72px 0 48px;text-align:center;border-bottom:1px solid #C9A84C22}
+.hero h1{font-size:clamp(38px,8vw,70px);font-weight:300;line-height:0.95;color:#F5F0E8;letter-spacing:-0.02em;margin-bottom:16px}
+.hero h1 em{display:block;font-style:italic;color:#C9A84C;font-size:clamp(30px,6vw,56px)}
+.hero-sub{font-size:clamp(17px,2.5vw,22px);color:#C9A84C;font-style:italic;line-height:1.6;margin-bottom:16px}
+.hero-body{font-size:15px;color:#F5F0E877;max-width:480px;margin:0 auto 24px;line-height:2;font-family:sans-serif;font-weight:300}
+
+.free-banner{display:table;margin:0 auto 24px;padding:10px 24px;border:1px solid #C9A84C33;border-radius:999px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#e8d5b0;font-family:sans-serif}
+
+.verse{border-left:2px solid #C9A84C;padding:18px 24px;margin:32px auto;max-width:480px;text-align:left}
+.verse p{font-style:italic;font-size:20px;color:#F5F0E8;line-height:1.75}
+.verse cite{font-size:11px;letter-spacing:2px;color:#C9A84C;text-transform:uppercase;font-style:normal;font-family:sans-serif;display:block;margin-top:10px;font-weight:400}
+
+.tool-section{padding:48px 0 0}
+.tool-box{border:1px solid #C9A84C1a;padding:36px;background:#0a0a0a}
+.tool-title{font-size:clamp(22px,4vw,32px);font-weight:300;color:#F5F0E8;margin-bottom:8px;text-align:center}
+.tool-sub{font-size:13px;color:#F5F0E844;font-family:sans-serif;text-align:center;margin-bottom:32px;font-weight:300;line-height:1.8}
+.tool-footer{text-align:center;margin-top:28px;font-size:16px;color:#C9A84C;font-style:italic}
+
+.wound-options{display:flex;flex-direction:column;gap:12px}
+.wound-option{padding:18px 22px;border:1px solid #C9A84C12;cursor:pointer;transition:all 0.2s;text-align:left}
+.wound-option:hover{background:#C9A84C08;border-color:#C9A84C22}
+.wound-option.selected{border-color:#C9A84C44;background:#C9A84C08}
+.wound-option-label{font-size:17px;color:#F5F0E8;font-family:'Cormorant Garamond',serif;font-weight:300;margin-bottom:4px}
+.wound-option-sub{font-size:12px;color:#F5F0E844;font-family:sans-serif;font-weight:300}
+.wound-reveal{display:none;border-left:2px solid #C9A84C;padding:18px 24px;margin-top:16px;background:#0d0d0d}
+.wound-reveal.active{display:block;animation:fadeUp 0.6s ease forwards}
+.wound-desc{font-size:15px;color:#F5F0E8;font-family:sans-serif;font-weight:300;line-height:1.8;margin-bottom:18px}
+.wound-verse-inner{font-style:italic;font-size:18px;color:#F5F0E8;line-height:1.75;margin-bottom:8px}
+.wound-verse-cite{font-size:10px;letter-spacing:2px;color:#C9A84C;text-transform:uppercase;font-style:normal;font-family:sans-serif}
+
+.audio-section{padding:24px 0 0;text-align:center;margin-top:20px;border-top:1px solid #C9A84C1a}
+.audio-placeholder{display:flex;align-items:center;justify-content:center;gap:16px;padding:16px;border:1px solid #C9A84C22;max-width:400px;margin:0 auto}
+.play-btn{width:48px;height:48px;border-radius:50%;border:1px solid #C9A84C;display:flex;align-items:center;justify-content:center;cursor:pointer;background:transparent;transition:background 0.3s;flex-shrink:0}
+.play-btn:hover{background:#C9A84C15}
+.play-btn svg{fill:#C9A84C;width:16px;height:16px;margin-left:3px}
+.audio-text{text-align:left}
+.audio-text strong{font-size:15px;color:#F5F0E8;font-family:'Cormorant Garamond',serif;display:block;margin-bottom:4px}
+.audio-text span{font-size:12px;color:#F5F0E833;font-family:sans-serif}
+
+.footer{text-align:center;padding:48px 0 32px;font-size:11px;color:#F5F0E822;font-family:sans-serif;letter-spacing:1px;border-top:1px solid #C9A84C12;margin-top:56px}
+.footer a{color:#C9A84C44;text-decoration:none}
+
+@media(max-width:480px){
+.tool-box{padding:28px 20px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="screen">
+
+<div class="hero">
+<p class="eyebrow">Sanctuary Grace Ministry</p>
+<div class="rings">
+<div class="ring ring-1"></div>
+<div class="ring ring-2"></div>
+<div class="ring ring-3"></div>
+</div>
+<h1>The Daily<br><em>Sanctuary</em></h1>
+<p class="free-banner">Free · No payment required</p>
+<div class="gold-rule"></div>
+<p class="hero-body">Not every stillness has to be a gate you walk through once. Some of it is meant to be daily, four short moments for four moments in your day. Choose the one that matches where you are right now.</p>
+
+<div class="verse">
+<p>"He that dwelleth in the secret place of the most High shall abide under the shadow of the Almighty."</p>
+<cite>Psalm 91:1, KJV</cite>
+</div>
+</div>
+
+<div class="tool-section">
+<div class="tool-box">
+<p class="eyebrow" style="text-align:center">Choose Your Moment</p>
+<h3 class="tool-title">Where Are You Right Now?</h3>
+<p class="tool-sub">Each one is short. Each one is enough.</p>
+<div class="wound-options">
+
+<div class="wound-option" onclick="selectMoment(this,'morning')">
+<div class="wound-option-label">Morning</div>
+<div class="wound-option-sub">For the moment before your feet touch the floor.</div>
+<div class="wound-reveal" id="moment-morning">
+<p class="wound-desc">Before the phone. Before the list. Before the day gets to speak first. His mercies are new every morning, not carried over from yesterday's supply.</p>
+<p class="wound-verse-inner">"My voice shalt thou hear in the morning, O LORD; in the morning will I direct my prayer unto thee, and will look up."</p>
+<p class="wound-verse-cite">Psalm 5:3 · Lamentations 3:22-23 · Psalm 118:24, KJV</p>
+<div class="audio-section">
+<div class="audio-placeholder">
+<button class="play-btn" onclick="toggleGateAudio(event,'audio-morning', this)">
+<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+</button>
+<div class="audio-text">
+<strong>Morning</strong>
+<span>1:20 · A word from Grace</span>
+</div>
+</div>
+<audio id="audio-morning" src="assets/audio/daily-morning.mp3" preload="none"></audio>
+</div>
+</div>
+</div>
+
+<div class="wound-option" onclick="selectMoment(this,'midday')">
+<div class="wound-option-label">Midday</div>
+<div class="wound-option-sub">For the pause in the middle of the workday.</div>
+<div class="wound-reveal" id="moment-midday">
+<p class="wound-desc">For the break when the noise has gotten loud. You are not weak for needing this moment. You are wise for taking it.</p>
+<p class="wound-verse-inner">"Be careful for nothing; but in every thing by prayer and supplication with thanksgiving let your requests be made known unto God."</p>
+<p class="wound-verse-cite">Philippians 4:6-7 · Matthew 11:28, KJV</p>
+<div class="audio-section">
+<div class="audio-placeholder">
+<button class="play-btn" onclick="toggleGateAudio(event,'audio-midday', this)">
+<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+</button>
+<div class="audio-text">
+<strong>Midday</strong>
+<span>1:21 · A word from Grace</span>
+</div>
+</div>
+<audio id="audio-midday" src="assets/audio/daily-midday.mp3" preload="none"></audio>
+</div>
+</div>
+</div>
+
+<div class="wound-option" onclick="selectMoment(this,'drivehome')">
+<div class="wound-option-label">Drive Home</div>
+<div class="wound-option-sub">For the drive between work and home.</div>
+<div class="wound-reveal" id="moment-drivehome">
+<p class="wound-desc">Before you walk back through your own door. You do not have to arrive home still carrying today. Let this drive be the bridge, not just the distance.</p>
+<p class="wound-verse-inner">"Be still, and know that I am God."</p>
+<p class="wound-verse-cite">Psalm 46:10 · Psalm 23:3 · 2 Corinthians 5:17, KJV</p>
+<div class="audio-section">
+<div class="audio-placeholder">
+<button class="play-btn" onclick="toggleGateAudio(event,'audio-drivehome', this)">
+<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+</button>
+<div class="audio-text">
+<strong>Drive Home</strong>
+<span>1:15 · A word from Grace</span>
+</div>
+</div>
+<audio id="audio-drivehome" src="assets/audio/daily-drivehome.mp3" preload="none"></audio>
+</div>
+</div>
+</div>
+
+<div class="wound-option" onclick="selectMoment(this,'bedside')">
+<div class="wound-option-label">Bedside</div>
+<div class="wound-option-sub">For the last moments before sleep.</div>
+<div class="wound-reveal" id="moment-bedside">
+<p class="wound-desc">When the day is finally over. Whatever was not finished today will still be there tomorrow. It does not need you tonight.</p>
+<p class="wound-verse-inner">"I will both lay me down in peace, and sleep: for thou, LORD, only makest me dwell in safety."</p>
+<p class="wound-verse-cite">Psalm 4:8 · Proverbs 3:24 · Psalm 91:1, KJV</p>
+<div class="audio-section">
+<div class="audio-placeholder">
+<button class="play-btn" onclick="toggleGateAudio(event,'audio-bedside', this)">
+<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+</button>
+<div class="audio-text">
+<strong>Bedside</strong>
+<span>1:26 · A word from Grace</span>
+</div>
+</div>
+<audio id="audio-bedside" src="assets/audio/daily-bedside.mp3" preload="none"></audio>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+</div>
+
+<div class="footer">
+© 2026 Sanctuary Grace Ministry ·
+<a href="https://sanctuary-grace.com">sanctuary-grace.com</a>
+</div>
+
+</div>
+</div>
+
+<script>
+function selectMoment(el, id) {
+document.querySelectorAll('.wound-option').forEach(function(o) {
+o.classList.remove('selected');
+o.querySelector('.wound-reveal').classList.remove('active');
+});
+el.classList.add('selected');
+document.getElementById('moment-' + id).classList.add('active');
+}
+
+var PLAY_ICON = '<path d="M8 5v14l11-7z"/>';
+var PAUSE_ICON = '<path d="M6 5h4v14H6zM14 5h4v14h-4z"/>';
+function toggleGateAudio(event, audioId, btn) {
+event.stopPropagation();
+var audio = document.getElementById(audioId);
+var svg = btn.querySelector('svg');
+if (audio.paused) {
+audio.play().catch(function() {});
+svg.innerHTML = PAUSE_ICON;
+} else {
+audio.pause();
+svg.innerHTML = PLAY_ICON;
+}
+audio.onended = function() { svg.innerHTML = PLAY_ICON; };
+}
+</script>
+</body>
+</html>

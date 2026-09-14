@@ -11,19 +11,48 @@ exists.*
 
 ---
 
-## Gate voiceover audio — real recordings live (confirmed 2026-09-13)
+## Gate voiceover audio — real recordings live (confirmed 2026-09-14)
 
-- **Gates 1, 3, 4, 5:** the "A word from Grace" placeholder on each gate's landing
-  section (`.audio-section` / `.audio-placeholder` / `.play-btn`) now plays a real
-  ElevenLabs recording (voice: Matilda), replacing the `alert('Audio coming soon...')`
-  stub. Files added at `assets/audio/gate-1-voice.mp3` (79s), `gate-3-voice.mp3` (94s),
-  `gate-4-voice.mp3` (87s), `gate-5-voice.mp3` (76s). Committed to TQA `main`
-  (commit `7e2e866`); GitHub Pages build/deploy for that commit completed
-  successfully. Note: this "A word from Grace" audio-section teaser is a separate
-  element from Tool Three ("The Voice of God in This Season"), which is a silent
-  3-minute stillness timer with no audio player — it was not touched.
-- **Gates 2, 6:** still pending — no audio recorded yet, and both pages are still
-  404 pending their own rebuild. Not touched in this pass.
+- **Gates 1, 2, 3, 4, 5, 6 — all six now wired.** The "A word from Grace" placeholder
+  on each gate's landing section (`.audio-section` / `.audio-placeholder` / `.play-btn`)
+  now plays a real ElevenLabs recording (voice: Matilda), replacing the
+  `alert('Audio coming soon...')` stub. Files: `assets/audio/gate-1-voice.mp3` (79s),
+  `gate-2-voice.mp3` (83s), `gate-3-voice.mp3` (94s), `gate-4-voice.mp3` (87s),
+  `gate-5-voice.mp3` (76s), `gate-6-voice.mp3` (110s). Note: this "A word from Grace"
+  audio-section teaser is a separate element from each gate's Tool Three, which is a
+  silent 3-minute stillness timer with no audio player — Tool Three was not touched
+  on any gate.
+- **Correction to the 2026-09-13 entry above:** Gates 2 and 6 were described there as
+  "still pending... 404 pending their own rebuild." That was wrong — both pages were
+  already fully built (real content, real Stripe payment links, real MailerLite
+  buyer groups, matching purchase-verification pattern) as of commit `4c0fb9b`
+  ("Substack Deploy: Published approved devotions"), which predates that entry. The
+  only real gap was the audio placeholder, now fixed above. `circle-of-silence/
+  gate-2-sheket.md` and `gate-6-hithavut.md` in this repo still say "NOT YET BUILT" —
+  those two files are stale and should not be trusted; the live `gate-two.html` /
+  `gate-six.html` are the source of truth.
+- **Purchase-verification parity (was flagged 2026-09-07 as unchecked):** confirmed
+  2026-09-14 — all six gates use the byte-identical pattern (`GATE` var, same Worker
+  URL, `gate{N}_verified` localStorage key, same `unlock()` shape). No drift found.
+- **Gate 6 closing:** added the "Before You Go" share-your-story invitation beneath
+  the existing New Name summary (was missing; everything else on Gate 6 — the New
+  Name table, the Legacy Declaration, no next-gate purchase gateway — was already
+  correct).
+
+## The Daily Sanctuary — new free page (added 2026-09-14)
+
+- `daily-sanctuary.html` is live: four moment cards (Morning, Midday, Drive Home,
+  Bedside) using the same click-to-reveal pattern as `the-secret-place.html`'s
+  profile picker, each with its own real ElevenLabs audio (voice: Matilda):
+  `assets/audio/daily-morning.mp3` (80s), `daily-midday.mp3` (81s),
+  `daily-drivehome.mp3` (75s), `daily-bedside.mp3` (86s). Built free, no Stripe gate,
+  matching `gate-zero.html` / `the-secret-place.html`'s free-entry-point pattern.
+- **Open decision for Grace, not assumed:** should this page stay free, or move
+  behind a paywall? Built free for now per the free-entry-point precedent; flagging
+  rather than guessing.
+- Not linked from any nav/menu yet in this pass — only the direct URL
+  `sanctuary-grace.com/daily-sanctuary.html` currently reaches it. Someone should
+  decide where it belongs in the site's navigation.
 
 ---
 
