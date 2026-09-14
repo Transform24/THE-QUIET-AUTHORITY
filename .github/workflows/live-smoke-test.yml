@@ -1,0 +1,41 @@
+name: Live Site Smoke Test
+
+# Runs the same click-through check a human would do by hand: every gate
+# loads, has its audio, and points at the correct live Stripe purchase
+# link; the foyer links to Daily Sanctuary; Daily Sanctuary bridges into
+# Gate One. Runs automatically after every push to main (GitHub Pages
+# needs a minute or two to redeploy, so the test retries with backoff)
+# and once a day on its own, so a broken link or missing file is caught
+# without anyone needing to click through the site by hand.
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '0 13 * * *' # 9am US Eastern (13:00 UTC)
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  smoke-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Install Playwright
+        run: |
+          npm init -y
+          npm install -D playwright
+          npx playwright install chromium --with-deps
+
+      - name: Run live smoke test against sanctuary-grace.com
+        run: node scripts/live-smoke-test.mjs
+        env:
+          BASE_URL: https://sanctuary-grace.com
