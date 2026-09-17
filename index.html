@@ -1776,12 +1776,14 @@ function addToMailerLite(email,firstName,groupKey){
     if(localStorage.getItem('tqa_profile_complete')==='1'){
       const _s=JSON.parse(localStorage.getItem('tqa_profile')||'null');
       currentProfile=(_s&&_s.profile&&PROFILES[_s.profile])?_s.profile:Object.keys(PROFILES)[0];
+      showResults();
+      initCoworkCountdown();initLangBar();
+      setTimeout(()=>{tabNav(_viewParam);},600);
     } else {
-      currentProfile=Object.keys(PROFILES)[0];
+      // No saved profile — do not drop into an arbitrary wound-profile bucket.
+      // Route to the site-wide foyer so the visitor makes a real choice. Decided 2026-09-12.
+      location.href='foyer.html';
     }
-    showResults();
-    initCoworkCountdown();initLangBar();
-    setTimeout(()=>{tabNav(_viewParam);},600);
     return;
   }
 
