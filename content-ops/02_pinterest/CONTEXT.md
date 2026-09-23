@@ -1,4 +1,15 @@
 # Pinterest — SOP
+
+**RETIRED 2026-09-23 — this whole SOP describes a pipeline that never
+actually posted a pin.** `pinterest_agent.py` and its GitHub Action are
+archived at `_archive/pinterest-github-action-retired-2026-09/`. Real
+Pinterest posting happens through Metricool, not this SOP — see
+`_system/channels.md` and `MINISTRY-WORKFLOW.md` at the repo root for the
+current, correct picture, including an open safety gap (no human review
+step in Metricool's posting, unlike what this SOP describes below). Keep
+this file for its Canva brand kit ID and hashtag pool if still useful;
+don't treat the rest as live.
+
 *Last updated: 2026-08-22 — board names corrected against the live posting code (`workflows/scripts/pinterest_agent.py`)*
 
 ## Reads / Does / Writes

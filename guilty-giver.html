@@ -344,14 +344,11 @@ function submitEmail(){
     document.getElementById('g-email').style.borderColor='#C1593C';
     return;
   }
-  // POST to Brevo API via your backend/Make webhook
-  // Replace WEBHOOK_URL with your Make.com scenario webhook
-  const WEBHOOK_URL='https://hook.us2.make.com/r4tscqqr8qzff82pr3dcxi1a3w5yn7xy';
-  fetch(WEBHOOK_URL,{
+  fetch('https://lively-dew-924c.tdwdemp.workers.dev/mailerlite-subscribe',{
     method:'POST',
     headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({name,email,profile:PROFILE_TAG,list_id:BREVO_LIST_ID,source:'guilty-giver-lead-magnet'})
-  }).catch(()=>{}); // silent fail, user still proceeds
+    body:JSON.stringify({email,name,groupKey:'C'})
+  }).catch(()=>{});
   showSec('s-plan');
 }
 

@@ -16,6 +16,22 @@ file worker/worker.js.
 
 ---
 
+## OPEN — the approval gate does not cover everything that posts
+
+Grace built `approval-gate.html` so that nothing goes out in the
+ministry's name, or God's, without her seeing it first. That gate covers
+this repo's own pipelines (the YouTube long-form video queue). It does
+not cover Metricool. Every post checked in Metricool (Pinterest,
+Instagram, YouTube Shorts) has `autoPublish: true` — it schedules and
+posts with no human review step at all. This is a real gap between what
+the ministry's own safeguard was built to guarantee and what one of its
+three live posting channels actually does. Confirmed 2026-09-23, not
+resolved, not touched by any session — it is Grace's decision how to
+handle it (turn off auto-publish going forward, review what has already
+posted, or something else), not a code fix.
+
+---
+
 ## Step 1 — Pinterest (the entry gate)
 
 VERIFIED WORKING. Corrected 2026-09-23 — an earlier pass of this document

@@ -1,12 +1,38 @@
 # Channels
-*Last updated: 2026-08-22*
+*Last updated: 2026-09-23*
+
+## READ THIS FIRST — the real posting mechanism, and an open safety gap
+
+Corrected 2026-09-23. This repo's own GitHub Action pipeline for Pinterest
+never worked and is retired — see `_archive/pinterest-github-action-retired-2026-09/README.md`.
+Pinterest, Instagram, and YouTube Shorts are actually posted through
+**Metricool** (brand id 6554085, account `sanctuarygracefaith` /
+`_thequietauthority_`), confirmed directly against Metricool's own
+scheduled-posts data on 2026-09-23. Real posts are going out and mostly
+succeeding.
+
+**Open safety gap, not yet resolved, Grace's decision, not touched by any
+session:** every post checked in Metricool has `autoPublish: true`. There
+is no human review step in that pipeline. This directly contradicts the
+purpose of `approval-gate.html` below, which Grace built specifically so
+nothing goes out in the ministry's name without her seeing it first. The
+repo's own pipelines (YouTube long-form, and the retired Pinterest one)
+respect that gate; Metricool does not. Do not treat Metricool's posting as
+a fixed or good thing without checking with Grace first — she has not yet
+said whether to turn off auto-publish, review what's already gone out, or
+something else. See `MINISTRY-WORKFLOW.md` for the fuller trace.
 
 ## Pinterest
 - Account: sanctuarygrace.com / sanctuarygracefaith
-- Agent: running, pins post daily
-- Approval gate: `approval-gate.html` password `approve`
-- Secrets: `PINTEREST_ACCESS_TOKEN`, `PINTEREST_API_KEY`, `PINTEREST_APP_ID`, `PINTEREST_BOARD_ID`
-- Boards (verified against the live posting code, `workflows/scripts/pinterest_agent.py`, 2026-08-22): **The Quiet Authority for Women**, **Sacred Morning Practices**, **Christian Women Encouragement**, **Spiritual Rest for Women**. Any other board list in older docs is wrong — see `_archive/`.
+- **Live posting is via Metricool, not this repo.** The repo's own agent
+  (`pinterest_agent.py` + its GitHub Action) never posted a single pin —
+  retired 2026-09-23, see `_archive/pinterest-github-action-retired-2026-09/`.
+- Approval gate: `approval-gate.html` — built for the repo's own pipelines
+  (YouTube long-form video approval). It does not sit in front of
+  Metricool's posting at all; see the safety-gap note above.
+- Secrets `PINTEREST_ACCESS_TOKEN`/`PINTEREST_API_KEY`/`PINTEREST_APP_ID`/`PINTEREST_BOARD_ID`
+  belonged to the retired pipeline and are no longer needed by anything
+  live in this repo.
 
 ## Substack
 - URL: https://5apop2sotwm.substack.com
@@ -23,5 +49,6 @@
 - Video repurposing pipeline (`content-ops/04_youtube/remotion/` + `remotion-render/`) renders profile/devotion content into video for this channel
 
 ## Instagram
-- **PAUSED** — Meta account restriction. Not dead: all agent/pipeline files (`content-ops/03_instagram/agent.md`, `workflows/scripts/instagram_agent.py`, `workflows/scripts/instagram-deploy.py`) stay in place. Reconnects to the Pinterest content flow once the restriction lifts — Instagram repurposes Pinterest captions, so resuming it is a re-enable, not a rebuild.
+- **This repo's own pipeline is PAUSED** — Meta account restriction. Not dead: all agent/pipeline files (`content-ops/03_instagram/agent.md`, `workflows/scripts/instagram_agent.py`, `workflows/scripts/instagram-deploy.py`) stay in place, cleanly config-gated, zero cost while paused.
+- **But Instagram is not actually dark** — Metricool is posting real Reels to this account right now, separately from this repo's pipeline. See the safety-gap note above: those posts are not passing through `approval-gate.html` or any human review.
 - Account: `_thequietauthority_`

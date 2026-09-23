@@ -24,6 +24,7 @@ Corrected 2026-09-23 — this used to describe one free product; there are three
 ## Four Lead Magnet Apps — Free
 - Guilty Giver, Depleted Survivor, Striving Achiever, Lost Wanderer
 - Live at transform24.github.io/THE-QUIET-AUTHORITY/
+- Corrected 2026-09-23 — each page's email capture was silently dead (pointed at a shut-down Make.com/Brevo webhook, `.catch(()=>{})` swallowed every failure). Fixed to use the same Worker `/mailerlite-subscribe` route as the rest of the site, reusing the real, already-existing groups: Guilty Giver → `C`, Depleted Survivor → `B`, Striving Achiever → `A`, Lost Wanderer → `D`. Tested in a real browser — each now sends the right email to the right group.
 
 ## Wall Art — Stripe (live)
 | Profile | Price | Link |

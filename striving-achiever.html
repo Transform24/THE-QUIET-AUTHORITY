@@ -239,7 +239,7 @@ function submitEmail(){
   const name=document.getElementById('g-name').value.trim();
   const email=document.getElementById('g-email').value.trim();
   if(!email||!email.includes('@')){document.getElementById('g-email').style.borderColor='#C1593C';return;}
-  fetch('https://hook.us2.make.com/r4tscqqr8qzff82pr3dcxi1a3w5yn7xy',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,email,profile:PROFILE_TAG,source:'striving-achiever-lead-magnet'})}).catch(()=>{});
+  fetch('https://lively-dew-924c.tdwdemp.workers.dev/mailerlite-subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,name,groupKey:'A'})}).catch(()=>{});
   showSec('s-plan');
 }
 function skipGate(){showSec('s-plan');}
