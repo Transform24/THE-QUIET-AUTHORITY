@@ -26,18 +26,92 @@ LOG_FILE = pathlib.Path('workflows/youtube-log.md')
 
 LIBRARY_DIR.mkdir(parents=True, exist_ok=True)
 
+
+def parse_frontmatter(text):
+    """Parse simple '---\\nkey: value\\n---' frontmatter into a dict."""
+    fm = {}
+    lines = text.split('\n')
+    if not lines or lines[0].strip() != '---':
+        return fm, text
+    for i, line in enumerate(lines[1:], start=1):
+        if line.strip() == '---':
+            body = '\n'.join(lines[i + 1:])
+            return fm, body
+        if ':' in line:
+            key, _, value = line.partition(':')
+            fm[key.strip()] = value.strip()
+    return fm, text
+
+
+def discover_approved_items(approved_dir):
+    """Find work waiting in youtube-approved/, in either shape the pipeline
+    actually produces:
+
+      1. A per-date FOLDER containing video.mp4 + script-video.md
+         (the fully-automated shape this script originally assumed).
+      2. A flat SCRIPT .md file — what approval-gate.html and the
+         youtube-agent actually write. Grace approves the script; the
+         video itself is recorded separately (per agent.md STEP 4A) and,
+         per its own frontmatter `video_file:`, is expected to show up
+         next to the script once she's uploaded/rendered it.
+
+    Returns (ready, awaiting_video) where `ready` items have a real video
+    file on disk and `awaiting_video` items are approved scripts with no
+    video yet — nothing to upload, but NOT the same as "nothing approved".
+    """
+    ready = []
+    awaiting_video = []
+
+    for entry in sorted(approved_dir.iterdir()):
+        if entry.is_dir():
+            video_file = entry / "video.mp4"
+            script_file = entry / "script-video.md"
+            if video_file.exists():
+                ready.append({
+                    'date_str': entry.name,
+                    'video_file': video_file,
+                    'script_text': script_file.read_text() if script_file.exists() else '',
+                })
+            else:
+                awaiting_video.append({'date_str': entry.name, 'expected': str(video_file)})
+        elif entry.is_file() and entry.suffix == '.md':
+            text = entry.read_text()
+            fm, body = parse_frontmatter(text)
+            date_str = fm.get('date', entry.stem)
+            video_name = fm.get('video_file', '').strip()
+            video_file = (approved_dir / video_name) if video_name else None
+            if video_file and video_file.exists():
+                ready.append({
+                    'date_str': date_str,
+                    'video_file': video_file,
+                    'script_text': body,
+                })
+            else:
+                awaiting_video.append({
+                    'date_str': date_str,
+                    'expected': str(video_file) if video_file else '(no video_file set in frontmatter)',
+                })
+
+    return ready, awaiting_video
+
+
 # Check for approved videos
 if not APPROVED_DIR.exists() or not any(APPROVED_DIR.iterdir()):
     print("No approved videos to deploy.")
     sys.exit(0)
 
-approved_videos = [d for d in APPROVED_DIR.iterdir() if d.is_dir()]
+approved_videos, awaiting_video = discover_approved_items(APPROVED_DIR)
+
+if awaiting_video:
+    print(f"{len(awaiting_video)} approved script(s) awaiting Grace's recorded video (not an error — nothing to upload yet):")
+    for item in awaiting_video:
+        print(f"  - {item['date_str']}: expected {item['expected']}")
 
 if not approved_videos:
-    print("No video folders in youtube-approved/.")
+    print("No approved item has a video file ready to upload yet.")
     sys.exit(0)
 
-print(f"Found {len(approved_videos)} approved video folder(s) to upload.")
+print(f"Found {len(approved_videos)} approved video(s) ready to upload.")
 
 # YouTube API setup (simplified for GitHub Actions)
 # In production, use OAuth 2.0 with refresh tokens stored in secrets
@@ -51,13 +125,12 @@ if not API_KEY and not REFRESH_TOKEN:
     print("   Set YOUTUBE_API_KEY or YOUTUBE_CLIENT_ID + CLIENT_SECRET + REFRESH_TOKEN in GitHub Secrets.")
     sys.exit(0)
 
-for video_folder in approved_videos:
-    date_str = video_folder.name
-    video_file = video_folder / "video.mp4"
-    script_file = video_folder / "script-video.md"
+for item in approved_videos:
+    date_str = item['date_str']
+    video_file = item['video_file']
 
     if not video_file.exists():
-        print(f"⚠️  {date_str}: video.mp4 not found. Skipping.")
+        print(f"⚠️  {date_str}: {video_file} not found. Skipping.")
         continue
 
     # Parse script metadata
@@ -65,18 +138,24 @@ for video_folder in approved_videos:
     description = "The Quiet Authority — Sacred teaching for women who are tired.\nhttps://sanctuary-grace.com/"
     tags = ["ChristianWomen", "SpiritualRest", "FaithAndWellness"]
 
-    if script_file.exists():
-        script_content = script_file.read_text()
+    script_content = item.get('script_text') or ''
+    if script_content:
         lines = script_content.split('\n')
 
-        # Extract title from first content line (after frontmatter)
+        # Extract title from either script shape: folder-based drafts use
+        # "## VIDEO TITLE" on its own line; flat approved scripts use
+        # "## SCRIPT TITLE" followed by a "# <title>" line.
         for i, line in enumerate(lines):
-            if line.startswith('## VIDEO TITLE'):
-                title = lines[i + 1].strip() if i + 1 < len(lines) else title
+            if line.startswith('## VIDEO TITLE') or line.startswith('## SCRIPT TITLE'):
+                for follow in lines[i + 1:i + 4]:
+                    follow = follow.strip()
+                    if follow:
+                        title = follow.lstrip('#').strip()
+                        break
                 break
 
         # Use first 200 chars of script as description start
-        content_start = next((i for i, l in enumerate(lines) if l.startswith('## VIDEO SCRIPT')), 0)
+        content_start = next((i for i, l in enumerate(lines) if l.startswith('## VIDEO SCRIPT') or l.startswith('## FULL VIDEO SCRIPT') or l.startswith('## FULL SCRIPT')), 0)
         if content_start:
             script_text = ' '.join(lines[content_start:content_start+10])
             description = f"{title}\n\n{script_text[:300]}\n\nhttps://sanctuary-grace.com/"
