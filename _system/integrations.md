@@ -1,11 +1,16 @@
 # Integrations — Full Platform Map
-*Last updated: 2026-08-22 · merged and corrected from the two contradicting `platform-stack.md` copies that existed before this restructure (see `_archive/`)*
+*Last updated: 2026-09-23*
 
 ## Email Engine
 
 **MailerLite** — the live system, confirmed 2026-08-22.
 Systeme.io is fully shut down — the account no longer exists. Every reference to Systeme.io as active (including "Gate Tags active", automation rules, campaign IDs) is stale. See `_archive/systeme-io-shutdown-2026-08.md` for what existed before teardown, and `_system/status.md` for a live-code contradiction this uncovered (a cron workflow still calling the dead Systeme.io API).
 Older docs also referenced Beacons as the email engine at an earlier point — also superseded by MailerLite.
+
+## Purchase Verification & Buyer Tagging
+
+**Cloudflare Worker `lively-dew-924c`** (source: `THE-CIRCLE-OF-SILENCE/worker/worker.js`) — not previously listed here. Each of the six Circle of Silence gate pages and the Secret Place guide call its `GET /verify-purchase` (or `/secret-place/download`) route with the Stripe Checkout Session id from the post-payment redirect; the Worker checks the session against the Stripe API directly and, on a match, adds the buyer's email to that product's MailerLite group (`GATE_MAILERLITE_GROUPS` / `SECRET_PLACE_MAILERLITE_GROUP` in `worker.js`). This — not the Stripe webhook below — is what actually verifies purchases and tags buyers today.
+The Stripe webhook `we_1TmPsDDvGX7GhwdzZ15UzERO` (`checkout.session.completed`) is registered in Stripe but has no receiving code anywhere in either repo — grep for `checkout.session.completed` / `stripe-webhook` outside `_archive/` returns nothing. Treat it as a real gap, not a working integration, until it's built or removed. See `_system/status.md`.
 
 ## Form Submissions
 
@@ -45,7 +50,7 @@ Products: Wall Art ($9.99 each / $29.99 bundle) · Devotionals ($4.99 each / $19
 
 | Platform | Why not |
 |---|---|
-| Make.com | Dead — zero references in running code |
+| Make.com | Account/automation not something to build against; corrected 2026-09-23 — the previous "zero references in running code" claim was false, see `_system/status.md` for the 4 live-but-orphaned pages still calling a Make.com webhook |
 | Systeme.io | Account shut down |
 | Zapier | Never adopted — direct webhooks used instead |
 | Kajabi / Teachable | Not until a full course exists |

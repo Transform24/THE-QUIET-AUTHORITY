@@ -1,9 +1,9 @@
 # Sanctuary Grace Ministry — System Status
-*Last updated: 2026-08-22*
+*Last updated: 2026-09-23*
 
 ## WHAT WORKS — DO NOT REBUILD
 - GitHub Pages: live at sanctuary-grace.com and transform24.github.io
-- Stripe: live, webhook `we_1TmPsDDvGX7GhwdzZ15UzERO` fires on `checkout.session.completed`
+- Stripe: live. The registered webhook `we_1TmPsDDvGX7GhwdzZ15UzERO` (`checkout.session.completed`) is **not implemented anywhere in either repo** — grepping both repos for `checkout.session.completed` / `stripe-webhook` outside `_archive/` turns up nothing. It fires against Stripe but has no receiving code, so treat it as a registered-but-dead endpoint, not a working integration, until someone finds or builds its handler. What actually verifies a purchase today is client-initiated, not webhook-driven: each gate page calls the Cloudflare Worker `lively-dew-924c`'s `GET /verify-purchase` (source `THE-CIRCLE-OF-SILENCE/worker/worker.js`) with the Stripe Checkout Session id from the redirect URL; the Worker checks the session directly with the Stripe API and, on a match, adds the buyer to that gate's MailerLite group (`GATE_MAILERLITE_GROUPS`, `worker.js:39`). See `circle-of-silence/CONTEXT.md` for the full pipeline.
 - Pinterest agent: running, commits to `workflows/output/pinterest-pending/`
 - Approval gate: `transform24.github.io/THE-QUIET-AUTHORITY/approval-gate.html`
 - MailerLite: the live email engine (see `_system/integrations.md`)
@@ -12,9 +12,9 @@
 - Instagram: paused due to a Meta account restriction. All agent/pipeline files stay in place — see `_system/channels.md`. Reconnects to the Pinterest content flow when the restriction lifts.
 
 ## WHAT IS DEAD — DO NOT REFERENCE, DO NOT REBUILD
-- **Make.com** — confirmed dead. Zero references exist in the actual running code. Not running. See `_archive/make-com-removed.md`.
+- **Make.com** — the account/automation itself is not something to rebuild against, but this line previously said "zero references exist in the actual running code," which is false: `depleted-survivor.html:258`, `striving-achiever.html:242`, `lost-wanderer.html:242`, and `guilty-giver.html:349` each still `fetch()` the same Make.com webhook (`https://hook.us2.make.com/r4tscqqr8qzff82pr3dcxi1a3w5yn7xy`) from their `submitEmail()` handlers. These four lead-magnet pages aren't linked from `index.html`'s nav, but GitHub Pages serves every file at repo root, so they're publicly reachable and the fetch call runs for real visitors — it just silently fails (`.catch(()=>{})`) since the destination is gone. Corrected here 2026-09-23; see `_archive/make-com-removed.md`, which is about `index.html`'s `submitAndReveal()` flow specifically and never checked these four standalone pages.
 - **Systeme.io** — account fully shut down, no longer exists (confirmed by Grace, permanent). Every "Gate Tags active" / automation-rule claim in older docs is stale. See `_archive/systeme-io-shutdown-2026-08.md`.
   - `.github/workflows/gate-buyer-sync.yml`, `load-gate1-emails.yml`, and `setup-gate-pipeline.yml` — all three called the Systeme.io API and have been **deleted** (2026-08-22). Full content preserved in `_archive/systeme-io-shutdown-2026-08.md`, including the Gate 1 email copy those workflows carried.
-  - **Consequence:** Gate 1's email sequence (see `circle-of-silence/gate-1-hakria.md`) has no live delivery mechanism right now. It was wired to Systeme.io; that's gone, and so is the automation that sent it. Needs a decision — migrate to MailerLite, or something else.
+  - **Consequence — corrected 2026-09-23, this was stale:** Gate 1's email sequence does have a live delivery mechanism now — it was migrated to MailerLite. Per `PROJECT_STATUS.md` ("Gate 1 email sequence — known-correct status, confirmed 2026-08-30"), all 6 emails are loaded verbatim into MailerLite automation `193979382021227889` ("Gate 1 — The Call — Welcome Sequence"), triggered by joining MailerLite group `193979375492793939`, which is exactly `GATE_MAILERLITE_GROUPS.one` in `worker/worker.js` — buyers are already added to that group in real time by the Worker's `/verify-purchase` route on a verified purchase. The only open item is that **the automation itself is still disabled** (a decision for Grace, not yet made), so buyers joining the group today receive nothing. Don't confuse "automation disabled" with "no delivery mechanism exists" — the mechanism is built and wired, it's just switched off. `circle-of-silence/gate-1-hakria.md`'s "EMAIL DELIVERY BLOCKED" header is also stale on this point.
 - Substack via HTTP 403 / session-cookie-in-header — old broken path, do not use. Current method: `SUBSTACK_COOKIE_ID`, see `_system/channels.md`.
 - Cowork for Windows filesystem: Linux wall, use Claude Code instead
