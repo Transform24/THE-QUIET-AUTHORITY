@@ -412,6 +412,18 @@ function unlock() {
 document.getElementById('buy-section').style.display = 'none';
 document.getElementById('toolkit-section').style.display = 'block';
 }
+function showNotice(html) {
+var box = document.getElementById('buy-section');
+if (!box) return;
+var p = document.createElement('p');
+p.setAttribute('role', 'status');
+p.style.cssText = 'margin-top:1rem;font-style:italic;';
+p.innerHTML = html;
+box.appendChild(p);
+}
+var saved = false;
+try { saved = localStorage.getItem('gate4_verified') === '1'; } catch(e) {}
+if (saved) { unlock(); return; }
 var params = new URLSearchParams(window.location.search);
 var sessionId = params.get('session_id');
 if (sessionId) {
@@ -421,13 +433,13 @@ fetch(WORKER + '/verify-purchase?session_id=' + encodeURIComponent(sessionId))
 if (data.verified && data.gate === GATE) {
 try { localStorage.setItem('gate4_verified', '1'); } catch(e) {}
 unlock();
+} else {
+showNotice('We couldn\u2019t confirm a payment for this gate. If you\u2019ve already paid, <a href="restore-access.html">restore your access here</a>.');
 }
 })
-.catch(function() {});
-} else {
-try {
-if (localStorage.getItem('gate4_verified') === '1') { unlock(); }
-} catch(e) {}
+.catch(function() {
+showNotice('We couldn\u2019t reach our payment check just now. If you\u2019ve paid, please refresh in a moment or <a href="restore-access.html">restore your access here</a>.');
+});
 }
 })();
 </script>

@@ -5,7 +5,7 @@
 - GitHub Pages: live at sanctuary-grace.com and transform24.github.io
 - Stripe: live, webhook `we_1TmPsDDvGX7GhwdzZ15UzERO` fires on `checkout.session.completed`
 - Pinterest agent: running, commits to `workflows/output/pinterest-pending/`
-- Approval gate: `transform24.github.io/THE-QUIET-AUTHORITY/approval-gate.html` password: approve
+- Approval gate: `transform24.github.io/THE-QUIET-AUTHORITY/approval-gate.html`
 - MailerLite: the live email engine (see `_system/integrations.md`)
 
 ## WHAT IS PAUSED — RECONNECTS LATER, DON'T ARCHIVE
