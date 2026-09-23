@@ -2548,7 +2548,6 @@ function joinWaitlist(){
     headers:{'Content-Type':'application/json','Accept':'application/json'},
     body:JSON.stringify({_subject:'⭕ Circle Waitlist, '+name,name:name,email:email,_replyto:email,profile:PROFILES[currentProfile]?.name||'',source:'Circle of Silence Waitlist'})
   }).catch(()=>{});
-  addToSysteme(email,name,'cos-waitlist');
   document.getElementById('waitlistForm').style.display='none';
   document.getElementById('waitlistConfirm').style.display='block';
 }
@@ -2566,7 +2565,6 @@ function joinGalleryList(){
     headers:{'Content-Type':'application/json','Accept':'application/json'},
     body:JSON.stringify({_subject:'🎨 Gallery Preview List, '+name,name:name,email:email,_replyto:email,source:'Gallery Wall Art Preview List'})
   }).catch(()=>{});
-  addToSysteme(email,name,'gallery-preview');
   document.getElementById('galleryForm').style.display='none';
   document.getElementById('galleryConfirm').style.display='block';
 }
@@ -3181,7 +3179,6 @@ function submitWWPWaitlist(){
     document.getElementById('wwpWaitlistWrap').querySelector('div[style*="flex-direction"]').style.display='none';
     document.getElementById('wwpConfirm').style.display='block';
   });
-  addToSysteme(email,name,'wwp-waitlist');
 }
 
 function joinCircleWaitlist(){
@@ -3199,7 +3196,6 @@ function joinCircleWaitlist(){
     document.getElementById('cosWaitlistWrap').querySelector('.cos-waitlist-row').style.display='none';
     document.getElementById('cosWaitlistConfirm').style.display='block';
   });
-  addToSysteme(email,name,'cos-waitlist');
 }
 
 function openTestimonyForm(){
