@@ -112,18 +112,22 @@ body{top:0!important;}
   <div class="ornament"><span class="ln"></span><span class="dot"></span><span class="ln"></span></div>
   <div class="label">Circle of Silence</div>
   <h1>Restore My Access</h1>
-  <p class="lede">
+  <p class="lede" id="heroLede">
     Bought a gate on another device or browser? Enter the email you paid with and we'll
-    unlock whatever you've already purchased here too. No password, no account.
+    send a secure link to confirm it's you, then unlock whatever you've already purchased
+    here too. No password, no account.
   </p>
 </section>
 
 <div class="wrap">
-  <div class="panel">
+  <div class="panel" id="requestPanel">
     <label for="restoreEmail">Email address used at checkout</label>
     <input type="email" id="restoreEmail" placeholder="you@example.com" autocomplete="email">
-    <button type="button" id="restoreBtn" onclick="restoreAccess()">Restore Access</button>
+    <button type="button" id="restoreBtn" onclick="restoreAccess()">Send Me A Secure Link</button>
     <div class="status" id="restoreStatus"></div>
+  </div>
+  <div class="panel" id="confirmPanel" style="display:none;">
+    <div class="status show" id="confirmStatus">Confirming your access…</div>
   </div>
 </div>
 
@@ -141,6 +145,23 @@ var GATE_NAMES = {
 };
 var GATE_NUM = {one:1,two:2,three:3,four:4,five:5,six:6};
 
+function renderGateResult(status, gates){
+  gates.forEach(function(gate){
+    try{ localStorage.setItem('gate'+GATE_NUM[gate]+'_verified','1'); }catch(e){}
+  });
+  if(!gates.length){
+    status.className='status show';
+    status.textContent="We couldn't find a purchase under that email. Check the spelling, or reach out to Grace directly if you're sure you paid.";
+    return;
+  }
+  var html='This browser now has access to:<ul class="gate-list">';
+  gates.forEach(function(gate){
+    html+='<li>'+(GATE_NAMES[gate]||gate)+'<a href="gate-'+gate+'.html">Open &rarr;</a></li>';
+  });
+  html+='</ul>';
+  status.innerHTML=html;
+}
+
 function restoreAccess(){
   var input=document.getElementById('restoreEmail');
   var btn=document.getElementById('restoreBtn');
@@ -155,27 +176,19 @@ function restoreAccess(){
   }
 
   btn.disabled=true;
-  status.textContent='Checking your purchases…';
+  status.textContent='Sending your secure link…';
 
   fetch(WORKER_URL+'/restore-access?email='+encodeURIComponent(email))
     .then(function(r){ return r.json(); })
     .then(function(data){
       btn.disabled=false;
-      var gates=data.unlockedGates||[];
-      gates.forEach(function(gate){
-        try{ localStorage.setItem('gate'+GATE_NUM[gate]+'_verified','1'); }catch(e){}
-      });
-      if(!gates.length){
+      if(data && data.sent){
         status.className='status show';
-        status.textContent="We couldn't find a purchase under that email. Check the spelling, or reach out to Grace directly if you're sure you paid.";
+        status.textContent='Check your email — we sent a secure link to confirm it\'s you. It expires in 15 minutes.';
         return;
       }
-      var html='This browser now has access to:<ul class="gate-list">';
-      gates.forEach(function(gate){
-        html+='<li>'+(GATE_NAMES[gate]||gate)+'<a href="gate-'+gate+'.html">Open &rarr;</a></li>';
-      });
-      html+='</ul>';
-      status.innerHTML=html;
+      status.className='status show error';
+      status.textContent='Something went wrong sending your link. Please try again in a moment.';
     })
     .catch(function(){
       btn.disabled=false;
@@ -183,6 +196,37 @@ function restoreAccess(){
       status.textContent='Something went wrong reaching the server. Please try again in a moment.';
     });
 }
+
+(function maybeConfirm(){
+  var params=new URLSearchParams(window.location.search);
+  if(params.get('confirm')!=='1') return;
+  var email=params.get('email');
+  var token=params.get('token');
+  if(!email || !token) return;
+
+  document.getElementById('requestPanel').style.display='none';
+  document.getElementById('heroLede').textContent='Confirming your access…';
+  var confirmPanel=document.getElementById('confirmPanel');
+  var confirmStatus=document.getElementById('confirmStatus');
+  confirmPanel.style.display='block';
+
+  fetch(WORKER_URL+'/restore-access/confirm?email='+encodeURIComponent(email)+'&token='+encodeURIComponent(token))
+    .then(function(r){ return r.json(); })
+    .then(function(data){
+      if(data && data.error){
+        confirmStatus.className='status show error';
+        confirmStatus.textContent='This link has expired or is invalid. Please request a new one below.';
+        confirmPanel.style.display='none';
+        document.getElementById('requestPanel').style.display='block';
+        return;
+      }
+      renderGateResult(confirmStatus, data.unlockedGates||[]);
+    })
+    .catch(function(){
+      confirmStatus.className='status show error';
+      confirmStatus.textContent='Something went wrong reaching the server. Please try again in a moment.';
+    });
+})();
 </script>
 
 <script>
