@@ -1,8 +1,11 @@
 name: Substack Agent — Daily Devotion
 
 on:
-  schedule:
-    - cron: '0 11 * * *'  # 6am PT = 11am UTC
+  # Daily cron disabled — SUBSTACK_COOKIE_ID secret is not set, so this
+  # ran and failed every day producing nothing. Add that secret in repo
+  # Settings > Secrets, then restore:
+  #   schedule:
+  #     - cron: '0 11 * * *'  # 6am PT = 11am UTC
   workflow_dispatch:
 
 jobs:
