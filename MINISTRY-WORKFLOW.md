@@ -18,39 +18,35 @@ file worker/worker.js.
 
 ## Step 1 — Pinterest (the entry gate)
 
-VERIFIED WORKING, but the actual posting is VERIFIED BUT BROKEN.
+VERIFIED WORKING. Corrected 2026-09-23 — an earlier pass of this document
+said Pinterest had never posted. That was wrong: it checked the wrong
+pipeline. This repo's own `workflows/scripts/pinterest_agent.py`, run by
+`.github/workflows/pinterest-agent.yml` (daily cron), really has never
+posted — `workflows/output/pin-log.md` shows nothing but `DRAFT` or an
+error on every logged run (missing token, board-name mismatch, no image
+for that day), and its GitHub Action stopped running altogether after
+2026-07-20 (its last of 84 runs). That script and workflow are dead —
+leave them alone, don't spend time fixing them.
 
-A GitHub Action runs daily at 14:00 UTC and calls the Pinterest agent
-script. `.github/workflows/pinterest-agent.yml` line 6: `cron: '0 14 * * *'`.
+Pinterest actually posts through **Metricool**, not this repo's script.
+Confirmed directly against Metricool's own scheduled-posts data
+(`getScheduledPosts`, brand id 6554085, account `sanctuarygracefaith`):
+real pins have gone out regularly since 2026-07-14, and the ones checked
+for September (the Names of God series, 2026-09-15 through 2026-09-22)
+all show `status: PUBLISHED`. Metricool is also posting YouTube Shorts and
+Instagram Reels this same week — so Instagram is not actually paused
+either; it's only paused in this repo's own dead GitHub Action, while
+Metricool posts to it directly and separately.
 
-The script is `workflows/scripts/pinterest_agent.py`. It has a 30-day
-rotating schedule of 30 pins (the `SCHEDULE` dict). Every single pin's
-caption ends with the same link: `https://sanctuary-grace.com/`, and the
-actual Pinterest API payload sent to Pinterest also sets
-`"link": "https://sanctuary-grace.com/"` (pinterest_agent.py, in the POST
-payload built right before the `urllib.request.Request` to
-`https://api.pinterest.com/v5/pins`). So every pin, whichever day it is, is
-meant to send a Pinterest viewer to the ministry's homepage.
-
-The problem: it has never actually posted. `workflows/output/pin-log.md`
-is the agent's own running log of every run, and it shows zero rows with
-status `POSTED`. Every logged run says `DRAFT` or an error:
-- `DRAFT — PINTEREST_ACCESS_TOKEN not set` (the secret is missing in some
-  runs)
-- `DRAFT — board not found: The Quiet Authority for Women` (the board name
-  in the schedule doesn't match a board that actually exists on the
-  Pinterest account — pinterest_agent.py's `get_board_id()` function looks
-  up boards by exact name match and fails silently, falling back to DRAFT)
-- `DRAFT — Canva image required for this day.` (many schedule days have
-  `image_file: None`, meaning no image was ever produced for that day, so
-  the agent can't post at all — see the `image_file` field in `SCHEDULE`)
-
-Every draft is still saved as a markdown file in
-`workflows/output/pinterest-pending/` for Grace to review by hand in
-`approval-gate.html`, but there is no evidence anywhere in this repo that a
-pin from this pipeline has ever gone live on Pinterest. This is a real,
-sitting-in-front-of-us gap: the top of the funnel currently has nothing
-flowing into it from Pinterest at all.
+One open question, not yet resolved: a batch of pins scheduled
+2026-07-15 through 2026-07-19 (the "Secret Place" Psalm 91 series) link to
+`https://transform24.github.io/THE-CIRCLE-OF-SILENCE/the-secret-place.html`
+and to a second Cloudflare Worker, `tiny-breeze-d274.tdwdemp.workers.dev`,
+neither of which appears anywhere in either repo's code or docs. The
+September pins correctly link to `sanctuary-grace.com`, so today's pins are
+fine — but whether those July links still resolve, and what
+`tiny-breeze-d274` is, is unconfirmed. Worth checking by hand or in a
+future session with Worker/Pages access.
 
 ## Step 2 — The landing page (sanctuary-grace.com / index.html)
 
@@ -205,28 +201,27 @@ that far.
 
 ## If only one thing gets fixed next
 
-Fix Pinterest posting first (Step 1).
+Corrected 2026-09-23 — Pinterest is not the break point; see Step 1. It is
+actually posting, through Metricool, and doing so successfully. The real
+top priority is the welcome sequence below.
 
-Every other step in this document — the quiz, the reveal screen, the
-MailerLite group joins, the gate chain, Stripe verification — is either
-fully working or has a specific fix waiting. But none of it matters if
-nothing is actually arriving at the front door. The pin-log shows zero
-successful posts, ever: every run has ended in DRAFT or an API error
-(missing token, a board name that doesn't match the real Pinterest board
-names, or a missing Canva image). That is the single break point stopping
-the most people from ever reaching Step 2, because right now, effectively
-no one from Pinterest is reaching Step 2 at all.
+Fix the Step 6 welcome sequence first, but it's a decision, not a rebuild.
+Gate 1's 6-email MailerLite automation is already written and already
+loaded (automation `193979382021227889`, confirmed via MailerLite) — it is
+simply switched off. Buyers are correctly tracked and grouped by the
+Worker on every purchase, but with the automation off, they get no email
+after paying: no welcome, no next step, nothing pointing them toward
+Substack, YouTube, or the next gate. Turning that automation on in
+MailerLite's dashboard is the single highest-value action available right
+now, because those are already-paying customers with an already-written
+sequence sitting unsent.
 
-Second priority, once pins are actually landing people on the homepage: the
-Step 6 welcome sequence. People who pay $9 for a gate are being correctly
-tracked and grouped, but they currently receive nothing after their
-purchase confirms — no words of welcome, no next step, nothing pointing
-them toward Substack, YouTube, or the next gate by email. That's the
-highest-value fix after Pinterest, because those are already-paying
-customers with nothing following up on the relationship.
+Second: the two foyer pages' broken signup (`tqa_foyer` /
+`secretplace_foyer` both return 400 — see worker.js `MAILERLITE_GROUPS`).
+Needs two real MailerLite group IDs from Grace's dashboard; the code fix
+on this end is already done and waiting for those IDs.
 
-Third: the two foyer pages' broken signup (`tqa_foyer` /
-`secretplace_foyer` both return 400). Lower urgency only because those
-pages are not yet linked from the main funnel traced above, so today they
-mostly lose the traffic that lands on them directly, not traffic coming
-through Pinterest.
+Third: the unconfirmed July Pinterest pin links (see Step 1) — worth a
+quick check that `transform24.github.io/THE-CIRCLE-OF-SILENCE/...` and
+`tiny-breeze-d274.tdwdemp.workers.dev` still resolve, so old pins aren't
+quietly sending people to a dead page.
