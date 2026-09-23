@@ -1,5 +1,22 @@
 # Gate 5 — Bitachon — Trust
 
-## STATUS: NOT YET BUILT
+## STATUS: BUILT, LIVE ON STRIPE
 
-No Stripe product, no email sequence, no gate page beyond the `gate-five.html` placeholder at repo root. Copy `_template/gate.md` when work starts.
+Corrected 2026-09-23 — this file previously said "NOT YET BUILT." That was wrong. Gate 5 is live now, same pattern as Gate 1.
+
+## Stripe
+- Payment link: https://buy.stripe.com/6oU00j4kU9Sh3QE7UCcQU0A
+- Price: $9
+
+## Access
+- Page: `gate-five.html` at repo root (see gate-*.html files)
+- Unlock: Stripe redirects to the gate page with `?session_id={CHECKOUT_SESSION_ID}`; the page calls the Cloudflare Worker (`lively-dew-924c`) `/verify-purchase` route, which checks the session against Stripe and against this gate's payment link above.
+- Old `?purchased=gateN` param is NOT used anymore and is not trusted by the page — ignore any doc that still says otherwise.
+- On verified purchase, buyer's email is added to MailerLite group `193578072636655259`.
+
+## Verified
+- Buy link above matches `GATE_PAYMENT_LINKS` in `THE-CIRCLE-OF-SILENCE/worker/worker.js` and the live `href` in this gate's html page.
+- Locked by default, stays locked on fake/bad session id, unlocks correctly — tested in a real browser, 2026-09-22/23.
+
+## NEXT ACTION
+Same as Gate 1: email delivery destination (MailerLite migration) still pending.

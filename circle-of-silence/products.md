@@ -2,22 +2,24 @@
 *Last updated: 2026-08-22*
 
 ## The Circle of Silence — $9/gate
+All six corrected 2026-09-23 — previously said Gates 2–6 were not built; they are live.
 - Gate 1 HaKria: https://buy.stripe.com/eVqfZh8Ba8Od0Es8YGcQU0w — LIVE, see `gate-1-hakria.md`
-- Gate 2 Sheket: NOT YET BUILT
-- Gate 3 HaMidbar: NOT YET BUILT
-- Gate 4 Hitkania: NOT YET BUILT
-- Gate 5 Bitachon: NOT YET BUILT
-- Gate 6 Hithavut: NOT YET BUILT
+- Gate 2 Sheket: https://buy.stripe.com/6oU3cv8Bac0pcna0sacQU0x — LIVE, see `gate-2-sheket.md`
+- Gate 3 HaMidbar: https://buy.stripe.com/9B600j9FefcB0EscaScQU0y — LIVE, see `gate-3-hamidbar.md`
+- Gate 4 Hitkania: https://buy.stripe.com/dRmdR9g3CfcB72Qgr8cQU0z — LIVE, see `gate-4-hitkania.md`
+- Gate 5 Bitachon: https://buy.stripe.com/6oU00j4kU9Sh3QE7UCcQU0A — LIVE, see `gate-5-bitachon.md`
+- Gate 6 Hithavut: https://buy.stripe.com/eVq8wP8Ba0hHgDqej0cQU0B — LIVE, see `gate-6-hithavut.md`
 
 ## The Woman Who Pours — $15.99
 - Standalone product
 - Separate Pinterest track
 - Email listing needed (MailerLite — see `_system/integrations.md`)
 
-## The Secret Place — Free
-- Entry experience
-- Email capture → was Systeme.io (dead, see `_archive/systeme-io-shutdown-2026-08.md`); tag `secret-place-buyer` ID 2057950 is a Systeme.io artifact, no longer meaningful
-- Needs the same delivery-mechanism decision as Gate 1
+## The Secret Place — three separate things, don't conflate
+Corrected 2026-09-23 — this used to describe one free product; there are three.
+- **Free entry page** (`the-secret-place.html`) — email capture only, MailerLite groupKey `secretplace`.
+- **Free pre-study foyer** (`the-secret-place-foyer.html`) — email capture, MailerLite groupKey `secretplace_foyer`. This groupKey is not in the Worker's `MAILERLITE_GROUPS` map yet — signups from this page currently fail with a 400. Needs its MailerLite group ID added to `worker.js`.
+- **Paid guide, "Architecture of Intimacy"** (`secret-place-architecture-of-intimacy.html`) — $9, https://buy.stripe.com/6oU8wPbNmggFevigr8cQU0F, verified the same way as the gates via the Worker's `/secret-place/download` route, which streams the PDF after a verified purchase.
 
 ## Four Lead Magnet Apps — Free
 - Guilty Giver, Depleted Survivor, Striving Achiever, Lost Wanderer
