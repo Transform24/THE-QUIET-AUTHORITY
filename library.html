@@ -72,6 +72,27 @@
   footer .fine{font-size:11.5px; color:var(--muted); letter-spacing:0.04em;}
   footer .fine a{text-decoration:none; border-bottom:1px solid var(--rule);}
 
+  .practice-visual{
+    position:relative; margin:0 0 20px; border:1px solid var(--rule); overflow:hidden;
+  }
+  .practice-visual img{
+    width:100%; max-height:220px; object-fit:cover; display:block; filter:brightness(.72);
+  }
+  .practice-visual figcaption{
+    padding:12px 16px; background:var(--panel); border-top:1px solid var(--rule);
+    font-family:'Cormorant Garamond',serif; font-style:italic; font-size:14px; color:var(--muted);
+  }
+
+  .listen-block{
+    background:var(--bg); border-top:1px solid var(--rule); padding:18px 22px 22px;
+  }
+  .listen-label{
+    font-family:'Cinzel',serif; font-size:10.5px; letter-spacing:0.18em; color:var(--parchment);
+    text-transform:uppercase; margin-bottom:10px;
+  }
+  .listen-block audio{width:100%; height:34px; filter:sepia(0.15) saturate(0.7);}
+  .listen-note{font-size:12px; color:var(--muted); margin-top:8px; font-style:italic;}
+
   @media(max-width:560px){
     .item{flex-direction:column; align-items:flex-start; gap:10px;}
   }
@@ -101,6 +122,10 @@
       <span class="label" style="border:none;">Practice</span>
       <h2>Sit With It</h2>
     </div>
+    <figure class="practice-visual">
+      <img src="gallery-hero.png" alt="A still, candlelit sanctuary space for prayer and silence" loading="lazy" onerror="this.parentElement.style.display='none'">
+      <figcaption>Set the space. Then sit in it.</figcaption>
+    </figure>
     <div class="item-list">
       <a class="item" href="index.html?view=silence">
         <div class="item-main">
@@ -109,6 +134,13 @@
         </div>
         <span class="go">Begin &rarr;</span>
       </a>
+      <div class="listen-block">
+        <div class="listen-label">Listen First &middot; A Word From Grace</div>
+        <audio controls preload="none" src="assets/audio/daily-bedside.mp3">
+          Your browser does not support the audio element. <a href="assets/audio/daily-bedside.mp3">Download the audio</a>.
+        </audio>
+        <p class="listen-note">A short spoken word on laying it down and being still, before you begin your first full session.</p>
+      </div>
     </div>
   </div>
 

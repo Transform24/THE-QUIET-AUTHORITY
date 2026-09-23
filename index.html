@@ -1755,6 +1755,13 @@ const SILENCE_QUOTES=[
 // ── STATE ─────────────────────────────────────────────────────
 let currentQ=0,answers=[],userName='',userEmail='',currentProfile='A';
 let voPlaying=false,timerInterval=null,breathInterval=null,timerSeconds=900,paused=false,sessionPhase='idle',selectedTrack=-1,silenceQuoteInterval=null,silenceQuoteIdx=0;
+// _tabObserver/_observerStarted must be declared before init() runs (init() calls showResults()
+// -> showScreen() -> startTabObserver(), which reads _observerStarted). They were previously
+// declared far below (near startTabObserver's definition) as `let`, so init() hit them while
+// still in the temporal dead zone and threw "Cannot access '_observerStarted' before
+// initialization", aborting the ?view=silence deep-link handler before it could scroll to the
+// session or set the active tab. Declaring them here, above init(), fixes that.
+let _tabObserver=null,_observerStarted=false;
 
 // ── MAILERLITE (via Worker proxy) ───────────────────────────────
 const WORKER_URL='https://lively-dew-924c.tdwdemp.workers.dev';
@@ -2816,9 +2823,6 @@ function highlightPathStep(n){
     else{el.style.color='var(--text-dim)';el.style.borderColor='var(--border)';}
   });
 }
-
-let _tabObserver=null;
-let _observerStarted=false;
 
 function startTabObserver(){
   if(_observerStarted||!('IntersectionObserver' in window))return;
