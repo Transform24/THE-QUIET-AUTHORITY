@@ -90,9 +90,39 @@
   footer{padding:50px 0 60px; text-align:center;}
   footer .fine{font-size:11.5px; color:var(--muted); letter-spacing:0.04em;}
   footer .fine a{text-decoration:none; border-bottom:1px solid var(--rule);}
+/* ══ GOOGLE TRANSLATE — suppress Google's own banner/toolbar chrome,
+   expose a small on-brand control instead of the default toolbar.
+   Google injects the top "Translated to / Show original" banner as a
+   direct child of <body> (an outer div carrying only class="skiptranslate",
+   wrapping an iframe) — that's what we hide here. Our own control lives
+   inside #google_translate_element, nested elsewhere in the DOM, so it is
+   never a direct child of <body> and is unaffected by this rule. ══ */
+.goog-te-banner-frame,
+body>.skiptranslate{display:none!important;}
+body{top:0!important;}
+#google_translate_element{
+  position:fixed;top:14px;right:16px;z-index:9500;
+  background:rgba(13,13,13,0.92);border:1px solid rgba(201,168,76,0.4);
+  padding:4px 10px;border-radius:2px;line-height:1;
+}
+#google_translate_element .goog-te-gadget{font-family:'Jost',Georgia,sans-serif;font-size:0;color:transparent;}
+#google_translate_element .goog-te-gadget-icon,
+#google_translate_element .goog-te-gadget > span,
+#google_translate_element .goog-te-gadget img{display:none!important;}
+#google_translate_element select.goog-te-combo{
+  font-family:'Jost',Georgia,sans-serif;font-size:0.62rem;letter-spacing:0.08em;
+  text-transform:uppercase;background:transparent;color:#C9A84C;
+  border:none;outline:none;cursor:pointer;max-width:130px;
+  -webkit-appearance:menulist;appearance:menulist;
+}
+#google_translate_element select.goog-te-combo:focus{outline:1px solid rgba(201,168,76,0.5);}
+.goog-tooltip,.goog-tooltip:hover{display:none!important;}
+.goog-text-highlight{background:none!important;box-shadow:none!important;}
 </style>
 </head>
 <body>
+<div id="google_translate_element"></div>
+
 
 <div class="wrap topbar">
   <div class="brandmark">Sanctuary Grace Ministry</div>
@@ -461,5 +491,11 @@ function unlockNamesGuide() {
 })();
 </script>
 
+<script>
+function googleTranslateElementInit(){
+  new google.translate.TranslateElement({pageLanguage:'en',autoDisplay:false},'google_translate_element');
+}
+</script>
+<script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
 </body>
 </html>

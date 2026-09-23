@@ -770,9 +770,34 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{
 .morning-scripture{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-style:italic;color:var(--cream);line-height:1.7;max-width:400px;margin:0 auto 28px;padding:18px 22px;border-left:2px solid var(--gold-dim);text-align:left;}
 .btn-morning-complete{padding:14px 32px;background:none;border:1px solid var(--gold-dim);color:var(--gold);font-family:'Cinzel',serif;font-size:0.58rem;letter-spacing:0.3em;text-transform:uppercase;cursor:pointer;transition:all 0.3s;margin-top:8px;}
 .btn-morning-complete:hover{background:rgba(201,169,110,0.1);border-color:var(--gold);}
-/* ══ GOOGLE TRANSLATE SUPPRESS ══ */
-.goog-te-banner-frame,.skiptranslate{display:none!important;}
+/* ══ GOOGLE TRANSLATE — suppress Google's own banner/toolbar chrome,
+   expose a small on-brand control instead of the default toolbar.
+   Google injects the top "Translated to / Show original" banner as a
+   direct child of <body> (an outer div carrying only class="skiptranslate",
+   wrapping an iframe) — that's what we hide here. Our own control lives
+   inside #google_translate_element, nested elsewhere in the DOM, so it is
+   never a direct child of <body> and is unaffected by this rule. ══ */
+.goog-te-banner-frame,
+body>.skiptranslate{display:none!important;}
 body{top:0!important;}
+#google_translate_element{
+  position:fixed;top:14px;right:16px;z-index:9500;
+  background:rgba(13,13,13,0.92);border:1px solid var(--gold-dim);
+  padding:4px 10px;border-radius:2px;line-height:1;
+}
+#google_translate_element .goog-te-gadget{font-family:'Jost',sans-serif;font-size:0;color:transparent;}
+#google_translate_element .goog-te-gadget-icon,
+#google_translate_element .goog-te-gadget > span,
+#google_translate_element .goog-te-gadget img{display:none!important;}
+#google_translate_element select.goog-te-combo{
+  font-family:'Jost',sans-serif;font-size:0.62rem;letter-spacing:0.08em;
+  text-transform:uppercase;background:transparent;color:var(--gold);
+  border:none;outline:none;cursor:pointer;max-width:130px;
+  -webkit-appearance:menulist;appearance:menulist;
+}
+#google_translate_element select.goog-te-combo:focus{outline:1px solid var(--gold-dim);}
+.goog-tooltip,.goog-tooltip:hover{display:none!important;}
+.goog-text-highlight{background:none!important;box-shadow:none!important;}
 /* ══ LANGUAGE SELECTOR ══ */
 .lang-btn{background:none;border:none;color:var(--text-muted);font-family:'Cinzel',serif;font-size:0.72rem;letter-spacing:0.16em;cursor:pointer;padding:6px 4px;transition:color 0.3s;font-weight:400;line-height:1;}
 .lang-btn:hover{color:var(--cream);}
@@ -782,7 +807,7 @@ body{top:0!important;}
 </head>
 <body>
 
-<div id="google_translate_element" style="display:none;visibility:hidden;"></div>
+<div id="google_translate_element"></div>
 
 <!-- ══ PROGRESS BAR ══ -->
 <div id="progressBar"><div id="progressFill"></div></div>
