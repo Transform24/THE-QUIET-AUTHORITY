@@ -54,6 +54,42 @@ exists.*
   `sanctuary-grace.com/daily-sanctuary.html` currently reaches it. Someone should
   decide where it belongs in the site's navigation.
 
+## Daily devotional audio — new repeatable script, still manual (added 2026-09-23)
+
+- **The daily Substack devotion has never included audio.** `content-ops/05_substack/
+  agent.md` and `CONTEXT.md` describe a text-only pipeline (`workflows/scripts/
+  substack_agent.py` writes the draft, `substack-deploy.py` publishes it) — no
+  ElevenLabs step, no voice_id, nothing audio-related anywhere in either file. The
+  ElevenLabs recordings that DO exist — the six `assets/audio/gate-N-voice.mp3`
+  files and the four `daily-*.mp3` files behind `daily-sanctuary.html` — were made
+  by hand in a prior ElevenLabs session for the gate pages and the free Daily
+  Sanctuary page, and are unrelated to the Substack devotion pipeline. There was no
+  broken code to fix here — there was no audio step in the devotion pipeline to
+  break.
+- **Added `workflows/scripts/devotional-audio.py`** — a new, repeatable script (not
+  wired into any GitHub Action) that reads the latest approved (or, absent one,
+  pending) devotion from `workflows/output/substack-approved/` /
+  `substack-pending/`, strips markdown/frontmatter, and calls the ElevenLabs
+  text-to-speech REST API to save `workflows/output/devotional-audio/[date].mp3`.
+  Defaults to the Matilda voice already used for the gate/daily-sanctuary audio,
+  for consistency; override with `ELEVENLABS_VOICE_ID`. Logs to
+  `workflows/devotional-audio-log.md`.
+- **Proven end-to-end with a real ElevenLabs generation** (2026-09-23): narrated an
+  excerpt of the newest unpublished draft, `workflows/output/substack-pending/
+  2026-06-28.md` ("A Letter for the Long Road"), using voice Katherine — Warm &
+  Relatable (`Tfv2PGiTliSQ4XSXrJmA`), chosen for its calm/warm description fit for
+  this ministry's tone. Real 30s mp3 saved to `workflows/output/devotional-audio/
+  2026-06-28-test-narration.mp3` (confirmed with `file`: real MPEG audio, not a
+  placeholder).
+- **Automation is still blocked, and by exactly one thing:** no `ELEVENLABS_API_KEY`
+  secret exists in any `.github/workflows/*.yml` env block (checked all nine
+  workflow files). Without it, `devotional-audio.py` runs but skips narration and
+  logs `SKIPPED (no API key)` — the same fail-soft pattern the other agents use
+  when their own secrets are missing. This script was deliberately NOT added to
+  `substack-agent.yml`'s cron — do that, and add an
+  `ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}` env line, only after Grace
+  adds the secret to the repo.
+
 ---
 
 ## Hosting — who serves what (confirmed 2026-08-30)
