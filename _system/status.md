@@ -1,5 +1,32 @@
 # Sanctuary Grace Ministry — System Status
-*Last updated: 2026-08-22*
+*Last updated: 2026-09-24*
+
+## Root URL now serves About, not the TQA assessment (2026-09-24)
+- `index.html` at repo root is now the About page (Luke 4:18, ministry origin story).
+  It was previously TQA's 8-question assessment.
+- The assessment moved to `discover-your-profile.html` (its own URL) and is
+  otherwise unchanged — same internal logic, same `?view=shop`/`?view=silence`
+  handling, same anonymous-visitor redirect to `foyer.html`. Its `canonical`/
+  `og:url` tags now point to `/discover-your-profile.html`.
+- The old `about.html` file no longer exists — it was renamed to `index.html`.
+  Its `canonical`/`og:url` tags now point to `/`.
+- Six links across five pages were repointed from `index.html` to
+  `discover-your-profile.html` (with `?view=...` params preserved where
+  present): `the-quiet-authority-foyer.html` (Begin The Assessment button),
+  `library.html` (2 links), `names-of-god.html` (2 links), `foyer.html`
+  (the door link).
+- Reason: every visitor was meeting a diagnostic quiz before meeting the
+  ministry itself, and Circle of Silence sat three clicks deep behind it.
+  About now bridges directly into Gate Zero and The Secret Place.
+- Verified locally (static server + Playwright): root serves About,
+  `/discover-your-profile.html` serves the assessment unchanged, all six
+  repointed links and About's two CTAs resolve correctly, no broken
+  relative links introduced.
+- Pre-existing, unrelated to this change: `discover-your-profile.html` still
+  calls an `addToSysteme(...)` function (4 call sites) that has no definition
+  in the file — dead code left over from the Systeme.io teardown. Not
+  introduced by this pass; app internal logic was intentionally left
+  untouched per this change's scope. Flagging for a future pass.
 
 ## WHAT WORKS — DO NOT REBUILD
 - GitHub Pages: live at sanctuary-grace.com and transform24.github.io
