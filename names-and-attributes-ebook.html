@@ -70,11 +70,6 @@
 
   #download-state{display:none; text-align:center; padding:40px 0;}
   #download-state.show{display:block;}
-  #download-state a.dl{
-    display:inline-block; margin-top:16px; background:var(--terracotta); color:var(--cream); text-decoration:none;
-    font-family:'Cinzel',serif; font-size:12px; letter-spacing:0.14em; text-transform:uppercase; padding:15px 34px; border-radius:2px;
-  }
-  #download-state p.err{color:var(--terracotta); font-size:13.5px; max-width:480px; margin:14px auto 0; line-height:1.6;}
 
   footer{padding:40px 0 60px; text-align:center; border-top:1px solid var(--rule);}
   footer .fine{font-size:11.5px; color:var(--muted); letter-spacing:0.04em;}
@@ -96,9 +91,9 @@
     how to say it, what it means, why it matters, and a short prayer to pray it back to Him.
   </p>
 
-  <div class="price-box">
+  <div class="price-box" id="buySection">
     <div class="amount"><sup>$</sup>17.99</div>
-    <a class="buy-btn" href="https://buy.stripe.com/test_bJe5kD9FeggFbj6caScQU00" id="buy-link">Get The Ebook</a>
+    <a class="buy-btn" id="buyBtn" href="#" onclick="return false;">Get The Ebook</a>
     <p class="fine">Instant PDF download after checkout. One-time payment, yours to keep.</p>
   </div>
 </section>
@@ -127,8 +122,12 @@
 
 <section class="wrap" id="download-state">
   <div class="ornament"><span class="ln"></span><span class="dot"></span><span class="ln"></span></div>
-  <h2 style="font-style:italic;">Checking your purchase&hellip;</h2>
-  <p style="color:var(--muted); max-width:480px; margin:14px auto 0;">One moment while we confirm your payment with Stripe.</p>
+  <h2 style="font-style:italic;">Thank you.</h2>
+  <p style="color:var(--muted); max-width:480px; margin:14px auto 0;">Your ebook is ready.</p>
+  <p style="text-align:center; margin-top:18px;">
+    <a class="buy-btn" id="downloadBtn" href="#">Download The Ebook</a>
+  </p>
+  <div class="status-line" id="statusLine" style="text-align:center; margin-top:14px; font-size:13px; color:var(--muted);"></div>
 </section>
 
 <footer class="wrap">
@@ -138,43 +137,38 @@
 </footer>
 
 <script>
-  // If we've just come back from Stripe checkout (?paid=1&session_id=...),
-  // verify the purchase against the Worker and reveal the real download.
-  // NOTE: the /names-ebook/download Worker route is not deployed yet — until
-  // it is, this will show a clear "not ready yet" message rather than fail silently.
-  (function(){
-    const params = new URLSearchParams(location.search);
-    if (params.get('paid') !== '1') return;
-    const sessionId = params.get('session_id');
+var WORKER_URL = 'https://lively-dew-924c.tdwdemp.workers.dev';
+// Live Stripe Payment Link for this product, matches NAMES_EBOOK_PAYMENT_LINK
+// in worker/worker.js in the THE-CIRCLE-OF-SILENCE repo.
+var STRIPE_PAYMENT_LINK = 'https://buy.stripe.com/bJecN5dVu6G50Es2AicQU0H';
 
-    const buyView = document.getElementById('buy-view');
-    const state = document.getElementById('download-state');
-    state.classList.add('show');
-    if (buyView) buyView.style.display = 'none';
+document.getElementById('buyBtn').href = STRIPE_PAYMENT_LINK;
+document.getElementById('buyBtn').removeAttribute('onclick');
+document.getElementById('buyBtn').target = '_blank';
 
-    const WORKER_BASE = 'https://lively-dew-924c.transform24.workers.dev'; // confirm exact subdomain before going live
+function showUnlocked(sessionId) {
+  var buyView = document.getElementById('buy-view');
+  if (buyView) buyView.style.display = 'none';
+  var state = document.getElementById('download-state');
+  state.classList.add('show');
+  document.getElementById('downloadBtn').href = WORKER_URL + '/names-ebook/download?session_id=' + encodeURIComponent(sessionId);
+}
 
-    fetch(WORKER_BASE + '/names-ebook/download?session_id=' + encodeURIComponent(sessionId))
-      .then(function(res){
-        if (!res.ok) throw new Error('not_ready');
-        return res.blob();
-      })
-      .then(function(blob){
-        const url = URL.createObjectURL(blob);
-        state.innerHTML =
-          '<div class="ornament"><span class="ln"></span><span class="dot"></span><span class="ln"></span></div>' +
-          '<h2 style="font-style:italic;">Thank you.</h2>' +
-          '<p style="color:var(--muted); max-width:480px; margin:14px auto 0;">Your ebook is ready.</p>' +
-          '<a class="dl" href="' + url + '" download="The-Names-and-Attributes-of-God.pdf">Download The Ebook</a>';
-      })
-      .catch(function(){
-        state.innerHTML =
-          '<div class="ornament"><span class="ln"></span><span class="dot"></span><span class="ln"></span></div>' +
-          '<h2 style="font-style:italic;">Payment received.</h2>' +
-          '<p class="err">Your payment went through, but the automatic download isn\'t connected yet. ' +
-          'Reply to your receipt email or reach out to Sanctuary Grace directly and we will send your PDF right away. Thank you for your patience.</p>';
-      });
-  })();
+(function() {
+  var params = new URLSearchParams(window.location.search);
+  var sessionId = params.get('session_id');
+
+  if (sessionId) {
+    try { localStorage.setItem('names_ebook_session', sessionId); } catch(e) {}
+    showUnlocked(sessionId);
+    return;
+  }
+
+  try {
+    var saved = localStorage.getItem('names_ebook_session');
+    if (saved) { showUnlocked(saved); }
+  } catch(e) {}
+})();
 </script>
 
 </body></html>
