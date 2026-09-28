@@ -98,7 +98,7 @@
 
   <div class="price-box">
     <div class="amount"><sup>$</sup>17.99</div>
-    <a class="buy-btn" href="https://buy.stripe.com/test_bJe5kD9FeggFbj6caScQU00" id="buy-link">Get The Ebook</a>
+    <a class="buy-btn" href="https://buy.stripe.com/bJecN5dVu6G50Es2AicQU0H" id="buy-link">Get The Ebook</a>
     <p class="fine">Instant PDF download after checkout. One-time payment, yours to keep.</p>
   </div>
 </section>
@@ -152,7 +152,7 @@
     state.classList.add('show');
     if (buyView) buyView.style.display = 'none';
 
-    const WORKER_BASE = 'https://lively-dew-924c.transform24.workers.dev'; // confirm exact subdomain before going live
+    const WORKER_BASE = 'https://lively-dew-924c.tdwdemp.workers.dev';
 
     fetch(WORKER_BASE + '/names-ebook/download?session_id=' + encodeURIComponent(sessionId))
       .then(function(res){
