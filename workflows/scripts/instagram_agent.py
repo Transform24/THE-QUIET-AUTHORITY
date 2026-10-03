@@ -1,3 +1,6 @@
+# DESIGN CONSTRAINTS (sovereign): palette is strictly Terracotta (#C1593C), Black, and White.
+# Font is Cinzel for all Canva text. No gold, cream, sage, or other accent colours in any brief.
+# Scripture is King James Version (KJV) only; the Luke 4:18 mandate anchors the series.
 import os, datetime, pathlib, json, urllib.request, urllib.error
 
 IG_ACCESS_TOKEN = os.environ.get('IG_ACCESS_TOKEN', '').strip()
@@ -44,13 +47,13 @@ https://sanctuarygrace.store
 
 HASHTAGS: #ChristianWomen #SpiritualBurnout #FaithAndWellness #SanctuaryGrace #HopeForWomen #ChristianMom #SpiritualRest
 
-CANVA BRIEF: 1080x1080px, black background, Cinzel font ALL CAPS in white, terra accent #C1593C for slide numbers, soft gold star detail in corner."""
+CANVA BRIEF: 1080x1080px, black background, Cinzel font ALL CAPS in white, terra accent #C1593C for slide numbers, white star detail in corner."""
     },
     2: {
         "pillar": "scripture",
-        "content": """SCRIPTURE: Come to me, all you who are weary and burdened, and I will give you rest. — Matthew 11:28
+        "content": """SCRIPTURE: Come unto me, all ye that labour and are heavy laden, and I will give you rest. — Matthew 11:28
 
-He did not say come when you have finished. He did not say come when you have earned it. He said come weary. Come burdened. Come exactly as you are right now.
+He did not say come when you have finished. He did not say come when you have earned it. He said come, all ye that labour and are heavy laden. Come exactly as you are right now.
 
 Rest is not a reward for productivity. It is a gift offered to those who are too tired to keep refusing it.
 
@@ -60,7 +63,7 @@ https://sanctuarygrace.store
 
 HASHTAGS: #ScriptureForWomen #ChristianWomen #FaithJourney #QuietTime #DailyDevotion #SpiritualRest #SanctuaryGrace
 
-CANVA BRIEF: Black background, Matthew 11:28 in Cinzel gold, soft white body text below, single gold star accent."""
+CANVA BRIEF: Black background, Matthew 11:28 in Cinzel terracotta #C1593C, white body text below, single white star accent."""
     },
     3: {
         "pillar": "reel",
@@ -140,9 +143,9 @@ CANVA BRIEF: 1080x1080px series, black background, Cinzel white text, one profil
     },
     7: {
         "pillar": "scripture",
-        "content": """SCRIPTURE: He heals the brokenhearted and binds up their wounds. — Psalm 147:3
+        "content": """SCRIPTURE: He healeth the broken in heart, and bindeth up their wounds. — Psalm 147:3
 
-He binds up. This is not passive. It is deliberate, personal, attentive. The image is of a physician who knows exactly where it hurts and does not rush the treatment.
+He bindeth up. This is not passive. It is deliberate, personal, attentive. The image is of a physician who knows exactly where it hurts and does not rush the treatment.
 
 You wanted to be further along by now. But healing is not linear. And the fact that you are still in the middle does not mean you are stuck — it means the work is still happening.
 
@@ -152,7 +155,7 @@ https://sanctuarygrace.store
 
 HASHTAGS: #ScriptureForWomen #ChristianWomen #SpiritualRest #FaithJourney #HopeForWomen #SanctuaryGrace #DailyDevotion
 
-CANVA BRIEF: Psalm 147:3 in Cinzel gold on black, soft texture background, single gold star."""
+CANVA BRIEF: Psalm 147:3 in Cinzel terracotta #C1593C on black, soft texture background, single white star."""
     },
     8: {
         "pillar": "reel",
@@ -176,9 +179,9 @@ THUMBNAIL BRIEF: Dark still frame, text: REST IS NOT A REWARD in Cinzel terra, w
     },
     9: {
         "pillar": "devotional",
-        "content": """CAPTION: The Lord is close to the brokenhearted. — Psalm 34:18
+        "content": """CAPTION: The LORD is nigh unto them that are of a broken heart; and saveth such as be of a contrite spirit. — Psalm 34:18
 
-Not the triumphant. Not the thriving. The brokenhearted — the woman who is holding her faith together with trembling hands and wondering if it will be enough.
+Not the triumphant. Not the thriving. Those of a broken heart — the woman who is holding her faith together with trembling hands and wondering if it will be enough.
 
 You do not have to feel his presence for it to be real. You do not have to manufacture the joy. Just stay.
 
@@ -190,7 +193,7 @@ https://sanctuarygrace.store
 
 HASHTAGS: #DailyDevotion #ChristianWomen #SacredSpace #FaithJourney #SpiritualRest #QuietTime #SanctuaryGrace
 
-CANVA BRIEF: Week 2 Renewal cover, candle glow, Cinzel title, warm dark tones."""
+CANVA BRIEF: Week 2 Renewal cover, candle glow, Cinzel title, black and terracotta tones."""
     },
     10: {
         "pillar": "silence",
@@ -236,9 +239,9 @@ CANVA BRIEF: Striving Achiever profile image (B&W) on final slide, black backgro
     },
     12: {
         "pillar": "scripture",
-        "content": """SCRIPTURE: But those who hope in the Lord will renew their strength. They will soar on wings like eagles; they will run and not grow weary. — Isaiah 40:31
+        "content": """SCRIPTURE: But they that wait upon the LORD shall renew their strength; they shall mount up with wings as eagles; they shall run, and not be weary; and they shall walk, and not faint. — Isaiah 40:31
 
-This is a promise for the woman who is faint. Not for the one who has already rested. For the one who cannot imagine soaring because she can barely walk.
+This is a promise for the woman who is faint. Not for the one who has already rested. For the one who cannot imagine mounting up with wings because she can barely walk.
 
 The renewal is not something you manufacture. It is something you receive. It flows from the act of waiting on him — of being honest that you have run out.
 
@@ -248,7 +251,7 @@ https://sanctuarygrace.store
 
 HASHTAGS: #ScriptureForWomen #ChristianWomen #FaithJourney #SpiritualRest #HopeForWomen #SanctuaryGrace #DailyDevotion
 
-CANVA BRIEF: Isaiah 40:31 in Cinzel gold on black, eagle feather detail in corner, warm light gradient edge."""
+CANVA BRIEF: Isaiah 40:31 in Cinzel terracotta #C1593C on black, eagle feather detail in corner, white light gradient edge."""
     },
     13: {
         "pillar": "reel",
@@ -272,7 +275,7 @@ THUMBNAIL BRIEF: Woman looking inward, soft side lighting, text: SHE IS STILL TH
     },
     14: {
         "pillar": "devotional",
-        "content": """CAPTION: Give us today our daily bread. — Matthew 6:11
+        "content": """CAPTION: Give us this day our daily bread. — Matthew 6:11
 
 Jesus taught us to ask for today's portion. Not this week's. Not enough to stop depending. Today.
 
@@ -286,7 +289,7 @@ https://sanctuarygrace.store
 
 HASHTAGS: #DailyDevotion #ChristianWomen #QuietTime #SpiritualRest #FaithJourney #SacredSpace #SanctuaryGrace
 
-CANVA BRIEF: Week 3 Peace cover, soft gold light on black, Cinzel title, minimal and still."""
+CANVA BRIEF: Week 3 Peace cover, soft white light on black, Cinzel title, minimal and still."""
     },
     15: {
         "pillar": "silence",
@@ -332,7 +335,7 @@ CANVA BRIEF: Lost Wanderer profile image (B&W) on final slide, black background,
     },
     17: {
         "pillar": "scripture",
-        "content": """SCRIPTURE: For God has not given us a spirit of fear, but of power and of love and of a sound mind. — 2 Timothy 1:7
+        "content": """SCRIPTURE: For God hath not given us the spirit of fear; but of power, and of love, and of a sound mind. — 2 Timothy 1:7
 
 Fear has been speaking in your voice for so long you have started to believe it is your voice. It tells you to stay small, to stay safe, to protect yourself.
 
@@ -344,7 +347,7 @@ https://sanctuarygrace.store
 
 HASHTAGS: #ScriptureForWomen #ChristianWomen #FaithJourney #SpiritualRest #HopeForWomen #SanctuaryGrace #QuietTime
 
-CANVA BRIEF: 2 Timothy 1:7 in Cinzel gold, bold and centered, dark background, gold accent line beneath."""
+CANVA BRIEF: 2 Timothy 1:7 in Cinzel terracotta #C1593C, bold and centered, black background, terracotta accent line beneath."""
     },
     18: {
         "pillar": "reel",
@@ -370,7 +373,7 @@ THUMBNAIL BRIEF: Hands open, palms up, soft light, text: BE HONEST in Cinzel ter
     },
     19: {
         "pillar": "devotional",
-        "content": """CAPTION: We are God's handiwork, created in Christ Jesus to do good works, which God prepared in advance for us to do. — Ephesians 2:10
+        "content": """CAPTION: For we are his workmanship, created in Christ Jesus unto good works, which God hath before ordained that we should walk in them. — Ephesians 2:10
 
 You have not been disqualified. You have not missed the window. The God who made you with purpose does not revoke the purpose when the path gets complicated.
 
@@ -384,7 +387,7 @@ https://sanctuarygrace.store
 
 HASHTAGS: #DailyDevotion #ChristianWomen #FaithJourney #SpiritualRest #SacredSpace #SanctuaryGrace #HopeForWomen
 
-CANVA BRIEF: Week 4 Calling cover, dawn light quality, Cinzel title in warm gold."""
+CANVA BRIEF: Week 4 Calling cover, dawn light quality, Cinzel title in terracotta #C1593C."""
     },
     20: {
         "pillar": "silence",
@@ -430,7 +433,7 @@ CANVA BRIEF: All four profile images in a 2x2 grid, black background, Cinzel lab
     },
     22: {
         "pillar": "scripture",
-        "content": """SCRIPTURE: His mercies are new every morning; great is your faithfulness. — Lamentations 3:23
+        "content": """SCRIPTURE: It is of the LORD's mercies that we are not consumed, because his compassions fail not. They are new every morning: great is thy faithfulness. — Lamentations 3:22-23
 
 This was written from inside devastation — the city in ruins, the exile beginning. And from inside that wreckage, the writer found the one thing that held.
 
@@ -442,7 +445,7 @@ https://sanctuarygrace.store
 
 HASHTAGS: #ScriptureForWomen #ChristianWomen #FaithJourney #SpiritualRest #HopeForWomen #SanctuaryGrace #DailyDevotion
 
-CANVA BRIEF: Lamentations 3:23 in Cinzel gold, sunrise-dark palette, soft glow from bottom edge."""
+CANVA BRIEF: Lamentations 3:22-23 in Cinzel terracotta #C1593C, black and terracotta palette, soft glow from bottom edge."""
     },
     23: {
         "pillar": "reel",
@@ -468,9 +471,9 @@ THUMBNAIL BRIEF: Woman's face, eyes closed, peaceful surrender, text: YOUR NEEDS
     },
     24: {
         "pillar": "devotional",
-        "content": """CAPTION: Even though I walk through the darkest valley, I will fear no evil, for you are with me. — Psalm 23:4
+        "content": """CAPTION: Yea, though I walk through the valley of the shadow of death, I will fear no evil: for thou art with me. — Psalm 23:4
 
-He does not say you will not walk through the darkest valley. He says through.
+He does not say you will not walk through the valley of the shadow of death. He says through.
 
 The valley is not the destination. It is the path. And the path has a guide — the God who walks through it with you. Not ahead of you waving from the other side. Present. Close enough to touch.
 
@@ -500,7 +503,7 @@ https://sanctuarygrace.store
 
 HASHTAGS: #SacredSpace #ChristianWomen #CircleOfSilence #SpiritualRest #QuietTime #FaithAndWellness #SanctuaryGrace
 
-CANVA BRIEF: Personal, warm — single candle, handwritten feel, Cinzel text, most minimal of all designs."""
+CANVA BRIEF: Personal, warm — single candle, intimate feel, Cinzel text, most minimal of all designs."""
     },
     26: {
         "pillar": "carousel",
@@ -528,7 +531,7 @@ CANVA BRIEF: Guilty Giver profile image (B&W) on final slide, black background s
     },
     27: {
         "pillar": "scripture",
-        "content": """SCRIPTURE: And we all are being transformed into his image with ever-increasing glory. — 2 Corinthians 3:18
+        "content": """SCRIPTURE: But we all, with open face beholding as in a glass the glory of the Lord, are changed into the same image from glory to glory, even as by the Spirit of the Lord. — 2 Corinthians 3:18
 
 You are not finished. The version of you that exists right now is not the final draft. You are mid-transformation.
 
@@ -540,7 +543,7 @@ https://sanctuarygrace.store
 
 HASHTAGS: #ScriptureForWomen #ChristianWomen #FaithJourney #SpiritualRest #HopeForWomen #SanctuaryGrace #DailyDevotion
 
-CANVA BRIEF: 2 Corinthians 3:18 in Cinzel gold, increasing light from left to right across dark background."""
+CANVA BRIEF: 2 Corinthians 3:18 in Cinzel terracotta #C1593C, increasing white light from left to right across dark background."""
     },
     28: {
         "pillar": "reel",
@@ -564,7 +567,7 @@ THUMBNAIL BRIEF: Long empty path at dusk, warm light ahead, text: YOU ARE NOT BE
     },
     29: {
         "pillar": "devotional",
-        "content": """CAPTION: She is clothed with strength and dignity; she can laugh at the days to come. — Proverbs 31:25
+        "content": """CAPTION: Strength and honour are her clothing; and she shall rejoice in time to come. — Proverbs 31:25
 
 The laughter at days to come is not naivety. It is the confidence of a woman who has been through enough to know that she has what it takes — not because she is extraordinary, but because the God who has walked with her this far is not going to stop.
 
@@ -576,7 +579,7 @@ https://sanctuarygrace.store
 
 HASHTAGS: #DailyDevotion #ChristianWomen #FaithJourney #SpiritualRest #HopeForWomen #SanctuaryGrace #ScriptureForWomen
 
-CANVA BRIEF: Proverbs 31 woman aesthetic, dignified and strong, black background, gold Cinzel text, powerful composition."""
+CANVA BRIEF: Proverbs 31 woman aesthetic, dignified and strong, black background, terracotta Cinzel text, powerful composition."""
     },
     30: {
         "pillar": "silence",

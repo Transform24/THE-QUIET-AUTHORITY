@@ -50,5 +50,11 @@ jobs:
           git add workflows/substack-log.md workflows/output/substack-approved/
           if ! git diff --staged --quiet; then
             git commit -m "Substack Deploy: Published approved devotions"
-            git push origin main
+            for attempt in 1 2 3; do
+              git pull --rebase origin main && git push origin main && break
+              echo "Push attempt $attempt failed, retrying..."
+              sleep 5
+            done
+            git fetch origin main
+            git merge-base --is-ancestor HEAD origin/main || { echo "Push failed after 3 attempts"; exit 1; }
           fi

@@ -15,23 +15,23 @@ She is the Laodicean woman — lukewarm, performing, doing all the
 right things but empty inside. Christ stands at the door knocking.
 
 Proverbs 3:5-6 (THE SURRENDER):
-Trust in the Lord with all your heart. Lean not on your own understanding.
-In all your ways acknowledge Him. He shall direct your paths.
+Trust in the LORD with all thine heart; and lean not unto thine own understanding.
+In all thy ways acknowledge him, and he shall direct thy paths.
 
 Psalm 27:14 (THE WAITING):
-Wait on the Lord. Be of good courage. He shall strengthen thine heart.
-I had fainted unless I had believed.
+Wait on the LORD: be of good courage, and he shall strengthen thine heart:
+wait, I say, on the LORD.
 
 Matthew 6:33 (THE REORDER):
-Seek ye first the kingdom of God and his righteousness.
-And all these things shall be added unto you.
+But seek ye first the kingdom of God, and his righteousness;
+and all these things shall be added unto you.
 
 Psalm 22:6 (THE BECOMING):
 The crimson worm. Christ made Himself nothing so she could be raised.
 
 Romans 8:28-29 (THE PROMISE):
-All things work together for good to them that love God
-and are called according to His purpose.
+And we know that all things work together for good to them that love God,
+to them who are the called according to his purpose.
 
 MISSION: Reach burned-out women who sacrificed themselves empty,
 are in debt, can't sleep at night, and need to encounter Christ as
@@ -93,7 +93,7 @@ https://sanctuary-grace.com/
         "caption": """You cannot sleep. The numbers don't add up. You have given what you don't have to give.
 And in the hours when the house is dark, you pray prayers nobody hears.
 
-Listen to Jesus: "Come to me, all you who are weary and burdened, and I will give you rest."
+Listen to Jesus: "Come unto me, all ye that labour and are heavy laden, and I will give you rest."
 
 Not rest earned. Not rest you manufacture. Not rest you deserve.
 Rest He gives. Rest He promises. Rest in His finished work on the cross.
@@ -130,11 +130,11 @@ https://sanctuary-grace.com/
         "pin": "Scripture — Matthew 11:28",
         "board": "Christian Women Encouragement",
         "image_file": None,
-        "caption": """Come to me, all you who are weary and burdened, and I will give you rest. — Matthew 11:28
+        "caption": """Come unto me, all ye that labour and are heavy laden, and I will give you rest. — Matthew 11:28
 
 He did not say come when you have rested enough. He did not say come when you have finished everything on your list. He did not say come when you have figured out how to be less tired.
 
-He said come as you are. Weary. Burdened. Exactly as you are right now.
+He said come as you are. Labouring. Heavy laden. Exactly as you are right now.
 
 This is not a call to perform rest correctly. It is an invitation to stop performing entirely and simply receive what you cannot manufacture for yourself.
 
@@ -562,9 +562,9 @@ https://sanctuary-grace.com/
         "pin": "Scripture from 7-day practice",
         "board": "Christian Women Encouragement",
         "image_file": None,
-        "caption": """The Lord is my shepherd. I shall not want. He makes me lie down in green pastures. He leads me beside still waters. He restores my soul. — Psalm 23:1-3
+        "caption": """The LORD is my shepherd; I shall not want. He maketh me to lie down in green pastures: he leadeth me beside the still waters. He restoreth my soul. — Psalm 23:1-3
 
-He makes me lie down. Not suggests. Not invites. Makes.
+He maketh me to lie down. Not suggests. Not invites. Maketh.
 
 Because sometimes the soul that has been running will not stop on its own. It has to be led. It has to be brought, gently, to the place it has been avoiding. The still water. The green pasture. The restoration it told itself it did not have time for.
 

@@ -31,7 +31,13 @@ jobs:
           git add -f workflows/output/substack-pending/
           if ! git diff --staged --quiet; then
             git commit -m "Substack Agent: $(date +%Y-%m-%d) devotion draft — ready for Grace approval"
-            git push origin HEAD
+            for attempt in 1 2 3; do
+              git pull --rebase origin main && git push origin HEAD:main && break
+              echo "Push attempt $attempt failed, retrying..."
+              sleep 5
+            done
+            git fetch origin main
+            git merge-base --is-ancestor HEAD origin/main || { echo "Push failed after 3 attempts"; exit 1; }
             echo "✅ Devotion saved to workflows/output/substack-pending/ — visible in Approval Gate for Grace review"
           else
             echo "No new content to commit"
