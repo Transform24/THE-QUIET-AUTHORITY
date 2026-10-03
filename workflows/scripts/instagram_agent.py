@@ -1,5 +1,4 @@
-# DESIGN CONSTRAINTS (sovereign): palette is strictly Terracotta (#C1593C), Black, and White.
-# Font is Cinzel for all Canva text. No gold, cream, sage, or other accent colours in any brief.
+# DESIGN: palette is gold, terracotta (#C1593C), white, on black. Font is Cinzel for all Canva text.
 # Scripture is King James Version (KJV) only; the Luke 4:18 mandate anchors the series.
 import os, datetime, pathlib, json, urllib.request, urllib.error
 
@@ -47,7 +46,7 @@ https://sanctuarygrace.store
 
 HASHTAGS: #ChristianWomen #SpiritualBurnout #FaithAndWellness #SanctuaryGrace #HopeForWomen #ChristianMom #SpiritualRest
 
-CANVA BRIEF: 1080x1080px, black background, Cinzel font ALL CAPS in white, terra accent #C1593C for slide numbers, white star detail in corner."""
+CANVA BRIEF: 1080x1080px, black background, Cinzel font ALL CAPS in white, terra accent #C1593C for slide numbers, soft gold star detail in corner."""
     },
     2: {
         "pillar": "scripture",
@@ -63,7 +62,7 @@ https://sanctuarygrace.store
 
 HASHTAGS: #ScriptureForWomen #ChristianWomen #FaithJourney #QuietTime #DailyDevotion #SpiritualRest #SanctuaryGrace
 
-CANVA BRIEF: Black background, Matthew 11:28 in Cinzel terracotta #C1593C, white body text below, single white star accent."""
+CANVA BRIEF: Black background, Matthew 11:28 in Cinzel gold, soft white body text below, single gold star accent."""
     },
     3: {
         "pillar": "reel",
@@ -155,7 +154,7 @@ https://sanctuarygrace.store
 
 HASHTAGS: #ScriptureForWomen #ChristianWomen #SpiritualRest #FaithJourney #HopeForWomen #SanctuaryGrace #DailyDevotion
 
-CANVA BRIEF: Psalm 147:3 in Cinzel terracotta #C1593C on black, soft texture background, single white star."""
+CANVA BRIEF: Psalm 147:3 in Cinzel gold on black, soft texture background, single gold star."""
     },
     8: {
         "pillar": "reel",
@@ -193,7 +192,7 @@ https://sanctuarygrace.store
 
 HASHTAGS: #DailyDevotion #ChristianWomen #SacredSpace #FaithJourney #SpiritualRest #QuietTime #SanctuaryGrace
 
-CANVA BRIEF: Week 2 Renewal cover, candle glow, Cinzel title, black and terracotta tones."""
+CANVA BRIEF: Week 2 Renewal cover, candle glow, Cinzel title, warm dark tones."""
     },
     10: {
         "pillar": "silence",
@@ -251,7 +250,7 @@ https://sanctuarygrace.store
 
 HASHTAGS: #ScriptureForWomen #ChristianWomen #FaithJourney #SpiritualRest #HopeForWomen #SanctuaryGrace #DailyDevotion
 
-CANVA BRIEF: Isaiah 40:31 in Cinzel terracotta #C1593C on black, eagle feather detail in corner, white light gradient edge."""
+CANVA BRIEF: Isaiah 40:31 in Cinzel gold on black, eagle feather detail in corner, warm light gradient edge."""
     },
     13: {
         "pillar": "reel",
@@ -289,7 +288,7 @@ https://sanctuarygrace.store
 
 HASHTAGS: #DailyDevotion #ChristianWomen #QuietTime #SpiritualRest #FaithJourney #SacredSpace #SanctuaryGrace
 
-CANVA BRIEF: Week 3 Peace cover, soft white light on black, Cinzel title, minimal and still."""
+CANVA BRIEF: Week 3 Peace cover, soft gold light on black, Cinzel title, minimal and still."""
     },
     15: {
         "pillar": "silence",
@@ -347,7 +346,7 @@ https://sanctuarygrace.store
 
 HASHTAGS: #ScriptureForWomen #ChristianWomen #FaithJourney #SpiritualRest #HopeForWomen #SanctuaryGrace #QuietTime
 
-CANVA BRIEF: 2 Timothy 1:7 in Cinzel terracotta #C1593C, bold and centered, black background, terracotta accent line beneath."""
+CANVA BRIEF: 2 Timothy 1:7 in Cinzel gold, bold and centered, dark background, gold accent line beneath."""
     },
     18: {
         "pillar": "reel",
@@ -387,7 +386,7 @@ https://sanctuarygrace.store
 
 HASHTAGS: #DailyDevotion #ChristianWomen #FaithJourney #SpiritualRest #SacredSpace #SanctuaryGrace #HopeForWomen
 
-CANVA BRIEF: Week 4 Calling cover, dawn light quality, Cinzel title in terracotta #C1593C."""
+CANVA BRIEF: Week 4 Calling cover, dawn light quality, Cinzel title in warm gold."""
     },
     20: {
         "pillar": "silence",
@@ -445,7 +444,7 @@ https://sanctuarygrace.store
 
 HASHTAGS: #ScriptureForWomen #ChristianWomen #FaithJourney #SpiritualRest #HopeForWomen #SanctuaryGrace #DailyDevotion
 
-CANVA BRIEF: Lamentations 3:22-23 in Cinzel terracotta #C1593C, black and terracotta palette, soft glow from bottom edge."""
+CANVA BRIEF: Lamentations 3:22-23 in Cinzel gold, sunrise-dark palette, soft glow from bottom edge."""
     },
     23: {
         "pillar": "reel",
@@ -543,7 +542,7 @@ https://sanctuarygrace.store
 
 HASHTAGS: #ScriptureForWomen #ChristianWomen #FaithJourney #SpiritualRest #HopeForWomen #SanctuaryGrace #DailyDevotion
 
-CANVA BRIEF: 2 Corinthians 3:18 in Cinzel terracotta #C1593C, increasing white light from left to right across dark background."""
+CANVA BRIEF: 2 Corinthians 3:18 in Cinzel gold, increasing light from left to right across dark background."""
     },
     28: {
         "pillar": "reel",
@@ -579,7 +578,7 @@ https://sanctuarygrace.store
 
 HASHTAGS: #DailyDevotion #ChristianWomen #FaithJourney #SpiritualRest #HopeForWomen #SanctuaryGrace #ScriptureForWomen
 
-CANVA BRIEF: Proverbs 31 woman aesthetic, dignified and strong, black background, terracotta Cinzel text, powerful composition."""
+CANVA BRIEF: Proverbs 31 woman aesthetic, dignified and strong, black background, gold Cinzel text, powerful composition."""
     },
     30: {
         "pillar": "silence",

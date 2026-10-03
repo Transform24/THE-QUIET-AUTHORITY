@@ -4,11 +4,12 @@ import os
 W, H = 1200, 1500
 BG = (13, 13, 13)
 
-# Sovereign design constraints: palette is strictly Terracotta, Black, White.
+# Palette: gold, terracotta, cream on black (gold restored at Grace's request).
 # Latin text is Cinzel (assets/fonts, OFL). Cinzel has no Hebrew glyphs, so the
 # Hebrew name keeps Noto Serif Hebrew.
+GOLD = (201, 168, 76)
 TERRACOTTA = (193, 89, 60)    # #C1593C
-WHITE = (255, 255, 255)
+CREAM = (245, 240, 232)
 
 _FONT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "assets", "fonts")
 HEB_FONT_PATH = os.environ.get("HEB_FONT_PATH", "/usr/share/fonts/truetype/noto/NotoSerifHebrew-Bold.ttf")
@@ -112,18 +113,18 @@ def render(e, out_dir):
     d = ImageDraw.Draw(img)
 
     margin = 48
-    d.rectangle([margin, margin, W - margin, H - margin], outline=TERRACOTTA, width=2)
+    d.rectangle([margin, margin, W - margin, H - margin], outline=GOLD, width=2)
 
     cy = 200
-    d.line([(W/2-90, cy), (W/2-30, cy)], fill=TERRACOTTA, width=2)
-    d.line([(W/2+30, cy), (W/2+90, cy)], fill=TERRACOTTA, width=2)
-    d.polygon([(W/2, cy-8), (W/2+8, cy), (W/2, cy+8), (W/2-8, cy)], fill=TERRACOTTA)
+    d.line([(W/2-90, cy), (W/2-30, cy)], fill=GOLD, width=2)
+    d.line([(W/2+30, cy), (W/2+90, cy)], fill=GOLD, width=2)
+    d.polygon([(W/2, cy-8), (W/2+8, cy), (W/2, cy+8), (W/2-8, cy)], fill=GOLD)
 
     heb_font, heb_bbox = fit_font(d, e["hebrew"], HEB_FONT_PATH, e["heb_max_w"], e["heb_start"], e["heb_min"])
     hw = heb_bbox[2] - heb_bbox[0]
     hx = (W - hw) / 2 - heb_bbox[0]
     hy = 520 - heb_bbox[1]
-    d.text((hx, hy), e["hebrew"], font=heb_font, fill=TERRACOTTA)
+    d.text((hx, hy), e["hebrew"], font=heb_font, fill=GOLD)
 
     ry = 760
     d.line([(W/2-140, ry), (W/2+140, ry)], fill=TERRACOTTA, width=2)
@@ -135,28 +136,28 @@ def render(e, out_dir):
     trans_font = fit_latin(d, translit_spaced, LAT_FONT_PATH, translit_size)
     tb = d.textbbox((0, 0), translit_spaced, font=trans_font)
     tw = tb[2] - tb[0]
-    d.text(((W - tw)/2 - tb[0], 810), translit_spaced, font=trans_font, fill=WHITE)
+    d.text(((W - tw)/2 - tb[0], 810), translit_spaced, font=trans_font, fill=CREAM)
 
     meaning_font = fit_latin(d, e["meaning"], LAT_FONT_PATH_I, e["meaning_size"])
     mb = d.textbbox((0, 0), e["meaning"], font=meaning_font)
     mw = mb[2] - mb[0]
-    d.text(((W - mw)/2 - mb[0], 880), e["meaning"], font=meaning_font, fill=TERRACOTTA)
+    d.text(((W - mw)/2 - mb[0], 880), e["meaning"], font=meaning_font, fill=GOLD)
 
     ref_font = fit_latin(d, e["ref"], LAT_FONT_PATH, 26)
     rb = d.textbbox((0, 0), e["ref"], font=ref_font)
     rw = rb[2] - rb[0]
-    d.text(((W - rw)/2 - rb[0], 960), e["ref"], font=ref_font, fill=WHITE)
+    d.text(((W - rw)/2 - rb[0], 960), e["ref"], font=ref_font, fill=(154, 154, 148))
 
     brand = "S A N C T U A R Y   G R A C E"
     brand_font = fit_latin(d, brand, LAT_FONT_PATH, 22)
     bb = d.textbbox((0, 0), brand, font=brand_font)
     bw = bb[2] - bb[0]
-    d.text(((W - bw)/2 - bb[0], H-120), brand, font=brand_font, fill=TERRACOTTA)
+    d.text(((W - bw)/2 - bb[0], H-120), brand, font=brand_font, fill=GOLD)
 
     cy2 = H - 170
-    d.line([(W/2-90, cy2), (W/2-30, cy2)], fill=TERRACOTTA, width=2)
-    d.line([(W/2+30, cy2), (W/2+90, cy2)], fill=TERRACOTTA, width=2)
-    d.polygon([(W/2, cy2-8), (W/2+8, cy2), (W/2, cy2+8), (W/2-8, cy2)], fill=TERRACOTTA)
+    d.line([(W/2-90, cy2), (W/2-30, cy2)], fill=GOLD, width=2)
+    d.line([(W/2+30, cy2), (W/2+90, cy2)], fill=GOLD, width=2)
+    d.polygon([(W/2, cy2-8), (W/2+8, cy2), (W/2, cy2+8), (W/2-8, cy2)], fill=GOLD)
 
     img.save(os.path.join(out_dir, e["file"]))
     print("saved", e["file"])
