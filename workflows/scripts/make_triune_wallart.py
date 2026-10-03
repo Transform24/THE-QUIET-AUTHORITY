@@ -6,13 +6,18 @@ import os
 DPI = 150
 W, H = 24 * DPI, 36 * DPI  # 3600 x 5400, true 2:3 canvas aspect
 BG = (13, 13, 13)          # #0d0d0d -- locked Sanctuary Grace background
+
+# Palette: gold, terracotta, cream on black (gold restored at Grace's request).
+# Latin text is Cinzel (assets/fonts, OFL). Cinzel has no Hebrew glyphs, so the
+# Hebrew name keeps Noto Serif Hebrew.
 GOLD = (201, 168, 76)
-TERRACOTTA = (193, 89, 60)
+TERRACOTTA = (193, 89, 60)    # #C1593C
 CREAM = (245, 240, 232)
 
-HEB_FONT_PATH = "/usr/share/fonts/truetype/noto/NotoSerifHebrew-Bold.ttf"
-LAT_FONT_PATH = "/usr/share/fonts/truetype/liberation/LiberationSerif-Regular.ttf"
-LAT_FONT_PATH_I = "/usr/share/fonts/truetype/liberation/LiberationSerif-Italic.ttf"
+_FONT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "..", "assets", "fonts")
+HEB_FONT_PATH = os.environ.get("HEB_FONT_PATH", "/usr/share/fonts/truetype/noto/NotoSerifHebrew-Bold.ttf")
+LAT_FONT_PATH = os.path.join(_FONT_DIR, "Cinzel-Regular.ttf")
+LAT_FONT_PATH_I = LAT_FONT_PATH  # Cinzel has no italic
 
 OUT_DIR = "triune-wallart"
 
@@ -36,6 +41,20 @@ entries = [
     {"hebrew": "רוּחַ מִשְׁפַּט בָּנִים", "translit": "RUACH MISHPAT BANIM", "meaning": "The Spirit of Adoption", "ref": "Romans 8:15, KJV", "file": "09_ruach_adoption_wallart.png",
      "heb_max_w": W-460, "heb_start": 440, "heb_min": 140, "translit_size": 48},
 ]
+
+
+FIT_MARGIN = 300  # border margin plus padding; Cinzel runs wider than the old serif
+
+def fit_latin(draw, text, path, size):
+    """Shrink a Latin line until it sits inside the border."""
+    max_w = W - 2 * FIT_MARGIN
+    while size > 8:
+        f = ImageFont.truetype(path, size)
+        b = draw.textbbox((0, 0), text, font=f)
+        if b[2] - b[0] <= max_w:
+            return f
+        size -= 2
+    return ImageFont.truetype(path, 8)
 
 def fit_font(draw, text, path, max_width, start_size, min_size):
     size = start_size
@@ -72,27 +91,23 @@ def render(e, out_dir):
     d.line([(W/2-380, ry), (W/2+380, ry)], fill=TERRACOTTA, width=5)
 
     translit_spaced = "  ".join(list(e["translit"]))
-    trans_font = ImageFont.truetype(LAT_FONT_PATH, e["translit_size"])
+    trans_font = fit_latin(d, translit_spaced, LAT_FONT_PATH, e["translit_size"])
     tb = d.textbbox((0, 0), translit_spaced, font=trans_font)
     tw = tb[2] - tb[0]
     d.text(((W - tw)/2 - tb[0], int(H*0.585)), translit_spaced, font=trans_font, fill=CREAM)
 
-    meaning_font = ImageFont.truetype(LAT_FONT_PATH_I, 92)
+    meaning_font = fit_latin(d, e["meaning"], LAT_FONT_PATH_I, 92)
     mb = d.textbbox((0, 0), e["meaning"], font=meaning_font)
     mw = mb[2] - mb[0]
-    if mw > W - 400:
-        meaning_font = ImageFont.truetype(LAT_FONT_PATH_I, 68)
-        mb = d.textbbox((0, 0), e["meaning"], font=meaning_font)
-        mw = mb[2] - mb[0]
     d.text(((W - mw)/2 - mb[0], int(H*0.635)), e["meaning"], font=meaning_font, fill=GOLD)
 
-    ref_font = ImageFont.truetype(LAT_FONT_PATH, 58)
+    ref_font = fit_latin(d, e["ref"], LAT_FONT_PATH, 58)
     rb = d.textbbox((0, 0), e["ref"], font=ref_font)
     rw = rb[2] - rb[0]
     d.text(((W - rw)/2 - rb[0], int(H*0.70)), e["ref"], font=ref_font, fill=(154, 154, 148))
 
     brand = "S A N C T U A R Y   G R A C E   M I N I S T R Y"
-    brand_font = ImageFont.truetype(LAT_FONT_PATH, 46)
+    brand_font = fit_latin(d, brand, LAT_FONT_PATH, 46)
     bb = d.textbbox((0, 0), brand, font=brand_font)
     bw = bb[2] - bb[0]
     d.text(((W - bw)/2 - bb[0], H-int(H*0.075)), brand, font=brand_font, fill=GOLD)
