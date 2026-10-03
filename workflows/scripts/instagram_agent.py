@@ -1,4 +1,3 @@
-# DESIGN: palette is gold, terracotta (#C1593C), white, on black. Font is Cinzel for all Canva text.
 # Scripture is King James Version (KJV) only; the Luke 4:18 mandate anchors the series.
 import os, datetime, pathlib, json, urllib.request, urllib.error
 
@@ -502,7 +501,7 @@ https://sanctuarygrace.store
 
 HASHTAGS: #SacredSpace #ChristianWomen #CircleOfSilence #SpiritualRest #QuietTime #FaithAndWellness #SanctuaryGrace
 
-CANVA BRIEF: Personal, warm — single candle, intimate feel, Cinzel text, most minimal of all designs."""
+CANVA BRIEF: Personal, warm — single candle, handwritten feel, Cinzel text, most minimal of all designs."""
     },
     26: {
         "pillar": "carousel",
