@@ -31,7 +31,7 @@ Products: Wall Art ($9.99 each / $29.99 bundle) · Devotionals ($4.99 each / $19
 | YouTube | `youtube.com/@TheQuietAuthority-f1z` | Circle of Silence live sessions, video scripts |
 | Pinterest | `pinterest.com/sanctuarygracefaith` | Primary content distribution — see `_system/channels.md` for board names |
 | Instagram | `_thequietauthority_` | Paused — see `_system/channels.md` |
-| Substack | `5apop2sotwm.substack.com` | Daily/weekly devotions |
+| Substack | `sapop2sotwm.substack.com` | Daily/weekly devotions |
 
 ## Hosting & Deploy
 

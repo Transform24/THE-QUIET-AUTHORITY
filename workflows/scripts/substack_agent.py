@@ -1,7 +1,7 @@
 import os, datetime, json, urllib.request, urllib.error
 
 SUBSTACK_COOKIE_ID = os.environ.get('SUBSTACK_COOKIE_ID', '').strip()
-BASE_URL = 'https://5apop2sotwm.substack.com'
+BASE_URL = 'https://sapop2sotwm.substack.com'
 
 today = datetime.date.today()
 date_str = today.strftime('%Y-%m-%d')

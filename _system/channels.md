@@ -9,7 +9,7 @@
 - Boards (verified against the live posting code, `workflows/scripts/pinterest_agent.py`, 2026-08-22): **The Quiet Authority for Women**, **Sacred Morning Practices**, **Christian Women Encouragement**, **Spiritual Rest for Women**. Any other board list in older docs is wrong — see `_archive/`.
 
 ## Substack
-- URL: https://5apop2sotwm.substack.com
+- URL: https://sapop2sotwm.substack.com
 - Sender: Grace Turner
 - Secret: `SUBSTACK_COOKIE_ID` (connect.sid cookie, do not sign out) — **this is current**, confirmed over the `SUBSTACK_API_KEY`/`SUBSTACK_PUBLICATION_ID` method described in older agent specs
 - Agent: publishes daily KJV devotion 6am via `POST /api/v1/drafts` then `/api/v1/drafts/{id}/publish`
