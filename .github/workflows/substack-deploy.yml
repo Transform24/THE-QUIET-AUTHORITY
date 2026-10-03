@@ -1,8 +1,8 @@
 name: Substack Deploy — Publish Approved Devotions
 
 on:
-  schedule:
-    - cron: '0 13 * * *'  # Daily 1pm UTC (6am PT publish)
+  # PAUSED 2026-10-03 by Grace. Daily schedule removed so nothing runs on its own.
+  # To resume, restore: schedule: - cron: '0 13 * * *'
   workflow_dispatch:
     inputs:
       devotion_date:

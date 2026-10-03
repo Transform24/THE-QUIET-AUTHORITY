@@ -1,5 +1,5 @@
 # Sanctuary Grace Ministry — System Status
-*Last updated: 2026-09-24*
+*Last updated: 2026-10-03*
 
 ## Root URL now serves About, not the TQA assessment (2026-09-24)
 - `index.html` at repo root is now the About page (Luke 4:18, ministry origin story).
@@ -36,6 +36,7 @@
 - MailerLite: the live email engine (see `_system/integrations.md`)
 
 ## WHAT IS PAUSED — RECONNECTS LATER, DON'T ARCHIVE
+- Substack (agent + deploy): paused 2026-10-03 by Grace. The daily `schedule:` triggers were removed from `substack-agent.yml` and `substack-deploy.yml`; only manual `workflow_dispatch` remains. Note: the agent publishes live when it runs and the secret is valid. To resume, restore the cron lines noted in each workflow file. Handle is `sapop2sotwm.substack.com`.
 - Instagram: paused due to a Meta account restriction. All agent/pipeline files stay in place — see `_system/channels.md`. Reconnects to the Pinterest content flow when the restriction lifts.
 
 ## WHAT IS DEAD — DO NOT REFERENCE, DO NOT REBUILD

@@ -1,8 +1,8 @@
 name: Substack Agent — Daily Devotion
 
 on:
-  schedule:
-    - cron: '0 11 * * *'  # 6am PT = 11am UTC
+  # PAUSED 2026-10-03 by Grace. Daily schedule removed so nothing runs on its own.
+  # To resume, restore: schedule: - cron: '0 11 * * *'
   workflow_dispatch:
 
 jobs:
