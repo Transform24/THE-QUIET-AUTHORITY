@@ -1,0 +1,4 @@
+STATUS 2026-10-05
+DONE: PROGRESS.md.
+BLOCKED: Step 1 (sanctuary-grace.com 403 from cloud network policy). Step 2 (video assets not found; bible-api.com blocked). Step 3 depends on Step 2.
+GRACE MUST DO: allow sanctuary-grace.com and bible-api.com in the environment Network access settings, and put the v7 stills, music and verse list in the repo or Drive. Confirm outro URL: prompt says sanctuarygrace.com, live site is sanctuary-grace.com.
