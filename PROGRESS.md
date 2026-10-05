@@ -4,3 +4,4 @@ STEP 1 | BLOCKED | sanctuary-grace.com returns 403 from the cloud container netw
 STEP 2 | BLOCKED | No stills, music, or verse list on disk or in repos. bible-api.com also blocked by network policy (000), so KJV verification by fetch is impossible. Needs: chapter stills, music, verse list, and bible-api.com allowed.
 STEP 3 | NOT STARTED | needs final video timestamps
 STEP 4 | see STATUS.txt
+STEP 2 (update) | BLOCKED | v7 mp4 received (1920x1080, 12fps, 1948.5 s, 29231456 bytes). Its stills have verse text burned in, so clean art cannot be extracted without ghost text. Still missing: clean chapter stills (no text), the music file alone, the verse list. bible-api.com blocked for both curl and WebFetch (EGRESS_BLOCKED), so per-verse KJV verification cannot run. Not guessing; stopped.
