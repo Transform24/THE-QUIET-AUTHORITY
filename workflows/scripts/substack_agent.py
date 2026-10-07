@@ -616,12 +616,12 @@ devotion = DEVOTIONS[day_number]
 draft_title = devotion['title']
 draft_body = devotion['body']
 
-# ─── PUBLISH VIA SUBSTACK DRAFTS API ────────────────────────────────────────
+# ─── SAVE AS A DRAFT ONLY (this script never publishes) ─────────────────────
 
 if not SUBSTACK_COOKIE_ID:
     print("ERROR: SUBSTACK_COOKIE_ID environment variable is not set.")
     print(f"Title: {draft_title}")
-    print("Add SUBSTACK_COOKIE_ID to GitHub Secrets to enable publishing.")
+    print("Add SUBSTACK_COOKIE_ID to GitHub Secrets to enable saving drafts.")
     exit(1)
 
 cookie_header = f'connect.sid={SUBSTACK_COOKIE_ID}'
@@ -661,28 +661,6 @@ if not draft_id:
     print(f"FAILURE: Draft created but no id in response: {result}")
     exit(1)
 
-print(f"SUCCESS: Draft created — id: {draft_id}")
-
-# Step 2: Publish draft
-print(f"Publishing draft {draft_id} ...")
-try:
-    pub_req = urllib.request.Request(
-        f'{BASE_URL}/api/v1/drafts/{draft_id}/publish',
-        data=b'{}',
-        headers=headers,
-        method='POST',
-    )
-    with urllib.request.urlopen(pub_req, timeout=30) as resp:
-        pub_result = json.loads(resp.read())
-except urllib.error.HTTPError as e:
-    body = e.read().decode()
-    print(f"FAILURE: Publish failed with HTTP {e.code}")
-    print(f"Response: {body[:500]}")
-    exit(1)
-except Exception as e:
-    print(f"FAILURE during publish: {e}")
-    exit(1)
-
-post_url = pub_result.get('canonical_url', pub_result.get('url', ''))
-print(f"SUCCESS: Published — {post_url or pub_result}")
+print(f"SUCCESS: Draft created, id: {draft_id}")
+print("Nothing was published. Review the draft in your Substack dashboard under Drafts and publish it yourself.")
 print(f"Date: {date_str} | Day: {day_number} | Title: {draft_title}")

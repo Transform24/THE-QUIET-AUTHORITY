@@ -4,22 +4,15 @@ on:
   # PAUSED 2026-10-03 by Grace. Daily schedule removed so nothing runs on its own.
   # To resume, restore: schedule: - cron: '0 11 * * *'
   workflow_dispatch:
-    inputs:
-      confirm_publish:
-        description: 'This publishes LIVE to Substack and cannot be undone. Type PUBLISH to confirm.'
-        required: true
-        default: ''
-        type: string
 
-# Never run two publishes at once, so one devotion cannot go out twice.
+# This agent only saves a DRAFT on Substack. It never publishes. Grace reviews and publishes herself.
+# Never run two at once, so the same draft is not created twice.
 concurrency:
   group: substack-agent
   cancel-in-progress: false
 
 jobs:
   publish-devotion:
-    # A manual run only proceeds if PUBLISH was typed. A scheduled run (if Grace restores the cron) is not blocked.
-    if: ${{ github.event_name != 'workflow_dispatch' || inputs.confirm_publish == 'PUBLISH' }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
     permissions:

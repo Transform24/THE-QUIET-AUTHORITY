@@ -39,8 +39,7 @@ jobs:
 
       - name: Deploy to Substack
         env:
-          SUBSTACK_SESSION_COOKIE: ${{ secrets.SUBSTACK_SESSION_COOKIE }}
-          SUBSTACK_PUBLICATION_URL: ${{ secrets.SUBSTACK_PUBLICATION_URL }}
+          SUBSTACK_COOKIE_ID: ${{ secrets.SUBSTACK_COOKIE_ID }}
         run: python3 workflows/scripts/substack-deploy.py
 
       - name: Commit deployment log
