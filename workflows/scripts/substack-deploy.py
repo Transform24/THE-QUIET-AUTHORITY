@@ -27,6 +27,20 @@ HEADERS = {
     'Cookie': f'connect.sid={SUBSTACK_COOKIE_ID}',
 }
 
+
+def already_published(date_str, title):
+    """True if the log already holds a PUBLISHED row for this date and title.
+
+    FAILED rows do not count, so a failed devotion can be retried.
+    """
+    if not LOG_FILE.exists():
+        return False
+    for row in LOG_FILE.read_text().splitlines():
+        cells = [c.strip() for c in row.strip().strip('|').split('|')]
+        if len(cells) >= 4 and cells[0] == date_str and cells[2] == title and cells[3].startswith('PUBLISHED'):
+            return True
+    return False
+
 approved_files = sorted(APPROVED_DIR.glob("*.md"))
 print(f"Found {len(approved_files)} approved devotion(s) to deploy.")
 
@@ -64,9 +78,13 @@ for devo_file in approved_files:
         continue
 
     body_lines = body_text.split('\n')
-    title = body_lines[0].strip() if body_lines else "Untitled"
+    title = body_lines[0].lstrip('#').strip() if body_lines else "Untitled"
     # The first line is the title. The rest is the body, so the title is not repeated in the post.
     draft_body = '\n'.join(body_lines[1:]).strip() or body_text
+
+    if already_published(date_str, title):
+        print(f"SKIPPED {date_str}: '{title}' is already marked PUBLISHED in the log.")
+        continue
 
     log_entry = ""
 

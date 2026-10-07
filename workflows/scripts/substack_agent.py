@@ -1,4 +1,4 @@
-import os, datetime, json, urllib.request, urllib.error
+import os, datetime, json, pathlib, urllib.request, urllib.error
 
 SUBSTACK_COOKIE_ID = os.environ.get('SUBSTACK_COOKIE_ID', '').strip()
 BASE_URL = 'https://sapop2sotwm.substack.com'
@@ -663,4 +663,15 @@ if not draft_id:
 
 print(f"SUCCESS: Draft created, id: {draft_id}")
 print("Nothing was published. Review the draft in your Substack dashboard under Drafts and publish it yourself.")
+
+# Save a copy where the Approval Gate page looks (workflows/output/substack-pending/).
+# Same layout as an approved devotion: front matter, then the title line, then the body.
+pending_dir = pathlib.Path('workflows/output/substack-pending')
+pending_dir.mkdir(parents=True, exist_ok=True)
+(pending_dir / f'{date_str}.md').write_text(
+    f'---\ndate: {date_str}\nmode: daily\nday: {day_number}\n'
+    f'status: DRAFT SAVED on Substack (draft id {draft_id}), awaiting Grace approval\n'
+    f'url: pending\n---\n\n{draft_title}\n\n{draft_body}\n'
+)
+print(f"Saved a copy to {pending_dir / (date_str + '.md')}")
 print(f"Date: {date_str} | Day: {day_number} | Title: {draft_title}")
