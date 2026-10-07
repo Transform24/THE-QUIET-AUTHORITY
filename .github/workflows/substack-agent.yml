@@ -4,15 +4,38 @@ on:
   # PAUSED 2026-10-03 by Grace. Daily schedule removed so nothing runs on its own.
   # To resume, restore: schedule: - cron: '0 11 * * *'
   workflow_dispatch:
+    inputs:
+      confirm_publish:
+        description: 'This publishes LIVE to Substack and cannot be undone. Type PUBLISH to confirm.'
+        required: true
+        default: ''
+        type: string
+
+# Never run two publishes at once, so one devotion cannot go out twice.
+concurrency:
+  group: substack-agent
+  cancel-in-progress: false
 
 jobs:
   publish-devotion:
+    # A manual run only proceeds if PUBLISH was typed. A scheduled run (if Grace restores the cron) is not blocked.
+    if: ${{ github.event_name != 'workflow_dispatch' || inputs.confirm_publish == 'PUBLISH' }}
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     permissions:
       contents: write
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
+
+      - name: Check Substack secret is present
+        env:
+          SUBSTACK_COOKIE_ID: ${{ secrets.SUBSTACK_COOKIE_ID }}
+        run: |
+          if [ -z "$SUBSTACK_COOKIE_ID" ]; then
+            echo "::error::SUBSTACK_COOKIE_ID is not set in repository secrets. Nothing was published."
+            exit 1
+          fi
 
       - name: Set up Python
         uses: actions/setup-python@v5
