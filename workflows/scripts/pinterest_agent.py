@@ -1,4 +1,4 @@
-import os, datetime, pathlib, json, urllib.request, urllib.error
+import os, datetime, pathlib, json, base64, urllib.request, urllib.parse, urllib.error
 
 """
 PRIMARY MANDATE — Luke 4:18:
@@ -50,7 +50,69 @@ Opens from Luke 4:18 as the mandate.
 """
 
 PINTEREST_ACCESS_TOKEN = os.environ.get('PINTEREST_ACCESS_TOKEN', '').strip()
+PINTEREST_APP_ID = os.environ.get('PINTEREST_APP_ID', '').strip()
+PINTEREST_APP_SECRET = os.environ.get('PINTEREST_APP_SECRET', '').strip()
+PINTEREST_REFRESH_TOKEN = os.environ.get('PINTEREST_REFRESH_TOKEN', '').strip()
+PINTEREST_TOKEN_OUT = os.environ.get('PINTEREST_TOKEN_OUT', '').strip()
+PINTEREST_TOKEN_URL = os.environ.get('PINTEREST_TOKEN_URL', 'https://api.pinterest.com/v5/oauth/token')
 DAY_OVERRIDE = os.environ.get('DAY_OVERRIDE', '').strip()
+
+
+def refresh_pinterest_access_token():
+    """Trade the long-lived refresh token for a fresh access token.
+
+    Returns the new access token, or '' if refresh is not configured or fails.
+    If Pinterest hands back a different refresh token, it is written to the file
+    named by PINTEREST_TOKEN_OUT so the workflow can save it back to GitHub Secrets.
+    Token values are never printed.
+    """
+    if not (PINTEREST_APP_ID and PINTEREST_APP_SECRET and PINTEREST_REFRESH_TOKEN):
+        return ''
+    basic = base64.b64encode(f'{PINTEREST_APP_ID}:{PINTEREST_APP_SECRET}'.encode()).decode()
+    body = urllib.parse.urlencode({
+        'grant_type': 'refresh_token',
+        'refresh_token': PINTEREST_REFRESH_TOKEN,
+    }).encode()
+    req = urllib.request.Request(
+        PINTEREST_TOKEN_URL,
+        data=body,
+        headers={
+            'Authorization': f'Basic {basic}',
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        method='POST',
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=30) as resp:
+            data = json.loads(resp.read())
+    except urllib.error.HTTPError as e:
+        print(f'Token refresh failed: HTTP {e.code} {e.read().decode()[:200]}')
+        return ''
+    except Exception as e:
+        print(f'Token refresh failed: {str(e)[:200]}')
+        return ''
+    access = (data.get('access_token') or '').strip()
+    new_refresh = (data.get('refresh_token') or '').strip()
+    if not access:
+        print('Token refresh failed: no access_token in response')
+        return ''
+    print(f'::add-mask::{access}')
+    print(f'Token refresh OK. Access token valid for {data.get("expires_in", "unknown")} seconds.')
+    if new_refresh and new_refresh != PINTEREST_REFRESH_TOKEN and PINTEREST_TOKEN_OUT:
+        print(f'::add-mask::{new_refresh}')
+        fd = os.open(PINTEREST_TOKEN_OUT, os.O_WRONLY | os.O_CREAT | os.O_TRUNC, 0o600)
+        with os.fdopen(fd, 'w') as fh:
+            fh.write(new_refresh)
+        print('A renewed refresh token was issued and queued to be saved.')
+    return access
+
+
+# Prefer a freshly refreshed token. Fall back to the static token so the agent never breaks.
+_refreshed = refresh_pinterest_access_token()
+if _refreshed:
+    PINTEREST_ACCESS_TOKEN = _refreshed
+elif PINTEREST_REFRESH_TOKEN:
+    print('Using the static PINTEREST_ACCESS_TOKEN as a fallback.')
 
 REPO_IMAGE_BASE = 'https://transform24.github.io/THE-QUIET-AUTHORITY'
 

@@ -1,0 +1,57 @@
+name: Pinterest OAuth Setup (one time)
+
+# Run this once, after approving the app on Pinterest. It trades the one-time
+# approval code for a long-lived refresh token and stores it in GitHub Secrets as
+# PINTEREST_REFRESH_TOKEN. Token values are never printed.
+
+on:
+  workflow_dispatch:
+    inputs:
+      code:
+        description: 'The code shown on the Pinterest approval page'
+        required: true
+        type: string
+
+jobs:
+  exchange:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Exchange code and store refresh token
+        env:
+          APP_ID: ${{ secrets.PINTEREST_APP_ID || '1585025' }}
+          APP_SECRET: ${{ secrets.PINTEREST_APP_SECRET }}
+          GH_TOKEN: ${{ secrets.GH_SECRETS_PAT }}
+          AUTH_CODE: ${{ inputs.code }}
+          REDIRECT_URI: https://sanctuary-grace.com/pinterest-callback.html
+        run: |
+          set -euo pipefail
+          if [ -z "$APP_SECRET" ]; then echo "PINTEREST_APP_SECRET is not set."; exit 1; fi
+          if [ -z "$GH_TOKEN" ]; then echo "GH_SECRETS_PAT is not set."; exit 1; fi
+          python3 - <<'PY'
+          import os, json, base64, subprocess, urllib.request, urllib.parse, urllib.error
+          basic = base64.b64encode(f"{os.environ['APP_ID']}:{os.environ['APP_SECRET']}".encode()).decode()
+          body = urllib.parse.urlencode({
+              'grant_type': 'authorization_code',
+              'code': os.environ['AUTH_CODE'].strip(),
+              'redirect_uri': os.environ['REDIRECT_URI'],
+              'continuous_refresh': 'true',
+          }).encode()
+          req = urllib.request.Request(
+              'https://api.pinterest.com/v5/oauth/token', data=body, method='POST',
+              headers={'Authorization': f'Basic {basic}', 'Content-Type': 'application/x-www-form-urlencoded'})
+          try:
+              with urllib.request.urlopen(req, timeout=30) as resp:
+                  data = json.loads(resp.read())
+          except urllib.error.HTTPError as e:
+              raise SystemExit(f'Pinterest refused the code: HTTP {e.code} {e.read().decode()[:300]}')
+          refresh = (data.get('refresh_token') or '').strip()
+          if not refresh:
+              raise SystemExit('Pinterest did not return a refresh token. Keys returned: ' + ', '.join(sorted(data)))
+          print(f'::add-mask::{refresh}')
+          subprocess.run(
+              ['gh', 'secret', 'set', 'PINTEREST_REFRESH_TOKEN', '--repo', os.environ['GITHUB_REPOSITORY']],
+              input=refresh.encode(), check=True)
+          print('Refresh token stored as PINTEREST_REFRESH_TOKEN.')
+          print('Scopes granted:', data.get('scope'))
+          print('Refresh token lifetime (seconds):', data.get('refresh_token_expires_in', 'not reported'))
+          PY

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<title>Pinterest Approval</title>
+<style>
+  body { font-family: Georgia, serif; background: #faf7f2; color: #3b3329; margin: 0; padding: 32px 16px; }
+  main { max-width: 560px; margin: 0 auto; text-align: center; }
+  code { display: block; word-break: break-all; background: #fff; border: 1px solid #d9cfc0; border-radius: 8px; padding: 16px; margin: 20px 0; font-size: 15px; }
+  button { font-size: 16px; padding: 12px 24px; border: 0; border-radius: 8px; background: #3b3329; color: #faf7f2; cursor: pointer; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Pinterest Approval</h1>
+  <p id="msg">Reading your approval code.</p>
+  <code id="code" hidden></code>
+  <button id="copy" hidden>Copy this code</button>
+  <p id="next" hidden>Step 2 of 2: paste it into the setup workflow on GitHub.</p>
+</main>
+<script>
+  var p = new URLSearchParams(window.location.search);
+  var msg = document.getElementById('msg');
+  if (p.get('code')) {
+    document.getElementById('code').textContent = p.get('code');
+    document.getElementById('code').hidden = false;
+    document.getElementById('copy').hidden = false;
+    document.getElementById('next').hidden = false;
+    msg.textContent = 'Approved. Here is your one-time code.';
+    document.getElementById('copy').onclick = function () {
+      navigator.clipboard.writeText(p.get('code')).then(function () { msg.textContent = 'Copied.'; });
+    };
+  } else if (p.get('error')) {
+    msg.textContent = 'Pinterest did not approve the request. Please try the approval link again.';
+  } else {
+    msg.textContent = 'No approval code found. Please start again from the approval link.';
+  }
+</script>
+</body>
+</html>
