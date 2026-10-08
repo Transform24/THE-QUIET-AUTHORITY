@@ -1,0 +1,87 @@
+name: Remotion Render Psalm 91 (vertical)
+
+# Renders the Psalm 91 (KJV) vertical video from content-ops/04_youtube/remotion/src/data/psalm91.json.
+# It checks the JSON first, then renders. It needs NO secrets and NEVER uploads anywhere.
+# The finished videos are saved as a downloadable run artifact. Grace reviews them herself.
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'What to render'
+        required: true
+        default: 'full'
+        type: choice
+        options:
+          - full
+          - clips
+          - both
+
+# Read-only. This workflow never writes to the repository and uses no secrets.
+permissions:
+  contents: read
+
+# One render at a time.
+concurrency:
+  group: remotion-psalm91
+  cancel-in-progress: false
+
+jobs:
+  render:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    defaults:
+      run:
+        working-directory: content-ops/04_youtube/remotion
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: content-ops/04_youtube/remotion/package-lock.json
+
+      - name: Install dependencies (exact versions from the lockfile)
+        run: npm ci --no-audit --no-fund
+
+      - name: Check the Psalm 91 script
+        run: node scripts/validate-psalm91.mjs
+
+      - name: Install system libraries for the headless browser
+        working-directory: .
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq libnss3 libdbus-1-3 libatk1.0-0 libgbm-dev libasound2t64 \
+            libxrandr2 libxkbcommon-dev libxfixes3 libxcomposite1 libxdamage1 libatk-bridge2.0-0 \
+            libpango-1.0-0 libcairo2 libcups2
+
+      - name: Render the full psalm
+        if: ${{ inputs.mode == 'full' || inputs.mode == 'both' }}
+        run: npx remotion render src/index.js Psalm91Full out/psalm91-full.mp4
+
+      - name: Render one clip per verse
+        if: ${{ inputs.mode == 'clips' || inputs.mode == 'both' }}
+        run: |
+          set -euo pipefail
+          mkdir -p out/clips
+          # The verse count comes from the validated file, never from the input box.
+          count=$(node -e "console.log(require('./src/data/psalm91.json').length)")
+          for i in $(seq 0 $((count - 1))); do
+            n=$(printf '%02d' $((i + 1)))
+            echo "Rendering verse $n of $count"
+            npx remotion render src/index.js Psalm91Verse "out/clips/psalm91-verse-$n.mp4" \
+              --props="{\"verseIndex\":$i}"
+          done
+
+      - name: Save the videos (download from the run page)
+        uses: actions/upload-artifact@v4
+        with:
+          name: psalm91-vertical-videos
+          path: content-ops/04_youtube/remotion/out/
+          if-no-files-found: error
+          retention-days: 14

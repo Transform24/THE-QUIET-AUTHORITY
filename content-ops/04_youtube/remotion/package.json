@@ -8,7 +8,9 @@
     "render:short": "remotion render src/index.js QuietAuthorityShort out/quiet-authority-short.mp4",
     "render:wide": "remotion render src/index.js QuietAuthorityWide out/quiet-authority-wide.mp4",
     "render:square": "remotion render src/index.js QuietAuthoritySquare out/quiet-authority-square.mp4",
-    "render:all": "npm run render:short && npm run render:wide && npm run render:square"
+    "render:all": "npm run render:short && npm run render:wide && npm run render:square",
+    "validate:psalm91": "node scripts/validate-psalm91.mjs",
+    "render:psalm91": "remotion render src/index.js Psalm91Full out/psalm91-full.mp4"
   },
   "remotion": {
     "entryPoint": "src/index.js"
