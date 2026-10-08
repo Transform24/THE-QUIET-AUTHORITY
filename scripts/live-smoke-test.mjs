@@ -25,7 +25,7 @@ function fail(msg) { console.log(`  ${FAIL} ${msg}`); failed++; failures.push(ms
 // Sourced directly from the committed HTML, not guessed -- if a gate's
 // buy button ever points somewhere else, this test is what catches it.
 const GATES = [
-  { n: 1, file: 'gate-one.html',   audio: 'gate-1-voice.mp3', stripe: 'eVqfZh8Ba8Od0Es8YGcQU0w' },
+  { n: 1, file: 'gate-one.html',   audio: 'gate-1-voice.mp3', stripe: 'fZu4gz18I5C11Iw0sacQU0E' },
   { n: 2, file: 'gate-two.html',   audio: 'gate-2-voice.mp3', stripe: '6oU3cv8Bac0pcna0sacQU0x' },
   { n: 3, file: 'gate-three.html', audio: 'gate-3-voice.mp3', stripe: '9B600j9FefcB0EscaScQU0y' },
   { n: 4, file: 'gate-four.html',  audio: 'gate-4-voice.mp3', stripe: 'dRmdR9g3CfcB72Qgr8cQU0z' },

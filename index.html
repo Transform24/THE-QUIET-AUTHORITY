@@ -2,104 +2,197 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About | Sanctuary Grace Ministry</title>
-<meta name="description" content="Why Sanctuary Grace exists. Luke 4:18 and a calling to burned-out women who need somewhere quiet to meet God again.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0d0d0d">
+<title>Sanctuary Grace Ministry | Welcome</title>
+<meta name="description" content="Four doors, one after another. How to Pray, The Quiet Authority, The Circle of Silence and The Woman Who Pours. Come in slowly.">
 <link rel="canonical" href="https://sanctuary-grace.com/">
-<meta property="og:title" content="About | Sanctuary Grace Ministry">
-<meta property="og:description" content="Luke 4:18 and a calling to burned-out women who need somewhere quiet to meet God again.">
+<meta property="og:title" content="Sanctuary Grace Ministry | Welcome">
+<meta property="og:description" content="Four doors, one after another. Come in slowly.">
 <meta property="og:url" content="https://sanctuary-grace.com/">
 <meta property="og:type" content="website">
-<meta name="theme-color" content="#0d0d0d">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{background:#0d0d0d;color:#F5F0E8;font-family:'Cormorant Garamond',Georgia,serif;min-height:100vh}
-body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:0.4}
+  :root { --black:#0d0d0d; --gold:#C9A84C; --cream:#F5F0E8; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    background: var(--black);
+    color: var(--cream);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    line-height: 1.7;
+    min-height: 100vh;
+    padding: 0 20px;
+  }
+  .wrap { max-width: 560px; margin: 0 auto; padding: 72px 0 56px; }
 
-.wrap{max-width:680px;margin:0 auto;padding:0 24px}
-.screen{display:flex;min-height:100vh;flex-direction:column;padding-bottom:80px;animation:fadeUp 0.9s ease forwards}
-@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+  header { text-align: center; }
+  .badge {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 32px;
+  }
+  h1 {
+    font-family: 'Cinzel', serif;
+    font-weight: 400;
+    font-size: clamp(25px, 6.4vw, 38px);
+    line-height: 1.4;
+    letter-spacing: 0.04em;
+    color: var(--cream);
+  }
+  .ref {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 13px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 20px;
+  }
+  .rule { width: 72px; height: 1px; background: var(--gold); margin: 40px auto; }
 
-.gold-rule{width:48px;height:1px;background:linear-gradient(90deg,transparent,#C9A84C,transparent);margin:32px auto}
-.eyebrow{font-size:10px;letter-spacing:4px;color:#C9A84C;text-transform:uppercase;font-family:sans-serif;font-weight:400;margin-bottom:16px;text-align:center}
+  .welcome { text-align: center; font-size: 22px; color: var(--cream); }
+  .welcome p + p { margin-top: 14px; font-style: italic; }
 
-.hero{padding:72px 0 40px;text-align:center;border-bottom:1px solid #C9A84C22}
-.hero h1{font-size:clamp(36px,7vw,58px);font-weight:300;line-height:1.05;color:#F5F0E8;letter-spacing:-0.02em;margin-bottom:16px}
-.hero h1 em{display:block;font-style:italic;color:#C9A84C;font-size:clamp(26px,5vw,42px)}
+  nav { margin-top: 56px; }
+  ol { list-style: none; }
+  ol li { position: relative; padding-bottom: 28px; }
+  ol li:last-child { padding-bottom: 0; }
+  /* a thin gold thread joins the doors, one after another */
+  ol li:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 4px;
+    width: 1px;
+    height: 20px;
+    background: var(--gold);
+  }
 
-.verse{border-left:2px solid #C9A84C;padding:18px 24px;margin:40px auto 0;max-width:520px;text-align:left}
-.verse p{font-style:italic;font-size:21px;color:#F5F0E8;line-height:1.75}
-.verse cite{font-size:11px;letter-spacing:2px;color:#C9A84C;text-transform:uppercase;font-style:normal;font-family:sans-serif;display:block;margin-top:10px;font-weight:400}
+  .door {
+    display: block;
+    text-decoration: none;
+    color: var(--cream);
+    border: 1px solid #C9A84C66;
+    padding: 28px 26px 26px;
+    text-align: center;
+    background: var(--black);
+    transition: border-color 0.3s ease, background 0.3s ease;
+  }
+  .door:hover, .door:focus-visible { border-color: var(--gold); background: #C9A84C14; }
+  .door:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+  .door-number {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  .door-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 1.2;
+    color: var(--cream);
+    margin: 10px 0 12px;
+  }
+  .door-text { font-size: 19px; line-height: 1.6; color: var(--cream); }
+  .door-go {
+    display: inline-block;
+    margin-top: 18px;
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    font-size: 13px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    min-height: 24px;
+  }
 
-.section{padding:48px 0;border-bottom:1px solid #C9A84C15}
-.section h2{font-size:22px;font-weight:300;color:#C9A84C;letter-spacing:0.02em;margin-bottom:20px}
-.section p{font-size:18px;line-height:1.85;color:#e0dace;margin-bottom:18px}
-.section p:last-child{margin-bottom:0}
+  footer { text-align: center; margin-top: 64px; }
+  footer p {
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    font-size: 12px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+  footer a { color: var(--cream); text-decoration: none; border-bottom: 1px solid #C9A84C66; }
+  footer a:hover, footer a:focus-visible { border-bottom-color: var(--gold); }
 
-.fill{color:#C9A84C99;font-family:sans-serif;font-size:14px;font-style:normal;border:1px dashed #C9A84C55;padding:14px 16px;display:block;margin:10px 0;line-height:1.6}
-
-.bridge{padding:64px 0 0;text-align:center}
-.bridge p{font-size:19px;line-height:1.8;color:#F5F0E8cc;max-width:480px;margin:0 auto 32px}
-.cta{display:inline-block;padding:16px 40px;border:1px solid #C9A84C;color:#C9A84C;text-decoration:none;font-family:sans-serif;font-size:13px;letter-spacing:2px;text-transform:uppercase;transition:background 0.3s,color 0.3s}
-.cta:hover{background:#C9A84C;color:#0d0d0d}
-.back{display:block;text-align:center;margin-top:40px;font-family:sans-serif;font-size:12px;letter-spacing:1px;color:#F5F0E844;text-decoration:none}
+  @media (prefers-reduced-motion: no-preference) {
+    .wrap > * { animation: rise 0.9s ease both; }
+    .wrap > nav { animation-delay: 0.25s; }
+    @keyframes rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+  }
+  @media (min-width: 700px) {
+    body { font-size: 22px; }
+    .wrap { padding-top: 104px; }
+  }
 </style>
 </head>
 <body>
 <div class="wrap">
-<div class="screen">
+  <header>
+    <p class="badge">Sanctuary Grace Ministry</p>
+    <h1>Keep thy heart with all diligence; for out of it are the issues of life.</h1>
+    <p class="ref">Proverbs 4:23 &middot; KJV</p>
+  </header>
 
-  <div class="hero">
-    <p class="eyebrow">Sanctuary Grace Ministry</p>
-    <h1>Why This<em>Exists</em></h1>
-  </div>
+  <div class="rule" aria-hidden="true"></div>
 
-  <div class="verse">
-    <p>"The Spirit of the Lord is upon me, because he hath anointed me to preach the gospel to the poor; he hath sent me to heal the brokenhearted, to preach deliverance to the captives, and recovering of sight to the blind, to set at liberty them that are bruised,"</p>
-    Luke 4:18, KJV
-  </div>
+  <section class="welcome" aria-label="Welcome">
+    <p>Come in slowly. Nothing here is rushed.</p>
+    <p>Four doors stand in a row, and each one opens in its own time. Take the one your heart is already leaning toward.</p>
+  </section>
 
-  <div class="section">
-    <h2>The Calling</h2>
-    <p>Sanctuary Grace was not built to grow an audience. It was built for one purpose named plainly in that verse: for the brokenhearted, the bound, the ones nobody sees straining under the weight of holding everything together.</p>
-    <p>If you are a woman who has given until there was nothing left, who has carried a family, a ministry, a job, a church life of checking the boxes, having a form of godliness, but denying the power thereof, from such turn away, and quietly wondered if God even sees the exhaustion, this was built for you specifically. Not for everyone. For you.</p>
-  </div>
+  <nav aria-label="The four doors">
+    <ol>
+      <li>
+        <a class="door" href="how-to-pray.html">
+          <span class="door-number">Door One</span>
+          <h2 class="door-title">How To Pray</h2>
+          <p class="door-text">Enter the secret place. A path through the King James Bible for the exact season you are in.</p>
+          <span class="door-go">Enter &rarr;</span>
+        </a>
+      </li>
+      <li>
+        <a class="door" href="the-quiet-authority-foyer.html">
+          <span class="door-number">Door Two</span>
+          <h2 class="door-title">The Quiet Authority</h2>
+          <p class="door-text">Before the eight questions, a word about why this assessment exists. Free. No payment required.</p>
+          <span class="door-go">Enter &rarr;</span>
+        </a>
+      </li>
+      <li>
+        <a class="door" href="gate-zero.html">
+          <span class="door-number">Door Three</span>
+          <h2 class="door-title">The Circle of Silence</h2>
+          <p class="door-text">You are standing at the door. The threshold is free. Trust is built here, not rushed.</p>
+          <span class="door-go">Enter &rarr;</span>
+        </a>
+      </li>
+      <li>
+        <a class="door" href="the-woman-who-pours.html">
+          <span class="door-number">Door Four</span>
+          <h2 class="door-title">The Woman Who Pours Shop</h2>
+          <p class="door-text">A ten-chapter devotional on Psalm 22:6, for the woman who keeps pouring. The companion workbook is free.</p>
+          <span class="door-go">Enter &rarr;</span>
+        </a>
+      </li>
+    </ol>
+  </nav>
 
-  <div class="section">
-    <h2>My Story</h2>
-    <p>The signs were there long before I understood them. God has never needed the qualified. He called Jeremiah as a child, David as the youngest, Gideon as the least, and He left Mary an orphan before He ever spoke to her. My first miracle came at thirteen. I was baptized at sixteen. None of it made sense to me yet.</p>
-    <p>Salvation found me at thirty-two. And for thirty-two years after that, I ran anyway. In and out of the world, striving, hustling, a prodigal convinced she was living her best life while actually lost in it. Single parenting. Working job after job just to keep a family standing. I thought I was in control. I was only exhausted, and I called it strength.</p>
-    <p>God in His sovereignty let me run until I had nearly run myself into the ground, and in His love He turned me back. November 2024, setting up my classroom for a new school year, I fell from a ladder three feet off the ground. Three feet. I could have jumped that height without thinking twice. My health would not allow surgery, so instead there were six casts, a brace worse than any of them, a scooter, and a year without driving. What was left was silence. Isolation. And in it, for the first time in decades, I actually listened. He had my attention.</p>
-    <p>None of this was only for me. It was for the weary. The brokenhearted. Everyone poor in spirit, spiritually blind, and quietly aching for a relationship the world was never able to give. I have been the Guilty Giver. The Depleted Survivor. The Lost Wanderer. The Striving Achiever. Every one of them, in one season or another. Sanctuary Grace exists because I know exactly where you are standing. I have stood there myself.</p>
-  </div>
-
-  <div class="section">
-    <h2>The Short Version</h2>
-    <p>I spent about forty years running from God, and I know the road back. Now I build quiet, Christ-centered places for burned-out Christian women who are tired of performing and ready to be restored. Luke 4:18 is the reason I do this work.</p>
-    <p>Think of it like packing for a trip. You cannot go to Hawaii without a swimsuit, a place to stay, and shoes that fit. Some things are free at the door. Some things you carry to make the journey. I help you pack. Come as you are.</p>
-  </div>
-
-  <div class="section">
-    <h2>What This Is Not</h2>
-    <p>This is not self-help. There is no hustle here, no seven habits, no program promising you'll finally be enough if you just try harder. Sanctuary Grace points to Christ, not to a brand, and not to me.</p>
-    <p>The tools inside, the gates, the stillness, the declarations, exist to lead you back to Him. They are the door, not the destination.</p>
-  </div>
-
-  <div class="bridge">
-    <div class="gold-rule"></div>
-    <p>Join the Circle of Silence, and turn from burnout to restored. Enter the Secret Place, and develop the intimacy the world could never give you.</p>
-    <a href="gate-zero.html" class="cta">Begin at Gate Zero</a>
-    <p style="margin:20px 0 0"><a href="the-secret-place.html" style="color:#C9A84C;font-family:sans-serif;font-size:13px;letter-spacing:1px;text-decoration:none;border-bottom:1px solid #C9A84C55">Enter the Secret Place</a></p>
-    <a href="foyer.html" class="back">Back to the Foyer</a>
-  </div>
-
-  <footer style="text-align:center;padding:48px 0 0;margin-top:16px;border-top:1px solid #C9A84C15">
-    <p style="font-style:italic;font-size:15px;color:#F5F0E877;line-height:1.8;max-width:480px;margin:0 auto">"That if thou shalt confess with thy mouth the Lord Jesus, and shalt believe in thine heart that God hath raised him from the dead, thou shalt be saved. For with the heart man believeth unto righteousness; and with the mouth confession is made unto salvation."</p>
-    <p style="font-family:sans-serif;font-size:10px;letter-spacing:2px;color:#C9A84C77;text-transform:uppercase;margin-top:14px">Romans 10:9-10, KJV</p>
+  <footer>
+    <p>Sanctuary Grace Ministry &middot; <a href="about.html">About</a> &middot; <a href="privacy.html">Privacy</a></p>
   </footer>
-
-</div>
 </div>
 </body>
 </html>

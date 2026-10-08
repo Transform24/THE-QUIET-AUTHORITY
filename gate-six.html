@@ -195,6 +195,23 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 <p class="hero-body" style="margin-top:8px">Hithavut, from the Hebrew הִתְהַוּוּת, means becoming, coming into being. It is not a finish line. It is a way of living from who God has always said you are.</p>
 </div>
 
+<!-- AUDIO FROM GRACE -->
+<div class="audio-section">
+<p class="audio-label">A word from Grace</p>
+<h3 class="audio-title">You did not just survive this. You became something.</h3>
+<p class="audio-sub">And what you became is not finished revealing itself.</p>
+<div class="audio-placeholder">
+<button class="play-btn" onclick="toggleGateAudio('gate6-audio', this)">
+<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+</button>
+<div class="audio-text">
+<strong>Becoming · Gate Six Audio</strong>
+<span>1:50 · A word from Grace</span>
+</div>
+</div>
+<audio id="gate6-audio" src="assets/audio/gate-6-voice.mp3" preload="none"></audio>
+</div>
+
 <div class="buy-section" id="buy-section">
 <div class="buy-box">
 <p class="buy-eyebrow">Gate Six · Hithavut · Becoming</p>
@@ -366,6 +383,21 @@ document.getElementById('wound-' + id).classList.add('active');
 function saveField(key, value) {
 try { localStorage.setItem(key, value); } catch(e) {}
 }
+var PLAY_ICON = '<path d="M8 5v14l11-7z"/>';
+var PAUSE_ICON = '<path d="M6 5h4v14H6zM14 5h4v14h-4z"/>';
+function toggleGateAudio(audioId, btn) {
+var audio = document.getElementById(audioId);
+var svg = btn.querySelector('svg');
+if (audio.paused) {
+audio.play().catch(function() {});
+svg.innerHTML = PAUSE_ICON;
+} else {
+audio.pause();
+svg.innerHTML = PLAY_ICON;
+}
+audio.onended = function() { svg.innerHTML = PLAY_ICON; };
+}
+
 var timerInterval = null;
 var timerSeconds = 180;
 var timerRunning = false;
