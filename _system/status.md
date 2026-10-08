@@ -4,7 +4,7 @@
 ## Root URL now serves the Welcome foyer; About moved to about.html (2026-10-08)
 - `index.html` at repo root is now the Welcome foyer: Proverbs 4:23 (KJV) header and four numbered doors (How To Pray, The Quiet Authority, The Circle of Silence at `gate-zero.html`, The Woman Who Pours Shop).
 - The About page moved to `about.html` (canonical and share address updated, "Return Home" link added). The 2026-09-24 entry below, which says the root serves About, is superseded.
-- Gate One checkout link locked in as `fZu4gz18I5C11Iw0sacQU0E` (verified in live Stripe). Gate Six audio player restored. See README sections 8 and 12.
+- Gate One checkout link locked in as `fZu4gz18I5C11Iw0sacQU0E` (verified in live Stripe). Gate Six audio player restored and live (Worker route for gate-six.html removed 2026-10-08; smoke test 29 of 29). See README sections 8 and 12.
 
 ## Root URL now serves About, not the TQA assessment (2026-09-24)
 - `index.html` at repo root is now the About page (Luke 4:18, ministry origin story).
