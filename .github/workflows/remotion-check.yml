@@ -1,0 +1,102 @@
+name: Remotion Check (video engines)
+
+# Compiles both video engines and checks their scripts. It renders nothing and uploads nothing.
+# It runs on every change to the engines, their music, or this file, so a broken script is caught
+# before anyone renders. It needs NO secrets: nothing here reads the vault.
+
+on:
+  pull_request:
+    paths:
+      - 'content-ops/04_youtube/remotion/**'
+      - 'circle-of-silence/remotion/**'
+      - 'scripts/check-remotion-sync.mjs'
+      - 'music1.mp3'
+      - 'music2.mp3'
+      - 'music3.mp3'
+      - '.github/workflows/remotion-*.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'content-ops/04_youtube/remotion/**'
+      - 'circle-of-silence/remotion/**'
+      - 'scripts/check-remotion-sync.mjs'
+      - 'music1.mp3'
+      - 'music2.mp3'
+      - 'music3.mp3'
+      - '.github/workflows/remotion-*.yml'
+  workflow_dispatch: {}
+
+# Read-only. These jobs never write to the repository.
+permissions:
+  contents: read
+
+concurrency:
+  group: remotion-check-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - engine: content-ops/04_youtube/remotion
+            validate: validate:psalm91
+          - engine: circle-of-silence/remotion
+            validate: validate:gates
+    defaults:
+      run:
+        working-directory: ${{ matrix.engine }}
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: ${{ matrix.engine }}/package-lock.json
+
+      - name: Check the two engines match and stay on brand
+        working-directory: .
+        run: node scripts/check-remotion-sync.mjs
+
+      - name: Confirm the video workflows read no secrets
+        working-directory: .
+        run: |
+          if grep -nE '\$\{\{ *secrets\.' .github/workflows/remotion-*.yml; then
+            echo "::error::A Remotion workflow reads a secret. These workflows must use none."
+            exit 1
+          fi
+          echo "No secrets referenced."
+
+      - name: Install dependencies (exact versions from the lockfile)
+        run: npm ci --no-audit --no-fund
+
+      - name: Prove the script checker stops bad files
+        run: npm run test:validator
+
+      - name: Check the scripture file
+        run: npm run ${{ matrix.validate }}
+
+      - name: Stage the music from the repository root
+        run: npm run stage-audio
+
+      - name: Install system libraries for the headless browser
+        working-directory: .
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq libnss3 libdbus-1-3 libatk1.0-0 libgbm-dev libasound2t64 \
+            libxrandr2 libxkbcommon-dev libxfixes3 libxcomposite1 libxdamage1 libatk-bridge2.0-0 \
+            libpango-1.0-0 libcairo2 libcups2
+
+      - name: Make sure the headless browser is available
+        run: npx remotion browser ensure
+
+      - name: Compile the engine and list its videos
+        run: npx remotion compositions src/index.js

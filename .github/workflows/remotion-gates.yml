@@ -1,7 +1,8 @@
-name: Remotion Render Psalm 91 (vertical)
+name: Remotion Render Gates (vertical)
 
-# Renders the Psalm 91 (KJV) vertical video from content-ops/04_youtube/remotion/src/data/psalm91.json,
-# with music1.mp3 from the repository root looping softly underneath.
+# Renders the six gates of the Circle of Silence as vertical scripture reveals from
+# circle-of-silence/remotion/src/data/gates.json, with music2.mp3 and music3.mp3 from the
+# repository root looping softly underneath. Same look as the Psalm 91 video.
 # It checks the script first, then renders. It needs NO secrets and NEVER uploads anywhere.
 # The finished videos are saved as a downloadable run artifact. Grace reviews them herself.
 
@@ -24,7 +25,7 @@ permissions:
 
 # One render at a time.
 concurrency:
-  group: remotion-psalm91
+  group: remotion-gates
   cancel-in-progress: false
 
 jobs:
@@ -33,7 +34,7 @@ jobs:
     timeout-minutes: 60
     defaults:
       run:
-        working-directory: content-ops/04_youtube/remotion
+        working-directory: circle-of-silence/remotion
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -45,7 +46,7 @@ jobs:
         with:
           node-version: '22'
           cache: npm
-          cache-dependency-path: content-ops/04_youtube/remotion/package-lock.json
+          cache-dependency-path: circle-of-silence/remotion/package-lock.json
 
       - name: Check the two engines match and stay on brand
         working-directory: .
@@ -57,8 +58,8 @@ jobs:
       - name: Prove the script checker stops bad files
         run: npm run test:validator
 
-      - name: Check the Psalm 91 script and the music
-        run: npm run validate:psalm91
+      - name: Check the gates script and the music
+        run: npm run validate:gates
 
       - name: Install system libraries for the headless browser
         working-directory: .
@@ -72,18 +73,18 @@ jobs:
         run: npx remotion browser ensure
 
       # Each render script below checks the script and stages the music again before it renders.
-      - name: Render the full psalm
+      - name: Render all six gates in one video
         if: ${{ inputs.mode == 'full' || inputs.mode == 'both' }}
-        run: npm run render:psalm91
+        run: npm run render:gates
 
-      - name: Render one clip per verse
+      - name: Render one clip per gate
         if: ${{ inputs.mode == 'clips' || inputs.mode == 'both' }}
-        run: npm run render:psalm91:clips
+        run: npm run render:gates:clips
 
       - name: Save the videos (download from the run page)
         uses: actions/upload-artifact@v4
         with:
-          name: psalm91-vertical-videos
-          path: content-ops/04_youtube/remotion/out/
+          name: gates-vertical-videos
+          path: circle-of-silence/remotion/out/
           if-no-files-found: error
           retention-days: 14

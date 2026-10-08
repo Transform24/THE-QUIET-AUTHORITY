@@ -61,12 +61,20 @@ If you migrate the site to React, import `<Player>` from `@remotion/player` and 
 
 ## Psalm 91 (KJV), vertical 1080x1920
 
-The words live in `src/data/psalm91.json`. Each entry holds the verse marker, two lines, two colors and `reveal_speed_ms` (the pause between letters).
+The words live in `src/data/psalm91.json`. Each entry holds the verse marker, two lines, the two colors and `reveal_speed_ms`.
+This engine shares its look with `circle-of-silence/remotion/`. The shared files must stay identical (see the central README, section 11).
 
-1. Edit `src/data/psalm91.json` only. Keep 16 verses, KJV wording, no em dashes.
-2. Check it: `npm run validate:psalm91`
-3. Render the whole psalm: `npm run render:psalm91` (about 167 seconds long)
-4. Render one verse: `npx remotion render src/index.js Psalm91Verse out/verse.mp4 --props='{"verseIndex":0}'` (0 to 15)
-5. On GitHub: Actions, "Remotion Render Psalm 91 (vertical)", Run workflow. It checks the file, renders, and saves the videos as a downloadable artifact for 14 days. It uses no secrets and never uploads anywhere. Grace uploads herself.
+1. Edit `src/data/psalm91.json` only. Keep 16 verses, KJV wording, no em dashes. Colors stay `#F5F0E8` (words) and `#C9A84C` (badge).
+2. Check it: `npm run validate:psalm91` (it also confirms `music1.mp3` is real audio at the repository root).
+3. Prove the checker still works: `npm run test:validator`
+4. Render the whole psalm: `npm run render:psalm91` (about 191 seconds). It checks the script and stages the music first.
+5. Render one clip per verse: `npm run render:psalm91:clips` (files appear in `out/clips/`).
+6. On GitHub: Actions, "Remotion Render Psalm 91 (vertical)", Run workflow. It saves the videos as a downloadable artifact for 14 days. It uses no secrets and never uploads anywhere. Grace uploads herself.
 
-Fonts (Cormorant Garamond, Jost, Cinzel) load from Google Fonts while rendering. No music is attached yet because no audio file is stored for this engine.
+Pace: words appear one at a time, about 110 to 130 words a minute. `reveal_speed_ms` is the time given per letter. No word is shown for less than 0.42 seconds, and punctuation adds a breath.
+
+Music: `music1.mp3` is read from the repository root, not from this folder. `scripts/stage-audio.mjs` copies it into `public/` (ignored by git) and the video loops it softly with a fade in and fade out. Never move the music files out of the root. The website needs them there.
+
+Fonts (Cormorant Garamond, Jost, Cinzel) load from Google Fonts while rendering.
+
+The older promo videos in `src/QuietAuthorityVideo.jsx` are not part of this and still need a `banner.png` that is not stored here.

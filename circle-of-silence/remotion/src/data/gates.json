@@ -1,0 +1,62 @@
+[
+  {
+    "gate_label": "GATE ONE: HAKRIA",
+    "verse_marker": "LUKE 4:18",
+    "line_1": "The Spirit of the Lord is upon me, because he hath anointed me to preach the gospel to the poor;",
+    "line_2": "he hath sent me to heal the brokenhearted, to preach deliverance to the captives, and recovering of sight to the blind, to set at liberty them that are bruised.",
+    "text_color": "#F5F0E8",
+    "badge_color": "#C9A84C",
+    "reveal_speed_ms": 75,
+    "music": "music2.mp3"
+  },
+  {
+    "gate_label": "GATE TWO: SHEKET",
+    "verse_marker": "PSALM 46:10",
+    "line_1": "Be still, and know that I am God:",
+    "line_2": "I will be exalted among the heathen, I will be exalted in the earth.",
+    "text_color": "#F5F0E8",
+    "badge_color": "#C9A84C",
+    "reveal_speed_ms": 75,
+    "music": "music2.mp3"
+  },
+  {
+    "gate_label": "GATE THREE: HAMIDBAR",
+    "verse_marker": "ISAIAH 43:2",
+    "line_1": "When thou passest through the waters, I will be with thee; and through the rivers, they shall not overflow thee:",
+    "line_2": "when thou walkest through the fire, thou shalt not be burned; neither shall the flame kindle upon thee.",
+    "text_color": "#F5F0E8",
+    "badge_color": "#C9A84C",
+    "reveal_speed_ms": 75,
+    "music": "music2.mp3"
+  },
+  {
+    "gate_label": "GATE FOUR: HITKANIA",
+    "verse_marker": "PROVERBS 3:5-6",
+    "line_1": "Trust in the LORD with all thine heart; and lean not unto thine own understanding.",
+    "line_2": "In all thy ways acknowledge him, and he shall direct thy paths.",
+    "text_color": "#F5F0E8",
+    "badge_color": "#C9A84C",
+    "reveal_speed_ms": 75,
+    "music": "music3.mp3"
+  },
+  {
+    "gate_label": "GATE FIVE: BITACHON",
+    "verse_marker": "HEBREWS 11:1",
+    "line_1": "Now faith is the substance of things hoped for,",
+    "line_2": "the evidence of things not seen.",
+    "text_color": "#F5F0E8",
+    "badge_color": "#C9A84C",
+    "reveal_speed_ms": 75,
+    "music": "music3.mp3"
+  },
+  {
+    "gate_label": "GATE SIX: HITHAVUT",
+    "verse_marker": "JEREMIAH 29:11",
+    "line_1": "For I know the thoughts that I think toward you, saith the LORD,",
+    "line_2": "thoughts of peace, and not of evil, to give you an expected end.",
+    "text_color": "#F5F0E8",
+    "badge_color": "#C9A84C",
+    "reveal_speed_ms": 75,
+    "music": "music3.mp3"
+  }
+]

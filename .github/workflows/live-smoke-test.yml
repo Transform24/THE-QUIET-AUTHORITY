@@ -21,8 +21,11 @@ permissions:
 jobs:
   smoke-test:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -32,7 +35,7 @@ jobs:
       - name: Install Playwright
         run: |
           npm init -y
-          npm install -D playwright
+          npm install -D playwright --no-audit --no-fund
           npx playwright install chromium --with-deps
 
       - name: Run live smoke test against sanctuary-grace.com

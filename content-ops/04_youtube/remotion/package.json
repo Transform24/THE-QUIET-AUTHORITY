@@ -9,8 +9,14 @@
     "render:wide": "remotion render src/index.js QuietAuthorityWide out/quiet-authority-wide.mp4",
     "render:square": "remotion render src/index.js QuietAuthoritySquare out/quiet-authority-square.mp4",
     "render:all": "npm run render:short && npm run render:wide && npm run render:square",
+    "stage-audio": "node scripts/stage-audio.mjs music1.mp3",
     "validate:psalm91": "node scripts/validate-psalm91.mjs",
-    "render:psalm91": "remotion render src/index.js Psalm91Full out/psalm91-full.mp4"
+    "test:validator": "node scripts/test-validator.mjs",
+    "prestudio": "npm run stage-audio",
+    "prerender:psalm91": "npm run validate:psalm91 && npm run stage-audio",
+    "render:psalm91": "remotion render src/index.js Psalm91Full out/psalm91-full.mp4",
+    "prerender:psalm91:clips": "npm run validate:psalm91 && npm run stage-audio",
+    "render:psalm91:clips": "node scripts/render-clips.mjs Psalm91Verse src/data/psalm91.json out/clips psalm91-verse"
   },
   "remotion": {
     "entryPoint": "src/index.js"

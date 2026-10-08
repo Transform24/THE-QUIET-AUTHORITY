@@ -67,7 +67,7 @@ IMPORTANT: this umbrella is a working copy for context only. The three GitHub re
 - **Email engine:** MailerLite (live). Sending authentication is set in Cloudflare DNS (section 5).
 - **Payments:** Stripe, live.
 - **Worker:** `lively-dew-924c` on Cloudflare Workers. Secrets held in Cloudflare (names only): `MAILERLITE_API_KEY`, `RESTORE_ACCESS_SECRET`, `STRIPE_SECRET_KEY`, `STRIPE_TEST_SECRET_KEY`, `TWWP_SEED_SECRET`.
-- **Automation (GitHub Actions in THE-QUIET-AUTHORITY):** pinterest-agent (running daily, refreshes its own access token once the one-time setup is done), substack-agent (PAUSED by Grace 2026-10-03, manual run only, saves a DRAFT only and never publishes), substack-deploy (PAUSED, publishes only what Grace moves into `workflows/output/substack-approved/`, and skips anything already marked PUBLISHED in the log), instagram (paused, Meta restriction), youtube, live-smoke-test, ux-check.
+- **Automation (GitHub Actions in THE-QUIET-AUTHORITY):** pinterest-agent (running daily, refreshes its own access token once the one-time setup is done), substack-agent (PAUSED by Grace 2026-10-03, manual run only, saves a DRAFT only and never publishes), substack-deploy (PAUSED, publishes only what Grace moves into `workflows/output/substack-approved/`, and skips anything already marked PUBLISHED in the log), instagram (paused, Meta restriction), youtube, live-smoke-test, ux-check, remotion-check (compiles both video engines on every change), remotion-psalm91 and remotion-gates (manual video renders, no secrets, no uploads).
 - **Secondary domain:** `sanctuarygrace.store`, Cloudflare zone is pending (nameservers not yet switched at the registrar).
 
 ---
@@ -92,6 +92,8 @@ Rule: never delete these. Never proxy the DKIM CNAME. Never add a second SPF rec
 - Never force-push `main`.
 - Never move `index.html`, `gate-*.html`, `CNAME`, `.nojekyll`, `approval-gate.html`, `privacy.html`, `404.html` or their sibling assets out of the THE-QUIET-AUTHORITY repo root. GitHub Pages serves from the root.
 - Never move `workflows/scripts/*.py`, `workflows/output/*`, `workflows/youtube-log.md` or `workflows/substack-log.md`. The workflow files and the scripts hardcode those exact paths.
+- Never move `music1.mp3` to `music4.mp3` out of the repository root. The website player and both video engines read them from there.
+- Never edit one video engine's shared files without the other. They must stay identical (section 11).
 - Never nest a repo inside another repo and expect its `.github/workflows` to run. GitHub only reads workflows from the top level of each repo.
 - Never add npm, build tools or frameworks to the live site.
 - Never change design tokens or brand voice without Grace's approval.
@@ -142,6 +144,10 @@ Findings from the 2026-10-08 file system audit (nothing below has been changed y
 13. WORDING. Self-help phrasing in public copy: "best life" and "burnout" in `index.html`, "show up for yourself" in `lost-wanderer.html`, "you are enough" and "your truth" in `discover-your-profile.html` and `the-names-of-jesus-and-the-holy-spirit.html`. "Burnout" is also in a book title.
 14. SYMBOLS. No pictographic emoji on public pages. Typographic marks appear in `discover-your-profile.html` (39) and `approval-gate.html` (4). Real emoji appear only in internal log messages of the Instagram and YouTube deploy scripts.
 15. SECRETS MAP. No raw keys were found in 562 files or in the 8 commits of available history. Secrets were not visible from outside GitHub, so whether each one exists and is still valid cannot be confirmed from here.
+16. VIDEO, older promo. `QuietAuthorityVideo.jsx` (the three promo videos in `content-ops/04_youtube/remotion`) still uses colors and fonts outside the palette (`#0b0b0b`, `#c9a96e`, `#f0ead8`, Georgia, Arial) and its background image `banner.png` is not stored, so it renders with the picture missing. (Its music now works, because `npm run studio` stages `music1.mp3` from the root.) It is not covered by the new brand guard. Grace to decide whether to rebuild it in the same style as the scripture reveal.
+17. VIDEO, music choice. Gates 1 to 3 use `music2.mp3` (Still Waters) and gates 4 to 6 use `music3.mp3` (Gratitude). Psalm 91 uses `music1.mp3` (violin and piano). Each is one field in the JSON, so Grace can change it in seconds.
+18. VIDEO, gate words. The gate records in `circle-of-silence/` hold no scripture, so each gate reveal uses the hero verse printed on its own page (Luke 4:18, Psalm 46:10, Isaiah 43:2, Proverbs 3:5-6, Hebrews 11:1, Jeremiah 29:11). Grace to confirm these are the verses she wants.
+19. VIDEO, mirror. The blueprint copies in THE-CIRCLE-OF-SILENCE, the-wilderness-storefront- and the Drive backup were last updated before sections 9 to 11 and the 2026-10-08 audit. They are older than this file.
 
 ---
 
@@ -171,6 +177,8 @@ Each step builds on the one before it. Do not skip ahead.
 - `images/` holds a few cover images.
 - `hubs/` holds the hub pages and their shared `hub.css` and `hub.js`.
 - `scripts/live-smoke-test.mjs` and `tests/ux-check.spec.js` are the automatic checks that run on GitHub.
+- `scripts/check-remotion-sync.mjs` keeps the two video engines identical and on-brand.
+- `content-ops/04_youtube/remotion/` and `circle-of-silence/remotion/` are the two video engines (section 11). The music stays at the root.
 
 **Step 5. Understand the content records.**
 - `circle-of-silence/` has one record per gate (`gate-1-hakria.md` to `gate-6-hithavut.md`), `products.md` and `CONTEXT.md`.
@@ -230,3 +238,34 @@ Each step builds on the one before it. Do not skip ahead.
 3. Search for the em dash, emoji, banned words and non-KJV version names (NIV, NKJV, NLT, ESV, The Message).
 4. Compare the secrets named in `.github/workflows/` with section 7.
 5. Record every mismatch in section 8 and wait for Grace's decision before fixing.
+
+---
+
+## 11. VIDEO GENERATION FRAMEWORK (automated, under the Sanctuary Grace Ministry umbrella)
+
+One scripture reveal engine, built once and placed in two homes so every video looks the same: solid black `#0d0d0d`, gold verse badge `#C9A84C`, cream words `#F5F0E8`, set in Cormorant Garamond, Jost and Cinzel.
+
+| Engine | Folder | Words | Music | Videos it makes |
+|---|---|---|---|---|
+| Psalm 91 (YouTube) | `content-ops/04_youtube/remotion/` | `src/data/psalm91.json`, 16 verses | `music1.mp3` | `Psalm91Full` (about 191 seconds) and `Psalm91Verse` (one clip per verse) |
+| Six gates (Circle of Silence) | `circle-of-silence/remotion/` | `src/data/gates.json`, 6 gates | gates 1 to 3 `music2.mp3`, gates 4 to 6 `music3.mp3` | `GatesFull` (about 108 seconds) and `GateVerse` (one clip per gate) |
+
+All videos are vertical 1080 by 1920.
+
+**How to make a video, in order**
+1. Edit only the JSON file for that engine. Keep KJV wording, no em dashes, and the exact colors already in the file.
+2. Check it: `npm run validate:psalm91` or `npm run validate:gates`. It stops on a wrong verse count, wrong marker, wrong color, em dash, emoji, markup, bad speed, or missing music.
+3. Render on GitHub: Actions, then "Remotion Render Psalm 91 (vertical)" or "Remotion Render Gates (vertical)", then Run workflow. Or render locally with `npm run render:psalm91` or `npm run render:gates`.
+4. Download the videos from the run page (kept 14 days) and review them.
+5. Grace uploads herself. Nothing in this framework ever uploads.
+
+**How it behaves**
+- Pace: words appear one at a time and fade in softly. About 110 to 130 words a minute, with a breath at commas, colons and full stops, and a 3 second rest at the end of each verse. `reveal_speed_ms` is the time given per letter. No word is shown for less than 0.42 seconds.
+- Music: read from the repository root, copied into a git-ignored `public/` folder by `scripts/stage-audio.mjs`, then looped softly at about one fifth of full volume. It fades in at the start and out at the end, and each gate dips softly between gates.
+- Shared files must stay identical in both engines: `ScriptureReveal.jsx`, `revealTiming.mjs`, `validate-core.mjs`, `stage-audio.mjs`, `render-clips.mjs`, `test-validator.mjs`, `index.js`. Only the JSON, the composition list in `Root.jsx` and the small `validate-*.mjs` file differ.
+
+**What guards it**
+- `scripts/check-remotion-sync.mjs` fails if the shared files differ, or if the video uses a color or font outside the brand set.
+- `.github/workflows/remotion-check.yml` runs on every change: sync check, 44-case test of the script checker, the script check, music staging, and a full compile of each engine in a headless browser.
+- No video workflow reads any secret. They have read-only repository access and no upload step. The check workflow fails the build if one ever starts to read a secret.
+
