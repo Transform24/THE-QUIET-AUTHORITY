@@ -105,7 +105,15 @@ Rule: never delete these. Never proxy the DKIM CNAME. Never add a second SPF rec
 
 - Real values live only in: Cloudflare Worker secrets, GitHub Actions secrets, or a local gitignored `.env`.
 - `.env.example` in this repo lists the key names with empty values. Copy it to `.env` and fill it in locally. `.env` is gitignored.
-- GitHub Actions secrets expected in THE-QUIET-AUTHORITY (names only): `ANTHROPIC_API_KEY`, `SUBSTACK_COOKIE_ID`, `GEMINI_API_KEY`, `PINTEREST_ACCESS_TOKEN` (temporary fallback only), `PINTEREST_APP_ID`, `PINTEREST_APP_SECRET`, `PINTEREST_REFRESH_TOKEN`, `PINTEREST_BOARD_ID`, `YOUTUBE_SESSION_SID`, `YOUTUBE_SESSION_HSID`, `GH_SECRETS_PAT`.
+- GitHub Actions secrets that the workflows actually read in THE-QUIET-AUTHORITY (names only, checked against the code on 2026-10-08):
+  - Writing and images: `ANTHROPIC_API_KEY`, `GEMINI_API_KEY`
+  - Pinterest: `PINTEREST_APP_ID`, `PINTEREST_APP_SECRET`, `PINTEREST_REFRESH_TOKEN`, `PINTEREST_ACCESS_TOKEN` (temporary fallback only)
+  - Substack: `SUBSTACK_COOKIE_ID`
+  - Instagram (paused): `INSTAGRAM_ACCESS_TOKEN`, `INSTAGRAM_USER_ID`, `IG_DEFAULT_IMAGE_URL`
+  - YouTube: `YOUTUBE_API_KEY`, `YOUTUBE_CLIENT_ID`, `YOUTUBE_CLIENT_SECRET`, `YOUTUBE_REFRESH_TOKEN`
+  - GitHub: `GH_SECRETS_PAT`
+- Old names that no code reads anymore: `YOUTUBE_SESSION_SID` and `YOUTUBE_SESSION_HSID` (commented out in the YouTube script), `PINTEREST_BOARD_ID` (the pin script finds boards by name). They can stay in the vault or be removed.
+- These secrets are passed to scripts only through each step's `env:` block, never typed into a command, so GitHub hides their values in logs.
 - `PINTEREST_APP_SECRET` is the App Secret from the Pinterest Developer Configure tab (App ID 1585025). It was regenerated on 2026-10-07 after it was pasted in chat once.
 - `PINTEREST_REFRESH_TOKEN` is created by the one-time workflow `pinterest-oauth-setup.yml` after Grace approves the app, and is renewed automatically by `pinterest-agent.yml`. It is NOT in place until that setup runs.
 - `GH_SECRETS_PAT` is a fine-grained GitHub token with Secrets read and write on THE-QUIET-AUTHORITY only. The agent uses it to save a renewed Pinterest refresh token. It expires on the date Grace chose, so renew it before then.
@@ -118,9 +126,107 @@ Rule: never delete these. Never proxy the DKIM CNAME. Never add a second SPF rec
 
 1. Gate 1 email sequence has no live delivery path since Systeme.io was shut down. Needs a decision: load into MailerLite.
 2. Video project is blocked until Grace allows `sanctuary-grace.com` and `bible-api.com` in the cloud environment Network access settings and supplies the stills, music and verse list.
-3. Workflow commit email `noreply@sanctuarygrace.com` uses the wrong domain spelling. Cosmetic, fix when next editing the workflows.
+3. The commit email `noreply@sanctuarygrace.com` (wrong domain spelling) appears in 7 workflow files. Cosmetic, fix when next editing the workflows. `_system/channels.md` also lists `sanctuarygrace.com` as the Pinterest account name.
 4. DMARC is monitoring only (`p=none`). Tighten after a few weeks of clean reports.
 5. COMPLETED 2026-10-07: Cloudflare "Always Use HTTPS" is on and minimum TLS is 1.2 for sanctuary-grace.com (SSL mode stays Full). Verified by reading the settings back and confirming http redirects to https.
 6. Verify each GitHub Actions secret is still valid (see Grace's refresh instructions delivered with this blueprint).
 7. Pinterest one-time approval is still pending: add the redirect address `https://sanctuary-grace.com/pinterest-callback.html` in the Pinterest Configure tab, approve the app, then run `pinterest-oauth-setup.yml` with the code. Also note that Pinterest Trial access shows pins only to the app owner, so daily pins may not be public until Standard access is approved.
 8. The first real Substack draft is the first true test of the cookie. Earlier runs in June failed with HTTP 403. Substack stays paused until Grace says otherwise.
+
+Findings from the 2026-10-08 file system audit (nothing below has been changed yet; each needs Grace's go-ahead):
+
+9. COLORS. The four core colors are 1,369 of 1,612 color uses (85%). Another 90 uses are official tokens from `_system/brand-tokens.md`. 153 uses of 28 colors are off the palette, mostly `#0a0a0a` (53), `#141414` (15), `#e8d5b0` (14), `#9a9a94` (11), plus pure white and black in `how-to-pray.html`, `secret-place-printable-cards.html`, `names-of-god.html` and `wall-art.html`. Decision needed: the official token file holds 18 colors (surfaces, borders, sage, tints), not only four. Choose whether to enforce the strict four or the full token set.
+10. FONTS. 361 style rules in 18 pages (mostly the gate pages) set labels to the bare `sans-serif` browser default instead of Jost. `how-to-pray.html` and `hubs/` use Lato and Frank Ruhl Libre. `404.html`, `privacy.html` and one rule in `discover-your-profile.html` use Georgia first. (`pinterest-callback.html`, added on 2026-10-07, was brought onto the brand colors and fonts during this audit.) The four Hebrew pages use Noto Serif Hebrew (probably needed for Hebrew letters; Grace to decide). Cormorant Garamond, Jost and Cinzel are otherwise used correctly.
+11. SCRIPTURE. `discover-your-profile.html` quotes NIV wording for five verses (Matthew 11:28, Isaiah 43:1, Jeremiah 1:5, Zephaniah 3:17, Psalm 139:14) and advertises a parallel Bible of NIV, NKJV, NLT and The Message. The 30 daily devotion scriptures in the Substack agent read as accurate KJV, though two verses repeat (Matthew 11:28 on days 4 and 22, Isaiah 40:29 on days 10 and 20).
+12. EM DASHES. Public pages 66 (46 in `gate-one.html`), agent scripts 281 (the devotion and caption text that gets published), content notes 2,639 (mostly internal skill files), internal docs 156. The ban applies to everything Grace publishes.
+13. WORDING. Self-help phrasing in public copy: "best life" and "burnout" in `index.html`, "show up for yourself" in `lost-wanderer.html`, "you are enough" and "your truth" in `discover-your-profile.html` and `the-names-of-jesus-and-the-holy-spirit.html`. "Burnout" is also in a book title.
+14. SYMBOLS. No pictographic emoji on public pages. Typographic marks appear in `discover-your-profile.html` (39) and `approval-gate.html` (4). Real emoji appear only in internal log messages of the Instagram and YouTube deploy scripts.
+15. SECRETS MAP. No raw keys were found in 562 files or in the 8 commits of available history. Secrets were not visible from outside GitHub, so whether each one exists and is still valid cannot be confirmed from here.
+
+---
+
+## 9. FILE SYSTEM GUIDE (follow the steps in order)
+
+Each step builds on the one before it. Do not skip ahead.
+
+**Step 1. Start at the root of THE-QUIET-AUTHORITY.**
+- The root is the live website. GitHub Pages serves `sanctuary-grace.com` straight from it.
+- These stay at the root forever: `index.html`, `gate-zero.html` through `gate-six.html`, `approval-gate.html`, `privacy.html`, `404.html`, `CNAME`, `.nojekyll`, and the pages and images they link to.
+- Anything new that visitors should open by web address goes at the root as one flat `.html` file.
+
+**Step 2. Read the guide files before touching anything.**
+- `README.md` (this file) is read first.
+- `CLAUDE.md` routes you to the right detail file.
+- `SITE-CONTEXT.md` explains how the live pages work.
+- `_system/` holds the current truth: `status.md` (what is live, paused or dead), `brand-tokens.md` (colors and fonts), `channels.md`, `integrations.md`, `git-workflow.md`, `changelog.md`.
+
+**Step 3. Understand the public pages.**
+- Gate pages: `gate-zero.html` is the entry. `gate-one.html` to `gate-six.html` are the six gates of the Circle of Silence.
+- Profile pages: `guilty-giver.html`, `lost-wanderer.html`, `striving-achiever.html`, `depleted-survivor.html`, linked from `gate-one.html` and `the-secret-place.html`. The assessment itself is `discover-your-profile.html`.
+- Library and tools: `library.html`, `names-of-god.html`, `how-to-pray.html`, `daily-sanctuary.html`, `the-secret-place.html` and its foyer.
+- Support pages: `restore-access.html`, `save-my-progress.html`, `privacy.html`, `404.html`, `pinterest-callback.html` (shows the one-time Pinterest approval code).
+
+**Step 4. Understand the supporting folders.**
+- `assets/` holds audio, fonts, print-ready files and image sets, grouped by project.
+- `images/` holds a few cover images.
+- `hubs/` holds the hub pages and their shared `hub.css` and `hub.js`.
+- `scripts/live-smoke-test.mjs` and `tests/ux-check.spec.js` are the automatic checks that run on GitHub.
+
+**Step 5. Understand the content records.**
+- `circle-of-silence/` has one record per gate (`gate-1-hakria.md` to `gate-6-hithavut.md`), `products.md` and `CONTEXT.md`.
+- `content-ops/` is the content pipeline. Numbered folders `01_repurpose` to `09_daily-checkin` are stages. `_factory/` holds shared templates and voice files. Read `content-ops/CONTEXT.md` first.
+
+**Step 6. Understand the automation.**
+- `.github/workflows/` holds the schedulers: pinterest, substack, instagram, youtube agents and deploys, the smoke test, the UX check and the Pinterest one-time setup.
+- `workflows/scripts/` holds the Python each workflow runs. The workflow files and the scripts hardcode each other's paths, so do not move either.
+- `workflows/output/` holds the working folders: `*-pending` (waiting for Grace), `*-approved` (Grace moved it here to approve), `*-drafts`. `substack-log.md`, `youtube-log.md` and `pin-log.md` are the run records.
+
+**Step 7. Follow the approval flow.**
+1. An agent writes a draft into a `*-pending` folder (Substack also saves a draft on Substack itself).
+2. Grace reviews it in `approval-gate.html` or in the platform.
+3. Grace moves approved items into the matching `*-approved` folder.
+4. The deploy workflow publishes only what is in `*-approved`, then writes the log.
+5. Nothing publishes without Step 3.
+
+**Step 8. Know where old things go.**
+- `_archive/` holds retired material (Systeme.io, Make.com, old reports). It is kept for history. Do not build on it and do not scan it for current facts.
+
+**Step 9. Know where secrets live.**
+- Never in any file. Only in GitHub Actions secrets, Cloudflare Worker secrets, or a local `.env` that git ignores (section 7).
+
+**Step 10. Before you save any change.**
+1. Run the brand and content checks in section 10.
+2. Confirm no file in the "stays at root" list moved.
+3. Push to GitHub, then save a copy to the Drive folder "Sanctuary Grace Ecosystem Backup".
+4. Compare byte sizes on both sides and update `STATUS.txt`.
+
+---
+
+## 10. BRAND AND CONTENT STANDARDS (locked, checked in every audit)
+
+**Colors.** The four core colors, and what each is for:
+- Black `#0d0d0d`: page background.
+- Gold `#C9A84C`: headings, rules, key accents.
+- Cream `#F5F0E8`: main reading text.
+- Terra `#C1593C`: calls to action and emphasis.
+- The full token set (surfaces, borders, sage, softer tints) lives in `_system/brand-tokens.md`. Never change it without Grace's approval.
+
+**Fonts.** Three families, each with a job:
+- Cormorant Garamond: headings, display, scripture, the reveal moments.
+- Jost: body text, buttons, labels and interface text.
+- Cinzel: section badges, product labels, small capital-letter decoration.
+- A fallback after the brand font is fine. A page must never rely on the browser default font as its main font.
+
+**Words.**
+- Scripture is KJV only, with the reference. Check the wording against the KJV, never from memory.
+- No em dashes, no emoji in copy.
+- No self-help or wellness jargon. The banned list lives in `content-ops/_factory/brand-voice.md`.
+- Voice: sacred, tender, plain, one step at a time. Minister, never marketer.
+- All writing is original to Sanctuary Grace.
+
+**How to run the sweep.**
+1. List the colors in each page and compare them with the token file.
+2. List the font families and compare them with the three above.
+3. Search for the em dash, emoji, banned words and non-KJV version names (NIV, NKJV, NLT, ESV, The Message).
+4. Compare the secrets named in `.github/workflows/` with section 7.
+5. Record every mismatch in section 8 and wait for Grace's decision before fixing.
