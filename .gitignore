@@ -5,3 +5,8 @@ test-results/
 .env
 *.local
 !workflows/output/
+# The two video engines need their own package files tracked (everything else stays ignored)
+!content-ops/04_youtube/remotion/package.json
+!content-ops/04_youtube/remotion/package-lock.json
+!circle-of-silence/remotion/package.json
+!circle-of-silence/remotion/package-lock.json

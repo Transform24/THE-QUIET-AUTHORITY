@@ -1,0 +1,30 @@
+{
+  "name": "circle-of-silence-remotion",
+  "version": "1.0.0",
+  "description": "Scripture reveal videos for the six gates of the Circle of Silence",
+  "main": "index.js",
+  "scripts": {
+    "studio": "remotion studio src/index.js",
+    "stage-audio": "node scripts/stage-audio.mjs music2.mp3 music3.mp3",
+    "validate:gates": "node scripts/validate-gates.mjs",
+    "test:validator": "node scripts/test-validator.mjs",
+    "prestudio": "npm run stage-audio",
+    "prerender:gates": "npm run validate:gates && npm run stage-audio",
+    "render:gates": "remotion render src/index.js GatesFull out/gates-full.mp4",
+    "prerender:gates:clips": "npm run validate:gates && npm run stage-audio",
+    "render:gates:clips": "node scripts/render-clips.mjs GateVerse src/data/gates.json out/clips gate"
+  },
+  "remotion": {
+    "entryPoint": "src/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@remotion/cli": "4.0.438",
+    "@remotion/player": "4.0.438",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "remotion": "4.0.438"
+  }
+}
