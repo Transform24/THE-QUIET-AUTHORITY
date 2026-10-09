@@ -1,4 +1,4 @@
-# EMAIL WELCOME SEQUENCE — 5-EMAIL, 7-DAY JOURNEY
+# EMAIL WELCOME SEQUENCE: 5-EMAIL, 7-DAY JOURNEY
 **Phase 3: Nurture Bridge**  
 *Build in Beacons or Resend*  
 *Last updated: 2026-06-04*
@@ -18,7 +18,7 @@
 **Send:** Immediately after assessment submit  
 **Subject Line:** 
 - **A (Striving Achiever):** Your breakthrough is waiting in the stillness, [Name]
-- **B (Depleted Survivor):** You are not broken — [Name]
+- **B (Depleted Survivor):** You are not broken: [Name]
 - **C (Guilty Giver):** The answer isn't in pouring more. It's in being filled, [Name]
 - **D (Lost Wanderer):** You're not lost. You're being called home, [Name]
 
@@ -30,11 +30,11 @@ Dear [Name],
 The silence has already begun.
 
 [PROFILE-SPECIFIC PARAGRAPH 1]
-A: For years you've measured yourself in metrics — tasks completed, goals crushed, expectations exceeded. But the woman God made you to be was never about your output. She was always about His. The Striving Achiever inside you can finally rest now.
+A: For years you've measured yourself in metrics, tasks completed, goals crushed, expectations exceeded. But the woman God made you to be was never about your output. She was always about His. The Striving Achiever inside you can finally rest now.
 
-B: You're not failing. You're emptied — and emptied is exactly where God does His most sacred work. What you're feeling isn't weakness. It's the moment before resurrection.
+B: You're not failing. You're emptied, and emptied is exactly where God does His most sacred work. What you're feeling isn't weakness. It's the moment before resurrection.
 
-C: You pour and pour and pour, believing that love is measured in what you give. But beloved, you cannot pour from empty. The Guilty Giver doesn't learn to give less — she learns to receive first.
+C: You pour and pour and pour, believing that love is measured in what you give. But beloved, you cannot pour from empty. The Guilty Giver doesn't learn to give less, she learns to receive first.
 
 D: You've wandered long enough. Through the noise and the shoulds and the voices that were never yours. But this silence? It's not pulling you further away. It's drawing you home to who you were made to be.
 
@@ -44,7 +44,7 @@ Over the next seven days, you're going to walk through five sacred segments ever
 This isn't a self-help course. This is coming home.
 
 [SOFT CTA - PROFILE-SPECIFIC]
-A: Open the app. Day 1 is waiting. It starts with five minutes of stillness — five minutes to prove to yourself that rest is not laziness.
+A: Open the app. Day 1 is waiting. It starts with five minutes of stillness, five minutes to prove to yourself that rest is not laziness.
 
 B: Open the app. Day 1 is waiting. It starts with your profile: the truth about who you really are underneath the survival mode.
 
@@ -77,11 +77,11 @@ P.S. Nothing you do in the app is "wrong." There's no way to fail here. Just sho
 
 One day down. Six to go.
 
-I hope you felt something yesterday — maybe rest, maybe relief, maybe just the space to breathe. Whatever you felt, it was real.
+I hope you felt something yesterday, maybe rest, maybe relief, maybe just the space to breathe. Whatever you felt, it was real.
 
 Today is different. Today you're going deeper. Today your profile comes alive.
 
-In the Reflection segment, you're going to read your profile description — really read it. Not to confirm what you already know about yourself, but to hear what God has been trying to tell you all along. That you're not your weakness. You're not your failure. You're not your exhaustion.
+In the Reflection segment, you're going to read your profile description, really read it. Not to confirm what you already know about yourself, but to hear what God has been trying to tell you all along. That you're not your weakness. You're not your failure. You're not your exhaustion.
 
 You're His.
 
@@ -100,10 +100,10 @@ P.S. If today feels hard, that's okay. Hardness often means you're close to some
 ## EMAIL 3: YOU BELONG HERE (DAY 3)
 **Send:** Day 3, 6am PT  
 **Subject Line:**
-- A: Grace doesn't run out — even for you, [Name]
-- B: You are allowed to fill yourself — [Name]
-- C: The circle is wider than you think — [Name]
-- D: You were made for more than this — [Name]
+- A: Grace doesn't run out: even for you, [Name]
+- B: You are allowed to fill yourself: [Name]
+- C: The circle is wider than you think: [Name]
+- D: You were made for more than this: [Name]
 
 **Body:**
 
@@ -116,7 +116,7 @@ I want you to know something: You're not alone in this. You're not the only woma
 
 Here's what I've learned from thousands of women walking this same path: The ones who transform are the ones who stay.
 
-Not because the app is magic. Not because the silence solves everything overnight. But because showing up for yourself — day after day, for 50 minutes, in the stillness — rewires what you believe you deserve.
+Not because the app is magic. Not because the silence solves everything overnight. But because showing up for yourself, day after day, for 50 minutes, in the stillness, rewires what you believe you deserve.
 
 Today, when you sit in the Silence segment, I want you to notice something: What does it feel like to be in a space where nothing is expected of you? No performance. No productivity. No one waiting for you to pour.
 
@@ -154,7 +154,7 @@ Grace
 
 Halfway through.
 
-By now you've spent three hours in silence. You've read your profile four times. You've journaled at least once. And something is shifting — maybe small, maybe quiet, but it's there.
+By now you've spent three hours in silence. You've read your profile four times. You've journaled at least once. And something is shifting, maybe small, maybe quiet, but it's there.
 
 The silence isn't random. It's structured.
 
@@ -164,7 +164,7 @@ Today I want to talk about what happens in the silence, because most women don't
 
 Silence heals what words never could.
 
-In the noise, your mind spins. In the silence, it settles. In the noise, you perform. In the silence, you just *are*. And in that *being* — without doing anything, without proving anything, without earning anything — you remember what it felt like to be loved just for existing.
+In the noise, your mind spins. In the silence, it settles. In the noise, you perform. In the silence, you just *are*. And in that *being*, without doing anything, without proving anything, without earning anything, you remember what it felt like to be loved just for existing.
 
 That's the work. That's the breakthrough.
 
@@ -197,7 +197,7 @@ And something will be different. Maybe it's subtle. Maybe you'll feel it as soon
 
 Now comes the invitation I've been waiting to share.
 
-The Circle of Silence is where the transformation deepens. It's a weekly gathering of women who've walked where you're walking — the Striving Achievers who learned they're not their output, the Depleted Survivors who discovered they're not their exhaustion, the Guilty Givers who realized they're not responsible for filling everyone else, and the Lost Wanderers who finally found their way home.
+The Circle of Silence is where the transformation deepens. It's a weekly gathering of women who've walked where you're walking, the Striving Achievers who learned they're not their output, the Depleted Survivors who discovered they're not their exhaustion, the Guilty Givers who realized they're not responsible for filling everyone else, and the Lost Wanderers who finally found their way home.
 
 We gather in sacred silence. Cameras on. No words needed. Just presence, and the quiet knowledge that you are seen, known, and enough.
 
@@ -232,11 +232,11 @@ Seven days. Fifty minutes every morning. Five sacred segments. Four Scripture re
 
 Well done, beloved. Heaven noticed.
 
-I don't want you to think this is the end. This is the beginning. Your 7-day journey was the proof — proof that you can keep your own company without shame, proof that rest is not laziness, proof that you are worthy of the space you take up.
+I don't want you to think this is the end. This is the beginning. Your 7-day journey was the proof, proof that you can keep your own company without shame, proof that rest is not laziness, proof that you are worthy of the space you take up.
 
 Now comes the life you build on top of this foundation.
 
-Your dashboard is yours forever. Your journal is saved. Your streak is tracked. Come back tomorrow and start again. Or take a day. Or come back in a month. But the sanctuary is *yours* — it doesn't close.
+Your dashboard is yours forever. Your journal is saved. Your streak is tracked. Come back tomorrow and start again. Or take a day. Or come back in a month. But the sanctuary is *yours*, it doesn't close.
 
 If you want to go deeper:
 → The Devotional Series (Four weeks of study) lives in the shop

@@ -1,4 +1,4 @@
-# Gate N — [Hebrew name] — [English meaning]
+# Gate N: [Hebrew name], [English meaning]
 
 ## STATUS: [NOT YET BUILT | BUILT | LIVE]
 
@@ -7,10 +7,10 @@
 - Payment link: [buy.stripe.com/...]
 
 ## Email delivery
-- [How buyers get tagged and what sequence fires — name the live system, not a dead one]
+- [How buyers get tagged and what sequence fires: name the live system, not a dead one]
 
 ## Email Sequence
-- Email 1: Day 0 — [subject]
+- Email 1: Day 0: [subject]
 - ...
 
 ## NEXT ACTION

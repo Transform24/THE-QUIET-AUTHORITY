@@ -1,4 +1,4 @@
-name: Pinterest Agent — Daily Pin
+name: Pinterest Agent, Daily Pin
 
 on:
   schedule:
@@ -55,9 +55,9 @@ jobs:
           git config user.email "noreply@sanctuarygrace.com"
           git add -f workflows/output/pinterest-pending/
           if ! git diff --staged --quiet; then
-            git commit -m "Pinterest Agent: $(date +%Y-%m-%d) pin draft — ready for Grace approval"
+            git commit -m "Pinterest Agent: $(date +%Y-%m-%d) pin draft, ready for Grace approval"
             git push origin HEAD
-            echo "✅ Draft saved to workflows/output/pinterest-pending/ — visible in Approval Gate for Grace review"
+            echo "✅ Draft saved to workflows/output/pinterest-pending/, visible in Approval Gate for Grace review"
           else
             echo "No new content to commit"
           fi

@@ -122,7 +122,7 @@ LI_LeadGen_CMOs-SaaS_Whitepaper_Mar24
 
 - **Lookalikes**: Base on best customers (by LTV), not all customers
 - **Retargeting**: Segment by funnel stage (visitors vs. cart abandoners)
-- **Exclusions**: Exclude existing customers and recent converters — showing ads to people who already bought wastes spend
+- **Exclusions**: Exclude existing customers and recent converters: showing ads to people who already bought wastes spend
 
 **For detailed targeting strategies by platform**: See [references/audience-targeting.md](references/audience-targeting.md)
 
@@ -272,8 +272,8 @@ When the user requests Google Ads RSAs (Responsive Search Ads), output MUST comp
 
 ### Required sidecar artifacts (always include with RSA request)
 
-1. **Ad group structure**, labeled `Ad group structure:` — list each ad group with its theme, target keywords (match types), and which RSAs map to it.
-2. **Negative keyword list**, labeled `Negative keywords:` — minimum **8** entries, group-level vs campaign-level called out.
+1. **Ad group structure**, labeled `Ad group structure:`: list each ad group with its theme, target keywords (match types), and which RSAs map to it.
+2. **Negative keyword list**, labeled `Negative keywords:`: minimum **8** entries, group-level vs campaign-level called out.
 3. **Sitelinks** (≥ 4), **Callouts** (≥ 4 ≤25 chars), **Structured snippets** if relevant.
 
 ### Medical / CFM compliance (when product context indicates pt-BR medical practice)
@@ -286,13 +286,13 @@ If `.agents/product-marketing.md` indicates a Brazilian medical practice (CFM-re
 
 Use neutral framing: `atendimento`, `consulta`, `avaliação`, `segunda opinião`, `agende sua consulta`, `tire suas dúvidas`. Geo modifier (`Porto Alegre`, `POA`, `Zona Sul POA`) required where the prompt specifies a region.
 
-### Output ORDER (mandatory — emit in this order to avoid truncation)
+### Output ORDER (mandatory: emit in this order to avoid truncation)
 
 1. **Ad group structure** (short)
-2. **Negative keywords** (≥8, MANDATORY — emit BEFORE RSAs so it isn't dropped if output runs long)
+2. **Negative keywords** (≥8, MANDATORY: emit BEFORE RSAs so it isn't dropped if output runs long)
 3. **Sitelinks** (≥4)
 4. **Callouts** (≥4)
-5. **RSA1, RSA2, RSA3** (largest section, last — safe to truncate gracefully)
+5. **RSA1, RSA2, RSA3** (largest section, last: safe to truncate gracefully)
 
 ### Output template (mandatory shape)
 
@@ -309,7 +309,7 @@ Negative keywords:
   Ad-group level:
     - AG1: <kw>, <kw>
     - AG2: <kw>, <kw>
-    (≥4 more here — TOTAL ≥8 entries)
+    (≥4 more here, TOTAL ≥8 entries)
 
 Sitelinks (≥4):
   - <title (≤25)> | <desc1 (≤35)> | <desc2 (≤35)> | URL
@@ -317,7 +317,7 @@ Sitelinks (≥4):
 Callouts (≥4, each ≤25 chars):
   - <callout>
 
-RSA1 — [ad group name]
+RSA1, [ad group name]
   Final URL: https://...
   Path1: ...   Path2: ...
   Headlines (15, each ≤30 chars):
@@ -330,8 +330,8 @@ RSA1 — [ad group name]
     4. <description> (NN chars)
   Pinning: H1=none; H2=none; ...   (or explicit pins)
 
-RSA2 — ...
-RSA3 — ...
+RSA2, ...
+RSA3, ...
 ```
 
 ### Self-check before responding

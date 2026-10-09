@@ -1,6 +1,6 @@
 ---
 name: product-marketing
-description: "When the user wants to create or update their product marketing context document. Also use when the user mentions 'product context,' 'marketing context,' 'set up context,' 'positioning,' 'who is my target audience,' 'describe my product,' 'ICP,' 'ideal customer profile,' or wants to avoid repeating foundational information across marketing tasks. Use this at the start of any new project before using other marketing skills — it creates `.agents/product-marketing.md` that all other skills reference for product, audience, and positioning context."
+description: "When the user wants to create or update their product marketing context document. Also use when the user mentions 'product context,' 'marketing context,' 'set up context,' 'positioning,' 'who is my target audience,' 'describe my product,' 'ICP,' 'ideal customer profile,' or wants to avoid repeating foundational information across marketing tasks. Use this at the start of any new project before using other marketing skills, it creates `.agents/product-marketing.md` that all other skills reference for product, audience, and positioning context."
 metadata:
   version: 2.0.0
 ---
@@ -15,7 +15,7 @@ The document is stored at `.agents/product-marketing.md`.
 
 ### Step 1: Check for Existing Context
 
-First, check if `.agents/product-marketing.md` already exists. Also check `.claude/product-marketing.md` and the legacy filename `product-marketing-context.md` (in either `.agents/` or `.claude/`) for older setups — if found anywhere other than `.agents/product-marketing.md`, offer to move it to the canonical location.
+First, check if `.agents/product-marketing.md` already exists. Also check `.claude/product-marketing.md` and the legacy filename `product-marketing-context.md` (in either `.agents/` or `.claude/`) for older setups, if found anywhere other than `.agents/product-marketing.md`, offer to move it to the canonical location.
 
 **If it exists:**
 - Read it and summarize what's captured
@@ -24,7 +24,7 @@ First, check if `.agents/product-marketing.md` already exists. Also check `.clau
 
 **If it doesn't exist, offer two options:**
 
-1. **Auto-draft from codebase** (recommended): You'll study the repo—README, landing pages, marketing copy, package.json, etc.—and draft a V1 of the context document. The user then reviews, corrects, and fills gaps. This is faster than starting from scratch.
+1. **Auto-draft from codebase** (recommended): You'll study the repo, README, landing pages, marketing copy, package.json, etc.-and draft a V1 of the context document. The user then reviews, corrects, and fills gaps. This is faster than starting from scratch.
 
 2. **Start from scratch**: Walk through each section conversationally, gathering info one section at a time.
 
@@ -47,7 +47,7 @@ For each section:
 3. Confirm accuracy
 4. Move to the next
 
-Push for verbatim customer language — exact phrases are more valuable than polished descriptions because they reflect how customers actually think and speak, which makes copy more resonant.
+Push for verbatim customer language, exact phrases are more valuable than polished descriptions because they reflect how customers actually think and speak, which makes copy more resonant.
 
 ---
 
@@ -56,7 +56,7 @@ Push for verbatim customer language — exact phrases are more valuable than pol
 ### 1. Product Overview
 - One-line description
 - What it does (2-3 sentences)
-- Product category (what "shelf" you sit on—how customers search for you)
+- Product category (what "shelf" you sit on, how customers search for you)
 - Product type (SaaS, marketplace, e-commerce, service, etc.)
 - Business model and pricing
 
@@ -164,9 +164,9 @@ After gathering information, create `.agents/product-marketing.md` with this str
 **Emotional tension:**
 
 ## Competitive Landscape
-**Direct:** [Competitor] — falls short because...
-**Secondary:** [Approach] — falls short because...
-**Indirect:** [Alternative] — falls short because...
+**Direct:** [Competitor]: falls short because...
+**Secondary:** [Approach]: falls short because...
+**Indirect:** [Alternative]: falls short because...
 
 ## Differentiation
 **Key differentiators:**
@@ -209,7 +209,7 @@ After gathering information, create `.agents/product-marketing.md` with this str
 **Metrics:**
 **Customers:**
 **Testimonials:**
-> "[quote]" — [who]
+> "[quote]", [who]
 **Value themes:**
 | Theme | Proof |
 |-------|-------|

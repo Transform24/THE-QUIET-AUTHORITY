@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-YouTube Video Renderer — Creates faceless teaching videos
+YouTube Video Renderer, Creates faceless teaching videos
 Input: Script markdown (from youtube_agent.py)
 Output: video.mp4 (1920x1080, 12 minutes)
 Process: Text slides + background + silent audio duration

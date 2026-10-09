@@ -1,4 +1,4 @@
-name: Substack Deploy — Publish Approved Devotions
+name: Substack Deploy, Publish Approved Devotions
 
 on:
   # PAUSED 2026-10-03 by Grace. Daily schedule removed so nothing runs on its own.
@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       devotion_date:
-        description: 'Devotion date to deploy (YYYY-MM-DD) — leave blank for latest'
+        description: 'Devotion date to deploy (YYYY-MM-DD), leave blank for latest'
         required: false
         default: ''
 

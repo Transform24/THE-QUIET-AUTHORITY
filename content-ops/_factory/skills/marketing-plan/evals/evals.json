@@ -23,7 +23,7 @@
     {
       "id": 2,
       "prompt": "We're pre-seed bootstrapped, $0 paid marketing budget, 4-person team building a D2C consumer app. Founder wants a 90-day plan + 12-month roadmap they can show investors during the upcoming raise. The product is in beta.",
-      "expected_output": "Should recognize Tier 1 funding profile (pre-seed) and skip paid acquisition recommendations until budget unlocks. Should lean Acquisition heavy on organic + lifecycle + ambassador moves. Should explicitly map what unlocks when seed closes (paid test budget $5–15K/mo, first marketing hire, etc.). Should respect that the product is in beta and account for activation/throttling gates. Should include the AARRR diagnostic — likely binding constraint at this stage is Activation (onboarding) and Referral. Plan must be investor-friendly: exec summary can be lifted into an update.",
+      "expected_output": "Should recognize Tier 1 funding profile (pre-seed) and skip paid acquisition recommendations until budget unlocks. Should lean Acquisition heavy on organic + lifecycle + ambassador moves. Should explicitly map what unlocks when seed closes (paid test budget $5–15K/mo, first marketing hire, etc.). Should respect that the product is in beta and account for activation/throttling gates. Should include the AARRR diagnostic, likely binding constraint at this stage is Activation (onboarding) and Referral. Plan must be investor-friendly: exec summary can be lifted into an update.",
       "assertions": [
         "Recognizes pre-seed tier and uses Tier 1 budget profile",
         "Skips paid acquisition recommendations until budget unlocks",
@@ -32,14 +32,14 @@
         "Accounts for product being in beta",
         "Identifies binding-constraint AARRR stage (likely Activation or Referral)",
         "Executive summary can be lifted into an investor update",
-        "Plan is operationally honest — doesn't pretend paid budget exists"
+        "Plan is operationally honest, doesn't pretend paid budget exists"
       ],
       "files": []
     },
     {
       "id": 3,
-      "prompt": "we have an audit already done — can you take that and turn it into a real plan",
-      "expected_output": "Should ask for the audit output (file path or paste). Should recognize that current-state scoring already exists and ingest it directly into Section 3 — don't re-score. Should note scoring date in case material has shifted since. Should proceed with full 13-section plan generation using audit findings to inform 90-day roadmap and AARRR sections (gaps from audit become moves in the plan).",
+      "prompt": "we have an audit already done, can you take that and turn it into a real plan",
+      "expected_output": "Should ask for the audit output (file path or paste). Should recognize that current-state scoring already exists and ingest it directly into Section 3, don't re-score. Should note scoring date in case material has shifted since. Should proceed with full 13-section plan generation using audit findings to inform 90-day roadmap and AARRR sections (gaps from audit become moves in the plan).",
       "assertions": [
         "Asks for the audit output",
         "Ingests prior audit scoring directly into Section 3",
@@ -52,7 +52,7 @@
     },
     {
       "id": 4,
-      "prompt": "/marketing-plan acme-saas — pick up where we left off",
+      "prompt": "/marketing-plan acme-saas, pick up where we left off",
       "expected_output": "Should read ~/marketing-plans/acme-saas/progress.md to determine state machine phase. Should resume from the next unfinished section in REVIEW phase, or transition to FINALIZE if all sections approved. Should NOT silently restart from scratch. If progress.md is missing or shows 'finalized', should ask: revise as v{N+1}, start fresh, or re-open a section.",
       "assertions": [
         "Reads ~/marketing-plans/acme-saas/progress.md",

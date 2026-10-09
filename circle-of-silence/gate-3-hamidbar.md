@@ -1,4 +1,4 @@
-# Gate 3 — HaMidbar — The Wilderness
+# Gate 3: HaMidbar, The Wilderness
 
 ## STATUS: NOT YET BUILT
 

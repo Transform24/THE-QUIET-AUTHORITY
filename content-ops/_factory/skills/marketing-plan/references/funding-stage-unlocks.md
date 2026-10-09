@@ -5,13 +5,13 @@ Every marketing plan must include explicit "what changes when funding closes / w
 This doc defines the standard tiers. Use them as anchors, adjust for client category and unit economics.
 
 **Related docs:**
-- `budget-planning.md` — two scientific methods for setting the actual budget number (Revenue-Based 5–40%, or Goal-Based reverse-engineered from the revenue target), CAC calculation, experimental buffer
-- `growth-patterns.md` — the real shape of SaaS growth by phase ($0–10K / $10K–100K / $100K–1M+), linear vs step-function, S-curve layering
-- `team-and-agency-model.md` — what each tier means for team composition, the first marketing hire, and the in-house vs outsource ratio
+- `budget-planning.md`: two scientific methods for setting the actual budget number (Revenue-Based 5–40%, or Goal-Based reverse-engineered from the revenue target), CAC calculation, experimental buffer
+- `growth-patterns.md`: the real shape of SaaS growth by phase ($0–10K / $10K–100K / $100K–1M+), linear vs step-function, S-curve layering
+- `team-and-agency-model.md`: what each tier means for team composition, the first marketing hire, and the in-house vs outsource ratio
 
 ## Why funding stage matters in a marketing plan
 
-Most marketing plans are written as if budget is unconstrained. That's a failure mode for early-stage clients — it produces aspirational lists rather than executable roadmaps.
+Most marketing plans are written as if budget is unconstrained. That's a failure mode for early-stage clients, it produces aspirational lists rather than executable roadmaps.
 
 The fix: tie every recommendation to a budget tier. The plan stays honest about what's executable today, and the team / investors see explicitly what each round of capital unlocks.
 
@@ -19,7 +19,7 @@ This also helps the founder mid-raise: showing what the round buys is investor-n
 
 ## Standard tiers
 
-### Tier 1 — Pre-seed / bootstrapped
+### Tier 1: Pre-seed / bootstrapped
 
 **Budget profile:**
 - Paid acquisition: $0
@@ -28,7 +28,7 @@ This also helps the founder mid-raise: showing what the round buys is investor-n
 - Headcount: founders + maybe 1–2 multipurpose hires
 
 **Marketing capability:**
-- Organic only — SEO, content, App Store organic, founder-led social, events, WOM, ambassador (if inbound exists)
+- Organic only: SEO, content, App Store organic, founder-led social, events, WOM, ambassador (if inbound exists)
 - Limited PR (founder-led pitches, HARO responses)
 - No paid layer
 
@@ -38,7 +38,7 @@ This also helps the founder mid-raise: showing what the round buys is investor-n
 
 **Hires unlocked:** None. The plan must execute with current team + agentic stack.
 
-### Tier 2 — Seed close
+### Tier 2: Seed close
 
 **Budget profile:**
 - Paid acquisition: $5–15K/mo test budget
@@ -59,7 +59,7 @@ This also helps the founder mid-raise: showing what the round buys is investor-n
 
 **fCMO shifts:** From hands-on to strategy + ops oversight. Hires the dedicated marketer. Sets up the channel playbooks before paid scales.
 
-### Tier 3 — Seed deployment
+### Tier 3: Seed deployment
 
 **Budget profile:**
 - Paid acquisition: $20–50K/mo
@@ -82,7 +82,7 @@ This also helps the founder mid-raise: showing what the round buys is investor-n
 
 **fCMO shifts:** Hands off lifecycle to dedicated owner. Moves to GTM strategy + channel mix optimization + growth analytics.
 
-### Tier 4 — Series A
+### Tier 4: Series A
 
 **Budget profile:**
 - Paid acquisition: $50–150K/mo
@@ -106,9 +106,9 @@ This also helps the founder mid-raise: showing what the round buys is investor-n
 - Potentially: PR firm, paid agency, international growth manager
 - Series A often the moment the fCMO transitions out or transitions to advisor
 
-**fCMO shifts:** Often the moment of transition — to permanent CMO hire, fCMO becomes advisor.
+**fCMO shifts:** Often the moment of transition: to permanent CMO hire, fCMO becomes advisor.
 
-### Tier 5 — Series B+
+### Tier 5: Series B+
 
 **Budget profile:**
 - Paid acquisition: $150K+/mo
@@ -133,7 +133,7 @@ This also helps the founder mid-raise: showing what the round buys is investor-n
 - PR director or agency partnership
 - International marketing leads (region-specific)
 
-**fCMO involvement:** Typically out of the company by this point — the original fCMO might still be an advisor.
+**fCMO involvement:** Typically out of the company by this point: the original fCMO might still be an advisor.
 
 ## How to apply tier logic in a plan
 
@@ -141,12 +141,12 @@ This also helps the founder mid-raise: showing what the round buys is investor-n
 - State the client's current tier explicitly: "Current tier: pre-seed / bootstrapped per Tier 1."
 
 ### Section 4–8 (AARRR sections)
-- Note tier-dependent moves: "Paid layer (Tier 2 unlock — held until seed close)"
+- Note tier-dependent moves: "Paid layer (Tier 2 unlock: held until seed close)"
 - For Tier 1 plans: every move must be executable at current budget tier OR explicitly flagged as future
 - For Tier 2+ plans: moves can assume the tier's capability
 
 ### Section 10 (12-month outlook)
-- Each quarter names the tier that's active: "Q2 — Months 4–6 (post seed close). Funding state: Tier 2."
+- Each quarter names the tier that's active: "Q2: Months 4–6 (post seed close). Funding state: Tier 2."
 - Tier transitions trigger plan recalibration moments
 
 ### Section 11 (Marketing operations stack)
@@ -158,11 +158,11 @@ This also helps the founder mid-raise: showing what the round buys is investor-n
 The standard tiers assume a typical software / SaaS / consumer app. Adjust for category:
 
 ### Consumer apps (D2C)
-- Higher paid acquisition floor — apps need to test CAC against download cost benchmarks (~$2-10 install + 5-15% trial conversion benchmark)
+- Higher paid acquisition floor: apps need to test CAC against download cost benchmarks (~$2-10 install + 5-15% trial conversion benchmark)
 - Tier 2 starts effectively at $10–20K/mo paid (otherwise can't get statistically meaningful reads at app-install CPMs)
 
 ### B2B SaaS
-- Lower paid acquisition floor — LinkedIn / Google Ads can produce signal at $3–5K/mo
+- Lower paid acquisition floor: LinkedIn / Google Ads can produce signal at $3–5K/mo
 - More weight on content + sales enablement budget
 - Often add a sales hire before a content hire
 
@@ -177,7 +177,7 @@ The standard tiers assume a typical software / SaaS / consumer app. Adjust for c
 - Tier 1 can produce significant traction without paid
 
 ### Marketplace / two-sided
-- Each side has its own AARRR funnel — budget splits accordingly
+- Each side has its own AARRR funnel: budget splits accordingly
 - Supply-side acquisition often dominates early; demand-side dominates after liquidity
 
 ### Open source / developer tools
@@ -212,7 +212,7 @@ For the plan, this becomes: "Current monthly marketing budget: $X (tooling only,
 
 If a founder asks for moves that require a future tier:
 - Name the requirement: "This is a Tier 2 move (requires $10K+/mo paid budget). Will unlock after seed close per the 12-month outlook in §10."
-- Don't refuse — frame the timing
+- Don't refuse: frame the timing
 
 If a founder underestimates what's needed:
 - Be honest: "To scale paid acquisition meaningfully, expect Tier 2 budget. Tier 1 can validate organic; Tier 2 validates paid."
@@ -223,8 +223,8 @@ If a founder is over-funded for their stage:
 ## Tier-skip cases (worth flagging)
 
 Some companies skip tiers:
-- **Notable founder** raising larger-than-typical rounds — can jump from Tier 1 to Tier 3 directly
-- **Hardware company** with PR moment — can deploy at Tier 3 levels with the right product moment (e.g., a high-profile longevity-influencer endorsement)
-- **B2B SaaS post-LOI** with named enterprise contracts — can fund pilot deployment from contract value
+- **Notable founder** raising larger-than-typical rounds: can jump from Tier 1 to Tier 3 directly
+- **Hardware company** with PR moment: can deploy at Tier 3 levels with the right product moment (e.g., a high-profile longevity-influencer endorsement)
+- **B2B SaaS post-LOI** with named enterprise contracts: can fund pilot deployment from contract value
 
 If the client is in a tier-skip situation, name it explicitly in the plan rather than forcing them into the standard ladder.

@@ -1,7 +1,7 @@
 import os, datetime, pathlib, json, base64, urllib.request, urllib.parse, urllib.error
 
 """
-PRIMARY MANDATE — Luke 4:18:
+PRIMARY MANDATE, Luke 4:18:
 "The Spirit of the Lord is upon me, because he hath anointed me
 to preach the gospel to the poor; he hath sent me to heal the
 brokenhearted, to preach deliverance to the captives, and
@@ -11,7 +11,7 @@ that are bruised."
 SUPPORTING SCRIPTURES (in order):
 
 Revelation 3:14-22 (THE DIAGNOSIS):
-She is the Laodicean woman — lukewarm, performing, doing all the
+She is the Laodicean woman, lukewarm, performing, doing all the
 right things but empty inside. Christ stands at the door knocking.
 
 Proverbs 3:5-6 (THE SURRENDER):
@@ -40,7 +40,7 @@ their Redeemer (not self-help).
 VOICE: Sacred, tender, prophetic. Minister to her brokenness with Gospel clarity.
 Speak directly to: financial crisis, sleepless nights, pouring from empty,
 guilt, shame, loss of self.
-Point to CHRIST as Redemption — not as wellness strategy or life hack.
+Point to CHRIST as Redemption, not as wellness strategy or life hack.
 
 Audience: Women, 30-55, exhausted, in crisis, praying in secret.
 Forbidden: Hustle language, wellness jargon, emojis, exclamation marks, urgency language.
@@ -139,10 +139,10 @@ But listen: God did not create you to be emptied.
 You are not redeemed by what you give. You are redeemed by what Christ gave.
 You are not restored by pouring out. You are restored by receiving His grace.
 
-The Guilty Giver is one of four spiritual profiles in The Quiet Authority — a free assessment
+The Guilty Giver is one of four spiritual profiles in The Quiet Authority, a free assessment
 for women ready to know their identity in Christ, not in their sacrifice.
 
-If you have ever believed your exhaustion was spiritual faithfulness — come home to the Gospel.
+If you have ever believed your exhaustion was spiritual faithfulness, come home to the Gospel.
 
 https://sanctuary-grace.com/
 
@@ -162,7 +162,7 @@ Rest He gives. Rest He promises. Rest in His finished work on the cross.
 
 Your exhaustion is not your shame. It is an invitation.
 An invitation to stop carrying what was never meant for your shoulders.
-An invitation to know that you are not redeemed by your output — you are redeemed by His blood.
+An invitation to know that you are not redeemed by your output, you are redeemed by His blood.
 
 Come as you are. Weary. Afraid. In debt. Unseen.
 
@@ -176,7 +176,7 @@ https://sanctuary-grace.com/
         "pin": "The Depleted Survivor wall art",
         "board": "The Quiet Authority for Women",
         "image_file": "profile-B.png",
-        "caption": """She survived things she never speaks about. She rebuilt herself more than once, quietly, without applause. She learned to function in crisis because crisis became familiar. And somewhere along the way, surviving became her identity — and rest became something she did not know how to trust.
+        "caption": """She survived things she never speaks about. She rebuilt herself more than once, quietly, without applause. She learned to function in crisis because crisis became familiar. And somewhere along the way, surviving became her identity, and rest became something she did not know how to trust.
 
 The Depleted Survivor carries wounds that look like strength from the outside. She keeps moving because stopping feels dangerous. She plans for the worst because hope has disappointed her before.
 
@@ -189,10 +189,10 @@ https://sanctuary-grace.com/
 #ChristianWomen #SpiritualBurnout #HopeForWomen #FaithAndWellness #SanctuaryGrace"""
     },
     4: {
-        "pin": "Scripture — Matthew 11:28",
+        "pin": "Scripture, Matthew 11:28",
         "board": "Christian Women Encouragement",
         "image_file": None,
-        "caption": """Come unto me, all ye that labour and are heavy laden, and I will give you rest. — Matthew 11:28
+        "caption": """Come unto me, all ye that labour and are heavy laden, and I will give you rest. Matthew 11:28
 
 He did not say come when you have rested enough. He did not say come when you have finished everything on your list. He did not say come when you have figured out how to be less tired.
 
@@ -216,7 +216,7 @@ She is not lazy. She is not faithless. She is exhausted in a way that no amount 
 
 The Striving Achiever has confused doing with being. Her identity lives in her output. And when she slows down, the silence feels like failure.
 
-But God is not measuring your productivity. He is calling you by name — not by your achievements.
+But God is not measuring your productivity. He is calling you by name, not by your achievements.
 
 The Quiet Authority is a free spiritual assessment for women who are ready to rest without guilt. If you recognize yourself here, begin at the link below.
 
@@ -230,7 +230,7 @@ https://sanctuary-grace.com/
         "image_file": None,
         "caption": """Before the clarity comes, there is the quiet.
 
-Week One of The Quiet Authority devotional series is called Vision — not because you will suddenly see everything clearly, but because you will begin to see yourself the way God has always seen you. Whole. Beloved. Not behind.
+Week One of The Quiet Authority devotional series is called Vision, not because you will suddenly see everything clearly, but because you will begin to see yourself the way God has always seen you. Whole. Beloved. Not behind.
 
 This devotional was written for the woman who has lost sight of who she is beneath everything she does. It is gentle. It is honest. It moves at the pace of the soul, not the schedule.
 
@@ -250,7 +250,7 @@ https://sanctuary-grace.com/
 
 And then, somewhere between the seasons of life, she lost the thread.
 
-The Lost Wanderer is not faithless. She is disoriented. She has not walked away from God — she simply cannot find her footing. She questions her calling, her purpose, her belonging. She wonders if she has been forgotten.
+The Lost Wanderer is not faithless. She is disoriented. She has not walked away from God, she simply cannot find her footing. She questions her calling, her purpose, her belonging. She wonders if she has been forgotten.
 
 She has not been.
 
@@ -266,14 +266,14 @@ https://sanctuary-grace.com/
         "image_file": None,
         "caption": """Four women. Four wounds. One invitation.
 
-The Striving Achiever — she cannot stop moving, even when her body is asking her to.
-The Depleted Survivor — she has rebuilt herself so many times she has forgotten her original shape.
-The Guilty Giver — she says yes to everyone and no to herself, and calls it faithfulness.
-The Lost Wanderer — she is searching for the thread back to who she was before life changed her.
+The Striving Achiever, she cannot stop moving, even when her body is asking her to.
+The Depleted Survivor, she has rebuilt herself so many times she has forgotten her original shape.
+The Guilty Giver, she says yes to everyone and no to herself, and calls it faithfulness.
+The Lost Wanderer, she is searching for the thread back to who she was before life changed her.
 
 One of these is you. You already know which one.
 
-The Quiet Authority is a free 8-question spiritual assessment that identifies your profile and opens a path designed for where you are — not where you think you should be.
+The Quiet Authority is a free 8-question spiritual assessment that identifies your profile and opens a path designed for where you are, not where you think you should be.
 
 Begin at the link below. It takes 8 minutes. What it opens may take your breath away.
 
@@ -289,7 +289,7 @@ https://sanctuary-grace.com/
 
 Not how much have you given. But have you let me give to you.
 
-The Guilty Giver believes that receiving is selfish. That rest is earned. That her value lives in her willingness to sacrifice. But the Gospel was not built on your sacrifice — it was built on His. You are invited to receive, not to endlessly give.
+The Guilty Giver believes that receiving is selfish. That rest is earned. That her value lives in her willingness to sacrifice. But the Gospel was not built on your sacrifice, it was built on His. You are invited to receive, not to endlessly give.
 
 If this is your story, the assessment at The Quiet Authority was built for this moment.
 
@@ -303,7 +303,7 @@ https://sanctuary-grace.com/
         "image_file": None,
         "caption": """Renewal does not always look like transformation. Sometimes it looks like one morning of honesty. One day of staying. One quiet moment of letting God see what you have been hiding.
 
-Week Two of The Quiet Authority devotional series is called Renewal — five days of scripture and reflection designed to meet the woman who is too tired to pretend any longer.
+Week Two of The Quiet Authority devotional series is called Renewal, five days of scripture and reflection designed to meet the woman who is too tired to pretend any longer.
 
 This is not a self-improvement plan. It is an invitation to be renewed from the inside, at a pace your soul can bear. Written for the woman who has been waiting for permission to stop holding everything together.
 
@@ -319,9 +319,9 @@ https://sanctuary-grace.com/
         "image_file": "profile-C.png",
         "caption": """She gave until there was nothing left to give. And she called it faithfulness.
 
-But faithfulness was never meant to cost you yourself. The woman who pours from empty is not more devoted — she is more depleted. And depletion is not a spiritual virtue.
+But faithfulness was never meant to cost you yourself. The woman who pours from empty is not more devoted, she is more depleted. And depletion is not a spiritual virtue.
 
-The Guilty Giver is one of four profiles in The Quiet Authority — a free spiritual assessment for women who are tired of the weight they were never meant to carry alone.
+The Guilty Giver is one of four profiles in The Quiet Authority, a free spiritual assessment for women who are tired of the weight they were never meant to carry alone.
 
 If you have been confusing exhaustion with consecration, this is the invitation you have been waiting for.
 
@@ -353,7 +353,7 @@ https://sanctuary-grace.com/
 
 You were made to be held, to be filled, to be known by the One who formed you before you learned to be useful.
 
-Rest is not a reward for productivity. It is a design feature of the human soul. And when we ignore it long enough, the soul begins to speak in symptoms — exhaustion, detachment, a quiet grief that has no name.
+Rest is not a reward for productivity. It is a design feature of the human soul. And when we ignore it long enough, the soul begins to speak in symptoms, exhaustion, detachment, a quiet grief that has no name.
 
 If any of this is familiar, The Quiet Authority was built for this moment. A free assessment, a gentle path, an invitation to return.
 
@@ -369,9 +369,9 @@ https://sanctuary-grace.com/
 
 No agenda. No performance. No words required.
 
-The Circle of Silence is a guided stillness practice offered through The Quiet Authority — a space created for women who have forgotten what it feels like to simply be present without producing anything.
+The Circle of Silence is a guided stillness practice offered through The Quiet Authority, a space created for women who have forgotten what it feels like to simply be present without producing anything.
 
-Five minutes of music to quiet the mind. Ten minutes of silence to let God speak in the way He speaks best — not in the noise, but in the still small voice that waits beneath it.
+Five minutes of music to quiet the mind. Ten minutes of silence to let God speak in the way He speaks best, not in the noise, but in the still small voice that waits beneath it.
 
 You do not have to be good at silence to begin. You only have to be willing.
 
@@ -407,7 +407,7 @@ https://sanctuary-grace.com/
         "image_file": None,
         "caption": """Peace is not the absence of difficulty. It is the presence of God inside it.
 
-Week Three of The Quiet Authority devotional series is called Peace — five days of scripture and gentle reflection for the woman who has been searching for quiet in all the wrong places.
+Week Three of The Quiet Authority devotional series is called Peace, five days of scripture and gentle reflection for the woman who has been searching for quiet in all the wrong places.
 
 This devotional does not promise that your circumstances will change. It promises that you will be met inside them. That the stillness you have been chasing exists and it is closer than you think.
 
@@ -423,11 +423,11 @@ https://sanctuary-grace.com/
         "pin": "Re-pin Guilty Giver wall art",
         "board": "Christian Women Encouragement",
         "image_file": "profile-C.png",
-        "caption": """To the woman who has never stopped giving long enough to ask what she needs — this is for you.
+        "caption": """To the woman who has never stopped giving long enough to ask what she needs, this is for you.
 
 Your generosity is beautiful. But it was never meant to cost you your own soul.
 
-The Guilty Giver gives from a place of fear — fear that if she stops, she will be found unworthy. Fear that her value lives in her usefulness. Fear that God, too, will be disappointed if she finally rests.
+The Guilty Giver gives from a place of fear, fear that if she stops, she will be found unworthy. Fear that her value lives in her usefulness. Fear that God, too, will be disappointed if she finally rests.
 
 But the Father is not waiting for your next act of service. He is waiting for you to sit down.
 
@@ -497,7 +497,7 @@ https://sanctuary-grace.com/
         "image_file": None,
         "caption": """You were called before you were qualified. You were chosen before you were ready. And the calling on your life has not expired because you have been too depleted to pursue it.
 
-Week Four of The Quiet Authority devotional series is called Calling — five days of scripture and reflection for the woman who is ready to ask the question she has been afraid to ask. What was I made for, and am I still allowed to pursue it.
+Week Four of The Quiet Authority devotional series is called Calling, five days of scripture and reflection for the woman who is ready to ask the question she has been afraid to ask. What was I made for, and am I still allowed to pursue it.
 
 The answer is yes. It has always been yes.
 
@@ -513,7 +513,7 @@ https://sanctuary-grace.com/
         "image_file": "profile-C.png",
         "caption": """She gave until there was nothing left to give. And she called it faithfulness.
 
-But faithfulness was never meant to cost you yourself. The Guilty Giver is one of four spiritual profiles in The Quiet Authority — and if this is you, the assessment was built for this moment.
+But faithfulness was never meant to cost you yourself. The Guilty Giver is one of four spiritual profiles in The Quiet Authority, and if this is you, the assessment was built for this moment.
 
 Free. Eight minutes. A path designed for exactly where you are.
 
@@ -571,7 +571,7 @@ https://sanctuary-grace.com/
         "pin": "Re-pin Guilty Giver wall art",
         "board": "The Quiet Authority for Women",
         "image_file": "profile-C.png",
-        "caption": """To the woman who has forgotten that she is allowed to have needs — this image was made for you.
+        "caption": """To the woman who has forgotten that she is allowed to have needs, this image was made for you.
 
 The Guilty Giver gives from fear and calls it love. She exhausts herself in service and wonders why she feels so far from God. She does not realize that the distance she feels is not abandonment. It is depletion.
 
@@ -589,7 +589,7 @@ https://sanctuary-grace.com/
         "image_file": None,
         "caption": """Four weeks. Four movements. One direction.
 
-The complete Quiet Authority devotional series — Vision, Renewal, Peace, and Calling — was written for the woman who is ready to move through her exhaustion toward something real. Not quickly. Not perfectly. But honestly.
+The complete Quiet Authority devotional series, Vision, Renewal, Peace, and Calling, was written for the woman who is ready to move through her exhaustion toward something real. Not quickly. Not perfectly. But honestly.
 
 Week One opens your eyes to who you are.
 Week Two loosens what has been held too tightly.
@@ -624,7 +624,7 @@ https://sanctuary-grace.com/
         "pin": "Scripture from 7-day practice",
         "board": "Christian Women Encouragement",
         "image_file": None,
-        "caption": """The LORD is my shepherd; I shall not want. He maketh me to lie down in green pastures: he leadeth me beside the still waters. He restoreth my soul. — Psalm 23:1-3
+        "caption": """The LORD is my shepherd; I shall not want. He maketh me to lie down in green pastures: he leadeth me beside the still waters. He restoreth my soul. Psalm 23:1-3
 
 He maketh me to lie down. Not suggests. Not invites. Maketh.
 
@@ -706,7 +706,7 @@ if PINTEREST_ACCESS_TOKEN:
                 with urllib.request.urlopen(post_req, timeout=30) as resp:
                     result = json.loads(resp.read())
                     pin_id = result.get('id')
-                    post_status = f'POSTED — pin_id: {pin_id}'
+                    post_status = f'POSTED, pin_id: {pin_id}'
                     print(f"Posted to Pinterest: {pin_id}")
             except urllib.error.HTTPError as e:
                 error_body = e.read().decode()
@@ -715,11 +715,11 @@ if PINTEREST_ACCESS_TOKEN:
             except Exception as e:
                 post_status = f'ERROR: {str(e)[:200]}'
         else:
-            post_status = f'DRAFT — board not found: {pin_data["board"]}'
+            post_status = f'DRAFT, board not found: {pin_data["board"]}'
     else:
-        post_status = 'DRAFT — Canva image required for this day.'
+        post_status = 'DRAFT, Canva image required for this day.'
 else:
-    post_status = 'DRAFT — PINTEREST_ACCESS_TOKEN not set'
+    post_status = 'DRAFT, PINTEREST_ACCESS_TOKEN not set'
 
 out_dir = pathlib.Path('workflows/output/pinterest-pending')
 out_dir.mkdir(parents=True, exist_ok=True)

@@ -1,4 +1,4 @@
-name: YouTube Deploy — Upload Approved Videos
+name: YouTube Deploy, Upload Approved Videos
 
 on:
   schedule:
@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       video_week:
-        description: 'Week number to deploy (W1-W4) — leave blank for current week'
+        description: 'Week number to deploy (W1-W4), leave blank for current week'
         required: false
         default: ''
 

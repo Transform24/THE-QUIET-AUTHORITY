@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Instagram Deploy Agent — Posts approved content to Instagram
+Instagram Deploy Agent, Posts approved content to Instagram
 Reads from: workflows/output/instagram-approved/
 Posts via: Instagram Graph API
 Logs to: workflows/instagram-log.md
@@ -122,7 +122,7 @@ for post_file in approved_files:
 
     except urllib.error.HTTPError as e:
         error_body = e.read().decode()
-        print(f"❌ {date_str}: HTTP {e.code} — {error_body[:200]}")
+        print(f"❌ {date_str}: HTTP {e.code}, {error_body[:200]}")
         log_entry = f"| {date_str} | {pillar} | N/A | FAILED (HTTP {e.code}) |\n"
     except Exception as e:
         print(f"❌ {date_str}: {str(e)}")

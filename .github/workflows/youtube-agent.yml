@@ -1,4 +1,4 @@
-name: YouTube Agent — Generate Script
+name: YouTube Agent, Generate Script
 
 on:
   schedule:
@@ -31,7 +31,7 @@ jobs:
           git add -f workflows/output/youtube-pending/
           git add -f workflows/output/youtube-log.md
           if ! git diff --staged --quiet; then
-            git commit -m "YouTube Agent: $(date +%Y-%m-%d) script — ready for Grace to record and upload"
+            git commit -m "YouTube Agent: $(date +%Y-%m-%d) script, ready for Grace to record and upload"
             git push origin HEAD
             echo "✅ Script saved to workflows/output/youtube-pending/"
           else

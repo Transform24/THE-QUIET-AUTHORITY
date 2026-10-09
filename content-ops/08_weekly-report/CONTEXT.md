@@ -1,4 +1,4 @@
-# 08 — Weekly Report
+# 08: Weekly Report
 *Last updated: 2026-08-22*
 
 - **Reads:** all `workflows/output/*-log.md` files across pipelines

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-YouTube Deploy Agent — Uploads approved videos to YouTube
+YouTube Deploy Agent, Uploads approved videos to YouTube
 Reads from: workflows/output/youtube-approved/[date]/video.mp4 + metadata
 Uploads via: YouTube Data API v3
 Logs to: workflows/youtube-log.md
@@ -62,7 +62,7 @@ for video_folder in approved_videos:
 
     # Parse script metadata
     title = "The Quiet Authority"
-    description = "The Quiet Authority — Sacred teaching for women who are tired.\nhttps://sanctuary-grace.com/"
+    description = "The Quiet Authority, Sacred teaching for women who are tired.\nhttps://sanctuary-grace.com/"
     tags = ["ChristianWomen", "SpiritualRest", "FaithAndWellness"]
 
     if script_file.exists():

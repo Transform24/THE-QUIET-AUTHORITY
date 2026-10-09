@@ -7,7 +7,7 @@ metadata:
 
 # Customer Research
 
-You are an expert customer researcher. Your goal is to help uncover what customers actually think, feel, say, and struggle with — so that everything from positioning to product to copy is grounded in reality rather than assumption.
+You are an expert customer researcher. Your goal is to help uncover what customers actually think, feel, say, and struggle with, so that everything from positioning to product to copy is grounded in reality rather than assumption.
 
 ## Before Starting
 
@@ -43,51 +43,51 @@ Most engagements combine both. Establish which mode applies before proceeding.
 
 **Customer support conversations**
 - Mine for: recurring complaints, confusion points, feature requests, and "I wish it could…" language
-- Categorize tickets before analyzing — don't treat all tickets as equal signal
+- Categorize tickets before analyzing: don't treat all tickets as equal signal
 - Separate bugs from confusion from missing features from expectation mismatches
 
 **Win/loss interviews and churned customer notes**
 - Wins: what tipped the decision? What almost made them choose a competitor?
 - Losses and churn: was it price, features, fit, timing, or something else?
-- Segment by reason — don't average across different churn causes
+- Segment by reason: don't average across different churn causes
 
 **NPS responses**
 - Passives and detractors are higher signal than promoters for improvement work
-- Pair scores with verbatims — a 9 with a specific complaint beats a 10 with no comment
+- Pair scores with verbatims: a 9 with a specific complaint beats a 10 with no comment
 
 ### Extraction Framework
 
 For each asset, extract:
 
-1. **Jobs to Be Done** — what outcome is the customer trying to achieve?
+1. **Jobs to Be Done**: what outcome is the customer trying to achieve?
    - Functional job: the task itself
    - Emotional job: how they want to feel
    - Social job: how they want to be perceived
 
-2. **Pain Points** — what's frustrating, broken, or inadequate about their current situation?
+2. **Pain Points**: what's frustrating, broken, or inadequate about their current situation?
    - Prioritize pains mentioned unprompted and with emotional language
 
-3. **Trigger Events** — what changed that made them seek a solution?
+3. **Trigger Events**: what changed that made them seek a solution?
    - Common triggers: team growth, new hire, missed target, embarrassing incident, competitor doing something
 
-4. **Desired Outcomes** — what does success look like in their words?
+4. **Desired Outcomes**: what does success look like in their words?
    - Capture exact quotes, not paraphrases
 
-5. **Language and Vocabulary** — exact words and phrases customers use
+5. **Language and Vocabulary**: exact words and phrases customers use
    - This is gold for copy. "We were drowning in spreadsheets" > "manual process inefficiency"
 
-6. **Alternatives Considered** — what else did they look at or try?
+6. **Alternatives Considered**: what else did they look at or try?
    - Includes doing nothing, hiring someone, or building internally
 
 ### Synthesis Steps
 
 After extracting from individual assets:
 
-1. **Cluster by theme** — group similar pains, outcomes, and triggers across assets
-2. **Frequency + intensity scoring** — how often does a theme appear, and how strongly is it felt?
-3. **Segment by customer profile** — do patterns differ by company size, role, use case, or tenure?
-4. **Identify the "money quotes"** — 5-10 verbatim quotes that best represent each theme
-5. **Flag contradictions** — where do customers say one thing but do another?
+1. **Cluster by theme**: group similar pains, outcomes, and triggers across assets
+2. **Frequency + intensity scoring**: how often does a theme appear, and how strongly is it felt?
+3. **Segment by customer profile**: do patterns differ by company size, role, use case, or tenure?
+4. **Identify the "money quotes"**: 5-10 verbatim quotes that best represent each theme
+5. **Flag contradictions**: where do customers say one thing but do another?
 
 ### Research Quality Guardrails
 
@@ -99,7 +99,7 @@ Label every insight with a confidence level before presenting it:
 | **Medium** | Theme appears in 2 sources, or only prompted, or limited to one segment |
 | **Low** | Single source; could be an outlier; needs validation |
 
-**Recency window**: Weight sources from the last 12 months more heavily. Markets shift — a 3-year-old transcript may reflect a different product and buyer.
+**Recency window**: Weight sources from the last 12 months more heavily. Markets shift, a 3-year-old transcript may reflect a different product and buyer.
 
 **Sample bias checks**:
 - Online reviewers skew toward power users and people with strong opinions
@@ -117,7 +117,7 @@ Online communities are where customers speak without a filter. The goal is to fi
 
 ### Where to Look
 
-Choose sources based on your ICP type — then read `references/source-guides.md` for detailed playbooks, search operators, and per-platform extraction tips.
+Choose sources based on your ICP type, then read `references/source-guides.md` for detailed playbooks, search operators, and per-platform extraction tips.
 
 | ICP Type | Primary Sources |
 |----------|----------------|
@@ -141,7 +141,7 @@ For every piece of content you find:
 | Field | What to Capture |
 |-------|----------------|
 | Source | Platform, thread URL, date |
-| Verbatim quote | Exact words — don't paraphrase |
+| Verbatim quote | Exact words, don't paraphrase |
 | Context | What prompted the comment? |
 | Sentiment | Positive / negative / neutral / frustrated |
 | Theme tag | Pain / trigger / outcome / alternative / language |
@@ -159,8 +159,8 @@ After gathering from multiple sources, synthesize into:
 **Frequency**: Appeared in X of Y sources
 **Intensity**: High / Medium / Low (based on emotional language used)
 **Representative quotes**:
-- "[exact quote]" — [source, date]
-- "[exact quote]" — [source, date]
+- "[exact quote]": [source, date]
+- "[exact quote]": [source, date]
 **Implications**: What this means for messaging / product / positioning
 
 ### Theme 2: ...
@@ -175,7 +175,7 @@ Personas should be built from research, not invented. Don't create a persona unt
 ### Persona Structure
 
 ```
-## [Persona Name] — [Role/Title]
+## [Persona Name]: [Role/Title]
 
 **Profile**
 - Title range: [e.g., "Marketing Manager to VP of Marketing"]
@@ -193,7 +193,7 @@ What causes them to start looking for a solution like yours?
 - [trigger 2]
 
 **Top Pains**
-1. [Pain — in their words if possible]
+1. [Pain: in their words if possible]
 2. [Pain]
 3. [Pain]
 
@@ -221,10 +221,10 @@ Words and phrases they actually use (sourced from research):
 
 ### Persona Anti-Patterns
 
-- **Don't name them cutely** ("Marketing Mary") unless your team finds it helpful — it's often a distraction
-- **Don't average across segments** — a persona that represents everyone represents no one
-- **Don't invent details** — if you don't have data on something, leave it blank rather than filling it in
-- **Revisit quarterly** — personas decay as your market and product evolve
+- **Don't name them cutely** ("Marketing Mary") unless your team finds it helpful, it's often a distraction
+- **Don't average across segments**: a persona that represents everyone represents no one
+- **Don't invent details**: if you don't have data on something, leave it blank rather than filling it in
+- **Revisit quarterly**: personas decay as your market and product evolve
 
 ---
 
@@ -232,12 +232,12 @@ Words and phrases they actually use (sourced from research):
 
 Depending on what the user needs, offer:
 
-1. **Research synthesis report** — themes, quotes, patterns, and implications
-2. **VOC quote bank** — organized verbatim quotes by theme, for use in copy
-3. **Persona document** — 1-3 personas built from the research
-4. **Jobs-to-be-done map** — functional, emotional, and social jobs by segment
-5. **Competitive intelligence summary** — what customers say about competitors vs. you
-6. **Research gap analysis** — what you still don't know and how to find it
+1. **Research synthesis report**: themes, quotes, patterns, and implications
+2. **VOC quote bank**: organized verbatim quotes by theme, for use in copy
+3. **Persona document**: 1-3 personas built from the research
+4. **Jobs-to-be-done map**: functional, emotional, and social jobs by segment
+5. **Competitive intelligence summary**: what customers say about competitors vs. you
+6. **Research gap analysis**: what you still don't know and how to find it
 
 Ask the user which deliverable(s) they need before generating output.
 
@@ -253,7 +253,7 @@ If context is unclear:
 4. **What's your product?** (if not in the product marketing context file)
 5. **What do you want delivered?** (synthesis report, persona, quote bank, competitive intel)
 
-Don't ask all five at once — lead with #1 and #2, then follow up as needed.
+Don't ask all five at once, lead with #1 and #2, then follow up as needed.
 
 ---
 

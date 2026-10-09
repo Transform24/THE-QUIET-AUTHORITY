@@ -1,4 +1,4 @@
-# Gate 4 — Hitkania — Preparation
+# Gate 4: Hitkania, Preparation
 
 ## STATUS: NOT YET BUILT
 

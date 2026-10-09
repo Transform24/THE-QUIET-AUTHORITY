@@ -125,7 +125,7 @@ await p1.screenshot({ path: '/tmp/tqa-results.png' });
 await p1.evaluate(() => { if(typeof tabNav==='function') tabNav('shop'); }).catch(() => {});
 await p1.waitForTimeout(1000);
 
-// Check product images are distinct — scroll to section-shop first
+// Check product images are distinct, scroll to section-shop first
 await p1.evaluate(() => { const el=document.getElementById('section-shop'); if(el) el.scrollIntoView(); }).catch(() => {});
 await p1.waitForTimeout(500);
 const shopImgSrcs = await p1.$$eval('img[src*="picsum"]', imgs => imgs.map(i => i.src)).catch(() => []);
@@ -136,9 +136,9 @@ if (shopImgSrcs.length > 0) {
     ? pass(`All ${shopImgSrcs.length} product images are unique`)
     : fail(`Duplicate images: ${shopImgSrcs.length} total, ${unique.size} unique`);
 } else {
-  info('Picsum images not yet in DOM — checking all img tags in shop section');
+  info('Picsum images not yet in DOM, checking all img tags in shop section');
   const allShopImgs = await p1.$$eval('#section-shop img', imgs => imgs.map(i=>i.src)).catch(()=>[]);
-  info(`All imgs in shop: ${allShopImgs.length} — srcs: ${[...new Set(allShopImgs)].join(', ').slice(0,120)}`);
+  info(`All imgs in shop: ${allShopImgs.length}, srcs: ${[...new Set(allShopImgs)].join(', ').slice(0,120)}`);
 }
 
 await p1.screenshot({ path: '/tmp/tqa-shop.png' });
@@ -153,9 +153,9 @@ await p1.waitForTimeout(2000);
 const returnScreen = await p1.$eval('.screen.active', el => el.id).catch(() => 'none');
 info(`Active screen on return: ${returnScreen}`);
 if (returnScreen === 'screen-results' || returnScreen === 'screen-reveal') {
-  pass('Returning user goes directly to results — landing skipped');
+  pass('Returning user goes directly to results, landing skipped');
 } else if (returnScreen === 'screen-landing') {
-  fail('Returning user still sees landing page — redirect failed');
+  fail('Returning user still sees landing page, redirect failed');
 } else if (returnScreen === 'screen-dashboard') {
   pass('Returning user goes to dashboard');
 } else {

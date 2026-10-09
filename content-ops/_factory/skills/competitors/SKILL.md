@@ -43,7 +43,7 @@ Before creating competitor pages, understand:
 - Acknowledge competitor strengths
 - Be accurate about your limitations
 - Don't misrepresent competitor features
-- Readers are comparing—they'll verify claims
+- Readers are comparing, they'll verify claims
 
 ### 2. Depth Over Surface
 - Go beyond feature checklists
@@ -147,7 +147,7 @@ Before creating competitor pages, understand:
 ## Essential Sections
 
 ### TL;DR Summary
-Start every page with a quick summary for scanners—key differences in 2-3 sentences.
+Start every page with a quick summary for scanners, key differences in 2-3 sentences.
 
 ### Paragraph Comparisons
 Go beyond tables. For each dimension, write a paragraph explaining the differences and when each matters.

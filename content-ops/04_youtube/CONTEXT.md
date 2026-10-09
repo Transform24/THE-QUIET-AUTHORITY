@@ -1,4 +1,4 @@
-# 04 — YouTube
+# 04: YouTube
 *Last updated: 2026-08-22*
 
 - **Reads:** devotional content, profile descriptions, 7-day practice content (Drive)
@@ -9,10 +9,10 @@
 
 ## Video repurposing (Remotion)
 
-Two parts, both live here, neither wired into any GitHub Actions workflow yet (safe to have moved — confirmed no `.yml` or script references either path):
+Two parts, both live here, neither wired into any GitHub Actions workflow yet (safe to have moved, confirmed no `.yml` or script references either path):
 
-- `remotion/` — the Remotion React composition project (`QuietAuthorityVideo.jsx`, `Root.jsx`) — the actual video-rendering engine.
-- `remotion-render/` — the per-platform render trigger scripts (`render-youtube.js`, `render-pinterest.js`, `render-instagram.js`, `render-substack.js`) that invoke the compositions above.
-- `render-youtube-video.py` — Python wrapper for the YouTube render path.
+- `remotion/`: the Remotion React composition project (`QuietAuthorityVideo.jsx`, `Root.jsx`), the actual video-rendering engine.
+- `remotion-render/`: the per-platform render trigger scripts (`render-youtube.js`, `render-pinterest.js`, `render-instagram.js`, `render-substack.js`) that invoke the compositions above.
+- `render-youtube-video.py`: Python wrapper for the YouTube render path.
 
-Takes in: profile/devotion text content. Outputs: rendered video for the YouTube channel (and, per the render-*.js naming, potentially other platforms — not yet confirmed wired anywhere live).
+Takes in: profile/devotion text content. Outputs: rendered video for the YouTube channel (and, per the render-*.js naming, potentially other platforms, not yet confirmed wired anywhere live).

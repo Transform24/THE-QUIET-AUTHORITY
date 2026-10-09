@@ -1,4 +1,4 @@
-# Gate 6 — Hithavut — Becoming
+# Gate 6: Hithavut, Becoming
 
 ## STATUS: NOT YET BUILT
 

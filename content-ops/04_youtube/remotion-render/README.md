@@ -1,4 +1,4 @@
-# Remotion Rendering Layer — TQA Video & Image Generation
+# Remotion Rendering Layer: TQA Video & Image Generation
 
 This folder contains the Remotion components for programmatically generating videos and images for all 4 platforms.
 
@@ -65,9 +65,9 @@ npm run render:substack
 - **Resolution:** 1920×1080 (Full HD)
 - **Codec:** H.264 (YouTube compatible)
 - **Segments:**
-  1. Opening Stillness (30s) — Music + breathing guide
-  2. Teaching (10.5 min) — Text-based content
-  3. CTA (30s) — Call to action
+  1. Opening Stillness (30s): Music + breathing guide
+  2. Teaching (10.5 min): Text-based content
+  3. CTA (30s): Call to action
 
 ### Instagram Reel (render-instagram.js)
 - **Input:** `/workflows/output/instagram-pending/YYYY-MM-DD.json` (caption)
@@ -76,9 +76,9 @@ npm run render:substack
 - **Resolution:** 1080×1920 (vertical)
 - **Codec:** H.264 (Instagram compatible)
 - **Segments:**
-  1. Hook (10s) — Eye-catching opener
-  2. Teaching (35s) — Core message
-  3. CTA (15s) — Call to action + link
+  1. Hook (10s): Eye-catching opener
+  2. Teaching (35s): Core message
+  3. CTA (15s): Call to action + link
 
 ### Pinterest Pin (render-pinterest.js)
 - **Input:** `/workflows/output/pinterest-pending/YYYY-MM-DD.json` (caption)
@@ -86,9 +86,9 @@ npm run render:substack
 - **Format:** PNG (lossless)
 - **Resolution:** 1000×1500 (vertical)
 - **Sections:**
-  1. Profile Image (40%) — Grayscale filter
-  2. Quote (30%) — Terra text
-  3. CTA Button (30%) — Gold with action text
+  1. Profile Image (40%): Grayscale filter
+  2. Quote (30%): Terra text
+  3. CTA Button (30%): Gold with action text
 
 ### Substack Header (render-substack.js)
 - **Input:** `/workflows/output/substack-pending/YYYY-MM-DD.json` (devotion)
@@ -120,9 +120,9 @@ All components use the sacred TQA color palette:
 ```
 
 **Fonts:**
-- `Cormorant Garamond` — Headings, display, scripture
-- `Jost` — Body text, UI
-- `Cinzel` — Section badges, decorative text (ALL CAPS)
+- `Cormorant Garamond`: Headings, display, scripture
+- `Jost`: Body text, UI
+- `Cinzel`: Section badges, decorative text (ALL CAPS)
 
 ---
 
@@ -131,7 +131,7 @@ All components use the sacred TQA color palette:
 ### YouTube Script Format
 ```json
 {
-  "title": "Profile Name — Teaching Series",
+  "title": "Profile Name, Teaching Series",
   "scripture": "John 4:6",
   "profile_key": "A|B|C|D",
   "long_form_script": "30-40 paragraphs of teaching...",
@@ -208,7 +208,7 @@ node --version  # Should be v18.0.0 or higher
 ### API quota exceeded
 - Agent ran too many times (hit Gemini daily limit)
 - Wait 24 hours, then re-run
-- Output folder grows — clean up old pending files
+- Output folder grows: clean up old pending files
 
 ---
 

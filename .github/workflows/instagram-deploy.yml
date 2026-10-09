@@ -1,4 +1,4 @@
-name: Instagram Deploy — Post Approved Content
+name: Instagram Deploy, Post Approved Content
 
 on:
   schedule:
@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       post_date:
-        description: 'Post date to deploy (YYYY-MM-DD) — leave blank for latest'
+        description: 'Post date to deploy (YYYY-MM-DD), leave blank for latest'
         required: false
         default: ''
 

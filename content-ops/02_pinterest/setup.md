@@ -1,19 +1,19 @@
-# Pinterest Setup — Sanctuary Grace Ministry
+# Pinterest Setup: Sanctuary Grace Ministry
 *The Quiet Authority · Complete setup guide*
 
 ---
 
-## STEP 1 — Create a Pinterest Business Account
+## STEP 1: Create a Pinterest Business Account
 
 1. Go to **pinterest.com/business/create**
 2. Sign up with your ministry email
 3. Choose category: **Education** or **Religious Organizations**
 4. Add your website: `https://transform24.github.io/THE-QUIET-AUTHORITY/`
-5. Skip the ad setup — you don't need ads
+5. Skip the ad setup: you don't need ads
 
 ---
 
-## STEP 2 — Claim Your Website (Domain Verification)
+## STEP 2: Claim Your Website (Domain Verification)
 
 1. In Pinterest: go to **Settings → Claimed Accounts → Website**
 2. Choose **Add HTML tag**
@@ -30,17 +30,17 @@ When verified, your profile photo shows on every pin from your site. Your pins g
 
 ---
 
-## STEP 3 — Create Your 5 Boards
+## STEP 3: Create Your 5 Boards
 
 Create these boards in this order (most important first):
 
 | Board Name | Description | Secret? |
 |---|---|---|
-| **Sacred Space & Stillness** | Prayer, quiet, atmosphere, candles, rest | No — public |
-| **Christian Women Growth** | Identity, breakthrough, faith journey, calling | No — public |
-| **Bible Study & Devotionals** | Scripture, study, devotionals, quiet time | No — public |
-| **Faith-Based Wellness** | Burnout, rest, healing, wholeness, peace | No — public |
-| **Sanctuary Grace Ministry** | Assessment, resources, tools, ministry updates | No — public |
+| **Sacred Space & Stillness** | Prayer, quiet, atmosphere, candles, rest | No, public |
+| **Christian Women Growth** | Identity, breakthrough, faith journey, calling | No, public |
+| **Bible Study & Devotionals** | Scripture, study, devotionals, quiet time | No, public |
+| **Faith-Based Wellness** | Burnout, rest, healing, wholeness, peace | No, public |
+| **Sanctuary Grace Ministry** | Assessment, resources, tools, ministry updates | No, public |
 
 For each board:
 - Add 10–15 description keywords (Pinterest uses these for search)
@@ -49,19 +49,19 @@ For each board:
 
 ---
 
-## STEP 4 — Apply for Rich Pins
+## STEP 4: Apply for Rich Pins
 
-Rich Pins pull your title and description directly from your site's meta tags — already set up on your site.
+Rich Pins pull your title and description directly from your site's meta tags, already set up on your site.
 
 1. Go to: **developers.pinterest.com/tools/url-debugger/**
 2. Paste: `https://transform24.github.io/THE-QUIET-AUTHORITY/`
-3. Click **Validate** — it should detect your og: tags
+3. Click **Validate**: it should detect your og: tags
 4. Click **Apply Now** for Rich Pins
 5. Pinterest approves within 24 hours
 
 ---
 
-## STEP 5 — Profile Setup
+## STEP 5: Profile Setup
 
 | Field | What to put |
 |---|---|
@@ -73,9 +73,9 @@ Rich Pins pull your title and description directly from your site's meta tags �
 
 ---
 
-## STEP 6 — Posting Schedule
+## STEP 6: Posting Schedule
 
-**Target: 3 pins per day** (batch weekly — post Monday through Sunday)
+**Target: 3 pins per day** (batch weekly: post Monday through Sunday)
 
 | Day | Board | Pin Type |
 |---|---|---|
@@ -91,7 +91,7 @@ Rich Pins pull your title and description directly from your site's meta tags �
 
 ---
 
-## STEP 7 — Pin Image Specs
+## STEP 7: Pin Image Specs
 
 Pinterest favors **vertical images**.
 
@@ -107,11 +107,11 @@ Pinterest favors **vertical images**.
 - Cream body text: `#F5F0E8`
 - Font: Cormorant Garamond (heading) + Jost (body)
 - Always include: your logo or "Sanctuary Grace Ministry" in small text at bottom
-- Never use stock photos that look generic — use your own or AI-generated sacred imagery
+- Never use stock photos that look generic: use your own or AI-generated sacred imagery
 
 ---
 
-## STEP 8 — YouTube → Pinterest Repurposing Flow
+## STEP 8: YouTube → Pinterest Repurposing Flow
 
 When you upload a YouTube video:
 
@@ -131,7 +131,7 @@ When you upload a YouTube video:
 
 ---
 
-## STEP 9 — Pinterest API (for Agent 02 automation)
+## STEP 9: Pinterest API (for Agent 02 automation)
 
 When you're ready to automate pin posting:
 

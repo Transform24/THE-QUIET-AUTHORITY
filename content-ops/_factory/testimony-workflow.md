@@ -144,7 +144,7 @@ Once `Status = APPROVED`:
 
 ## GOOGLE FORM SETUP CHECKLIST
 
-- [ ] Create Google Form titled "Share Your Transformation — The Quiet Authority"
+- [ ] Create Google Form titled "Share Your Transformation: The Quiet Authority"
 - [ ] Add fields: Name, Profile Type, Story, What Changed, Doing Differently, Permission (checkbox), Email
 - [ ] Set to collect email addresses (for follow-up)
 - [ ] Link response sheet to TQA Drive folder
@@ -158,15 +158,15 @@ Once `Status = APPROVED`:
 
 **Symptom:** Stories submitted but never posted  
 **Fix:** 
-1. Check approval sheet — did Grace review? (Every Friday)
-2. Check if "Status = APPROVED" — if stuck at "NEEDS_EDIT," woman didn't respond to edit request
+1. Check approval sheet: did Grace review? (Every Friday)
+2. Check if "Status = APPROVED": if stuck at "NEEDS_EDIT," woman didn't respond to edit request
 3. If story approved but not posted → Graphics not created → Create immediately
 
 **Symptom:** Stories posted but zero traffic  
 **Fix:**
-1. Check link in post — does it go to `sanctuary-grace.com/`?
-2. Check Pinterest pin visibility — did it get pinned to right board?
-3. Check Instagram caption — does it have the link or story link?
+1. Check link in post: does it go to `sanctuary-grace.com/`?
+2. Check Pinterest pin visibility: did it get pinned to right board?
+3. Check Instagram caption: does it have the link or story link?
 4. If all correct → pin/post may not be resonating. Next month test different type of story (focus on breakthrough vs. struggle)
 
 ---

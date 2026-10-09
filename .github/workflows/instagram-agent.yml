@@ -1,4 +1,4 @@
-name: Instagram Agent — Daily Post (PAUSED)
+name: Instagram Agent, Daily Post (PAUSED)
 
 on:
   schedule:
@@ -49,7 +49,7 @@ jobs:
           if ! git diff --staged --quiet; then
             BRANCH="agent-output/instagram-pending-$(date +%Y-%m-%d)"
             git checkout -b "$BRANCH"
-            git commit -m "Instagram Agent: $(date +%Y-%m-%d) caption + Reel → workflows/output/instagram-pending/ — ready for Grace approval"
+            git commit -m "Instagram Agent: $(date +%Y-%m-%d) caption + Reel → workflows/output/instagram-pending/, ready for Grace approval"
             git push -u origin "$BRANCH"
             echo "✅ Caption + Reel saved to workflows/output/instagram-pending/ → Grace reviews → moves to -approved/ → auto-posts"
           else

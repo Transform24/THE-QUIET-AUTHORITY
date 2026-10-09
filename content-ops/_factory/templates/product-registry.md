@@ -1,25 +1,25 @@
-# Product Registry — Sanctuary Grace Ministry
+# Product Registry: Sanctuary Grace Ministry
 *Last updated: 2026-05-17 · Source of truth for Agent 03 (Storefront Sync)*
 
 Agent 03 reads this file to audit index.html links. Update this file any time a product is added, removed, or repriced in Stripe or Beacons.
 
 ---
 
-## Wall Art — Stripe Digital Downloads ($9.99 each)
+## Wall Art: Stripe Digital Downloads ($9.99 each)
 
 | Profile | Product | Stripe Link | Image File | Status |
 |---|---|---|---|---|
-| A — The Striving Achiever | Prophetic Wall Art | `https://buy.stripe.com/14AbJ1bNm3tT9aY3EmcQU0n` | wall-art-WOMT9.jpg | Active |
-| B — The Depleted Survivor | Prophetic Wall Art | `https://buy.stripe.com/dRm9ATg3Cc0p2MA2AicQU0r` | wall-art-WOMT8.jpg | Active |
-| C — The Guilty Giver | Prophetic Wall Art | `https://buy.stripe.com/7sYdR95oY3tT1IwdeWcQU0q` | wall-art-WOMT-profile3.jpg | Active |
-| D — The Lost Wanderer | Prophetic Wall Art | `https://buy.stripe.com/5kQdR92cM5C1af23EmcQU0o` | wall-art-WOMT-profile2.jpg | Active |
-| All Four | Full Collection Bundle | `https://buy.stripe.com/7sY4gz5oY4xXbj6caScQU0l` | — | Active |
+| A, The Striving Achiever | Prophetic Wall Art | `https://buy.stripe.com/14AbJ1bNm3tT9aY3EmcQU0n` | wall-art-WOMT9.jpg | Active |
+| B, The Depleted Survivor | Prophetic Wall Art | `https://buy.stripe.com/dRm9ATg3Cc0p2MA2AicQU0r` | wall-art-WOMT8.jpg | Active |
+| C, The Guilty Giver | Prophetic Wall Art | `https://buy.stripe.com/7sYdR95oY3tT1IwdeWcQU0q` | wall-art-WOMT-profile3.jpg | Active |
+| D, The Lost Wanderer | Prophetic Wall Art | `https://buy.stripe.com/5kQdR92cM5C1af23EmcQU0o` | wall-art-WOMT-profile2.jpg | Active |
+| All Four | Full Collection Bundle | `https://buy.stripe.com/7sY4gz5oY4xXbj6caScQU0l` | - | Active |
 
 3 sizes included per download: 8×10, 11×14, 16×20
 
 ---
 
-## Devotionals — Stripe PDF Downloads ($4.99 each)
+## Devotionals: Stripe PDF Downloads ($4.99 each)
 
 | Week | Title | Stripe Link | Status |
 |---|---|---|---|
@@ -31,7 +31,7 @@ Agent 03 reads this file to audit index.html links. Update this file any time a 
 
 ---
 
-## Books — Stripe ($15.99 each)
+## Books: Stripe ($15.99 each)
 
 | Title | Stripe Link | Status |
 |---|---|---|
@@ -49,10 +49,10 @@ Agent 03 reads this file to audit index.html links. Update this file any time a 
 
 ---
 
-## Amazon Sacred Space — Curated by Profile
+## Amazon Sacred Space: Curated by Profile
 All links must include `tag=sanctuarygrac-20`
 
-### Profile A — The Striving Achiever
+### Profile A: The Striving Achiever
 | Product | Amazon Link |
 |---|---|
 | Weighted fleece throw | `https://www.amazon.com/dp/B0C7V67VVV?tag=sanctuarygrac-20` |
@@ -60,7 +60,7 @@ All links must include `tag=sanctuarygrac-20`
 | A Place of Faith prayer journal | `https://amzn.to/486JdVm` |
 | Flameless pillar candles | `https://amzn.to/48cxqVG` |
 
-### Profile B — The Depleted Survivor
+### Profile B: The Depleted Survivor
 | Product | Amazon Link |
 |---|---|
 | Butterfly ceramic mug set | `https://amzn.to/3KwAp1V` |
@@ -68,7 +68,7 @@ All links must include `tag=sanctuarygrac-20`
 | Leather-lined journal | `https://amzn.to/44rtiyA` |
 | Weighted fleece throw | `https://www.amazon.com/dp/B0C7V67VVV?tag=sanctuarygrac-20` |
 
-### Profile C — The Guilty Giver
+### Profile C: The Guilty Giver
 | Product | Amazon Link |
 |---|---|
 | Leather A5 journal | `https://amzn.to/44rtiyA` |
@@ -76,7 +76,7 @@ All links must include `tag=sanctuarygrac-20`
 | Flameless pillar candles | `https://amzn.to/48cxqVG` |
 | Cool mist essential oil diffuser | `https://amzn.to/4pcq9Lw` |
 
-### Profile D — The Lost Wanderer
+### Profile D: The Lost Wanderer
 | Product | Amazon Link |
 |---|---|
 | Parallel Bible (NIV/NKJV/NLT/Message) | `https://amzn.to/4iz6Yco` |
@@ -88,7 +88,7 @@ All links must include `tag=sanctuarygrac-20`
 
 ## Beacons Storefront
 Main URL: `https://beacons.ai/sanctuarygrace`
-Email engine: Beacons (not MailerLite — removed)
+Email engine: Beacons (not MailerLite, removed)
 
 ---
 

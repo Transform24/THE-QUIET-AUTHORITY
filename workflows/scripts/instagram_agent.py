@@ -35,11 +35,11 @@ SLIDE 4: God did not design you to be emptied. He designed you to be filled.
 
 SLIDE 5: You are not more holy because you are more depleted. You are more in need of the Shepherd who leads to still waters.
 
-SLIDE 6: This is the invitation — not to give more, but to finally receive.
+SLIDE 6: This is the invitation, not to give more, but to finally receive.
 
 SLIDE 7: The Quiet Authority. A free spiritual profile for women who are ready to stop. https://sanctuarygrace.store
 
-CAPTION: She gave until there was nothing left. Not because she was weak — because she had learned that her worth lived in what she could offer. If you recognize yourself in this, you are not alone. The Quiet Authority was created for this moment. Free assessment at the link in bio.
+CAPTION: She gave until there was nothing left. Not because she was weak, because she had learned that her worth lived in what she could offer. If you recognize yourself in this, you are not alone. The Quiet Authority was created for this moment. Free assessment at the link in bio.
 
 https://sanctuarygrace.store
 
@@ -49,7 +49,7 @@ CANVA BRIEF: 1080x1080px, black background, Cinzel font ALL CAPS in white, terra
     },
     2: {
         "pillar": "scripture",
-        "content": """SCRIPTURE: Come unto me, all ye that labour and are heavy laden, and I will give you rest. — Matthew 11:28
+        "content": """SCRIPTURE: Come unto me, all ye that labour and are heavy laden, and I will give you rest. Matthew 11:28
 
 He did not say come when you have finished. He did not say come when you have earned it. He said come, all ye that labour and are heavy laden. Come exactly as you are right now.
 
@@ -85,19 +85,19 @@ THUMBNAIL BRIEF: Dark frame, woman's hands open and still, text overlay: YOU ARE
     },
     4: {
         "pillar": "devotional",
-        "content": """CAPTION: Be still, and know that I am God. — Psalm 46:10
+        "content": """CAPTION: Be still, and know that I am God. Psalm 46:10
 
-The knowing comes in the stopping. Not in the striving. You cannot know — truly know, in your bones — that he is God while you are sprinting past him.
+The knowing comes in the stopping. Not in the striving. You cannot know, truly know, in your bones, that he is God while you are sprinting past him.
 
 Today, stop before you have finished. The stillness is not something you earn. It is the place where knowing begins.
 
-Full devotional: Week 1 — Vision. Available now at the link in bio.
+Full devotional: Week 1, Vision. Available now at the link in bio.
 
 https://sanctuarygrace.store
 
 HASHTAGS: #DailyDevotion #ChristianWomen #QuietTime #SacredSpace #SpiritualRest #FaithJourney #SanctuaryGrace
 
-CANVA BRIEF: Devotional cover — black background, Cinzel title, soft candlelight texture, terra border detail."""
+CANVA BRIEF: Devotional cover, black background, Cinzel title, soft candlelight texture, terra border detail."""
     },
     5: {
         "pillar": "silence",
@@ -141,11 +141,11 @@ CANVA BRIEF: 1080x1080px series, black background, Cinzel white text, one profil
     },
     7: {
         "pillar": "scripture",
-        "content": """SCRIPTURE: He healeth the broken in heart, and bindeth up their wounds. — Psalm 147:3
+        "content": """SCRIPTURE: He healeth the broken in heart, and bindeth up their wounds. Psalm 147:3
 
 He bindeth up. This is not passive. It is deliberate, personal, attentive. The image is of a physician who knows exactly where it hurts and does not rush the treatment.
 
-You wanted to be further along by now. But healing is not linear. And the fact that you are still in the middle does not mean you are stuck — it means the work is still happening.
+You wanted to be further along by now. But healing is not linear. And the fact that you are still in the middle does not mean you are stuck, it means the work is still happening.
 
 You are not behind. You are healing.
 
@@ -157,7 +157,7 @@ CANVA BRIEF: Psalm 147:3 in Cinzel gold on black, soft texture background, singl
     },
     8: {
         "pillar": "reel",
-        "content": """HOOK: What if rest is not something you earn — but something you were made for?
+        "content": """HOOK: What if rest is not something you earn, but something you were made for?
 
 BEAT 1: We have built an entire theology around earning rest. We rest on Sunday because we worked all week. We allow peace after the crisis passes.
 
@@ -165,7 +165,7 @@ BEAT 2: But this is not the Gospel. The Gospel says rest is not a reward. It is 
 
 BEAT 3: Your exhaustion is not a character flaw. It is evidence that you are finite. And finitude is not a spiritual problem.
 
-CTA: You were made for more than this exhaustion. The Quiet Authority — free assessment at the link in bio.
+CTA: You were made for more than this exhaustion. The Quiet Authority, free assessment at the link in bio.
 
 CAPTION: Rest is not something you earn. It is something you were made for. If you have been waiting until you deserve it, this is the invitation to stop waiting.
 
@@ -177,15 +177,15 @@ THUMBNAIL BRIEF: Dark still frame, text: REST IS NOT A REWARD in Cinzel terra, w
     },
     9: {
         "pillar": "devotional",
-        "content": """CAPTION: The LORD is nigh unto them that are of a broken heart; and saveth such as be of a contrite spirit. — Psalm 34:18
+        "content": """CAPTION: The LORD is nigh unto them that are of a broken heart; and saveth such as be of a contrite spirit. Psalm 34:18
 
-Not the triumphant. Not the thriving. Those of a broken heart — the woman who is holding her faith together with trembling hands and wondering if it will be enough.
+Not the triumphant. Not the thriving. Those of a broken heart, the woman who is holding her faith together with trembling hands and wondering if it will be enough.
 
 You do not have to feel his presence for it to be real. You do not have to manufacture the joy. Just stay.
 
 He is closer than the silence feels.
 
-Week 2 devotional — Renewal — available now at the link in bio.
+Week 2 devotional, Renewal, available now at the link in bio.
 
 https://sanctuarygrace.store
 
@@ -197,7 +197,7 @@ CANVA BRIEF: Week 2 Renewal cover, candle glow, Cinzel title, warm dark tones.""
         "pillar": "silence",
         "content": """CAPTION: There is a stillness that heals what striving never could.
 
-Not the quiet of an empty calendar. But the presence of God inside the noise — the kind that rises from somewhere deeper than circumstance.
+Not the quiet of an empty calendar. But the presence of God inside the noise, the kind that rises from somewhere deeper than circumstance.
 
 This is what the Circle of Silence makes space for. Fifteen minutes. You and God. No agenda.
 
@@ -223,11 +223,11 @@ SLIDE 4: The Striving Achiever has confused doing with being. Her identity lives
 
 SLIDE 5: When she slows down, the silence feels like failure.
 
-SLIDE 6: But God is not measuring your productivity. He is calling you by name — not by your achievements.
+SLIDE 6: But God is not measuring your productivity. He is calling you by name, not by your achievements.
 
 SLIDE 7: The Quiet Authority. Free 8-question assessment. Begin at the link. https://sanctuarygrace.store
 
-CAPTION: She is not lazy. She is not faithless. She is the Striving Achiever — and she is one of four spiritual profiles in The Quiet Authority. If this is you, the assessment was built for this moment. Free. Link in bio.
+CAPTION: She is not lazy. She is not faithless. She is the Striving Achiever, and she is one of four spiritual profiles in The Quiet Authority. If this is you, the assessment was built for this moment. Free. Link in bio.
 
 https://sanctuarygrace.store
 
@@ -237,11 +237,11 @@ CANVA BRIEF: Striving Achiever profile image (B&W) on final slide, black backgro
     },
     12: {
         "pillar": "scripture",
-        "content": """SCRIPTURE: But they that wait upon the LORD shall renew their strength; they shall mount up with wings as eagles; they shall run, and not be weary; and they shall walk, and not faint. — Isaiah 40:31
+        "content": """SCRIPTURE: But they that wait upon the LORD shall renew their strength; they shall mount up with wings as eagles; they shall run, and not be weary; and they shall walk, and not faint. Isaiah 40:31
 
 This is a promise for the woman who is faint. Not for the one who has already rested. For the one who cannot imagine mounting up with wings because she can barely walk.
 
-The renewal is not something you manufacture. It is something you receive. It flows from the act of waiting on him — of being honest that you have run out.
+The renewal is not something you manufacture. It is something you receive. It flows from the act of waiting on him, of being honest that you have run out.
 
 You were not made for permanent exhaustion.
 
@@ -273,7 +273,7 @@ THUMBNAIL BRIEF: Woman looking inward, soft side lighting, text: SHE IS STILL TH
     },
     14: {
         "pillar": "devotional",
-        "content": """CAPTION: Give us this day our daily bread. — Matthew 6:11
+        "content": """CAPTION: Give us this day our daily bread. Matthew 6:11
 
 Jesus taught us to ask for today's portion. Not this week's. Not enough to stop depending. Today.
 
@@ -281,7 +281,7 @@ The woman who is anxious about the future is trying to borrow provision for days
 
 Today's grace is enough for today. You do not have to secure next month's supply before you can rest.
 
-Week 3 devotional — Peace — at the link in bio.
+Week 3 devotional, Peace, at the link in bio.
 
 https://sanctuarygrace.store
 
@@ -317,7 +317,7 @@ SLIDE 3: And then, somewhere between the seasons of life, she lost the thread.
 
 SLIDE 4: The Lost Wanderer is not faithless. She is disoriented.
 
-SLIDE 5: She has not walked away from God — she simply cannot find her footing.
+SLIDE 5: She has not walked away from God, she simply cannot find her footing.
 
 SLIDE 6: She wonders if she has been forgotten. She has not been.
 
@@ -333,7 +333,7 @@ CANVA BRIEF: Lost Wanderer profile image (B&W) on final slide, black background,
     },
     17: {
         "pillar": "scripture",
-        "content": """SCRIPTURE: For God hath not given us the spirit of fear; but of power, and of love, and of a sound mind. — 2 Timothy 1:7
+        "content": """SCRIPTURE: For God hath not given us the spirit of fear; but of power, and of love, and of a sound mind. 2 Timothy 1:7
 
 Fear has been speaking in your voice for so long you have started to believe it is your voice. It tells you to stay small, to stay safe, to protect yourself.
 
@@ -351,9 +351,9 @@ CANVA BRIEF: 2 Timothy 1:7 in Cinzel gold, bold and centered, dark background, g
         "pillar": "reel",
         "content": """HOOK: You are safe to be honest with God.
 
-BEAT 1: He already knows your anxious thoughts. The invitation in Psalm 139 is not for his information — it is for your liberation.
+BEAT 1: He already knows your anxious thoughts. The invitation in Psalm 139 is not for his information, it is for your liberation.
 
-BEAT 2: The act of naming what is real, honestly, before the God who already sees it — that is how the hidden places begin to heal.
+BEAT 2: The act of naming what is real, honestly, before the God who already sees it, that is how the hidden places begin to heal.
 
 BEAT 3: Bring the real thing. Not the edited version. Not the spiritually appropriate version. The raw, in-progress, falling-apart version.
 
@@ -361,7 +361,7 @@ CTA: He will not be shocked. He will not love you less. He is waiting for the ho
 
 https://sanctuarygrace.store
 
-CAPTION: You are safe to be honest with God. Bring the real version today — the unedited, exhausted, uncertain one. He has been waiting for exactly her.
+CAPTION: You are safe to be honest with God. Bring the real version today, the unedited, exhausted, uncertain one. He has been waiting for exactly her.
 
 https://sanctuarygrace.store
 
@@ -371,7 +371,7 @@ THUMBNAIL BRIEF: Hands open, palms up, soft light, text: BE HONEST in Cinzel ter
     },
     19: {
         "pillar": "devotional",
-        "content": """CAPTION: For we are his workmanship, created in Christ Jesus unto good works, which God hath before ordained that we should walk in them. — Ephesians 2:10
+        "content": """CAPTION: For we are his workmanship, created in Christ Jesus unto good works, which God hath before ordained that we should walk in them. Ephesians 2:10
 
 You have not been disqualified. You have not missed the window. The God who made you with purpose does not revoke the purpose when the path gets complicated.
 
@@ -379,7 +379,7 @@ He reroutes. He redeems. He takes what looked like detour and weaves it into the
 
 You are not behind. You are becoming.
 
-Week 4 devotional — Calling — at the link in bio.
+Week 4 devotional, Calling, at the link in bio.
 
 https://sanctuarygrace.store
 
@@ -391,7 +391,7 @@ CANVA BRIEF: Week 4 Calling cover, dawn light quality, Cinzel title in warm gold
         "pillar": "silence",
         "content": """CAPTION: Stillness is not the absence of noise. It is the presence of God inside it.
 
-The Circle of Silence makes space for the kind of quiet that meets you in the middle of your life — not after it settles down. Not when you have finished everything on the list.
+The Circle of Silence makes space for the kind of quiet that meets you in the middle of your life, not after it settles down. Not when you have finished everything on the list.
 
 Now. In this moment. Before the day begins.
 
@@ -403,25 +403,25 @@ https://sanctuarygrace.store
 
 HASHTAGS: #SacredSpace #ChristianWomen #CircleOfSilence #QuietTime #SpiritualRest #SanctuaryGrace #FaithAndWellness
 
-CANVA BRIEF: Near-black, candle glow at center, text: IN THE STILLNESS, HE IS HERE — Cinzel white, minimal."""
+CANVA BRIEF: Near-black, candle glow at center, text: IN THE STILLNESS, HE IS HERE, Cinzel white, minimal."""
     },
     21: {
         "pillar": "carousel",
         "content": """SLIDE 1: Four women. Four wounds. One invitation.
 
-SLIDE 2: The Striving Achiever — she cannot stop moving, even when her body is asking her to.
+SLIDE 2: The Striving Achiever, she cannot stop moving, even when her body is asking her to.
 
-SLIDE 3: The Depleted Survivor — she has rebuilt herself so many times she has forgotten her original shape.
+SLIDE 3: The Depleted Survivor, she has rebuilt herself so many times she has forgotten her original shape.
 
-SLIDE 4: The Guilty Giver — she says yes to everyone and no to herself, and calls it faithfulness.
+SLIDE 4: The Guilty Giver, she says yes to everyone and no to herself, and calls it faithfulness.
 
-SLIDE 5: The Lost Wanderer — she is searching for the thread back to who she was before life changed her.
+SLIDE 5: The Lost Wanderer, she is searching for the thread back to who she was before life changed her.
 
 SLIDE 6: One of these is you. You already know which one.
 
 SLIDE 7: The Quiet Authority. Free. 8 questions. 8 minutes. Begin at the link. https://sanctuarygrace.store
 
-CAPTION: Four profiles. One for each kind of tired. You already know which one is yours. The Quiet Authority is free, takes 8 minutes, and opens a path designed for where you actually are — not where you think you should be. Link in bio.
+CAPTION: Four profiles. One for each kind of tired. You already know which one is yours. The Quiet Authority is free, takes 8 minutes, and opens a path designed for where you actually are, not where you think you should be. Link in bio.
 
 https://sanctuarygrace.store
 
@@ -431,9 +431,9 @@ CANVA BRIEF: All four profile images in a 2x2 grid, black background, Cinzel lab
     },
     22: {
         "pillar": "scripture",
-        "content": """SCRIPTURE: It is of the LORD's mercies that we are not consumed, because his compassions fail not. They are new every morning: great is thy faithfulness. — Lamentations 3:22-23
+        "content": """SCRIPTURE: It is of the LORD's mercies that we are not consumed, because his compassions fail not. They are new every morning: great is thy faithfulness. Lamentations 3:22-23
 
-This was written from inside devastation — the city in ruins, the exile beginning. And from inside that wreckage, the writer found the one thing that held.
+This was written from inside devastation, the city in ruins, the exile beginning. And from inside that wreckage, the writer found the one thing that held.
 
 Every morning is a beginning. Not a continuation of yesterday's failures. New mercies. The same faithful God. Fresh grace.
 
@@ -451,7 +451,7 @@ CANVA BRIEF: Lamentations 3:22-23 in Cinzel gold, sunrise-dark palette, soft glo
 
 BEAT 1: Somewhere you learned that wanting comfort, rest, or help was weakness. So you became very skilled at not needing.
 
-BEAT 2: But a thirst you refuse to name does not go away. It goes underground — and shows up as resentment, as exhaustion, as a grief you cannot explain.
+BEAT 2: But a thirst you refuse to name does not go away. It goes underground, and shows up as resentment, as exhaustion, as a grief you cannot explain.
 
 BEAT 3: God satisfies the thirsty. Not the woman who has mastered pretending she is not thirsty. The honest one. The one who finally admits she is dry.
 
@@ -469,11 +469,11 @@ THUMBNAIL BRIEF: Woman's face, eyes closed, peaceful surrender, text: YOUR NEEDS
     },
     24: {
         "pillar": "devotional",
-        "content": """CAPTION: Yea, though I walk through the valley of the shadow of death, I will fear no evil: for thou art with me. — Psalm 23:4
+        "content": """CAPTION: Yea, though I walk through the valley of the shadow of death, I will fear no evil: for thou art with me. Psalm 23:4
 
 He does not say you will not walk through the valley of the shadow of death. He says through.
 
-The valley is not the destination. It is the path. And the path has a guide — the God who walks through it with you. Not ahead of you waving from the other side. Present. Close enough to touch.
+The valley is not the destination. It is the path. And the path has a guide, the God who walks through it with you. Not ahead of you waving from the other side. Present. Close enough to touch.
 
 You are not alone in the valley. You have never been alone in the valley.
 
@@ -501,7 +501,7 @@ https://sanctuarygrace.store
 
 HASHTAGS: #SacredSpace #ChristianWomen #CircleOfSilence #SpiritualRest #QuietTime #FaithAndWellness #SanctuaryGrace
 
-CANVA BRIEF: Personal, warm — single candle, handwritten feel, Cinzel text, most minimal of all designs."""
+CANVA BRIEF: Personal, warm, single candle, handwritten feel, Cinzel text, most minimal of all designs."""
     },
     26: {
         "pillar": "carousel",
@@ -519,7 +519,7 @@ SLIDE 6: But every good gift comes from the Father. And when you refuse the gift
 
 SLIDE 7: You are allowed to receive. You always were. https://sanctuarygrace.store
 
-CAPTION: The Guilty Giver is one of the most common patterns among women of faith. If you recognize yourself here, you are not alone — and there is a path forward. Free assessment at the link in bio.
+CAPTION: The Guilty Giver is one of the most common patterns among women of faith. If you recognize yourself here, you are not alone, and there is a path forward. Free assessment at the link in bio.
 
 https://sanctuarygrace.store
 
@@ -529,7 +529,7 @@ CANVA BRIEF: Guilty Giver profile image (B&W) on final slide, black background s
     },
     27: {
         "pillar": "scripture",
-        "content": """SCRIPTURE: But we all, with open face beholding as in a glass the glory of the Lord, are changed into the same image from glory to glory, even as by the Spirit of the Lord. — 2 Corinthians 3:18
+        "content": """SCRIPTURE: But we all, with open face beholding as in a glass the glory of the Lord, are changed into the same image from glory to glory, even as by the Spirit of the Lord. 2 Corinthians 3:18
 
 You are not finished. The version of you that exists right now is not the final draft. You are mid-transformation.
 
@@ -547,13 +547,13 @@ CANVA BRIEF: 2 Corinthians 3:18 in Cinzel gold, increasing light from left to ri
         "pillar": "reel",
         "content": """HOOK: The long road is not evidence that God has forgotten you.
 
-BEAT 1: You thought you would be further along by now. You had a picture of where this journey was supposed to take you — and this is not it.
+BEAT 1: You thought you would be further along by now. You had a picture of where this journey was supposed to take you, and this is not it.
 
-BEAT 2: But the path that forms character, that does the deep work, that leads to the kind of life that holds under pressure — that path almost never takes the direct route.
+BEAT 2: But the path that forms character, that does the deep work, that leads to the kind of life that holds under pressure, that path almost never takes the direct route.
 
 BEAT 3: The length of your journey is not a measure of your value. It is simply the length of your journey. And every step of it has been building something the direct path could not have built.
 
-CTA: You are not behind. You are on the road. The Quiet Authority — free assessment at the link in bio.
+CTA: You are not behind. You are on the road. The Quiet Authority, free assessment at the link in bio.
 
 CAPTION: You are not behind. You are on a long road that is doing something thorough. And the destination has not moved.
 
@@ -565,13 +565,13 @@ THUMBNAIL BRIEF: Long empty path at dusk, warm light ahead, text: YOU ARE NOT BE
     },
     29: {
         "pillar": "devotional",
-        "content": """CAPTION: Strength and honour are her clothing; and she shall rejoice in time to come. — Proverbs 31:25
+        "content": """CAPTION: Strength and honour are her clothing; and she shall rejoice in time to come. Proverbs 31:25
 
-The laughter at days to come is not naivety. It is the confidence of a woman who has been through enough to know that she has what it takes — not because she is extraordinary, but because the God who has walked with her this far is not going to stop.
+The laughter at days to come is not naivety. It is the confidence of a woman who has been through enough to know that she has what it takes, not because she is extraordinary, but because the God who has walked with her this far is not going to stop.
 
 You are clothed in more than you know. The scars are part of the clothing.
 
-The full devotional series — four weeks, four movements — available at the link in bio.
+The full devotional series, four weeks, four movements, available at the link in bio.
 
 https://sanctuarygrace.store
 
@@ -583,7 +583,7 @@ CANVA BRIEF: Proverbs 31 woman aesthetic, dignified and strong, black background
         "pillar": "silence",
         "content": """CAPTION: A month of returning. And it is only the beginning.
 
-Thirty days of sacred content for the woman who is tired of being tired. A community forming in the quiet. A practice of stillness that is changing things — slowly, in the way all real change happens.
+Thirty days of sacred content for the woman who is tired of being tired. A community forming in the quiet. A practice of stillness that is changing things, slowly, in the way all real change happens.
 
 Month Two begins soon. The same voice. The same invitation. Deeper into the work of becoming who you were always meant to be.
 
@@ -593,7 +593,7 @@ https://sanctuarygrace.store
 
 HASHTAGS: #SacredSpace #ChristianWomen #SpiritualRest #FaithAndWellness #SanctuaryGrace #CircleOfSilence #FaithJourney
 
-CANVA BRIEF: Month milestone post — warm, personal, single candle, thank you tone, Cinzel text minimal and gracious."""
+CANVA BRIEF: Month milestone post, warm, personal, single candle, thank you tone, Cinzel text minimal and gracious."""
     },
 }
 
@@ -610,7 +610,7 @@ out_dir = pathlib.Path('workflows/output/ig-drafts')
 out_dir.mkdir(parents=True, exist_ok=True)
 out_file = out_dir / f'{date_str}.md'
 out_file.write_text(
-    f'---\ndate: {date_str}\nday: {day_number}\npillar: {actual_pillar}\nstatus: DRAFT — review before posting\n---\n\n{content}\n'
+    f'---\ndate: {date_str}\nday: {day_number}\npillar: {actual_pillar}\nstatus: DRAFT, review before posting\n---\n\n{content}\n'
 )
 
 log_file = pathlib.Path('workflows/output/ig-log.md')
@@ -620,5 +620,5 @@ if log_file.exists():
 else:
     log_file.write_text('| Date | Day | Pillar | Status | File |\n|---|---|---|---|---|\n' + entry_log)
 
-print(f'Instagram draft saved — Day {day_number}, Pillar: {actual_pillar}')
+print(f'Instagram draft saved, Day {day_number}, Pillar: {actual_pillar}')
 print(f'File: {out_file}')

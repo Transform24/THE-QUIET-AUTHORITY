@@ -37,7 +37,7 @@ await assert('Begin the Assessment button exists', async () => {
 });
 
 // ── 2. QUESTION SCREEN ─────────────────────────────────────────────────────
-console.log('\n[Question Screen — 8 questions]');
+console.log('\n[Question Screen, 8 questions]');
 
 // Call startAssessment() directly via JS to avoid click-on-span issues
 await page.evaluate(() => startAssessment());

@@ -1,4 +1,4 @@
-# Agent 03 — Storefront Sync Agent
+# Agent 03: Storefront Sync Agent
 
 ## Purpose
 Keeps your Beacons storefront and Stripe products aligned with the product links
@@ -13,13 +13,13 @@ TASK: Audit the product links in index.html and compare against the
 master product list at workflows/templates/product-registry.md
 
 STEPS:
-1. Read index.html — extract all href links pointing to:
+1. Read index.html: extract all href links pointing to:
    - Amazon (amzn.to/*)
    - Beacons (beacons.ai/*)
    - Stripe (buy.stripe.com/*)
    - Any external shop links
 
-2. Read workflows/templates/product-registry.md — the master list of
+2. Read workflows/templates/product-registry.md: the master list of
    current active products, prices, and correct URLs
 
 3. COMPARE and report:
@@ -39,5 +39,5 @@ STEPS:
 - Or manually after adding new products to Stripe/Beacons
 
 ## Product Registry
-See `workflows/templates/product-registry.md` — keep this updated manually
+See `workflows/templates/product-registry.md`, keep this updated manually
 whenever you add/remove products from Beacons or Stripe.

@@ -38,7 +38,7 @@ export const RemotionRoot = () => {
         })}
       />
 
-      {/* 9:16 vertical for Instagram/TikTok/Reels — 15 seconds */}
+      {/* 9:16 vertical for Instagram/TikTok/Reels, 15 seconds */}
       <Composition
         id="QuietAuthorityShort"
         component={QuietAuthorityVideo}
@@ -48,7 +48,7 @@ export const RemotionRoot = () => {
         height={1920}
       />
 
-      {/* 16:9 horizontal for YouTube/Facebook — 15 seconds */}
+      {/* 16:9 horizontal for YouTube/Facebook, 15 seconds */}
       <Composition
         id="QuietAuthorityWide"
         component={QuietAuthorityVideo}
@@ -58,7 +58,7 @@ export const RemotionRoot = () => {
         height={1080}
       />
 
-      {/* 1:1 square for Instagram feed — 15 seconds */}
+      {/* 1:1 square for Instagram feed, 15 seconds */}
       <Composition
         id="QuietAuthoritySquare"
         component={QuietAuthorityVideo}

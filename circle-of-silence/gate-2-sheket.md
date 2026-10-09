@@ -1,4 +1,4 @@
-# Gate 2 — Sheket — Stillness
+# Gate 2: Sheket, Stillness
 
 ## STATUS: NOT YET BUILT
 

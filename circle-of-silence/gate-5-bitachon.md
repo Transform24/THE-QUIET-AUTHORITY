@@ -1,4 +1,4 @@
-# Gate 5 — Bitachon — Trust
+# Gate 5: Bitachon, Trust
 
 ## STATUS: NOT YET BUILT
 

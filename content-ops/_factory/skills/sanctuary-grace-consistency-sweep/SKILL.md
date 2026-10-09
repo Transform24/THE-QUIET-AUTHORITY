@@ -11,7 +11,7 @@ The other five skills each protect one page at the moment it's built or edited. 
 
 - Any time a fix touches a shared source (`_system/brand-tokens.md`/`.json`, a Worker constant, a citation, a scripture-anchor doc) rather than one page's own content.
 - Any time Grace asks for a cross-property audit, a "what's actually live" check, or says something feels inconsistent across gates.
-- NOT needed for a single new page build in isolation — the other five skills already cover that page on its own.
+- NOT needed for a single new page build in isolation: the other five skills already cover that page on its own.
 
 ## The page list (update this list itself the moment a page is added or retired, first step of any sweep)
 
@@ -22,9 +22,9 @@ index.html, foyer.html, the-quiet-authority-foyer.html, the-secret-place-foyer.h
 For each page in the list, in order, without stopping to report mid-sweep:
 
 1. Read the page's actual live/committed source, never a remembered version of it.
-2. Run `sanctuary-grace-property-map` — confirm which property this page belongs to and that its own copy says so correctly.
-3. Run `sanctuary-grace-tool-stack-check` — confirm nothing on the page depends on a retired or paused tool (Systeme.io, Beacons-as-primary, anything the tool-stack-check's own list flags as dead).
-4. Run `sanctuary-grace-brand-check` — rendered colors/fonts against `_system/brand-tokens.json`, no em dash, every scripture KJV-flagged, correct voice, correct property name in the copy.
+2. Run `sanctuary-grace-property-map`: confirm which property this page belongs to and that its own copy says so correctly.
+3. Run `sanctuary-grace-tool-stack-check`: confirm nothing on the page depends on a retired or paused tool (Systeme.io, Beacons-as-primary, anything the tool-stack-check's own list flags as dead).
+4. Run `sanctuary-grace-brand-check`: rendered colors/fonts against `_system/brand-tokens.json`, no em dash, every scripture KJV-flagged, correct voice, correct property name in the copy.
 5. Run `sanctuary-grace-flow-check` if the page is a gate or checkout step.
 6. Run `sanctuary-grace-audit`'s Playwright pass against the page.
 7. Log every fail as one line in `_system/TASK_LOG.md`: page name, which check failed, what was wrong. Fix mechanical fails in the same pass. Log non-mechanical fails as open items, do not guess a fix.

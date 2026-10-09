@@ -1,4 +1,4 @@
-# Brand Assets Reference — Sanctuary Grace Ministry / The Quiet Authority
+# Brand Assets Reference: Sanctuary Grace Ministry / The Quiet Authority
 
 *Ministry: Sanctuary Grace Ministry · Product: The Quiet Authority · Founder: Grace Turner*
 *Last updated: 2026-05-17 · Authoritative reference for all AI agents. Do not deviate without Grace approval.*
@@ -7,15 +7,15 @@
 
 ## 1. VOICE & TONE
 
-**Brand voice:** Sacred, tender, prophetic. Grace Turner is a minister, not a marketer. Write as a shepherd addressing a weary flock — not as a brand addressing a customer.
+**Brand voice:** Sacred, tender, prophetic. Grace Turner is a minister, not a marketer. Write as a shepherd addressing a weary flock, not as a brand addressing a customer.
 
 **Audience:** Burned-out Christian women, ages 30–55, experiencing spiritual depletion or identity crisis. They are exhausted, not lazy. Wounded, not weak. They need invitation, not instruction.
 
 **Tone markers:**
-- Warmth — speak to the whole person, not just the problem
-- Quiet authority — confident without being loud
-- Invitation — open a door, never push through it
-- Tenderness — honor the pain without dwelling in it
+- Warmth: speak to the whole person, not just the problem
+- Quiet authority: confident without being loud
+- Invitation: open a door, never push through it
+- Tenderness: honor the pain without dwelling in it
 
 **FORBIDDEN words and phrases:**
 - hustle, productivity, grind, level up, crush it
@@ -29,7 +29,7 @@
 
 ## 2. DESIGN TOKENS
 
-CSS variables — never change without Grace approval. These apply to index.html and all branded visual assets.
+CSS variables, never change without Grace approval. These apply to index.html and all branded visual assets.
 
 ```css
 --bg:#0d0d0d
@@ -53,10 +53,10 @@ CSS variables — never change without Grace approval. These apply to index.html
 ```
 
 **Color usage guidance:**
-- Gold (`--gold`, `--gold-light`) — primary accent, scripture highlights, CTAs
-- Terra (`--terra`) — secondary accent, urgency-free emphasis only
-- Sage (`--sage`, `--sage-light`) — supporting accent, rest and nature imagery
-- Cream / Parchment — text on dark backgrounds, scripture display
+- Gold (`--gold`, `--gold-light`): primary accent, scripture highlights, CTAs
+- Terra (`--terra`): secondary accent, urgency-free emphasis only
+- Sage (`--sage`, `--sage-light`): supporting accent, rest and nature imagery
+- Cream / Parchment: text on dark backgrounds, scripture display
 - All backgrounds are near-black. The aesthetic is candlelit, not clinical.
 
 ---
@@ -78,7 +78,7 @@ All fonts loaded via Google Fonts CDN. Never swap fonts. Never add fonts without
 
 ---
 
-## 4. PROFILES — THE QUIET AUTHORITY
+## 4. PROFILES: THE QUIET AUTHORITY
 
 Assessment produces one of four primary profiles, plus one special designation.
 
@@ -88,7 +88,7 @@ Assessment produces one of four primary profiles, plus one special designation.
 | B | The Depleted Survivor | Running on empty from surviving crisis after crisis |
 | C | The Guilty Giver | Exhausted from giving everything away, nothing left |
 | D | The Lost Wanderer | Disconnected from herself and from God |
-| NB | New Believer | Just said yes to Jesus — tender, new, held |
+| NB | New Believer | Just said yes to Jesus, tender, new, held |
 
 **Profile rules:**
 - Never reduce a profile to a flaw. Each is a wound, not a verdict.
@@ -99,7 +99,7 @@ Assessment produces one of four primary profiles, plus one special designation.
 
 ## 5. SCRIPTURE STANDARD
 
-- Translation: KJV or NIV — Grace's preference. Use one consistently per piece.
+- Translation: KJV or NIV: Grace's preference. Use one consistently per piece.
 - Never paraphrase scripture. Display the full verse text exactly as it appears in the chosen translation.
 - Always cite: Book Chapter:Verse (e.g., Matthew 11:28, Psalm 46:10).
 - Display format: Cormorant Garamond italic, gold accent or parchment color, citation below verse in smaller text.
@@ -125,9 +125,9 @@ No titles. No URLs in the signature block unless the email template explicitly i
 One CTA per email. One CTA per section. Never layer multiple asks in the same unit of content.
 
 **Priority order:**
-1. Return to the sanctuary — https://transform24.github.io/THE-QUIET-AUTHORITY/
+1. Return to the sanctuary: https://transform24.github.io/THE-QUIET-AUTHORITY/
 2. Download your profile (download button within the app)
-3. Shop Stripe products — devotionals, wall art, books (in that order)
+3. Shop Stripe products: devotionals, wall art, books (in that order)
 4. Amazon Sacred Space curation (always last; affiliate links only)
 
 **CTA language:**
@@ -145,7 +145,7 @@ One CTA per email. One CTA per section. Never layer multiple asks in the same un
 | YouTube (Circle of Silence) | youtube.com/@TheQuietAuthority-f1z |
 | Pinterest | pinterest.com/sanctuarygracefaith |
 | Formspree (all form submissions) | Form ID: xzdkgbbq |
-| Amazon Associates | Tag: sanctuarygrac-20 — every affiliate link must include this tag |
+| Amazon Associates | Tag: sanctuarygrac-20, every affiliate link must include this tag |
 
 **Email engine is Beacons.** Not MailerLite. Not Zapier. All sequences, broadcasts, and list management run through Beacons.
 
@@ -176,4 +176,4 @@ Use these as calibration. When in doubt, ask: does this sound like a minister or
 
 ---
 
-*This document is the authoritative brand reference. It does not override CLAUDE.md — it supplements it. For architecture, localStorage, and code patterns, see CLAUDE.md.*
+*This document is the authoritative brand reference. It does not override CLAUDE.md, it supplements it. For architecture, localStorage, and code patterns, see CLAUDE.md.*

@@ -1,4 +1,4 @@
-# Agent 02 — Pinterest Pin Creation Agent
+# Agent 02: Pinterest Pin Creation Agent
 
 ## Purpose
 Takes approved pin copy from the repurpose output and formats/posts it to Pinterest
@@ -23,15 +23,15 @@ For each of the 5 pin titles + descriptions:
    - Pin's CTA is the 8-question assessment/quiz itself (title/copy says
      "take the assessment", "which profile are you", etc.) →
      `https://sanctuary-grace.com/` (the assessment lives at index.html,
-     pinned at the domain root — unchanged). Description CTA: "Take the
+     pinned at the domain root, unchanged). Description CTA: "Take the
      free assessment: https://sanctuary-grace.com/"
    - Pin introduces the ministry broadly instead of pushing the quiz
-     specifically — brand story, Circle of Silence, a devotional/product
-     pin, a scripture-only pin with no specific CTA — →
+     specifically, brand story, Circle of Silence, a devotional/product
+     pin, a scripture-only pin with no specific CTA, →
      `https://sanctuary-grace.com/foyer.html` (The Foyer, the four-doors
      entry point: the assessment, The Secret Place, Circle of Silence, and
      The Library). Description CTA: "Begin here: https://sanctuary-grace.com/foyer.html"
-   - When genuinely unsure which a new pin is, default to The Foyer — it's
+   - When genuinely unsure which a new pin is, default to The Foyer: it's
      the front door to everything, so it's never a dead end.
 
 2. BOARDS (assign each pin to best match):
