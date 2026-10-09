@@ -28,11 +28,11 @@
   --gold:#C9A84C;--gold-light:#e2c98e;--gold-dim:#7a6040;
   --terra:#C1593C;
   --sage:#7d8c6e;--sage-light:#9aab88;
-  --cream:#F5F0E8;--cream-dim:#ccc4b8;
+  --cream:#F5F0E8;--cream-dim:#E0DACE;
   --parchment:#C4A47C;
-  --text:#ede8e0;--text-dim:#a09080;--text-muted:#706858;
+  --text:#F5F0E8;--text-dim:#B0A898;--text-muted:#807870;
   --dark:#0d0d0d;--dark2:#111111;--dark3:#0d0d0d;
-  --muted:#a09080;
+  --muted:#B0A898;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
@@ -1780,7 +1780,7 @@ function addToMailerLite(email,firstName,groupKey){
       initCoworkCountdown();initLangBar();
       setTimeout(()=>{tabNav(_viewParam);},600);
     } else {
-      // No saved profile — do not drop into an arbitrary wound-profile bucket.
+      // No saved profile, do not drop into an arbitrary wound-profile bucket.
       // Route to the site-wide foyer so the visitor makes a real choice. Decided 2026-09-12.
       location.href='foyer.html';
     }
@@ -3218,6 +3218,7 @@ function getCurrentLang(){
   return m?m[1]:'en';
 }
 function setLanguage(lang){
+  try{localStorage.setItem('sg_lang',lang)}catch(e){}
   const d=location.hostname;
   if(lang==='en'){
     document.cookie='googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/';
