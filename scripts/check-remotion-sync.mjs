@@ -1,7 +1,7 @@
 // Keeps the two Remotion engines identical and on-brand. Run from the repository root:
 //   node scripts/check-remotion-sync.mjs
 // 1. The shared files must be byte-for-byte the same in both engines.
-// 2. The shared video component may only use the brand colors and the three brand fonts.
+// 2. The video components may only use the brand colors and the three brand fonts.
 // Exits with an error if either check fails, so a drifting copy is caught before a render.
 import { createHash } from "node:crypto";
 import { existsSync, readFileSync } from "node:fs";
@@ -32,17 +32,23 @@ for (const file of SHARED) {
   else if (sha(a) !== sha(b)) errors.push(`${file}: the two copies differ. Make one match the other.`);
 }
 
-const component = readFileSync(join(A, "src/ScriptureReveal.jsx"), "utf8");
-for (const hex of new Set(component.match(/#[0-9a-fA-F]{3,8}\b/g) || [])) {
-  if (!BRAND_COLORS.has(hex.toLowerCase())) errors.push(`ScriptureReveal.jsx uses ${hex}, which is not #0d0d0d, #C9A84C or #F5F0E8`);
-}
-for (const m of component.matchAll(/fontFamily:\s*"([^"]+)"/g)) {
-  for (const family of m[1].split(",")) {
-    const name = family.trim().replace(/['"]/g, "").toLowerCase();
-    if (!BRAND_FONTS.has(name)) errors.push(`ScriptureReveal.jsx uses the font "${name}", which is not Cormorant Garamond, Jost or Cinzel`);
+// Every video component in the Psalm 91 engine may only use the brand colors and the three brand fonts.
+for (const name of ["src/ScriptureReveal.jsx", "src/Journey.jsx"]) {
+  const path = join(A, name);
+  if (!existsSync(path)) continue;
+  const label = name.replace("src/", "");
+  const component = readFileSync(path, "utf8");
+  for (const hex of new Set(component.match(/#[0-9a-fA-F]{3,8}\b/g) || [])) {
+    if (!BRAND_COLORS.has(hex.toLowerCase())) errors.push(`${label} uses ${hex}, which is not #0d0d0d, #C9A84C or #F5F0E8`);
   }
+  for (const m of component.matchAll(/fontFamily:\s*"([^"]+)"/g)) {
+    for (const family of m[1].split(",")) {
+      const font = family.trim().replace(/['"]/g, "").toLowerCase();
+      if (!BRAND_FONTS.has(font)) errors.push(`${label} uses the font "${font}", which is not Cormorant Garamond, Jost or Cinzel`);
+    }
+  }
+  for (const m of component.matchAll(/rgba?\(|hsla?\(/g)) errors.push(`${label} uses ${m[0]}...) which blends colors outside the brand set`);
 }
-for (const m of component.matchAll(/rgba?\(|hsla?\(/g)) errors.push(`ScriptureReveal.jsx uses ${m[0]}...) which blends colors outside the brand set`);
 
 if (errors.length) {
   console.error(`FAIL: ${errors.length} problem(s)`);

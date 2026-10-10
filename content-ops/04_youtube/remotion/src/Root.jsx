@@ -1,6 +1,7 @@
 import { Composition } from "remotion";
 import { QuietAuthorityVideo } from "./QuietAuthorityVideo";
 import { ScriptureReveal } from "./ScriptureReveal";
+import { Journey, journeyFrames } from "./Journey";
 import psalm91 from "./data/psalm91.json";
 import { FPS, totalFrames, verseFrames } from "./revealTiming.mjs";
 
@@ -22,6 +23,30 @@ export const RemotionRoot = () => {
         calculateMetadata={({ props }) => ({
           durationInFrames: totalFrames(props.verses),
         })}
+      />
+
+      {/* The long journey, wide 16:9: intro, all of Psalm 91 with 4 second rests, then the closing prayer */}
+      <Composition
+        id="Psalm91Long"
+        component={Journey}
+        durationInFrames={journeyFrames(psalm91)}
+        fps={FPS}
+        width={1920}
+        height={1080}
+        defaultProps={{ verses: psalm91, music: PSALM_MUSIC }}
+        calculateMetadata={({ props }) => ({ durationInFrames: journeyFrames(props.verses) })}
+      />
+
+      {/* The same journey, tall 9:16 for phones. Same timeline, colors, fonts and music */}
+      <Composition
+        id="Psalm91Mobile"
+        component={Journey}
+        durationInFrames={journeyFrames(psalm91)}
+        fps={FPS}
+        width={1080}
+        height={1920}
+        defaultProps={{ verses: psalm91, music: PSALM_MUSIC }}
+        calculateMetadata={({ props }) => ({ durationInFrames: journeyFrames(props.verses) })}
       />
 
       {/* Psalm 91, one verse per clip. Pass {"verseIndex": 0} to {"verseIndex": 15} */}

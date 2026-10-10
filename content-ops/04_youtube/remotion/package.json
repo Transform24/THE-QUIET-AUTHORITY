@@ -16,7 +16,12 @@
     "prerender:psalm91": "npm run validate:psalm91 && npm run stage-audio",
     "render:psalm91": "remotion render src/index.js Psalm91Full out/psalm91-full.mp4",
     "prerender:psalm91:clips": "npm run validate:psalm91 && npm run stage-audio",
-    "render:psalm91:clips": "node scripts/render-clips.mjs Psalm91Verse src/data/psalm91.json out/clips psalm91-verse"
+    "render:psalm91:clips": "node scripts/render-clips.mjs Psalm91Verse src/data/psalm91.json out/clips psalm91-verse",
+    "validate:journey": "node scripts/validate-journey.mjs",
+    "prerender:psalm91:long": "npm run validate:psalm91 && npm run validate:journey && npm run stage-audio",
+    "render:psalm91:long": "remotion render src/index.js Psalm91Long out/psalm91-long-16x9.mp4",
+    "prerender:psalm91:mobile": "npm run validate:psalm91 && npm run validate:journey && npm run stage-audio",
+    "render:psalm91:mobile": "remotion render src/index.js Psalm91Mobile out/psalm91-mobile-9x16.mp4"
   },
   "remotion": {
     "entryPoint": "src/index.js"
