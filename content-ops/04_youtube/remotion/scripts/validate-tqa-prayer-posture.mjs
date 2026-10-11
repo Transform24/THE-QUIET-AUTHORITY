@@ -154,13 +154,16 @@ for (const [name, p] of Object.entries(bp.plates)) {
   const base = p.image.split("/").pop();
   if (!jsx.includes(base)) fail(`the layout does not import ${base}`);
 }
-const music = new URL(`../../../${bp.music.file}`, root);
-if (!existsSync(music) || statSync(music).size < 100000) fail(`${bp.music.file} is missing from the repository root`);
+const music = new URL(bp.music.file, root);
+if (bp.music.file.endsWith("music1.mp3")) fail("the stand-in music1.mp3 must not be used, use the music taken from Version 8");
+if (!existsSync(music) || statSync(music).size < 1000000) fail(`${bp.music.file} is missing`);
 else {
-  const head = readFileSync(music).subarray(0, 4);
-  if (!(head.toString("latin1").startsWith("ID3") || (head[0] === 0xff && (head[1] & 0xe0) === 0xe0))) fail(`${bp.music.file} is not real MP3 audio`);
+  const head = readFileSync(music).subarray(0, 12);
+  if (head.subarray(4, 8).toString("latin1") !== "ftyp") fail(`${bp.music.file} is not real audio`);
 }
-ok.push(`files: both pictures and ${bp.music.file} present`);
+if (!jsx.includes(bp.music.file.split("/").pop())) fail("the layout does not import the music file");
+if (/music1\.mp3/.test(jsx)) fail("the layout must not use music1.mp3");
+ok.push(`files: both pictures and the Version 8 music (${bp.music.file.split("/").pop()}) present`);
 
 if (errors.length) {
   console.error(`FAIL: ${errors.length} problem(s)`);

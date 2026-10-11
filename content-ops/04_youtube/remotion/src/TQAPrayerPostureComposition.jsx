@@ -11,13 +11,13 @@ import {
   continueRender,
   delayRender,
   interpolate,
-  staticFile,
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
 import blueprint from "./data/tqa-prayer-posture.json";
 import spotlightCandle from "./assets/tqa/light-stream-plate.jpg";
 import characterSpotlight from "./assets/tqa/character-spotlight-plate.jpg";
+import musicTrack from "./assets/tqa/tqa-music-v8-extended.m4a";
 
 const { colors, layout, music, background, plates } = blueprint;
 const IMAGES = { spotlight_candle: spotlightCandle, character_spotlight: characterSpotlight };
@@ -170,7 +170,7 @@ const Music = () => {
       interpolate(f, [0, music.fade_in_frames], [0, music.volume], clamp),
       interpolate(f, [durationInFrames - music.fade_out_frames, durationInFrames], [music.volume, 0], clamp)
     );
-  return <Audio src={staticFile(music.file)} loop loopVolumeCurveBehavior="extend" volume={volume} />;
+  return <Audio src={musicTrack} volume={volume} />;
 };
 
 // The pictures, held steady. Each block shows its own picture; they dissolve into each other at the block edges.

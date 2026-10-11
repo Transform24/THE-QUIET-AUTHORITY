@@ -43,12 +43,12 @@
     "note": "The locked TQA pictures exist only inside the Version 8 video, so they were lifted from it with the text removed. No other pictures are used."
   },
   "music": {
-    "file": "music1.mp3",
-    "volume": 0.22,
-    "loop": true,
+    "file": "src/assets/tqa/tqa-music-v8-extended.m4a",
+    "volume": 1.0,
+    "loop": false,
     "fade_in_frames": 48,
     "fade_out_frames": 192,
-    "note": "Stand-in track from the repository root. The original TQA music exists only inside the Version 8 video."
+    "note": "The authentic music from the Version 8 video, taken straight from its audio track. The first 362 seconds are Version 8's own audio. The last 118 seconds continue it with a quiet stretch of the same track (123 to 245 seconds), joined with a 4 second crossfade, so it runs the full 8 minutes without the stand-in file."
   },
   "kjv": {
     "MATTHEW 6:7-8": "But when ye pray, use not vain repetitions, as the heathen do: for they think that they shall be heard for their much speaking. Be not ye therefore like unto them: for your Father knoweth what things ye have need of, before ye ask him.",
