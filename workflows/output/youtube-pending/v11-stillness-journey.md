@@ -1,7 +1,7 @@
 ---
 date: 2026-10-11
 title: The Quiet Authority, Pattern of Waiting, Video Three (v11, exactly 8 minutes)
-status: PENDING, updated 2026-10-11 with the line by line prayer, awaiting Grace review
+status: PENDING, line by line prayer verified live 2026-10-11, awaiting Grace review
 video: https://sanctuary-grace.com/public/TQA_Stillness_Journey_FINAL_v11.mp4
 ---
 
@@ -28,6 +28,8 @@ It is 1920 by 1080, exactly 8 minutes (11,520 frames at 24 per second), about 33
 The words come from your Pattern of Waiting file, and the four prayer beats are exactly as you wrote them. The music is the track from your Version 8 video, not music1.mp3.
 
 ## Please check
+
+00. If you still see the old full-page prayer, your browser kept the earlier copy of the file. Reload the page with a hard refresh (Ctrl and Shift and R on a computer) or open the link in a private window. The file on the site is the line by line version, checked 2026-10-11 against the saved render, byte for byte.
 
 0. The prayer page is 1 minute 53 seconds, but it sits before the thank you page, so it runs from about 4:11 to 6:04 rather than frames 8640 to 11520. The thank you page still runs to the end.
 
