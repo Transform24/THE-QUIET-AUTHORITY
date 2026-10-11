@@ -2,8 +2,8 @@ import { Composition } from "remotion";
 import { QuietAuthorityVideo } from "./QuietAuthorityVideo";
 import { ScriptureReveal } from "./ScriptureReveal";
 import { TQAPatternComposition } from "./TQAPatternComposition";
-import { TQAPrayerPostureComposition } from "./TQAPrayerPostureComposition";
-import tqaPrayerPosture from "./data/tqa-prayer-posture.json";
+import { TQA_Stillness_Journey_FINAL_v10 } from "./TQA_Stillness_Journey_FINAL_v10";
+import tqaVideo from "./data/TQA_Stillness_Journey_FINAL_v10.json";
 import tqaPattern from "./data/tqa-pattern-blueprint.json";
 import psalm91 from "./data/psalm91.json";
 import { buildTimeline } from "./tqaStandard.mjs";
@@ -39,15 +39,15 @@ export const RemotionRoot = () => {
         height={tqaPattern.height}
       />
 
-      {/* The Quiet Authority video standard (version 2). The length follows the words. Words come from src/data/tqa-prayer-posture.json, pace from src/tqaStandard.mjs */}
+      {/* The Quiet Authority video standard (version 2). The length follows the words. Words come from src/data/TQA_Stillness_Journey_FINAL_v10.json, pace from src/tqaStandard.mjs */}
       <Composition
-        id="TQAPrayerPosture"
-        component={TQAPrayerPostureComposition}
-        durationInFrames={buildTimeline(tqaPrayerPosture).total_frames}
-        fps={tqaPrayerPosture.fps}
-        width={tqaPrayerPosture.width}
-        height={tqaPrayerPosture.height}
-        calculateMetadata={() => ({ durationInFrames: buildTimeline(tqaPrayerPosture).total_frames })}
+        id="TQA-Stillness-Journey-FINAL-v10"
+        component={TQA_Stillness_Journey_FINAL_v10}
+        durationInFrames={buildTimeline(tqaVideo).total_frames}
+        fps={tqaVideo.fps}
+        width={tqaVideo.width}
+        height={tqaVideo.height}
+        calculateMetadata={() => ({ durationInFrames: buildTimeline(tqaVideo).total_frames })}
       />
 
       {/* Psalm 91, one verse per clip. Pass {"verseIndex": 0} to {"verseIndex": 15} */}

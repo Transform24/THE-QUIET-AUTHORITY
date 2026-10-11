@@ -15,7 +15,7 @@ import {
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
-import blueprint from "./data/tqa-prayer-posture.json";
+import blueprint from "./data/TQA_Stillness_Journey_FINAL_v10.json";
 import { RULES, buildTimeline, wordsOf } from "./tqaStandard.mjs";
 import spotlightCandle from "./assets/tqa/light-stream-plate.jpg";
 import characterSpotlight from "./assets/tqa/character-spotlight-plate.jpg";
@@ -226,7 +226,7 @@ const Backdrop = ({ items }) => {
   );
 };
 
-export const TQAPrayerPostureComposition = () => {
+export const TQA_Stillness_Journey_FINAL_v10 = () => {
   useBrandFonts();
   const { items } = buildTimeline(blueprint);
   return (

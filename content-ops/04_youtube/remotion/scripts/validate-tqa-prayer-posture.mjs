@@ -1,14 +1,14 @@
 // Checks the TQA video standard (version 2) before anything is rendered.
-// Reads src/data/tqa-prayer-posture.json, src/tqaStandard.mjs, src/data/kjv-registry.json and the layout file.
+// Reads src/data/TQA_Stillness_Journey_FINAL_v10.json, src/tqaStandard.mjs, src/data/kjv-registry.json and the layout file.
 // Usage: node scripts/validate-tqa-prayer-posture.mjs   (run from content-ops/04_youtube/remotion)
 import { existsSync, readFileSync, statSync } from "node:fs";
 import { RULES, FPS, buildTimeline } from "../src/tqaStandard.mjs";
 
 const root = new URL("../", import.meta.url);
 const read = (p) => readFileSync(new URL(p, root), "utf8");
-const bp = JSON.parse(read("src/data/tqa-prayer-posture.json"));
+const bp = JSON.parse(read("src/data/TQA_Stillness_Journey_FINAL_v10.json"));
 const reg = JSON.parse(read("src/data/kjv-registry.json")).verses;
-const jsx = read("src/TQAPrayerPostureComposition.jsx");
+const jsx = read("src/TQA_Stillness_Journey_FINAL_v10.jsx");
 const errors = [];
 const fail = (m) => errors.push(m);
 const ok = [];

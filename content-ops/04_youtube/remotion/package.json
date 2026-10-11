@@ -22,7 +22,7 @@
     "render:tqa": "remotion render src/index.js TQAPattern out/tqa-pattern-8min.mp4",
     "validate:tqa-prayer": "node scripts/validate-tqa-prayer-posture.mjs",
     "prerender:tqa-prayer": "npm run validate:tqa-prayer && npm run stage-audio",
-    "render:tqa-prayer": "remotion render src/index.js TQAPrayerPosture out/tqa-prayer-posture-8min.mp4"
+    "render:tqa-prayer": "remotion render src/index.js TQA-Stillness-Journey-FINAL-v10 out/TQA_Stillness_Journey_FINAL_v10.mp4 --overwrite"
   },
   "remotion": {
     "entryPoint": "src/index.js"

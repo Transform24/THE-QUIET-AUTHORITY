@@ -29,11 +29,13 @@ Every video is exactly 8 minutes: 11,520 frames at 24 frames a second. This is t
 First video's timing, for reference: intro 0 to 360, Matthew 6:7-8 to 2705, Matthew 6:6 to 4907, Matthew 6:9 to 6611, Romans 10:9-10 to 7685, prayer to 10397, thank you page to 11520.
 
 ## 3. What you change for a new video
-Only `src/data/tqa-prayer-posture.json` (or a copy of it). Every scripture must also be listed word for word in `src/data/kjv-registry.json`. The checker prints CHECK for any verse not yet matched to a KJV source.
+Only `src/data/TQA_Stillness_Journey_FINAL_v10.json` (or a copy of it). Every scripture must also be listed word for word in `src/data/kjv-registry.json`. The checker prints CHECK for any verse not yet matched to a KJV source.
 
 ## 4. What you never change
-`src/tqaStandard.mjs` holds every pace rule. `src/TQAPrayerPostureComposition.jsx` holds the layout.
+`src/tqaStandard.mjs` holds every pace rule. `src/TQA_Stillness_Journey_FINAL_v10.jsx` holds the layout.
 
 ## 5. Commands (run in this folder)
 - Check: `npm run validate:tqa-prayer`
-- Render: `npx remotion render src/index.js TQAPrayerPosture out/tqa-standard-v2.mp4 --overwrite`
+- Render: `npx remotion render src/index.js TQA-Stillness-Journey-FINAL-v10 out/TQA_Stillness_Journey_FINAL_v10.mp4 --overwrite`
+
+Naming: the files, the component and the final video use the underscore name TQA_Stillness_Journey_FINAL_v10. Remotion does not allow underscores in a composition ID, so the ID itself is TQA-Stillness-Journey-FINAL-v10 (hyphens). The render writes out/TQA_Stillness_Journey_FINAL_v10.mp4.
