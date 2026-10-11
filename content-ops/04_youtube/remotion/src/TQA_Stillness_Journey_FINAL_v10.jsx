@@ -178,17 +178,18 @@ const Prayer = ({ item }) => {
 // PRAYER-END
 const Thanks = ({ item }) => {
   const frame = useCurrentFrame();
-  const o = ease(frame, 0, RULES.thanks_fade_in_frames);
+  // One line at a time: the heading, then each line, then the link.
+  const at = (i) => ease(frame, 12 + i * 72, 36 + i * 72);
   return (
-    <div style={{ opacity: o }}>
+    <div>
       <div style={box(layout.thanks_center_x, layout.thanks_y, { display: "flex", flexDirection: "column", alignItems: "center", gap: 28 })}>
-        <div style={{ ...header(48, "0.06em", "gold"), whiteSpace: "nowrap" }}>{thanks.heading}</div>
-        {thanks.lines.map((l) => (
-          <div key={l} style={body(34)}>
+        <div style={{ ...header(48, "0.06em", "gold"), whiteSpace: "nowrap", opacity: at(0) }}>{thanks.heading}</div>
+        {thanks.lines.map((l, i) => (
+          <div key={l} style={body(34, { opacity: at(i + 1) })}>
             {l}
           </div>
         ))}
-        <div style={header(30, "0.2em", "gold")}>{thanks.link}</div>
+        <div style={{ ...header(30, "0.2em", "gold"), opacity: at(thanks.lines.length + 1) }}>{thanks.link}</div>
       </div>
     </div>
   );

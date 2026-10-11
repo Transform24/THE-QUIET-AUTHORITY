@@ -71,7 +71,7 @@ export const prayerGroups = (prayer, windowFrames = RULES.prayer_frames) => {
 
 // Optional line-by-line push for a prayer given as separate beats (a layout exception allowed for one video, see the checker).
 // Each beat is broken into short lines. The lines arrive one at a time and push the earlier ones upward.
-export const PUSH = Object.freeze({ max_chars_per_line: 36, first_line_frame: 48, rest_at_end_frames: 288, beat_gap_slots: 0.6 });
+export const PUSH = Object.freeze({ max_chars_per_line: 36, first_line_frame: 48, rest_at_end_frames: 288, beat_gap_slots: 0.6, thanks_frames: 720 });
 export const pushPlan = (beats, windowFrames = RULES.prayer_frames) => {
   const lines = [];
   beats.forEach((beat, b) => {
@@ -140,9 +140,11 @@ export const buildTimeline = (bp) => {
       id: "closing", type: "closing", plate: c.plate, background_level: c.background_level,
       block: c, reveal: sc, frames: sc.visible + RULES.hold_after_closing_scripture_frames,
     });
+    // A pushed prayer takes the time the words leave, so the thank you page can stay short (30 seconds).
+    const prayerFrames = c.prayer_beats ? RULES.total_frames - at - PUSH.thanks_frames : RULES.prayer_frames;
     push({
       id: "prayer", type: "prayer", plate: c.plate, background_level: c.background_level,
-      block: c, groups: prayerGroups(c.prayer), push: c.prayer_beats ? pushPlan(c.prayer_beats) : null, frames: RULES.prayer_frames,
+      block: c, groups: prayerGroups(c.prayer, prayerFrames), push: c.prayer_beats ? pushPlan(c.prayer_beats, prayerFrames) : null, frames: prayerFrames,
     });
   }
   // The thank you page takes whatever time is left, so every video is exactly 8 minutes.

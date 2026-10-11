@@ -118,7 +118,7 @@ for (const it of tl.items.filter((i) => i.type === "teaching")) {
   const w = bp.plates[c.plate].column_width_px;
   if (tl.total_frames !== RULES.total_frames) fail(`the video must be exactly ${RULES.total_frames} frames (8:00), found ${tl.total_frames}`);
   if (th.frames < RULES.min_thanks_frames) fail(`the words fill too much of the 8 minutes: the thank you page would be only ${th.frames} frames`);
-  if (pr.frames !== RULES.prayer_frames) fail("the prayer page must last 1 minute 53 seconds");
+  if (EXCEPTION ? pr.frames < RULES.prayer_frames : pr.frames !== RULES.prayer_frames) fail("the prayer page must last 1 minute 53 seconds, or longer when it is pushed line by line");
   const vBottom = bp.layout.top_y + 40 + 26 + linesOf(c.block.scripture.text, 40, w) * 40 * 1.38;
   if (vBottom > 1020) fail("the closing scripture runs past the bottom safe line");
   let prevEnd = 0;
