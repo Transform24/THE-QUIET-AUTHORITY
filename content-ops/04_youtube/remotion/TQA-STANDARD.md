@@ -53,3 +53,6 @@ Pacing is intentionally set at two different speeds, and neither is to be change
 - The Long-Form Master (every 8 minute video) is locked at 80 words per minute for the scripture reveal.
 - Shorts are locked at 105 words per minute, for mobile performance. A short is read on a phone in 60 seconds, so it moves a little quicker.
 The long video rule lives in `src/tqaStandard.mjs` and the shorts rule in `src/tqaShorts.mjs`.
+
+## Pinterest: automatic scheduler paused (permanent note, 2026-10-11)
+The automatic Pinterest scheduler is paused to protect the account's standing. The daily schedule in `.github/workflows/pinterest-agent.yml` is commented out, so nothing pins on its own. The workflow can still be started by hand from the GitHub Actions panel. Pinterest pinning is now done by hand, using the finished vertical Shorts in `public/shorts/` and the Pinterest text in each caption card in `workflows/output/shorts-staged/`. The long-form masters and every short stay tracked in this branch and on `main`, and nothing in this change touches them.
