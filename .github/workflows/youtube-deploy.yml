@@ -1,8 +1,9 @@
 name: YouTube Deploy, Upload Approved Videos
 
 on:
-  schedule:
-    - cron: '0 9 * * 1'  # Monday 9am UTC (weekly)
+  # The weekly schedule is OFF (Grace, 2026-10-11). Grace uploads each video herself in YouTube Studio.
+  # schedule:
+  #   - cron: '0 9 * * 1'
   workflow_dispatch:
     inputs:
       video_week:

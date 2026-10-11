@@ -1,0 +1,46 @@
+{
+  "about": "The release calendar shown in approval-gate.html. Grace uploads each video herself in YouTube Studio and schedules it for the date below. Nothing here uploads anything, and no video is placed in youtube-approved.",
+  "time_zone": "America/New_York",
+  "videos": [
+    {
+      "week": 1,
+      "date": "2026-10-18",
+      "time": "5:00 AM",
+      "title": "The Posture of Prayer | Matthew 6:6-9 (KJV) | A Quiet Prayer to Rest In",
+      "version": "v9",
+      "video": "public/TQA_Stillness_Journey_FINAL_v9.mp4",
+      "card": "workflows/output/youtube-pending/tqa-posture-of-prayer-8min.md",
+      "chapters": ["0:00 Sanctuary Grace Ministry presents The Quiet Authority", "0:15 Matthew 6:7-8", "2:15 Matthew 6:6", "4:30 Matthew 6:9", "6:05 A closing prayer"]
+    },
+    {
+      "week": 3,
+      "date": "2026-11-01",
+      "time": "5:00 AM",
+      "title": "Waiting on the LORD | Psalm 27 and Psalm 91:1 (KJV) | A Quiet Bedtime Prayer",
+      "version": "v11",
+      "video": "public/TQA_Stillness_Journey_FINAL_v11.mp4",
+      "card": "workflows/output/youtube-pending/v11-stillness-journey.md",
+      "chapters": ["0:00 Sanctuary Grace Ministry presents The Quiet Authority", "0:15 Psalm 27:13", "1:21 Psalm 27:14", "2:28 Psalm 91:1", "3:27 Romans 10:9-10", "4:11 A bedtime prayer", "7:30 Thank you for watching"]
+    },
+    {
+      "week": 5,
+      "date": "2026-11-15",
+      "time": "5:00 AM",
+      "title": "The Posture of Prayer | Matthew 6:6-9 and Romans 10:9-10 (KJV) | A Quiet Prayer to Rest In",
+      "version": "v10",
+      "video": "public/TQA_Standard_8min_Posture_of_Prayer.mp4",
+      "card": "workflows/output/youtube-pending/tqa-standard-8min-posture-of-prayer.md",
+      "chapters": ["0:00 Sanctuary Grace Ministry presents The Quiet Authority", "0:15 Matthew 6:7-8", "1:53 Matthew 6:6", "3:24 Matthew 6:9", "4:35 Romans 10:9-10", "5:20 A closing prayer", "7:13 Thank you for watching"]
+    },
+    {
+      "week": 7,
+      "date": "2026-11-29",
+      "time": "5:00 AM",
+      "title": "The Secret of the LORD | Psalm 25:14, Proverbs 3:32, Malachi 3:6 (KJV) | A Quiet Morning Prayer",
+      "version": "v12",
+      "video": "public/TQA_Stillness_Journey_FINAL_v12.mp4",
+      "card": "workflows/output/youtube-pending/v12-stillness-journey.md",
+      "chapters": ["0:00 Sanctuary Grace Ministry presents The Quiet Authority", "0:15 Psalm 25:14", "1:24 Proverbs 3:32", "2:29 Malachi 3:6", "3:33 Romans 10:9-10", "4:17 A morning prayer", "7:30 Thank you for watching"]
+    }
+  ]
+}
