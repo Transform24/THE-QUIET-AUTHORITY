@@ -4,7 +4,7 @@ clip: C
 clip_name: The Outro Prayer Push
 file: out/shorts/v9-clip-C.mp4
 format: 1080 by 1920, 60 seconds
-status: PLANNED, not rendered yet. Nothing here uploads anything.
+status: SKIP, same words as v10. Use the v10 clips instead.
 full_video_release: Sunday, October 18, 2026
 ---
 

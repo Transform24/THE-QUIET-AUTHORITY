@@ -47,7 +47,7 @@ clip: ${clip}
 clip_name: ${CLIPS[clip].name}
 file: out/shorts/${fileName(id, clip)}.mp4
 format: 1080 by 1920, 60 seconds
-status: PLANNED, not rendered yet. Nothing here uploads anything.
+status: ${v.same_as ? `SKIP, same words as ${v.same_as}. Use the ${v.same_as} clips instead.` : existsSync(new URL(`out/shorts/${fileName(id, clip)}.mp4`, root)) ? "RENDERED, ready for Grace to post. Nothing here uploads anything." : "PLANNED, not rendered yet. Nothing here uploads anything."}
 full_video_release: ${v.release}
 ---
 

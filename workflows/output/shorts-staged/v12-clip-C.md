@@ -4,7 +4,7 @@ clip: C
 clip_name: The Outro Prayer Push
 file: out/shorts/v12-clip-C.mp4
 format: 1080 by 1920, 60 seconds
-status: PLANNED, not rendered yet. Nothing here uploads anything.
+status: RENDERED, ready for Grace to post. Nothing here uploads anything.
 full_video_release: Sunday, November 29, 2026
 ---
 
