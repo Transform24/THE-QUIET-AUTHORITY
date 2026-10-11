@@ -122,9 +122,9 @@ ok.push(`scripture: ${shown.map((s) => s.ref).join(", ")} match the registry`);
 // 7. Words
 const spokenParts = [...shown.map((s) => s.text), ...bp.teaching_blocks.map((b) => b.reflection), bp.closing.prayer, bp.thanks.heading, ...bp.thanks.lines];
 const everyText = JSON.stringify(bp);
-if (everyText.includes("—") || everyText.includes("–")) fail("a long dash is in the blueprint");
+if (everyText.includes(String.fromCharCode(0x2014)) || everyText.includes(String.fromCharCode(0x2013))) fail("a long dash is in the blueprint");
 if (/[\u{1F300}-\u{1FAFF}☀-➿]/u.test(everyText)) fail("an emoji is in the blueprint");
-if (/[—–]/.test(jsx)) fail("a long dash is in the layout file");
+if (/[\u2014\u2013]/.test(jsx)) fail("a long dash is in the layout file");
 if (spokenParts.join(" ").includes("!")) fail("an exclamation point is in the words");
 for (const w of ["burnout", "self-care", "mindfulness", "healing journey", "boundaries", "thriving", "wellness", "hustle", "hacks", "your truth", "you are enough"]) {
   if (spokenParts.join(" ").toLowerCase().includes(w)) fail(`banned wording: ${w}`);
