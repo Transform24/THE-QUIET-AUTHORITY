@@ -1,6 +1,10 @@
 import { Composition } from "remotion";
 import { QuietAuthorityVideo } from "./QuietAuthorityVideo";
 import { ScriptureReveal } from "./ScriptureReveal";
+import { TQAPatternComposition } from "./TQAPatternComposition";
+import { TQAPrayerPostureComposition } from "./TQAPrayerPostureComposition";
+import tqaPrayerPosture from "./data/tqa-prayer-posture.json";
+import tqaPattern from "./data/tqa-pattern-blueprint.json";
 import psalm91 from "./data/psalm91.json";
 import { FPS, totalFrames, verseFrames } from "./revealTiming.mjs";
 
@@ -22,6 +26,26 @@ export const RemotionRoot = () => {
         calculateMetadata={({ props }) => ({
           durationInFrames: totalFrames(props.verses),
         })}
+      />
+
+      {/* The Quiet Authority, Pattern of Waiting: 8 minutes, 11,520 frames at 24 fps. Words and timing come from src/data/tqa-pattern-blueprint.json */}
+      <Composition
+        id="TQAPattern"
+        component={TQAPatternComposition}
+        durationInFrames={tqaPattern.total_frames}
+        fps={tqaPattern.fps}
+        width={tqaPattern.width}
+        height={tqaPattern.height}
+      />
+
+      {/* The Quiet Authority, The Posture of Prayer: 8 minutes, 11,520 frames at 24 fps. Words and timing come from src/data/tqa-prayer-posture.json */}
+      <Composition
+        id="TQAPrayerPosture"
+        component={TQAPrayerPostureComposition}
+        durationInFrames={tqaPrayerPosture.total_frames}
+        fps={tqaPrayerPosture.fps}
+        width={tqaPrayerPosture.width}
+        height={tqaPrayerPosture.height}
       />
 
       {/* Psalm 91, one verse per clip. Pass {"verseIndex": 0} to {"verseIndex": 15} */}

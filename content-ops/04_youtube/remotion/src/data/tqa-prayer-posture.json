@@ -1,0 +1,209 @@
+{
+  "id": "tqa-prayer-posture",
+  "title": "The Quiet Authority, The Posture of Prayer (8 minutes)",
+  "fps": 24,
+  "width": 1920,
+  "height": 1080,
+  "total_frames": 11520,
+  "layout": {
+    "text_max_width_px": 780,
+    "scripture_ref_y": 140,
+    "intro_center_x": 960,
+    "intro_y": 340,
+    "prayer_lower_third_y": 790
+  },
+  "plates": {
+    "spotlight_candle": {
+      "image": "src/assets/tqa/light-stream-plate.jpg",
+      "column_center_x": 660,
+      "note": "The spotlight, jar and candle from the Version 8 opening, old text removed.",
+      "column_width_px": 780,
+      "keep_clear_from_x": 1065
+    },
+    "character_spotlight": {
+      "image": "src/assets/tqa/character-spotlight-plate.jpg",
+      "column_center_x": 470,
+      "note": "The seated figure in the spotlight from the Version 8 'Be still' scene, old text removed.",
+      "column_width_px": 720,
+      "keep_clear_from_x": 830
+    }
+  },
+  "fonts": {
+    "header": "Cinzel",
+    "body": "Jost"
+  },
+  "colors": {
+    "black": "#0d0d0d",
+    "gold": "#C9A84C",
+    "cream": "#F5F0E8"
+  },
+  "background": {
+    "fade_from_black_frames": 72,
+    "fade_to_black_frames": 192,
+    "note": "The locked TQA pictures exist only inside the Version 8 video, so they were lifted from it with the text removed. No other pictures are used."
+  },
+  "music": {
+    "file": "music1.mp3",
+    "volume": 0.22,
+    "loop": true,
+    "fade_in_frames": 48,
+    "fade_out_frames": 192,
+    "note": "Stand-in track from the repository root. The original TQA music exists only inside the Version 8 video."
+  },
+  "kjv": {
+    "MATTHEW 6:7-8": "But when ye pray, use not vain repetitions, as the heathen do: for they think that they shall be heard for their much speaking. Be not ye therefore like unto them: for your Father knoweth what things ye have need of, before ye ask him.",
+    "MATTHEW 6:6": "But thou, when thou prayest, enter into thy closet, and when thou hast shut thy door, pray to thy Father which is in secret; and thy Father which seeth in secret shall reward thee openly.",
+    "MATTHEW 6:9": "After this manner therefore pray ye: Our Father which art in heaven, Hallowed be thy name."
+  },
+  "kjv_note": "Matthew 6:6 and the Matthew 6:9 text match the how-to-pray page in this repository. Matthew 6:7-8 was not found in any repository file, so check it against your KJV before rendering.",
+  "timeline": [
+    {
+      "id": "intro",
+      "type": "intro",
+      "start_frame": 0,
+      "end_frame": 360,
+      "plate": "spotlight_candle",
+      "background_level": 0.9,
+      "fade_in_start": 0,
+      "fade_in_frames": 72,
+      "fade_out_frames": 24,
+      "lines": [
+        {
+          "text": "SANCTUARY GRACE MINISTRY",
+          "size_px": 42,
+          "letter_spacing_px": 3,
+          "color": "gold"
+        },
+        {
+          "text": "presents",
+          "size_px": 30,
+          "letter_spacing_px": 3,
+          "color": "cream"
+        },
+        {
+          "text": "The Quiet Authority",
+          "size_px": 54,
+          "letter_spacing_px": 3,
+          "color": "gold"
+        }
+      ]
+    },
+    {
+      "id": "block1",
+      "type": "scripture_then_reflection",
+      "start_frame": 360,
+      "end_frame": 3240,
+      "plate": "spotlight_candle",
+      "fade_in_frames": 24,
+      "fade_out_frames": 24,
+      "scripture_y": 190,
+      "reflection_y": 625,
+      "scripture": {
+        "ref": "MATTHEW 6:7-8",
+        "text": "But when ye pray, use not vain repetitions, as the heathen do: for they think that they shall be heard for their much speaking. Be not ye therefore like unto them: for your Father knoweth what things ye have need of, before ye ask him.",
+        "fade_in_start": 24,
+        "fade_in_frames": 48
+      },
+      "pause_after_scripture_frames": 96,
+      "reflection": {
+        "text": "You do not have to beg, scream, or repeat exhaustive religious formulas to move God's heart. He already intimately knows your needs and your heavy burdens before you speak. You can completely drop the pressure to perform.",
+        "type_start": 168,
+        "chars_per_second": 6,
+        "type_frames": 884,
+        "type_end": 1052
+      },
+      "background_level": 0.5
+    },
+    {
+      "id": "block2",
+      "type": "scripture_then_reflection",
+      "start_frame": 3240,
+      "end_frame": 6480,
+      "plate": "character_spotlight",
+      "fade_in_frames": 24,
+      "fade_out_frames": 24,
+      "scripture_y": 190,
+      "reflection_y": 560,
+      "scripture": {
+        "ref": "MATTHEW 6:6",
+        "text": "But thou, when thou prayest, enter into thy closet, and when thou hast shut thy door, pray to thy Father which is in secret; and thy Father which seeth in secret shall reward thee openly.",
+        "fade_in_start": 24,
+        "fade_in_frames": 48
+      },
+      "pause_after_scripture_frames": 96,
+      "reflection": {
+        "text": "True prayer begins by physically and mentally shutting out the chaotic noise and expectations of the world. When you close the door on the pressure to please others, you find an immediate, loving, private audience with your Father.",
+        "type_start": 168,
+        "chars_per_second": 6,
+        "type_frames": 924,
+        "type_end": 1092
+      },
+      "background_level": 0.62
+    },
+    {
+      "id": "block3",
+      "type": "scripture_then_reflection",
+      "start_frame": 6480,
+      "end_frame": 8640,
+      "plate": "character_spotlight",
+      "fade_in_frames": 24,
+      "fade_out_frames": 24,
+      "scripture_y": 190,
+      "reflection_y": 405,
+      "scripture": {
+        "ref": "MATTHEW 6:9",
+        "text": "After this manner therefore pray ye: Our Father which art in heaven, Hallowed be thy name.",
+        "fade_in_start": 24,
+        "fade_in_frames": 48
+      },
+      "pause_after_scripture_frames": 96,
+      "reflection": {
+        "text": "Communication settles into perfect alignment when you simply honor His unyielding identity. When you acknowledge Him as a holy, sovereign Father, your perspective shifts instantly from panic to protection.",
+        "type_start": 168,
+        "chars_per_second": 6,
+        "type_frames": 820,
+        "type_end": 988
+      },
+      "background_level": 0.62,
+      "keep_scripture_through_end": true
+    },
+    {
+      "id": "outro",
+      "type": "outro",
+      "start_frame": 8640,
+      "end_frame": 11520,
+      "plate": "character_spotlight",
+      "background_level": 0.7,
+      "fade_in_frames": 0,
+      "fade_out_frames": 192,
+      "scripture_hold": "MATTHEW 6:9",
+      "prayer": {
+        "start_frame": 8808,
+        "duration_frames": 2712,
+        "crossfade_frames": 48,
+        "groups": [
+          {
+            "text": "Father, I thank You that You are my Anchor of Faithfulness. Forgive me for the times I have slipped into performative noise, thinking I had to scream or use the perfect words to be heard.",
+            "start": 168,
+            "end": 860
+          },
+          {
+            "text": "I choose right now to shut the door on the frantic demands of this world and rest in the secret place of Your presence. Thank You that You intimately know my needs before I even speak.",
+            "start": 860,
+            "end": 1560
+          },
+          {
+            "text": "Settle my mind, clear away the weight of heavy burdens, and teach me to walk out into the marketplace with Your unshakeable peace.",
+            "start": 1560,
+            "end": 2160
+          },
+          {
+            "text": "I lean entirely on Your blueprint, not my own strength. In Jesus' name, Amen.",
+            "start": 2160,
+            "end": 2880
+          }
+        ]
+      }
+    }
+  ]
+}

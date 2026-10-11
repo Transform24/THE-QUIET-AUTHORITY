@@ -16,7 +16,13 @@
     "prerender:psalm91": "npm run validate:psalm91 && npm run stage-audio",
     "render:psalm91": "remotion render src/index.js Psalm91Full out/psalm91-full.mp4",
     "prerender:psalm91:clips": "npm run validate:psalm91 && npm run stage-audio",
-    "render:psalm91:clips": "node scripts/render-clips.mjs Psalm91Verse src/data/psalm91.json out/clips psalm91-verse"
+    "render:psalm91:clips": "node scripts/render-clips.mjs Psalm91Verse src/data/psalm91.json out/clips psalm91-verse",
+    "validate:tqa": "node scripts/validate-tqa-pattern.mjs",
+    "prerender:tqa": "npm run validate:tqa && npm run stage-audio",
+    "render:tqa": "remotion render src/index.js TQAPattern out/tqa-pattern-8min.mp4",
+    "validate:tqa-prayer": "node scripts/validate-tqa-prayer-posture.mjs",
+    "prerender:tqa-prayer": "npm run validate:tqa-prayer && npm run stage-audio",
+    "render:tqa-prayer": "remotion render src/index.js TQAPrayerPosture out/tqa-prayer-posture-8min.mp4"
   },
   "remotion": {
     "entryPoint": "src/index.js"
