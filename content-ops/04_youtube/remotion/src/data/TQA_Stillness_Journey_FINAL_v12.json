@@ -1,0 +1,126 @@
+{
+  "id": "TQA_Stillness_Journey_FINAL_v12",
+  "title": "The Quiet Authority, The Confidential Circle (Psalm 25:14, Proverbs 3:32, Malachi 3:6)",
+  "standard_version": 2,
+  "fps": 24,
+  "width": 1920,
+  "height": 1080,
+  "layout": {
+    "text_max_width_px": 780,
+    "top_y": 140,
+    "intro_center_x": 960,
+    "intro_y": 340,
+    "thanks_center_x": 960,
+    "thanks_y": 330,
+    "prayer_page_y": 300,
+    "push_bottom_y": 900,
+    "push_top_y": 230
+  },
+  "plates": {
+    "spotlight_candle": {
+      "image": "src/assets/tqa/light-stream-plate.jpg",
+      "column_center_x": 660,
+      "note": "The spotlight, jar and candle from the Version 8 opening, old text removed.",
+      "column_width_px": 780,
+      "keep_clear_from_x": 1065
+    },
+    "character_spotlight": {
+      "image": "src/assets/tqa/character-spotlight-plate.jpg",
+      "column_center_x": 470,
+      "note": "The seated figure in the spotlight from the Version 8 'Be still' scene, old text removed.",
+      "column_width_px": 720,
+      "keep_clear_from_x": 830
+    }
+  },
+  "fonts": {
+    "header": "Cinzel",
+    "body": "Jost"
+  },
+  "colors": {
+    "black": "#0d0d0d",
+    "gold": "#C9A84C",
+    "cream": "#F5F0E8"
+  },
+  "music": {
+    "file": "src/assets/tqa/tqa-music-v8-extended.m4a",
+    "volume": 1.0,
+    "duration_frames": 11520,
+    "note": "The music from the Version 8 video, continued to 8 minutes. Any video up to 11,520 frames can use it."
+  },
+  "intro": {
+    "plate": "spotlight_candle",
+    "lines": [
+      {
+        "text": "SANCTUARY GRACE MINISTRY",
+        "size_px": 42,
+        "letter_spacing_px": 3,
+        "color": "gold"
+      },
+      {
+        "text": "presents",
+        "size_px": 30,
+        "letter_spacing_px": 3,
+        "color": "cream"
+      },
+      {
+        "text": "The Quiet Authority",
+        "size_px": 54,
+        "letter_spacing_px": 3,
+        "color": "gold"
+      }
+    ]
+  },
+  "teaching_blocks": [
+    {
+      "plate": "spotlight_candle",
+      "background_level": 0.5,
+      "scripture": {
+        "ref": "PSALM 25:14",
+        "text": "The secret of the LORD is with them that fear him; and he will shew them his covenant."
+      },
+      "reflection": "The word for this secret is Sod. It means a confidential circle, the quiet place where a trusted friend is told what others are not. Step away from the noise of the world and draw near to Him."
+    },
+    {
+      "plate": "character_spotlight",
+      "background_level": 0.62,
+      "scripture": {
+        "ref": "PROVERBS 3:32",
+        "text": "For the froward is abomination to the LORD: but his secret is with the righteous."
+      },
+      "reflection": "God does not shout over the pace of your day. His secret comes as a quiet whisper to the righteous, and it cannot be heard while you hurry to prove yourself. Slow down and listen."
+    },
+    {
+      "plate": "character_spotlight",
+      "background_level": 0.62,
+      "scripture": {
+        "ref": "MALACHI 3:6",
+        "text": "For I am the LORD, I change not; therefore ye sons of Jacob are not consumed."
+      },
+      "reflection": "He has not changed. What He promised yesterday He keeps today, and He will keep it tomorrow. Your hope does not rest on how you feel, but on the One whose record is unbroken."
+    }
+  ],
+  "closing": {
+    "plate": "character_spotlight",
+    "background_level": 0.7,
+    "scripture": {
+      "ref": "ROMANS 10:9-10",
+      "text": "That if thou shalt confess with thy mouth the Lord Jesus, and shalt believe in thine heart that God hath raised him from the dead, thou shalt be saved. For with the heart man believeth unto righteousness; and with the mouth confession is made unto salvation."
+    },
+    "prayer": "Father, I rise in the stillness of this morning and lay down my own strength before the day begins. I thank You that You are already awake and already faithful. Forgive me for the worry I carry into the tasks ahead. I place every meeting, every errand and every unfinished thing into Your hands. I shut the door on the noise of this world. Let nothing loud pull me away from the quiet place where You speak. Fill my heart with Your quiet authority, that I may walk out into this day mended and aligned with Your will. In Jesus' name, Amen.",
+    "prayer_beats": [
+      "Father, I rise in the stillness of this morning and lay down my own strength before the day begins. I thank You that You are already awake and already faithful.",
+      "Forgive me for the worry I carry into the tasks ahead. I place every meeting, every errand and every unfinished thing into Your hands.",
+      "I shut the door on the noise of this world. Let nothing loud pull me away from the quiet place where You speak.",
+      "Fill my heart with Your quiet authority, that I may walk out into this day mended and aligned with Your will. In Jesus' name, Amen."
+    ]
+  },
+  "thanks": {
+    "heading": "Thank you for watching.",
+    "lines": [
+      "If this gave you rest, like and subscribe.",
+      "Reach out. Come home to The Quiet Authority."
+    ],
+    "link": "sanctuary-grace.com"
+  },
+  "layout_exception": "line_push"
+}

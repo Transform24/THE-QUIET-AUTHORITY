@@ -3,6 +3,8 @@ import { QuietAuthorityVideo } from "./QuietAuthorityVideo";
 import { ScriptureReveal } from "./ScriptureReveal";
 import { TQAPatternComposition } from "./TQAPatternComposition";
 import { TQA_Stillness_Journey_FINAL_v10 } from "./TQA_Stillness_Journey_FINAL_v10";
+import { TQA_Stillness_Journey_FINAL_v12 } from "./TQA_Stillness_Journey_FINAL_v12";
+import tqaVideo12 from "./data/TQA_Stillness_Journey_FINAL_v12.json";
 import { TQA_Stillness_Journey_FINAL_v11 } from "./TQA_Stillness_Journey_FINAL_v11";
 import tqaVideo11 from "./data/TQA_Stillness_Journey_FINAL_v11.json";
 import tqaVideo from "./data/TQA_Stillness_Journey_FINAL_v10.json";
@@ -61,6 +63,17 @@ export const RemotionRoot = () => {
         width={tqaVideo11.width}
         height={tqaVideo11.height}
         calculateMetadata={() => ({ durationInFrames: buildTimeline(tqaVideo11).total_frames })}
+      />
+
+      {/* TQA video four, the confidential circle. Same standard and the same prayer push as video three. Words come from src/data/TQA_Stillness_Journey_FINAL_v12.json */}
+      <Composition
+        id="TQA-Stillness-Journey-FINAL-v12"
+        component={TQA_Stillness_Journey_FINAL_v12}
+        durationInFrames={buildTimeline(tqaVideo12).total_frames}
+        fps={tqaVideo12.fps}
+        width={tqaVideo12.width}
+        height={tqaVideo12.height}
+        calculateMetadata={() => ({ durationInFrames: buildTimeline(tqaVideo12).total_frames })}
       />
 
       {/* Psalm 91, one verse per clip. Pass {"verseIndex": 0} to {"verseIndex": 15} */}
