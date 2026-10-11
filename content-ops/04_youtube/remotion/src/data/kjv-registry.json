@@ -3,8 +3,8 @@
   "verses": {
     "PSALM 27:13": {
       "text": "I had fainted, unless I had believed to see the goodness of the LORD in the land of the living.",
-      "verified": false,
-      "note": "Not found in any repository file. Check against your KJV."
+      "verified": true,
+      "source": "Checked word for word against the King James Version from bible-api.com on 2026-10-11"
     },
     "PSALM 27:14": {
       "text": "Wait on the LORD: be of good courage, and he shall strengthen thine heart: wait, I say, on the LORD.",
@@ -23,8 +23,8 @@
     },
     "MATTHEW 6:7-8": {
       "text": "But when ye pray, use not vain repetitions, as the heathen do: for they think that they shall be heard for their much speaking. Be not ye therefore like unto them: for your Father knoweth what things ye have need of, before ye ask him.",
-      "verified": false,
-      "note": "Not found in any repository file. Check against your KJV."
+      "verified": true,
+      "source": "Checked word for word against the King James Version from bible-api.com on 2026-10-11"
     },
     "MATTHEW 6:9": {
       "text": "After this manner therefore pray ye: Our Father which art in heaven, Hallowed be thy name.",
@@ -35,6 +35,21 @@
       "text": "That if thou shalt confess with thy mouth the Lord Jesus, and shalt believe in thine heart that God hath raised him from the dead, thou shalt be saved. For with the heart man believeth unto righteousness; and with the mouth confession is made unto salvation.",
       "verified": true,
       "source": "how-to-pray.html, gate-zero.html and the Version 8 video"
+    },
+    "PSALM 25:14": {
+      "text": "The secret of the LORD is with them that fear him; and he will shew them his covenant.",
+      "verified": true,
+      "source": "Checked word for word against the King James Version from bible-api.com on 2026-10-11"
+    },
+    "PROVERBS 3:32": {
+      "text": "For the froward is abomination to the LORD: but his secret is with the righteous.",
+      "verified": true,
+      "source": "Checked word for word against the King James Version from bible-api.com on 2026-10-11"
+    },
+    "MALACHI 3:6": {
+      "text": "For I am the LORD, I change not; therefore ye sons of Jacob are not consumed.",
+      "verified": true,
+      "source": "Checked word for word against the King James Version from bible-api.com on 2026-10-11"
     }
   }
 }
