@@ -1,0 +1,40 @@
+{
+  "about": "Every scripture used in a TQA video must be listed here word for word. verified is true only when the wording was matched to a KJV text already held in this repository. Anything marked false is shown as CHECK by the checker until you confirm it against your KJV.",
+  "verses": {
+    "PSALM 27:13": {
+      "text": "I had fainted, unless I had believed to see the goodness of the LORD in the land of the living.",
+      "verified": false,
+      "note": "Not found in any repository file. Check against your KJV."
+    },
+    "PSALM 27:14": {
+      "text": "Wait on the LORD: be of good courage, and he shall strengthen thine heart: wait, I say, on the LORD.",
+      "verified": true,
+      "source": "Version 8 video and workflows/scripts/youtube_agent.py"
+    },
+    "PSALM 91:1": {
+      "text": "He that dwelleth in the secret place of the most High shall abide under the shadow of the Almighty.",
+      "verified": true,
+      "source": "content-ops/04_youtube/remotion/src/data/psalm91.json"
+    },
+    "MATTHEW 6:6": {
+      "text": "But thou, when thou prayest, enter into thy closet, and when thou hast shut thy door, pray to thy Father which is in secret; and thy Father which seeth in secret shall reward thee openly.",
+      "verified": true,
+      "source": "how-to-pray.html"
+    },
+    "MATTHEW 6:7-8": {
+      "text": "But when ye pray, use not vain repetitions, as the heathen do: for they think that they shall be heard for their much speaking. Be not ye therefore like unto them: for your Father knoweth what things ye have need of, before ye ask him.",
+      "verified": false,
+      "note": "Not found in any repository file. Check against your KJV."
+    },
+    "MATTHEW 6:9": {
+      "text": "After this manner therefore pray ye: Our Father which art in heaven, Hallowed be thy name.",
+      "verified": true,
+      "source": "how-to-pray.html"
+    },
+    "ROMANS 10:9-10": {
+      "text": "That if thou shalt confess with thy mouth the Lord Jesus, and shalt believe in thine heart that God hath raised him from the dead, thou shalt be saved. For with the heart man believeth unto righteousness; and with the mouth confession is made unto salvation.",
+      "verified": true,
+      "source": "how-to-pray.html, gate-zero.html and the Version 8 video"
+    }
+  }
+}

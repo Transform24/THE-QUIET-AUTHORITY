@@ -1,5 +1,6 @@
-// The Quiet Authority, The Posture of Prayer. One 8 minute timeline (11,520 frames at 24 per second).
-// Every word, frame number and position comes from src/data/tqa-prayer-posture.json.
+// The Quiet Authority video standard (version 2). Used for every TQA teaching video.
+// Every word comes from the blueprint JSON. Every pace rule and frame number comes from src/tqaStandard.mjs.
+// Order: intro, teaching blocks, closing scripture with the prayer, thank you page.
 // Headers are Cinzel, all body text is Jost. Every text box is held to 780 pixels or less.
 // Only the brand colors are used here. scripts/validate-tqa-prayer-posture.mjs checks all of this.
 import { useEffect, useState } from "react";
@@ -15,11 +16,12 @@ import {
   useVideoConfig,
 } from "remotion";
 import blueprint from "./data/tqa-prayer-posture.json";
+import { RULES, buildTimeline, wordsOf } from "./tqaStandard.mjs";
 import spotlightCandle from "./assets/tqa/light-stream-plate.jpg";
 import characterSpotlight from "./assets/tqa/character-spotlight-plate.jpg";
 import musicTrack from "./assets/tqa/tqa-music-v8-extended.m4a";
 
-const { colors, layout, music, background, plates } = blueprint;
+const { colors, layout, plates, thanks } = blueprint;
 const IMAGES = { spotlight_candle: spotlightCandle, character_spotlight: characterSpotlight };
 const MAX_W = layout.text_max_width_px; // 780, the mobile safe column
 const clamp = { extrapolateLeft: "clamp", extrapolateRight: "clamp" };
@@ -70,6 +72,9 @@ const body = (size, extra = {}) => ({
   ...extra,
 });
 
+const centerOf = (item) => plates[item.plate].column_center_x;
+const widthOf = (item) => plates[item.plate].column_width_px;
+
 // Typing. The letters not yet typed keep their space, so nothing jumps while it types.
 const Typed = ({ text, frame, start, cps, fps, style }) => {
   const count = Math.max(0, Math.min(text.length, Math.floor(((frame - start) / fps) * cps)));
@@ -81,31 +86,26 @@ const Typed = ({ text, frame, start, cps, fps, style }) => {
   );
 };
 
-const Scripture = ({ frame, block, centerX, fadeStart, fadeFrames }) => {
-  const o = ease(frame, fadeStart, fadeStart + fadeFrames);
-  return (
-    <div style={{ opacity: o }}>
-      <div style={box(centerX, layout.scripture_ref_y, header(30, "0.3em", "gold"), widthOf(block))}>{block.scripture.ref}</div>
-      <div style={box(centerX, block.scripture_y, body(40, { lineHeight: 1.38 }), widthOf(block))}>{block.scripture.text}</div>
-    </div>
-  );
-};
+// Scripture: every word holds its place from the start, and each one fades in on its own beat.
+const Scripture = ({ frame, reveal }) => (
+  <div style={body(40, { lineHeight: 1.38 })}>
+    {reveal.words.map((w, i) => (
+      <span key={i} style={{ opacity: ease(frame, w.start, w.start + RULES.word_fade_frames) }}>
+        {w.text}
+        {i < reveal.words.length - 1 ? " " : ""}
+      </span>
+    ))}
+  </div>
+);
 
-const centerOf = (block) => plates[block.plate].column_center_x;
-const widthOf = (block) => plates[block.plate].column_width_px;
-
-const Intro = ({ block }) => {
+const Intro = ({ item }) => {
   const frame = useCurrentFrame();
-  const total = block.end_frame - block.start_frame;
-  // One fade in, then it rests. No second appearance, no repeated line.
-  const o = Math.min(
-    ease(frame, block.fade_in_start, block.fade_in_start + block.fade_in_frames),
-    1 - ease(frame, total - block.fade_out_frames, total)
-  );
+  const total = item.frames;
+  const o = Math.min(ease(frame, 24, 72), 1 - ease(frame, total - RULES.block_fade_out_frames, total));
   return (
     <div style={{ opacity: o }}>
       <div style={box(layout.intro_center_x, layout.intro_y, { display: "flex", flexDirection: "column", alignItems: "center", gap: 22 })}>
-        {block.lines.map((l) => (
+        {blueprint.intro.lines.map((l) => (
           <div key={l.text} style={{ ...header(l.size_px, l.letter_spacing_px, l.color), whiteSpace: "nowrap" }}>
             {l.text}
           </div>
@@ -115,49 +115,67 @@ const Intro = ({ block }) => {
   );
 };
 
-const ScriptureThenReflection = ({ block }) => {
+// A teaching block: the scripture, a quiet pause, then the slowly typed reflection.
+const Teaching = ({ item }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
-  const total = block.end_frame - block.start_frame;
-  const x = centerOf(block);
-  const s = block.scripture;
-  const r = block.reflection;
-  const inn = ease(frame, 0, block.fade_in_frames);
-  const out = 1 - ease(frame, total - block.fade_out_frames, total);
-  // In block 3 the scripture carries straight into the outro; only the reflection fades away.
-  const scriptureOpacity = block.keep_scripture_through_end ? inn : Math.min(inn, out);
+  const b = item.block;
+  const fade = Math.min(ease(frame, 0, RULES.block_fade_in_frames), 1 - ease(frame, item.frames - RULES.block_fade_out_frames, item.frames));
   return (
-    <div>
-      <div style={{ opacity: scriptureOpacity }}>
-        <Scripture frame={frame} block={block} centerX={x} fadeStart={s.fade_in_start} fadeFrames={s.fade_in_frames} />
-      </div>
-      <div style={{ opacity: Math.min(inn, out) }}>
-        <Typed text={r.text} frame={frame} start={r.type_start} cps={r.chars_per_second} fps={fps} style={box(x, block.reflection_y, body(32), widthOf(block))} />
+    <div style={{ opacity: fade }}>
+      <div style={box(centerOf(item), layout.top_y, {}, widthOf(item))}>
+        <div style={header(30, "0.3em", "gold")}>{b.scripture.ref}</div>
+        <div style={{ height: 26 }} />
+        <Scripture frame={frame} reveal={item.reveal} />
+        <div style={{ height: 44 }} />
+        <Typed text={b.reflection} frame={frame} start={item.type_start} cps={RULES.reflection_letters_per_second} fps={fps} style={body(32)} />
       </div>
     </div>
   );
 };
 
-// The closing section. Matthew 6:9 stays; the prayer settles in the lower third, a few lines at a time.
-const Outro = ({ block, verseBlock }) => {
+// The closing section: the scripture stays on screen and the prayer settles in the lower third, a few lines at a time.
+const Closing = ({ item }) => {
   const frame = useCurrentFrame();
-  const total = block.end_frame - block.start_frame;
-  const p = block.prayer;
-  const x = p.crossfade_frames;
-  const cx = centerOf(block);
+  const b = item.block;
+  const x = RULES.prayer_crossfade_frames;
+  const cx = centerOf(item);
+  const fade = Math.min(ease(frame, 0, RULES.block_fade_in_frames), 1 - ease(frame, item.frames - RULES.block_fade_out_frames, item.frames));
   return (
-    <div>
-      <Scripture frame={frame} block={verseBlock} centerX={cx} fadeStart={-100} fadeFrames={1} />
-      <div style={{ opacity: 1 - ease(frame, total - block.fade_out_frames, total) }}>
-        {p.groups.map((g, i) => {
-          const inn = ease(frame, g.start, g.start + x);
-          const out = i < p.groups.length - 1 ? 1 - ease(frame, g.end - x, g.end) : 1;
-          return (
-            <div key={i} style={box(cx, layout.prayer_lower_third_y, body(32, { opacity: Math.min(inn, out), lineHeight: 1.5 }), widthOf(block))}>
-              {g.text}
-            </div>
-          );
-        })}
+    <div style={{ opacity: fade }}>
+      <div style={box(cx, layout.top_y, {}, widthOf(item))}>
+        <div style={header(30, "0.3em", "gold")}>{b.scripture.ref}</div>
+        <div style={{ height: 26 }} />
+        <Scripture frame={frame} reveal={item.reveal} />
+      </div>
+      {item.groups.map((g, i) => {
+        const s = item.prayer_start + g.start;
+        const e = item.prayer_start + g.end;
+        const inn = ease(frame, s, s + x);
+        const out = i < item.groups.length - 1 ? 1 - ease(frame, e - x, e) : 1;
+        return (
+          <div key={i} style={box(cx, layout.prayer_lower_third_y, body(32, { opacity: Math.min(inn, out), lineHeight: 1.5 }), widthOf(item))}>
+            {g.text}
+          </div>
+        );
+      })}
+    </div>
+  );
+};
+
+const Thanks = ({ item }) => {
+  const frame = useCurrentFrame();
+  const o = ease(frame, 0, RULES.thanks_fade_in_frames);
+  return (
+    <div style={{ opacity: o }}>
+      <div style={box(layout.thanks_center_x, layout.thanks_y, { display: "flex", flexDirection: "column", alignItems: "center", gap: 28 })}>
+        <div style={{ ...header(48, "0.06em", "gold"), whiteSpace: "nowrap" }}>{thanks.heading}</div>
+        {thanks.lines.map((l) => (
+          <div key={l} style={body(34)}>
+            {l}
+          </div>
+        ))}
+        <div style={header(30, "0.2em", "gold")}>{thanks.link}</div>
       </div>
     </div>
   );
@@ -167,23 +185,23 @@ const Music = () => {
   const { durationInFrames } = useVideoConfig();
   const volume = (f) =>
     Math.min(
-      interpolate(f, [0, music.fade_in_frames], [0, music.volume], clamp),
-      interpolate(f, [durationInFrames - music.fade_out_frames, durationInFrames], [music.volume, 0], clamp)
+      interpolate(f, [0, RULES.music_fade_in_frames], [0, blueprint.music.volume], clamp),
+      interpolate(f, [durationInFrames - RULES.music_fade_out_frames, durationInFrames], [blueprint.music.volume, 0], clamp)
     );
   return <Audio src={musicTrack} volume={volume} />;
 };
 
 // The pictures, held steady. Each block shows its own picture; they dissolve into each other at the block edges.
-// The first one comes up from black at the start, and everything goes back to black at the end.
-const Backdrop = () => {
+// The first one comes up from black at the start, and the picture and the music fade out together at the end.
+const Backdrop = ({ items }) => {
   const frame = useCurrentFrame();
   const { durationInFrames } = useVideoConfig();
-  const up = ease(frame, 0, background.fade_from_black_frames);
-  const down = 1 - ease(frame, durationInFrames - background.fade_to_black_frames, durationInFrames);
+  const up = ease(frame, 0, RULES.picture_fade_in_frames);
+  const down = 1 - ease(frame, durationInFrames - RULES.picture_fade_out_frames, durationInFrames);
   return (
     <AbsoluteFill>
       {Object.keys(plates).map((name) => {
-        const pts = blueprint.timeline.flatMap((b) => {
+        const pts = items.flatMap((b) => {
           const v = b.plate === name ? b.background_level : 0;
           return [[b.start_frame + 12, v], [b.end_frame - 12, v]];
         });
@@ -200,17 +218,18 @@ const Backdrop = () => {
 
 export const TQAPrayerPostureComposition = () => {
   useBrandFonts();
-  const verseBlock = blueprint.timeline.find((b) => b.id === "block3");
+  const { items } = buildTimeline(blueprint);
   return (
     <AbsoluteFill style={{ backgroundColor: colors.black }}>
       <Music />
-      <Backdrop />
-      {blueprint.timeline.map((b) => (
-        <Sequence key={b.id} from={b.start_frame} durationInFrames={b.end_frame - b.start_frame} layout="none">
+      <Backdrop items={items} />
+      {items.map((it) => (
+        <Sequence key={it.id} from={it.start_frame} durationInFrames={it.frames} layout="none">
           <AbsoluteFill>
-            {b.type === "intro" && <Intro block={b} />}
-            {b.type === "scripture_then_reflection" && <ScriptureThenReflection block={b} />}
-            {b.type === "outro" && <Outro block={b} verseBlock={verseBlock} />}
+            {it.type === "intro" && <Intro item={it} />}
+            {it.type === "teaching" && <Teaching item={it} />}
+            {it.type === "closing" && <Closing item={it} />}
+            {it.type === "thanks" && <Thanks item={it} />}
           </AbsoluteFill>
         </Sequence>
       ))}
