@@ -377,11 +377,35 @@
                             <a class="btn btn-reject" style="text-decoration:none; text-align:center;" href="${escapeHtml(v.card)}" target="_blank" rel="noopener">Open card</a>
                         </div>
                     </div>`).join('') + `
-                    <p class="counter" style="text-align:center;">You upload each video yourself in YouTube Studio and schedule it for the date above. Nothing on this page uploads anything.</p>`;
+                    <p class="counter" style="text-align:center;">You upload each video yourself in YouTube Studio and schedule it for the date above. Nothing on this page uploads anything.</p>`
+                    + renderShorts(data.shorts || []);
             } catch (e) {
                 document.getElementById('loadingState').style.display = 'none';
                 document.getElementById('itemDisplay').innerHTML = '<div class="item-card"><p style="color: #C1593C;">' + escapeHtml(e.message) + '</p></div>';
             }
+        }
+
+
+        // The 60 second vertical shorts, grouped by the video they come from. Post each one after its full video is out.
+        function renderShorts(shorts) {
+            if (!shorts.length) return '';
+            const order = ['v9', 'v11', 'v10', 'v12'];
+            const groups = order.map(vid => {
+                const clips = shorts.filter(x => x.video === vid);
+                if (!clips.length) return '';
+                const date = prettyDate(clips[0].full_video_date, '5:00 AM');
+                const rows = clips.map(x => `
+                    <div style="display:flex; gap:12px; align-items:center; justify-content:space-between; padding:10px 0; border-top:1px solid #272727; ${x.skip ? 'opacity:0.5;' : ''}">
+                        <div>Clip ${escapeHtml(x.clip)}: ${escapeHtml(x.name)}${x.skip ? ' (skip: ' + escapeHtml(x.skip_reason) + ')' : ''}</div>
+                        <div style="display:flex; gap:10px;">
+                            <a href="${escapeHtml(x.file)}" target="_blank" rel="noopener" style="color:#C9A84C;">Watch</a>
+                            <a href="${escapeHtml(x.caption)}" target="_blank" rel="noopener" style="color:#C9A84C;">Caption</a>
+                        </div>
+                    </div>`).join('');
+                return `<div class="item-card"><div class="platform-badge">SHORTS &middot; ${escapeHtml(vid.toUpperCase())}</div><div class="item-date">Post after the full video, ${escapeHtml(date)}</div>${rows}</div>`;
+            }).join('');
+            return '<h2 style="font-family: \'Cormorant Garamond\', serif; color: #C9A84C; text-align:center; margin: 40px 0 20px;">Shorts, Reels and Pins</h2>' + groups +
+                '<p class="counter" style="text-align:center;">Each short ends by pointing to the full video and sanctuary-grace.com. The caption file has the YouTube, Instagram and Pinterest text. You post every short yourself.</p>';
         }
 
         window.addEventListener('load', () => {
