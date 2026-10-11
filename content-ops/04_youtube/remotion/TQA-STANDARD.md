@@ -1,31 +1,39 @@
-# The Quiet Authority Video Standard (version 2)
+# The Quiet Authority Video Engine Blueprint (standard version 2)
 
-This is the one pattern for every TQA teaching video. A new video changes only the words. Nothing else.
+This is the permanent standard for every TQA teaching video. It matches the video Grace approved on 2026-10-11. A new video changes only the words: the scriptures, the reflections and the prayer.
 
-## The order, one step at a time
-1. Intro: Sanctuary Grace Ministry presents The Quiet Authority (15 seconds).
-2. Teaching blocks (as many as the video needs). In each block:
+## 1. What is locked
+- Picture A (intro and Block 1): the pottery jar beside the single candle on a dark surface.
+- Picture B (Blocks 2 and 3, Romans page, prayer page, thank you page): the woman in the orange sari under the descending light stream.
+- Music: the track taken from the Version 8 video, held in `src/assets/tqa/tqa-music-v8-extended.m4a`. It fades in at the start and out at the end. `music1.mp3` is the Psalm 91 music and is never used here.
+- Colors: black #0d0d0d, gold #C9A84C, cream #F5F0E8.
+- Fonts: Cinzel for headers (gold), Jost for body text (cream).
+- Text boxes are 780 pixels wide at most, kept off the figure, jar and candle.
+- Words: KJV only for scripture, no em dashes, no emoji, no self-help words (burnout and the rest of the banned list).
+- Nothing uploads to YouTube. Grace uploads herself.
+
+## 2. The order, one step at a time
+Every video is exactly 8 minutes: 11,520 frames at 24 frames a second. This is the YouTube standard.
+1. Intro (0:00 to 0:15): "Sanctuary Grace Ministry presents The Quiet Authority". One fade in, one layer of text only.
+2. Teaching blocks, as many as the video needs (the first video has three). In each block:
    1. The scripture reference appears.
    2. The scripture is revealed one word at a time, at 80 words a minute, with a breath at commas and full stops.
    3. Four seconds of quiet.
    4. The reflection types out slowly, 4.5 letters a second.
-   5. It rests for 8 seconds, then the scene dissolves in 1 second to the next.
-3. Closing scripture: Romans 10:9-10 is revealed the same way and rests for 8 seconds.
-4. The prayer has its own page, a few lines at a time, for 1 minute 53 seconds.
-5. Thank you page: "Thank you for watching." with the two lines and sanctuary-grace.com. It stays on screen until the end of the video.
-6. The music and the picture fade out together over the last 8 seconds.
+   5. It rests 8 seconds, then the scene dissolves in 1 second.
+3. Romans 10:9-10 (KJV) on its own page, revealed the same way, resting 8 seconds.
+4. The prayer on its own page, a few lines at a time, for 1 minute 53 seconds.
+5. "Thank you for watching." with its two lines and sanctuary-grace.com. It stays until the end and takes whatever time the words leave. If the words are so long that it would be under 12 seconds, the checker stops the render.
+6. The music and picture fade out together over the last 8 seconds.
 
-Every video is exactly 8 minutes (11,520 frames), which is the YouTube standard. The thank you page takes whatever time the words leave. The checker stops the render if the words are so long that the thank you page would be under 12 seconds.
+First video's timing, for reference: intro 0 to 360, Matthew 6:7-8 to 2705, Matthew 6:6 to 4907, Matthew 6:9 to 6611, Romans 10:9-10 to 7685, prayer to 10397, thank you page to 11520.
 
-## What you change for a new video
-Only `src/data/tqa-prayer-posture.json` (or a copy of it): the scriptures, the reflections and the prayer.
+## 3. What you change for a new video
+Only `src/data/tqa-prayer-posture.json` (or a copy of it). Every scripture must also be listed word for word in `src/data/kjv-registry.json`. The checker prints CHECK for any verse not yet matched to a KJV source.
 
-## What you never change
-- `src/tqaStandard.mjs` holds every pace rule. Every video is exactly 8 minutes.
-- Every scripture must be listed word for word in `src/data/kjv-registry.json` (KJV only). The checker stops the render if a verse is missing or different, and prints CHECK for any verse not yet matched to a KJV source.
-- Brand: black #0d0d0d, gold #C9A84C, cream #F5F0E8. Cinzel for headers, Jost for body. Text boxes 780 pixels or less.
-- Nothing uploads to YouTube. Grace uploads herself.
+## 4. What you never change
+`src/tqaStandard.mjs` holds every pace rule. `src/TQAPrayerPostureComposition.jsx` holds the layout.
 
-## Commands (run in this folder)
+## 5. Commands (run in this folder)
 - Check: `npm run validate:tqa-prayer`
 - Render: `npx remotion render src/index.js TQAPrayerPosture out/tqa-standard-v2.mp4 --overwrite`
