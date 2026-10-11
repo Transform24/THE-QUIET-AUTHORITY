@@ -37,5 +37,5 @@ Romans 10:9-10, the "Thank you for watching" page and the intro are part of the 
 - Never use music1.mp3 here. The music is the Version 8 track, held in `src/assets/tqa/tqa-music-v8-extended.m4a`.
 - The stop hook may complain that the branch is unpushed after switching branches. Run `git push -u origin tqa-compositions`.
 
-## Planned next: Shorts, Reels and Pins (not built yet, needs Grace's go-ahead)
-Each 8 minute video yields vertical 1080 by 1920 clips of about 60 seconds: one scripture revealed word by word, a line of the reflection, and a closing card with sanctuary-grace.com, over the same music and picture plates. The Psalm 91 engine already renders vertical clips and is the model to follow. The same file serves YouTube Shorts and Instagram Reels (Grace posts them herself). Pins use the same clips or a still frame with the verse in Pinterest's tall shape.
+## Shorts, Reels and Pins
+`node scripts/generate-shorts-pipeline.mjs --plan` (or `npm run shorts:plan`) plans three 60 second vertical clips from each video and writes caption documents to `workflows/output/shorts-staged/`. `--check` verifies them, and `--render v12 A` renders one clip into `out/shorts/`. Add each new video to the `VIDEOS` list in the script. Details are in TQA-STANDARD.md. Grace posts every short herself.

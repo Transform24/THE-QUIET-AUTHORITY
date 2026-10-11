@@ -33,7 +33,7 @@ for (const file of SHARED) {
 }
 
 // The video components in the Psalm 91 engine may only use the brand colors and the three brand fonts.
-for (const name of ["src/ScriptureReveal.jsx", "src/TQAPatternComposition.jsx", "src/TQA_Stillness_Journey_FINAL_v10.jsx"]) {
+for (const name of ["src/ScriptureReveal.jsx", "src/TQAPatternComposition.jsx", "src/TQA_Stillness_Journey_FINAL_v10.jsx", "src/TQAShortClip.jsx"]) {
   const path = join(A, name);
   if (!existsSync(path)) continue;
   const label = name.replace("src/", "");

@@ -28,6 +28,9 @@
     "validate:tqa-v12": "node scripts/validate-tqa-prayer-posture.mjs TQA_Stillness_Journey_FINAL_v12",
     "prerender:tqa-v12": "npm run validate:tqa-v12",
     "render:tqa-v12": "remotion render src/index.js TQA-Stillness-Journey-FINAL-v12 out/TQA_Stillness_Journey_FINAL_v12.mp4 --overwrite",
+    "shorts:plan": "node scripts/generate-shorts-pipeline.mjs --plan",
+    "shorts:check": "node scripts/generate-shorts-pipeline.mjs --check",
+    "shorts:render": "node scripts/generate-shorts-pipeline.mjs --render",
     "render:tqa-prayer": "remotion render src/index.js TQA-Stillness-Journey-FINAL-v10 out/TQA_Stillness_Journey_FINAL_v10.mp4 --overwrite"
   },
   "remotion": {
