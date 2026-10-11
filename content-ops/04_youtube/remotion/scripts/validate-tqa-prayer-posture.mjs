@@ -6,10 +6,13 @@ import { RULES, FPS, buildTimeline } from "../src/tqaStandard.mjs";
 
 const root = new URL("../", import.meta.url);
 const read = (p) => readFileSync(new URL(p, root), "utf8");
-const bp = JSON.parse(read("src/data/TQA_Stillness_Journey_FINAL_v10.json"));
+const NAME = process.argv[2] || "TQA_Stillness_Journey_FINAL_v10";
+const bp = JSON.parse(read(`src/data/${NAME}.json`));
 const reg = JSON.parse(read("src/data/kjv-registry.json")).verses;
-const jsx = read("src/TQA_Stillness_Journey_FINAL_v10.jsx");
+const jsx = read(`src/${NAME}.jsx`);
 const errors = [];
+const MASTER = "TQA_Stillness_Journey_FINAL_v10";
+if (NAME !== MASTER && read(`src/${NAME}.jsx`).split(NAME).join("X") !== read(`src/${MASTER}.jsx`).split(MASTER).join("X")) errors.push(`${NAME}.jsx must match the standard layout in ${MASTER}.jsx`);
 const fail = (m) => errors.push(m);
 const ok = [];
 const warn = [];

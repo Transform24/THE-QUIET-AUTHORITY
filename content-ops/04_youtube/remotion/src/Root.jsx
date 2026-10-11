@@ -3,6 +3,8 @@ import { QuietAuthorityVideo } from "./QuietAuthorityVideo";
 import { ScriptureReveal } from "./ScriptureReveal";
 import { TQAPatternComposition } from "./TQAPatternComposition";
 import { TQA_Stillness_Journey_FINAL_v10 } from "./TQA_Stillness_Journey_FINAL_v10";
+import { TQA_Stillness_Journey_FINAL_v11 } from "./TQA_Stillness_Journey_FINAL_v11";
+import tqaVideo11 from "./data/TQA_Stillness_Journey_FINAL_v11.json";
 import tqaVideo from "./data/TQA_Stillness_Journey_FINAL_v10.json";
 import tqaPattern from "./data/tqa-pattern-blueprint.json";
 import psalm91 from "./data/psalm91.json";
@@ -48,6 +50,17 @@ export const RemotionRoot = () => {
         width={tqaVideo.width}
         height={tqaVideo.height}
         calculateMetadata={() => ({ durationInFrames: buildTimeline(tqaVideo).total_frames })}
+      />
+
+      {/* TQA video three, Pattern of Waiting (Psalm 27). Same standard, only the words differ. Words come from src/data/TQA_Stillness_Journey_FINAL_v11.json */}
+      <Composition
+        id="TQA-Stillness-Journey-FINAL-v11"
+        component={TQA_Stillness_Journey_FINAL_v11}
+        durationInFrames={buildTimeline(tqaVideo11).total_frames}
+        fps={tqaVideo11.fps}
+        width={tqaVideo11.width}
+        height={tqaVideo11.height}
+        calculateMetadata={() => ({ durationInFrames: buildTimeline(tqaVideo11).total_frames })}
       />
 
       {/* Psalm 91, one verse per clip. Pass {"verseIndex": 0} to {"verseIndex": 15} */}
