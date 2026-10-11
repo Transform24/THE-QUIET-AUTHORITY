@@ -366,7 +366,7 @@
                 const videos = data.videos.slice().sort((a, b) => a.date.localeCompare(b.date));
                 document.getElementById('loadingState').style.display = 'none';
                 document.getElementById('itemCounter').textContent = videos.length + ' videos scheduled';
-                document.getElementById('itemDisplay').innerHTML = videos.map(v => `
+                document.getElementById('itemDisplay').innerHTML = renderReview(data.pending_review || []) + videos.map(v => `
                     <div class="item-card">
                         <div class="platform-badge">WEEK ${escapeHtml(v.week)} &middot; ${escapeHtml(v.version.toUpperCase())}</div>
                         <div class="item-date">${escapeHtml(prettyDate(v.date, v.time))}</div>
@@ -385,6 +385,22 @@
             }
         }
 
+
+
+        // New videos waiting for Grace's review, shown at the very top, before the release calendar.
+        function renderReview(items) {
+            return items.map(v => `
+                <div class="item-card" style="border-color:#C9A84C;">
+                    <div class="platform-badge">${escapeHtml(v.label)} &middot; ${escapeHtml(v.series)} &middot; ${escapeHtml(v.version.toUpperCase())}</div>
+                    <div class="item-date">${escapeHtml(v.note)}</div>
+                    <h2 style="font-family: 'Cormorant Garamond', serif; color: #C9A84C; margin-bottom: 20px;">${escapeHtml(v.title)}</h2>
+                    <div class="item-content">${escapeHtml(v.chapters.join('\n'))}</div>
+                    <div class="actions">
+                        <a class="btn btn-approve" style="text-decoration:none; text-align:center;" href="${escapeHtml(v.video)}" target="_blank" rel="noopener">Watch video</a>
+                        <a class="btn btn-reject" style="text-decoration:none; text-align:center;" href="${escapeHtml(v.card)}" target="_blank" rel="noopener">Open card</a>
+                    </div>
+                </div>`).join('');
+        }
 
         // The 60 second vertical shorts, grouped by the video they come from. Post each one after its full video is out.
         function renderShorts(shorts) {

@@ -200,5 +200,25 @@
       "badge": "PINTEREST PAUSED",
       "text": "The automatic Pinterest scheduler is paused to protect the account. Pins are made by hand from the vertical Shorts below, using the Pinterest text in each caption card."
     }
+  ],
+  "pending_review": [
+    {
+      "label": "NEW, WAITING FOR YOUR REVIEW",
+      "version": "v13",
+      "series": "Video Five",
+      "title": "The Hallowed Identity | Proverbs 18:10, Isaiah 43:18, Isaiah 43:19 (KJV) | A Quiet Morning Declaration",
+      "video": "public/TQA_Stillness_Journey_FINAL_v13.mp4",
+      "card": "workflows/output/youtube-pending/v13-hallowed-identity.md",
+      "note": "No release date yet. Words drafted by Claude with your permission. Please read every line.",
+      "chapters": [
+        "0:00 Sanctuary Grace Ministry presents The Quiet Authority",
+        "0:15 Proverbs 18:10",
+        "1:23 Isaiah 43:18",
+        "2:27 Isaiah 43:19",
+        "3:52 Romans 10:9-10",
+        "4:37 A morning declaration",
+        "7:30 Thank you for watching"
+      ]
+    }
   ]
 }
