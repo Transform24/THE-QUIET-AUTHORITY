@@ -10,6 +10,65 @@ Scripture in every description was checked word for word against the King James 
 
 ---
 
+## Release calendar (schedule inside YouTube Studio)
+
+Every other Sunday morning at 5:00 AM Eastern time (6:00 AM is fine too). In YouTube Studio, upload the file, choose Visibility, then Schedule, and enter the date and time below. The automatic upload workflow stays off. Nothing uploads unless you do it.
+
+| Week | Sunday | Time (Eastern) | Video | File |
+|---|---|---|---|---|
+| 1 | Oct 18 | 5:00 AM | v9, The Posture of Prayer (Matthew 6) | TQA_Stillness_Journey_FINAL_v9.mp4 |
+| 3 | Nov 1 | 5:00 AM | v11, Waiting on the LORD (Psalm 27, bedtime prayer) | TQA_Stillness_Journey_FINAL_v11.mp4 |
+| 5 | Nov 15 | 5:00 AM | v10, The Posture of Prayer with Romans 10:9-10 | TQA_Standard_8min_Posture_of_Prayer.mp4 |
+| 7 | Nov 29 | 5:00 AM | v12, The Secret of the LORD (morning prayer) | TQA_Stillness_Journey_FINAL_v12.mp4 |
+
+Chapter markers to paste beside each date (also in each video's section below):
+
+**Oct 18, v9**
+```
+0:00 Sanctuary Grace Ministry presents The Quiet Authority
+0:15 Matthew 6:7-8
+2:15 Matthew 6:6
+4:30 Matthew 6:9
+6:05 A closing prayer
+```
+
+**Nov 1, v11**
+```
+0:00 Sanctuary Grace Ministry presents The Quiet Authority
+0:15 Psalm 27:13
+1:21 Psalm 27:14
+2:28 Psalm 91:1
+3:27 Romans 10:9-10
+4:11 A bedtime prayer
+7:30 Thank you for watching
+```
+
+**Nov 15, v10**
+```
+0:00 Sanctuary Grace Ministry presents The Quiet Authority
+0:15 Matthew 6:7-8
+1:53 Matthew 6:6
+3:24 Matthew 6:9
+4:35 Romans 10:9-10
+5:20 A closing prayer
+7:13 Thank you for watching
+```
+
+**Nov 29, v12**
+```
+0:00 Sanctuary Grace Ministry presents The Quiet Authority
+0:15 Psalm 25:14
+1:24 Proverbs 3:32
+2:29 Malachi 3:6
+3:33 Romans 10:9-10
+4:17 A morning prayer
+7:30 Thank you for watching
+```
+
+Note: v9 and v10 carry the same Matthew 6 message, five weeks apart. v10 is the newer standard cut.
+
+---
+
 ## Video 1: TQA_Stillness_Journey_FINAL_v9.mp4
 Earlier cut of the Matthew 6 video. Chapter times are approximate (checked by sampling the video).
 
