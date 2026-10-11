@@ -1,8 +1,9 @@
 name: Pinterest Agent, Daily Pin
 
 on:
-  schedule:
-    - cron: '0 14 * * *'
+  # The daily schedule is OFF (Grace, 2026-10-11) while Pinterest is paused. Run it by hand from the Actions tab.
+  # schedule:
+  #   - cron: '0 14 * * *'
   workflow_dispatch:
     inputs:
       day_override:

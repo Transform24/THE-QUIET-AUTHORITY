@@ -378,7 +378,7 @@
                         </div>
                     </div>`).join('') + `
                     <p class="counter" style="text-align:center;">You upload each video yourself in YouTube Studio and schedule it for the date above. Nothing on this page uploads anything.</p>`
-                    + renderShorts(data.shorts || []);
+                    + renderShorts(data.shorts || []) + renderNotes(data.status_notes || []);
             } catch (e) {
                 document.getElementById('loadingState').style.display = 'none';
                 document.getElementById('itemDisplay').innerHTML = '<div class="item-card"><p style="color: #C1593C;">' + escapeHtml(e.message) + '</p></div>';
@@ -406,6 +406,12 @@
             }).join('');
             return '<h2 style="font-family: \'Cormorant Garamond\', serif; color: #C9A84C; text-align:center; margin: 40px 0 20px;">Shorts, Reels and Pins</h2>' + groups +
                 '<p class="counter" style="text-align:center;">Each short ends by pointing to the full video and sanctuary-grace.com. The caption file has the YouTube, Instagram and Pinterest text. You post every short yourself.</p>';
+        }
+
+
+        // Short status notes at the bottom of the gate.
+        function renderNotes(notes) {
+            return notes.map(n => `<div class="item-card"><div class="platform-badge">${escapeHtml(n.badge)}</div><p>${escapeHtml(n.text)}</p></div>`).join('');
         }
 
         window.addEventListener('load', () => {

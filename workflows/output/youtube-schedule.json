@@ -194,5 +194,11 @@
       "skip": true,
       "skip_reason": "Same words as v10. Use the v10 clip."
     }
+  ],
+  "status_notes": [
+    {
+      "badge": "PINTEREST PAUSED",
+      "text": "The automatic Pinterest scheduler is paused to protect the account. Pins are made by hand from the vertical Shorts below, using the Pinterest text in each caption card."
+    }
   ]
 }
