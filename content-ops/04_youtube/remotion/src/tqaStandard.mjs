@@ -69,6 +69,48 @@ export const prayerGroups = (prayer, windowFrames = RULES.prayer_frames) => {
   });
 };
 
+// Optional line-by-line push for a prayer given as separate beats (a layout exception allowed for one video, see the checker).
+// Each beat is broken into short lines. The lines arrive one at a time and push the earlier ones upward.
+export const PUSH = Object.freeze({ max_chars_per_line: 36, first_line_frame: 48, rest_at_end_frames: 288, beat_gap_slots: 0.6 });
+export const pushPlan = (beats, windowFrames = RULES.prayer_frames) => {
+  const lines = [];
+  beats.forEach((beat, b) => {
+    // Balance the lines: as few lines as a plain wrap, and no lonely last word.
+    const ws = wordsOf(beat);
+    const wrap = (limit) => {
+      const out = [];
+      let cur = "";
+      for (const w of ws) {
+        if (cur && cur.length + 1 + w.length > limit) { out.push(cur); cur = w; } else cur = cur ? `${cur} ${w}` : w;
+      }
+      out.push(cur);
+      return out;
+    };
+    const total = ws.join(" ").length;
+    const n = wrap(PUSH.max_chars_per_line).length;
+    let best = wrap(PUSH.max_chars_per_line);
+    for (let limit = Math.max(Math.ceil(total / n), ...ws.map((w) => w.length)); limit <= PUSH.max_chars_per_line; limit++) {
+      const t = wrap(limit);
+      if (t.length === n && t[n - 1].length >= limit * 0.5) { best = t; break; }
+    }
+    for (const text of best) lines.push({ text, beat: b, first: false });
+    lines[lines.length - lines.filter((l) => l.beat === b).length].first = true;
+  });
+  let slot = 0;
+  let before = 0;
+  lines.forEach((l, i) => {
+    l.advance = 1 + (l.first && i > 0 ? PUSH.beat_gap_slots : 0);
+    slot += l.advance;
+    l.slot = slot;
+    l.before = before;
+    before += l.text.length + 10 + (l.first ? 30 : 0);
+  });
+  const last = lines[lines.length - 1];
+  const span = windowFrames - PUSH.rest_at_end_frames - PUSH.first_line_frame;
+  lines.forEach((l) => { l.start = PUSH.first_line_frame + Math.round((l.before / last.before) * span); });
+  return lines;
+};
+
 // The whole timeline, in frames, from the blueprint's words.
 export const buildTimeline = (bp) => {
   const items = [];
@@ -100,7 +142,7 @@ export const buildTimeline = (bp) => {
     });
     push({
       id: "prayer", type: "prayer", plate: c.plate, background_level: c.background_level,
-      block: c, groups: prayerGroups(c.prayer), frames: RULES.prayer_frames,
+      block: c, groups: prayerGroups(c.prayer), push: c.prayer_beats ? pushPlan(c.prayer_beats) : null, frames: RULES.prayer_frames,
     });
   }
   // The thank you page takes whatever time is left, so every video is exactly 8 minutes.

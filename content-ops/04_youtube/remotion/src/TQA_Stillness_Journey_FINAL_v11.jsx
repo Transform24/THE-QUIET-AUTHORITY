@@ -12,6 +12,7 @@ import {
   continueRender,
   delayRender,
   interpolate,
+  spring,
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
@@ -149,23 +150,27 @@ const Closing = ({ item }) => {
   );
 };
 
-// The prayer has its own page, a few lines at a time.
+// PRAYER-BEGIN (the only part a one-video layout exception may change)
+// Video three: the prayer arrives line by line. Each new line springs up from below and pushes the lines before it upward.
 const Prayer = ({ item }) => {
   const frame = useCurrentFrame();
-  const x = RULES.prayer_crossfade_frames;
+  const { fps } = useVideoConfig();
   const cx = centerOf(item);
+  const lineH = 54;
   const fade = Math.min(ease(frame, 0, RULES.block_fade_in_frames), 1 - ease(frame, item.frames - RULES.block_fade_out_frames, item.frames));
+  const grow = item.push.map((l) => spring({ frame: frame - l.start, fps, durationInFrames: 40, config: { damping: 200 } }));
+  const moved = item.push.reduce((sum, l, i) => sum + grow[i] * l.advance, 0);
   return (
     <div style={{ opacity: fade }}>
-      <div style={box(cx, layout.prayer_page_y, {}, widthOf(item))}>
+      <div style={box(cx, layout.prayer_page_y - 170, {}, widthOf(item))}>
         <div style={header(30, "0.3em", "gold")}>A PRAYER</div>
       </div>
-      {item.groups.map((g, i) => {
-        const inn = ease(frame, g.start, g.start + x);
-        const out = i < item.groups.length - 1 ? 1 - ease(frame, g.end - x, g.end) : 1;
+      {item.push.map((l, i) => {
+        const y = layout.push_bottom_y - (moved - l.slot) * lineH;
+        const top = ease(y, layout.push_top_y, layout.push_top_y + 120);
         return (
-          <div key={i} style={box(cx, layout.prayer_page_y + 80, body(36, { opacity: Math.min(inn, out), lineHeight: 1.5 }), widthOf(item))}>
-            {g.text}
+          <div key={i} style={box(cx, y, body(36, { opacity: grow[i] * top, whiteSpace: "nowrap" }), widthOf(item))}>
+            {l.text}
           </div>
         );
       })}
@@ -173,6 +178,7 @@ const Prayer = ({ item }) => {
   );
 };
 
+// PRAYER-END
 const Thanks = ({ item }) => {
   const frame = useCurrentFrame();
   const o = ease(frame, 0, RULES.thanks_fade_in_frames);

@@ -2,7 +2,7 @@
 // Reads src/data/TQA_Stillness_Journey_FINAL_v10.json, src/tqaStandard.mjs, src/data/kjv-registry.json and the layout file.
 // Usage: node scripts/validate-tqa-prayer-posture.mjs   (run from content-ops/04_youtube/remotion)
 import { existsSync, readFileSync, statSync } from "node:fs";
-import { RULES, FPS, buildTimeline } from "../src/tqaStandard.mjs";
+import { RULES, FPS, PUSH, buildTimeline } from "../src/tqaStandard.mjs";
 
 const root = new URL("../", import.meta.url);
 const read = (p) => readFileSync(new URL(p, root), "utf8");
@@ -12,7 +12,23 @@ const reg = JSON.parse(read("src/data/kjv-registry.json")).verses;
 const jsx = read(`src/${NAME}.jsx`);
 const errors = [];
 const MASTER = "TQA_Stillness_Journey_FINAL_v10";
-if (NAME !== MASTER && read(`src/${NAME}.jsx`).split(NAME).join("X") !== read(`src/${MASTER}.jsx`).split(MASTER).join("X")) errors.push(`${NAME}.jsx must match the standard layout in ${MASTER}.jsx`);
+const EXCEPTION = bp.layout_exception || null;
+const ALLOWED_EXCEPTIONS = { TQA_Stillness_Journey_FINAL_v11: "line_push" };
+const cut = (text, name) => {
+  const x = text.split(name).join("X");
+  const i = x.indexOf("// PRAYER-BEGIN");
+  const j = x.indexOf("// PRAYER-END");
+  return i < 0 || j < 0 ? null : { outside: x.slice(0, i) + x.slice(j), inside: x.slice(i, j) };
+};
+if (EXCEPTION && ALLOWED_EXCEPTIONS[NAME] !== EXCEPTION) errors.push(`${NAME} is not allowed the layout exception "${EXCEPTION}". Only the prayer page of ${Object.keys(ALLOWED_EXCEPTIONS).join(", ")} may differ.`);
+if (!EXCEPTION && ALLOWED_EXCEPTIONS[NAME]) errors.push(`${NAME} must declare its layout exception "${ALLOWED_EXCEPTIONS[NAME]}"`);
+if (NAME !== MASTER) {
+  const mine = cut(read(`src/${NAME}.jsx`), NAME);
+  const master = cut(read(`src/${MASTER}.jsx`), MASTER);
+  if (!mine || !master) errors.push("the layout files must mark the prayer page with PRAYER-BEGIN and PRAYER-END");
+  else if (mine.outside !== master.outside) errors.push(`${NAME}.jsx must match the standard layout in ${MASTER}.jsx everywhere outside the prayer page`);
+  else if (!EXCEPTION && mine.inside !== master.inside) errors.push(`${NAME}.jsx may only change the prayer page when it declares a layout exception`);
+}
 const fail = (m) => errors.push(m);
 const ok = [];
 const warn = [];
@@ -35,6 +51,14 @@ for (const m of jsx.matchAll(/fontFamily:\s*"([^"]+)"/g)) {
   }
 }
 ok.push("brand: #0d0d0d, #C9A84C and #F5F0E8 only, Cinzel headers, Jost body text");
+
+if (EXCEPTION === "line_push") {
+  const inside = cut(jsx, NAME).inside;
+  if (!/body\(36/.test(inside)) fail("the pushed prayer lines must use body(), which is Jost");
+  if (!/spring\(/.test(inside)) fail("the pushed prayer lines must use a spring");
+  if (!/box\(/.test(inside)) fail("the pushed prayer lines must sit in a box(), which is capped at 780 pixels");
+  if (/fontFamily|position:\s*"absolute"/.test(inside)) fail("the prayer page must not set its own font or positioning outside box(), header() and body()");
+}
 
 // 2. Safe column
 const MAX = bp.layout.text_max_width_px;
@@ -98,16 +122,37 @@ for (const it of tl.items.filter((i) => i.type === "teaching")) {
   const vBottom = bp.layout.top_y + 40 + 26 + linesOf(c.block.scripture.text, 40, w) * 40 * 1.38;
   if (vBottom > 1020) fail("the closing scripture runs past the bottom safe line");
   let prevEnd = 0;
-  for (const g of pr.groups) {
+  for (const g of EXCEPTION ? [] : pr.groups) {
     if (g.start !== prevEnd) fail("prayer groups must run with no gap");
     prevEnd = g.end;
     if (g.end - g.start < 2 * RULES.prayer_crossfade_frames) fail("a prayer group is too short to fade in and out");
     if (g.text.length < 60) fail(`a prayer group is only ${g.text.length} letters, too short to stand alone`);
     if (bp.layout.prayer_page_y + 80 + linesOf(g.text, 36, w) * 36 * 1.5 > 1020) fail("a prayer group runs past the bottom safe line");
   }
-  if (prevEnd !== RULES.prayer_frames) fail("the last prayer group must run to the end of the prayer page");
+  if (!EXCEPTION && prevEnd !== RULES.prayer_frames) fail("the last prayer group must run to the end of the prayer page");
   if (pr.groups.map((g) => g.text).join(" ") !== bp.closing.prayer) fail("the prayer groups, read in order, differ from the prayer");
+  if (EXCEPTION === "line_push") {
+    const beats = bp.closing.prayer_beats || [];
+    if (beats.length !== 4) fail("the pushed prayer needs exactly 4 beats");
+    if (beats.join(" ") !== bp.closing.prayer) fail("the 4 beats, read in order, differ from the prayer");
+    const lines = pr.push;
+    if (!lines || !lines.length) fail("the pushed prayer has no lines");
+    else {
+      const wpx = bp.plates[pr.plate].column_width_px;
+      for (const l of lines) if (l.text.length * 36 * 0.52 > wpx) fail(`a pushed line "${l.text}" is about ${Math.round(l.text.length * 36 * 0.52)} pixels, over the ${wpx} pixel column`);
+      if (lines[0].start < RULES.block_fade_in_frames) fail("the first pushed line must wait for the page to fade in");
+      for (let i = 1; i < lines.length; i++) if (lines[i].start <= lines[i - 1].start) fail("pushed lines must arrive one after another");
+      const rest = pr.frames - lines[lines.length - 1].start;
+      if (rest < PUSH.rest_at_end_frames) fail(`the last pushed line leaves only ${rest} frames of rest`);
+      const room = Math.floor((bp.layout.push_bottom_y - bp.layout.push_top_y) / 54);
+      const last = lines[lines.length - 1];
+      const tail = lines.filter((l) => last.slot - l.slot < room);
+      if (!tail.some((l) => l.beat === 3 && l.first)) fail("the final beat must be fully on screen at the end");
+      if (bp.layout.push_bottom_y + 54 > 1050) fail("the pushed lines run past the bottom safe line");
+    }
+  }
   if (!/Amen\.$/.test(bp.closing.prayer)) fail("the prayer must end with Amen.");
+  ok.push(EXCEPTION ? `layout exception: ${EXCEPTION} on the prayer page only, brand rules unchanged` : "layout exception: none");
   ok.push(`closing: Romans scripture page, then the prayer on its own page for ${pr.frames} frames, then the thank you page for the rest (${(th.frames / FPS).toFixed(1)} seconds)`);
 }
 if (bp.closing.scripture.ref !== "ROMANS 10:9-10") fail("the closing scripture is Romans 10:9-10 in the standard");

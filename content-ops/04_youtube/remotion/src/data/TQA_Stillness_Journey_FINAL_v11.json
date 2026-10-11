@@ -12,7 +12,9 @@
     "intro_y": 340,
     "thanks_center_x": 960,
     "thanks_y": 330,
-    "prayer_page_y": 300
+    "prayer_page_y": 300,
+    "push_bottom_y": 900,
+    "push_top_y": 230
   },
   "plates": {
     "spotlight_candle": {
@@ -104,7 +106,13 @@
       "ref": "ROMANS 10:9-10",
       "text": "That if thou shalt confess with thy mouth the Lord Jesus, and shalt believe in thine heart that God hath raised him from the dead, thou shalt be saved. For with the heart man believeth unto righteousness; and with the mouth confession is made unto salvation."
     },
-    "prayer": "Father, I thank You for the safety of the secret place. Forgive me for the times I have lived by my feelings or allowed the noise of this world to dictate my peace. I choose right now to step into the Circle of Silence and rest under your unshakeable sovereignty. Anchor my heart in Your absolute truth, clear away the exhaustion, and teach me to walk daily in Your quiet authority. In Jesus' name, Amen."
+    "prayer": "Father, I enter the Circle of Silence tonight and lay down the strain of self-sufficiency. I thank You that Your righteousness is my unyielding cover. Forgive me for the moments I allowed the panic of worldly performance to blind my eyes from Your stationary faithfulness. I choose to shut the door on the heavy burdens of this day and rest completely under the shadow of Your wings. Infuse my heart with Your quiet authority, that I may sleep in perfect peace and wake up tomorrow completely restored. In Jesus' name, Amen.",
+    "prayer_beats": [
+      "Father, I enter the Circle of Silence tonight and lay down the strain of self-sufficiency. I thank You that Your righteousness is my unyielding cover.",
+      "Forgive me for the moments I allowed the panic of worldly performance to blind my eyes from Your stationary faithfulness.",
+      "I choose to shut the door on the heavy burdens of this day and rest completely under the shadow of Your wings.",
+      "Infuse my heart with Your quiet authority, that I may sleep in perfect peace and wake up tomorrow completely restored. In Jesus' name, Amen."
+    ]
   },
   "thanks": {
     "heading": "Thank you for watching.",
@@ -113,5 +121,6 @@
       "Reach out. Come home to The Quiet Authority."
     ],
     "link": "sanctuary-grace.com"
-  }
+  },
+  "layout_exception": "line_push"
 }

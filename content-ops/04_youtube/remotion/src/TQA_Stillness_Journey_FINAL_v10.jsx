@@ -12,6 +12,7 @@ import {
   continueRender,
   delayRender,
   interpolate,
+  spring,
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
@@ -149,6 +150,7 @@ const Closing = ({ item }) => {
   );
 };
 
+// PRAYER-BEGIN (the only part a one-video layout exception may change)
 // The prayer has its own page, a few lines at a time.
 const Prayer = ({ item }) => {
   const frame = useCurrentFrame();
@@ -173,6 +175,7 @@ const Prayer = ({ item }) => {
   );
 };
 
+// PRAYER-END
 const Thanks = ({ item }) => {
   const frame = useCurrentFrame();
   const o = ease(frame, 0, RULES.thanks_fade_in_frames);
