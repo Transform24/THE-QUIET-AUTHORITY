@@ -5,6 +5,8 @@ import { TQAPatternComposition } from "./TQAPatternComposition";
 import { TQA_Stillness_Journey_FINAL_v10 } from "./TQA_Stillness_Journey_FINAL_v10";
 import { TQAShortClip } from "./TQAShortClip";
 import { SHORT } from "./tqaShorts.mjs";
+import { TQA_Stillness_Journey_FINAL_v13 } from "./TQA_Stillness_Journey_FINAL_v13";
+import tqaVideo13 from "./data/TQA_Stillness_Journey_FINAL_v13.json";
 import { TQA_Stillness_Journey_FINAL_v12 } from "./TQA_Stillness_Journey_FINAL_v12";
 import tqaVideo12 from "./data/TQA_Stillness_Journey_FINAL_v12.json";
 import { TQA_Stillness_Journey_FINAL_v11 } from "./TQA_Stillness_Journey_FINAL_v11";
@@ -87,6 +89,17 @@ export const RemotionRoot = () => {
         width={SHORT.width}
         height={SHORT.height}
         defaultProps={{ video: "v12", clip: "A" }}
+      />
+
+      {/* TQA video five (file v13), the hallowed identity, Gate 3. Same standard and prayer push as videos three and four. */}
+      <Composition
+        id="TQA-Stillness-Journey-FINAL-v13"
+        component={TQA_Stillness_Journey_FINAL_v13}
+        durationInFrames={buildTimeline(tqaVideo13).total_frames}
+        fps={tqaVideo13.fps}
+        width={tqaVideo13.width}
+        height={tqaVideo13.height}
+        calculateMetadata={() => ({ durationInFrames: buildTimeline(tqaVideo13).total_frames })}
       />
 
       {/* Psalm 91, one verse per clip. Pass {"verseIndex": 0} to {"verseIndex": 15} */}
