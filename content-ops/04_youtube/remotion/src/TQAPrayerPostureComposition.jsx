@@ -134,27 +134,37 @@ const Teaching = ({ item }) => {
   );
 };
 
-// The closing section: the scripture stays on screen and the prayer settles in the lower third, a few lines at a time.
+// The closing scripture: Romans 10:9-10 on its own page.
 const Closing = ({ item }) => {
   const frame = useCurrentFrame();
-  const b = item.block;
+  const fade = Math.min(ease(frame, 0, RULES.block_fade_in_frames), 1 - ease(frame, item.frames - RULES.block_fade_out_frames, item.frames));
+  return (
+    <div style={{ opacity: fade }}>
+      <div style={box(centerOf(item), layout.top_y, {}, widthOf(item))}>
+        <div style={header(30, "0.3em", "gold")}>{item.block.scripture.ref}</div>
+        <div style={{ height: 26 }} />
+        <Scripture frame={frame} reveal={item.reveal} />
+      </div>
+    </div>
+  );
+};
+
+// The prayer has its own page, a few lines at a time.
+const Prayer = ({ item }) => {
+  const frame = useCurrentFrame();
   const x = RULES.prayer_crossfade_frames;
   const cx = centerOf(item);
   const fade = Math.min(ease(frame, 0, RULES.block_fade_in_frames), 1 - ease(frame, item.frames - RULES.block_fade_out_frames, item.frames));
   return (
     <div style={{ opacity: fade }}>
-      <div style={box(cx, layout.top_y, {}, widthOf(item))}>
-        <div style={header(30, "0.3em", "gold")}>{b.scripture.ref}</div>
-        <div style={{ height: 26 }} />
-        <Scripture frame={frame} reveal={item.reveal} />
+      <div style={box(cx, layout.prayer_page_y, {}, widthOf(item))}>
+        <div style={header(30, "0.3em", "gold")}>A PRAYER</div>
       </div>
       {item.groups.map((g, i) => {
-        const s = item.prayer_start + g.start;
-        const e = item.prayer_start + g.end;
-        const inn = ease(frame, s, s + x);
-        const out = i < item.groups.length - 1 ? 1 - ease(frame, e - x, e) : 1;
+        const inn = ease(frame, g.start, g.start + x);
+        const out = i < item.groups.length - 1 ? 1 - ease(frame, g.end - x, g.end) : 1;
         return (
-          <div key={i} style={box(cx, layout.prayer_lower_third_y, body(32, { opacity: Math.min(inn, out), lineHeight: 1.5 }), widthOf(item))}>
+          <div key={i} style={box(cx, layout.prayer_page_y + 80, body(36, { opacity: Math.min(inn, out), lineHeight: 1.5 }), widthOf(item))}>
             {g.text}
           </div>
         );
@@ -229,6 +239,7 @@ export const TQAPrayerPostureComposition = () => {
             {it.type === "intro" && <Intro item={it} />}
             {it.type === "teaching" && <Teaching item={it} />}
             {it.type === "closing" && <Closing item={it} />}
+            {it.type === "prayer" && <Prayer item={it} />}
             {it.type === "thanks" && <Thanks item={it} />}
           </AbsoluteFill>
         </Sequence>

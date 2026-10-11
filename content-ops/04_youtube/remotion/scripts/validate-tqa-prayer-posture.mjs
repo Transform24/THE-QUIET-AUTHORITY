@@ -55,7 +55,7 @@ ok.push(`layout: every text box held to ${MAX} pixels or less, kept off the figu
 // 3. Timeline from the shared rules
 const tl = buildTimeline(bp);
 const ids = tl.items.map((i) => i.id).join(",");
-const wantIds = ["intro", ...bp.teaching_blocks.map((_, i) => `block${i + 1}`), "closing", "thanks"].join(",");
+const wantIds = ["intro", ...bp.teaching_blocks.map((_, i) => `block${i + 1}`), "closing", "prayer", "thanks"].join(",");
 if (ids !== wantIds) fail(`order must be ${wantIds}`);
 let prev = 0;
 for (const it of tl.items) {
@@ -75,6 +75,7 @@ if (RULES.block_fade_in_frames > 24 || RULES.block_fade_out_frames > 24) fail("s
 if (RULES.hold_after_reflection_frames > 192) fail("the hold after a reflection must stay at 8 seconds or less");
 if (RULES.pause_after_scripture_frames !== 96) fail("the pause after each scripture must be 4 seconds");
 if (RULES.prayer_frames !== 2712) fail("the prayer must last 1 minute 53 seconds");
+if (RULES.total_frames !== 11520) fail("every TQA video is exactly 8 minutes, 11520 frames");
 if (RULES.music_fade_out_frames !== RULES.picture_fade_out_frames) fail("the picture and the music must fade out over the same frames");
 for (const it of tl.items.filter((i) => i.type === "teaching")) {
   const w = bp.plates[it.plate].column_width_px;
@@ -85,24 +86,29 @@ for (const it of tl.items.filter((i) => i.type === "teaching")) {
 }
 {
   const c = tl.items.find((i) => i.id === "closing");
+  const pr = tl.items.find((i) => i.id === "prayer");
+  const th = tl.items.find((i) => i.id === "thanks");
   const w = bp.plates[c.plate].column_width_px;
+  if (tl.total_frames !== RULES.total_frames) fail(`the video must be exactly ${RULES.total_frames} frames (8:00), found ${tl.total_frames}`);
+  if (th.frames < RULES.min_thanks_frames) fail(`the words fill too much of the 8 minutes: the thank you page would be only ${th.frames} frames`);
+  if (pr.frames !== RULES.prayer_frames) fail("the prayer page must last 1 minute 53 seconds");
   const vBottom = bp.layout.top_y + 40 + 26 + linesOf(c.block.scripture.text, 40, w) * 40 * 1.38;
-  if (vBottom + 10 > bp.layout.prayer_lower_third_y) fail("the closing scripture runs into the prayer");
-  if (bp.layout.prayer_lower_third_y < (bp.height * 2) / 3) fail("the prayer must sit in the lower third");
+  if (vBottom > 1020) fail("the closing scripture runs past the bottom safe line");
   let prevEnd = 0;
-  for (const g of c.groups) {
+  for (const g of pr.groups) {
     if (g.start !== prevEnd) fail("prayer groups must run with no gap");
     prevEnd = g.end;
     if (g.end - g.start < 2 * RULES.prayer_crossfade_frames) fail("a prayer group is too short to fade in and out");
     if (g.text.length < 60) fail(`a prayer group is only ${g.text.length} letters, too short to stand alone`);
-    if (bp.layout.prayer_lower_third_y + linesOf(g.text, 32, w) * 32 * 1.5 > 1050) fail("a prayer group runs past the bottom safe line");
+    if (bp.layout.prayer_page_y + 80 + linesOf(g.text, 36, w) * 36 * 1.5 > 1020) fail("a prayer group runs past the bottom safe line");
   }
-  if (prevEnd !== RULES.prayer_frames) fail("the last prayer group must run to the end of the prayer window");
-  if (c.groups.map((g) => g.text).join(" ") !== bp.closing.prayer) fail("the prayer groups, read in order, differ from the prayer");
+  if (prevEnd !== RULES.prayer_frames) fail("the last prayer group must run to the end of the prayer page");
+  if (pr.groups.map((g) => g.text).join(" ") !== bp.closing.prayer) fail("the prayer groups, read in order, differ from the prayer");
   if (!/Amen\.$/.test(bp.closing.prayer)) fail("the prayer must end with Amen.");
+  ok.push(`closing: Romans scripture page, then the prayer on its own page for ${pr.frames} frames, then the thank you page for the rest (${(th.frames / FPS).toFixed(1)} seconds)`);
 }
 if (bp.closing.scripture.ref !== "ROMANS 10:9-10") fail("the closing scripture is Romans 10:9-10 in the standard");
-ok.push(`pace: ${RULES.scripture_words_per_minute} words a minute, 4 second pause, 8 second hold, 1 second dissolves, prayer 1:53, music and picture fade out together`);
+ok.push(`pace: ${RULES.scripture_words_per_minute} words a minute, 4 second pause, 8 second hold, 1 second dissolves, prayer on its own page 1:53, exactly 8:00, music and picture fade out together`);
 
 // 5. Thank you page
 if (bp.thanks.heading !== "Thank you for watching.") fail('the thank you page must open with "Thank you for watching."');

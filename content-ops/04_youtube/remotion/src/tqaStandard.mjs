@@ -12,12 +12,13 @@ export const RULES = Object.freeze({
   pause_after_scripture_frames: 96, // 4 seconds of quiet before the reflection begins
   reflection_letters_per_second: 4.5, // the reflection types slowly
   hold_after_reflection_frames: 192, // 8 seconds, the last 1 second is the fade out
-  pause_after_closing_scripture_frames: 96, // 4 seconds, then the prayer begins
+  hold_after_closing_scripture_frames: 192, // Romans 10:9-10 rests 8 seconds, then the prayer has its own page
+  total_frames: 11520, // every TQA video is exactly 8 minutes (YouTube standard)
+  min_thanks_frames: 288, // the thank you page is never shorter than 12 seconds
   prayer_frames: 2712, // 1 minute 53 seconds
   prayer_crossfade_frames: 48,
   prayer_group_max_letters: 190,
   prayer_group_base_weight: 80,
-  thanks_frames: 288, // 12 seconds
   thanks_fade_in_frames: 24,
   music_fade_in_frames: 48,
   music_fade_out_frames: 192,
@@ -93,13 +94,17 @@ export const buildTimeline = (bp) => {
   {
     const c = bp.closing;
     const sc = scriptureReveal(c.scripture.text);
-    const prayer_start = sc.visible + RULES.pause_after_closing_scripture_frames;
     push({
       id: "closing", type: "closing", plate: c.plate, background_level: c.background_level,
-      block: c, reveal: sc, prayer_start, groups: prayerGroups(c.prayer),
-      frames: prayer_start + RULES.prayer_frames,
+      block: c, reveal: sc, frames: sc.visible + RULES.hold_after_closing_scripture_frames,
+    });
+    push({
+      id: "prayer", type: "prayer", plate: c.plate, background_level: c.background_level,
+      block: c, groups: prayerGroups(c.prayer), frames: RULES.prayer_frames,
     });
   }
-  push({ id: "thanks", type: "thanks", plate: bp.closing.plate, frames: RULES.thanks_frames, background_level: 0.45 });
+  // The thank you page takes whatever time is left, so every video is exactly 8 minutes.
+  const thanks_frames = RULES.total_frames - at;
+  push({ id: "thanks", type: "thanks", plate: bp.closing.plate, frames: thanks_frames, background_level: 0.45 });
   return { items, total_frames: at };
 };
