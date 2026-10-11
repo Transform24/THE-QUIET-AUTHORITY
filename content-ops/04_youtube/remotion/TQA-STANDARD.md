@@ -47,3 +47,9 @@ The prayer page of `TQA_Stillness_Journey_FINAL_v11` is allowed to arrive line b
 `scripts/generate-shorts-pipeline.mjs` plans three 60 second vertical cuts (1080 by 1920) from each finished video: Clip A the first scripture with its reflection, Clip B the middle scripture with its reflection, Clip C the prayer arriving one line at a time. The layout is `src/TQAShortClip.jsx` and the pace rules are in `src/tqaShorts.mjs`. A short reads a little quicker than the long video (105 words a minute) because it is read on a phone. Text boxes stay at 780 pixels in Jost, inside the phone safe zone, with the picture centered on the candle or the seated woman and the Version 8 music underneath. The last 6 seconds point to the full video and sanctuary-grace.com.
 
 Commands (run in the remotion folder): `npm run shorts:plan` writes the caption documents to `workflows/output/shorts-staged/`, `npm run shorts:check` checks the assets, the plan, the captions and the shared engine, and `npm run shorts:render -- v12 A` renders one clip into `out/shorts/`. Nothing uploads. v9 carries the same words as v10, so its clips repeat v10's.
+
+## Locked pacing: long videos and shorts (permanent note)
+Pacing is intentionally set at two different speeds, and neither is to be changed without Grace's approval.
+- The Long-Form Master (every 8 minute video) is locked at 80 words per minute for the scripture reveal.
+- Shorts are locked at 105 words per minute, for mobile performance. A short is read on a phone in 60 seconds, so it moves a little quicker.
+The long video rule lives in `src/tqaStandard.mjs` and the shorts rule in `src/tqaShorts.mjs`.
