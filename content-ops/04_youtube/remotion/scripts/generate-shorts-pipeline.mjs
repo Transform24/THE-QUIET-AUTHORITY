@@ -21,6 +21,7 @@ const VIDEOS = {
   v9: { data: "src/data/TQA_Stillness_Journey_FINAL_v10.json", release: "Sunday, October 18, 2026", title: "The Posture of Prayer | Matthew 6:6-9 (KJV) | A Quiet Prayer to Rest In", prayer: "closing", same_as: "v10" },
   v11: { data: "src/data/TQA_Stillness_Journey_FINAL_v11.json", release: "Sunday, November 1, 2026", title: "Waiting on the LORD | Psalm 27 and Psalm 91:1 (KJV) | A Quiet Bedtime Prayer", prayer: "bedtime" },
   v10: { data: "src/data/TQA_Stillness_Journey_FINAL_v10.json", release: "Sunday, November 15, 2026", title: "The Posture of Prayer | Matthew 6:6-9 and Romans 10:9-10 (KJV) | A Quiet Prayer to Rest In", prayer: "closing" },
+  v13: { data: "src/data/TQA_Stillness_Journey_FINAL_v13.json", release: "Sunday, October 25, 2026", title: "The Hallowed Identity | Proverbs 18:10, Isaiah 43:18, Isaiah 43:19 (KJV) | A Quiet Morning Declaration", prayer: "morning" },
   v12: { data: "src/data/TQA_Stillness_Journey_FINAL_v12.json", release: "Sunday, November 29, 2026", title: "The Secret of the LORD | Psalm 25:14, Proverbs 3:32, Malachi 3:6 (KJV) | A Quiet Morning Prayer", prayer: "morning" },
 };
 const EMDASH = String.fromCharCode(0x2014);
@@ -157,7 +158,11 @@ const check = (plans) => {
   const reg = JSON.parse(read("src/data/kjv-registry.json")).verses;
   for (const { id, clip, plan } of plans) {
     if (!plan.fits) fail(`${id} clip ${clip} does not fit in 60 seconds`);
-    if (plan.kind === "verse" && reg[plan.scripture.ref]?.text !== plan.scripture.text) { kjvOk = false; fail(`${id} clip ${clip}: ${plan.scripture.ref} does not match the KJV list`); }
+    if (plan.kind === "verse") {
+      const parts = plan.scripture.parts || [plan.scripture];
+      const listed = parts.map((x) => reg[x.ref]?.text).join(" ");
+      if (listed !== plan.scripture.text || parts.some((x) => !reg[x.ref])) { kjvOk = false; fail(`${id} clip ${clip}: ${plan.scripture.ref} does not match the KJV list`); }
+    }
     if (plan.kind === "verse" && plan.cps > SHORT.max_cps + 0.001) fail(`${id} clip ${clip}: the reflection types too fast`);
   }
   if (kjvOk) ok.push(`plan: all ${plans.length} clips fit inside 60 seconds, every scripture matches the KJV list`);

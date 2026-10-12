@@ -122,5 +122,16 @@
     ],
     "link": "sanctuary-grace.com"
   },
-  "layout_exception": "line_push"
+  "layout_exception": "line_push",
+  "shorts": {
+    "B": {
+      "combine_blocks": [
+        1,
+        2
+      ],
+      "reflection_block": 2,
+      "compact": true,
+      "note": "Clip B shows Isaiah 43:18 and 43:19 together, with the 43:19 reflection."
+    }
+  }
 }

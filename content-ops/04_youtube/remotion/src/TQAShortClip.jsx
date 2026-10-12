@@ -7,13 +7,14 @@ import { AbsoluteFill, Audio, Img, continueRender, delayRender, interpolate, spr
 import v10 from "./data/TQA_Stillness_Journey_FINAL_v10.json";
 import v11 from "./data/TQA_Stillness_Journey_FINAL_v11.json";
 import v12 from "./data/TQA_Stillness_Journey_FINAL_v12.json";
+import v13 from "./data/TQA_Stillness_Journey_FINAL_v13.json";
 import { SHORT, planClip } from "./tqaShorts.mjs";
 import spotlightCandle from "./assets/tqa/light-stream-plate.jpg";
 import characterSpotlight from "./assets/tqa/character-spotlight-plate.jpg";
 import musicTrack from "./assets/tqa/tqa-music-v8-extended.m4a";
 
 // v9 carries the same words as v10, so it reads the v10 data file.
-export const SHORT_SOURCES = { v9: v10, v10, v11, v12 };
+export const SHORT_SOURCES = { v9: v10, v10, v11, v12, v13 };
 const IMAGES = { spotlight_candle: spotlightCandle, character_spotlight: characterSpotlight };
 // Where the candle and the seated woman sit in each picture (percent from the left), so the crop keeps them in the middle.
 const FOCUS = { spotlight_candle: "66% 50%", character_spotlight: "52% 50%" };
@@ -54,7 +55,7 @@ const Verse = ({ plan, colors }) => {
   return (
     <div>
       <div style={box(SHORT.safe_top_px + 60, header(38, "0.3em", "gold", colors))}>{plan.scripture.ref}</div>
-      <div style={box(SHORT.safe_top_px + 150, body(50, colors, { lineHeight: 1.38 }))}>
+      <div style={box(SHORT.safe_top_px + 150, body(plan.compact ? 42 : 50, colors, { lineHeight: 1.38 }))}>
         {plan.reveal.words.map((w, i) => (
           <span key={i} style={{ opacity: ease(frame, w.start, w.start + SHORT.word_fade_frames) }}>
             {w.text}

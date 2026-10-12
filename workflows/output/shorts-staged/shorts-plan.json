@@ -83,6 +83,33 @@
       "frames": 1440
     },
     {
+      "file": "out/shorts/v13-clip-A.mp4",
+      "video": "v13",
+      "clip": "A",
+      "name": "Verse One",
+      "plate": "spotlight_candle",
+      "fits_60_seconds": true,
+      "frames": 1440
+    },
+    {
+      "file": "out/shorts/v13-clip-B.mp4",
+      "video": "v13",
+      "clip": "B",
+      "name": "Mid-way Reflection",
+      "plate": "character_spotlight",
+      "fits_60_seconds": true,
+      "frames": 1440
+    },
+    {
+      "file": "out/shorts/v13-clip-C.mp4",
+      "video": "v13",
+      "clip": "C",
+      "name": "The Outro Prayer Push",
+      "plate": "character_spotlight",
+      "fits_60_seconds": true,
+      "frames": 1440
+    },
+    {
       "file": "out/shorts/v12-clip-A.mp4",
       "video": "v12",
       "clip": "A",

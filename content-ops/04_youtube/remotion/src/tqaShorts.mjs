@@ -45,13 +45,24 @@ export const planClip = (bp, clip) => {
   const contentEnd = SHORT.frames - SHORT.endcard_frames;
   if (clip === "A" || clip === "B") {
     const item = clip === "A" ? teaching[0] : teaching[Math.floor(teaching.length / 2)];
-    const b = item.block;
+    // A video may ask for clip B to join two scriptures (for example Isaiah 43:18 and 43:19) and use one block's reflection.
+    const combo = clip === "B" ? bp.shorts?.B : null;
+    const b = combo
+      ? {
+          scripture: {
+            ref: combo.combine_blocks.map((i) => teaching[i].block.scripture.ref).join("-").replace(/(\w+ \d+:\d+)-(\w+ )?(\d+):(\d+)/, (m, a, w, c, v) => `${a}-${v}`),
+            text: combo.combine_blocks.map((i) => teaching[i].block.scripture.text).join(" "),
+            parts: combo.combine_blocks.map((i) => teaching[i].block.scripture),
+          },
+          reflection: teaching[combo.reflection_block].block.reflection,
+        }
+      : item.block;
     const reveal = revealWords(b.scripture.text);
     const typeStart = reveal.visible + SHORT.pause_frames;
     const window = contentEnd - 72 - typeStart; // leave 3 seconds to rest before the end card
     const cps = Math.min(SHORT.max_cps, Math.max(SHORT.min_cps, (b.reflection.length * FPS) / Math.max(window, 1)));
     const typeFrames = Math.ceil((b.reflection.length * FPS) / cps);
-    return { clip, kind: "verse", plate: item.plate, background_level: 0.5, scripture: b.scripture, reveal, reflection: b.reflection, type_start: typeStart, type_end: typeStart + typeFrames, cps, content_end: contentEnd, fits: typeStart + typeFrames <= contentEnd };
+    return { clip, kind: "verse", compact: !!combo?.compact, plate: item.plate, background_level: 0.5, scripture: b.scripture, reveal, reflection: b.reflection, type_start: typeStart, type_end: typeStart + typeFrames, cps, content_end: contentEnd, fits: typeStart + typeFrames <= contentEnd };
   }
   const closing = bp.closing;
   const beats = closing.prayer_beats || prayerGroups(closing.prayer).map((g) => g.text);

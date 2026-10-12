@@ -12,11 +12,12 @@ Scripture in every description was checked word for word against the King James 
 
 ## Release calendar (schedule inside YouTube Studio)
 
-Every other Sunday morning at 5:00 AM Eastern time (6:00 AM is fine too). In YouTube Studio, upload the file, choose Visibility, then Schedule, and enter the date and time below. The automatic upload workflow stays off. Nothing uploads unless you do it.
+Sunday mornings at 5:00 AM Eastern time (every other Sunday, with Video Five added on Oct 25) (6:00 AM is fine too). In YouTube Studio, upload the file, choose Visibility, then Schedule, and enter the date and time below. The automatic upload workflow stays off. Nothing uploads unless you do it.
 
 | Week | Sunday | Time (Eastern) | Video | File |
 |---|---|---|---|---|
 | 1 | Oct 18 | 5:00 AM | v9, The Posture of Prayer (Matthew 6) | TQA_Stillness_Journey_FINAL_v9.mp4 |
+| 2 | Oct 25 | 5:00 AM | v13, The Hallowed Identity (Gate 3, morning declaration) | TQA_Stillness_Journey_FINAL_v13.mp4 |
 | 3 | Nov 1 | 5:00 AM | v11, Waiting on the LORD (Psalm 27, bedtime prayer) | TQA_Stillness_Journey_FINAL_v11.mp4 |
 | 5 | Nov 15 | 5:00 AM | v10, The Posture of Prayer with Romans 10:9-10 | TQA_Standard_8min_Posture_of_Prayer.mp4 |
 | 7 | Nov 29 | 5:00 AM | v12, The Secret of the LORD (morning prayer) | TQA_Stillness_Journey_FINAL_v12.mp4 |
@@ -30,6 +31,17 @@ Chapter markers to paste beside each date (also in each video's section below):
 2:15 Matthew 6:6
 4:30 Matthew 6:9
 6:05 A closing prayer
+```
+
+**Oct 25, v13 (Video Five)**
+```
+0:00 Sanctuary Grace Ministry presents The Quiet Authority
+0:15 Proverbs 18:10
+1:23 Isaiah 43:18
+2:27 Isaiah 43:19
+3:52 Romans 10:9-10
+4:37 A morning declaration
+7:30 Thank you for watching
 ```
 
 **Nov 1, v11**
@@ -259,6 +271,57 @@ Sanctuary Grace Ministry: sanctuary-grace.com
 
 **Tags**
 morning prayer, start your day with God, Psalm 25:14, Proverbs 3:32, Malachi 3:6, salvation, KJV, King James Bible, quiet time, Christian prayer, scripture meditation, The Quiet Authority, Sanctuary Grace Ministry
+
+---
+
+## Video 5: TQA_Stillness_Journey_FINAL_v13.mp4
+Video Five, Gate 3, The Hallowed Identity. Release: Sunday, October 25, 5:00 AM Eastern. The reflections and the declaration were drafted by Claude with your permission, and you have approved them.
+
+**Title**
+The Hallowed Identity | Proverbs 18:10, Isaiah 43:18, Isaiah 43:19 (KJV) | A Quiet Morning Declaration
+
+**Description (paste as is)**
+```
+When your own strength gives out, run into the name of the LORD. Put down the old script, and walk where He is making a new way.
+
+This eight minute time of scripture and prayer is for the start of your day.
+
+Proverbs 18:10 (KJV)
+"The name of the LORD is a strong tower: the righteous runneth into it, and is safe."
+
+Isaiah 43:18 (KJV)
+"Remember ye not the former things, neither consider the things of old."
+
+Isaiah 43:19 (KJV)
+"Behold, I will do a new thing; now it shall spring forth; shall ye not know it? I will even make a way in the wilderness, and rivers in the desert."
+
+Romans 10:9-10 (KJV)
+"That if thou shalt confess with thy mouth the Lord Jesus, and shalt believe in thine heart that God hath raised him from the dead, thou shalt be saved. For with the heart man believeth unto righteousness; and with the mouth confession is made unto salvation."
+
+Chapters
+0:00 Sanctuary Grace Ministry presents The Quiet Authority
+0:15 Proverbs 18:10
+1:23 Isaiah 43:18
+2:27 Isaiah 43:19
+3:52 Romans 10:9-10
+4:37 A morning declaration
+7:30 Thank you for watching
+
+A morning declaration
+This morning I lay down every old script and every voice that scolded me. The name of the LORD is my strong tower, and I run into it.
+I do not remember the former things. What was spoken over me in the past has no hold on this day.
+I see the new thing springing forth. The God who made a way in the wilderness is making a way before me now.
+I walk out in quiet authority, safe in His name, steady in His pattern and led by Him. In Jesus' name, Amen.
+
+Scripture is from the King James Version.
+
+Sanctuary Grace Ministry: sanctuary-grace.com
+
+#TheQuietAuthority #KJV #Prayer
+```
+
+**Tags**
+morning declaration, morning prayer, name of the LORD, strong tower, Proverbs 18:10, Isaiah 43:18, Isaiah 43:19, salvation, KJV, King James Bible, quiet time, Christian prayer, scripture meditation, The Quiet Authority, Sanctuary Grace Ministry
 
 ---
 
