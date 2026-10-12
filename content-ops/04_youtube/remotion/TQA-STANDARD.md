@@ -10,7 +10,7 @@ This is the permanent standard for every TQA teaching video. It matches the vide
 - Fonts: Cinzel for headers (gold), Jost for body text (cream).
 - Text boxes are 780 pixels wide at most, kept off the figure, jar and candle.
 - Words: KJV only for scripture, no em dashes, no emoji, no self-help words (burnout and the rest of the banned list).
-- Nothing uploads to YouTube. Grace uploads herself.
+- Uploads to YouTube: the old rule "Nothing uploads to YouTube. Grace uploads herself." was lifted by Grace on October 11, 2026. See "Upload restriction lifted" at the end of this file.
 
 ## 2. The order, one step at a time
 Every video is exactly 8 minutes: 11,520 frames at 24 frames a second. This is the YouTube standard.
@@ -59,3 +59,6 @@ The automatic Pinterest scheduler is paused to protect the account's standing. T
 
 ## Engagement Metrics Tracker (channel numbers on the approval gate)
 `scripts/capture-sanctuary-insights.mjs` turns the numbers Grace exports from YouTube Studio into the gauges on `approval-gate.html`. She fills in `workflows/output/engagement-input.json` (the channel log, made with `--template`), and `--capture` writes `workflows/output/engagement-metrics.json`. For each of the five master videos the gate shows a Hook rate (still watching at 30 seconds), a Retention drop-off (100 minus the average percentage viewed) and a Traffic redirection (clicks to sanctuary-grace.com divided by views). Each video is paired with its top 60 second short, and the pairs are sorted from highest engagement to lowest. A short's engagement is 70 percent how much of it is watched plus 30 percent how many click through. v9 uses the v10 shorts. No number is ever estimated: anything not in the log shows "no data yet". `node scripts/capture-sanctuary-insights.mjs --check` proves the maths and the sorting.
+
+## Upload restriction lifted (permanent record, October 11, 2026)
+On October 11, 2026, Grace lifted the old rule that said nothing uploads to YouTube and that she uploads herself. In her own words in the session: "I, Grace, lift rule 6. You are explicitly authorized to upload my videos to YouTube on the calendar dates." The authorization covers the five master videos on their calendar Sundays at 5:00 AM Eastern: v9 on Oct 18, v13 on Oct 25, v11 on Nov 1, v10 on Nov 15 and v12 on Nov 29. Each is meant to be uploaded privately and scheduled to go public on its own date, one at a time, never all at once. The authorization does not cover anything else: no other video, no shorts, and nothing on Pinterest or Instagram, which stay paused. This note records the decision. The rule in the blueprint on `main` must be updated to match before any upload runs.
