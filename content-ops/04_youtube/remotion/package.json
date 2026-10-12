@@ -20,6 +20,9 @@
     "validate:tqa": "node scripts/validate-tqa-pattern.mjs",
     "prerender:tqa": "npm run validate:tqa && npm run stage-audio",
     "render:tqa": "remotion render src/index.js TQAPattern out/tqa-pattern-8min.mp4",
+    "prerender:tqa-v9": "npm run validate:tqa && npm run stage-audio",
+    "render:tqa-v9": "remotion render src/index.js TQAPattern out/TQA_Stillness_Journey_FINAL_v9.mp4 --overwrite",
+    "postrender:tqa-v9": "node ../../../scripts/verify-visual-integrity.mjs out/TQA_Stillness_Journey_FINAL_v9.mp4",
     "validate:tqa-prayer": "node scripts/validate-tqa-prayer-posture.mjs",
     "prerender:tqa-prayer": "npm run validate:tqa-prayer && npm run stage-audio",
     "validate:tqa-v11": "node scripts/validate-tqa-prayer-posture.mjs TQA_Stillness_Journey_FINAL_v11",
@@ -34,7 +37,8 @@
     "validate:tqa-v13": "node scripts/validate-tqa-prayer-posture.mjs TQA_Stillness_Journey_FINAL_v13",
     "prerender:tqa-v13": "npm run validate:tqa-v13",
     "render:tqa-v13": "remotion render src/index.js TQA-Stillness-Journey-FINAL-v13 out/TQA_Stillness_Journey_FINAL_v13.mp4 --overwrite",
-    "render:tqa-prayer": "remotion render src/index.js TQA-Stillness-Journey-FINAL-v10 out/TQA_Stillness_Journey_FINAL_v10.mp4 --overwrite"
+    "render:tqa-prayer": "remotion render src/index.js TQA-Stillness-Journey-FINAL-v10 out/TQA_Stillness_Journey_FINAL_v10.mp4 --overwrite",
+    "verify:visual": "node ../../../scripts/verify-visual-integrity.mjs"
   },
   "remotion": {
     "entryPoint": "src/index.js"

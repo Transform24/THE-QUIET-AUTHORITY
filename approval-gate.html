@@ -365,10 +365,11 @@
                 const data = await response.json();
                 const metrics = await fetchMetrics();
                 const thumbs = await fetchThumbs();
+                const integrity = await fetchIntegrity();
                 const videos = data.videos.slice().sort((a, b) => a.date.localeCompare(b.date));
                 document.getElementById('loadingState').style.display = 'none';
                 document.getElementById('itemCounter').textContent = videos.length + ' videos scheduled';
-                document.getElementById('itemDisplay').innerHTML = renderActions(data.action_cards || []) + renderReview(data.pending_review || []) + videos.map(v => `
+                document.getElementById('itemDisplay').innerHTML = renderIntegrity(integrity) + renderActions(data.action_cards || []) + renderReview(data.pending_review || []) + videos.map(v => `
                     <div class="item-card">
                         <div class="platform-badge">WEEK ${escapeHtml(v.week)} &middot; ${escapeHtml(v.version.toUpperCase())}</div>
                         <div class="item-date">${escapeHtml(prettyDate(v.date, v.time))}</div>
@@ -450,6 +451,30 @@
                 </div>`).join('');
             const pairs = '<div class="item-card"><div class="platform-badge">TOP SHORT FOR EACH VIDEO</div><div class="item-date">Sorted from highest engagement to lowest</div>' + rows + '</div>';
             return head + cards + pairs + '<p class="counter" style="text-align:center;">These numbers come only from the channel log. Nothing here is estimated. Updated ' + escapeHtml(m.updated) + '.</p>';
+        }
+
+        // Visual integrity result from scripts/verify-visual-integrity.mjs. A video that fails shows as BLOCKED.
+        async function fetchIntegrity() {
+            try {
+                const r = await fetch('workflows/output/visual-integrity.json?v=' + Date.now());
+                return r.ok ? await r.json() : null;
+            } catch (e) { return null; }
+        }
+
+        function renderIntegrity(v) {
+            if (!v || !v.videos) return '';
+            const blocked = !v.layout_ok || v.videos.some(x => !x.ok);
+            const rows = v.videos.map(x => `
+                <div style="padding:8px 0; border-top:1px solid #272727; color:${x.ok ? '#F5F0E8' : '#C1593C'};">
+                    ${escapeHtml(x.video)}: ${x.ok ? 'passed, ' + escapeHtml(x.frames) + ' frames, longest black run before the fade ' + escapeHtml(x.longest_black_run_before_fade) + ' frames' : 'BLOCKED. ' + escapeHtml(x.problems.join(' '))}
+                </div>`).join('');
+            return `
+                <div class="item-card" style="border-color:${blocked ? '#C1593C' : '#C9A84C'};">
+                    <div class="platform-badge">VISUAL INTEGRITY, ${escapeHtml(v.checked)}</div>
+                    <div class="item-date">${blocked ? 'BLOCKED. Do not approve until this is fixed.' : 'Passed'}</div>
+                    <p>${escapeHtml(v.rule)} The picture and music fade out together over the last 8 seconds. That final fade is part of the standard and is not counted.</p>
+                    ${rows}
+                </div>`;
         }
 
         // Action and status cards for Grace, shown at the very top of the gate.
