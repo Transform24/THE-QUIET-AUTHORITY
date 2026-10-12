@@ -248,5 +248,33 @@
       "badge": "PINTEREST PAUSED",
       "text": "The automatic Pinterest scheduler is paused to protect the account. Pins are made by hand from the vertical Shorts below, using the Pinterest text in each caption card."
     }
+  ],
+  "action_cards": [
+    {
+      "badge": "YOUR ACTION, Q4 HOLIDAY SHOP",
+      "title": "Save the Printful key in GitHub",
+      "status": "Waiting on Grace",
+      "steps": [
+        "1. Printful: developers.printful.com, sign in, create a read-only token named Sanctuary Grace for the store Sanctuary Grace Shop, and copy it.",
+        "2. GitHub: Transform24/THE-QUIET-AUTHORITY, Settings, Secrets and variables, Actions, New repository secret.",
+        "3. Name it exactly SANCTUARY_GRACE_KEY, paste the token, and click Add secret.",
+        "4. Tell Claude: The key is saved. Never paste the key in chat.",
+        "5. Also confirm UPS Mail Innovations on the wall art in Printful, Settings, Shipping."
+      ],
+      "note": "Full steps are in content-ops/06_storefront-sync/Q4-HOLIDAY-SETUP.md on the tqa-compositions branch. The shop filter that hides unverified Printful links is built there too. It reaches the live site only when published to main."
+    },
+    {
+      "badge": "SECURITY STATUS, OCTOBER 12",
+      "title": "What was checked, and what is still yours",
+      "status": "Checked from Cloudflare and the repository",
+      "steps": [
+        "Checked: Cloudflare zone active, SSL Full, Always Use HTTPS on, TLS 1.2 minimum.",
+        "Checked: email sign keys and DMARC present. Worker secret names match the blueprint. No raw keys in the repository.",
+        "Checked: all six gate payment links match the daily test. The old Gate One link is on no page.",
+        "Not checked, needs Grace: GitHub Actions secret values, Stripe account settings and the old Gate One link status in Stripe, and the Printful carrier setting.",
+        "Found: shop.sanctuary-grace.com is a Cloudflare Worker that is not in any repository."
+      ],
+      "note": "Details are in Q4-HOLIDAY-SETUP.md Part 2 and STRIPE-VERIFICATION.md, both in content-ops/06_storefront-sync on the tqa-compositions branch."
+    }
   ]
 }
