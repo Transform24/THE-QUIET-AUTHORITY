@@ -1,0 +1,54 @@
+{
+  "about": "Written by scripts/verify-visual-integrity.mjs. A video that fails shows as BLOCKED on approval-gate.html.",
+  "checked": "2026-10-12",
+  "rule": "No more than 3 frames in a row of solid black before the final fade-out (frame 11328 to 11520). Exactly 11520 frames.",
+  "layout_ok": true,
+  "layout_problems": [],
+  "videos": [
+    {
+      "video": "TQA_Stillness_Journey_FINAL_v9.mp4 (fresh render)",
+      "ok": true,
+      "problems": [],
+      "frames": 11520,
+      "final_fade_starts_at_frame": 11328,
+      "longest_black_run_before_fade": 0,
+      "longest_picture_gap_before_fade": 0
+    },
+    {
+      "video": "TQA_Standard_8min_Posture_of_Prayer.mp4 (video 10, copy on main)",
+      "ok": true,
+      "problems": [],
+      "frames": 11520,
+      "final_fade_starts_at_frame": 11328,
+      "longest_black_run_before_fade": 0,
+      "longest_picture_gap_before_fade": 0
+    },
+    {
+      "video": "TQA_Stillness_Journey_FINAL_v11.mp4",
+      "ok": true,
+      "problems": [],
+      "frames": 11520,
+      "final_fade_starts_at_frame": 11328,
+      "longest_black_run_before_fade": 0,
+      "longest_picture_gap_before_fade": 0
+    },
+    {
+      "video": "TQA_Stillness_Journey_FINAL_v12.mp4",
+      "ok": true,
+      "problems": [],
+      "frames": 11520,
+      "final_fade_starts_at_frame": 11328,
+      "longest_black_run_before_fade": 0,
+      "longest_picture_gap_before_fade": 0
+    },
+    {
+      "video": "TQA_Stillness_Journey_FINAL_v13.mp4",
+      "ok": true,
+      "problems": [],
+      "frames": 11520,
+      "final_fade_starts_at_frame": 11328,
+      "longest_black_run_before_fade": 0,
+      "longest_picture_gap_before_fade": 0
+    }
+  ]
+}
