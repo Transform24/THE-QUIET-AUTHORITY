@@ -281,7 +281,7 @@
     <div class="container">
         <header>
             <h1>Sanctuary Approval Gate</h1>
-            <p class="subtitle">Review and approve content before it goes live</p>
+            <p class="subtitle">Release calendar for the Quiet Authority videos</p>
         </header>
 
         <!-- Login Screen -->
@@ -311,37 +311,25 @@
 
         <div id="loadingState" style="display: none;">
             <div class="loading">
-                <p>Fetching pending items...</p>
+                <p>Loading the release calendar...</p>
                 <div class="spinner"></div>
             </div>
         </div>
     </div>
 
     <script>
-        const GITHUB_REPO = 'transform24/THE-QUIET-AUTHORITY';
-        const GITHUB_API = 'https://api.github.com/repos/' + GITHUB_REPO;
-        const PLATFORMS = ['pinterest', 'substack', 'youtube', 'instagram'];
-
-        let pendingItems = [];
-        let currentIndex = 0;
+        // The release calendar. It reads workflows/output/youtube-schedule.json and shows only those videos,
+        // ordered by date. Nothing on this page uploads or moves a file.
+        const SCHEDULE_URL = 'workflows/output/youtube-schedule.json';
         let savedPassword = localStorage.getItem('approvalPassword') || 'approve';
-        let authenticated = false;
 
-        // Login
         function login() {
             const password = document.getElementById('passwordInput').value;
-            if (!password) {
-                showLoginError('Please enter a password');
-                return;
-            }
-            if (password !== savedPassword) {
-                showLoginError('Incorrect password');
-                return;
-            }
-            authenticated = true;
+            if (!password) { showLoginError('Please enter a password'); return; }
+            if (password !== savedPassword) { showLoginError('Incorrect password'); return; }
             document.getElementById('loginScreen').classList.remove('active');
             document.getElementById('content').classList.add('active');
-            loadPendingItems();
+            loadSchedule();
         }
 
         function showLoginError(msg) {
@@ -351,220 +339,141 @@
             setTimeout(() => err.style.display = 'none', 3000);
         }
 
-        // Logout
         function logout() {
-            authenticated = false;
-            currentIndex = 0;
-            pendingItems = [];
             document.getElementById('loginScreen').classList.add('active');
             document.getElementById('content').classList.remove('active');
             document.getElementById('passwordInput').value = '';
             document.getElementById('passwordInput').focus();
         }
 
-        // Load pending items
-        async function loadPendingItems() {
-            document.getElementById('loadingState').style.display = 'block';
-            pendingItems = [];
-
-            for (const platform of PLATFORMS) {
-                const folderPath = `workflows/output/${platform}-pending`;
-                try {
-                    const response = await fetch(`${GITHUB_API}/contents/${folderPath}`);
-                    if (response.ok) {
-                        const items = await response.json();
-                        if (Array.isArray(items)) {
-                            for (const item of items) {
-                                if (item.type === 'file' && item.name.endsWith('.md')) {
-                                    pendingItems.push({
-                                        platform,
-                                        name: item.name,
-                                        path: item.path,
-                                        downloadUrl: item.download_url,
-                                        sha: item.sha
-                                    });
-                                }
-                            }
-                        }
-                    }
-                } catch (e) {
-                    console.log(`Could not load ${platform} items:`, e.message);
-                }
-            }
-
-            document.getElementById('loadingState').style.display = 'none';
-
-            if (pendingItems.length === 0) {
-                document.getElementById('itemDisplay').innerHTML = `
-                    <div class="empty-state">
-                        <h2>All Clear</h2>
-                        <p>No pending items waiting for approval</p>
-                    </div>
-                `;
-                document.getElementById('itemCounter').textContent = 'No items';
-            } else {
-                showCurrentItem();
-            }
-        }
-
-        // Show current item
-        async function showCurrentItem() {
-            if (currentIndex >= pendingItems.length) {
-                currentIndex = 0;
-            }
-
-            const item = pendingItems[currentIndex];
-            document.getElementById('itemCounter').textContent =
-                `${currentIndex + 1} of ${pendingItems.length}`;
-
-            try {
-                const response = await fetch(item.downloadUrl);
-                const content = await response.text();
-
-                const display = `
-                    <div class="item-card">
-                        <div class="platform-badge">${item.platform.toUpperCase()}</div>
-                        <div class="item-date">${item.name}</div>
-                        <div class="item-content">${escapeHtml(content)}</div>
-                        <div class="actions">
-                            <button class="btn btn-approve" onclick="approveItem()">✓ APPROVE</button>
-                            <button class="btn btn-reject" onclick="rejectItem()">✗ REJECT</button>
-                        </div>
-                    </div>
-                `;
-
-                document.getElementById('itemDisplay').innerHTML = display;
-                document.getElementById('statusMessage').innerHTML = '';
-            } catch (e) {
-                document.getElementById('itemDisplay').innerHTML = `
-                    <div class="item-card">
-                        <p style="color: #C1593C;">Error loading item: ${e.message}</p>
-                    </div>
-                `;
-            }
-        }
-
-        // Approve item
-        async function approveItem() {
-            const item = pendingItems[currentIndex];
-            showStatus('Processing...', 'loading');
-
-            try {
-                // Read file content
-                const response = await fetch(item.downloadUrl);
-                const content = await response.text();
-
-                // Need GitHub token for write operations
-                const token = prompt('GitHub token needed to approve. Paste your token (stored in browser session only):');
-                if (!token) return;
-
-                // Move file: delete from pending
-                await fetch(`${GITHUB_API}/contents/${item.path}`, {
-                    method: 'DELETE',
-                    headers: {
-                        'Authorization': `token ${token}`,
-                        'Accept': 'application/vnd.github.v3+json'
-                    },
-                    body: JSON.stringify({
-                        message: `Approved by Grace: ${item.name}`,
-                        sha: item.sha
-                    })
-                });
-
-                // Create in approved
-                const approvedPath = item.path.replace('-pending', '-approved');
-                await fetch(`${GITHUB_API}/contents/${approvedPath}`, {
-                    method: 'PUT',
-                    headers: {
-                        'Authorization': `token ${token}`,
-                        'Accept': 'application/vnd.github.v3+json'
-                    },
-                    body: JSON.stringify({
-                        message: `Grace approved: ${item.name}`,
-                        content: btoa(unescape(encodeURIComponent(content)))
-                    })
-                });
-
-                showStatus('✓ Approved and moved to deployment queue', 'success');
-                pendingItems.splice(currentIndex, 1);
-
-                if (pendingItems.length > 0) {
-                    if (currentIndex >= pendingItems.length) currentIndex = 0;
-                    setTimeout(showCurrentItem, 1500);
-                } else {
-                    document.getElementById('itemDisplay').innerHTML = `
-                        <div class="empty-state">
-                            <h2>All Clear</h2>
-                            <p>No more pending items</p>
-                        </div>
-                    `;
-                }
-            } catch (e) {
-                showStatus('Error: ' + e.message, 'error');
-            }
-        }
-
-        // Reject item
-        async function rejectItem() {
-            const item = pendingItems[currentIndex];
-            if (!confirm('Delete this draft permanently?')) return;
-
-            showStatus('Processing...', 'loading');
-
-            try {
-                const token = prompt('GitHub token needed to reject. Paste your token:');
-                if (!token) return;
-
-                await fetch(`${GITHUB_API}/contents/${item.path}`, {
-                    method: 'DELETE',
-                    headers: {
-                        'Authorization': `token ${token}`,
-                        'Accept': 'application/vnd.github.v3+json'
-                    },
-                    body: JSON.stringify({
-                        message: `Grace rejected: ${item.name}`,
-                        sha: item.sha
-                    })
-                });
-
-                showStatus('✓ Draft deleted', 'success');
-                pendingItems.splice(currentIndex, 1);
-
-                if (pendingItems.length > 0) {
-                    if (currentIndex >= pendingItems.length) currentIndex = 0;
-                    setTimeout(showCurrentItem, 1500);
-                } else {
-                    document.getElementById('itemDisplay').innerHTML = `
-                        <div class="empty-state">
-                            <h2>All Clear</h2>
-                            <p>No more pending items</p>
-                        </div>
-                    `;
-                }
-            } catch (e) {
-                showStatus('Error: ' + e.message, 'error');
-            }
-        }
-
-        // Status message
-        function showStatus(msg, type) {
-            const statusEl = document.getElementById('statusMessage');
-            statusEl.innerHTML = `<div class="status ${type}">${msg}</div>`;
-        }
-
-        // Helpers
         function escapeHtml(text) {
-            const map = {
-                '&': '&amp;',
-                '<': '&lt;',
-                '>': '&gt;',
-                '"': '&quot;',
-                "'": '&#039;'
-            };
-            return text.replace(/[&<>"']/g, m => map[m]);
+            const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
+            return String(text).replace(/[&<>"']/g, m => map[m]);
         }
 
-        // Auto-focus password on load
+        function prettyDate(iso, time) {
+            const d = new Date(iso + 'T12:00:00');
+            const day = d.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+            return day + ', ' + time + ' Eastern';
+        }
+
+        async function loadSchedule() {
+            document.getElementById('loadingState').style.display = 'block';
+            try {
+                const response = await fetch(SCHEDULE_URL + '?v=' + Date.now());
+                if (!response.ok) throw new Error('Could not load the schedule');
+                const data = await response.json();
+                const metrics = await fetchMetrics();
+                const videos = data.videos.slice().sort((a, b) => a.date.localeCompare(b.date));
+                document.getElementById('loadingState').style.display = 'none';
+                document.getElementById('itemCounter').textContent = videos.length + ' videos scheduled';
+                document.getElementById('itemDisplay').innerHTML = renderReview(data.pending_review || []) + videos.map(v => `
+                    <div class="item-card">
+                        <div class="platform-badge">WEEK ${escapeHtml(v.week)} &middot; ${escapeHtml(v.version.toUpperCase())}</div>
+                        <div class="item-date">${escapeHtml(prettyDate(v.date, v.time))}</div>
+                        <h2 style="font-family: 'Cormorant Garamond', serif; color: #C9A84C; margin-bottom: 20px;">${escapeHtml(v.title)}</h2>
+                        <div class="item-content">${escapeHtml(v.chapters.join('\n'))}</div>
+                        <div class="actions">
+                            <a class="btn btn-approve" style="text-decoration:none; text-align:center;" href="${escapeHtml(v.video)}" target="_blank" rel="noopener">Watch video</a>
+                            <a class="btn btn-reject" style="text-decoration:none; text-align:center;" href="${escapeHtml(v.card)}" target="_blank" rel="noopener">Open card</a>
+                        </div>
+                    </div>`).join('') + `
+                    <p class="counter" style="text-align:center;">You upload each video yourself in YouTube Studio and schedule it for the date above. Nothing on this page uploads anything.</p>`
+                    + renderInsights(metrics) + renderShorts(data.shorts || []) + renderNotes(data.status_notes || []);
+            } catch (e) {
+                document.getElementById('loadingState').style.display = 'none';
+                document.getElementById('itemDisplay').innerHTML = '<div class="item-card"><p style="color: #C1593C;">' + escapeHtml(e.message) + '</p></div>';
+            }
+        }
+
+
+
+
+        // Engagement Metrics Tracker. It shows only numbers that are in the channel log. Until a video has numbers it says so.
+        async function fetchMetrics() {
+            try {
+                const r = await fetch('workflows/output/engagement-metrics.json?v=' + Date.now());
+                return r.ok ? await r.json() : null;
+            } catch (e) { return null; }
+        }
+
+        function gauge(label, value, hint) {
+            const has = typeof value === 'number';
+            const ring = has ? `conic-gradient(#C9A84C ${value}%, #272727 0)` : '#272727';
+            return `<div style="text-align:center; width:30%; min-width:110px;">
+                <div style="width:96px; height:96px; border-radius:50%; margin:0 auto; background:${ring}; display:flex; align-items:center; justify-content:center;">
+                    <div style="width:72px; height:72px; border-radius:50%; background:#0d0d0d; display:flex; align-items:center; justify-content:center; font-family:'Cormorant Garamond', serif; font-weight:700; font-size:${has ? '1.7rem' : '0.8rem'}; color:${has ? '#C9A84C' : '#807870'};">${has ? Math.round(value) + '%' : 'no data yet'}</div>
+                </div>
+                <div style="margin-top:8px; font-size:0.85rem;">${escapeHtml(label)}</div>
+                <div style="font-size:0.72rem; color:#807870;">${escapeHtml(hint)}</div>
+            </div>`;
+        }
+
+        function renderInsights(m) {
+            const head = '<h2 style="font-family: \'Cormorant Garamond\', serif; color: #C9A84C; text-align:center; margin: 40px 0 20px;">Engagement Metrics Tracker</h2>';
+            if (!m || !m.suites) return head + '<div class="item-card"><p>The tracker has not been set up yet.</p></div>';
+            const cards = m.suites.map(x => `
+                <div class="item-card">
+                    <div class="platform-badge">${escapeHtml(x.id.toUpperCase())}</div>
+                    <div class="item-date">${escapeHtml(x.title)}${x.has_data ? '' : ' (not out yet, or no numbers yet)'}</div>
+                    <div style="display:flex; gap:10px; justify-content:space-between; flex-wrap:wrap;">
+                        ${gauge('Hook rate', x.hook_rate, 'still watching at 30 seconds')}
+                        ${gauge('Retention drop-off', x.retention_dropoff, 'left before the end')}
+                        ${gauge('Traffic redirection', x.traffic_redirection, 'clicked to sanctuary-grace.com')}
+                    </div>
+                </div>`).join('');
+            const rows = m.pairs.map(p => `
+                <div style="display:flex; gap:12px; justify-content:space-between; padding:10px 0; border-top:1px solid #272727;">
+                    <div>${escapeHtml(p.video.toUpperCase())} paired with ${p.short ? 'Clip ' + escapeHtml(p.short.clip) + ': ' + escapeHtml(p.short.name) : 'no short numbers yet'}</div>
+                    <div style="color:#C9A84C;">${p.short ? escapeHtml(p.short.score) + ' engagement' : ''}</div>
+                </div>`).join('');
+            const pairs = '<div class="item-card"><div class="platform-badge">TOP SHORT FOR EACH VIDEO</div><div class="item-date">Sorted from highest engagement to lowest</div>' + rows + '</div>';
+            return head + cards + pairs + '<p class="counter" style="text-align:center;">These numbers come only from the channel log. Nothing here is estimated. Updated ' + escapeHtml(m.updated) + '.</p>';
+        }
+
+        // New videos waiting for Grace's review, shown at the very top, before the release calendar.
+        function renderReview(items) {
+            return items.map(v => `
+                <div class="item-card" style="border-color:#C9A84C;">
+                    <div class="platform-badge">${escapeHtml(v.label)} &middot; ${escapeHtml(v.series)} &middot; ${escapeHtml(v.version.toUpperCase())}</div>
+                    <div class="item-date">${escapeHtml(v.note)}</div>
+                    <h2 style="font-family: 'Cormorant Garamond', serif; color: #C9A84C; margin-bottom: 20px;">${escapeHtml(v.title)}</h2>
+                    <div class="item-content">${escapeHtml(v.chapters.join('\n'))}</div>
+                    <div class="actions">
+                        <a class="btn btn-approve" style="text-decoration:none; text-align:center;" href="${escapeHtml(v.video)}" target="_blank" rel="noopener">Watch video</a>
+                        <a class="btn btn-reject" style="text-decoration:none; text-align:center;" href="${escapeHtml(v.card)}" target="_blank" rel="noopener">Open card</a>
+                    </div>
+                </div>`).join('');
+        }
+
+        // The 60 second vertical shorts, grouped by the video they come from. Post each one after its full video is out.
+        function renderShorts(shorts) {
+            if (!shorts.length) return '';
+            const order = ['v9', 'v13', 'v11', 'v10', 'v12'];
+            const groups = order.map(vid => {
+                const clips = shorts.filter(x => x.video === vid);
+                if (!clips.length) return '';
+                const date = prettyDate(clips[0].full_video_date, '5:00 AM');
+                const rows = clips.map(x => `
+                    <div style="display:flex; gap:12px; align-items:center; justify-content:space-between; padding:10px 0; border-top:1px solid #272727; ${x.skip ? 'opacity:0.5;' : ''}">
+                        <div>Clip ${escapeHtml(x.clip)}: ${escapeHtml(x.name)}${x.skip ? ' (skip: ' + escapeHtml(x.skip_reason) + ')' : ''}</div>
+                        <div style="display:flex; gap:10px;">
+                            <a href="${escapeHtml(x.file)}" target="_blank" rel="noopener" style="color:#C9A84C;">Watch</a>
+                            <a href="${escapeHtml(x.caption)}" target="_blank" rel="noopener" style="color:#C9A84C;">Caption</a>
+                        </div>
+                    </div>`).join('');
+                return `<div class="item-card"><div class="platform-badge">SHORTS &middot; ${escapeHtml(vid.toUpperCase())}</div><div class="item-date">Post after the full video, ${escapeHtml(date)}</div>${rows}</div>`;
+            }).join('');
+            return '<h2 style="font-family: \'Cormorant Garamond\', serif; color: #C9A84C; text-align:center; margin: 40px 0 20px;">Shorts, Reels and Pins</h2>' + groups +
+                '<p class="counter" style="text-align:center;">Each short ends by pointing to the full video and sanctuary-grace.com. The caption file has the YouTube, Instagram and Pinterest text. You post every short yourself.</p>';
+        }
+
+
+        // Short status notes at the bottom of the gate.
+        function renderNotes(notes) {
+            return notes.map(n => `<div class="item-card"><div class="platform-badge">${escapeHtml(n.badge)}</div><p>${escapeHtml(n.text)}</p></div>`).join('');
+        }
+
         window.addEventListener('load', () => {
             document.getElementById('passwordInput').focus();
         });
