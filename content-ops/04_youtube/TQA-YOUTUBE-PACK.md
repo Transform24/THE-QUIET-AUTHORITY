@@ -320,6 +320,11 @@ Sanctuary Grace Ministry: sanctuary-grace.com
 #TheQuietAuthority #KJV #Prayer
 ```
 
+**Reflections that type out on screen (drafted by Claude with your permission, approved by you)**
+Proverbs 18:10: When your own strength gives out, you do not have to build a wall around yourself. The name of the LORD is already a strong tower. Run into it, and rest there. You are safe because He is.
+Isaiah 43:18: Put down the heavy script of your past mistakes, and the voices that scolded you and called it religion. The LORD has asked you not to hold them any longer. Lay them down here, and walk on.
+Isaiah 43:19: God keeps the same pattern. He made a way through the sea, and He still makes a way in the wilderness. Look again at the dry ground in front of you. A new path is already springing up, and He is the one who made it.
+
 **Tags**
 morning declaration, morning prayer, name of the LORD, strong tower, Proverbs 18:10, Isaiah 43:18, Isaiah 43:19, salvation, KJV, King James Bible, quiet time, Christian prayer, scripture meditation, The Quiet Authority, Sanctuary Grace Ministry
 
