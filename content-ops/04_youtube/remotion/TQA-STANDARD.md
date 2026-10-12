@@ -62,3 +62,14 @@ The automatic Pinterest scheduler is paused to protect the account's standing. T
 
 ## Upload restriction lifted (permanent record, October 11, 2026)
 On October 11, 2026, Grace lifted the old rule that said nothing uploads to YouTube and that she uploads herself. In her own words in the session: "I, Grace, lift rule 6. You are explicitly authorized to upload my videos to YouTube on the calendar dates." The authorization covers the five master videos on their calendar Sundays at 5:00 AM Eastern: v9 on Oct 18, v13 on Oct 25, v11 on Nov 1, v10 on Nov 15 and v12 on Nov 29. Each is meant to be uploaded privately and scheduled to go public on its own date, one at a time, never all at once. The authorization does not cover anything else: no other video, no shorts, and nothing on Pinterest or Instagram, which stay paused. This note records the decision. The rule in the blueprint on `main` must be updated to match before any upload runs.
+
+## System security status (recorded October 12, 2026)
+These are the backend security measures that sit under every video and every link. The full table is in `content-ops/06_storefront-sync/Q4-HOLIDAY-SETUP.md`, Part 2. They were read from Cloudflare on this date. Secret values are never read or written, only names.
+- Domain `sanctuary-grace.com`: Cloudflare zone active, SSL mode Full, Always Use HTTPS on, minimum TLS 1.2.
+- Email sending: SPF, the MailerLite DKIM key (not proxied) and DMARC (monitoring only) are all present.
+- The five secret names on the Worker `lively-dew-924c` match the blueprint. No raw key was found in the repository or in the three Worker scripts read.
+- The video engines read no secret. They have read-only access and no upload step, and the check workflow fails the build if one starts to read a secret.
+- Upload authorization: the only authorized uploads are the five master videos in the section above. Any upload workflow reads its keys from GitHub Actions secrets only.
+- Checkout links: the six gate links match the daily smoke test. The retired Gate One link is not shown on any page. See `content-ops/06_storefront-sync/STRIPE-VERIFICATION.md`.
+- Not verified from here: the GitHub Actions secret values, the Stripe account settings, and the Printful carrier setting. Each is listed for Grace to check.
+- Check commands: `node scripts/storefront-visibility.mjs --check` for the shop filter, and the video checks in section 5.

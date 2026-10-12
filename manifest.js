@@ -46,6 +46,7 @@
       title: 'The Sanctuary Grace Shop',
       text: 'Wear what you have said yes to.',
       url: 'https://sanctuary-grace-shop.printful.me',
+      shop: 'printful-store-link',
       affiliate: false
     }
   };
@@ -83,7 +84,7 @@
       if (!it) return;
       if (it.affiliate) hasAff = true;
       html +=
-        '<a class="pm-item" href="' + it.url + '" target="_blank" rel="' + (it.affiliate ? 'sponsored ' : '') + 'noopener">' +
+        '<a class="pm-item"' + (it.shop ? ' data-shop-item="' + it.shop + '"' : '') + ' href="' + it.url + '" target="_blank" rel="' + (it.affiliate ? 'sponsored ' : '') + 'noopener">' +
         '<span class="pm-box" aria-hidden="true"></span>' +
         '<span><span class="pm-label">' + it.label + '</span>' +
         '<span class="pm-title">' + it.title + '</span>' +

@@ -28,7 +28,7 @@ Products: Wall Art ($9.99 each / $29.99 bundle) · Devotionals ($4.99 each / $19
 
 **Printful** prints and ships the wall art (thin canvas) sold through `wall-art.html`. Product links on that page go to the Printful-hosted store `sanctuary-grace-shop.printful.me`. Printful checkout is hosted by Printful, so those links are the one outside address that stays on the wall art page. Emails never carry them (see `content-ops/06_marketing_ops/MAILERLITE-INTEGRATION.md`).
 
-**Holiday shipping update, October 12, 2026:** Grace recorded new carrier settings for the holiday wall art pipeline. UPS Mail Innovations is the carrier setting for wall art fulfillment from October 12, 2026. This note records what Grace told us. It has not been checked in the Printful dashboard from here, so confirm the setting in Printful (Settings, Shipping) before the holiday orders begin.
+**Holiday shipping update, October 12, 2026:** Grace recorded new carrier settings for the holiday wall art pipeline. UPS Mail Innovations is the carrier setting for wall art fulfillment from October 12, 2026. This note records what Grace told us. It has not been checked in the Printful dashboard from here, so confirm the setting in Printful (Settings, Shipping) before the holiday orders begin. Still unconfirmed on 2026-10-12.
 
 ## Content & Community
 

@@ -368,7 +368,7 @@
                 const videos = data.videos.slice().sort((a, b) => a.date.localeCompare(b.date));
                 document.getElementById('loadingState').style.display = 'none';
                 document.getElementById('itemCounter').textContent = videos.length + ' videos scheduled';
-                document.getElementById('itemDisplay').innerHTML = renderReview(data.pending_review || []) + videos.map(v => `
+                document.getElementById('itemDisplay').innerHTML = renderActions(data.action_cards || []) + renderReview(data.pending_review || []) + videos.map(v => `
                     <div class="item-card">
                         <div class="platform-badge">WEEK ${escapeHtml(v.week)} &middot; ${escapeHtml(v.version.toUpperCase())}</div>
                         <div class="item-date">${escapeHtml(prettyDate(v.date, v.time))}</div>
@@ -450,6 +450,18 @@
                 </div>`).join('');
             const pairs = '<div class="item-card"><div class="platform-badge">TOP SHORT FOR EACH VIDEO</div><div class="item-date">Sorted from highest engagement to lowest</div>' + rows + '</div>';
             return head + cards + pairs + '<p class="counter" style="text-align:center;">These numbers come only from the channel log. Nothing here is estimated. Updated ' + escapeHtml(m.updated) + '.</p>';
+        }
+
+        // Action and status cards for Grace, shown at the very top of the gate.
+        function renderActions(cards) {
+            return cards.map(c => `
+                <div class="item-card" style="border-color:#C1593C;">
+                    <div class="platform-badge">${escapeHtml(c.badge)}</div>
+                    <div class="item-date">${escapeHtml(c.status)}</div>
+                    <h2 style="font-family: 'Cormorant Garamond', serif; color: #C9A84C; margin-bottom: 20px;">${escapeHtml(c.title)}</h2>
+                    <div class="item-content">${escapeHtml(c.steps.join('\n'))}</div>
+                    <p class="counter" style="margin-top:14px;">${escapeHtml(c.note)}</p>
+                </div>`).join('');
         }
 
         // New videos waiting for Grace's review, shown at the very top, before the release calendar.

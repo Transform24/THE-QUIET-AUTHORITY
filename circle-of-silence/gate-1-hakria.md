@@ -5,7 +5,8 @@
 
 ## Stripe
 - Product: `prod_Ul9eX4XJZNXIem`
-- Payment link: https://buy.stripe.com/eVqfZh8Ba8Od0Es8YGcQU0w
+- Payment link (current, locked 2026-10-08): https://buy.stripe.com/fZu4gz18I5C11Iw0sacQU0E
+- Retired link `eVqfZh8Ba8Od0Es8YGcQU0w`: never shown on the page. Stripe deactivation is still Grace's step. The Worker keeps it in its purchase check so earlier buyers keep access.
 - `BUY_LINK_PLACEHOLDER`: replaced in `gate-one.html` ✅
 
 ## Email delivery: ⚠️ NEEDS A DECISION

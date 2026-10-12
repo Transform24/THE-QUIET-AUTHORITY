@@ -2,7 +2,7 @@
 *Last updated: 2026-08-22*
 
 ## The Circle of Silence: $9/gate
-- Gate 1 HaKria: https://buy.stripe.com/eVqfZh8Ba8Od0Es8YGcQU0w: LIVE, see `gate-1-hakria.md`
+- Gate 1 HaKria: https://buy.stripe.com/fZu4gz18I5C11Iw0sacQU0E: LIVE, see `gate-1-hakria.md` (the older `eVqfZh8Ba8Od0Es8YGcQU0w` is retired)
 - Gate 2 Sheket: NOT YET BUILT
 - Gate 3 HaMidbar: NOT YET BUILT
 - Gate 4 Hitkania: NOT YET BUILT
