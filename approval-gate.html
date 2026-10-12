@@ -364,6 +364,7 @@
                 if (!response.ok) throw new Error('Could not load the schedule');
                 const data = await response.json();
                 const metrics = await fetchMetrics();
+                const thumbs = await fetchThumbs();
                 const videos = data.videos.slice().sort((a, b) => a.date.localeCompare(b.date));
                 document.getElementById('loadingState').style.display = 'none';
                 document.getElementById('itemCounter').textContent = videos.length + ' videos scheduled';
@@ -379,7 +380,7 @@
                         </div>
                     </div>`).join('') + `
                     <p class="counter" style="text-align:center;">You upload each video yourself in YouTube Studio and schedule it for the date above. Nothing on this page uploads anything.</p>`
-                    + renderInsights(metrics) + renderShorts(data.shorts || []) + renderNotes(data.status_notes || []);
+                    + renderThumbnails(thumbs) + renderInsights(metrics) + renderShorts(data.shorts || []) + renderNotes(data.status_notes || []);
             } catch (e) {
                 document.getElementById('loadingState').style.display = 'none';
                 document.getElementById('itemDisplay').innerHTML = '<div class="item-card"><p style="color: #C1593C;">' + escapeHtml(e.message) + '</p></div>';
@@ -388,6 +389,26 @@
 
 
 
+
+        // Thumbnail cards for the five master videos, made by scripts/generate-system-thumbnails.mjs.
+        async function fetchThumbs() {
+            try {
+                const r = await fetch('content-ops/02_thumbnail_factory/thumbnails.json?v=' + Date.now());
+                return r.ok ? await r.json() : null;
+            } catch (e) { return null; }
+        }
+
+        function renderThumbnails(t) {
+            const head = '<h2 style="font-family: \'Cormorant Garamond\', serif; color: #C9A84C; text-align:center; margin: 40px 0 20px;">Thumbnail Cards</h2>';
+            if (!t || !t.cards || !t.cards.length) return head + '<div class="item-card"><p>No thumbnail cards have been made yet.</p></div>';
+            const cards = t.cards.map(c => `
+                <div class="item-card">
+                    <div class="platform-badge">${escapeHtml(String(c.video).toUpperCase())}</div>
+                    <a href="${escapeHtml(c.file)}" target="_blank" rel="noopener"><img src="${escapeHtml(c.file)}" alt="Thumbnail card for ${escapeHtml(c.scripture_title.join(' and '))}" style="width:100%; border:1px solid #272727; display:block;"></a>
+                    <div class="item-date" style="margin-top:12px;">${escapeHtml(c.scripture_title.join(' and '))}: ${escapeHtml(c.sub)}</div>
+                </div>`).join('');
+            return head + cards + '<p class="counter" style="text-align:center;">Each card is 1280 by 720, with its scripture title in gold Cinzel inside the 780 pixel text limit.</p>';
+        }
 
         // Engagement Metrics Tracker. It shows only numbers that are in the channel log. Until a video has numbers it says so.
         async function fetchMetrics() {

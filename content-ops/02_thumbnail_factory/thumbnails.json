@@ -1,0 +1,49 @@
+{
+  "about": "Thumbnail cards made by scripts/generate-system-thumbnails.mjs. 1280 by 720.",
+  "cards": [
+    {
+      "video": "v9",
+      "file": "content-ops/02_thumbnail_factory/TQA_Thumbnail_v9.png",
+      "scripture_title": [
+        "MATTHEW 6"
+      ],
+      "sub": "The Posture of Prayer"
+    },
+    {
+      "video": "v13",
+      "file": "content-ops/02_thumbnail_factory/TQA_Thumbnail_v13.png",
+      "scripture_title": [
+        "PROVERBS 18:10",
+        "ISAIAH 43:18-19"
+      ],
+      "sub": "The Hallowed Identity"
+    },
+    {
+      "video": "v11",
+      "file": "content-ops/02_thumbnail_factory/TQA_Thumbnail_v11.png",
+      "scripture_title": [
+        "PSALM 27"
+      ],
+      "sub": "Waiting on the LORD"
+    },
+    {
+      "video": "v10",
+      "file": "content-ops/02_thumbnail_factory/TQA_Thumbnail_v10.png",
+      "scripture_title": [
+        "MATTHEW 6",
+        "ROMANS 10:9-10"
+      ],
+      "sub": "The Posture of Prayer"
+    },
+    {
+      "video": "v12",
+      "file": "content-ops/02_thumbnail_factory/TQA_Thumbnail_v12.png",
+      "scripture_title": [
+        "PSALM 25:14",
+        "PROVERBS 3:32",
+        "MALACHI 3:6"
+      ],
+      "sub": "The Secret of the LORD"
+    }
+  ]
+}
