@@ -152,12 +152,12 @@ ok.push("blocks: 4 second pauses in blocks 1 and 2, 5 second pause in block 3, a
 
 // 7. Files the render needs.
 if (!existsSync(new URL("src/assets/tqa/light-stream-plate.jpg", root))) fail("src/assets/tqa/light-stream-plate.jpg is missing");
-const music = new URL(`../../../${bp.music.file}`, root);
-if (!existsSync(music) || statSync(music).size < 100000) fail(`${bp.music.file} is missing from the repository root`);
-else {
-  const head = readFileSync(music).subarray(0, 4);
-  if (!(head.toString("latin1").startsWith("ID3") || (head[0] === 0xff && (head[1] & 0xe0) === 0xe0))) fail(`${bp.music.file} is not real MP3 audio`);
-}
+const music = new URL(bp.music.file, root);
+if (/music[0-9]+\.mp3$/.test(bp.music.file)) fail("the temporary stand-in music1.mp3 must not be used. This video uses the Version 8 music");
+if (bp.music.file !== "src/assets/tqa/tqa-music-v8-extended.m4a") fail("the music must be src/assets/tqa/tqa-music-v8-extended.m4a, the Version 8 music");
+if (!existsSync(music) || statSync(music).size < 100000) fail(`${bp.music.file} is missing`);
+else if (readFileSync(music).subarray(4, 8).toString("latin1") !== "ftyp") fail(`${bp.music.file} is not a real audio file`);
+if (!/import musicTrack from "\.\/assets\/tqa\/tqa-music-v8-extended\.m4a"/.test(jsx) || /staticFile\(music\.file\)/.test(jsx)) fail("TQAPatternComposition.jsx must play the Version 8 music file and nothing from music1.mp3");
 ok.push(`files: light stream picture and ${bp.music.file} present`);
 
 if (errors.length) {

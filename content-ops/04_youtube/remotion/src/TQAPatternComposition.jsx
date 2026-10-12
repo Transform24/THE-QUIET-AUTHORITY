@@ -11,12 +11,12 @@ import {
   continueRender,
   delayRender,
   interpolate,
-  staticFile,
   useCurrentFrame,
   useVideoConfig,
 } from "remotion";
 import blueprint from "./data/tqa-pattern-blueprint.json";
 import plate from "./assets/tqa/light-stream-plate.jpg";
+import musicTrack from "./assets/tqa/tqa-music-v8-extended.m4a";
 
 const { colors, layout, music, background } = blueprint;
 const MAX_W = layout.text_max_width_px; // 780, the mobile safe column
@@ -180,7 +180,7 @@ const Music = () => {
       interpolate(f, [0, music.fade_in_frames], [0, music.volume], clamp),
       interpolate(f, [durationInFrames - music.fade_out_frames, durationInFrames], [music.volume, 0], clamp)
     );
-  return <Audio src={staticFile(music.file)} loop loopVolumeCurveBehavior="extend" volume={volume} />;
+  return <Audio src={musicTrack} volume={volume} />;
 };
 
 // The light stream, held steady. It comes up from black at the start and goes back to black at the end.

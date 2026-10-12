@@ -473,6 +473,7 @@
                     <div class="platform-badge">VISUAL INTEGRITY, ${escapeHtml(v.checked)}</div>
                     <div class="item-date">${blocked ? 'BLOCKED. Do not approve until this is fixed.' : 'Passed'}</div>
                     <p>${escapeHtml(v.rule)} The picture and music fade out together over the last 8 seconds. That final fade is part of the standard and is not counted.</p>
+                    ${(v.notes || []).map(n => `<p>${escapeHtml(n)}</p>`).join('')}
                     ${rows}
                 </div>`;
         }

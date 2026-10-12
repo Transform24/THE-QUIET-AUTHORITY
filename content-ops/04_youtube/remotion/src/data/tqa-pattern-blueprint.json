@@ -33,12 +33,12 @@
     "fade_to_black_frames": 192
   },
   "music": {
-    "file": "music1.mp3",
-    "volume": 0.22,
-    "loop": true,
+    "file": "src/assets/tqa/tqa-music-v8-extended.m4a",
+    "volume": 1.0,
+    "loop": false,
     "fade_in_frames": 48,
     "fade_out_frames": 192,
-    "note": "Stand-in track from the repository root. The original TQA music exists only inside the Version 8 video."
+    "note": "The music from the Version 8 video, continued to 8 minutes (480 seconds). It replaces the temporary music1.mp3 stand-in."
   },
   "kjv": {
     "PSALM 27:13": "I had fainted, unless I had believed to see the goodness of the LORD in the land of the living.",

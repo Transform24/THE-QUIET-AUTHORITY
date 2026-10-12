@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 // Visual integrity agent for the TQA master videos.
 //
-//   node scripts/verify-visual-integrity.mjs [--write-gate] <video.mp4> [<video.mp4> ...]
+//   node scripts/verify-visual-integrity.mjs [--write-gate] [--note="text" ...] <video.mp4> [<video.mp4> ...]
+//   --note adds a plain sentence to the gate card (for example which music was confirmed by hand).
 //
 // With no video named it checks every out/TQA_Stillness_Journey_FINAL_v*.mp4 it can find.
 // It always runs the layout checks first (picture layer, 11,520 frames, 780 pixel text, Cinzel and Jost),
@@ -64,6 +65,7 @@ notes.push(`layouts: 5 layout files keep an <Img> picture layer, 11,520 frames, 
 // 2. Video checks
 const args = process.argv.slice(2);
 const writeGate = args.includes("--write-gate");
+const noteArgs = args.filter((a) => a.startsWith("--note=")).map((a) => a.slice(7));
 let videos = args.filter((a) => !a.startsWith("--"));
 if (!videos.length) {
   const out = path.join(remotion, "out");
@@ -154,6 +156,7 @@ if (writeGate) {
     rule: `No more than ${MAX_BLACK_RUN} frames in a row of solid black before the final fade-out (frame ${FADE_START} to ${TOTAL}). Exactly ${TOTAL} frames.`,
     layout_ok: layoutOk,
     layout_problems: problems,
+    notes: noteArgs,
     videos: results,
   }, null, 2) + "\n");
   console.log("Wrote workflows/output/visual-integrity.json");
