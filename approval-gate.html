@@ -363,6 +363,7 @@
                 const response = await fetch(SCHEDULE_URL + '?v=' + Date.now());
                 if (!response.ok) throw new Error('Could not load the schedule');
                 const data = await response.json();
+                const metrics = await fetchMetrics();
                 const videos = data.videos.slice().sort((a, b) => a.date.localeCompare(b.date));
                 document.getElementById('loadingState').style.display = 'none';
                 document.getElementById('itemCounter').textContent = videos.length + ' videos scheduled';
@@ -378,7 +379,7 @@
                         </div>
                     </div>`).join('') + `
                     <p class="counter" style="text-align:center;">You upload each video yourself in YouTube Studio and schedule it for the date above. Nothing on this page uploads anything.</p>`
-                    + renderShorts(data.shorts || []) + renderNotes(data.status_notes || []);
+                    + renderInsights(metrics) + renderShorts(data.shorts || []) + renderNotes(data.status_notes || []);
             } catch (e) {
                 document.getElementById('loadingState').style.display = 'none';
                 document.getElementById('itemDisplay').innerHTML = '<div class="item-card"><p style="color: #C1593C;">' + escapeHtml(e.message) + '</p></div>';
@@ -386,6 +387,49 @@
         }
 
 
+
+
+        // Engagement Metrics Tracker. It shows only numbers that are in the channel log. Until a video has numbers it says so.
+        async function fetchMetrics() {
+            try {
+                const r = await fetch('workflows/output/engagement-metrics.json?v=' + Date.now());
+                return r.ok ? await r.json() : null;
+            } catch (e) { return null; }
+        }
+
+        function gauge(label, value, hint) {
+            const has = typeof value === 'number';
+            const ring = has ? `conic-gradient(#C9A84C ${value}%, #272727 0)` : '#272727';
+            return `<div style="text-align:center; width:30%; min-width:110px;">
+                <div style="width:96px; height:96px; border-radius:50%; margin:0 auto; background:${ring}; display:flex; align-items:center; justify-content:center;">
+                    <div style="width:72px; height:72px; border-radius:50%; background:#0d0d0d; display:flex; align-items:center; justify-content:center; font-family:'Cormorant Garamond', serif; font-weight:700; font-size:${has ? '1.7rem' : '0.8rem'}; color:${has ? '#C9A84C' : '#807870'};">${has ? Math.round(value) + '%' : 'no data yet'}</div>
+                </div>
+                <div style="margin-top:8px; font-size:0.85rem;">${escapeHtml(label)}</div>
+                <div style="font-size:0.72rem; color:#807870;">${escapeHtml(hint)}</div>
+            </div>`;
+        }
+
+        function renderInsights(m) {
+            const head = '<h2 style="font-family: \'Cormorant Garamond\', serif; color: #C9A84C; text-align:center; margin: 40px 0 20px;">Engagement Metrics Tracker</h2>';
+            if (!m || !m.suites) return head + '<div class="item-card"><p>The tracker has not been set up yet.</p></div>';
+            const cards = m.suites.map(x => `
+                <div class="item-card">
+                    <div class="platform-badge">${escapeHtml(x.id.toUpperCase())}</div>
+                    <div class="item-date">${escapeHtml(x.title)}${x.has_data ? '' : ' (not out yet, or no numbers yet)'}</div>
+                    <div style="display:flex; gap:10px; justify-content:space-between; flex-wrap:wrap;">
+                        ${gauge('Hook rate', x.hook_rate, 'still watching at 30 seconds')}
+                        ${gauge('Retention drop-off', x.retention_dropoff, 'left before the end')}
+                        ${gauge('Traffic redirection', x.traffic_redirection, 'clicked to sanctuary-grace.com')}
+                    </div>
+                </div>`).join('');
+            const rows = m.pairs.map(p => `
+                <div style="display:flex; gap:12px; justify-content:space-between; padding:10px 0; border-top:1px solid #272727;">
+                    <div>${escapeHtml(p.video.toUpperCase())} paired with ${p.short ? 'Clip ' + escapeHtml(p.short.clip) + ': ' + escapeHtml(p.short.name) : 'no short numbers yet'}</div>
+                    <div style="color:#C9A84C;">${p.short ? escapeHtml(p.short.score) + ' engagement' : ''}</div>
+                </div>`).join('');
+            const pairs = '<div class="item-card"><div class="platform-badge">TOP SHORT FOR EACH VIDEO</div><div class="item-date">Sorted from highest engagement to lowest</div>' + rows + '</div>';
+            return head + cards + pairs + '<p class="counter" style="text-align:center;">These numbers come only from the channel log. Nothing here is estimated. Updated ' + escapeHtml(m.updated) + '.</p>';
+        }
 
         // New videos waiting for Grace's review, shown at the very top, before the release calendar.
         function renderReview(items) {
