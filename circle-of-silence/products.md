@@ -48,7 +48,7 @@ Wall art images: `wall-art-WOMT9.jpg` (A) · `wall-art-WOMT8.jpg` (B) · `wall-a
 |---|---|---|
 | The Quiet Authority | $15.99 | buy.stripe.com/00w3cv5oYc0p0EscaScQU0d |
 | The Parable of the Cocoon | $15.99 | buy.stripe.com/eVq3cv8Ba6G5bj6fn4cQU0g |
-| R.E.S.T. Workbook | Free | https://sanctuarygrace.store |
+| R.E.S.T. Workbook | Free | https://sanctuary-grace.com/the-woman-who-pours.html |
 
 ## Amazon Affiliate (tag: sanctuarygrac-20)
 Weighted fleece throw · Travel mug · Prayer journal · Flameless candles · Butterfly mug · Diffuser · Leather journal · Parallel Bible
