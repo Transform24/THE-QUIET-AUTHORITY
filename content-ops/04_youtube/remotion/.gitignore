@@ -1,3 +1,6 @@
 node_modules/
 out/
 public/
+
+# Raw video files never go to GitHub (public repository). Security rule 2026-10-13, see TQA-STANDARD.md.
+*.mp4

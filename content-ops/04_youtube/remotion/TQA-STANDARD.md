@@ -82,3 +82,10 @@ Grace's decision. Every YouTube master video stays 100% silent of voice. There i
 ## Starter credits treasury law (permanent, 2026-10-13)
 A voice asset may be generated only after its script text has passed the final human validation gate: Grace has read the text and said yes. Automated drafts, agent drafts and test text never consume the monthly starter credits. If the text is not yet approved, nothing is generated. The step by step is in `_system/audio-tracker.md`.
 
+## Raw video files stay off GitHub (permanent infrastructure rule, 2026-10-13)
+To preserve brand protection and intellectual integrity, raw video asset files (.mp4) are strictly forbidden from being committed or pushed to any public GitHub branch. All staging indicators on the portal must read off local storage tracks only.
+
+How it is enforced: `*.mp4` is ignored in `content-ops/04_youtube/remotion/.gitignore` and `circle-of-silence/remotion/.gitignore`, so a render in `out/` cannot be added by accident. Forcing a file past the ignore rule (`git add -f`) is not allowed. Video 14 was backed up this way once, then removed from the tracking index the same day.
+
+What this rule does not change: the six approved master videos and the 18 Shorts that already sit in `public/` on `main` stay as they are, because the approval gate links to them. Removing those is a separate decision for Grace. Also, a file removed from the index is still in the git history of the commit that added it.
+

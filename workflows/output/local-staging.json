@@ -1,5 +1,5 @@
 {
-  "about": "LOCAL STAGING ONLY. Cards in this file are shown by approval-gate.html only when the page is opened from a local test address (localhost, 127.0.0.1 or a file). The live site never fetches this file, so nothing here appears on the public portal. Do not merge this file to main until Grace approves the video it describes.",
+  "about": "LOCAL STAGING ONLY. Cards in this file are shown by approval-gate.html only when the page is opened from a local test address (localhost, 127.0.0.1 or a file). The live site never fetches this file, so nothing here appears on the public portal. Do not merge this file to main until Grace approves the video it describes. The video master itself is never stored in this repository.",
   "videos": [
     {
       "week": 7,
@@ -26,7 +26,7 @@
         "note": "Grace approved the agent drafted words for Week 7 in the chat on 2026-10-13. Local only. Not approved for the live site."
       },
       "render": {
-        "file": "content-ops/04_youtube/remotion/out/TQA_Stillness_Journey_FINAL_v14.mp4 (backed up on the side branch, see backup)",
+        "file": "Kept offline only. Not in the repository.",
         "frames": 11520,
         "fps": 24,
         "size": "1920 by 1080",
@@ -36,16 +36,12 @@
         "integrity": "passed: longest black run before the fade 0 frames, longest picture gap 0 frames, longest frozen stretch 10 seconds (limit 12), final fade from frame 11328",
         "checked": "2026-10-13"
       },
-      "backup": {
-        "locked": true,
-        "commit_message": "SECURE CLOUD BACKUP: Video 14 compliance-passed master asset",
-        "branch": "tqa-compositions (side branch only, not on main, not on the live site)",
-        "path": "content-ops/04_youtube/remotion/out/TQA_Stillness_Journey_FINAL_v14.mp4",
-        "bytes": 31317577,
-        "sha256": "aca1fa6547ab75985c72250a42f2c4993a05a08adc2ec1b2a1c7e85cf854ecde",
-        "verified": "2026-10-13: the copy fetched back from GitHub matched the local file byte for byte",
-        "note": "Force-added past the out/ ignore rule. Keep this path off main until Grace says so: on main it would also be served on sanctuary-grace.com.",
-        "visibility_warning": "The GitHub repository Transform24/the-quiet-authority is PUBLIC (checked 2026-10-13). A file on a side branch is not private: anyone with the branch link can download it. This is a backup, not a secret vault."
+      "storage": {
+        "master": "Offline local storage on Grace's Chromebook, kept private for review until launch day. The cloud session copy is temporary.",
+        "in_repository": false,
+        "rule": "Raw .mp4 files are never committed or pushed to GitHub. See TQA-STANDARD.md, security rule of 2026-10-13.",
+        "sent_to_grace": "2026-10-13, so she can keep her own copy",
+        "note": "Staging indicators on the portal read from local storage tracks only."
       }
     }
   ]
