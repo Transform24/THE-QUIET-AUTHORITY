@@ -1,10 +1,10 @@
-# The Quiet Authority: YouTube pack for the four videos
+# The Quiet Authority: YouTube pack for the six videos
 
 For Grace. Everything below is ready to paste into YouTube Studio. Nothing here uploads anything. You upload yourself.
 
 How to use it: open studio.youtube.com, press Create, then Upload videos, choose the file, then paste the title, the description and the tags from the matching section. Chapters only work if the first one is 0:00, so keep that line.
 
-Which file to upload: Video 1 (v9) and Video 2 (v10) carry the same Matthew 6 message. Video 2 is the newer standard cut, so it is the one I suggest you publish. Video 1 is written up below in case you want it too.
+The order: Video 1 is your original Stillness Journey (v8), rebuilt on the standard, and it is the Week 1 launch video. Video 2 (v9) and Video 4 (v10) carry the same Matthew 6 message. Video 6 (v13) is ready but has no Sunday yet.
 
 Scripture in every description was checked word for word against the King James Version.
 
@@ -12,35 +12,41 @@ Scripture in every description was checked word for word against the King James 
 
 ## Release calendar (schedule inside YouTube Studio)
 
-Sunday mornings at 5:00 AM Eastern time (every other Sunday, with Video Five added on Oct 25) (6:00 AM is fine too). In YouTube Studio, upload the file, choose Visibility, then Schedule, and enter the date and time below. The automatic upload workflow stays off. Nothing uploads unless you do it.
+Sunday mornings at 5:00 AM Eastern time, one video every Sunday (6:00 AM is fine too). In YouTube Studio, upload the file, choose Visibility, then Schedule, and enter the date and time below. The automatic upload workflow stays off. Nothing uploads unless you do it.
 
 | Week | Sunday | Time (Eastern) | Video | File |
 |---|---|---|---|---|
-| 1 | Oct 18 | 5:00 AM | v9, The Posture of Prayer (Matthew 6) | TQA_Stillness_Journey_FINAL_v9.mp4 |
-| 2 | Oct 25 | 5:00 AM | v13, The Hallowed Identity (Gate 3, morning declaration) | TQA_Stillness_Journey_FINAL_v13.mp4 |
+| 1 | Oct 18 | 5:00 AM | v8, The Stillness Journey (Psalm 46:10, your original, rebuilt) | TQA_Stillness_Journey_FINAL_v8.mp4 |
+| 2 | Oct 25 | 5:00 AM | v9, The Posture of Prayer (Matthew 6) | TQA_Stillness_Journey_FINAL_v9.mp4 |
 | 3 | Nov 1 | 5:00 AM | v11, Waiting on the LORD (Psalm 27, bedtime prayer) | TQA_Stillness_Journey_FINAL_v11.mp4 |
-| 5 | Nov 15 | 5:00 AM | v10, The Posture of Prayer with Romans 10:9-10 | TQA_Standard_8min_Posture_of_Prayer.mp4 |
-| 7 | Nov 29 | 5:00 AM | v12, The Secret of the LORD (morning prayer) | TQA_Stillness_Journey_FINAL_v12.mp4 |
+| 4 | Nov 8 | 5:00 AM | v10, The Posture of Prayer with Romans 10:9-10 | TQA_Standard_8min_Posture_of_Prayer.mp4 |
+| 5 | Nov 15 | 5:00 AM | v12, The Secret of the LORD (morning prayer) | TQA_Stillness_Journey_FINAL_v12.mp4 |
+| not yet set | | | v13, The Hallowed Identity (Gate 3, morning declaration) | TQA_Stillness_Journey_FINAL_v13.mp4 |
 
 Chapter markers to paste beside each date (also in each video's section below):
 
-**Oct 18, v9**
+**Oct 18, v8**
+```
+0:00 Sanctuary Grace Ministry presents The Quiet Authority
+0:15 Psalm 46:10
+0:54 Matthew 11:28
+1:28 Isaiah 26:3
+2:06 Proverbs 4:23
+2:41 Matthew 6:33
+3:20 Psalm 27:14
+3:59 Romans 10:9-10
+4:43 A closing prayer
+7:30 Thank you for watching
+```
+
+**Oct 25, v9**
 ```
 0:00 Sanctuary Grace Ministry presents The Quiet Authority
 0:15 Matthew 6:7-8
-2:15 Matthew 6:6
-4:30 Matthew 6:9
-6:05 A closing prayer
-```
-
-**Oct 25, v13 (Video Five)**
-```
-0:00 Sanctuary Grace Ministry presents The Quiet Authority
-0:15 Proverbs 18:10
-1:23 Isaiah 43:18
-2:27 Isaiah 43:19
-3:52 Romans 10:9-10
-4:37 A morning declaration
+1:52 Matthew 6:6
+3:24 Matthew 6:9
+4:35 Romans 10:9-10
+5:20 A closing prayer
 7:30 Thank you for watching
 ```
 
@@ -55,7 +61,7 @@ Chapter markers to paste beside each date (also in each video's section below):
 7:30 Thank you for watching
 ```
 
-**Nov 15, v10**
+**Nov 8, v10**
 ```
 0:00 Sanctuary Grace Ministry presents The Quiet Authority
 0:15 Matthew 6:7-8
@@ -66,7 +72,7 @@ Chapter markers to paste beside each date (also in each video's section below):
 7:13 Thank you for watching
 ```
 
-**Nov 29, v12**
+**Nov 15, v12**
 ```
 0:00 Sanctuary Grace Ministry presents The Quiet Authority
 0:15 Psalm 25:14
@@ -77,37 +83,65 @@ Chapter markers to paste beside each date (also in each video's section below):
 7:30 Thank you for watching
 ```
 
-Note: v9 and v10 carry the same Matthew 6 message, five weeks apart. v10 is the newer standard cut.
+**Not yet scheduled, v13 (Video Six)**
+```
+0:00 Sanctuary Grace Ministry presents The Quiet Authority
+0:15 Proverbs 18:10
+1:23 Isaiah 43:18
+2:27 Isaiah 43:19
+3:52 Romans 10:9-10
+4:37 A morning declaration
+7:30 Thank you for watching
+```
+
+Note: v9 and v10 carry the same Matthew 6 message, two Sundays apart. Both include Romans 10:9-10 and the same closing prayer. The prayer rises line by line in v9.
 
 ---
 
-## Video 1: TQA_Stillness_Journey_FINAL_v9.mp4
-Earlier cut of the Matthew 6 video. Chapter times are approximate (checked by sampling the video).
+## Video 1: TQA_Stillness_Journey_FINAL_v8.mp4
+Video 1 on the calendar. Release: Sunday, October 18, 5:00 AM Eastern. This is your original Stillness Journey, rebuilt on the standard: six scriptures, Romans 10:9-10, a closing prayer and the thank you page, exactly 8 minutes. The scriptures and the one-line reflections are from your original Version 8. The prayer is your existing closing prayer, because the original had none.
 
 **Title**
-The Posture of Prayer | Matthew 6:6-9 (KJV) | A Quiet Prayer to Rest In
+The Stillness Journey | Psalm 46:10 and Matthew 11:28 (KJV) | A Quiet Prayer to Rest In
 
 **Description (paste as is)**
 ```
-You do not have to beg, shout or find perfect words. Come to the Father in the quiet, and rest in the secret place.
+Stillness is not empty. It is full of Him. Come to the Father in the quiet, and rest.
 
-This eight minute prayer time walks through Matthew 6, one word at a time.
+This eight minute time of scripture and prayer walks through six words from the Bible, one word at a time, and ends with Romans 10:9-10 and a closing prayer.
 
-Matthew 6:7-8 (KJV)
-"But when ye pray, use not vain repetitions, as the heathen do: for they think that they shall be heard for their much speaking. Be not ye therefore like unto them: for your Father knoweth what things ye have need of, before ye ask him."
+Psalm 46:10 (KJV)
+"Be still, and know that I am God: I will be exalted among the heathen, I will be exalted in the earth."
 
-Matthew 6:6 (KJV)
-"But thou, when thou prayest, enter into thy closet, and when thou hast shut thy door, pray to thy Father which is in secret; and thy Father which seeth in secret shall reward thee openly."
+Matthew 11:28 (KJV)
+"Come unto me, all ye that labour and are heavy laden, and I will give you rest."
 
-Matthew 6:9 (KJV)
-"After this manner therefore pray ye: Our Father which art in heaven, Hallowed be thy name."
+Isaiah 26:3 (KJV)
+"Thou wilt keep him in perfect peace, whose mind is stayed on thee: because he trusteth in thee."
+
+Proverbs 4:23 (KJV)
+"Keep thy heart with all diligence; for out of it are the issues of life."
+
+Matthew 6:33 (KJV)
+"But seek ye first the kingdom of God, and his righteousness; and all these things shall be added unto you."
+
+Psalm 27:14 (KJV)
+"Wait on the LORD: be of good courage, and he shall strengthen thine heart: wait, I say, on the LORD."
+
+Romans 10:9-10 (KJV)
+"That if thou shalt confess with thy mouth the Lord Jesus, and shalt believe in thine heart that God hath raised him from the dead, thou shalt be saved. For with the heart man believeth unto righteousness; and with the mouth confession is made unto salvation."
 
 Chapters
 0:00 Sanctuary Grace Ministry presents The Quiet Authority
-0:15 Matthew 6:7-8
-2:15 Matthew 6:6
-4:30 Matthew 6:9
-6:05 A closing prayer
+0:15 Psalm 46:10
+0:54 Matthew 11:28
+1:28 Isaiah 26:3
+2:06 Proverbs 4:23
+2:41 Matthew 6:33
+3:20 Psalm 27:14
+3:59 Romans 10:9-10
+4:43 A closing prayer
+7:30 Thank you for watching
 
 A closing prayer
 Father, I thank You that You are my Anchor of Faithfulness. Forgive me for the times I have slipped into performative noise, thinking I had to scream or use the perfect words to be heard. I choose right now to shut the door on the frantic demands of this world and rest in the secret place of Your presence. Thank You that You intimately know my needs before I even speak. Settle my mind, clear away the weight of heavy burdens, and teach me to walk out into the marketplace with Your unshakeable peace. I lean entirely on Your blueprint, not my own strength. In Jesus' name, Amen.
@@ -119,16 +153,24 @@ Sanctuary Grace Ministry: sanctuary-grace.com
 #TheQuietAuthority #KJV #Prayer
 ```
 
+**Reflections that type out on screen (your own lines from the original Version 8)**
+Psalm 46:10: Stillness is not empty. It is full of Him.
+Matthew 11:28: He is not asking for your strength.
+Isaiah 26:3: Peace does not come from understanding everything.
+Proverbs 4:23: What you carry in your heart shapes your life.
+Matthew 6:33: Stop chasing what He has already promised to add.
+Psalm 27:14: Waiting on God is not weakness. It is war.
+
 **Tags**
-prayer, how to pray, Matthew 6, Lord's prayer, secret place, KJV, King James Bible, quiet time, Christian prayer, scripture meditation, The Quiet Authority, Sanctuary Grace Ministry
+stillness, be still and know, Psalm 46:10, Matthew 11:28, Isaiah 26:3, Proverbs 4:23, Matthew 6:33, Psalm 27:14, salvation, KJV, King James Bible, quiet time, Christian prayer, scripture meditation, The Quiet Authority, Sanctuary Grace Ministry
 
 ---
 
-## Video 2: TQA_Standard_8min_Posture_of_Prayer.mp4
-The standard cut (the file on your site is TQA_Standard_8min_Posture_of_Prayer.mp4).
+## Video 2: TQA_Stillness_Journey_FINAL_v9.mp4
+Video 2 on the calendar. Release: Sunday, October 25, 5:00 AM Eastern. Rebuilt on the standard, so the 47 second frozen stretch on the Matthew 6:9 page is gone. It carries the same Matthew 6 words, Romans 10:9-10 and closing prayer as Video 4 (v10). The prayer rises line by line here.
 
 **Title**
-The Posture of Prayer | Matthew 6:6-9 and Romans 10:9-10 (KJV) | A Quiet Prayer to Rest In
+The Posture of Prayer | Matthew 6:6-9 (KJV) | A Quiet Prayer to Rest In
 
 **Description (paste as is)**
 ```
@@ -151,11 +193,11 @@ Romans 10:9-10 (KJV)
 Chapters
 0:00 Sanctuary Grace Ministry presents The Quiet Authority
 0:15 Matthew 6:7-8
-1:53 Matthew 6:6
+1:52 Matthew 6:6
 3:24 Matthew 6:9
 4:35 Romans 10:9-10
 5:20 A closing prayer
-7:13 Thank you for watching
+7:30 Thank you for watching
 
 A closing prayer
 Father, I thank You that You are my Anchor of Faithfulness. Forgive me for the times I have slipped into performative noise, thinking I had to scream or use the perfect words to be heard. I choose right now to shut the door on the frantic demands of this world and rest in the secret place of Your presence. Thank You that You intimately know my needs before I even speak. Settle my mind, clear away the weight of heavy burdens, and teach me to walk out into the marketplace with Your unshakeable peace. I lean entirely on Your blueprint, not my own strength. In Jesus' name, Amen.
@@ -173,7 +215,7 @@ prayer, how to pray, Matthew 6, Romans 10:9, salvation, secret place, KJV, King 
 ---
 
 ## Video 3: TQA_Stillness_Journey_FINAL_v11.mp4
-Video Three. Psalm 27 with Psalm 91:1 and a bedtime prayer.
+Video 3 on the calendar. Release: Sunday, November 1, 5:00 AM Eastern. Psalm 27 with Psalm 91:1 and a bedtime prayer.
 
 **Title**
 Waiting on the LORD | Psalm 27 and Psalm 91:1 (KJV) | A Quiet Bedtime Prayer
@@ -223,8 +265,56 @@ bedtime prayer, prayer before sleep, Psalm 27, Psalm 91, wait on the LORD, salva
 
 ---
 
-## Video 4: TQA_Stillness_Journey_FINAL_v12.mp4
-Video Four. The confidential circle and a morning prayer. The reflections and the prayer were drafted by Claude with your permission, and you have approved them.
+## Video 4: TQA_Standard_8min_Posture_of_Prayer.mp4
+Video 4 on the calendar. Release: Sunday, November 8, 5:00 AM Eastern. The standard cut (the file on your site is TQA_Standard_8min_Posture_of_Prayer.mp4). It carries the same Matthew 6 message as Video 2 (v9).
+
+**Title**
+The Posture of Prayer | Matthew 6:6-9 and Romans 10:9-10 (KJV) | A Quiet Prayer to Rest In
+
+**Description (paste as is)**
+```
+You do not have to beg, shout or find perfect words. Come to the Father in the quiet, and rest in the secret place.
+
+This eight minute prayer time walks through Matthew 6 and ends with Romans 10:9-10 and a closing prayer.
+
+Matthew 6:7-8 (KJV)
+"But when ye pray, use not vain repetitions, as the heathen do: for they think that they shall be heard for their much speaking. Be not ye therefore like unto them: for your Father knoweth what things ye have need of, before ye ask him."
+
+Matthew 6:6 (KJV)
+"But thou, when thou prayest, enter into thy closet, and when thou hast shut thy door, pray to thy Father which is in secret; and thy Father which seeth in secret shall reward thee openly."
+
+Matthew 6:9 (KJV)
+"After this manner therefore pray ye: Our Father which art in heaven, Hallowed be thy name."
+
+Romans 10:9-10 (KJV)
+"That if thou shalt confess with thy mouth the Lord Jesus, and shalt believe in thine heart that God hath raised him from the dead, thou shalt be saved. For with the heart man believeth unto righteousness; and with the mouth confession is made unto salvation."
+
+Chapters
+0:00 Sanctuary Grace Ministry presents The Quiet Authority
+0:15 Matthew 6:7-8
+1:53 Matthew 6:6
+3:24 Matthew 6:9
+4:35 Romans 10:9-10
+5:20 A closing prayer
+7:13 Thank you for watching
+
+A closing prayer
+Father, I thank You that You are my Anchor of Faithfulness. Forgive me for the times I have slipped into performative noise, thinking I had to scream or use the perfect words to be heard. I choose right now to shut the door on the frantic demands of this world and rest in the secret place of Your presence. Thank You that You intimately know my needs before I even speak. Settle my mind, clear away the weight of heavy burdens, and teach me to walk out into the marketplace with Your unshakeable peace. I lean entirely on Your blueprint, not my own strength. In Jesus' name, Amen.
+
+Scripture is from the King James Version.
+
+Sanctuary Grace Ministry: sanctuary-grace.com
+
+#TheQuietAuthority #KJV #Prayer
+```
+
+**Tags**
+prayer, how to pray, Matthew 6, Romans 10:9, salvation, secret place, KJV, King James Bible, quiet time, Christian prayer, scripture meditation, The Quiet Authority, Sanctuary Grace Ministry
+
+---
+
+## Video 5: TQA_Stillness_Journey_FINAL_v12.mp4
+Video 5 on the calendar. Release: Sunday, November 15, 5:00 AM Eastern. The confidential circle and a morning prayer. The reflections and the prayer were drafted by Claude with your permission, and you have approved them.
 
 **Title**
 The Secret of the LORD | Psalm 25:14, Proverbs 3:32, Malachi 3:6 (KJV) | A Quiet Morning Prayer
@@ -274,8 +364,8 @@ morning prayer, start your day with God, Psalm 25:14, Proverbs 3:32, Malachi 3:6
 
 ---
 
-## Video 5: TQA_Stillness_Journey_FINAL_v13.mp4
-Video Five, Gate 3, The Hallowed Identity. Release: Sunday, October 25, 5:00 AM Eastern. The reflections and the declaration were drafted by Claude with your permission, and you have approved them.
+## Video 6 (not yet scheduled): TQA_Stillness_Journey_FINAL_v13.mp4
+Video Five, Gate 3, The Hallowed Identity. It has no Sunday in the calendar yet. Tell Claude which Sunday it should take. The reflections and the declaration were drafted by Claude with your permission, and you have approved them.
 
 **Title**
 The Hallowed Identity | Proverbs 18:10, Isaiah 43:18, Isaiah 43:19 (KJV) | A Quiet Morning Declaration

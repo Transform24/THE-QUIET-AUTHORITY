@@ -11,8 +11,10 @@ import tqaVideo13 from "./data/TQA_Stillness_Journey_FINAL_v13.json";
 import { TQA_Stillness_Journey_FINAL_v12 } from "./TQA_Stillness_Journey_FINAL_v12";
 import tqaVideo12 from "./data/TQA_Stillness_Journey_FINAL_v12.json";
 import { TQA_Stillness_Journey_FINAL_v8 } from "./TQA_Stillness_Journey_FINAL_v8";
+import { TQA_Stillness_Journey_FINAL_v9 } from "./TQA_Stillness_Journey_FINAL_v9";
 import { TQA_Stillness_Journey_FINAL_v11 } from "./TQA_Stillness_Journey_FINAL_v11";
 import tqaVideo8 from "./data/TQA_Stillness_Journey_FINAL_v8.json";
+import tqaVideo9 from "./data/TQA_Stillness_Journey_FINAL_v9.json";
 import tqaVideo11 from "./data/TQA_Stillness_Journey_FINAL_v11.json";
 import tqaVideo from "./data/TQA_Stillness_Journey_FINAL_v10.json";
 import tqaPattern from "./data/tqa-pattern-blueprint.json";
@@ -59,6 +61,17 @@ export const RemotionRoot = () => {
         width={tqaVideo.width}
         height={tqaVideo.height}
         calculateMetadata={() => ({ durationInFrames: buildTimeline(tqaVideo).total_frames })}
+      />
+
+      {/* TQA video 9, The Posture of Prayer (Matthew 6), rebuilt on the same standard and the same prayer push as video three. Words come from src/data/TQA_Stillness_Journey_FINAL_v9.json */}
+      <Composition
+        id="TQA-Stillness-Journey-FINAL-v9"
+        component={TQA_Stillness_Journey_FINAL_v9}
+        durationInFrames={buildTimeline(tqaVideo9).total_frames}
+        fps={tqaVideo9.fps}
+        width={tqaVideo9.width}
+        height={tqaVideo9.height}
+        calculateMetadata={() => ({ durationInFrames: buildTimeline(tqaVideo9).total_frames })}
       />
 
       {/* TQA video 8, the original Stillness Journey, rebuilt on the same standard and the same prayer push as video three. Words come from src/data/TQA_Stillness_Journey_FINAL_v8.json */}

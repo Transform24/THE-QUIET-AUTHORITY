@@ -6,16 +6,39 @@
       "week": 1,
       "date": "2026-10-18",
       "time": "5:00 AM",
+      "title": "The Stillness Journey | Psalm 46:10 and Matthew 11:28 (KJV) | A Quiet Prayer to Rest In",
+      "version": "v8",
+      "video": "public/TQA_Stillness_Journey_FINAL_v8.mp4?v=1",
+      "card": "workflows/output/youtube-pending/v8-stillness-journey.md",
+      "chapters": [
+        "0:00 Sanctuary Grace Ministry presents The Quiet Authority",
+        "0:15 Psalm 46:10",
+        "0:54 Matthew 11:28",
+        "1:28 Isaiah 26:3",
+        "2:06 Proverbs 4:23",
+        "2:41 Matthew 6:33",
+        "3:20 Psalm 27:14",
+        "3:59 Romans 10:9-10",
+        "4:43 A closing prayer",
+        "7:30 Thank you for watching"
+      ]
+    },
+    {
+      "week": 2,
+      "date": "2026-10-25",
+      "time": "5:00 AM",
       "title": "The Posture of Prayer | Matthew 6:6-9 (KJV) | A Quiet Prayer to Rest In",
       "version": "v9",
-      "video": "public/TQA_Stillness_Journey_FINAL_v9.mp4",
-      "card": "workflows/output/youtube-pending/tqa-posture-of-prayer-8min.md",
+      "video": "public/TQA_Stillness_Journey_FINAL_v9.mp4?v=2",
+      "card": "workflows/output/youtube-pending/v9-stillness-journey.md",
       "chapters": [
         "0:00 Sanctuary Grace Ministry presents The Quiet Authority",
         "0:15 Matthew 6:7-8",
-        "2:15 Matthew 6:6",
-        "4:30 Matthew 6:9",
-        "6:05 A closing prayer"
+        "1:52 Matthew 6:6",
+        "3:24 Matthew 6:9",
+        "4:35 Romans 10:9-10",
+        "5:20 A closing prayer",
+        "7:30 Thank you for watching"
       ]
     },
     {
@@ -37,8 +60,8 @@
       ]
     },
     {
-      "week": 5,
-      "date": "2026-11-15",
+      "week": 4,
+      "date": "2026-11-08",
       "time": "5:00 AM",
       "title": "The Posture of Prayer | Matthew 6:6-9 and Romans 10:9-10 (KJV) | A Quiet Prayer to Rest In",
       "version": "v10",
@@ -55,8 +78,8 @@
       ]
     },
     {
-      "week": 7,
-      "date": "2026-11-29",
+      "week": 5,
+      "date": "2026-11-15",
       "time": "5:00 AM",
       "title": "The Secret of the LORD | Psalm 25:14, Proverbs 3:32, Malachi 3:6 (KJV) | A Quiet Morning Prayer",
       "version": "v12",
@@ -71,24 +94,6 @@
         "4:17 A morning prayer",
         "7:30 Thank you for watching"
       ]
-    },
-    {
-      "week": 2,
-      "date": "2026-10-25",
-      "time": "5:00 AM",
-      "title": "The Hallowed Identity | Proverbs 18:10, Isaiah 43:18, Isaiah 43:19 (KJV) | A Quiet Morning Declaration",
-      "version": "v13",
-      "video": "public/TQA_Stillness_Journey_FINAL_v13.mp4",
-      "card": "workflows/output/youtube-pending/v13-hallowed-identity.md",
-      "chapters": [
-        "0:00 Sanctuary Grace Ministry presents The Quiet Authority",
-        "0:15 Proverbs 18:10",
-        "1:23 Isaiah 43:18",
-        "2:27 Isaiah 43:19",
-        "3:52 Romans 10:9-10",
-        "4:37 A morning declaration",
-        "7:30 Thank you for watching"
-      ]
     }
   ],
   "shorts": [
@@ -98,7 +103,7 @@
       "name": "Verse One",
       "file": "public/shorts/v10-clip-A.mp4",
       "caption": "workflows/output/shorts-staged/v10-clip-A.md",
-      "full_video_date": "2026-11-15",
+      "full_video_date": "2026-11-08",
       "skip": false,
       "skip_reason": ""
     },
@@ -108,7 +113,7 @@
       "name": "Mid-way Reflection",
       "file": "public/shorts/v10-clip-B.mp4",
       "caption": "workflows/output/shorts-staged/v10-clip-B.md",
-      "full_video_date": "2026-11-15",
+      "full_video_date": "2026-11-08",
       "skip": false,
       "skip_reason": ""
     },
@@ -118,7 +123,7 @@
       "name": "The Outro Prayer Push",
       "file": "public/shorts/v10-clip-C.mp4",
       "caption": "workflows/output/shorts-staged/v10-clip-C.md",
-      "full_video_date": "2026-11-15",
+      "full_video_date": "2026-11-08",
       "skip": false,
       "skip_reason": ""
     },
@@ -158,7 +163,7 @@
       "name": "Verse One",
       "file": "public/shorts/v12-clip-A.mp4",
       "caption": "workflows/output/shorts-staged/v12-clip-A.md",
-      "full_video_date": "2026-11-29",
+      "full_video_date": "2026-11-15",
       "skip": false,
       "skip_reason": ""
     },
@@ -168,7 +173,7 @@
       "name": "Mid-way Reflection",
       "file": "public/shorts/v12-clip-B.mp4",
       "caption": "workflows/output/shorts-staged/v12-clip-B.md",
-      "full_video_date": "2026-11-29",
+      "full_video_date": "2026-11-15",
       "skip": false,
       "skip_reason": ""
     },
@@ -178,7 +183,7 @@
       "name": "The Outro Prayer Push",
       "file": "public/shorts/v12-clip-C.mp4",
       "caption": "workflows/output/shorts-staged/v12-clip-C.md",
-      "full_video_date": "2026-11-29",
+      "full_video_date": "2026-11-15",
       "skip": false,
       "skip_reason": ""
     },
@@ -188,7 +193,7 @@
       "name": "Verse One",
       "file": "public/shorts/v10-clip-A.mp4",
       "caption": "workflows/output/shorts-staged/v9-clip-A.md",
-      "full_video_date": "2026-10-18",
+      "full_video_date": "2026-10-25",
       "skip": true,
       "skip_reason": "Same words as v10. Use the v10 clip."
     },
@@ -198,7 +203,7 @@
       "name": "Mid-way Reflection",
       "file": "public/shorts/v10-clip-B.mp4",
       "caption": "workflows/output/shorts-staged/v9-clip-B.md",
-      "full_video_date": "2026-10-18",
+      "full_video_date": "2026-10-25",
       "skip": true,
       "skip_reason": "Same words as v10. Use the v10 clip."
     },
@@ -208,7 +213,7 @@
       "name": "The Outro Prayer Push",
       "file": "public/shorts/v10-clip-C.mp4",
       "caption": "workflows/output/shorts-staged/v9-clip-C.md",
-      "full_video_date": "2026-10-18",
+      "full_video_date": "2026-10-25",
       "skip": true,
       "skip_reason": "Same words as v10. Use the v10 clip."
     },
@@ -218,7 +223,7 @@
       "name": "Verse One",
       "file": "public/shorts/v13-clip-A.mp4",
       "caption": "workflows/output/shorts-staged/v13-clip-A.md",
-      "full_video_date": "2026-10-25",
+      "full_video_date": null,
       "skip": false,
       "skip_reason": ""
     },
@@ -228,7 +233,7 @@
       "name": "Mid-way Reflection",
       "file": "public/shorts/v13-clip-B.mp4",
       "caption": "workflows/output/shorts-staged/v13-clip-B.md",
-      "full_video_date": "2026-10-25",
+      "full_video_date": null,
       "skip": false,
       "skip_reason": ""
     },
@@ -238,7 +243,7 @@
       "name": "The Outro Prayer Push",
       "file": "public/shorts/v13-clip-C.mp4",
       "caption": "workflows/output/shorts-staged/v13-clip-C.md",
-      "full_video_date": "2026-10-25",
+      "full_video_date": null,
       "skip": false,
       "skip_reason": ""
     }
@@ -251,6 +256,10 @@
     {
       "badge": "MARKETING STATUS, OCTOBER 12",
       "text": "Email rules are locked in content-ops/06_marketing_ops/MAILERLITE-INTEGRATION.md: one link per email, Cinzel headers, Jost body, and the banned words list with no em dashes. Old Beacons and duplicate site links were removed and every own link now points to https://sanctuary-grace.com. Printful: UPS Mail Innovations is recorded as the wall art carrier setting from October 12, 2026. Please confirm it in the Printful dashboard before holiday orders."
+    },
+    {
+      "badge": "NOT YET SCHEDULED",
+      "text": "Video Five, The Hallowed Identity (file v13, Gate 3), has no Sunday in the new calendar. Its video, card and three shorts are ready. Tell Claude which Sunday it should take."
     }
   ],
   "action_cards": [

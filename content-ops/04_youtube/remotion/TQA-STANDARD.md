@@ -73,3 +73,5 @@ These are the backend security measures that sit under every video and every lin
 - Checkout links: the six gate links match the daily smoke test. The retired Gate One link is not shown on any page. See `content-ops/06_storefront-sync/STRIPE-VERIFICATION.md`.
 - Not verified from here: the GitHub Actions secret values, the Stripe account settings, and the Printful carrier setting. Each is listed for Grace to check.
 - Check commands: `node scripts/storefront-visibility.mjs --check` for the shop filter, and the video checks in section 5.
+
+On October 13, 2026 Grace re-aligned the release calendar: v8 on Oct 18 (Week 1), v9 on Oct 25, v11 on Nov 1, v10 on Nov 8 and v12 on Nov 15. Video v13 has no Sunday yet. The dates above are the record of what was authorized on October 11. Video 8 was not part of that authorization. Nothing uploads without Grace's word.

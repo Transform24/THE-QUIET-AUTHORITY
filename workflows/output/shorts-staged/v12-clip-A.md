@@ -5,7 +5,7 @@ clip_name: Verse One
 file: out/shorts/v12-clip-A.mp4
 format: 1080 by 1920, 60 seconds
 status: RENDERED, ready for Grace to post. Nothing here uploads anything.
-full_video_release: Sunday, November 29, 2026
+full_video_release: Sunday, November 15, 2026
 ---
 
 # V12, Clip A: Verse One
@@ -16,7 +16,7 @@ This short shows the first scripture, revealed word by word, with its reflection
 
 - In YouTube Studio, open this short, choose Related video, and pick: The Secret of the LORD | Psalm 25:14, Proverbs 3:32, Malachi 3:6 (KJV) | A Quiet Morning Prayer
 - Full video link, to paste after Grace uploads it: {{YOUTUBE_WATCH_URL}}
-- The full video is scheduled for Sunday, November 29, 2026, 5:00 AM Eastern. Post the short after that.
+- The full video is scheduled for Sunday, November 15, 2026, 5:00 AM Eastern. Post the short after that.
 
 ## YouTube Shorts
 

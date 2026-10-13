@@ -5,7 +5,7 @@ clip_name: The Outro Prayer Push
 file: out/shorts/v9-clip-C.mp4
 format: 1080 by 1920, 60 seconds
 status: SKIP, same words as v10. Use the v10 clips instead.
-full_video_release: Sunday, October 18, 2026
+full_video_release: Sunday, October 25, 2026
 ---
 
 # V9, Clip C: The Outro Prayer Push
@@ -17,7 +17,7 @@ Note: v9 carries the same words as v10, so these clips repeat v10's. Post one se
 
 - In YouTube Studio, open this short, choose Related video, and pick: The Posture of Prayer | Matthew 6:6-9 (KJV) | A Quiet Prayer to Rest In
 - Full video link, to paste after Grace uploads it: {{YOUTUBE_WATCH_URL}}
-- The full video is scheduled for Sunday, October 18, 2026, 5:00 AM Eastern. Post the short after that.
+- The full video is scheduled for Sunday, October 25, 2026, 5:00 AM Eastern. Post the short after that.
 
 ## YouTube Shorts
 

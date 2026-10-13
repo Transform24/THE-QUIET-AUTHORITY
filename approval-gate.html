@@ -512,7 +512,7 @@
             const groups = order.map(vid => {
                 const clips = shorts.filter(x => x.video === vid);
                 if (!clips.length) return '';
-                const date = prettyDate(clips[0].full_video_date, '5:00 AM');
+                const date = clips[0].full_video_date ? prettyDate(clips[0].full_video_date, '5:00 AM') : 'a Sunday still to be chosen';
                 const rows = clips.map(x => `
                     <div style="display:flex; gap:12px; align-items:center; justify-content:space-between; padding:10px 0; border-top:1px solid #272727; ${x.skip ? 'opacity:0.5;' : ''}">
                         <div>Clip ${escapeHtml(x.clip)}: ${escapeHtml(x.name)}${x.skip ? ' (skip: ' + escapeHtml(x.skip_reason) + ')' : ''}</div>

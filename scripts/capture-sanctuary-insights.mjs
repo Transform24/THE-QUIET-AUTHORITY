@@ -14,11 +14,11 @@ const OUTPUT = new URL("workflows/output/engagement-metrics.json", root);
 
 // The five master videos, in launch order, and which video's shorts each one uses.
 export const SUITES = [
-  { id: "v9", title: "The Posture of Prayer (Matthew 6)", release: "2026-10-18", shorts_from: "v10" },
-  { id: "v13", title: "The Hallowed Identity (Gate 3)", release: "2026-10-25", shorts_from: "v13" },
+  { id: "v9", title: "The Posture of Prayer (Matthew 6)", release: "2026-10-25", shorts_from: "v10" },
+  { id: "v13", title: "The Hallowed Identity (Gate 3)", release: null, shorts_from: "v13" },
   { id: "v11", title: "Waiting on the LORD (Psalm 27)", release: "2026-11-01", shorts_from: "v11" },
-  { id: "v10", title: "The Posture of Prayer with Romans 10:9-10", release: "2026-11-15", shorts_from: "v10" },
-  { id: "v12", title: "The Secret of the LORD (Psalm 25:14)", release: "2026-11-29", shorts_from: "v12" },
+  { id: "v10", title: "The Posture of Prayer with Romans 10:9-10", release: "2026-11-08", shorts_from: "v10" },
+  { id: "v12", title: "The Secret of the LORD (Psalm 25:14)", release: "2026-11-15", shorts_from: "v12" },
 ];
 export const CLIP_NAMES = { A: "Verse One", B: "Mid-way Reflection", C: "The Outro Prayer Push" };
 

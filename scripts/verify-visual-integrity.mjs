@@ -44,6 +44,7 @@ const fail = (m) => problems.push(m);
 const readJson = (p) => JSON.parse(readFileSync(path.join(remotion, p), "utf8"));
 const registry = readJson("src/data/kjv-registry.json").verses;
 const layouts = [
+  { name: "TQA_Stillness_Journey_FINAL_v9", file: "src/TQA_Stillness_Journey_FINAL_v9.jsx", data: "src/data/TQA_Stillness_Journey_FINAL_v9.json", fade: /durationInFrames\s*-\s*RULES\.picture_fade_out_frames/ },
   { name: "TQA_Stillness_Journey_FINAL_v8", file: "src/TQA_Stillness_Journey_FINAL_v8.jsx", data: "src/data/TQA_Stillness_Journey_FINAL_v8.json", fade: /durationInFrames\s*-\s*RULES\.picture_fade_out_frames/ },
   { name: "TQA_Stillness_Journey_FINAL_v10", file: "src/TQA_Stillness_Journey_FINAL_v10.jsx", data: "src/data/TQA_Stillness_Journey_FINAL_v10.json", fade: /durationInFrames\s*-\s*RULES\.picture_fade_out_frames/ },
   { name: "TQA_Stillness_Journey_FINAL_v11", file: "src/TQA_Stillness_Journey_FINAL_v11.jsx", data: "src/data/TQA_Stillness_Journey_FINAL_v11.json", fade: /durationInFrames\s*-\s*RULES\.picture_fade_out_frames/ },
@@ -72,7 +73,7 @@ for (const L of layouts) {
   }
 }
 if (RULES.picture_fade_out_frames !== 192) fail(`the official final fade-out is 192 frames, found ${RULES.picture_fade_out_frames}`);
-notes.push(`layouts: 6 layout files keep an <Img> picture layer, 11,520 frames, text at 780 pixels or less, Cinzel and Jost, every scripture word for word from the KJV registry (LORD in capitals)`);
+notes.push(`layouts: 7 layout files keep an <Img> picture layer, 11,520 frames, text at 780 pixels or less, Cinzel and Jost, every scripture word for word from the KJV registry (LORD in capitals)`);
 
 // 2. Video checks
 const args = process.argv.slice(2);
