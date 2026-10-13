@@ -21,7 +21,14 @@
         "3:59 Romans 10:9-10",
         "4:43 A closing prayer",
         "7:30 Thank you for watching"
-      ]
+      ],
+      "approval": {
+        "status": "approved",
+        "label": "Yes, Approved",
+        "by": "Grace",
+        "on": "2026-10-13",
+        "note": "Approved by Grace in the chat for the October 18 launch. Nothing uploads. Grace uploads the video herself."
+      }
     },
     {
       "week": 2,
@@ -39,7 +46,11 @@
         "4:46 Romans 10:9-10",
         "5:31 A closing prayer",
         "7:30 Thank you for watching"
-      ]
+      ],
+      "approval": {
+        "status": "ready",
+        "label": "Ready, Awaiting Review"
+      }
     },
     {
       "week": 3,
@@ -57,7 +68,11 @@
         "3:26 Romans 10:9-10",
         "4:11 A bedtime prayer",
         "7:30 Thank you for watching"
-      ]
+      ],
+      "approval": {
+        "status": "ready",
+        "label": "Ready, Awaiting Review"
+      }
     },
     {
       "week": 4,
@@ -75,7 +90,11 @@
         "4:35 Romans 10:9-10",
         "5:20 A closing prayer",
         "7:30 Thank you for watching"
-      ]
+      ],
+      "approval": {
+        "status": "ready",
+        "label": "Ready, Awaiting Review"
+      }
     },
     {
       "week": 5,
@@ -93,7 +112,11 @@
         "3:32 Romans 10:9-10",
         "4:17 A morning prayer",
         "7:30 Thank you for watching"
-      ]
+      ],
+      "approval": {
+        "status": "ready",
+        "label": "Ready, Awaiting Review"
+      }
     },
     {
       "time": "5:00 AM",
@@ -111,7 +134,11 @@
         "7:30 Thank you for watching"
       ],
       "week": 6,
-      "date": "2026-11-22"
+      "date": "2026-11-22",
+      "approval": {
+        "status": "ready",
+        "label": "Ready, Awaiting Review"
+      }
     }
   ],
   "shorts": [

@@ -224,6 +224,10 @@
             margin-top: 16px;
         }
 
+        .approved-badge { display:inline-block; margin:0 0 14px; padding:8px 16px; background:#7d8c6e; color:#0d0d0d; font-family:'Jost', sans-serif; font-weight:700; letter-spacing:2px; font-size:0.95rem; border-radius:2px; animation: approvedPulse 2.4s ease-in-out infinite; }
+        .ready-badge { display:inline-block; margin:0 0 14px; padding:6px 14px; border:1px solid #C9A84C; color:#C9A84C; font-family:'Jost', sans-serif; letter-spacing:1px; font-size:0.85rem; }
+        @keyframes approvedPulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+        @media (prefers-reduced-motion: reduce) { .approved-badge { animation: none; } }
         .btn-gold {
             background: #C9A84C;
             color: #0d0d0d;
@@ -393,6 +397,14 @@
             return String(text).replace(/[&<>"']/g, m => map[m]);
         }
 
+        // Approval recorded in workflows/output/youtube-schedule.json. Only a video marked approved there shows the green badge.
+        function approvalBadge(v) {
+            const a = v.approval;
+            if (!a) return '';
+            if (a.status === 'approved') return '<div class="approved-badge">APPROVED BY GRACE</div>';
+            return '<div class="ready-badge">' + escapeHtml(a.label || 'Ready, Awaiting Review') + '</div>';
+        }
+
         function prettyDate(iso, time) {
             const d = new Date(iso + 'T12:00:00');
             const day = d.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
@@ -418,6 +430,7 @@
                 document.getElementById('itemDisplay').innerHTML = renderIntegrity(integrity) + renderActions(data.action_cards || []) + renderReview(data.pending_review || []) + videos.map(v => `
                     <div class="item-card">
                         <div class="platform-badge">WEEK ${escapeHtml(v.week)} &middot; ${escapeHtml(v.version.toUpperCase())}</div>
+                        ${approvalBadge(v)}
                         <div class="item-date">${escapeHtml(prettyDate(v.date, v.time))}</div>
                         <h2 style="font-family: 'Cormorant Garamond', serif; color: #C9A84C; margin-bottom: 20px;">${escapeHtml(v.title)}</h2>
                         <div class="item-content">${escapeHtml(v.chapters.join('\n'))}</div>

@@ -168,6 +168,8 @@ Findings from the 2026-10-08 file system audit (nothing below has been changed y
 
 32. PINS, REELS AND THE SYSTEM MAP (2026-10-13). Six Pinterest Idea Pins (1080 by 1920, scripture title in gold Cinzel, sharpest crop of each video's locked plate, 780 pixel text) are in `content-ops/03_pinterest_pins/` with `pins.json`, made by `scripts/generate-pinterest-idea-pins.mjs` (`--render`, `--check`). The 18 vertical Shorts each have a caption document in `workflows/output/shorts-staged/` (related video anchor and the line "Link in bio: sanctuary-grace.com"). `scripts/stage-instagram-daily.mjs` writes 18 daily Reel templates into `workflows/output/shorts-staged/instagram-daily/`, one a day on the Monday, Tuesday and Wednesday after each Sunday video, plus `instagram-daily-schedule.json`. `approval-gate.html` now has a System Map card, the six pins and the 18 Reels beside the video cards. The schedules in `instagram-agent.yml`, `instagram-deploy.yml` and `youtube-agent.yml` are commented out (Pinterest, Substack and the YouTube deploy already were), so nothing posts by itself. Grace pins and posts by hand. The local smoke test of this branch passed 29 of 29. Approvals: the gold buttons on the gate are still the only way a video shows as approved, because writing approvals into the repository was not allowed in this session.
 
+33. VIDEO 8 APPROVED (2026-10-13). On Grace's word in the chat, Video 8 (Week 1, October 18) is recorded as Yes, Approved in `workflows/output/youtube-schedule.json` and shows a green APPROVED BY GRACE badge on the gate. Videos 9, 11, 10, 12 and 13 are recorded as Ready, Awaiting Review. Nothing uploads: Grace uploads each video herself.
+
 ---
 
 ## 9. FILE SYSTEM GUIDE (follow the steps in order)
