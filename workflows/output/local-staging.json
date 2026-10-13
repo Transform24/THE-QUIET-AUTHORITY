@@ -44,7 +44,8 @@
         "bytes": 31317577,
         "sha256": "aca1fa6547ab75985c72250a42f2c4993a05a08adc2ec1b2a1c7e85cf854ecde",
         "verified": "2026-10-13: the copy fetched back from GitHub matched the local file byte for byte",
-        "note": "Force-added past the out/ ignore rule. Keep this path off main until Grace says so: on main it would become a public file."
+        "note": "Force-added past the out/ ignore rule. Keep this path off main until Grace says so: on main it would also be served on sanctuary-grace.com.",
+        "visibility_warning": "The GitHub repository Transform24/the-quiet-authority is PUBLIC (checked 2026-10-13). A file on a side branch is not private: anyone with the branch link can download it. This is a backup, not a secret vault."
       }
     }
   ]
