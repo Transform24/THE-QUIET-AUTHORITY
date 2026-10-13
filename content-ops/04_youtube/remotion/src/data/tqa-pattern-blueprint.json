@@ -1,0 +1,183 @@
+{
+  "id": "tqa-pattern-blueprint",
+  "title": "The Quiet Authority, Pattern of Waiting (8 minutes)",
+  "fps": 24,
+  "width": 1920,
+  "height": 1080,
+  "total_frames": 11520,
+  "layout": {
+    "text_max_width_px": 780,
+    "column_center_x": 700,
+    "intro_y": 470,
+    "scripture_ref_y": 190,
+    "scripture_y": 250,
+    "reflection_y": 590,
+    "transition_y": 170,
+    "scripture3_ref_y": 440,
+    "scripture3_y": 500,
+    "prayer_lower_third_y": 790
+  },
+  "fonts": {
+    "header": "Cinzel",
+    "body": "Jost"
+  },
+  "colors": {
+    "black": "#0d0d0d",
+    "gold": "#C9A84C",
+    "cream": "#F5F0E8"
+  },
+  "background": {
+    "image": "src/assets/tqa/light-stream-plate.jpg",
+    "note": "Light stream, jar and candle from the Version 8 opening, with its old text removed. The character illustration exists only inside the Version 8 video.",
+    "fade_from_black_frames": 72,
+    "fade_to_black_frames": 192
+  },
+  "music": {
+    "file": "src/assets/tqa/tqa-music-v8-extended.m4a",
+    "volume": 1.0,
+    "loop": false,
+    "fade_in_frames": 48,
+    "fade_out_frames": 192,
+    "note": "The music from the Version 8 video, continued to 8 minutes (480 seconds). It replaces the temporary music1.mp3 stand-in."
+  },
+  "kjv": {
+    "PSALM 27:13": "I had fainted, unless I had believed to see the goodness of the LORD in the land of the living.",
+    "PSALM 27:14": "Wait on the LORD: be of good courage, and he shall strengthen thine heart: wait, I say, on the LORD.",
+    "PSALM 91:1": "He that dwelleth in the secret place of the most High shall abide under the shadow of the Almighty."
+  },
+  "kjv_note": "Psalm 27:14 and Psalm 91:1 match the texts already used in the repository and the Version 8 video. Psalm 27:13 was not found in any repository file, so check it against your KJV before rendering.",
+  "timeline": [
+    {
+      "id": "intro",
+      "type": "intro",
+      "start_frame": 0,
+      "end_frame": 360,
+      "fade_in_start": 0,
+      "fade_in_frames": 72,
+      "fade_out_frames": 24,
+      "lines": [
+        {
+          "text": "SANCTUARY GRACE MINISTRY",
+          "size_px": 42,
+          "letter_spacing_px": 3,
+          "color": "gold"
+        },
+        {
+          "text": "presents",
+          "size_px": 30,
+          "letter_spacing_px": 3,
+          "color": "cream"
+        },
+        {
+          "text": "The Quiet Authority",
+          "size_px": 54,
+          "letter_spacing_px": 3,
+          "color": "gold"
+        }
+      ],
+      "background_level": 0.9
+    },
+    {
+      "id": "block1",
+      "type": "scripture_then_reflection",
+      "start_frame": 360,
+      "end_frame": 3240,
+      "fade_in_frames": 24,
+      "fade_out_frames": 24,
+      "scripture": {
+        "ref": "PSALM 27:13",
+        "text": "I had fainted, unless I had believed to see the goodness of the LORD in the land of the living.",
+        "fade_in_start": 24,
+        "fade_in_frames": 48
+      },
+      "pause_after_scripture_frames": 96,
+      "reflection": {
+        "text": "God's pattern always begins when your human performance completely fails. Your exhaustion is not a sign of punishment; it is the threshold where His strength takes over.",
+        "type_start": 168,
+        "chars_per_second": 6,
+        "type_frames": 676,
+        "type_end": 844
+      },
+      "background_level": 0.5
+    },
+    {
+      "id": "block2",
+      "type": "scripture_then_reflection",
+      "start_frame": 3240,
+      "end_frame": 6480,
+      "fade_in_frames": 24,
+      "fade_out_frames": 24,
+      "scripture": {
+        "ref": "PSALM 27:14",
+        "text": "Wait on the LORD: be of good courage, and he shall strengthen thine heart: wait, I say, on the LORD.",
+        "fade_in_start": 24,
+        "fade_in_frames": 48
+      },
+      "pause_after_scripture_frames": 96,
+      "reflection": {
+        "text": "To wait does not mean to sit in passive defeat. It means to bind your heart tightly to the consistency of God's track record. He is the same yesterday, today, and forever.",
+        "type_start": 168,
+        "chars_per_second": 6,
+        "type_frames": 684,
+        "type_end": 852
+      },
+      "background_level": 0.5
+    },
+    {
+      "id": "block3",
+      "type": "transition_then_scripture",
+      "start_frame": 6480,
+      "end_frame": 8640,
+      "fade_in_frames": 24,
+      "fade_out_frames": 24,
+      "transition": {
+        "text": "Because you stood still and believed through the fainting threshold of Psalm 27, you have naturally arrived at the habitation of quiet safety.",
+        "type_start": 24,
+        "chars_per_second": 6,
+        "type_frames": 568,
+        "type_end": 592
+      },
+      "pause_after_transition_frames": 120,
+      "scripture": {
+        "ref": "PSALM 91:1",
+        "text": "He that dwelleth in the secret place of the most High shall abide under the shadow of the Almighty.",
+        "fade_in_start": 712,
+        "fade_in_frames": 48
+      },
+      "background_level": 0.5
+    },
+    {
+      "id": "outro",
+      "type": "outro",
+      "start_frame": 8640,
+      "end_frame": 11520,
+      "fade_in_frames": 0,
+      "fade_out_frames": 192,
+      "scripture_hold": "PSALM 91:1",
+      "prayer": {
+        "heading": "A PLACE OF INTIMACY",
+        "start_frame": 8808,
+        "duration_frames": 2712,
+        "groups": [
+          {
+            "text": "Father, I thank You for the safety of the secret place. Forgive me for the times I have lived by my feelings or allowed the noise of this world to dictate my peace.",
+            "start": 168,
+            "end": 1000
+          },
+          {
+            "text": "I choose right now to step into the Circle of Silence and rest under your unshakeable sovereignty.",
+            "start": 1000,
+            "end": 1800
+          },
+          {
+            "text": "Anchor my heart in Your absolute truth, clear away the exhaustion, and teach me to walk daily in Your quiet authority. In Jesus' name, Amen.",
+            "start": 1800,
+            "end": 2880
+          }
+        ],
+        "crossfade_frames": 48
+      },
+      "background_level": 0.62
+    }
+  ]
+}

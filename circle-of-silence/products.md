@@ -2,7 +2,7 @@
 *Last updated: 2026-08-22*
 
 ## The Circle of Silence: $9/gate
-- Gate 1 HaKria: https://buy.stripe.com/eVqfZh8Ba8Od0Es8YGcQU0w: LIVE, see `gate-1-hakria.md`
+- Gate 1 HaKria: https://buy.stripe.com/fZu4gz18I5C11Iw0sacQU0E: LIVE, see `gate-1-hakria.md` (the older `eVqfZh8Ba8Od0Es8YGcQU0w` is retired)
 - Gate 2 Sheket: NOT YET BUILT
 - Gate 3 HaMidbar: NOT YET BUILT
 - Gate 4 Hitkania: NOT YET BUILT
@@ -48,7 +48,7 @@ Wall art images: `wall-art-WOMT9.jpg` (A) · `wall-art-WOMT8.jpg` (B) · `wall-a
 |---|---|---|
 | The Quiet Authority | $15.99 | buy.stripe.com/00w3cv5oYc0p0EscaScQU0d |
 | The Parable of the Cocoon | $15.99 | buy.stripe.com/eVq3cv8Ba6G5bj6fn4cQU0g |
-| R.E.S.T. Workbook | Free | https://sanctuarygrace.store |
+| R.E.S.T. Workbook | Free | https://sanctuary-grace.com/the-woman-who-pours.html |
 
 ## Amazon Affiliate (tag: sanctuarygrac-20)
 Weighted fleece throw · Travel mug · Prayer journal · Flameless candles · Butterfly mug · Diffuser · Leather journal · Parallel Bible

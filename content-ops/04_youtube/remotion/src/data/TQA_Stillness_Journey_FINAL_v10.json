@@ -1,0 +1,117 @@
+{
+  "id": "TQA_Stillness_Journey_FINAL_v10",
+  "title": "The Quiet Authority, The Posture of Prayer",
+  "standard_version": 2,
+  "fps": 24,
+  "width": 1920,
+  "height": 1080,
+  "layout": {
+    "text_max_width_px": 780,
+    "top_y": 140,
+    "intro_center_x": 960,
+    "intro_y": 340,
+    "thanks_center_x": 960,
+    "thanks_y": 330,
+    "prayer_page_y": 300
+  },
+  "plates": {
+    "spotlight_candle": {
+      "image": "src/assets/tqa/light-stream-plate.jpg",
+      "column_center_x": 660,
+      "note": "The spotlight, jar and candle from the Version 8 opening, old text removed.",
+      "column_width_px": 780,
+      "keep_clear_from_x": 1065
+    },
+    "character_spotlight": {
+      "image": "src/assets/tqa/character-spotlight-plate.jpg",
+      "column_center_x": 470,
+      "note": "The seated figure in the spotlight from the Version 8 'Be still' scene, old text removed.",
+      "column_width_px": 720,
+      "keep_clear_from_x": 830
+    }
+  },
+  "fonts": {
+    "header": "Cinzel",
+    "body": "Jost"
+  },
+  "colors": {
+    "black": "#0d0d0d",
+    "gold": "#C9A84C",
+    "cream": "#F5F0E8"
+  },
+  "music": {
+    "file": "src/assets/tqa/tqa-music-v8-extended.m4a",
+    "volume": 1.0,
+    "duration_frames": 11520,
+    "note": "The music from the Version 8 video, continued to 8 minutes. Any video up to 11,520 frames can use it."
+  },
+  "intro": {
+    "plate": "spotlight_candle",
+    "lines": [
+      {
+        "text": "SANCTUARY GRACE MINISTRY",
+        "size_px": 42,
+        "letter_spacing_px": 3,
+        "color": "gold"
+      },
+      {
+        "text": "presents",
+        "size_px": 30,
+        "letter_spacing_px": 3,
+        "color": "cream"
+      },
+      {
+        "text": "The Quiet Authority",
+        "size_px": 54,
+        "letter_spacing_px": 3,
+        "color": "gold"
+      }
+    ]
+  },
+  "teaching_blocks": [
+    {
+      "plate": "spotlight_candle",
+      "background_level": 0.5,
+      "scripture": {
+        "ref": "MATTHEW 6:7-8",
+        "text": "But when ye pray, use not vain repetitions, as the heathen do: for they think that they shall be heard for their much speaking. Be not ye therefore like unto them: for your Father knoweth what things ye have need of, before ye ask him."
+      },
+      "reflection": "You do not have to beg, scream, or repeat exhaustive religious formulas to move God's heart. He already intimately knows your needs and your heavy burdens before you speak. You can completely drop the pressure to perform."
+    },
+    {
+      "plate": "character_spotlight",
+      "background_level": 0.62,
+      "scripture": {
+        "ref": "MATTHEW 6:6",
+        "text": "But thou, when thou prayest, enter into thy closet, and when thou hast shut thy door, pray to thy Father which is in secret; and thy Father which seeth in secret shall reward thee openly."
+      },
+      "reflection": "True prayer begins by physically and mentally shutting out the chaotic noise and expectations of the world. When you close the door on the pressure to please others, you find an immediate, loving, private audience with your Father."
+    },
+    {
+      "plate": "character_spotlight",
+      "background_level": 0.62,
+      "scripture": {
+        "ref": "MATTHEW 6:9",
+        "text": "After this manner therefore pray ye: Our Father which art in heaven, Hallowed be thy name."
+      },
+      "reflection": "Communication settles into perfect alignment when you simply honor His unyielding identity. When you acknowledge Him as a holy, sovereign Father, your perspective shifts instantly from panic to protection."
+    }
+  ],
+  "closing": {
+    "plate": "character_spotlight",
+    "background_level": 0.7,
+    "scripture": {
+      "ref": "ROMANS 10:9-10",
+      "text": "That if thou shalt confess with thy mouth the Lord Jesus, and shalt believe in thine heart that God hath raised him from the dead, thou shalt be saved. For with the heart man believeth unto righteousness; and with the mouth confession is made unto salvation."
+    },
+    "prayer": "Father, I thank You that You are my Anchor of Faithfulness. Forgive me for the times I have slipped into performative noise, thinking I had to scream or use the perfect words to be heard. I choose right now to shut the door on the frantic demands of this world and rest in the secret place of Your presence. Thank You that You intimately know my needs before I even speak. Settle my mind, clear away the weight of heavy burdens, and teach me to walk out into the marketplace with Your unshakeable peace. I lean entirely on Your blueprint, not my own strength. In Jesus' name, Amen."
+  },
+  "thanks": {
+    "heading": "Thank you for watching.",
+    "lines": [
+      "If this gave you rest, like and subscribe.",
+      "Reach out. Come home to The Quiet Authority."
+    ],
+    "link": "sanctuary-grace.com"
+  }
+}

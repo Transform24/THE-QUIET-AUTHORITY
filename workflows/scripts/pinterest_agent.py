@@ -114,7 +114,7 @@ if _refreshed:
 elif PINTEREST_REFRESH_TOKEN:
     print('Using the static PINTEREST_ACCESS_TOKEN as a fallback.')
 
-REPO_IMAGE_BASE = 'https://transform24.github.io/THE-QUIET-AUTHORITY'
+REPO_IMAGE_BASE = 'https://sanctuary-grace.com'
 
 today = datetime.date.today()
 date_str = today.strftime('%Y-%m-%d')

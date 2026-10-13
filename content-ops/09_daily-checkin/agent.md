@@ -68,7 +68,7 @@ STEPS:
 
    [One CTA, one link, one action, nothing else]
    Return to your sanctuary →
-   https://transform24.github.io/THE-QUIET-AUTHORITY/
+   https://sanctuary-grace.com/
 
    [Sign-off]
    With love,

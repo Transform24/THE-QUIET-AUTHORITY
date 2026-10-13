@@ -1,0 +1,110 @@
+{
+  "about": "Every scripture used in a TQA video must be listed here word for word. verified is true only when the wording was matched to a KJV text already held in this repository. Anything marked false is shown as CHECK by the checker until you confirm it against your KJV.",
+  "verses": {
+    "PSALM 27:13": {
+      "text": "I had fainted, unless I had believed to see the goodness of the LORD in the land of the living.",
+      "verified": true,
+      "source": "Checked word for word against the King James Version from bible-api.com on 2026-10-11"
+    },
+    "PSALM 27:14": {
+      "text": "Wait on the LORD: be of good courage, and he shall strengthen thine heart: wait, I say, on the LORD.",
+      "verified": true,
+      "source": "Version 8 video and workflows/scripts/youtube_agent.py"
+    },
+    "PSALM 91:1": {
+      "text": "He that dwelleth in the secret place of the most High shall abide under the shadow of the Almighty.",
+      "verified": true,
+      "source": "content-ops/04_youtube/remotion/src/data/psalm91.json"
+    },
+    "MATTHEW 6:6": {
+      "text": "But thou, when thou prayest, enter into thy closet, and when thou hast shut thy door, pray to thy Father which is in secret; and thy Father which seeth in secret shall reward thee openly.",
+      "verified": true,
+      "source": "how-to-pray.html"
+    },
+    "MATTHEW 6:7-8": {
+      "text": "But when ye pray, use not vain repetitions, as the heathen do: for they think that they shall be heard for their much speaking. Be not ye therefore like unto them: for your Father knoweth what things ye have need of, before ye ask him.",
+      "verified": true,
+      "source": "Checked word for word against the King James Version from bible-api.com on 2026-10-11"
+    },
+    "MATTHEW 6:9": {
+      "text": "After this manner therefore pray ye: Our Father which art in heaven, Hallowed be thy name.",
+      "verified": true,
+      "source": "how-to-pray.html"
+    },
+    "ROMANS 10:9-10": {
+      "text": "That if thou shalt confess with thy mouth the Lord Jesus, and shalt believe in thine heart that God hath raised him from the dead, thou shalt be saved. For with the heart man believeth unto righteousness; and with the mouth confession is made unto salvation.",
+      "verified": true,
+      "source": "how-to-pray.html, gate-zero.html and the Version 8 video"
+    },
+    "PSALM 25:14": {
+      "text": "The secret of the LORD is with them that fear him; and he will shew them his covenant.",
+      "verified": true,
+      "source": "Checked word for word against the King James Version from bible-api.com on 2026-10-11"
+    },
+    "PROVERBS 3:32": {
+      "text": "For the froward is abomination to the LORD: but his secret is with the righteous.",
+      "verified": true,
+      "source": "Checked word for word against the King James Version from bible-api.com on 2026-10-11"
+    },
+    "MALACHI 3:6": {
+      "text": "For I am the LORD, I change not; therefore ye sons of Jacob are not consumed.",
+      "verified": true,
+      "source": "Checked word for word against the King James Version from bible-api.com on 2026-10-11"
+    },
+    "PROVERBS 18:10": {
+      "text": "The name of the LORD is a strong tower: the righteous runneth into it, and is safe.",
+      "verified": true,
+      "source": "Checked word for word against the King James Version from bible-api.com on 2026-10-11"
+    },
+    "ISAIAH 43:18": {
+      "text": "Remember ye not the former things, neither consider the things of old.",
+      "verified": true,
+      "source": "Checked word for word against the King James Version from bible-api.com on 2026-10-11"
+    },
+    "ISAIAH 43:19": {
+      "text": "Behold, I will do a new thing; now it shall spring forth; shall ye not know it? I will even make a way in the wilderness, and rivers in the desert.",
+      "verified": true,
+      "source": "Checked word for word against the King James Version from bible-api.com on 2026-10-11"
+    },
+    "PSALM 46:10": {
+      "text": "Be still, and know that I am God: I will be exalted among the heathen, I will be exalted in the earth.",
+      "verified": true,
+      "source": "Checked word for word against the King James Version from bible-api.com on 2026-10-13, and matches the Version 8 video"
+    },
+    "MATTHEW 11:28": {
+      "text": "Come unto me, all ye that labour and are heavy laden, and I will give you rest.",
+      "verified": true,
+      "source": "Checked word for word against the King James Version from bible-api.com on 2026-10-13, and matches the Version 8 video"
+    },
+    "ISAIAH 26:3": {
+      "text": "Thou wilt keep him in perfect peace, whose mind is stayed on thee: because he trusteth in thee.",
+      "verified": true,
+      "source": "Checked word for word against the King James Version from bible-api.com on 2026-10-13, and matches the Version 8 video"
+    },
+    "PROVERBS 4:23": {
+      "text": "Keep thy heart with all diligence; for out of it are the issues of life.",
+      "verified": true,
+      "source": "Checked word for word against the King James Version from bible-api.com on 2026-10-13, and matches the Version 8 video"
+    },
+    "MATTHEW 6:33": {
+      "text": "But seek ye first the kingdom of God, and his righteousness; and all these things shall be added unto you.",
+      "verified": true,
+      "source": "Checked word for word against the King James Version from bible-api.com on 2026-10-13, and matches the Version 8 video"
+    },
+    "PSALM 91:1-2": {
+      "text": "He that dwelleth in the secret place of the most High shall abide under the shadow of the Almighty. I will say of the LORD, He is my refuge and my fortress: my God; in him will I trust.",
+      "verified": true,
+      "source": "Checked word for word against the King James Version from bible-api.com on 2026-10-13"
+    },
+    "PSALM 91:4": {
+      "text": "He shall cover thee with his feathers, and under his wings shalt thou trust: his truth shall be thy shield and buckler.",
+      "verified": true,
+      "source": "Checked word for word against the King James Version from bible-api.com on 2026-10-13"
+    },
+    "PSALM 91:14-15": {
+      "text": "Because he hath set his love upon me, therefore will I deliver him: I will set him on high, because he hath known my name. He shall call upon me, and I will answer him: I will be with him in trouble; I will deliver him, and honour him.",
+      "verified": true,
+      "source": "Checked word for word against the King James Version from bible-api.com on 2026-10-13"
+    }
+  }
+}

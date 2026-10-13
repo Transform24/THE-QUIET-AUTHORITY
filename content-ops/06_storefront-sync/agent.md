@@ -15,7 +15,6 @@ master product list at workflows/templates/product-registry.md
 STEPS:
 1. Read index.html: extract all href links pointing to:
    - Amazon (amzn.to/*)
-   - Beacons (beacons.ai/*)
    - Stripe (buy.stripe.com/*)
    - Any external shop links
 

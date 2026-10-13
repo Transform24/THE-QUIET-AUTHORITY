@@ -1,0 +1,107 @@
+{
+  "about": "Which storefront items visitors may see. storefront-filter.js reads this file. An item shows only if its status is complete. An item that needs the Printful key also stays hidden until token_activated is true. Items not listed here are not touched.",
+  "token_activated": false,
+  "token_secret_name": "SANCTUARY_GRACE_KEY",
+  "items": {
+    "wall-art-el-olam": {
+      "status": "complete",
+      "needs_token": false,
+      "note": "Wall art, named complete by Grace on 2026-10-12. Printful canvas, UPS Mail Innovations carrier from 2026-10-12."
+    },
+    "wall-art-el-roi": {
+      "status": "complete",
+      "needs_token": false,
+      "note": "Wall art, named complete by Grace on 2026-10-12. Printful canvas, UPS Mail Innovations carrier from 2026-10-12."
+    },
+    "wall-art-elohim": {
+      "status": "complete",
+      "needs_token": false,
+      "note": "Wall art, named complete by Grace on 2026-10-12. Printful canvas, UPS Mail Innovations carrier from 2026-10-12."
+    },
+    "wall-art-abba": {
+      "status": "complete",
+      "needs_token": false,
+      "note": "Wall art, named complete by Grace on 2026-10-12. Printful canvas, UPS Mail Innovations carrier from 2026-10-12."
+    },
+    "wall-art-el-shaddai": {
+      "status": "complete",
+      "needs_token": false,
+      "note": "Wall art, named complete by Grace on 2026-10-12. Printful canvas, UPS Mail Innovations carrier from 2026-10-12."
+    },
+    "wall-art-yahweh-nissi": {
+      "status": "complete",
+      "needs_token": false,
+      "note": "Wall art, named complete by Grace on 2026-10-12. Printful canvas, UPS Mail Innovations carrier from 2026-10-12."
+    },
+    "wall-art-yahweh-rohi": {
+      "status": "complete",
+      "needs_token": false,
+      "note": "Wall art, named complete by Grace on 2026-10-12. Printful canvas, UPS Mail Innovations carrier from 2026-10-12."
+    },
+    "wall-art-yahweh-jireh": {
+      "status": "complete",
+      "needs_token": false,
+      "note": "Wall art, named complete by Grace on 2026-10-12. Printful canvas, UPS Mail Innovations carrier from 2026-10-12."
+    },
+    "wall-art-yeshua-hamashiach": {
+      "status": "complete",
+      "needs_token": false,
+      "note": "Wall art, named complete by Grace on 2026-10-12. Printful canvas, UPS Mail Innovations carrier from 2026-10-12."
+    },
+    "wall-art-immanuel": {
+      "status": "complete",
+      "needs_token": false,
+      "note": "Wall art, named complete by Grace on 2026-10-12. Printful canvas, UPS Mail Innovations carrier from 2026-10-12."
+    },
+    "wall-art-seh-haelohim": {
+      "status": "complete",
+      "needs_token": false,
+      "note": "Wall art, named complete by Grace on 2026-10-12. Printful canvas, UPS Mail Innovations carrier from 2026-10-12."
+    },
+    "wall-art-ha-davar": {
+      "status": "complete",
+      "needs_token": false,
+      "note": "Wall art, named complete by Grace on 2026-10-12. Printful canvas, UPS Mail Innovations carrier from 2026-10-12."
+    },
+    "wall-art-kochav-nogah-hashachar": {
+      "status": "complete",
+      "needs_token": false,
+      "note": "Wall art, named complete by Grace on 2026-10-12. Printful canvas, UPS Mail Innovations carrier from 2026-10-12."
+    },
+    "wall-art-ruach-hakodesh": {
+      "status": "complete",
+      "needs_token": false,
+      "note": "Wall art, named complete by Grace on 2026-10-12. Printful canvas, UPS Mail Innovations carrier from 2026-10-12."
+    },
+    "wall-art-ruach-haemet": {
+      "status": "complete",
+      "needs_token": false,
+      "note": "Wall art, named complete by Grace on 2026-10-12. Printful canvas, UPS Mail Innovations carrier from 2026-10-12."
+    },
+    "wall-art-ruach-chokmah-u-binah": {
+      "status": "complete",
+      "needs_token": false,
+      "note": "Wall art, named complete by Grace on 2026-10-12. Printful canvas, UPS Mail Innovations carrier from 2026-10-12."
+    },
+    "wall-art-ruach-mishpat-banim": {
+      "status": "complete",
+      "needs_token": false,
+      "note": "Wall art, named complete by Grace on 2026-10-12. Printful canvas, UPS Mail Innovations carrier from 2026-10-12."
+    },
+    "printful-overflow-apparel": {
+      "status": "unverified",
+      "needs_token": true,
+      "note": "Not verified. The Printful shop listings had duplicates and wrong photos in the 2026-09-18 audit note. Hidden until the key is saved and Grace marks it complete."
+    },
+    "printful-pour-it-out-tote": {
+      "status": "unverified",
+      "needs_token": true,
+      "note": "Not verified. The Printful shop listings had duplicates and wrong photos in the 2026-09-18 audit note. Hidden until the key is saved and Grace marks it complete."
+    },
+    "printful-store-link": {
+      "status": "unverified",
+      "needs_token": true,
+      "note": "Not verified. The Printful shop listings had duplicates and wrong photos in the 2026-09-18 audit note. Hidden until the key is saved and Grace marks it complete."
+    }
+  }
+}

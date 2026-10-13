@@ -12,13 +12,14 @@ const root = new URL("../", import.meta.url);
 const INPUT = new URL("workflows/output/engagement-input.json", root);
 const OUTPUT = new URL("workflows/output/engagement-metrics.json", root);
 
-// The five master videos, in launch order, and which video's shorts each one uses.
+// The six master videos, in launch order, and which video's shorts each one uses.
 export const SUITES = [
-  { id: "v9", title: "The Posture of Prayer (Matthew 6)", release: "2026-10-18", shorts_from: "v10" },
-  { id: "v13", title: "The Hallowed Identity (Gate 3)", release: "2026-10-25", shorts_from: "v13" },
+  { id: "v8", title: "The Stillness Journey (Psalm 46:10)", release: "2026-10-18", shorts_from: "v8" },
+  { id: "v9", title: "The Secret Place (Psalm 91)", release: "2026-10-25", shorts_from: "v9" },
   { id: "v11", title: "Waiting on the LORD (Psalm 27)", release: "2026-11-01", shorts_from: "v11" },
-  { id: "v10", title: "The Posture of Prayer with Romans 10:9-10", release: "2026-11-15", shorts_from: "v10" },
-  { id: "v12", title: "The Secret of the LORD (Psalm 25:14)", release: "2026-11-29", shorts_from: "v12" },
+  { id: "v10", title: "The Posture of Prayer with Romans 10:9-10", release: "2026-11-08", shorts_from: "v10" },
+  { id: "v12", title: "The Secret of the LORD (Psalm 25:14)", release: "2026-11-15", shorts_from: "v12" },
+  { id: "v13", title: "The Hallowed Identity (Gate 3)", release: "2026-11-22", shorts_from: "v13" },
 ];
 export const CLIP_NAMES = { A: "Verse One", B: "Mid-way Reflection", C: "The Outro Prayer Push" };
 
@@ -95,7 +96,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     const fail = (m) => errors.push(m);
     // 1. An empty log must produce no numbers at all.
     const none = compute(template());
-    if (none.suites.length !== 5) fail("there must be 5 video suites");
+    if (none.suites.length !== 6) fail("there must be 6 video suites");
     if (none.suites.some((s) => s.has_data || s.hook_rate !== null || s.retention_dropoff !== null || s.traffic_redirection !== null || s.top_short)) fail("an empty log must show no numbers");
     // 2. A labeled test log proves the maths and the sorting. These are test numbers, not channel numbers.
     const test = template();
@@ -112,8 +113,9 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     if (v11.top_short?.clip !== "A") fail("a clip with no views must be ignored");
     const scores = r.pairs.map((p) => p.short?.score ?? -1);
     if (scores.join() !== [...scores].sort((a, b) => b - a).join()) fail("pairs must be sorted from highest to lowest");
-    const v9 = r.suites.find((s) => s.id === "v9");
-    if (v9.shorts_note !== "Uses the v10 shorts") fail("v9 must use the v10 shorts");
+    const v8 = r.suites[0];
+    if (v8.id !== "v8") fail("video 8 must come first in the tracker");
+    if (r.suites.some((s) => s.shorts_note)) fail("every video uses its own shorts");
     if (JSON.stringify(r).includes(String.fromCharCode(0x2014))) fail("a long dash is in the output");
     if (errors.length) { console.error(`FAIL: ${errors.length} problem(s)`); errors.forEach((e) => console.error("  - " + e)); process.exit(1); }
     console.log("OK: the insights script is valid");

@@ -37,11 +37,11 @@ SLIDE 5: You are not more holy because you are more depleted. You are more in ne
 
 SLIDE 6: This is the invitation, not to give more, but to finally receive.
 
-SLIDE 7: The Quiet Authority. A free spiritual profile for women who are ready to stop. https://sanctuarygrace.store
+SLIDE 7: The Quiet Authority. A free spiritual profile for women who are ready to stop. https://sanctuary-grace.com
 
 CAPTION: She gave until there was nothing left. Not because she was weak, because she had learned that her worth lived in what she could offer. If you recognize yourself in this, you are not alone. The Quiet Authority was created for this moment. Free assessment at the link in bio.
 
-https://sanctuarygrace.store
+https://sanctuary-grace.com
 
 HASHTAGS: #ChristianWomen #SpiritualBurnout #FaithAndWellness #SanctuaryGrace #HopeForWomen #ChristianMom #SpiritualRest
 
@@ -57,7 +57,7 @@ Rest is not a reward for productivity. It is a gift offered to those who are too
 
 You do not have to earn what he has already offered. You only have to receive it.
 
-https://sanctuarygrace.store
+https://sanctuary-grace.com
 
 HASHTAGS: #ScriptureForWomen #ChristianWomen #FaithJourney #QuietTime #DailyDevotion #SpiritualRest #SanctuaryGrace
 
@@ -77,7 +77,7 @@ CTA: The Quiet Authority is a free 8-question assessment for women who are ready
 
 CAPTION: You are not behind. You are just exhausted. And exhaustion, when we finally stop and listen to it, is one of the most honest things our body ever says. The return begins at the link below.
 
-https://sanctuarygrace.store
+https://sanctuary-grace.com
 
 HASHTAGS: #ChristianWomen #SpiritualBurnout #FaithAndWellness #SpiritualRest #HopeForWomen #SanctuaryGrace #FaithJourney
 
@@ -93,7 +93,7 @@ Today, stop before you have finished. The stillness is not something you earn. I
 
 Full devotional: Week 1, Vision. Available now at the link in bio.
 
-https://sanctuarygrace.store
+https://sanctuary-grace.com
 
 HASHTAGS: #DailyDevotion #ChristianWomen #QuietTime #SacredSpace #SpiritualRest #FaithJourney #SanctuaryGrace
 
@@ -109,7 +109,7 @@ You do not have to be good at silence to begin. You only have to be willing.
 
 Watch on YouTube: youtube.com/@TheQuietAuthority-f1z
 
-Begin here: https://sanctuarygrace.store
+Begin here: https://sanctuary-grace.com
 
 HASHTAGS: #SacredSpace #ChristianWomen #QuietTime #SpiritualRest #FaithAndWellness #SanctuaryGrace #CircleOfSilence
 
@@ -129,11 +129,11 @@ SLIDE 5: The Depleted Survivor carries wounds that look like strength from the o
 
 SLIDE 6: But survival was never meant to be a permanent address.
 
-SLIDE 7: There is more on the other side of survival. The Quiet Authority can help you find it. https://sanctuarygrace.store
+SLIDE 7: There is more on the other side of survival. The Quiet Authority can help you find it. https://sanctuary-grace.com
 
 CAPTION: Survival mode was meant to be temporary. If you have been living there for years, the Quiet Authority was created for this moment. Free spiritual profile at the link in bio.
 
-https://sanctuarygrace.store
+https://sanctuary-grace.com
 
 HASHTAGS: #ChristianWomen #SpiritualBurnout #HopeForWomen #FaithAndWellness #SanctuaryGrace #SpiritualRest #FaithJourney
 
@@ -149,7 +149,7 @@ You wanted to be further along by now. But healing is not linear. And the fact t
 
 You are not behind. You are healing.
 
-https://sanctuarygrace.store
+https://sanctuary-grace.com
 
 HASHTAGS: #ScriptureForWomen #ChristianWomen #SpiritualRest #FaithJourney #HopeForWomen #SanctuaryGrace #DailyDevotion
 
@@ -169,7 +169,7 @@ CTA: You were made for more than this exhaustion. The Quiet Authority, free asse
 
 CAPTION: Rest is not something you earn. It is something you were made for. If you have been waiting until you deserve it, this is the invitation to stop waiting.
 
-https://sanctuarygrace.store
+https://sanctuary-grace.com
 
 HASHTAGS: #ChristianWomen #SpiritualRest #FaithAndWellness #SanctuaryGrace #HopeForWomen #SpiritualBurnout #FaithJourney
 
@@ -187,7 +187,7 @@ He is closer than the silence feels.
 
 Week 2 devotional, Renewal, available now at the link in bio.
 
-https://sanctuarygrace.store
+https://sanctuary-grace.com
 
 HASHTAGS: #DailyDevotion #ChristianWomen #SacredSpace #FaithJourney #SpiritualRest #QuietTime #SanctuaryGrace
 
@@ -205,7 +205,7 @@ New session available now on YouTube. Link in bio.
 
 youtube.com/@TheQuietAuthority-f1z
 
-https://sanctuarygrace.store
+https://sanctuary-grace.com
 
 HASHTAGS: #SacredSpace #ChristianWomen #QuietTime #SpiritualRest #CircleOfSilence #FaithAndWellness #SanctuaryGrace
 
@@ -225,11 +225,11 @@ SLIDE 5: When she slows down, the silence feels like failure.
 
 SLIDE 6: But God is not measuring your productivity. He is calling you by name, not by your achievements.
 
-SLIDE 7: The Quiet Authority. Free 8-question assessment. Begin at the link. https://sanctuarygrace.store
+SLIDE 7: The Quiet Authority. Free 8-question assessment. Begin at the link. https://sanctuary-grace.com
 
 CAPTION: She is not lazy. She is not faithless. She is the Striving Achiever, and she is one of four spiritual profiles in The Quiet Authority. If this is you, the assessment was built for this moment. Free. Link in bio.
 
-https://sanctuarygrace.store
+https://sanctuary-grace.com
 
 HASHTAGS: #ChristianWomen #SpiritualBurnout #FaithAndWellness #SanctuaryGrace #SpiritualRest #HopeForWomen #ChristianMom
 
@@ -245,7 +245,7 @@ The renewal is not something you manufacture. It is something you receive. It fl
 
 You were not made for permanent exhaustion.
 
-https://sanctuarygrace.store
+https://sanctuary-grace.com
 
 HASHTAGS: #ScriptureForWomen #ChristianWomen #FaithJourney #SpiritualRest #HopeForWomen #SanctuaryGrace #DailyDevotion
 
@@ -265,7 +265,7 @@ CTA: The Quiet Authority. Free assessment. Eight minutes of honesty. Begin at th
 
 CAPTION: The woman you were made to be is still there. Underneath the striving. Underneath the performance. Underneath all of it. She is waiting to be found.
 
-https://sanctuarygrace.store
+https://sanctuary-grace.com
 
 HASHTAGS: #ChristianWomen #SpiritualRest #HopeForWomen #SanctuaryGrace #FaithJourney #SpiritualBurnout #FaithAndWellness
 
@@ -283,7 +283,7 @@ Today's grace is enough for today. You do not have to secure next month's supply
 
 Week 3 devotional, Peace, at the link in bio.
 
-https://sanctuarygrace.store
+https://sanctuary-grace.com
 
 HASHTAGS: #DailyDevotion #ChristianWomen #QuietTime #SpiritualRest #FaithJourney #SacredSpace #SanctuaryGrace
 
@@ -301,7 +301,7 @@ New session on YouTube now. Link in bio.
 
 youtube.com/@TheQuietAuthority-f1z
 
-https://sanctuarygrace.store
+https://sanctuary-grace.com
 
 HASHTAGS: #SacredSpace #ChristianWomen #CircleOfSilence #QuietTime #SpiritualRest #FaithAndWellness #SanctuaryGrace
 
@@ -321,11 +321,11 @@ SLIDE 5: She has not walked away from God, she simply cannot find her footing.
 
 SLIDE 6: She wonders if she has been forgotten. She has not been.
 
-SLIDE 7: The Quiet Authority. A path back to the thread. Free assessment at the link. https://sanctuarygrace.store
+SLIDE 7: The Quiet Authority. A path back to the thread. Free assessment at the link. https://sanctuary-grace.com
 
 CAPTION: She is not faithless. She is disoriented. The Lost Wanderer is one of four profiles in The Quiet Authority. If you have lost the thread, the assessment is a gentle place to begin finding it again. Free. Link in bio.
 
-https://sanctuarygrace.store
+https://sanctuary-grace.com
 
 HASHTAGS: #ChristianWomen #FaithJourney #HopeForWomen #SanctuaryGrace #SpiritualRest #SpiritualBurnout #FaithAndWellness
 
@@ -341,7 +341,7 @@ But the spirit of fear is not from God.
 
 The spirit God gave is power. Love. A sound mind. You are allowed to live from that spirit.
 
-https://sanctuarygrace.store
+https://sanctuary-grace.com
 
 HASHTAGS: #ScriptureForWomen #ChristianWomen #FaithJourney #SpiritualRest #HopeForWomen #SanctuaryGrace #QuietTime
 
@@ -359,11 +359,11 @@ BEAT 3: Bring the real thing. Not the edited version. Not the spiritually approp
 
 CTA: He will not be shocked. He will not love you less. He is waiting for the honest one.
 
-https://sanctuarygrace.store
+https://sanctuary-grace.com
 
 CAPTION: You are safe to be honest with God. Bring the real version today, the unedited, exhausted, uncertain one. He has been waiting for exactly her.
 
-https://sanctuarygrace.store
+https://sanctuary-grace.com
 
 HASHTAGS: #ChristianWomen #FaithJourney #SpiritualRest #SanctuaryGrace #QuietTime #HopeForWomen #FaithAndWellness
 
@@ -381,7 +381,7 @@ You are not behind. You are becoming.
 
 Week 4 devotional, Calling, at the link in bio.
 
-https://sanctuarygrace.store
+https://sanctuary-grace.com
 
 HASHTAGS: #DailyDevotion #ChristianWomen #FaithJourney #SpiritualRest #SacredSpace #SanctuaryGrace #HopeForWomen
 
@@ -399,7 +399,7 @@ New session on YouTube. Link in bio.
 
 youtube.com/@TheQuietAuthority-f1z
 
-https://sanctuarygrace.store
+https://sanctuary-grace.com
 
 HASHTAGS: #SacredSpace #ChristianWomen #CircleOfSilence #QuietTime #SpiritualRest #SanctuaryGrace #FaithAndWellness
 
@@ -419,11 +419,11 @@ SLIDE 5: The Lost Wanderer, she is searching for the thread back to who she was 
 
 SLIDE 6: One of these is you. You already know which one.
 
-SLIDE 7: The Quiet Authority. Free. 8 questions. 8 minutes. Begin at the link. https://sanctuarygrace.store
+SLIDE 7: The Quiet Authority. Free. 8 questions. 8 minutes. Begin at the link. https://sanctuary-grace.com
 
 CAPTION: Four profiles. One for each kind of tired. You already know which one is yours. The Quiet Authority is free, takes 8 minutes, and opens a path designed for where you actually are, not where you think you should be. Link in bio.
 
-https://sanctuarygrace.store
+https://sanctuary-grace.com
 
 HASHTAGS: #ChristianWomen #SpiritualBurnout #FaithAndWellness #SanctuaryGrace #HopeForWomen #SpiritualRest #FaithJourney
 
@@ -439,7 +439,7 @@ Every morning is a beginning. Not a continuation of yesterday's failures. New me
 
 You are allowed to begin again. You always were.
 
-https://sanctuarygrace.store
+https://sanctuary-grace.com
 
 HASHTAGS: #ScriptureForWomen #ChristianWomen #FaithJourney #SpiritualRest #HopeForWomen #SanctuaryGrace #DailyDevotion
 
@@ -457,11 +457,11 @@ BEAT 3: God satisfies the thirsty. Not the woman who has mastered pretending she
 
 CTA: Name what you need today. That honesty is the beginning of being filled.
 
-https://sanctuarygrace.store
+https://sanctuary-grace.com
 
 CAPTION: Your needs are not inconvenient to God. He is not burdened by your thirst. He is the answer to it. Be honest today about what you need.
 
-https://sanctuarygrace.store
+https://sanctuary-grace.com
 
 HASHTAGS: #ChristianWomen #SpiritualRest #FaithAndWellness #HopeForWomen #SanctuaryGrace #SpiritualBurnout #FaithJourney
 
@@ -479,7 +479,7 @@ You are not alone in the valley. You have never been alone in the valley.
 
 All four devotional weeks available now at the link in bio.
 
-https://sanctuarygrace.store
+https://sanctuary-grace.com
 
 HASHTAGS: #DailyDevotion #ChristianWomen #QuietTime #FaithJourney #SpiritualRest #SanctuaryGrace #HopeForWomen
 
@@ -497,7 +497,7 @@ Come and see. New session every week. YouTube link in bio.
 
 youtube.com/@TheQuietAuthority-f1z
 
-https://sanctuarygrace.store
+https://sanctuary-grace.com
 
 HASHTAGS: #SacredSpace #ChristianWomen #CircleOfSilence #SpiritualRest #QuietTime #FaithAndWellness #SanctuaryGrace
 
@@ -517,11 +517,11 @@ SLIDE 5: The Guilty Giver does not receive because receiving feels like taking.
 
 SLIDE 6: But every good gift comes from the Father. And when you refuse the gifts, you are refusing something he sent.
 
-SLIDE 7: You are allowed to receive. You always were. https://sanctuarygrace.store
+SLIDE 7: You are allowed to receive. You always were. https://sanctuary-grace.com
 
 CAPTION: The Guilty Giver is one of the most common patterns among women of faith. If you recognize yourself here, you are not alone, and there is a path forward. Free assessment at the link in bio.
 
-https://sanctuarygrace.store
+https://sanctuary-grace.com
 
 HASHTAGS: #ChristianWomen #SpiritualBurnout #FaithAndWellness #SanctuaryGrace #HopeForWomen #ChristianMom #SpiritualRest
 
@@ -537,7 +537,7 @@ The failures are not disqualifying. The wilderness is not the end of the story. 
 
 The glory is increasing even when you cannot see it.
 
-https://sanctuarygrace.store
+https://sanctuary-grace.com
 
 HASHTAGS: #ScriptureForWomen #ChristianWomen #FaithJourney #SpiritualRest #HopeForWomen #SanctuaryGrace #DailyDevotion
 
@@ -557,7 +557,7 @@ CTA: You are not behind. You are on the road. The Quiet Authority, free assessme
 
 CAPTION: You are not behind. You are on a long road that is doing something thorough. And the destination has not moved.
 
-https://sanctuarygrace.store
+https://sanctuary-grace.com
 
 HASHTAGS: #ChristianWomen #FaithJourney #HopeForWomen #SanctuaryGrace #SpiritualRest #FaithAndWellness #SpiritualBurnout
 
@@ -573,7 +573,7 @@ You are clothed in more than you know. The scars are part of the clothing.
 
 The full devotional series, four weeks, four movements, available at the link in bio.
 
-https://sanctuarygrace.store
+https://sanctuary-grace.com
 
 HASHTAGS: #DailyDevotion #ChristianWomen #FaithJourney #SpiritualRest #HopeForWomen #SanctuaryGrace #ScriptureForWomen
 
@@ -589,7 +589,7 @@ Month Two begins soon. The same voice. The same invitation. Deeper into the work
 
 Thank you for being here. The door remains open.
 
-https://sanctuarygrace.store
+https://sanctuary-grace.com
 
 HASHTAGS: #SacredSpace #ChristianWomen #SpiritualRest #FaithAndWellness #SanctuaryGrace #CircleOfSilence #FaithJourney
 

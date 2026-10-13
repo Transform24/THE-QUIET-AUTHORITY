@@ -1,0 +1,137 @@
+{
+  "id": "TQA_Stillness_Journey_FINAL_v13",
+  "title": "The Quiet Authority, The Hallowed Identity, Gate 3 (Proverbs 18:10, Isaiah 43:18, Isaiah 43:19)",
+  "standard_version": 2,
+  "fps": 24,
+  "width": 1920,
+  "height": 1080,
+  "layout": {
+    "text_max_width_px": 780,
+    "top_y": 140,
+    "intro_center_x": 960,
+    "intro_y": 340,
+    "thanks_center_x": 960,
+    "thanks_y": 330,
+    "prayer_page_y": 300,
+    "push_bottom_y": 900,
+    "push_top_y": 230
+  },
+  "plates": {
+    "spotlight_candle": {
+      "image": "src/assets/tqa/light-stream-plate.jpg",
+      "column_center_x": 660,
+      "note": "The spotlight, jar and candle from the Version 8 opening, old text removed.",
+      "column_width_px": 780,
+      "keep_clear_from_x": 1065
+    },
+    "character_spotlight": {
+      "image": "src/assets/tqa/character-spotlight-plate.jpg",
+      "column_center_x": 470,
+      "note": "The seated figure in the spotlight from the Version 8 'Be still' scene, old text removed.",
+      "column_width_px": 720,
+      "keep_clear_from_x": 830
+    }
+  },
+  "fonts": {
+    "header": "Cinzel",
+    "body": "Jost"
+  },
+  "colors": {
+    "black": "#0d0d0d",
+    "gold": "#C9A84C",
+    "cream": "#F5F0E8"
+  },
+  "music": {
+    "file": "src/assets/tqa/tqa-music-v8-extended.m4a",
+    "volume": 1.0,
+    "duration_frames": 11520,
+    "note": "The music from the Version 8 video, continued to 8 minutes. Any video up to 11,520 frames can use it."
+  },
+  "intro": {
+    "plate": "spotlight_candle",
+    "lines": [
+      {
+        "text": "SANCTUARY GRACE MINISTRY",
+        "size_px": 42,
+        "letter_spacing_px": 3,
+        "color": "gold"
+      },
+      {
+        "text": "presents",
+        "size_px": 30,
+        "letter_spacing_px": 3,
+        "color": "cream"
+      },
+      {
+        "text": "The Quiet Authority",
+        "size_px": 54,
+        "letter_spacing_px": 3,
+        "color": "gold"
+      }
+    ]
+  },
+  "teaching_blocks": [
+    {
+      "plate": "spotlight_candle",
+      "background_level": 0.5,
+      "scripture": {
+        "ref": "PROVERBS 18:10",
+        "text": "The name of the LORD is a strong tower: the righteous runneth into it, and is safe."
+      },
+      "reflection": "When your own strength gives out, you do not have to build a wall around yourself. The name of the LORD is already a strong tower. Run into it, and rest there. You are safe because He is."
+    },
+    {
+      "plate": "character_spotlight",
+      "background_level": 0.62,
+      "scripture": {
+        "ref": "ISAIAH 43:18",
+        "text": "Remember ye not the former things, neither consider the things of old."
+      },
+      "reflection": "Put down the heavy script of your past mistakes, and the voices that scolded you and called it religion. The LORD has asked you not to hold them any longer. Lay them down here, and walk on."
+    },
+    {
+      "plate": "character_spotlight",
+      "background_level": 0.62,
+      "scripture": {
+        "ref": "ISAIAH 43:19",
+        "text": "Behold, I will do a new thing; now it shall spring forth; shall ye not know it? I will even make a way in the wilderness, and rivers in the desert."
+      },
+      "reflection": "God keeps the same pattern. He made a way through the sea, and He still makes a way in the wilderness. Look again at the dry ground in front of you. A new path is already springing up, and He is the one who made it."
+    }
+  ],
+  "closing": {
+    "plate": "character_spotlight",
+    "background_level": 0.7,
+    "scripture": {
+      "ref": "ROMANS 10:9-10",
+      "text": "That if thou shalt confess with thy mouth the Lord Jesus, and shalt believe in thine heart that God hath raised him from the dead, thou shalt be saved. For with the heart man believeth unto righteousness; and with the mouth confession is made unto salvation."
+    },
+    "prayer": "This morning I lay down every old script and every voice that scolded me. The name of the LORD is my strong tower, and I run into it. I do not remember the former things. What was spoken over me in the past has no hold on this day. I see the new thing springing forth. The God who made a way in the wilderness is making a way before me now. I walk out in quiet authority, safe in His name, steady in His pattern and led by Him. In Jesus' name, Amen.",
+    "prayer_beats": [
+      "This morning I lay down every old script and every voice that scolded me. The name of the LORD is my strong tower, and I run into it.",
+      "I do not remember the former things. What was spoken over me in the past has no hold on this day.",
+      "I see the new thing springing forth. The God who made a way in the wilderness is making a way before me now.",
+      "I walk out in quiet authority, safe in His name, steady in His pattern and led by Him. In Jesus' name, Amen."
+    ]
+  },
+  "thanks": {
+    "heading": "Thank you for watching.",
+    "lines": [
+      "If this gave you rest, like and subscribe.",
+      "Reach out. Come home to The Quiet Authority."
+    ],
+    "link": "sanctuary-grace.com"
+  },
+  "layout_exception": "line_push",
+  "shorts": {
+    "B": {
+      "combine_blocks": [
+        1,
+        2
+      ],
+      "reflection_block": 2,
+      "compact": true,
+      "note": "Clip B shows Isaiah 43:18 and 43:19 together, with the 43:19 reflection."
+    }
+  }
+}

@@ -125,7 +125,7 @@ No titles. No URLs in the signature block unless the email template explicitly i
 One CTA per email. One CTA per section. Never layer multiple asks in the same unit of content.
 
 **Priority order:**
-1. Return to the sanctuary: https://transform24.github.io/THE-QUIET-AUTHORITY/
+1. Return to the sanctuary: https://sanctuary-grace.com/
 2. Download your profile (download button within the app)
 3. Shop Stripe products: devotionals, wall art, books (in that order)
 4. Amazon Sacred Space curation (always last; affiliate links only)
@@ -141,7 +141,7 @@ One CTA per email. One CTA per section. Never layer multiple asks in the same un
 | Platform | Handle / URL / ID |
 |---|---|
 | GitHub Pages (live app) | transform24.github.io/THE-QUIET-AUTHORITY |
-| Beacons (email engine + storefront) | beacons.ai/sanctuarygrace |
+| Main site and storefront | sanctuary-grace.com |
 | YouTube (Circle of Silence) | youtube.com/@TheQuietAuthority-f1z |
 | Pinterest | pinterest.com/sanctuarygracefaith |
 | Formspree (all form submissions) | Form ID: xzdkgbbq |

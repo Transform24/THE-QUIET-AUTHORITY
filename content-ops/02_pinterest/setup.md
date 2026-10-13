@@ -8,7 +8,7 @@
 1. Go to **pinterest.com/business/create**
 2. Sign up with your ministry email
 3. Choose category: **Education** or **Religious Organizations**
-4. Add your website: `https://transform24.github.io/THE-QUIET-AUTHORITY/`
+4. Add your website: `https://sanctuary-grace.com/`
 5. Skip the ad setup: you don't need ads
 
 ---
@@ -54,7 +54,7 @@ For each board:
 Rich Pins pull your title and description directly from your site's meta tags, already set up on your site.
 
 1. Go to: **developers.pinterest.com/tools/url-debugger/**
-2. Paste: `https://transform24.github.io/THE-QUIET-AUTHORITY/`
+2. Paste: `https://sanctuary-grace.com/`
 3. Click **Validate**: it should detect your og: tags
 4. Click **Apply Now** for Rich Pins
 5. Pinterest approves within 24 hours
@@ -68,7 +68,7 @@ Rich Pins pull your title and description directly from your site's meta tags, a
 | Display name | Sanctuary Grace \| The Quiet Authority |
 | Username | `sanctuarygrace` (or `sanctuarygracefaith`) |
 | Bio | Sacred tools for burned-out Christian women. Find your Silence Profile → stillness, breakthrough, and identity. Free assessment below. |
-| Website | `https://transform24.github.io/THE-QUIET-AUTHORITY/` |
+| Website | `https://sanctuary-grace.com/` |
 | Profile photo | Your bio.png headshot |
 
 ---
@@ -87,7 +87,7 @@ Rich Pins pull your title and description directly from your site's meta tags, a
 | Saturday | Sacred Space & Stillness | Weekend quiet-time visual |
 | Sunday | Christian Women Growth | Sunday reflection / scripture |
 
-**Always link to:** `https://transform24.github.io/THE-QUIET-AUTHORITY/` or `beacons.ai/sanctuarygrace`
+**Always link to:** `https://sanctuary-grace.com`
 
 ---
 
@@ -158,6 +158,6 @@ When you're ready to automate pin posting:
 
 ---
 
-*Assessment URL: https://transform24.github.io/THE-QUIET-AUTHORITY/*
-*Beacons URL: https://beacons.ai/sanctuarygrace*
+*Assessment URL: https://sanctuary-grace.com/*
+*Site: https://sanctuary-grace.com*
 *YouTube: @TheQuietAuthority-f1z*

@@ -18,7 +18,7 @@ Use this format for every pin. Copy → Canva for the visual → Post.
 [Soft CTA] → [link or "link in bio"]
 ```
 
-**Link**: https://transform24.github.io/THE-QUIET-AUTHORITY/
+**Link**: https://sanctuary-grace.com/
 
 **Board**: [choose from boards list in Agent 02]
 

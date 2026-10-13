@@ -30,7 +30,7 @@ Audience:
 ## Call to Action
 <!-- What do you want people to DO after seeing this content? -->
 CTA:
-- [ ] Take the assessment → https://transform24.github.io/THE-QUIET-AUTHORITY/
+- [ ] Take the assessment → https://sanctuary-grace.com/
 - [ ] Visit Beacons storefront
 - [ ] Join email list
 - [ ] Watch YouTube video

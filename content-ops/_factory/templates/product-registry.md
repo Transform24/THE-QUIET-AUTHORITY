@@ -44,7 +44,7 @@ Agent 03 reads this file to audit index.html links. Update this file any time a 
 
 | Resource | Link | Status |
 |---|---|---|
-| R.E.S.T. Workbook (free) | `https://beacons.ai/sanctuarygrace` | Active |
+| R.E.S.T. Workbook (free) | `https://sanctuary-grace.com/the-woman-who-pours.html` | Active |
 | Circle of Silence (free 7-day) | `https://youtube.com/@TheQuietAuthority-f1z` | Active |
 
 ---
@@ -87,7 +87,7 @@ All links must include `tag=sanctuarygrac-20`
 ---
 
 ## Beacons Storefront
-Main URL: `https://beacons.ai/sanctuarygrace`
+Main URL: `https://sanctuary-grace.com`
 Email engine: Beacons (not MailerLite, removed)
 
 ---

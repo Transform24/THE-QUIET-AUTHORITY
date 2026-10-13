@@ -300,6 +300,10 @@
     {
       "badge": "PINTEREST PAUSED",
       "text": "The automatic Pinterest scheduler is paused to protect the account. Pins are made by hand from the vertical Shorts below, using the Pinterest text in each caption card."
+    },
+    {
+      "badge": "MARKETING STATUS, OCTOBER 12",
+      "text": "Email rules are locked in content-ops/06_marketing_ops/MAILERLITE-INTEGRATION.md: one link per email, Cinzel headers, Jost body, and the banned words list with no em dashes. Old Beacons and duplicate site links were removed and every own link now points to https://sanctuary-grace.com. Printful: UPS Mail Innovations is recorded as the wall art carrier setting from October 12, 2026. Please confirm it in the Printful dashboard before holiday orders."
     }
   ],
   "action_cards": [

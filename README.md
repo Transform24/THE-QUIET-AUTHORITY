@@ -115,6 +115,7 @@ Rule: never delete these. Never proxy the DKIM CNAME. Never add a second SPF rec
   - Instagram (paused): `INSTAGRAM_ACCESS_TOKEN`, `INSTAGRAM_USER_ID`, `IG_DEFAULT_IMAGE_URL`
   - YouTube: `YOUTUBE_API_KEY`, `YOUTUBE_CLIENT_ID`, `YOUTUBE_CLIENT_SECRET`, `YOUTUBE_REFRESH_TOKEN`
   - GitHub: `GH_SECRETS_PAT`
+- Printful (planned, not yet read by any workflow): `SANCTUARY_GRACE_KEY`. Grace saves it in GitHub Settings, Secrets and variables, Actions, following `content-ops/06_storefront-sync/Q4-HOLIDAY-SETUP.md`.
 - Old names that no code reads anymore: `YOUTUBE_SESSION_SID` and `YOUTUBE_SESSION_HSID` (commented out in the YouTube script), `PINTEREST_BOARD_ID` (the pin script finds boards by name). They can stay in the vault or be removed.
 - These secrets are passed to scripts only through each step's `env:` block, never typed into a command, so GitHub hides their values in logs.
 - `PINTEREST_APP_SECRET` is the App Secret from the Pinterest Developer Configure tab (App ID 1585025). It was regenerated on 2026-10-07 after it was pasted in chat once.
