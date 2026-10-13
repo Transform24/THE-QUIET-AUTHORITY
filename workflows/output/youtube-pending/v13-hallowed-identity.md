@@ -19,8 +19,8 @@ It is 1920 by 1080, exactly 8 minutes (11,520 frames at 24 per second), about 32
 
 1. The opening, over the jar and candle (0:00).
 2. Proverbs 18:10 (KJV) with its reflection on the name of the LORD as a strong tower, over the jar and candle (0:15).
-3. Isaiah 43:18 (KJV) with its reflection on putting down the old script (1:23).
-4. Isaiah 43:19 (KJV) with its reflection on God's pattern and the new path (2:27).
+3. Isaiah 43:18 (KJV) with its reflection on putting down the old script (1:22).
+4. Isaiah 43:19 (KJV) with its reflection on God's pattern and the new path (2:26).
 5. Romans 10:9-10 (KJV), as in every video (3:52).
 6. Your Morning Declaration, four beats, one line at a time, each line rising and pushing the earlier ones upward (4:37 to 7:30).
 7. "Thank you for watching." with its lines appearing one at a time (7:30 to the end). The music and picture fade out together.

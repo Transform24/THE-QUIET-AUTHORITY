@@ -22,8 +22,8 @@ It is 1920 by 1080, exactly 8 minutes (11,520 frames at 24 per second), about 33
 1. The opening, over the jar and candle (0:00).
 2. Psalm 25:14 (KJV) with its reflection on the confidential circle, called Sod, over the jar and candle (0:15).
 3. Proverbs 3:32 (KJV) with its reflection on the quiet whisper (1:24).
-4. Malachi 3:6 (KJV) with its reflection on His unchanging record (2:29).
-5. Romans 10:9-10 (KJV), as in every TQA video (3:33).
+4. Malachi 3:6 (KJV) with its reflection on His unchanging record (2:28).
+5. Romans 10:9-10 (KJV), as in every TQA video (3:32).
 6. The four Morning Prayer beats, one line at a time, each line rising and pushing the earlier ones upward (4:17 to 7:30).
 7. "Thank you for watching." with its lines appearing one at a time (7:30 to the end). The music and picture fade out together.
 

@@ -23,7 +23,7 @@ const VIDEOS = {
   v11: { data: "src/data/TQA_Stillness_Journey_FINAL_v11.json", release: "Sunday, November 1, 2026", title: "Waiting on the LORD | Psalm 27 and Psalm 91:1 (KJV) | A Quiet Bedtime Prayer", prayer: "bedtime" },
   v10: { data: "src/data/TQA_Stillness_Journey_FINAL_v10.json", release: "Sunday, November 8, 2026", title: "The Posture of Prayer | Matthew 6:6-9 and Romans 10:9-10 (KJV) | A Quiet Prayer to Rest In", prayer: "closing" },
   v12: { data: "src/data/TQA_Stillness_Journey_FINAL_v12.json", release: "Sunday, November 15, 2026", title: "The Secret of the LORD | Psalm 25:14, Proverbs 3:32, Malachi 3:6 (KJV) | A Quiet Morning Prayer", prayer: "morning" },
-  v13: { data: "src/data/TQA_Stillness_Journey_FINAL_v13.json", release: "Sunday, November 22, 2026", title: "The Hallowed Identity | Proverbs 18:10, Isaiah 43:18, Isaiah 43:19 (KJV) | A Quiet Morning Declaration", prayer: "morning" },
+  v13: { data: "src/data/TQA_Stillness_Journey_FINAL_v13.json", release: "Sunday, November 22, 2026", title: "The Hallowed Identity | Proverbs 18:10 and Isaiah 43:18-19 (KJV) | A Quiet Morning Declaration", prayer: "morning" },
 };
 const EMDASH = String.fromCharCode(0x2014);
 const load = (id) => JSON.parse(read(VIDEOS[id].data));

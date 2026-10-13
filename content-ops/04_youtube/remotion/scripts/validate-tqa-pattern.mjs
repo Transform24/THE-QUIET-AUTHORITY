@@ -85,7 +85,7 @@ const intro3 = intro.lines.map((l) => l.text).join(" ").toLowerCase();
 if (intro3 !== "sanctuary grace ministry presents the quiet authority") fail(`the intro must read "Sanctuary Grace Ministry presents The Quiet Authority", found "${intro3}"`);
 if (intro.lines.some((l) => /ministries/i.test(l.text))) fail('the intro must say "Ministry", singular');
 const everyText = JSON.stringify(bp);
-if (everyText.includes("—") || everyText.includes("–")) fail("a long dash is in the blueprint");
+if (everyText.includes(String.fromCharCode(0x2014)) || everyText.includes(String.fromCharCode(0x2013))) fail("a long dash is in the blueprint");
 if (/[\u{1F300}-\u{1FAFF}☀-➿]/u.test(everyText)) fail("an emoji is in the blueprint");
 const spoken = [...verses.map(([s]) => s.text), WORDS.b1, WORDS.b2, WORDS.b3, ...byId.outro.prayer.groups.map((g) => g.text)].join(" ");
 if (spoken.includes("!")) fail("an exclamation point is in the words");

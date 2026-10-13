@@ -52,9 +52,9 @@
       "chapters": [
         "0:00 Sanctuary Grace Ministry presents The Quiet Authority",
         "0:15 Psalm 27:13",
-        "1:21 Psalm 27:14",
-        "2:28 Psalm 91:1",
-        "3:27 Romans 10:9-10",
+        "1:20 Psalm 27:14",
+        "2:27 Psalm 91:1",
+        "3:26 Romans 10:9-10",
         "4:11 A bedtime prayer",
         "7:30 Thank you for watching"
       ]
@@ -70,7 +70,7 @@
       "chapters": [
         "0:00 Sanctuary Grace Ministry presents The Quiet Authority",
         "0:15 Matthew 6:7-8",
-        "1:53 Matthew 6:6",
+        "1:52 Matthew 6:6",
         "3:24 Matthew 6:9",
         "4:35 Romans 10:9-10",
         "5:20 A closing prayer",
@@ -89,23 +89,23 @@
         "0:00 Sanctuary Grace Ministry presents The Quiet Authority",
         "0:15 Psalm 25:14",
         "1:24 Proverbs 3:32",
-        "2:29 Malachi 3:6",
-        "3:33 Romans 10:9-10",
+        "2:28 Malachi 3:6",
+        "3:32 Romans 10:9-10",
         "4:17 A morning prayer",
         "7:30 Thank you for watching"
       ]
     },
     {
       "time": "5:00 AM",
-      "title": "The Hallowed Identity | Proverbs 18:10, Isaiah 43:18, Isaiah 43:19 (KJV) | A Quiet Morning Declaration",
+      "title": "The Hallowed Identity | Proverbs 18:10 and Isaiah 43:18-19 (KJV) | A Quiet Morning Declaration",
       "version": "v13",
       "video": "public/TQA_Stillness_Journey_FINAL_v13.mp4",
       "card": "workflows/output/youtube-pending/v13-hallowed-identity.md",
       "chapters": [
         "0:00 Sanctuary Grace Ministry presents The Quiet Authority",
         "0:15 Proverbs 18:10",
-        "1:23 Isaiah 43:18",
-        "2:27 Isaiah 43:19",
+        "1:22 Isaiah 43:18",
+        "2:26 Isaiah 43:19",
         "3:52 Romans 10:9-10",
         "4:37 A morning declaration",
         "7:30 Thank you for watching"
@@ -300,25 +300,20 @@
     {
       "badge": "PINTEREST PAUSED",
       "text": "The automatic Pinterest scheduler is paused to protect the account. Pins are made by hand from the vertical Shorts below, using the Pinterest text in each caption card."
-    },
-    {
-      "badge": "MARKETING STATUS, OCTOBER 12",
-      "text": "Email rules are locked in content-ops/06_marketing_ops/MAILERLITE-INTEGRATION.md: one link per email, Cinzel headers, Jost body, and the banned words list with no em dashes. Old Beacons and duplicate site links were removed and every own link now points to https://sanctuary-grace.com. Printful: UPS Mail Innovations is recorded as the wall art carrier setting from October 12, 2026. Please confirm it in the Printful dashboard before holiday orders."
     }
   ],
   "action_cards": [
     {
-      "badge": "YOUR ACTION, Q4 HOLIDAY SHOP",
-      "title": "Save the Printful key in GitHub",
-      "status": "Waiting on Grace",
+      "badge": "MARKETING STATUS, OCTOBER 13",
+      "title": "Email rules, clean links and the shop filter",
+      "status": "Live on the site",
       "steps": [
-        "1. Printful: developers.printful.com, sign in, create a read-only token named Sanctuary Grace for the store Sanctuary Grace Shop, and copy it.",
-        "2. GitHub: Transform24/THE-QUIET-AUTHORITY, Settings, Secrets and variables, Actions, New repository secret.",
-        "3. Name it exactly SANCTUARY_GRACE_KEY, paste the token, and click Add secret.",
-        "4. Tell Claude: The key is saved. Never paste the key in chat.",
-        "5. Also confirm UPS Mail Innovations on the wall art in Printful, Settings, Shipping."
+        "Email rules are locked: one link per email, Cinzel headers, Jost body, and a banned words list with no em dashes. See content-ops/06_marketing_ops/MAILERLITE-INTEGRATION.md.",
+        "Old Beacons and duplicate site links were removed. Every link to our own site now points to https://sanctuary-grace.com.",
+        "The shop filter is live. The 17 wall art pieces and the digital art download checkout stay open and visible. Three unverified Printful shop links stay hidden until the Printful key is saved and each item is marked complete.",
+        "Printful: UPS Mail Innovations is recorded for wall art from October 12, 2026. Please confirm it in Printful, Settings, Shipping."
       ],
-      "note": "Full steps are in content-ops/06_storefront-sync/Q4-HOLIDAY-SETUP.md on the tqa-compositions branch. The shop filter that hides unverified Printful links is built there too. It reaches the live site only when published to main."
+      "note": "The shop at shop.sanctuary-grace.com is a separate Cloudflare Worker that is not in these repositories, so the filter does not reach it."
     },
     {
       "badge": "SECURITY STATUS, OCTOBER 12",
@@ -331,7 +326,20 @@
         "Not checked, needs Grace: GitHub Actions secret values, Stripe account settings and the old Gate One link status in Stripe, and the Printful carrier setting.",
         "Found: shop.sanctuary-grace.com is a Cloudflare Worker that is not in any repository."
       ],
-      "note": "Details are in Q4-HOLIDAY-SETUP.md Part 2 and STRIPE-VERIFICATION.md, both in content-ops/06_storefront-sync on the tqa-compositions branch."
+      "note": "Details are in Q4-HOLIDAY-SETUP.md Part 2 and STRIPE-VERIFICATION.md, both in content-ops/06_storefront-sync."
+    },
+    {
+      "badge": "YOUR ACTION, Q4 HOLIDAY SHOP",
+      "title": "Save the Printful key in GitHub",
+      "status": "Waiting on Grace",
+      "steps": [
+        "1. Printful: developers.printful.com, sign in, create a read-only token named Sanctuary Grace for the store Sanctuary Grace Shop, and copy it.",
+        "2. GitHub: Transform24/THE-QUIET-AUTHORITY, Settings, Secrets and variables, Actions, New repository secret.",
+        "3. Name it exactly SANCTUARY_GRACE_KEY, paste the token, and click Add secret.",
+        "4. Tell Claude: The key is saved. Never paste the key in chat.",
+        "5. Also confirm UPS Mail Innovations on the wall art in Printful, Settings, Shipping."
+      ],
+      "note": "Full steps are in content-ops/06_storefront-sync/Q4-HOLIDAY-SETUP.md. The shop filter is live: the 17 finished wall art pieces are visible and 3 unverified Printful shop links are hidden until the key is active."
     }
   ]
 }

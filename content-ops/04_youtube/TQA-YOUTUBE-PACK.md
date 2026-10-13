@@ -54,9 +54,9 @@ Chapter markers to paste beside each date (also in each video's section below):
 ```
 0:00 Sanctuary Grace Ministry presents The Quiet Authority
 0:15 Psalm 27:13
-1:21 Psalm 27:14
-2:28 Psalm 91:1
-3:27 Romans 10:9-10
+1:20 Psalm 27:14
+2:27 Psalm 91:1
+3:26 Romans 10:9-10
 4:11 A bedtime prayer
 7:30 Thank you for watching
 ```
@@ -65,7 +65,7 @@ Chapter markers to paste beside each date (also in each video's section below):
 ```
 0:00 Sanctuary Grace Ministry presents The Quiet Authority
 0:15 Matthew 6:7-8
-1:53 Matthew 6:6
+1:52 Matthew 6:6
 3:24 Matthew 6:9
 4:35 Romans 10:9-10
 5:20 A closing prayer
@@ -77,8 +77,8 @@ Chapter markers to paste beside each date (also in each video's section below):
 0:00 Sanctuary Grace Ministry presents The Quiet Authority
 0:15 Psalm 25:14
 1:24 Proverbs 3:32
-2:29 Malachi 3:6
-3:33 Romans 10:9-10
+2:28 Malachi 3:6
+3:32 Romans 10:9-10
 4:17 A morning prayer
 7:30 Thank you for watching
 ```
@@ -87,8 +87,8 @@ Chapter markers to paste beside each date (also in each video's section below):
 ```
 0:00 Sanctuary Grace Ministry presents The Quiet Authority
 0:15 Proverbs 18:10
-1:23 Isaiah 43:18
-2:27 Isaiah 43:19
+1:22 Isaiah 43:18
+2:26 Isaiah 43:19
 3:52 Romans 10:9-10
 4:37 A morning declaration
 7:30 Thank you for watching
@@ -246,9 +246,9 @@ Romans 10:9-10 (KJV)
 Chapters
 0:00 Sanctuary Grace Ministry presents The Quiet Authority
 0:15 Psalm 27:13
-1:21 Psalm 27:14
-2:28 Psalm 91:1
-3:27 Romans 10:9-10
+1:20 Psalm 27:14
+2:27 Psalm 91:1
+3:26 Romans 10:9-10
 4:11 A bedtime prayer
 7:30 Thank you for watching
 
@@ -297,7 +297,7 @@ Romans 10:9-10 (KJV)
 Chapters
 0:00 Sanctuary Grace Ministry presents The Quiet Authority
 0:15 Matthew 6:7-8
-1:53 Matthew 6:6
+1:52 Matthew 6:6
 3:24 Matthew 6:9
 4:35 Romans 10:9-10
 5:20 A closing prayer
@@ -346,8 +346,8 @@ Chapters
 0:00 Sanctuary Grace Ministry presents The Quiet Authority
 0:15 Psalm 25:14
 1:24 Proverbs 3:32
-2:29 Malachi 3:6
-3:33 Romans 10:9-10
+2:28 Malachi 3:6
+3:32 Romans 10:9-10
 4:17 A morning prayer
 7:30 Thank you for watching
 
@@ -373,7 +373,7 @@ morning prayer, start your day with God, Psalm 25:14, Proverbs 3:32, Malachi 3:6
 Video 6 on the calendar, Gate 3, The Hallowed Identity. Release: Sunday, November 22, 5:00 AM Eastern. The reflections and the declaration were drafted by Claude with your permission, and you have approved them.
 
 **Title**
-The Hallowed Identity | Proverbs 18:10, Isaiah 43:18, Isaiah 43:19 (KJV) | A Quiet Morning Declaration
+The Hallowed Identity | Proverbs 18:10 and Isaiah 43:18-19 (KJV) | A Quiet Morning Declaration
 
 **Description (paste as is)**
 ```
@@ -396,8 +396,8 @@ Romans 10:9-10 (KJV)
 Chapters
 0:00 Sanctuary Grace Ministry presents The Quiet Authority
 0:15 Proverbs 18:10
-1:23 Isaiah 43:18
-2:27 Isaiah 43:19
+1:22 Isaiah 43:18
+2:26 Isaiah 43:19
 3:52 Romans 10:9-10
 4:37 A morning declaration
 7:30 Thank you for watching

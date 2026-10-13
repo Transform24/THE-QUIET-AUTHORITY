@@ -14,7 +14,7 @@ This short shows the first scripture, revealed word by word, with its reflection
 
 ## Related video (native link anchor)
 
-- In YouTube Studio, open this short, choose Related video, and pick: The Hallowed Identity | Proverbs 18:10, Isaiah 43:18, Isaiah 43:19 (KJV) | A Quiet Morning Declaration
+- In YouTube Studio, open this short, choose Related video, and pick: The Hallowed Identity | Proverbs 18:10 and Isaiah 43:18-19 (KJV) | A Quiet Morning Declaration
 - Full video link, to paste after Grace uploads it: {{YOUTUBE_WATCH_URL}}
 - The full video is scheduled for Sunday, November 22, 2026, 5:00 AM Eastern. Post the short after that.
 
