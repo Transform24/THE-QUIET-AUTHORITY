@@ -1,4 +1,5 @@
-STATUS 2026-10-05
-DONE: PROGRESS.md.
-BLOCKED: Step 1 (sanctuary-grace.com 403 from cloud network policy). Step 2 (video assets not found; bible-api.com blocked). Step 3 depends on Step 2.
-GRACE MUST DO: allow sanctuary-grace.com and bible-api.com in the environment Network access settings, and put the v7 stills, music and verse list in the repo or Drive. Confirm outro URL: prompt says sanctuarygrace.com, live site is sanctuary-grace.com.
+STATUS 2026-10-13
+DONE: Six TQA videos are exactly 8:00 (11,520 frames), checked by scripts/verify-visual-integrity.mjs, and merged to main. Calendar (Sundays, 5:00 AM Eastern): Oct 18 v8 (Stillness Journey, rebuilt), Oct 25 v9 (Psalm 91), Nov 1 v11, Nov 8 v10, Nov 15 v12, Nov 22 v13. Six Cinzel thumbnail cards, 18 vertical Shorts, YouTube pack (content-ops/04_youtube/TQA-YOUTUBE-PACK.md) with titles, KJV descriptions and chapters that match each timeline. Storefront filter (storefront-filter.js) is on main: 17 wall art pieces visible, 3 unverified Printful links hidden.
+RUNNING: Nothing uploads. The release calendar and cards are on approval-gate.html.
+NEXT (Grace): 1. Save the Printful key as the GitHub secret SANCTUARY_GRACE_KEY (steps in content-ops/06_storefront-sync/Q4-HOLIDAY-SETUP.md). 2. Confirm UPS Mail Innovations in Printful, Settings, Shipping. 3. Read the reflections and prayer in Video 9 (two reflections were drafted by Claude) and confirm the six verses chosen for Video 8. 4. Upload each video yourself in YouTube Studio on its Sunday.
+OPEN: Video 10 holds a 36 second frozen page (passes the 45 second rule). Old Gate One Stripe link still needs deactivating in Stripe. shop.sanctuary-grace.com is a Cloudflare Worker outside these repositories.
