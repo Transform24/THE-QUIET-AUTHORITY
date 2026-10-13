@@ -1,8 +1,9 @@
 name: Instagram Deploy, Post Approved Content
 
 on:
-  schedule:
-    - cron: '0 14 * * *'  # Daily 2pm UTC
+  # The daily schedule is OFF (Grace, 2026-10-13). Grace posts every Reel by hand. Run it by hand from the Actions tab.
+  # schedule:
+  #   - cron: '0 14 * * *'  # Daily 2pm UTC
   workflow_dispatch:
     inputs:
       post_date:

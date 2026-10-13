@@ -1,0 +1,111 @@
+{
+  "about": "Pinterest Idea Pins made by scripts/generate-pinterest-idea-pins.mjs. 1080 by 1920. Grace pins by hand. Nothing uploads.",
+  "pins": [
+    {
+      "video": "v8",
+      "file": "content-ops/03_pinterest_pins/TQA_IdeaPin_v8.png",
+      "plate": "character_spotlight",
+      "focus": "50% 50%",
+      "zoom": 1,
+      "sharpness": 31.6,
+      "scripture_title": [
+        "PSALM 46:10"
+      ],
+      "sub": "The Stillness Journey",
+      "size": "1080 by 1920",
+      "title": "Psalm 46:10 (KJV) | The Quiet Authority",
+      "description": "The Stillness Journey. Scripture from the King James Version. Come home to The Quiet Authority at sanctuary-grace.com",
+      "destination_link": "https://sanctuary-grace.com",
+      "status": "READY for Grace to pin by hand. Nothing here uploads."
+    },
+    {
+      "video": "v9",
+      "file": "content-ops/03_pinterest_pins/TQA_IdeaPin_v9.png",
+      "plate": "spotlight_candle",
+      "focus": "62.5% 50%",
+      "zoom": 1,
+      "sharpness": 30.9,
+      "scripture_title": [
+        "PSALM 91"
+      ],
+      "sub": "The Secret Place",
+      "size": "1080 by 1920",
+      "title": "Psalm 91 (KJV) | The Quiet Authority",
+      "description": "The Secret Place. Scripture from the King James Version. Come home to The Quiet Authority at sanctuary-grace.com",
+      "destination_link": "https://sanctuary-grace.com",
+      "status": "READY for Grace to pin by hand. Nothing here uploads."
+    },
+    {
+      "video": "v11",
+      "file": "content-ops/03_pinterest_pins/TQA_IdeaPin_v11.png",
+      "plate": "spotlight_candle",
+      "focus": "87.5% 50%",
+      "zoom": 1,
+      "sharpness": 22.3,
+      "scripture_title": [
+        "PSALM 27"
+      ],
+      "sub": "Waiting on the LORD",
+      "size": "1080 by 1920",
+      "title": "Psalm 27 (KJV) | The Quiet Authority",
+      "description": "Waiting on the LORD. Scripture from the King James Version. Come home to The Quiet Authority at sanctuary-grace.com",
+      "destination_link": "https://sanctuary-grace.com",
+      "status": "READY for Grace to pin by hand. Nothing here uploads."
+    },
+    {
+      "video": "v10",
+      "file": "content-ops/03_pinterest_pins/TQA_IdeaPin_v10.png",
+      "plate": "character_spotlight",
+      "focus": "50% 50%",
+      "zoom": 1.4,
+      "sharpness": 20.9,
+      "scripture_title": [
+        "MATTHEW 6",
+        "ROMANS 10:9-10"
+      ],
+      "sub": "The Posture of Prayer",
+      "size": "1080 by 1920",
+      "title": "Matthew 6 and Romans 10:9-10 (KJV) | The Quiet Authority",
+      "description": "The Posture of Prayer. Scripture from the King James Version. Come home to The Quiet Authority at sanctuary-grace.com",
+      "destination_link": "https://sanctuary-grace.com",
+      "status": "READY for Grace to pin by hand. Nothing here uploads."
+    },
+    {
+      "video": "v12",
+      "file": "content-ops/03_pinterest_pins/TQA_IdeaPin_v12.png",
+      "plate": "spotlight_candle",
+      "focus": "62.5% 50%",
+      "zoom": 1.4,
+      "sharpness": 17.3,
+      "scripture_title": [
+        "PSALM 25:14",
+        "PROVERBS 3:32",
+        "MALACHI 3:6"
+      ],
+      "sub": "The Secret of the LORD",
+      "size": "1080 by 1920",
+      "title": "Psalm 25:14 and Proverbs 3:32 and Malachi 3:6 (KJV) | The Quiet Authority",
+      "description": "The Secret of the LORD. Scripture from the King James Version. Come home to The Quiet Authority at sanctuary-grace.com",
+      "destination_link": "https://sanctuary-grace.com",
+      "status": "READY for Grace to pin by hand. Nothing here uploads."
+    },
+    {
+      "video": "v13",
+      "file": "content-ops/03_pinterest_pins/TQA_IdeaPin_v13.png",
+      "plate": "character_spotlight",
+      "focus": "50% 50%",
+      "zoom": 1.8,
+      "sharpness": 14.1,
+      "scripture_title": [
+        "PROVERBS 18:10",
+        "ISAIAH 43:18-19"
+      ],
+      "sub": "The Hallowed Identity",
+      "size": "1080 by 1920",
+      "title": "Proverbs 18:10 and Isaiah 43:18-19 (KJV) | The Quiet Authority",
+      "description": "The Hallowed Identity. Scripture from the King James Version. Come home to The Quiet Authority at sanctuary-grace.com",
+      "destination_link": "https://sanctuary-grace.com",
+      "status": "READY for Grace to pin by hand. Nothing here uploads."
+    }
+  ]
+}

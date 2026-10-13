@@ -1,8 +1,9 @@
 name: YouTube Agent, Generate Script
 
 on:
-  schedule:
-    - cron: '0 9 * * 1'  # Monday 9am UTC
+  # The Monday schedule is OFF (Grace, 2026-10-13). It uses ANTHROPIC_API_KEY. Run it by hand from the Actions tab.
+  # schedule:
+  #   - cron: '0 9 * * 1'  # Monday 9am UTC
   workflow_dispatch:
 
 jobs:

@@ -5,6 +5,7 @@ import { TQAPatternComposition } from "./TQAPatternComposition";
 import { TQA_Stillness_Journey_FINAL_v10 } from "./TQA_Stillness_Journey_FINAL_v10";
 import { TQAShortClip } from "./TQAShortClip";
 import { TQAThumbnail, THUMB } from "./TQAThumbnail";
+import { TQAIdeaPin, PIN } from "./TQAIdeaPin";
 import { SHORT } from "./tqaShorts.mjs";
 import { TQA_Stillness_Journey_FINAL_v13 } from "./TQA_Stillness_Journey_FINAL_v13";
 import tqaVideo13 from "./data/TQA_Stillness_Journey_FINAL_v13.json";
@@ -138,6 +139,17 @@ export const RemotionRoot = () => {
         width={THUMB.width}
         height={THUMB.height}
         defaultProps={{ card: { plate: "spotlight_candle", zoom: 1, focus: "66% 60%", shade: 0.85, lines: [{ text: "SCRIPTURE", size: 72 }], sub: "The Quiet Authority" } }}
+      />
+
+      {/* TQA Pinterest Idea Pin, one still per master video (1080 by 1920). Pass {"card": {...}} (see scripts/generate-pinterest-idea-pins.mjs). */}
+      <Composition
+        id="TQA-IdeaPin"
+        component={TQAIdeaPin}
+        durationInFrames={1}
+        fps={24}
+        width={PIN.width}
+        height={PIN.height}
+        defaultProps={{ card: { plate: "spotlight_candle", zoom: 1, focus: "66% 50%", shade: 0.85, lines: [{ text: "SCRIPTURE", size: 80 }], sub: "The Quiet Authority" } }}
       />
 
       {/* Psalm 91, one verse per clip. Pass {"verseIndex": 0} to {"verseIndex": 15} */}
