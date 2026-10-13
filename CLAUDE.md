@@ -19,6 +19,7 @@ Read the master blueprint before doing anything else. It holds the permanent man
 | The live assessment app / site (screens, localStorage, code patterns, NEVER DO) | `SITE-CONTEXT.md` |
 | Brand voice, design tokens (never change without Grace approval) | `_system/brand-tokens.md` |
 | What's live / paused / dead across every integration right now | `_system/status.md` |
+| Which sound or voice each property may use, and the voice credits rule | `_system/audio-tracker.md` |
 | Per-channel details (Pinterest, Substack, YouTube, Instagram) | `_system/channels.md` |
 | Full integration map (email, forms, payments, hosting) | `_system/integrations.md` |
 | Git branch/merge protocol | `_system/git-workflow.md` |

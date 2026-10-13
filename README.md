@@ -170,6 +170,8 @@ Findings from the 2026-10-08 file system audit (nothing below has been changed y
 
 33. VIDEO 8 APPROVED (2026-10-13). On Grace's word in the chat, Video 8 (Week 1, October 18) is recorded as Yes, Approved in `workflows/output/youtube-schedule.json` and shows a green APPROVED BY GRACE badge on the gate. Videos 9, 11, 10, 12 and 13 are recorded as Ready, Awaiting Review. Nothing uploads: Grace uploads each video herself.
 
+34. VOICE, CREDITS AND WEEKLY RHYTHM (2026-10-13, Grace's decisions). The YouTube master videos stay 100% silent of voice: only the Version 8 music plays. The ElevenLabs grandmother storytelling voice profile is for the Wilderness 5-day website courses and their companion devotional materials only. A voice asset is generated only after its script text has passed Grace's final human validation, so automated drafts never use the monthly starter credits. The record is `_system/audio-tracker.md` (new, there was none before), with the rules also in `content-ops/04_youtube/remotion/TQA-STANDARD.md`. The weekly rhythm is Sunday Master Drops, Tuesday Manual Pinterest Doors, Friday Metricool Analytics checks (`content-ops/CONTEXT.md`).
+
 ---
 
 ## 9. FILE SYSTEM GUIDE (follow the steps in order)

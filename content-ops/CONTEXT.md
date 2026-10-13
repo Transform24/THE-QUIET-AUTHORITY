@@ -42,3 +42,15 @@ Approval gate for all content: drafts land in `workflows/output/[platform]-pendi
 ## Factory (`_factory/`)
 
 Brand voice, KJV devotion reference, gate email sequence copy, brand assets, email welcome sequence, testimony workflow SOP, templates (pin/repurpose-brief/product-registry/daily-inspiration), the full marketing skill library (`skills/`, 184 files), and `skills-lock.json`.
+
+## Weekly rhythm (three steps, set by Grace on 2026-10-13)
+One step a day, in this order. Nothing runs by itself: every schedule that posts is switched off.
+
+| Day | Step | What you do |
+|---|---|---|
+| Sunday | Master Drops | The master video for the week goes up at 5:00 AM Eastern (see the calendar on `approval-gate.html`). |
+| Tuesday | Manual Pinterest Doors | Open the Pinterest pins by hand. Use the Idea Pins in `content-ops/03_pinterest_pins/` and the Pinterest text in each caption card. |
+| Friday | Metricool Analytics checks | Read the week's numbers in Metricool. Enter only real numbers. Never estimate. |
+
+The Shorts and Reels keep their own staged dates (Monday to Wednesday after each Sunday video, see `workflows/output/shorts-staged/instagram-daily-schedule.json`). The Tuesday and Friday steps do not move them.
+

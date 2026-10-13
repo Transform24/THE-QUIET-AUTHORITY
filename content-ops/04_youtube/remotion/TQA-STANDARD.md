@@ -75,3 +75,10 @@ These are the backend security measures that sit under every video and every lin
 - Check commands: `node scripts/storefront-visibility.mjs --check` for the shop filter, and the video checks in section 5.
 
 On October 13, 2026 Grace re-aligned the release calendar: v8 on Oct 18 (Week 1), v9 on Oct 25, v11 on Nov 1, v10 on Nov 8, v12 on Nov 15 and v13 on Nov 22. Video 9 now carries Psalm 91. The dates above are the record of what was authorized on October 11. Video 8 was not part of that authorization. Nothing uploads without Grace's word.
+
+## Voice boundary: the master videos stay silent (permanent, 2026-10-13)
+Grace's decision. Every YouTube master video stays 100% silent of voice. There is no narration, no spoken scripture and no spoken prayer. The words are on the screen and the only sound is the Version 8 music, as it is today. This protects the brand standard. The ElevenLabs grandmother storytelling voice profile is locked for one use only: the Wilderness 5-day website courses and their companion devotional materials. It is never used in a TQA master video, a Short, a Reel or a Pin. The voice recordings that already play on the gate pages (voice: Matilda) are a separate set, recorded earlier, and are not changed by this rule. The full record is in `_system/audio-tracker.md`.
+
+## Starter credits treasury law (permanent, 2026-10-13)
+A voice asset may be generated only after its script text has passed the final human validation gate: Grace has read the text and said yes. Automated drafts, agent drafts and test text never consume the monthly starter credits. If the text is not yet approved, nothing is generated. The step by step is in `_system/audio-tracker.md`.
+
