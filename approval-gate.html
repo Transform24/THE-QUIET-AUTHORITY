@@ -408,6 +408,8 @@
                 const metrics = await fetchMetrics();
                 const thumbs = await fetchThumbs();
                 const integrity = await fetchIntegrity();
+                const pins = await fetchPins();
+                const reels = await fetchReels();
                 const videos = data.videos.slice().sort((a, b) => a.date.localeCompare(b.date));
                 document.getElementById('loadingState').style.display = 'none';
                 document.getElementById('itemCounter').textContent = videos.length + ' videos scheduled';
@@ -426,7 +428,7 @@
                         <div id="decision-${escapeHtml(v.version)}">${decisionInner(v.version)}</div>
                     </div>`).join('') + `
                     <p class="counter" style="text-align:center;">You upload each video yourself in YouTube Studio and schedule it for the date above. Nothing on this page uploads anything.</p>`
-                    + renderThumbnails(thumbs) + renderInsights(metrics) + renderShorts(data.shorts || []) + renderNotes(data.status_notes || []);
+                    + renderThumbnails(thumbs) + renderSystemMap(data, thumbs, pins, reels) + renderPins(pins) + renderInsights(metrics) + renderShorts(data.shorts || []) + renderReels(reels) + renderNotes(data.status_notes || []);
             } catch (e) {
                 document.getElementById('loadingState').style.display = 'none';
                 document.getElementById('itemDisplay').innerHTML = '<div class="item-card"><p style="color: #C1593C;">' + escapeHtml(e.message) + '</p></div>';
@@ -572,6 +574,78 @@
                 '<p class="counter" style="text-align:center;">Each short ends by pointing to the full video and sanctuary-grace.com. The caption file has the YouTube, Instagram and Pinterest text. You post every short yourself.</p>';
         }
 
+
+        // Pinterest Idea Pins (content-ops/03_pinterest_pins/pins.json) and the daily Instagram Reel plan
+        // (workflows/output/shorts-staged/instagram-daily-schedule.json). Grace posts and pins everything by hand.
+        async function fetchPins() {
+            try {
+                const r = await fetch('content-ops/03_pinterest_pins/pins.json?v=' + Date.now());
+                return r.ok ? await r.json() : null;
+            } catch (e) { return null; }
+        }
+        async function fetchReels() {
+            try {
+                const r = await fetch('workflows/output/shorts-staged/instagram-daily-schedule.json?v=' + Date.now());
+                return r.ok ? await r.json() : null;
+            } catch (e) { return null; }
+        }
+        const H2 = '<h2 style="font-family: \'Cormorant Garamond\', serif; color: #C9A84C; text-align:center; margin: 40px 0 20px;">';
+
+        function renderSystemMap(data, thumbs, pins, reels) {
+            const nVideos = (data.videos || []).length;
+            const nThumbs = thumbs && thumbs.cards ? thumbs.cards.length : 0;
+            const nShorts = (data.shorts || []).filter(x => !x.skip).length;
+            const nPins = pins && pins.pins ? pins.pins.length : 0;
+            const nReels = reels && reels.days ? reels.days.length : 0;
+            const row = (label, n, where, how) => `
+                <div style="padding:10px 0; border-top:1px solid #272727;">
+                    <div style="display:flex; justify-content:space-between; gap:12px;"><div>${escapeHtml(label)}</div><div style="color:#C9A84C; font-weight:700;">${n}</div></div>
+                    <div style="font-size:0.78rem; color:#807870;">${escapeHtml(where)}. ${escapeHtml(how)}</div>
+                </div>`;
+            return H2 + 'System Map</h2>' + `
+                <div class="item-card">
+                    <div class="platform-badge">FROM ONE VIDEO TO EVERY PLATFORM</div>
+                    <div class="item-date">Each step feeds the next. You publish every piece by hand.</div>
+                    ${row('Master videos', nVideos, 'public/', 'Uploaded by you in YouTube Studio, Sundays at 5:00 AM Eastern')}
+                    ${row('Thumbnail cards', nThumbs, 'content-ops/02_thumbnail_factory/', 'One per video')}
+                    ${row('Vertical Shorts', nShorts, 'public/shorts/', 'Posted after the full video, with the caption document beside each')}
+                    ${row('Pinterest Idea Pins', nPins, 'content-ops/03_pinterest_pins/', 'Pinned by you, destination https://sanctuary-grace.com')}
+                    ${row('Instagram Reels, one a day', nReels, 'workflows/output/shorts-staged/instagram-daily/', 'Posted by you, Monday to Wednesday after each video')}
+                    <p class="counter" style="margin-top:14px;">Every automatic posting schedule is switched off (Pinterest, Instagram, YouTube agent, Substack). Nothing on this page posts anything.</p>
+                </div>`;
+        }
+
+        function renderPins(p) {
+            if (!p || !p.pins || !p.pins.length) return '';
+            const cards = p.pins.map(x => `
+                <div class="item-card">
+                    <div class="platform-badge">IDEA PIN &middot; ${escapeHtml(String(x.video).toUpperCase())}</div>
+                    <a href="${escapeHtml(x.file)}" target="_blank" rel="noopener"><img src="${escapeHtml(x.file)}" alt="Idea Pin for ${escapeHtml(x.scripture_title.join(' and '))}" style="width:100%; max-width:360px; margin:0 auto; border:1px solid #272727; display:block;"></a>
+                    <div class="item-date" style="margin-top:12px;">${escapeHtml(x.title)}</div>
+                    <p style="font-size:0.9rem;">${escapeHtml(x.description)}</p>
+                    <p class="counter">Destination: ${escapeHtml(x.destination_link)}</p>
+                </div>`).join('');
+            return H2 + 'Pinterest Idea Pins</h2>' + cards + '<p class="counter" style="text-align:center;">Each pin is 1080 by 1920 with its scripture title in gold Cinzel inside the 780 pixel text limit. You pin them by hand.</p>';
+        }
+
+        function renderReels(r) {
+            if (!r || !r.days || !r.days.length) return '';
+            const order = ['v8', 'v9', 'v11', 'v10', 'v12', 'v13'];
+            const groups = order.map(vid => {
+                const days = r.days.filter(x => x.video === vid);
+                if (!days.length) return '';
+                const rows = days.map(x => `
+                    <div style="display:flex; gap:12px; align-items:center; justify-content:space-between; padding:10px 0; border-top:1px solid #272727;">
+                        <div>${escapeHtml(x.weekday)}, ${escapeHtml(x.date)}: Clip ${escapeHtml(x.clip)}, ${escapeHtml(x.name)}</div>
+                        <div style="display:flex; gap:10px;">
+                            <a href="${escapeHtml(x.file)}" target="_blank" rel="noopener" style="color:#C9A84C;">Watch</a>
+                            <a href="${escapeHtml(x.template)}" target="_blank" rel="noopener" style="color:#C9A84C;">Template</a>
+                        </div>
+                    </div>`).join('');
+                return `<div class="item-card"><div class="platform-badge">INSTAGRAM REELS &middot; ${escapeHtml(vid.toUpperCase())}</div><div class="item-date">Post after the full video, ${escapeHtml(days[0].full_video_date)}</div>${rows}</div>`;
+            }).join('');
+            return H2 + 'Instagram Reels, One a Day</h2>' + groups + '<p class="counter" style="text-align:center;">Each template holds the step by step for the day, the caption and the bio line "' + escapeHtml(r.cta) + '". The Instagram workflows stay paused.</p>';
+        }
 
         // Short status notes at the bottom of the gate.
         function renderNotes(notes) {
