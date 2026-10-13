@@ -2,12 +2,20 @@
   "about": "Thumbnail cards made by scripts/generate-system-thumbnails.mjs. 1280 by 720.",
   "cards": [
     {
+      "video": "v8",
+      "file": "content-ops/02_thumbnail_factory/TQA_Thumbnail_v8.png",
+      "scripture_title": [
+        "PSALM 46:10"
+      ],
+      "sub": "The Stillness Journey"
+    },
+    {
       "video": "v9",
       "file": "content-ops/02_thumbnail_factory/TQA_Thumbnail_v9.png",
       "scripture_title": [
-        "MATTHEW 6"
+        "PSALM 91"
       ],
-      "sub": "The Posture of Prayer"
+      "sub": "The Secret Place"
     },
     {
       "video": "v13",

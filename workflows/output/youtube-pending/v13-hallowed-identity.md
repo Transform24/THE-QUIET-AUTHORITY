@@ -1,7 +1,7 @@
 ---
 date: 2026-10-11
 title: The Quiet Authority, The Hallowed Identity, Video Five (file v13, exactly 8 minutes)
-status: APPROVED by Grace, scheduled for Sunday, October 25, 2026, 5:00 AM Eastern. You upload it yourself.
+status: APPROVED by Grace, scheduled for Sunday, November 22, 2026, 5:00 AM Eastern. You upload it yourself.
 video: https://sanctuary-grace.com/public/TQA_Stillness_Journey_FINAL_v13.mp4
 ---
 
@@ -31,7 +31,7 @@ It is 1920 by 1080, exactly 8 minutes (11,520 frames at 24 per second), about 32
 2. The three scriptures were checked word for word against the King James Version.
 3. This is Video Five in the series. The file name is v13.
 4. The music is the Version 8 track as extended to 8 minutes.
-5. Release: Sunday, October 25, 2026, 5:00 AM Eastern. Its three shorts are in the Shorts section of the gate.
+5. Release: Sunday, November 22, 2026, 5:00 AM Eastern. Its three shorts are in the Shorts section of the gate.
 
 ## Before it goes anywhere
 

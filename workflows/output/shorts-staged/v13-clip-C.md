@@ -5,7 +5,7 @@ clip_name: The Outro Prayer Push
 file: out/shorts/v13-clip-C.mp4
 format: 1080 by 1920, 60 seconds
 status: RENDERED, ready for Grace to post. Nothing here uploads anything.
-full_video_release: not yet scheduled
+full_video_release: Sunday, November 22, 2026
 ---
 
 # V13, Clip C: The Outro Prayer Push
@@ -16,7 +16,7 @@ This short shows the prayer, arriving one line at a time.
 
 - In YouTube Studio, open this short, choose Related video, and pick: The Hallowed Identity | Proverbs 18:10, Isaiah 43:18, Isaiah 43:19 (KJV) | A Quiet Morning Declaration
 - Full video link, to paste after Grace uploads it: {{YOUTUBE_WATCH_URL}}
-- The full video has no Sunday yet. Post the short after the full video is out.
+- The full video is scheduled for Sunday, November 22, 2026, 5:00 AM Eastern. Post the short after that.
 
 ## YouTube Shorts
 
