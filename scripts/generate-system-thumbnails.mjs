@@ -23,10 +23,10 @@ const MAX_W = 780;
 const CARDS = {
   v8: { data: "src/data/TQA_Stillness_Journey_FINAL_v8.json", plate: "character_spotlight", zoom: 2.6, focus: "45% 78%", shade: 0.9, lines: [{ text: "PSALM 46:10", size: 72 }], sub: "The Stillness Journey" },
   v9: { data: "src/data/TQA_Stillness_Journey_FINAL_v9.json", plate: "spotlight_candle", zoom: 1.3, focus: "70% 55%", shade: 0.85, lines: [{ text: "PSALM 91", size: 88 }], sub: "The Secret Place" },
-  v13: { data: "src/data/TQA_Stillness_Journey_FINAL_v13.json", plate: "character_spotlight", zoom: 1.0, focus: "52% 40%", shade: 0.8, lines: [{ text: "PROVERBS 18:10", size: 60 }, { text: "ISAIAH 43:18-19", size: 60 }], sub: "The Hallowed Identity" },
   v11: { data: "src/data/TQA_Stillness_Journey_FINAL_v11.json", plate: "spotlight_candle", zoom: 1.8, focus: "55% 15%", shade: 0.9, lines: [{ text: "PSALM 27", size: 88 }], sub: "Waiting on the LORD" },
   v10: { data: "src/data/TQA_Stillness_Journey_FINAL_v10.json", plate: "character_spotlight", zoom: 1.8, focus: "52% 25%", shade: 0.9, lines: [{ text: "MATTHEW 6", size: 64 }, { text: "ROMANS 10:9-10", size: 64 }], sub: "The Posture of Prayer" },
   v12: { data: "src/data/TQA_Stillness_Journey_FINAL_v12.json", plate: "spotlight_candle", zoom: 2.2, focus: "75% 80%", shade: 0.9, lines: [{ text: "PSALM 25:14", size: 54 }, { text: "PROVERBS 3:32", size: 54 }, { text: "MALACHI 3:6", size: 54 }], sub: "The Secret of the LORD" },
+  v13: { data: "src/data/TQA_Stillness_Journey_FINAL_v13.json", plate: "character_spotlight", zoom: 1.0, focus: "52% 40%", shade: 0.8, lines: [{ text: "PROVERBS 18:10", size: 60 }, { text: "ISAIAH 43:18-19", size: 60 }], sub: "The Hallowed Identity" },
 };
 const file = (id) => `TQA_Thumbnail_${id}.png`;
 const EMDASH = String.fromCharCode(0x2014);

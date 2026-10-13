@@ -18,15 +18,6 @@
       "sub": "The Secret Place"
     },
     {
-      "video": "v13",
-      "file": "content-ops/02_thumbnail_factory/TQA_Thumbnail_v13.png",
-      "scripture_title": [
-        "PROVERBS 18:10",
-        "ISAIAH 43:18-19"
-      ],
-      "sub": "The Hallowed Identity"
-    },
-    {
       "video": "v11",
       "file": "content-ops/02_thumbnail_factory/TQA_Thumbnail_v11.png",
       "scripture_title": [
@@ -52,6 +43,15 @@
         "MALACHI 3:6"
       ],
       "sub": "The Secret of the LORD"
+    },
+    {
+      "video": "v13",
+      "file": "content-ops/02_thumbnail_factory/TQA_Thumbnail_v13.png",
+      "scripture_title": [
+        "PROVERBS 18:10",
+        "ISAIAH 43:18-19"
+      ],
+      "sub": "The Hallowed Identity"
     }
   ]
 }
