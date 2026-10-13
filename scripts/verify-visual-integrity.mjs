@@ -2,7 +2,7 @@
 // Visual integrity agent for the TQA master videos.
 //
 //   node scripts/verify-visual-integrity.mjs [--write-gate] [--note="text" ...] <video.mp4> [<video.mp4> ...]
-//   --max-frozen-seconds=8 sets the dead air limit (45 by default).
+//   --max-frozen-seconds=N sets the dead air limit (12 by default).
 //   --note adds a plain sentence to the gate card (for example which music was confirmed by hand).
 //
 // With no video named it checks every out/TQA_Stillness_Journey_FINAL_v*.mp4 it can find.
@@ -10,7 +10,7 @@
 // then reads every frame of each video and fails the build when:
 //   1. the video is not exactly 11,520 frames at 24 fps, 1920 by 1080 (the 8:00 flat mark);
 //   2. more than 3 frames in a row are solid black (#000000) before the official final fade-out;
-//   3. dead air: the picture and text sit frozen, with no change at all, for more than 45 seconds;
+//   3. dead air: the picture and text sit frozen, with no change at all, for more than 12 seconds;
 //   4. the picture layer drops out (a long run of frames with nothing but the plain #0d0d0d backdrop)
 //      before the official final fade-out.
 // The official final fade-out is the last 192 frames (8 seconds). Frames in it are never counted.
@@ -33,7 +33,7 @@ const FINAL_FADE = RULES.picture_fade_out_frames; // 192 frames, 8 seconds
 const FADE_START = TOTAL - FINAL_FADE;
 const MAX_BLACK_RUN = 3;
 const MAX_FLAT_RUN = 24; // one second. A real picture dissolve never leaves the plain backdrop this long.
-let MAX_STATIC_RUN = 1080; // 45 seconds by default. Nothing in a video may sit frozen, with no change at all, for longer than this (dead air). Change it with --max-frozen-seconds=8.
+let MAX_STATIC_RUN = 288; // 12 seconds by default (Grace, 2026-10-13: intentional resting pauses pass, a long stall still fails). Nothing in a video may sit frozen, with no change at all, for longer than this (dead air). Change it with --max-frozen-seconds=N.
 const STATIC_DIFF = 0.0005; // average change from the last frame (0 to 255 scale) at or below which a frame counts as frozen. Typing and fades always change more than this.
 const EM = String.fromCharCode(0x2014);
 

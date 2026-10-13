@@ -511,12 +511,12 @@
             const blocked = !v.layout_ok || v.videos.some(x => !x.ok);
             const rows = v.videos.map(x => `
                 <div style="padding:8px 0; border-top:1px solid #272727; color:${x.ok ? '#F5F0E8' : '#C1593C'};">
-                    ${escapeHtml(x.video)}: ${x.ok ? 'passed, ' + escapeHtml(x.frames) + ' frames, longest black run before the fade ' + escapeHtml(x.longest_black_run_before_fade) + ' frames' : 'BLOCKED. ' + escapeHtml(x.problems.join(' '))}
+                    ${escapeHtml(x.video)}: ${x.ok ? 'ready, passed. ' + escapeHtml(x.frames) + ' frames, longest black run before the fade ' + escapeHtml(x.longest_black_run_before_fade) + ' frames, longest still page ' + escapeHtml(x.longest_frozen_run_seconds) + ' seconds' : 'BLOCKED. ' + escapeHtml(x.problems.join(' '))}
                 </div>`).join('');
             return `
                 <div class="item-card" style="border-color:${blocked ? '#C1593C' : '#C9A84C'};">
                     <div class="platform-badge">VISUAL INTEGRITY, ${escapeHtml(v.checked)}</div>
-                    <div class="item-date">${blocked ? 'BLOCKED. Do not approve until this is fixed.' : 'Passed'}</div>
+                    <div class="item-date">${blocked ? 'BLOCKED. Do not approve until this is fixed.' : 'Passed. All six videos are ready for your decision below.'}</div>
                     <p>${escapeHtml(v.rule)} The picture and music fade out together over the last 8 seconds. That final fade is part of the standard and is not counted.</p>
                     ${(v.notes || []).map(n => `<p>${escapeHtml(n)}</p>`).join('')}
                     ${rows}
