@@ -1,18 +1,23 @@
 {
   "about": "Written by scripts/verify-visual-integrity.mjs. A video that fails shows as BLOCKED on approval-gate.html.",
   "checked": "2026-10-13",
-  "rule": "No more than 3 frames in a row of solid black before the final fade-out (frame 11328 to 11520). Exactly 11520 frames.",
+  "rule": "No more than 3 frames in a row of solid black before the final fade-out (frame 11328 to 11520). No page frozen longer than 8 seconds. Exactly 11520 frames.",
+  "frozen_limit_seconds": 8,
   "layout_ok": true,
   "layout_problems": [],
   "notes": [
-    "Videos 8 and 9 were rebuilt on the same standard as videos 11 and 13, and Video 9 now carries Psalm 91 (The Secret Place). Both play the Version 8 score, 8 minutes long, and fade out over the last 8 seconds. A waveform match against the Version 8 track found no music1.mp3.",
-    "Dead air: the old video 9 sat frozen for 47 seconds. Videos 8 and 9 now hold no frozen picture longer than 8 seconds, which is the locked 8 second rest after each reflection. Video 10 holds one 36 second stretch, which passes the 45 second rule but is the next page to fix. Videos 11, 12 and 13 stay at 10 seconds or less."
+    "Video 10 was rebuilt so its prayer rises one line at a time. The old prayer page held one block of words frozen for up to 36 seconds.",
+    "Every video plays the original Version 8 score, 8 minutes long, and fades out over the last 8 seconds.",
+    "Eight second check (2026-10-13): only Video 10 passes. Videos 8 and 9 stop at exactly 8 seconds twice (the end of the prayer and the Thank you page), and videos 11, 12 and 13 hold up to 10 seconds between prayer lines. They are marked BLOCKED until Grace decides whether to shorten those pauses and re-render."
   ],
   "videos": [
     {
       "video": "TQA_Stillness_Journey_FINAL_v8.mp4",
-      "ok": true,
-      "problems": [],
+      "ok": false,
+      "problems": [
+        "dead air: the picture and text do not move for 8 seconds from frame 10555 (439.8 s)",
+        "dead air: the picture and text do not move for 8 seconds from frame 11053 (460.5 s)"
+      ],
       "longest_frozen_run_seconds": 8,
       "frames": 11520,
       "final_fade_starts_at_frame": 11328,
@@ -21,8 +26,11 @@
     },
     {
       "video": "TQA_Stillness_Journey_FINAL_v9.mp4",
-      "ok": true,
-      "problems": [],
+      "ok": false,
+      "problems": [
+        "dead air: the picture and text do not move for 8 seconds from frame 10555 (439.8 s)",
+        "dead air: the picture and text do not move for 8 seconds from frame 11053 (460.5 s)"
+      ],
       "longest_frozen_run_seconds": 8,
       "frames": 11520,
       "final_fade_starts_at_frame": 11328,
@@ -31,8 +39,17 @@
     },
     {
       "video": "TQA_Stillness_Journey_FINAL_v11.mp4",
-      "ok": true,
-      "problems": [],
+      "ok": false,
+      "problems": [
+        "dead air: the picture and text do not move for 9 seconds from frame 6251 (260.5 s)",
+        "dead air: the picture and text do not move for 8 seconds from frame 6517 (271.5 s)",
+        "dead air: the picture and text do not move for 10 seconds from frame 7502 (312.6 s)",
+        "dead air: the picture and text do not move for 9 seconds from frame 8018 (334.1 s)",
+        "dead air: the picture and text do not move for 10 seconds from frame 8501 (354.2 s)",
+        "dead air: the picture and text do not move for 10 seconds from frame 9502 (395.9 s)",
+        "dead air: the picture and text do not move for 8 seconds from frame 10555 (439.8 s)",
+        "dead air: the picture and text do not move for 8 seconds from frame 11053 (460.5 s)"
+      ],
       "longest_frozen_run_seconds": 10,
       "frames": 11520,
       "final_fade_starts_at_frame": 11328,
@@ -40,10 +57,10 @@
       "longest_picture_gap_before_fade": 0
     },
     {
-      "video": "TQA_Standard_8min_Posture_of_Prayer.mp4",
+      "video": "TQA_Stillness_Journey_FINAL_v10.mp4",
       "ok": true,
       "problems": [],
-      "longest_frozen_run_seconds": 36,
+      "longest_frozen_run_seconds": 7,
       "frames": 11520,
       "final_fade_starts_at_frame": 11328,
       "longest_black_run_before_fade": 0,
@@ -51,8 +68,14 @@
     },
     {
       "video": "TQA_Stillness_Journey_FINAL_v12.mp4",
-      "ok": true,
-      "problems": [],
+      "ok": false,
+      "problems": [
+        "dead air: the picture and text do not move for 10 seconds from frame 6267 (261.1 s)",
+        "dead air: the picture and text do not move for 10 seconds from frame 8752 (364.7 s)",
+        "dead air: the picture and text do not move for 10 seconds from frame 9751 (406.3 s)",
+        "dead air: the picture and text do not move for 8 seconds from frame 10556 (439.8 s)",
+        "dead air: the picture and text do not move for 8 seconds from frame 11053 (460.5 s)"
+      ],
       "longest_frozen_run_seconds": 10,
       "frames": 11520,
       "final_fade_starts_at_frame": 11328,
@@ -61,8 +84,15 @@
     },
     {
       "video": "TQA_Stillness_Journey_FINAL_v13.mp4",
-      "ok": true,
-      "problems": [],
+      "ok": false,
+      "problems": [
+        "dead air: the picture and text do not move for 10 seconds from frame 6743 (281.0 s)",
+        "dead air: the picture and text do not move for 10 seconds from frame 7988 (332.8 s)",
+        "dead air: the picture and text do not move for 8 seconds from frame 8284 (345.2 s)",
+        "dead air: the picture and text do not move for 8 seconds from frame 8531 (355.5 s)",
+        "dead air: the picture and text do not move for 9 seconds from frame 8780 (365.8 s)",
+        "dead air: the picture and text do not move for 8 seconds from frame 9785 (407.7 s)"
+      ],
       "longest_frozen_run_seconds": 10,
       "frames": 11520,
       "final_fade_starts_at_frame": 11328,

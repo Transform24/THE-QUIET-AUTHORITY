@@ -2,6 +2,7 @@
 // Visual integrity agent for the TQA master videos.
 //
 //   node scripts/verify-visual-integrity.mjs [--write-gate] [--note="text" ...] <video.mp4> [<video.mp4> ...]
+//   --max-frozen-seconds=8 sets the dead air limit (45 by default).
 //   --note adds a plain sentence to the gate card (for example which music was confirmed by hand).
 //
 // With no video named it checks every out/TQA_Stillness_Journey_FINAL_v*.mp4 it can find.
@@ -32,7 +33,7 @@ const FINAL_FADE = RULES.picture_fade_out_frames; // 192 frames, 8 seconds
 const FADE_START = TOTAL - FINAL_FADE;
 const MAX_BLACK_RUN = 3;
 const MAX_FLAT_RUN = 24; // one second. A real picture dissolve never leaves the plain backdrop this long.
-const MAX_STATIC_RUN = 1080; // 45 seconds. Nothing in a video may sit frozen, with no change at all, for longer than this (dead air).
+let MAX_STATIC_RUN = 1080; // 45 seconds by default. Nothing in a video may sit frozen, with no change at all, for longer than this (dead air). Change it with --max-frozen-seconds=8.
 const STATIC_DIFF = 0.0005; // average change from the last frame (0 to 255 scale) at or below which a frame counts as frozen. Typing and fades always change more than this.
 const EM = String.fromCharCode(0x2014);
 
@@ -78,6 +79,8 @@ notes.push(`layouts: 7 layout files keep an <Img> picture layer, 11,520 frames, 
 // 2. Video checks
 const args = process.argv.slice(2);
 const writeGate = args.includes("--write-gate");
+const limitArg = args.find((a) => a.startsWith("--max-frozen-seconds="));
+if (limitArg) MAX_STATIC_RUN = Math.round(Number(limitArg.split("=")[1]) * FPS);
 const noteArgs = args.filter((a) => a.startsWith("--note=")).map((a) => a.slice(7));
 let videos = args.filter((a) => !a.startsWith("--"));
 if (!videos.length) {
@@ -172,7 +175,8 @@ if (writeGate) {
   writeFileSync(file, JSON.stringify({
     about: "Written by scripts/verify-visual-integrity.mjs. A video that fails shows as BLOCKED on approval-gate.html.",
     checked: new Date().toISOString().slice(0, 10),
-    rule: `No more than ${MAX_BLACK_RUN} frames in a row of solid black before the final fade-out (frame ${FADE_START} to ${TOTAL}). Exactly ${TOTAL} frames.`,
+    rule: `No more than ${MAX_BLACK_RUN} frames in a row of solid black before the final fade-out (frame ${FADE_START} to ${TOTAL}). No page frozen longer than ${Math.round(MAX_STATIC_RUN / FPS)} seconds. Exactly ${TOTAL} frames.`,
+    frozen_limit_seconds: Math.round(MAX_STATIC_RUN / FPS),
     layout_ok: layoutOk,
     layout_problems: problems,
     notes: noteArgs,

@@ -214,6 +214,48 @@
             opacity: 0.9;
         }
 
+
+        /* Approval decisions: gold buttons, saved in this browser only */
+        .decision-row {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 16px;
+        }
+
+        .btn-gold {
+            background: #C9A84C;
+            color: #0d0d0d;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            max-width: 220px;
+        }
+
+        .btn-gold:hover {
+            opacity: 0.9;
+        }
+
+        .btn-gold.chosen {
+            outline: 3px solid #F5F0E8;
+            outline-offset: 2px;
+        }
+
+        .decision-status {
+            text-align: center;
+            margin-top: 12px;
+            font-weight: 600;
+            color: #C9A84C;
+        }
+
+        .decision-note {
+            text-align: center;
+            color: #807870;
+            font-size: 0.8rem;
+            margin-top: 8px;
+            line-height: 1.6;
+        }
+
         /* Status */
         .status {
             padding: 15px;
@@ -369,6 +411,8 @@
                 const videos = data.videos.slice().sort((a, b) => a.date.localeCompare(b.date));
                 document.getElementById('loadingState').style.display = 'none';
                 document.getElementById('itemCounter').textContent = videos.length + ' videos scheduled';
+                videoVersions = videos.map(v => v.version);
+                updateCounter();
                 document.getElementById('itemDisplay').innerHTML = renderIntegrity(integrity) + renderActions(data.action_cards || []) + renderReview(data.pending_review || []) + videos.map(v => `
                     <div class="item-card">
                         <div class="platform-badge">WEEK ${escapeHtml(v.week)} &middot; ${escapeHtml(v.version.toUpperCase())}</div>
@@ -379,6 +423,7 @@
                             <a class="btn btn-approve" style="text-decoration:none; text-align:center;" href="${escapeHtml(v.video)}" target="_blank" rel="noopener">Watch video</a>
                             <a class="btn btn-reject" style="text-decoration:none; text-align:center;" href="${escapeHtml(v.card)}" target="_blank" rel="noopener">Open card</a>
                         </div>
+                        <div id="decision-${escapeHtml(v.version)}">${decisionInner(v.version)}</div>
                     </div>`).join('') + `
                     <p class="counter" style="text-align:center;">You upload each video yourself in YouTube Studio and schedule it for the date above. Nothing on this page uploads anything.</p>`
                     + renderThumbnails(thumbs) + renderInsights(metrics) + renderShorts(data.shorts || []) + renderNotes(data.status_notes || []);
@@ -532,6 +577,53 @@
         function renderNotes(notes) {
             return notes.map(n => `<div class="item-card"><div class="platform-badge">${escapeHtml(n.badge)}</div><p>${escapeHtml(n.text)}</p></div>`).join('');
         }
+
+
+        // Approval decisions. "Yes, Approve" and "No, Rebuild" are saved in this browser only.
+        // They do not upload or publish anything. Press the same button again to take the choice back.
+        const DECISION_KEY = 'tqaDecisions';
+        let videoVersions = [];
+        function loadDecisions() {
+            try { return JSON.parse(localStorage.getItem(DECISION_KEY)) || {}; } catch (e) { return {}; }
+        }
+        function saveDecisions(d) {
+            try { localStorage.setItem(DECISION_KEY, JSON.stringify(d)); return true; } catch (e) { return false; }
+        }
+        function decisionText(rec) {
+            if (!rec) return 'No decision yet.';
+            const when = new Date(rec.at).toLocaleString('en-US', { month: 'long', day: 'numeric', hour: 'numeric', minute: '2-digit' });
+            return rec.choice === 'approve' ? 'Approved by you on ' + when + '.' : 'Rebuild requested on ' + when + '.';
+        }
+        function decisionInner(version) {
+            const rec = loadDecisions()[version];
+            const v = escapeHtml(version);
+            return `<div class="decision-row">
+                    <button class="btn btn-gold${rec && rec.choice === 'approve' ? ' chosen' : ''}" data-decide="approve" data-version="${v}">Yes, Approve</button>
+                    <button class="btn btn-gold${rec && rec.choice === 'rebuild' ? ' chosen' : ''}" data-decide="rebuild" data-version="${v}">No, Rebuild</button>
+                </div>
+                <div class="decision-status">${escapeHtml(decisionText(rec))}</div>
+                <div class="decision-note">Saved on this device only. Nothing uploads or publishes. Tell Claude your choice so it is written into the files.</div>`;
+        }
+        function updateCounter() {
+            const d = loadDecisions();
+            const approved = videoVersions.filter(x => d[x] && d[x].choice === 'approve').length;
+            const rebuild = videoVersions.filter(x => d[x] && d[x].choice === 'rebuild').length;
+            document.getElementById('itemCounter').textContent = videoVersions.length + ' videos scheduled, ' + approved + ' approved' + (rebuild ? ', ' + rebuild + ' to rebuild' : '');
+        }
+        document.getElementById('itemDisplay').addEventListener('click', (e) => {
+            const b = e.target.closest('[data-decide]');
+            if (!b) return;
+            const version = b.getAttribute('data-version');
+            const choice = b.getAttribute('data-decide');
+            const d = loadDecisions();
+            if (d[version] && d[version].choice === choice) delete d[version];
+            else d[version] = { choice: choice, at: new Date().toISOString() };
+            const saved = saveDecisions(d);
+            const box = document.getElementById('decision-' + version);
+            box.innerHTML = decisionInner(version);
+            if (!saved) box.querySelector('.decision-status').textContent = 'This browser would not save the choice. Please tell Claude instead.';
+            updateCounter();
+        });
 
         window.addEventListener('load', () => {
             document.getElementById('passwordInput').focus();

@@ -12,7 +12,9 @@
     "intro_y": 340,
     "thanks_center_x": 960,
     "thanks_y": 330,
-    "prayer_page_y": 300
+    "prayer_page_y": 300,
+    "push_bottom_y": 900,
+    "push_top_y": 230
   },
   "plates": {
     "spotlight_candle": {
@@ -104,7 +106,13 @@
       "ref": "ROMANS 10:9-10",
       "text": "That if thou shalt confess with thy mouth the Lord Jesus, and shalt believe in thine heart that God hath raised him from the dead, thou shalt be saved. For with the heart man believeth unto righteousness; and with the mouth confession is made unto salvation."
     },
-    "prayer": "Father, I thank You that You are my Anchor of Faithfulness. Forgive me for the times I have slipped into performative noise, thinking I had to scream or use the perfect words to be heard. I choose right now to shut the door on the frantic demands of this world and rest in the secret place of Your presence. Thank You that You intimately know my needs before I even speak. Settle my mind, clear away the weight of heavy burdens, and teach me to walk out into the marketplace with Your unshakeable peace. I lean entirely on Your blueprint, not my own strength. In Jesus' name, Amen."
+    "prayer": "Father, I thank You that You are my Anchor of Faithfulness. Forgive me for the times I have slipped into performative noise, thinking I had to scream or use the perfect words to be heard. I choose right now to shut the door on the frantic demands of this world and rest in the secret place of Your presence. Thank You that You intimately know my needs before I even speak. Settle my mind, clear away the weight of heavy burdens, and teach me to walk out into the marketplace with Your unshakeable peace. I lean entirely on Your blueprint, not my own strength. In Jesus' name, Amen.",
+    "prayer_beats": [
+      "Father, I thank You that You are my Anchor of Faithfulness. Forgive me for the times I have slipped into performative noise, thinking I had to scream or use the perfect words to be heard.",
+      "I choose right now to shut the door on the frantic demands of this world and rest in the secret place of Your presence.",
+      "Thank You that You intimately know my needs before I even speak. Settle my mind, clear away the weight of heavy burdens, and teach me to walk out into the marketplace with Your unshakeable peace.",
+      "I lean entirely on Your blueprint, not my own strength. In Jesus' name, Amen."
+    ]
   },
   "thanks": {
     "heading": "Thank you for watching.",
@@ -113,5 +121,6 @@
       "Reach out. Come home to The Quiet Authority."
     ],
     "link": "sanctuary-grace.com"
-  }
+  },
+  "layout_exception": "line_push"
 }

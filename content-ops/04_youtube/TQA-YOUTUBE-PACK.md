@@ -19,7 +19,7 @@ Sunday mornings at 5:00 AM Eastern time, one video every Sunday for six weeks (6
 | 1 | Oct 18 | 5:00 AM | v8, The Stillness Journey (Psalm 46:10, your original, rebuilt) | TQA_Stillness_Journey_FINAL_v8.mp4 |
 | 2 | Oct 25 | 5:00 AM | v9, The Secret Place (Psalm 91) | TQA_Stillness_Journey_FINAL_v9.mp4 |
 | 3 | Nov 1 | 5:00 AM | v11, Waiting on the LORD (Psalm 27, bedtime prayer) | TQA_Stillness_Journey_FINAL_v11.mp4 |
-| 4 | Nov 8 | 5:00 AM | v10, The Posture of Prayer with Romans 10:9-10 | TQA_Standard_8min_Posture_of_Prayer.mp4 |
+| 4 | Nov 8 | 5:00 AM | v10, The Posture of Prayer with Romans 10:9-10 | TQA_Stillness_Journey_FINAL_v10.mp4 |
 | 5 | Nov 15 | 5:00 AM | v12, The Secret of the LORD (morning prayer) | TQA_Stillness_Journey_FINAL_v12.mp4 |
 | 6 | Nov 22 | 5:00 AM | v13, The Hallowed Identity (Gate 3, morning declaration) | TQA_Stillness_Journey_FINAL_v13.mp4 |
 
@@ -69,7 +69,7 @@ Chapter markers to paste beside each date (also in each video's section below):
 3:24 Matthew 6:9
 4:35 Romans 10:9-10
 5:20 A closing prayer
-7:13 Thank you for watching
+7:30 Thank you for watching
 ```
 
 **Nov 15, v12**
@@ -270,8 +270,8 @@ bedtime prayer, prayer before sleep, Psalm 27, Psalm 91, wait on the LORD, salva
 
 ---
 
-## Video 4: TQA_Standard_8min_Posture_of_Prayer.mp4
-Video 4 on the calendar. Release: Sunday, November 8, 5:00 AM Eastern. The standard cut (the file on your site is TQA_Standard_8min_Posture_of_Prayer.mp4).
+## Video 4: TQA_Stillness_Journey_FINAL_v10.mp4
+Video 4 on the calendar. Release: Sunday, November 8, 5:00 AM Eastern. Rebuilt so the prayer rises one line at a time and no page sits still for more than 8 seconds.
 
 **Title**
 The Posture of Prayer | Matthew 6:6-9 and Romans 10:9-10 (KJV) | A Quiet Prayer to Rest In
@@ -301,7 +301,7 @@ Chapters
 3:24 Matthew 6:9
 4:35 Romans 10:9-10
 5:20 A closing prayer
-7:13 Thank you for watching
+7:30 Thank you for watching
 
 A closing prayer
 Father, I thank You that You are my Anchor of Faithfulness. Forgive me for the times I have slipped into performative noise, thinking I had to scream or use the perfect words to be heard. I choose right now to shut the door on the frantic demands of this world and rest in the secret place of Your presence. Thank You that You intimately know my needs before I even speak. Settle my mind, clear away the weight of heavy burdens, and teach me to walk out into the marketplace with Your unshakeable peace. I lean entirely on Your blueprint, not my own strength. In Jesus' name, Amen.
