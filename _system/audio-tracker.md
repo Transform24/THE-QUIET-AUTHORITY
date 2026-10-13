@@ -31,3 +31,9 @@ The monthly starter limit is spent only on approved text. If a draft is not appr
 | File | Voice | Used in | Text approved by Grace on | Generated on |
 |---|---|---|---|---|
 | (none yet for the grandmother profile) | | | | |
+
+## 4. Registry confirmation (2026-10-13, Grace confirmed her rules)
+
+- The historic Matilda recordings stay active and untouched exactly as they are: `assets/audio/gate-1-voice.mp3` to `gate-6-voice.mp3` and `daily-morning.mp3`, `daily-midday.mp3`, `daily-drivehome.mp3`, `daily-bedside.mp3`. They have not been changed since they were wired into the gate pages and Daily Sanctuary in September.
+- The grandmother storytelling voice profile is locked to the upcoming Wilderness course materials (the 5-day website courses and their companion devotionals). It is not used anywhere else.
+- The YouTube master videos stay silent of voice. Only the Version 8 music plays.
