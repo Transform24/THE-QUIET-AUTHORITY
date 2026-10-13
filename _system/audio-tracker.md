@@ -7,12 +7,12 @@
 |---|---|---|---|
 | YouTube master videos (v8 to v13) | None. 100% silent of voice | Version 8 score only (`content-ops/04_youtube/remotion/src/assets/tqa/tqa-music-v8-extended.m4a`) | Locked. No narration, no spoken scripture, no spoken prayer. |
 | Shorts, Reels and Pins cut from the masters | None | Version 8 score only | Same as the masters. |
-| Wilderness 5-day website courses and their companion devotional materials | ElevenLabs grandmother storytelling voice profile | Not set yet | The only place this voice profile may be used. |
+| Wilderness 5-day website courses and their companion devotional materials | ElevenLabs voice profile Satora (Grandmother) | Not set yet | The only place this voice profile may be used. Every forthcoming narration block for website materials is assigned to Satora (Grandmother) and to no other voice. |
 | Gate pages and Daily Sanctuary (already live) | ElevenLabs, voice Matilda, recorded 2026-09-14 | Site music at the repository root (`music1.mp3` to `music4.mp3`) | Unchanged by the 2026-10-13 decision. |
 
 Recordings already in `assets/audio/`: `gate-1-voice.mp3` to `gate-6-voice.mp3`, `daily-morning.mp3`, `daily-midday.mp3`, `daily-drivehome.mp3`, `daily-bedside.mp3`.
 
-Not yet in the repository: any grandmother voice recording. When one is made, add its file name, its course and its validation date to the table in section 3.
+Not yet in the repository: any Satora (Grandmother) recording. When one is made, add its file name, its course and its validation date to the table in section 3.
 
 ## 2. Starter credits treasury law
 
@@ -30,10 +30,25 @@ The monthly starter limit is spent only on approved text. If a draft is not appr
 
 | File | Voice | Used in | Text approved by Grace on | Generated on |
 |---|---|---|---|---|
-| (none yet for the grandmother profile) | | | | |
+| (no recording made yet) | | | | |
 
 ## 4. Registry confirmation (2026-10-13, Grace confirmed her rules)
 
 - The historic Matilda recordings stay active and untouched exactly as they are: `assets/audio/gate-1-voice.mp3` to `gate-6-voice.mp3` and `daily-morning.mp3`, `daily-midday.mp3`, `daily-drivehome.mp3`, `daily-bedside.mp3`. They have not been changed since they were wired into the gate pages and Daily Sanctuary in September.
 - The grandmother storytelling voice profile is locked to the upcoming Wilderness course materials (the 5-day website courses and their companion devotionals). It is not used anywhere else.
 - The YouTube master videos stay silent of voice. Only the Version 8 music plays.
+
+## 5. Forthcoming narration blocks (draft tracker, assigned 2026-10-13)
+
+Every block below is assigned to the one voice profile **Satora (Grandmother)**. A block is not generated until its text passes Grace's final validation (section 2). Nothing in this table has been generated, and nothing here is spoken in a YouTube master video.
+
+| Block | Where it will play | Voice | Text status | Generated |
+|---|---|---|---|---|
+| Wilderness 5-day course, Day 1 | Website course page | Satora (Grandmother) | Not written yet | No |
+| Wilderness 5-day course, Day 2 | Website course page | Satora (Grandmother) | Not written yet | No |
+| Wilderness 5-day course, Day 3 | Website course page | Satora (Grandmother) | Not written yet | No |
+| Wilderness 5-day course, Day 4 | Website course page | Satora (Grandmother) | Not written yet | No |
+| Wilderness 5-day course, Day 5 | Website course page | Satora (Grandmother) | Not written yet | No |
+| Companion devotional materials | Website | Satora (Grandmother) | Not written yet | No |
+
+Rule for new blocks: copy a row, keep the voice as Satora (Grandmother), set the text status to "Draft, awaiting Grace" until she approves it.

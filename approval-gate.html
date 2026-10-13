@@ -441,7 +441,7 @@
                         <div id="decision-${escapeHtml(v.version)}">${decisionInner(v.version)}</div>
                     </div>`).join('') + `
                     <p class="counter" style="text-align:center;">You upload each video yourself in YouTube Studio and schedule it for the date above. Nothing on this page uploads anything.</p>`
-                    + renderThumbnails(thumbs) + renderSystemMap(data, thumbs, pins, reels) + renderPins(pins) + renderInsights(metrics) + renderShorts(data.shorts || []) + renderReels(reels) + renderNotes(data.status_notes || []);
+                    + renderThumbnails(thumbs) + renderSystemMap(data, thumbs, pins, reels) + renderPins(pins) + renderInsights(metrics) + renderShorts(data.shorts || []) + renderReels(reels) + (await renderLocalStaging()) + renderNotes(data.status_notes || []);
             } catch (e) {
                 document.getElementById('loadingState').style.display = 'none';
                 document.getElementById('itemDisplay').innerHTML = '<div class="item-card"><p style="color: #C1593C;">' + escapeHtml(e.message) + '</p></div>';
@@ -658,6 +658,40 @@
                 return `<div class="item-card"><div class="platform-badge">INSTAGRAM REELS &middot; ${escapeHtml(vid.toUpperCase())}</div><div class="item-date">Post after the full video, ${escapeHtml(days[0].full_video_date)}</div>${rows}</div>`;
             }).join('');
             return H2 + 'Instagram Reels, One a Day</h2>' + groups + '<p class="counter" style="text-align:center;">Each template holds the step by step for the day, the caption and the bio line "' + escapeHtml(r.cta) + '". The Instagram workflows stay paused.</p>';
+        }
+
+        // LOCAL STAGING ONLY. This section appears only when the gate is opened from a local test address.
+        // On sanctuary-grace.com it fetches nothing and shows nothing.
+        function isLocalView() {
+            const h = location.hostname;
+            return location.protocol === 'file:' || h === 'localhost' || h === '127.0.0.1';
+        }
+        async function renderLocalStaging() {
+            if (!isLocalView()) return '';
+            try {
+                const r = await fetch('workflows/output/local-staging.json?v=' + Date.now());
+                if (!r.ok) return '';
+                const st = await r.json();
+                let pin = null;
+                try {
+                    const pr = await fetch('content-ops/03_pinterest_pins/pins-staged.json?v=' + Date.now());
+                    if (pr.ok) pin = await pr.json();
+                } catch (e) { /* no staged pin yet */ }
+                const cards = (st.videos || []).map(v => {
+                    const p = pin && pin.pins ? pin.pins.find(x => x.video === v.version) : null;
+                    return `
+                    <div class="item-card" style="border-color:#C1593C;">
+                        <div class="platform-badge">LOCAL STAGING ONLY &middot; WEEK ${escapeHtml(v.week)} &middot; ${escapeHtml(v.version.toUpperCase())}</div>
+                        <div class="item-date">${escapeHtml(prettyDate(v.date, v.time))}</div>
+                        <div class="ready-badge">${escapeHtml(v.status)}</div>
+                        <h2 style="font-family: 'Cormorant Garamond', serif; color: #C9A84C; margin-bottom: 20px;">${escapeHtml(v.title)}</h2>
+                        <div class="item-content">${escapeHtml(v.chapters.join('\n'))}</div>
+                        ${p ? `<a href="${escapeHtml(p.file)}" target="_blank" rel="noopener"><img src="${escapeHtml(p.file)}" alt="Staged Idea Pin for ${escapeHtml(p.scripture_title.join(' and '))}" style="width:100%; max-width:360px; margin:16px auto 0; border:1px solid #272727; display:block;"></a>` : ''}
+                        <p class="counter" style="margin-top:12px;">Words and plan: ${escapeHtml(v.data)} and ${escapeHtml(v.plan)}. Not rendered yet. Not shown on the live site.</p>
+                    </div>`;
+                }).join('');
+                return H2 + 'Week 7 Local Staging (offline view only)</h2>' + cards;
+            } catch (e) { return ''; }
         }
 
         // Short status notes at the bottom of the gate.

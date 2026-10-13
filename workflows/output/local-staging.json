@@ -1,0 +1,25 @@
+{
+  "about": "LOCAL STAGING ONLY. Cards in this file are shown by approval-gate.html only when the page is opened from a local test address (localhost, 127.0.0.1 or a file). The live site never fetches this file, so nothing here appears on the public portal. Do not merge this file to main until Grace approves the video it describes.",
+  "videos": [
+    {
+      "week": 7,
+      "date": "2026-11-29",
+      "time": "5:00 AM",
+      "version": "v14",
+      "title": "One Word Under All of Them: Immanu | Psalm 46:1, Psalm 46:7 and Psalm 84:11 (KJV) | A Quiet Prayer to Rest In",
+      "status": "AGENT DRAFT, awaiting Grace's review and approval",
+      "data": "content-ops/04_youtube/remotion/src/data/TQA_Stillness_Journey_FINAL_v14.json",
+      "plan": "content-ops/05_future_development/SCRIPTURE-SELECTION.md",
+      "rendered": false,
+      "chapters": [
+        "0:00 Sanctuary Grace Ministry presents The Quiet Authority",
+        "0:15 Psalm 46:1",
+        "1:16 Psalm 46:7",
+        "2:19 Psalm 84:11",
+        "3:32 Romans 10:9-10",
+        "4:17 A closing prayer",
+        "7:30 Thank you for watching"
+      ]
+    }
+  ]
+}

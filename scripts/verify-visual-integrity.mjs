@@ -51,6 +51,7 @@ const layouts = [
   { name: "TQA_Stillness_Journey_FINAL_v11", file: "src/TQA_Stillness_Journey_FINAL_v11.jsx", data: "src/data/TQA_Stillness_Journey_FINAL_v11.json", fade: /durationInFrames\s*-\s*RULES\.picture_fade_out_frames/ },
   { name: "TQA_Stillness_Journey_FINAL_v12", file: "src/TQA_Stillness_Journey_FINAL_v12.jsx", data: "src/data/TQA_Stillness_Journey_FINAL_v12.json", fade: /durationInFrames\s*-\s*RULES\.picture_fade_out_frames/ },
   { name: "TQA_Stillness_Journey_FINAL_v13", file: "src/TQA_Stillness_Journey_FINAL_v13.jsx", data: "src/data/TQA_Stillness_Journey_FINAL_v13.json", fade: /durationInFrames\s*-\s*RULES\.picture_fade_out_frames/ },
+  { name: "TQA_Stillness_Journey_FINAL_v14", file: "src/TQA_Stillness_Journey_FINAL_v14.jsx", data: "src/data/TQA_Stillness_Journey_FINAL_v14.json", fade: /durationInFrames\s*-\s*RULES\.picture_fade_out_frames/ },
   { name: "TQAPattern (video 9)", file: "src/TQAPatternComposition.jsx", data: "src/data/tqa-pattern-blueprint.json", fade: /durationInFrames\s*-\s*background\.fade_to_black_frames/ },
 ];
 for (const L of layouts) {

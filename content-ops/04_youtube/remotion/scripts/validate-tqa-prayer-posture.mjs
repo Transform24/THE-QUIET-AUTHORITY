@@ -13,7 +13,7 @@ const jsx = read(`src/${NAME}.jsx`);
 const errors = [];
 const MASTER = "TQA_Stillness_Journey_FINAL_v10";
 const EXCEPTION = bp.layout_exception || null;
-const ALLOWED_EXCEPTIONS = { TQA_Stillness_Journey_FINAL_v10: "line_push", TQA_Stillness_Journey_FINAL_v8: "line_push", TQA_Stillness_Journey_FINAL_v9: "line_push", TQA_Stillness_Journey_FINAL_v11: "line_push", TQA_Stillness_Journey_FINAL_v12: "line_push", TQA_Stillness_Journey_FINAL_v13: "line_push" };
+const ALLOWED_EXCEPTIONS = { TQA_Stillness_Journey_FINAL_v10: "line_push", TQA_Stillness_Journey_FINAL_v8: "line_push", TQA_Stillness_Journey_FINAL_v9: "line_push", TQA_Stillness_Journey_FINAL_v11: "line_push", TQA_Stillness_Journey_FINAL_v12: "line_push", TQA_Stillness_Journey_FINAL_v13: "line_push", TQA_Stillness_Journey_FINAL_v14: "line_push" };
 const cut = (text, name) => {
   const x = text.split(name).join("X");
   const i = x.indexOf("// PRAYER-BEGIN");

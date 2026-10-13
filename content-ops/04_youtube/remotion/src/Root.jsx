@@ -9,6 +9,8 @@ import { TQAIdeaPin, PIN } from "./TQAIdeaPin";
 import { SHORT } from "./tqaShorts.mjs";
 import { TQA_Stillness_Journey_FINAL_v13 } from "./TQA_Stillness_Journey_FINAL_v13";
 import tqaVideo13 from "./data/TQA_Stillness_Journey_FINAL_v13.json";
+import { TQA_Stillness_Journey_FINAL_v14 } from "./TQA_Stillness_Journey_FINAL_v14";
+import tqaVideo14 from "./data/TQA_Stillness_Journey_FINAL_v14.json";
 import { TQA_Stillness_Journey_FINAL_v12 } from "./TQA_Stillness_Journey_FINAL_v12";
 import tqaVideo12 from "./data/TQA_Stillness_Journey_FINAL_v12.json";
 import { TQA_Stillness_Journey_FINAL_v8 } from "./TQA_Stillness_Journey_FINAL_v8";
@@ -128,6 +130,17 @@ export const RemotionRoot = () => {
         width={tqaVideo13.width}
         height={tqaVideo13.height}
         calculateMetadata={() => ({ durationInFrames: buildTimeline(tqaVideo13).total_frames })}
+      />
+
+      {/* TQA Week 7 (file v14), One Word Under All of Them: Immanu. Agent draft, local staging only, awaiting Grace's approval. Same standard and prayer push as video five. */}
+      <Composition
+        id="TQA-Stillness-Journey-FINAL-v14"
+        component={TQA_Stillness_Journey_FINAL_v14}
+        durationInFrames={buildTimeline(tqaVideo14).total_frames}
+        fps={tqaVideo14.fps}
+        width={tqaVideo14.width}
+        height={tqaVideo14.height}
+        calculateMetadata={() => ({ durationInFrames: buildTimeline(tqaVideo14).total_frames })}
       />
 
       {/* TQA thumbnail card, one still per master video. Pass {"card": {...}} (see scripts/generate-system-thumbnails.mjs). */}

@@ -10,6 +10,8 @@
 // Usage (run from the repository root):
 //   node scripts/generate-pinterest-idea-pins.mjs --render    choose the sharpest crops and make the six pins (default)
 //   node scripts/generate-pinterest-idea-pins.mjs --check     check the files, the titles, the 780 pixel text width and the wording
+//   node scripts/generate-pinterest-idea-pins.mjs --staged    make the local-only pin for a staged video (workflows/output/local-staging.json) into pins-staged.json
+//                                                             The public pins.json and the live gate are not touched.
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { createHash } from "node:crypto";
 import { spawnSync } from "node:child_process";
@@ -160,7 +162,80 @@ const check = () => {
   ok.forEach((l) => console.log("    " + l));
 };
 
+
+// ---------- Local staging: one pin for a staged video that is not on the public gate yet ----------
+const STAGING = new URL("workflows/output/local-staging.json", repo);
+const STAGED_JSON = new URL("pins-staged.json", OUT);
+// min_focus keeps the crop on the right side of the candle plate, where the jar, the candle and the light are (the left side is empty dark wall).
+const STAGED = { v14: { plate: "spotlight_candle", lines: ["PSALM 46:1", "PSALM 46:7", "PSALM 84:11"], size: 62, offset: 0, min_focus: 62.5, zooms: [1, 1.4, 1.8] } };
+
+const renderStaged = () => {
+  mkdirSync(OUT, { recursive: true });
+  const st = JSON.parse(readFileSync(STAGING, "utf8"));
+  // Crops already used by the six public pins are skipped, so the staged pin looks different from them.
+  const used = new Set();
+  for (const p of JSON.parse(readFileSync(new URL("pins.json", OUT), "utf8")).pins) {
+    const f = parseFloat(p.focus);
+    used.add(p.plate + p.zoom + f);
+    for (const d of [-12.5, 12.5]) used.add(p.plate + p.zoom + (f + d));
+  }
+  const index = [];
+  for (const v of st.videos) {
+    const cfg = STAGED[v.version];
+    if (!cfg) { console.error(`no staged pin settings for ${v.version}`); process.exit(1); }
+    const plate = cfg.plate;
+    const scored = [];
+    for (const z of cfg.zooms) for (const f of FOCI[plate].filter((x) => x >= cfg.min_focus)) scored.push({ z, f, score: sharpness(plate, visible(f, z)) });
+    scored.sort((a, b) => b.score - a.score);
+    const pick = scored.find((x) => !used.has(plate + x.z + x.f));
+    const sub = "One Word Under All of Them";
+    const card = { plate, zoom: pick.z, focus: `${pick.f}% 50%`, shade: 0.88, offset: cfg.offset, lines: cfg.lines.map((t) => ({ text: t, size: cfg.size })), sub };
+    const out = new URL(file(v.version), OUT).pathname;
+    console.log(`staged pin ${file(v.version)}: plate ${plate}, focus ${pick.f}%, zoom ${pick.z}, sharpness ${pick.score.toFixed(1)}`);
+    const args = ["remotion", "still", "src/index.js", "TQA-IdeaPin", out, `--props=${JSON.stringify({ card })}`, "--overwrite"];
+    if (process.env.REMOTION_BROWSER) args.push(`--browser-executable=${process.env.REMOTION_BROWSER}`, "--ignore-certificate-errors");
+    const r = spawnSync("npx", args, { cwd: remotion.pathname, stdio: "inherit" });
+    if (r.status !== 0) process.exit(r.status || 1);
+    index.push({
+      video: v.version, file: `content-ops/03_pinterest_pins/${file(v.version)}`, plate, focus: card.focus, zoom: card.zoom, sharpness: Math.round(pick.score * 10) / 10,
+      scripture_title: cfg.lines, sub, size: `${W} by ${H}`,
+      title: `${cfg.lines.map((t) => t[0] + t.slice(1).toLowerCase()).join(", ")} (KJV) | The Quiet Authority`,
+      description: `${sub}: Immanu, with us. Scripture from the King James Version. Come home to The Quiet Authority at sanctuary-grace.com`,
+      destination_link: "https://sanctuary-grace.com",
+      status: "LOCAL STAGING ONLY. Agent draft, awaiting Grace's approval. Not on the public gate. Nothing uploads.",
+    });
+  }
+  writeFileSync(STAGED_JSON, JSON.stringify({ about: "Local-only Idea Pins for staged videos, made by scripts/generate-pinterest-idea-pins.mjs --staged. The live gate never reads this file.", pins: index }, null, 2) + "\n");
+};
+
+const checkStaged = () => {
+  const errors = [];
+  const fail = (m) => errors.push(m);
+  if (!existsSync(STAGED_JSON)) { console.error("FAIL: pins-staged.json is missing. Run --staged first."); process.exit(1); }
+  const pins = JSON.parse(readFileSync(STAGED_JSON, "utf8")).pins;
+  for (const p of pins) {
+    const f = new URL(file(p.video), OUT);
+    if (!existsSync(f)) { fail(`${file(p.video)} is missing`); continue; }
+    const b = readFileSync(f);
+    if (b.subarray(1, 4).toString("latin1") !== "PNG") fail(`${file(p.video)} is not a PNG`);
+    else if (b.readUInt32BE(16) !== W || b.readUInt32BE(20) !== H) fail(`${file(p.video)} is not ${W} by ${H}`);
+    if (b.length < 50000) fail(`${file(p.video)} is too small`);
+    for (const l of p.scripture_title) if (l.length * (STAGED[p.video].size * 0.66 + 4) > MAX_W) fail(`"${l}" is over ${MAX_W} pixels wide`);
+    if (p.sub.length * (38 * 0.52 + 2) > MAX_W) fail("the subtitle is over 780 pixels wide");
+    const text = JSON.stringify(p);
+    if (text.includes(EMDASH)) fail("a long dash is in the staged pin text");
+    if (/[\u{1F300}-\u{1FAFF}☀-➿]/u.test(text)) fail("an emoji is in the staged pin text");
+    if (/hustle|grind|show up|crush it|level up|self-care|mindfulness|healing journey|boundaries|thriving|wellness|burnout|hacks|\btips\b|strategies/i.test(text)) fail("a banned word is in the staged pin text");
+    const data = JSON.parse(readFileSync(new URL(`content-ops/04_youtube/remotion/src/data/TQA_Stillness_Journey_FINAL_${p.video}.json`, repo), "utf8"));
+    const refs = data.teaching_blocks.map((b2) => b2.scripture.ref);
+    for (const l of p.scripture_title) if (!refs.includes(l)) fail(`${l} is not a scripture in ${p.video}`);
+  }
+  if (errors.length) { console.error(`FAIL: ${errors.length} problem(s)`); errors.forEach((e) => console.error("  - " + e)); process.exit(1); }
+  console.log(`OK: ${pins.length} staged local-only Idea Pin, ${W} by ${H}, scripture titles are in the video, text inside ${MAX_W} pixels, no banned wording`);
+};
+
 const mode = process.argv[2] || "--render";
 if (mode === "--render") render();
-else if (mode === "--check") check();
-else { console.error("use --render or --check"); process.exit(2); }
+else if (mode === "--check") { check(); if (existsSync(STAGED_JSON)) checkStaged(); }
+else if (mode === "--staged") renderStaged();
+else { console.error("use --render, --check or --staged"); process.exit(2); }
