@@ -1,6 +1,38 @@
 {
   "about": "Fill these in from YouTube Studio, Analytics. Leave a number as null until it exists. retention_30s_percent is the share of viewers still watching at 30 seconds. avg_view_percentage is the average percentage viewed. site_clicks is clicks to sanctuary-grace.com. The traffic numbers are views by source. Shorts for v9 are the same as v10's, so only fill the v10 shorts.",
   "videos": {
+    "v8": {
+      "impressions": null,
+      "views": null,
+      "ctr_percent": null,
+      "watch_time_hours": null,
+      "avg_view_percentage": null,
+      "retention_30s_percent": null,
+      "traffic": {
+        "site_clicks": null,
+        "youtube_suggested": null,
+        "shorts_feed": null,
+        "search": null,
+        "external": null
+      },
+      "shorts": {
+        "A": {
+          "views": null,
+          "avg_view_percentage": null,
+          "site_clicks": null
+        },
+        "B": {
+          "views": null,
+          "avg_view_percentage": null,
+          "site_clicks": null
+        },
+        "C": {
+          "views": null,
+          "avg_view_percentage": null,
+          "site_clicks": null
+        }
+      }
+    },
     "v9": {
       "impressions": null,
       "views": null,

@@ -5,9 +5,8 @@
   "layout_ok": true,
   "layout_problems": [],
   "notes": [
-    "Videos 8 and 9 were rebuilt on the same standard as videos 11 and 13. Both play the Version 8 score, 8 minutes long, and fade out over the last 8 seconds. A waveform match against the Version 8 track found no music1.mp3.",
-    "Dead air: the old video 9 sat frozen for 47 seconds from 5:12. The rebuilt video 9 holds no frozen picture longer than 7 seconds, and video 8 no longer than 8 seconds. Video 10 holds one 36 second stretch, which passes the 45 second rule but is the next page to fix. Videos 11, 12 and 13 stay at 10 seconds or less.",
-    "The Pattern of Waiting prototype (Psalm 27 words) fails the dead air check with up to 92 seconds frozen. It is not on the calendar, so it is not listed here."
+    "Videos 8 and 9 were rebuilt on the same standard as videos 11 and 13, and Video 9 now carries Psalm 91 (The Secret Place). Both play the Version 8 score, 8 minutes long, and fade out over the last 8 seconds. A waveform match against the Version 8 track found no music1.mp3.",
+    "Dead air: the old video 9 sat frozen for 47 seconds. Videos 8 and 9 now hold no frozen picture longer than 8 seconds, which is the locked 8 second rest after each reflection. Video 10 holds one 36 second stretch, which passes the 45 second rule but is the next page to fix. Videos 11, 12 and 13 stay at 10 seconds or less."
   ],
   "videos": [
     {
@@ -24,17 +23,7 @@
       "video": "TQA_Stillness_Journey_FINAL_v9.mp4",
       "ok": true,
       "problems": [],
-      "longest_frozen_run_seconds": 7,
-      "frames": 11520,
-      "final_fade_starts_at_frame": 11328,
-      "longest_black_run_before_fade": 0,
-      "longest_picture_gap_before_fade": 0
-    },
-    {
-      "video": "TQA_Standard_8min_Posture_of_Prayer.mp4",
-      "ok": true,
-      "problems": [],
-      "longest_frozen_run_seconds": 36,
+      "longest_frozen_run_seconds": 8,
       "frames": 11520,
       "final_fade_starts_at_frame": 11328,
       "longest_black_run_before_fade": 0,
@@ -45,6 +34,16 @@
       "ok": true,
       "problems": [],
       "longest_frozen_run_seconds": 10,
+      "frames": 11520,
+      "final_fade_starts_at_frame": 11328,
+      "longest_black_run_before_fade": 0,
+      "longest_picture_gap_before_fade": 0
+    },
+    {
+      "video": "TQA_Standard_8min_Posture_of_Prayer.mp4",
+      "ok": true,
+      "problems": [],
+      "longest_frozen_run_seconds": 36,
       "frames": 11520,
       "final_fade_starts_at_frame": 11328,
       "longest_black_run_before_fade": 0,

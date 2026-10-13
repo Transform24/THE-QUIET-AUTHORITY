@@ -1,14 +1,14 @@
-// Thumbnail factory, phase 1. Makes one distinct thumbnail card for each of the five master videos (v9 to v13).
+// Thumbnail factory, phase 1. Makes one distinct thumbnail card for each of the six master videos (v8 to v13).
 // It hooks into the Remotion compiler: each card is a still of the TQA-Thumbnail composition (src/TQAThumbnail.jsx),
 // built on one of the two locked pictures (the jar and candle, or the seated woman) so every card looks like The Quiet Authority.
 // Each card carries its own scripture title in the middle, in brand gold Cinzel, inside the 780 pixel text width.
 // Output goes to content-ops/02_thumbnail_factory/. Nothing here uploads anything.
 //
 // About "frame 00:01": every master video opens with the same dim intro, so the frame at 1 second is nearly black and
-// identical in all five. The cards instead use the same locked pictures at full strength, so they are recognizable and different.
+// identical in all six. The cards instead use the same locked pictures at full strength, so they are recognizable and different.
 //
 // Usage (run from the repository root):
-//   node scripts/generate-system-thumbnails.mjs --render    make the five cards (default)
+//   node scripts/generate-system-thumbnails.mjs --render    make the six cards (default)
 //   node scripts/generate-system-thumbnails.mjs --check     check the files, the titles, the 780 pixel text width and that the cards differ
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { createHash } from "node:crypto";
@@ -21,7 +21,8 @@ const MAX_W = 780;
 
 // One card per video. The lines are the scripture title. The checker proves every line is a scripture the video really contains.
 const CARDS = {
-  v9: { data: "src/data/TQA_Stillness_Journey_FINAL_v10.json", plate: "spotlight_candle", zoom: 1.0, focus: "66% 70%", shade: 0.8, lines: [{ text: "MATTHEW 6", size: 84 }], sub: "The Posture of Prayer" },
+  v8: { data: "src/data/TQA_Stillness_Journey_FINAL_v8.json", plate: "character_spotlight", zoom: 2.6, focus: "45% 78%", shade: 0.9, lines: [{ text: "PSALM 46:10", size: 72 }], sub: "The Stillness Journey" },
+  v9: { data: "src/data/TQA_Stillness_Journey_FINAL_v9.json", plate: "spotlight_candle", zoom: 1.3, focus: "70% 55%", shade: 0.85, lines: [{ text: "PSALM 91", size: 88 }], sub: "The Secret Place" },
   v13: { data: "src/data/TQA_Stillness_Journey_FINAL_v13.json", plate: "character_spotlight", zoom: 1.0, focus: "52% 40%", shade: 0.8, lines: [{ text: "PROVERBS 18:10", size: 60 }, { text: "ISAIAH 43:18-19", size: 60 }], sub: "The Hallowed Identity" },
   v11: { data: "src/data/TQA_Stillness_Journey_FINAL_v11.json", plate: "spotlight_candle", zoom: 1.8, focus: "55% 15%", shade: 0.9, lines: [{ text: "PSALM 27", size: 88 }], sub: "Waiting on the LORD" },
   v10: { data: "src/data/TQA_Stillness_Journey_FINAL_v10.json", plate: "character_spotlight", zoom: 1.8, focus: "52% 25%", shade: 0.9, lines: [{ text: "MATTHEW 6", size: 64 }, { text: "ROMANS 10:9-10", size: 64 }], sub: "The Posture of Prayer" },
@@ -79,7 +80,7 @@ const check = () => {
     if (JSON.stringify(CARDS[id]).includes(EMDASH)) fail(`${id}: a long dash is in the card`);
   }
   ok.push(`titles: every scripture title is in its video and every text box is ${MAX_W} pixels or less`);
-  // 2. The files: five real 1280 by 720 pictures that really differ.
+  // 2. The files: six real 1280 by 720 pictures that really differ.
   const grids = {};
   for (const id of Object.keys(CARDS)) {
     const f = new URL(file(id), OUT);
@@ -106,7 +107,7 @@ const check = () => {
     minDiff = Math.min(minDiff, d);
     if (d < 6) fail(`the cards ${ids[i]} and ${ids[j]} are too alike (difference ${d.toFixed(1)} of 255)`);
   }
-  ok.push(`files: five real 1280 by 720 pictures, all different (the closest pair differs by ${minDiff.toFixed(1)} of 255)`);
+  ok.push(`files: ${ids.length} real 1280 by 720 pictures, all different (the closest pair differs by ${minDiff.toFixed(1)} of 255)`);
   // 3. The layout file: brand colors and fonts only, text capped at 780.
   const jsx = readFileSync(new URL("src/TQAThumbnail.jsx", remotion), "utf8");
   for (const hex of new Set(jsx.match(/#[0-9a-fA-F]{3,8}\b/g) || [])) if (!["#0d0d0d", "#c9a84c", "#f5f0e8"].includes(hex.toLowerCase())) fail(`the thumbnail layout uses ${hex}, which is not a brand color`);

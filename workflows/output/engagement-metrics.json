@@ -3,9 +3,9 @@
   "updated": "2026-10-13",
   "suites": [
     {
-      "id": "v9",
-      "title": "The Posture of Prayer (Matthew 6)",
-      "release": "2026-10-25",
+      "id": "v8",
+      "title": "The Stillness Journey (Psalm 46:10)",
+      "release": "2026-10-18",
       "has_data": false,
       "hook_rate": null,
       "retention_dropoff": null,
@@ -19,12 +19,12 @@
         "external": null
       },
       "top_short": null,
-      "shorts_note": "Uses the v10 shorts"
+      "shorts_note": ""
     },
     {
-      "id": "v13",
-      "title": "The Hallowed Identity (Gate 3)",
-      "release": null,
+      "id": "v9",
+      "title": "The Secret Place (Psalm 91)",
+      "release": "2026-10-25",
       "has_data": false,
       "hook_rate": null,
       "retention_dropoff": null,
@@ -96,17 +96,36 @@
       },
       "top_short": null,
       "shorts_note": ""
+    },
+    {
+      "id": "v13",
+      "title": "The Hallowed Identity (Gate 3)",
+      "release": "2026-11-22",
+      "has_data": false,
+      "hook_rate": null,
+      "retention_dropoff": null,
+      "traffic_redirection": null,
+      "click_through": null,
+      "watch_time_hours": null,
+      "traffic_sources": {
+        "youtube_suggested": null,
+        "shorts_feed": null,
+        "search": null,
+        "external": null
+      },
+      "top_short": null,
+      "shorts_note": ""
     }
   ],
   "pairs": [
     {
-      "video": "v9",
-      "title": "The Posture of Prayer (Matthew 6)",
+      "video": "v8",
+      "title": "The Stillness Journey (Psalm 46:10)",
       "short": null
     },
     {
-      "video": "v13",
-      "title": "The Hallowed Identity (Gate 3)",
+      "video": "v9",
+      "title": "The Secret Place (Psalm 91)",
       "short": null
     },
     {
@@ -122,6 +141,11 @@
     {
       "video": "v12",
       "title": "The Secret of the LORD (Psalm 25:14)",
+      "short": null
+    },
+    {
+      "video": "v13",
+      "title": "The Hallowed Identity (Gate 3)",
       "short": null
     }
   ]

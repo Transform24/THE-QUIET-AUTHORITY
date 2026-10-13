@@ -4,18 +4,17 @@ clip: C
 clip_name: The Outro Prayer Push
 file: out/shorts/v9-clip-C.mp4
 format: 1080 by 1920, 60 seconds
-status: SKIP, same words as v10. Use the v10 clips instead.
+status: RENDERED, ready for Grace to post. Nothing here uploads anything.
 full_video_release: Sunday, October 25, 2026
 ---
 
 # V9, Clip C: The Outro Prayer Push
 
 This short shows the prayer, arriving one line at a time.
-Note: v9 carries the same words as v10, so these clips repeat v10's. Post one set, not both.
 
 ## Related video (native link anchor)
 
-- In YouTube Studio, open this short, choose Related video, and pick: The Posture of Prayer | Matthew 6:6-9 (KJV) | A Quiet Prayer to Rest In
+- In YouTube Studio, open this short, choose Related video, and pick: The Secret Place | Psalm 91:1-2, Psalm 91:4 and Psalm 91:14-15 (KJV) | A Quiet Prayer to Rest In
 - Full video link, to paste after Grace uploads it: {{YOUTUBE_WATCH_URL}}
 - The full video is scheduled for Sunday, October 25, 2026, 5:00 AM Eastern. Post the short after that.
 

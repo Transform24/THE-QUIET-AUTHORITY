@@ -4,6 +4,8 @@
 // The picture is centered on the candle or the seated woman. Only the brand colors are used here.
 import { useEffect, useState } from "react";
 import { AbsoluteFill, Audio, Img, continueRender, delayRender, interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion";
+import v8 from "./data/TQA_Stillness_Journey_FINAL_v8.json";
+import v9 from "./data/TQA_Stillness_Journey_FINAL_v9.json";
 import v10 from "./data/TQA_Stillness_Journey_FINAL_v10.json";
 import v11 from "./data/TQA_Stillness_Journey_FINAL_v11.json";
 import v12 from "./data/TQA_Stillness_Journey_FINAL_v12.json";
@@ -13,8 +15,7 @@ import spotlightCandle from "./assets/tqa/light-stream-plate.jpg";
 import characterSpotlight from "./assets/tqa/character-spotlight-plate.jpg";
 import musicTrack from "./assets/tqa/tqa-music-v8-extended.m4a";
 
-// v9 carries the same words as v10, so it reads the v10 data file.
-export const SHORT_SOURCES = { v9: v10, v10, v11, v12, v13 };
+export const SHORT_SOURCES = { v8, v9, v10, v11, v12, v13 };
 const IMAGES = { spotlight_candle: spotlightCandle, character_spotlight: characterSpotlight };
 // Where the candle and the seated woman sit in each picture (percent from the left), so the crop keeps them in the middle.
 const FOCUS = { spotlight_candle: "66% 50%", character_spotlight: "52% 50%" };

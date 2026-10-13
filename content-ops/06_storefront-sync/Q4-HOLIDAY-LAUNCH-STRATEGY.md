@@ -29,7 +29,7 @@ Two groups only.
 4. Grace finds the last day to order for delivery before December 25 on Printful's holiday shipping page, and Claude writes that date into this file. No date is guessed here.
 5. Each finished item passes the brand check, then its status in `storefront-visibility.json` is set to `complete`.
 6. Email: one link per email, always to `sanctuary-grace.com`, following `content-ops/06_marketing_ops/MAILERLITE-INTEGRATION.md`. Wall art emails link to `https://sanctuary-grace.com/wall-art.html`.
-7. Video: the five Sunday videos already on the calendar (October 18 to November 15) end by pointing to sanctuary-grace.com. No new video is added for the holidays.
+7. Video: the six Sunday videos already on the calendar (October 18 to November 22) end by pointing to sanctuary-grace.com. No new video is added for the holidays.
 8. Pinterest stays paused. Pins are made by hand from the finished Shorts.
 9. After the first week of orders, Grace exports the numbers and they are logged. Nothing is estimated.
 

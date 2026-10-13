@@ -1,4 +1,4 @@
-// The Quiet Authority Shorts pipeline. From each finished 8 minute video (v9, v10, v11, v12) it plans three 60 second
+// The Quiet Authority Shorts pipeline. From each finished 8 minute video (v8, v9, v10, v11, v12, v13) it plans three 60 second
 // vertical (1080 by 1920) cuts: Clip A the first scripture, Clip B the middle reflection, Clip C the outro prayer push.
 // It writes a caption document for every clip into workflows/output/shorts-staged/ and can render the clips.
 // Nothing here uploads anything. Grace posts every short herself.
@@ -16,13 +16,14 @@ const repoRoot = new URL("../../../../", import.meta.url);
 const read = (p) => readFileSync(new URL(p, root), "utf8");
 const STAGED = new URL("workflows/output/shorts-staged/", repoRoot);
 
-// The finished videos. v9 carries the same words as v10, so it reads the v10 data file.
+// The finished videos, in calendar order.
 const VIDEOS = {
-  v9: { data: "src/data/TQA_Stillness_Journey_FINAL_v10.json", release: "Sunday, October 25, 2026", title: "The Posture of Prayer | Matthew 6:6-9 (KJV) | A Quiet Prayer to Rest In", prayer: "closing", same_as: "v10" },
+  v8: { data: "src/data/TQA_Stillness_Journey_FINAL_v8.json", release: "Sunday, October 18, 2026", title: "The Stillness Journey | Psalm 46:10 and Matthew 11:28 (KJV) | A Quiet Prayer to Rest In", prayer: "closing" },
+  v9: { data: "src/data/TQA_Stillness_Journey_FINAL_v9.json", release: "Sunday, October 25, 2026", title: "The Secret Place | Psalm 91:1-2, Psalm 91:4 and Psalm 91:14-15 (KJV) | A Quiet Prayer to Rest In", prayer: "closing" },
   v11: { data: "src/data/TQA_Stillness_Journey_FINAL_v11.json", release: "Sunday, November 1, 2026", title: "Waiting on the LORD | Psalm 27 and Psalm 91:1 (KJV) | A Quiet Bedtime Prayer", prayer: "bedtime" },
   v10: { data: "src/data/TQA_Stillness_Journey_FINAL_v10.json", release: "Sunday, November 8, 2026", title: "The Posture of Prayer | Matthew 6:6-9 and Romans 10:9-10 (KJV) | A Quiet Prayer to Rest In", prayer: "closing" },
-  v13: { data: "src/data/TQA_Stillness_Journey_FINAL_v13.json", release: "not yet scheduled", title: "The Hallowed Identity | Proverbs 18:10, Isaiah 43:18, Isaiah 43:19 (KJV) | A Quiet Morning Declaration", prayer: "morning" },
   v12: { data: "src/data/TQA_Stillness_Journey_FINAL_v12.json", release: "Sunday, November 15, 2026", title: "The Secret of the LORD | Psalm 25:14, Proverbs 3:32, Malachi 3:6 (KJV) | A Quiet Morning Prayer", prayer: "morning" },
+  v13: { data: "src/data/TQA_Stillness_Journey_FINAL_v13.json", release: "Sunday, November 22, 2026", title: "The Hallowed Identity | Proverbs 18:10, Isaiah 43:18, Isaiah 43:19 (KJV) | A Quiet Morning Declaration", prayer: "morning" },
 };
 const EMDASH = String.fromCharCode(0x2014);
 const load = (id) => JSON.parse(read(VIDEOS[id].data));
