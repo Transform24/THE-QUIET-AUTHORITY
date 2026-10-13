@@ -42,7 +42,42 @@
         "rule": "Raw .mp4 files are never committed or pushed to GitHub. See TQA-STANDARD.md, security rule of 2026-10-13.",
         "sent_to_grace": "2026-10-13, so she can keep her own copy",
         "note": "Staging indicators on the portal read from local storage tracks only."
-      }
+      },
+      "series": {
+        "name": "Psalms Series (Option B, Psalms Intimacy)",
+        "week7_theme": "One Word Under All of Them: Immanu",
+        "keyword": "Immanu",
+        "keyword_meaning": "with us",
+        "keyword_verified": "Spelling and meaning confirmed by Grace in chat, 2026-10-13"
+      },
+      "scriptures_verified": {
+        "source": "content-ops/05_future_development/SCRIPTURE-SELECTION.md",
+        "checked": "2026-10-13, character by character against the video data, LORD in capitals",
+        "refs": [
+          "Psalm 46:1",
+          "Psalm 46:7",
+          "Psalm 84:11"
+        ],
+        "check": "node scripts/stage-week7-captions.mjs --check and npm run verify:kjv-v14"
+      },
+      "captions": [
+        {
+          "clip": "A",
+          "name": "Verse One",
+          "file": "content-ops/05_future_development/staged-captions/v14-clip-A.md"
+        },
+        {
+          "clip": "B",
+          "name": "Mid-way Reflection",
+          "file": "content-ops/05_future_development/staged-captions/v14-clip-B.md"
+        },
+        {
+          "clip": "C",
+          "name": "The Outro Prayer Push",
+          "file": "content-ops/05_future_development/staged-captions/v14-clip-C.md"
+        }
+      ],
+      "pin": "content-ops/03_pinterest_pins/TQA_IdeaPin_v14.png"
     }
   ]
 }

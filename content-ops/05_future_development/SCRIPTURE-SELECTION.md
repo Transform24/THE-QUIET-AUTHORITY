@@ -7,7 +7,7 @@ This file holds the scriptures chosen for the next TQA master videos. Every vers
 
 - Video file: `v14` (`TQA_Stillness_Journey_FINAL_v14`)
 - Sunday release slot: November 29, 2026, 5:00 AM Eastern (the Sunday after Week 6)
-- The one word: Immanu, which means "with us". It is the word under each verse below.
+- The one word: Immanu, which means "with us". It is the word under each verse below. Grace confirmed its spelling and meaning in chat on 2026-10-13.
 - Status: agent draft, awaiting Grace's review and approval. Grace reviews and approves. She does not have to write it.
 
 | Block | Reference | KJV text |
@@ -27,3 +27,6 @@ After the three blocks the video follows the standard: Romans 10:9-10, the praye
 
 ## Reflections and prayer
 The reflections and the prayer for Week 7 are drafted by the agent in `src/data/TQA_Stillness_Journey_FINAL_v14.json` and marked as drafts. Grace reads them and says yes or asks for a rebuild before anything else happens.
+
+## Staged captions (local only)
+Three Short caption cards for Week 7 are in `content-ops/05_future_development/staged-captions/` (`node scripts/stage-week7-captions.mjs --stage`). The same script's `--check` proves the video data matches this table character by character.
