@@ -9,7 +9,8 @@
 // then reads every frame of each video and fails the build when:
 //   1. the video is not exactly 11,520 frames at 24 fps, 1920 by 1080 (the 8:00 flat mark);
 //   2. more than 3 frames in a row are solid black (#000000) before the official final fade-out;
-//   3. the picture layer drops out (a long run of frames with nothing but the plain #0d0d0d backdrop)
+//   3. dead air: the picture and text sit frozen, with no change at all, for more than 45 seconds;
+//   4. the picture layer drops out (a long run of frames with nothing but the plain #0d0d0d backdrop)
 //      before the official final fade-out.
 // The official final fade-out is the last 192 frames (8 seconds). Frames in it are never counted.
 // With --write-gate the result is written to workflows/output/visual-integrity.json, which
@@ -31,6 +32,8 @@ const FINAL_FADE = RULES.picture_fade_out_frames; // 192 frames, 8 seconds
 const FADE_START = TOTAL - FINAL_FADE;
 const MAX_BLACK_RUN = 3;
 const MAX_FLAT_RUN = 24; // one second. A real picture dissolve never leaves the plain backdrop this long.
+const MAX_STATIC_RUN = 1080; // 45 seconds. Nothing in a video may sit frozen, with no change at all, for longer than this (dead air).
+const STATIC_DIFF = 0.0005; // average change from the last frame (0 to 255 scale) at or below which a frame counts as frozen. Typing and fades always change more than this.
 const EM = String.fromCharCode(0x2014);
 
 const problems = [];
@@ -39,7 +42,9 @@ const fail = (m) => problems.push(m);
 
 // 1. Layout checks (no video needed)
 const readJson = (p) => JSON.parse(readFileSync(path.join(remotion, p), "utf8"));
+const registry = readJson("src/data/kjv-registry.json").verses;
 const layouts = [
+  { name: "TQA_Stillness_Journey_FINAL_v8", file: "src/TQA_Stillness_Journey_FINAL_v8.jsx", data: "src/data/TQA_Stillness_Journey_FINAL_v8.json", fade: /durationInFrames\s*-\s*RULES\.picture_fade_out_frames/ },
   { name: "TQA_Stillness_Journey_FINAL_v10", file: "src/TQA_Stillness_Journey_FINAL_v10.jsx", data: "src/data/TQA_Stillness_Journey_FINAL_v10.json", fade: /durationInFrames\s*-\s*RULES\.picture_fade_out_frames/ },
   { name: "TQA_Stillness_Journey_FINAL_v11", file: "src/TQA_Stillness_Journey_FINAL_v11.jsx", data: "src/data/TQA_Stillness_Journey_FINAL_v11.json", fade: /durationInFrames\s*-\s*RULES\.picture_fade_out_frames/ },
   { name: "TQA_Stillness_Journey_FINAL_v12", file: "src/TQA_Stillness_Journey_FINAL_v12.jsx", data: "src/data/TQA_Stillness_Journey_FINAL_v12.json", fade: /durationInFrames\s*-\s*RULES\.picture_fade_out_frames/ },
@@ -58,9 +63,16 @@ for (const L of layouts) {
   if (width > 780 || width === undefined) fail(`${L.name}: text boxes must be 780 pixels or less (found ${width})`);
   if (bp.fonts?.header !== "Cinzel" || bp.fonts?.body !== "Jost") fail(`${L.name}: headers must be Cinzel and body text Jost`);
   if (readFileSync(path.join(remotion, L.data), "utf8").includes(EM)) fail(`${L.name}: the data file contains an em dash`);
+  // Every scripture must match the verified KJV registry word for word, so LORD stays in capitals where the King James Version has it.
+  const scriptures = [...(bp.teaching_blocks || []).map((b) => b.scripture), ...(bp.closing?.scripture ? [bp.closing.scripture] : [])];
+  for (const sc of scriptures) {
+    const want = registry[sc.ref];
+    if (!want) fail(`${L.name}: ${sc.ref} is not in the KJV registry`);
+    else if (sc.text !== want.text) fail(`${L.name}: ${sc.ref} does not match the KJV registry word for word (check LORD in capitals)`);
+  }
 }
 if (RULES.picture_fade_out_frames !== 192) fail(`the official final fade-out is 192 frames, found ${RULES.picture_fade_out_frames}`);
-notes.push(`layouts: 5 layout files keep an <Img> picture layer, 11,520 frames, text at 780 pixels or less, Cinzel and Jost`);
+notes.push(`layouts: 6 layout files keep an <Img> picture layer, 11,520 frames, text at 780 pixels or less, Cinzel and Jost, every scripture word for word from the KJV registry (LORD in capitals)`);
 
 // 2. Video checks
 const args = process.argv.slice(2);
@@ -82,6 +94,7 @@ const frameStats = (file) => new Promise((resolve, reject) => {
   const p = spawn("ffmpeg", ["-v", "error", "-i", file, "-an", "-vf", "scale=96:54,signalstats,metadata=print:file=-", "-f", "null", "-"]);
   const ymax = [];
   const ymin = [];
+  const ydif = [];
   let buf = "";
   p.stdout.on("data", (c) => {
     buf += c;
@@ -91,10 +104,12 @@ const frameStats = (file) => new Promise((resolve, reject) => {
       buf = buf.slice(i + 1);
       const m = line.match(/lavfi\.signalstats\.(YMAX|YMIN)=(\d+)/);
       if (m) (m[1] === "YMAX" ? ymax : ymin).push(Number(m[2]));
+      const dd = line.match(/lavfi\.signalstats\.YDIF=([0-9.]+)/);
+      if (dd) ydif.push(Number(dd[1]));
     }
   });
   p.on("error", reject);
-  p.on("close", (code) => (code === 0 ? resolve({ ymax, ymin }) : reject(new Error("ffmpeg failed on " + file))));
+  p.on("close", (code) => (code === 0 ? resolve({ ymax, ymin, ydif }) : reject(new Error("ffmpeg failed on " + file))));
 });
 
 const runs = (flags) => {
@@ -122,7 +137,7 @@ for (const file of videos) {
   const limited = info.color_range === "tv";
   const blackMax = limited ? 23 : 8; // solid black, with room for encoder noise. The brand backdrop #0d0d0d reads 13 (27 limited), so it is not black.
   const flatMax = limited ? 34 : 24; // only the plain #0d0d0d backdrop, no picture and no text
-  const { ymax } = await frameStats(file);
+  const { ymax, ydif } = await frameStats(file);
   if (ymax.length !== frames) bad(`read ${ymax.length} frames of ${frames}`);
   const before = (r) => r.start < FADE_START;
   const black = runs(ymax.map((v) => v <= blackMax)).filter((r) => r.length > MAX_BLACK_RUN && before(r));
@@ -131,6 +146,9 @@ for (const file of videos) {
   for (const r of flat) bad(`the picture is gone for ${r.length} frames from frame ${r.start} (${(r.start / FPS).toFixed(1)} s), before the final fade-out at frame ${FADE_START}`);
   const lead = ymax.slice(FADE_START - 24, FADE_START);
   if (lead.length && lead.every((v) => v <= flatMax)) bad(`no picture in the second before the final fade-out begins at frame ${FADE_START}`);
+  const frozen = runs(ydif.map((v) => v <= STATIC_DIFF)).filter((r) => r.length > MAX_STATIC_RUN && before(r));
+  for (const r of frozen) bad(`dead air: the picture and text do not move for ${(r.length / FPS).toFixed(0)} seconds from frame ${r.start} (${(r.start / FPS).toFixed(1)} s)`);
+  res.longest_frozen_run_seconds = Math.round(Math.max(0, ...runs(ydif.map((v) => v <= STATIC_DIFF)).filter(before).map((r) => r.length)) / FPS);
   res.frames = frames;
   res.final_fade_starts_at_frame = FADE_START;
   res.longest_black_run_before_fade = Math.max(0, ...runs(ymax.map((v) => v <= blackMax)).filter(before).map((r) => r.length));
@@ -143,8 +161,8 @@ const allOk = layoutOk && results.every((r) => r.ok);
 console.log(layoutOk ? "OK: " + notes[0] : "FAIL: layout checks");
 for (const p of problems) console.log("    " + p);
 for (const r of results) {
-  if (r.ok) console.log(`OK: ${r.video}: ${r.frames} frames, longest black run before the fade ${r.longest_black_run_before_fade} frames, longest picture gap ${r.longest_picture_gap_before_fade} frames, final fade starts at frame ${r.final_fade_starts_at_frame}`);
-  else { console.log(`FAIL: ${r.video}`); for (const p of r.problems) console.log("    " + p); }
+  if (r.ok) console.log(`OK: ${r.video}: ${r.frames} frames, longest black run before the fade ${r.longest_black_run_before_fade} frames, longest picture gap ${r.longest_picture_gap_before_fade} frames, longest frozen stretch ${r.longest_frozen_run_seconds} s, final fade starts at frame ${r.final_fade_starts_at_frame}`);
+  else { console.log(`FAIL: ${r.video}`); for (const p of r.problems) console.log("    " + p); if (r.longest_frozen_run_seconds !== undefined) console.log(`    longest frozen stretch ${r.longest_frozen_run_seconds} s`); }
 }
 if (!results.length) console.log("No video named and none found in out/. Layout checks only.");
 

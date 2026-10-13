@@ -1,18 +1,32 @@
 {
   "about": "Written by scripts/verify-visual-integrity.mjs. A video that fails shows as BLOCKED on approval-gate.html.",
-  "checked": "2026-10-12",
+  "checked": "2026-10-13",
   "rule": "No more than 3 frames in a row of solid black before the final fade-out (frame 11328 to 11520). Exactly 11520 frames.",
   "layout_ok": true,
   "layout_problems": [],
   "notes": [
-    "Video 9 and the Pattern of Waiting video both play the Version 8 music. A waveform match against the Version 8 track found no music1.mp3.",
-    "The Pattern of Waiting video (Psalm 27 words, an earlier prototype of video 11) was re-rendered with the Version 8 music. It is not video 9 and is not scheduled."
+    "Video 8, the original Stillness Journey, was rebuilt on the same standard as videos 11 and 13: 6 scripture chapters, then Romans 10:9-10, the prayer pushing up line by line, and the thank you page, exactly 8:00. It is not on the release calendar yet. It waits for Grace to choose its Sunday.",
+    "Videos 8, 9 and the Pattern of Waiting video all play the Version 8 music. A waveform match against the Version 8 track found no music1.mp3 in 9 or the Pattern of Waiting video.",
+    "Dead air check: a picture that stays frozen for more than 45 seconds fails. Video 9 (the copy scheduled for October 18) fails: it sits frozen for 47 seconds from 5:12, on the Matthew 6:9 page. The Pattern of Waiting prototype fails with up to 92 seconds. Videos 8, 10, 11, 12 and 13 pass. Video 10's longest frozen stretch is 36 seconds, and videos 8, 11, 12 and 13 stay at 10 seconds or less."
   ],
   "videos": [
     {
-      "video": "TQA_Stillness_Journey_FINAL_v9.mp4",
+      "video": "TQA_Stillness_Journey_FINAL_v8.mp4",
       "ok": true,
       "problems": [],
+      "longest_frozen_run_seconds": 8,
+      "frames": 11520,
+      "final_fade_starts_at_frame": 11328,
+      "longest_black_run_before_fade": 0,
+      "longest_picture_gap_before_fade": 0
+    },
+    {
+      "video": "TQA_Stillness_Journey_FINAL_v9.mp4",
+      "ok": false,
+      "problems": [
+        "dead air: the picture and text do not move for 47 seconds from frame 7491 (312.1 s)"
+      ],
+      "longest_frozen_run_seconds": 47,
       "frames": 11520,
       "final_fade_starts_at_frame": 11328,
       "longest_black_run_before_fade": 0,
@@ -22,6 +36,7 @@
       "video": "TQA_Standard_8min_Posture_of_Prayer.mp4",
       "ok": true,
       "problems": [],
+      "longest_frozen_run_seconds": 36,
       "frames": 11520,
       "final_fade_starts_at_frame": 11328,
       "longest_black_run_before_fade": 0,
@@ -31,6 +46,7 @@
       "video": "TQA_Stillness_Journey_FINAL_v11.mp4",
       "ok": true,
       "problems": [],
+      "longest_frozen_run_seconds": 10,
       "frames": 11520,
       "final_fade_starts_at_frame": 11328,
       "longest_black_run_before_fade": 0,
@@ -40,6 +56,7 @@
       "video": "TQA_Stillness_Journey_FINAL_v12.mp4",
       "ok": true,
       "problems": [],
+      "longest_frozen_run_seconds": 10,
       "frames": 11520,
       "final_fade_starts_at_frame": 11328,
       "longest_black_run_before_fade": 0,
@@ -49,6 +66,7 @@
       "video": "TQA_Stillness_Journey_FINAL_v13.mp4",
       "ok": true,
       "problems": [],
+      "longest_frozen_run_seconds": 10,
       "frames": 11520,
       "final_fade_starts_at_frame": 11328,
       "longest_black_run_before_fade": 0,
@@ -56,8 +74,13 @@
     },
     {
       "video": "TQA_Pattern_of_Waiting_8min.mp4",
-      "ok": true,
-      "problems": [],
+      "ok": false,
+      "problems": [
+        "dead air: the picture and text do not move for 82 seconds from frame 1251 (52.1 s)",
+        "dead air: the picture and text do not move for 92 seconds from frame 4251 (177.1 s)",
+        "dead air: the picture and text do not move for 57 seconds from frame 7251 (302.1 s)"
+      ],
+      "longest_frozen_run_seconds": 92,
       "frames": 11520,
       "final_fade_starts_at_frame": 11328,
       "longest_black_run_before_fade": 0,

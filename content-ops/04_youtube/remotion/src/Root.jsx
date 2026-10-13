@@ -10,7 +10,9 @@ import { TQA_Stillness_Journey_FINAL_v13 } from "./TQA_Stillness_Journey_FINAL_v
 import tqaVideo13 from "./data/TQA_Stillness_Journey_FINAL_v13.json";
 import { TQA_Stillness_Journey_FINAL_v12 } from "./TQA_Stillness_Journey_FINAL_v12";
 import tqaVideo12 from "./data/TQA_Stillness_Journey_FINAL_v12.json";
+import { TQA_Stillness_Journey_FINAL_v8 } from "./TQA_Stillness_Journey_FINAL_v8";
 import { TQA_Stillness_Journey_FINAL_v11 } from "./TQA_Stillness_Journey_FINAL_v11";
+import tqaVideo8 from "./data/TQA_Stillness_Journey_FINAL_v8.json";
 import tqaVideo11 from "./data/TQA_Stillness_Journey_FINAL_v11.json";
 import tqaVideo from "./data/TQA_Stillness_Journey_FINAL_v10.json";
 import tqaPattern from "./data/tqa-pattern-blueprint.json";
@@ -57,6 +59,17 @@ export const RemotionRoot = () => {
         width={tqaVideo.width}
         height={tqaVideo.height}
         calculateMetadata={() => ({ durationInFrames: buildTimeline(tqaVideo).total_frames })}
+      />
+
+      {/* TQA video 8, the original Stillness Journey, rebuilt on the same standard and the same prayer push as video three. Words come from src/data/TQA_Stillness_Journey_FINAL_v8.json */}
+      <Composition
+        id="TQA-Stillness-Journey-FINAL-v8"
+        component={TQA_Stillness_Journey_FINAL_v8}
+        durationInFrames={buildTimeline(tqaVideo8).total_frames}
+        fps={tqaVideo8.fps}
+        width={tqaVideo8.width}
+        height={tqaVideo8.height}
+        calculateMetadata={() => ({ durationInFrames: buildTimeline(tqaVideo8).total_frames })}
       />
 
       {/* TQA video three, Pattern of Waiting (Psalm 27). Same standard, only the words differ. Words come from src/data/TQA_Stillness_Journey_FINAL_v11.json */}
