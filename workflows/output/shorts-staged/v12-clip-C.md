@@ -5,7 +5,7 @@ clip_name: The Outro Prayer Push
 file: out/shorts/v12-clip-C.mp4
 format: 1080 by 1920, 60 seconds
 status: RENDERED, ready for Grace to post. Nothing here uploads anything.
-full_video_release: Sunday, November 29, 2026
+full_video_release: Sunday, November 15, 2026
 ---
 
 # V12, Clip C: The Outro Prayer Push
@@ -16,7 +16,7 @@ This short shows the prayer, arriving one line at a time.
 
 - In YouTube Studio, open this short, choose Related video, and pick: The Secret of the LORD | Psalm 25:14, Proverbs 3:32, Malachi 3:6 (KJV) | A Quiet Morning Prayer
 - Full video link, to paste after Grace uploads it: {{YOUTUBE_WATCH_URL}}
-- The full video is scheduled for Sunday, November 29, 2026, 5:00 AM Eastern. Post the short after that.
+- The full video is scheduled for Sunday, November 15, 2026, 5:00 AM Eastern. Post the short after that.
 
 ## YouTube Shorts
 
