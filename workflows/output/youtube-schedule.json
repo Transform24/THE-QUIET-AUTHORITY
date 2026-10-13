@@ -28,6 +28,15 @@
         "by": "Grace",
         "on": "2026-10-13",
         "note": "Approved by Grace in the chat for the October 18 launch. Nothing uploads. Grace uploads the video herself."
+      },
+      "deployment": {
+        "status": "deploy_triggered",
+        "label": "Deploy triggered via GitHub Actions, not yet confirmed",
+        "by": "Grace",
+        "on": "2026-10-13",
+        "workflow": "youtube-deploy.yml, run by hand from the Actions panel",
+        "watch_link": null,
+        "note": "Recorded when Grace started the workflow. Nothing here proves the upload happened. The label changes to Deployed only when a real YouTube watch link exists. Careful: the workflow uploads only folders inside workflows/output/youtube-approved/ that hold video.mp4 and metadata, and that folder has none, so it will find nothing to upload as the repository stands."
       }
     },
     {
@@ -50,6 +59,21 @@
       "approval": {
         "status": "ready",
         "label": "Ready, Awaiting Review"
+      },
+      "review": {
+        "status": "ready_for_advance_review",
+        "label": "Ready for Grace's advance review",
+        "review_week": "2026-10-19 to 2026-10-25",
+        "checks": {
+          "frames": "11,520 (8:00 at 24 fps)",
+          "longest_still_page_seconds": 8,
+          "still_page_limit_seconds": 12,
+          "text_box_max_width_px": 780,
+          "fonts": "Cinzel headers, Jost body",
+          "scriptures": "Psalm 91:1-2, Psalm 91:4, Psalm 91:14-15, Romans 10:9-10, word for word from the live KJV, LORD in capitals",
+          "to_read": "Reflections 2 and 3 were drafted by Claude and need Grace's read"
+        },
+        "card": "workflows/output/youtube-pending/v9-stillness-journey.md"
       }
     },
     {

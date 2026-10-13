@@ -31,8 +31,13 @@ It is 1920 by 1080, exactly 8 minutes (11,520 frames at 24 per second). Text box
 2. The closing prayer is your existing prayer, which also closes Video 1 and Video 4. It mentions the secret place, so it fits here. Tell me if you want a different prayer.
 3. Every verse was checked word for word against the King James Version, with LORD in capitals.
 4. The music is the original Version 8 score, 8 minutes long, fading out over the last 8 seconds.
-5. No picture holds still for more than 7 seconds.
+5. The longest a picture holds still is 8 seconds, inside the 12 second limit.
 
 ## Before it goes anywhere
 
 Nothing here uploads by itself. You do your own check and upload to YouTube yourself.
+
+## Advance review (prepared 2026-10-13, for the week of October 19 to 25)
+- Status: Ready for Grace's advance review. Not approved yet. Approve or ask for a rebuild with the gold buttons on the gate, and tell Claude your choice.
+- Checks that passed: exactly 11,520 frames, longest still page 8 seconds (limit 12), every text box 780 pixels or less in Jost with Cinzel headers, and the scriptures matched word for word to the live King James Version with LORD in capitals.
+- What needs your eyes: reflections 2 and 3 were drafted by Claude, and the closing prayer is your existing prayer.

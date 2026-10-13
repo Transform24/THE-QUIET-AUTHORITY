@@ -39,11 +39,12 @@ for (const s of scriptures) {
 }
 
 // The three phrases Grace named, checked against the video text itself.
-const PHRASES = [
+// Phrases Grace named for Week 7 (v14). Other videos are checked word for word against the live KJV and the registry only.
+const PHRASES = NAME.endsWith("v14") ? [
   ["PSALM 46:1", "a very present help"],
   ["PSALM 46:7", "The LORD of hosts is with us"],
   ["PSALM 84:11", "them that walk uprightly"],
-];
+] : [];
 const phraseResults = PHRASES.map(([ref, phrase]) => {
   const s = scriptures.find((x) => x.ref === ref);
   const ok = !!s && s.text.includes(phrase);
