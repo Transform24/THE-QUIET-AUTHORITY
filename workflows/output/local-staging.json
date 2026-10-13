@@ -7,10 +7,10 @@
       "time": "5:00 AM",
       "version": "v14",
       "title": "One Word Under All of Them: Immanu | Psalm 46:1, Psalm 46:7 and Psalm 84:11 (KJV) | A Quiet Prayer to Rest In",
-      "status": "AGENT DRAFT, awaiting Grace's review and approval",
+      "status": "Ready, Approved locally",
       "data": "content-ops/04_youtube/remotion/src/data/TQA_Stillness_Journey_FINAL_v14.json",
       "plan": "content-ops/05_future_development/SCRIPTURE-SELECTION.md",
-      "rendered": false,
+      "rendered": true,
       "chapters": [
         "0:00 Sanctuary Grace Ministry presents The Quiet Authority",
         "0:15 Psalm 46:1",
@@ -19,7 +19,23 @@
         "3:32 Romans 10:9-10",
         "4:17 A closing prayer",
         "7:30 Thank you for watching"
-      ]
+      ],
+      "approval": {
+        "status": "approved_locally",
+        "label": "Ready, Approved locally",
+        "note": "Grace approved the agent drafted words for Week 7 in the chat on 2026-10-13. Local only. Not approved for the live site."
+      },
+      "render": {
+        "file": "content-ops/04_youtube/remotion/out/TQA_Stillness_Journey_FINAL_v14.mp4 (local, git-ignored, not committed)",
+        "frames": 11520,
+        "fps": 24,
+        "size": "1920 by 1080",
+        "duration": "8:00",
+        "bytes": 31317577,
+        "audio": "Version 8 score (src/assets/tqa/tqa-music-v8-extended.m4a), 480.064 seconds, matches the approved videos' audio",
+        "integrity": "passed: longest black run before the fade 0 frames, longest picture gap 0 frames, longest frozen stretch 10 seconds (limit 12), final fade from frame 11328",
+        "checked": "2026-10-13"
+      }
     }
   ]
 }

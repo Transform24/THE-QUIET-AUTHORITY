@@ -687,7 +687,7 @@
                         <h2 style="font-family: 'Cormorant Garamond', serif; color: #C9A84C; margin-bottom: 20px;">${escapeHtml(v.title)}</h2>
                         <div class="item-content">${escapeHtml(v.chapters.join('\n'))}</div>
                         ${p ? `<a href="${escapeHtml(p.file)}" target="_blank" rel="noopener"><img src="${escapeHtml(p.file)}" alt="Staged Idea Pin for ${escapeHtml(p.scripture_title.join(' and '))}" style="width:100%; max-width:360px; margin:16px auto 0; border:1px solid #272727; display:block;"></a>` : ''}
-                        <p class="counter" style="margin-top:12px;">Words and plan: ${escapeHtml(v.data)} and ${escapeHtml(v.plan)}. Not rendered yet. Not shown on the live site.</p>
+                        <p class="counter" style="margin-top:12px;">Words and plan: ${escapeHtml(v.data)} and ${escapeHtml(v.plan)}. ${v.rendered ? 'Rendered locally: ' + escapeHtml(v.render.frames) + ' frames, ' + escapeHtml(v.render.duration) + ', checks passed.' : 'Not rendered yet.'} Not shown on the live site.</p>
                     </div>`;
                 }).join('');
                 return H2 + 'Week 7 Local Staging (offline view only)</h2>' + cards;

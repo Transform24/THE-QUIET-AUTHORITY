@@ -75,7 +75,7 @@ for (const L of layouts) {
   }
 }
 if (RULES.picture_fade_out_frames !== 192) fail(`the official final fade-out is 192 frames, found ${RULES.picture_fade_out_frames}`);
-notes.push(`layouts: 7 layout files keep an <Img> picture layer, 11,520 frames, text at 780 pixels or less, Cinzel and Jost, every scripture word for word from the KJV registry (LORD in capitals)`);
+notes.push(`layouts: 8 layout files keep an <Img> picture layer, 11,520 frames, text at 780 pixels or less, Cinzel and Jost, every scripture word for word from the KJV registry (LORD in capitals)`);
 
 // 2. Video checks
 const args = process.argv.slice(2);
