@@ -4,3 +4,7 @@ public/
 
 # Raw video files never go to GitHub (public repository). Security rule 2026-10-13, see TQA-STANDARD.md.
 *.mp4
+
+# Week 7 (Video 14, Immanu) draft is kept offline. Never tracked in the public repository (Grace, 2026-10-14).
+src/data/TQA_Stillness_Journey_FINAL_v14.json
+src/TQA_Stillness_Journey_FINAL_v14.jsx

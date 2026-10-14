@@ -10,3 +10,15 @@ test-results/
 !content-ops/04_youtube/remotion/package-lock.json
 !circle-of-silence/remotion/package.json
 !circle-of-silence/remotion/package-lock.json
+
+# Week 7 (Video 14, Immanu) draft stays offline (Grace, 2026-10-14)
+content-ops/04_youtube/remotion/src/data/TQA_Stillness_Journey_FINAL_v14.json
+content-ops/04_youtube/remotion/src/TQA_Stillness_Journey_FINAL_v14.jsx
+content-ops/03_pinterest_pins/TQA_IdeaPin_v14.png
+content-ops/03_pinterest_pins/pins-staged.json
+content-ops/05_future_development/staged-captions/
+content-ops/05_future_development/KJV-VERIFICATION-v14.md
+content-ops/05_future_development/SCRIPTURE-SELECTION.md
+scripts/stage-week7-captions.mjs
+workflows/output/local-staging.json
+workflows/output/TQA-WEEK7-IMMANU-DRAFT.zip
