@@ -52,3 +52,10 @@ Every block below is assigned to the one voice profile **Satora (Grandmother)**.
 | Companion devotional materials | Website | Satora (Grandmother) | Not written yet | No |
 
 Rule for new blocks: copy a row, keep the voice as Satora (Grandmother), set the text status to "Draft, awaiting Grace" until she approves it.
+
+## 6. Launch-ready ledger (2026-10-14)
+
+- Video 8 (Week 1, Sunday October 18, 2026, 5:00 AM Eastern) is Yes, Approved by Grace. It is a master video, so it carries no voice: only the Version 8 music plays. Nothing uploads by itself. The deploy workflow was started by hand and is recorded as triggered, not confirmed (see `STATUS.txt`).
+- All upcoming website courses and devotional materials are locked to the one voice profile Satora (Grandmother). No other voice is assigned to them.
+- No Satora recording has been generated. Section 3 stays empty until Grace approves a script text (section 2).
+- The Matilda recordings on the gate pages and Daily Sanctuary are unchanged.
