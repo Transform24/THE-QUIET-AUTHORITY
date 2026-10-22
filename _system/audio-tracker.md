@@ -30,7 +30,9 @@ The monthly starter limit is spent only on approved text. If a draft is not appr
 
 | File | Voice | Used in | Text approved by Grace on | Generated on |
 |---|---|---|---|---|
-| (no recording made yet) | | | | |
+| Bedtime Stories slide 1 narration (about 16 s) | Grandma Santa Maria (ElevenLabs voice id A0g6t0RQc9zkMPsGNEIG) | Sanctuary Grace Bedtime Stories, slide 1 | 2026-10-22, Grace said to use her script text | 2026-10-22, 196 credits |
+| Bedtime Stories slide 2 narration (about 15 s) | Grandma Santa Maria | slide 2, Psalm 4:8 (KJV) | 2026-10-22 | 2026-10-22, 186 credits |
+| Bedtime Stories slide 3 narration (about 27 s, the poll slide, not cut) | Grandma Santa Maria | slide 3 | 2026-10-22 | 2026-10-22, 371 credits |
 
 ## 4. Registry confirmation (2026-10-13, Grace confirmed her rules)
 
@@ -59,3 +61,9 @@ Rule for new blocks: copy a row, keep the voice as Satora (Grandmother), set the
 - All upcoming website courses and devotional materials are locked to the one voice profile Satora (Grandmother). No other voice is assigned to them.
 - No Satora recording has been generated. Section 3 stays empty until Grace approves a script text (section 2).
 - The Matilda recordings on the gate pages and Daily Sanctuary are unchanged.
+
+## 7. Voice profile change (2026-10-22, Grace's decision)
+- No voice named Satora (Grandmother) exists in the ElevenLabs workspace, so none could be used. Grace chose to use the three Grandma Santa Maria takes already generated for the Bedtime Stories series.
+- Voice profile for the Bedtime Stories series (Instagram, YouTube Short, Pinterest): Grandma Santa Maria. This replaces Satora (Grandmother) for this series. The Wilderness 5-day course lock to Satora in section 5 is unchanged until Grace says otherwise.
+- Section 1 said the Shorts, Reels and Pins carry no voice. For the Bedtime Stories series only, Grace has now approved a voice on them.
+- Cost: 753 credits in total (196, 186 and 371), one take each, no retries. The files and captions are in the private workspace `shorts-approval-gate/`, not in this repository.
