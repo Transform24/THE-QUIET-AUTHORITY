@@ -1,1 +1,220 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Hubs | Sanctuary Grace</title><meta name="description" content="Choose your path"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400;700&family=Frank+Ruhl+Libre:wght@400;500&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://sanctuary-grace.com/hubs/hub.css"></head><body><nav class="nav"><a href="https://sanctuary-grace.com/foyer.html">Foyer</a><a href="https://sanctuary-grace.com/library.html">Library</a><a href="https://sanctuary-grace.com/hubs/circle.html">Circle of Silence</a><a href="https://sanctuary-grace.com/hubs/secret-place.html">Secret Place</a><a href="https://sanctuary-grace.com/hubs/woman-who-pours.html">Woman Who Pours</a><a href="https://sanctuary-grace.com/hubs/names-of-god.html">Names of God</a><a href="https://shop.sanctuary-grace.com/hub.html">Wilderness</a></nav><main><header class="hero"><p class="eyebrow">Sanctuary Grace Ministry</p><h1>Choose your path</h1><p class="sub">Every journey here has a hub: a free place to start, the tools to walk it, and the next step when you are ready.</p></header><section class="card"><ul class="freelist"><li><a href="/hubs/circle.html"><strong>The Circle of Silence</strong></a><span>Six gates, one at a time. Start free at Gate Zero.</span></li><li><a href="/hubs/secret-place.html"><strong>The Secret Place</strong></a><span>Five days of dwelling in Psalm 91.</span></li><li><a href="/hubs/woman-who-pours.html"><strong>The Woman Who Pours</strong></a><span>For the woman who gives and gives.</span></li><li><a href="/hubs/names-of-god.html"><strong>The Names of God</strong></a><span>Read one a day. Say it. Pray it back.</span></li><li><a href="https://shop.sanctuary-grace.com/hub.html"><strong>The Wilderness</strong></a><span>A 5-day journey. Day One is free.</span></li></ul></section></main><footer><p><a href="https://sanctuary-grace.com/restore-access.html">Restore my access</a> · <a href="https://sanctuary-grace.com/hubs/">All hubs</a></p><p>Sanctuary Grace Ministry · King James Version · Come as you are.</p></footer></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sanctuary Grace | The Secret Place</title>
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --smoky-black: #0d0d0d;
+            --gold: #C9A84C;
+            --cream: #F5F0E8;
+            --ash-gray: #5A5A5A;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--smoky-black);
+            color: var(--cream);
+            font-family: 'Jost', sans-serif;
+            line-height: 1.8;
+            letter-spacing: 0.05em;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        header {
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(201, 168, 76, 0.1);
+        }
+
+        .brand-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.75rem;
+            font-weight: 400;
+            color: var(--gold);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem 1.5rem;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .scripture-box {
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .scripture-text {
+            font-family: 'Cinzel', serif;
+            font-size: 1.15rem;
+            font-style: italic;
+            color: var(--cream);
+            line-height: 2;
+            margin-bottom: 1rem;
+        }
+
+        .scripture-reference {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            color: var(--gold);
+            letter-spacing: 0.15em;
+        }
+
+        .product-card {
+            background: linear-gradient(145deg, #121212, #080808);
+            border: 1px solid rgba(201, 168, 76, 0.15);
+            padding: 3rem 2rem;
+            border-radius: 4px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .product-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--gold);
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .product-tagline {
+            font-size: 0.95rem;
+            color: #A0A0A0;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .product-description {
+            font-size: 1rem;
+            color: var(--cream);
+            margin-bottom: 2.5rem;
+            text-align: left;
+        }
+
+        .product-description ul {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .product-description li {
+            margin-bottom: 0.75rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .product-description li::before {
+            content: "•";
+            color: var(--gold);
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+        }
+
+        .price-tag {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            color: var(--cream);
+            margin-bottom: 2rem;
+            font-weight: 400;
+        }
+
+        .cta-button {
+            display: inline-block;
+            width: 100%;
+            background-color: transparent;
+            color: var(--gold);
+            border: 1px solid var(--gold);
+            padding: 1.2rem 2rem;
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            border-radius: 2px;
+        }
+
+        .cta-button:hover {
+            background-color: var(--gold);
+            color: var(--smoky-black);
+            box-shadow: 0 0 15px rgba(201, 168, 76, 0.4);
+        }
+
+        footer {
+            padding: 2rem 1.5rem;
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--ash-gray);
+            letter-spacing: 0.1em;
+            border-top: 1px solid rgba(201, 168, 76, 0.05);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="brand-title">Sanctuary Grace</div>
+    </header>
+
+    <main>
+        <div class="container">
+            
+            <div class="scripture-box">
+                <p class="scripture-text">“Remember ye not the former things, neither consider the things of old. Behold, I will do a new thing...”</p>
+                <p class="scripture-reference">Isaiah 43:18-19</p>
+            </div>
+
+            <div class="product-card">
+                <h1 class="product-title">The KJV Scriptural Foyer</h1>
+                <p class="product-tagline">A 30-Day Blueprint for Intimacy in Prayer</p>
+                
+                <div class="product-description">
+                    <p>Stop wandering through chaotic burnout. Step past the threshold and establish an unshakeable altar of devotion with a clean, sequential, 30-day structural roadmap built strictly word-for-word on the King James Version.</p>
+                    <ul>
+                        <li>Stage 1: Closing the Open Doors of Worldly Noise</li>
+                        <li>Stage 2: Re-establishing Your Legal Access and Authority</li>
+                        <li>Stage 3: Deep Dwellings Within the Secret Place Chambers</li>
+                        <li>Stage 4: Stripping Away the Scales of Spiritual Blindness</li>
+                    </ul>
+                </div>
+
+                <div class="price-tag">$27.00</div>
+
+                <!-- REPLACE THE '#' BELOW WITH YOUR EXACT STRIPE PAYMENT LINK -->
+                <a <a href="https://stripe.com" class="cta-button">Secure Your Passport</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        &copy; 2026 Sanctuary Grace Ministries. All Rights Reserved.
+    </footer>
+
+</body>
+</html>
